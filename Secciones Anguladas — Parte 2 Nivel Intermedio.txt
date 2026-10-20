@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Secciones Anguladas — Parte 2: Nivel Intermedio</title>
+ <style>
+  :root {
+   --skew: 5deg;
+   --color-a: #594199;
+   --color-b: #ffffff;
+   --color-c: #eee5f2;
+   --color-d: #1b1b2f;
+   --color-e: #f2994a;
+  }
+
+  *,
+  *::before,
+  *::after {
+   box-sizing: border-box;
+  }
+
+  body {
+   margin: 0;
+   font-family: system-ui, sans-serif;
+   overflow-x: hidden;
+  }
+
+  section {
+   position: relative;
+   padding: 80px 20px;
+   min-height: 220px;
+   text-align: center;
+  }
+
+  h2 {
+   margin-top: 0;
+  }
+
+  p.tag {
+   opacity: .7;
+   font-size: .9rem;
+  }
+
+  /* ============================================
+     VARIACIÓN 1 — clip-path en vez de skew+pseudo
+     Ventaja: una sola capa, sin ::before/::after
+  ============================================= */
+  .v1 {
+   background: var(--color-a);
+   color: white;
+   clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+   margin-bottom: -5vw;
+   /* solapa con la siguiente para evitar huecos */
+   padding-bottom: 120px;
+  }
+
+  /* ============================================
+     VARIACIÓN 2 — diagonal en un solo lado (no ambos)
+     Ventaja: transición más sutil entre secciones
+  ============================================= */
+  .v2 {
+   background: var(--color-c);
+   color: #111;
+   clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+   padding-top: 100px;
+  }
+
+  /* ============================================
+     VARIACIÓN 3 — ángulo asimétrico (distinto en cada lado)
+     Ventaja: rompe la monotonía del patrón repetitivo
+  ============================================= */
+  .v3 {
+   background: var(--color-d);
+   color: white;
+   clip-path: polygon(0 0, 100% 12%, 100% 100%, 0 88%);
+   padding: 120px 20px;
+  }
+
+  /* ============================================
+     VARIACIÓN 4 — divisor SVG (curva orgánica, no recta)
+     Ventaja: no se limita a líneas rectas
+  ============================================= */
+  .v4-wrapper {
+   position: relative;
+   background: var(--color-e);
+   color: white;
+  }
+
+  .v4-wrapper svg {
+   display: block;
+   width: 100%;
+   height: 80px;
+   fill: var(--color-e);
+  }
+
+  .v4-content {
+   padding: 60px 20px;
+  }
+
+  .v5 {
+   background: var(--color-b);
+   color: #111;
+   padding: 80px 20px 40px;
+  }
+
+  @media (max-width: 600px) {
+   :root {
+    --skew: 3deg;
+   }
+
+   .v1,
+   .v2,
+   .v3 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+   }
+  }
+ </style>
+</head>
+
+<body>
+
+ <section class="v5">
+  <h2>Inicio — sección plana de referencia</h2>
+  <p class="tag">Sin ángulo, para contraste visual</p>
+ </section>
+
+ <section class="v1">
+  <h2>Variación 1: clip-path</h2>
+  <p class="tag">Reemplaza skew + pseudo-elementos por una sola línea de clip-path</p>
+ </section>
+
+ <section class="v2">
+  <h2>Variación 2: diagonal en un solo lado</h2>
+  <p class="tag">Solo el borde superior está inclinado; el inferior queda recto</p>
+ </section>
+
+ <section class="v3">
+  <h2>Variación 3: ángulo asimétrico</h2>
+  <p class="tag">El corte superior e inferior usan porcentajes distintos, no un espejo</p>
+ </section>
+
+ <div class="v4-wrapper">
+  <svg viewBox="0 0 500 80" preserveAspectRatio="none">
+   <path d="M0,80 C150,0 350,0 500,80 Z" transform="translate(0,-1)" style="fill:#ffffff"></path>
+  </svg>
+  <div class="v4-content">
+   <h2>Variación 4: divisor SVG curvo</h2>
+   <p class="tag">Curva orgánica en vez de línea recta — requiere un SVG por transición</p>
+  </div>
+  <svg viewBox="0 0 500 80" preserveAspectRatio="none" style="transform: rotate(180deg)">
+   <path d="M0,80 C150,0 350,0 500,80 Z" style="fill:#ffffff"></path>
+  </svg>
+ </div>
+
+ <section class="v5">
+  <h2>Cierre</h2>
+ </section>
+
+</body>
+
+</html>

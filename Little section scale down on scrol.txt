@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Efecto de escala en scroll construido con CSS scroll-driven animations, con respaldo en GSAP para navegadores sin soporte.">
+ <title>Little section scale down on scroll</title>
+ <link rel="icon" href="data:,">
+
+ <link rel="preconnect" href="https://assets.codepen.io" crossorigin>
+ <link rel="preconnect" href="https://esm.sh" crossorigin>
+ <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+ <style>
+  @import "https://unpkg.com/normalize.css"layer(normalize);
+
+  @font-face {
+   font-family: "Geist Sans";
+   src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+   font-display: swap;
+  }
+
+  @layer foundation {
+
+   *,
+   *:after,
+   *:before {
+    box-sizing: border-box;
+   }
+
+   html {
+    height: 100%;
+   }
+
+   body {
+    min-height: 100%;
+    background: hsl(0 0% 100%);
+    font-family: "Geist Sans", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
+    font-weight: 80;
+    overflow-x: hidden;
+   }
+
+   header {
+    min-height: 100vh;
+    min-height: 100svh;
+   }
+
+   video {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    width: 100vw;
+    object-fit: cover;
+   }
+
+   header>section {
+    position: relative;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    translate: 0 -100%;
+    display: grid;
+    place-items: center;
+    color: hsl(0 0% 100%);
+    padding-inline: 1rem;
+   }
+
+   h1 {
+    --font-size: clamp(2rem, 4vw + 1rem, 8rem);
+    font-size: var(--font-size);
+    text-align: center;
+    display: grid;
+    gap: 0.5rem 0;
+    line-height: 0.9;
+    text-wrap: balance;
+    font-weight: 120;
+   }
+
+   h1 span:first-of-type {
+    font-size: calc(var(--font-size) * 0.35);
+   }
+
+   header>section::before {
+    content: "";
+    position: absolute;
+    inset: -100% 0 -100% 0;
+    background: hsl(0 0% 0% / 0.5);
+    pointer-events: none;
+    z-index: -1;
+   }
+
+   main {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding-inline: 1rem;
+   }
+
+   main>section {
+    font-size: clamp(2rem, 3vw + 1rem, 8rem);
+    font-weight: 100;
+    text-align: center;
+   }
+
+   footer {
+    padding: 2rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+   }
+  }
+
+  @layer scrolls {
+   @supports (animation-timeline: scroll()) {
+    header {
+     transform-origin: 50% 0%;
+     animation: scale-down both ease-in;
+     animation-timeline: view();
+     animation-range: exit;
+     view-timeline: --header;
+    }
+
+    @keyframes scale-down {
+     to {
+      scale: 0.8 0.8;
+     }
+    }
+
+    header>section::before {
+     animation: fade both linear;
+     animation-timeline: --header;
+     animation-range: exit-crossing 0% exit 0%;
+    }
+
+    @keyframes fade {
+     to {
+      opacity: 0;
+     }
+    }
+   }
+  }
+
+  @layer socials {
+
+   .x-link,
+   .bear-link {
+    color: hsl(0 0% 100%);
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 48px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    opacity: 0.8;
+    mix-blend-mode: difference;
+   }
+
+   .bear-link {
+    bottom: unset;
+    top: 1rem;
+   }
+
+   :where(.x-link, .bear-link):is(:hover, :focus-visible) {
+    opacity: 1;
+   }
+
+   .bear-link svg {
+    width: 75%;
+   }
+
+   .x-link svg {
+    width: 50%;
+   }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+   header,
+   header>section::before {
+    animation: none !important;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <header>
+  <video autoplay muted loop playsinline preload="metadata" poster="https://res.cloudinary.com/o7sf1mjm/image/upload/v1786945554/SCfZ94QChY.webp" aria-hidden="true" src="https://res.cloudinary.com/o7sf1mjm/image/upload/v1786945554/SCfZ94QChY.webp">
+  </video>
+  <section>
+   <h1>
+    <span>CSS-Pro</span>
+    <span>Little details that make your sites feel great.</span>
+   </h1>
+  </section>
+ </header>
+
+ <main>
+  <section>You got this.</section>
+ </main>
+ <section class="showcase">
+  <div class="showcase-inner">
+   <p class="showcase-eyebrow">Sobre este ejemplo</p>
+   <h2 class="showcase-title">El mismo código puede llevar tu marca, tu producto o tu proyecto.</h2>
+   <div class="showcase-grid">
+    <article class="showcase-card">
+     <h3>Landing de producto</h3>
+     <p>Video de tu producto en lugar del ejemplo, con tu nombre y mensaje central.</p>
+    </article>
+    <article class="showcase-card">
+     <h3>Portafolio visual</h3>
+     <p>Varias secciones encadenadas, cada una con su propio clip o imagen.</p>
+    </article>
+    <article class="showcase-card">
+     <h3>Página de evento o marca</h3>
+     <p>Adaptado a tu espacio, tu identidad y tu contenido real.</p>
+    </article>
+   </div>
+   <a class="showcase-cta" href="mailto:tu-correo@dominio.com">Escríbeme para construir el tuyo</a>
+  </div>
+ </section>
+ <footer>lam:p &copy; 2024 </footer>
+
+ <a class="bear-link" href="#" target="_blank" rel="noreferrer noopener" aria-label="Enlaces de lam:P">
+  <p>lam:P</p>
+ </a>
+
+ <a class="x-link" href="https://twitter.com/intent/follow?screen_name=luisangelmaciel" target="_blank" rel="noreferrer noopener" aria-label="Seguir en X">
+  <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+   <title>X</title>
+   <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" fill="currentColor" />
+  </svg>
+ </a>
+
+ <script id="rendered-js" type="module">
+  import gsap from 'https://esm.sh/gsap@3.12.0';
+  import ScrollTrigger from 'https://esm.sh/gsap@3.12.0/ScrollTrigger';
+  if (!CSS.supports('animation-timeline: scroll()')) {
+   gsap.registerPlugin(ScrollTrigger);
+   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+   if (!reduceMotion) {
+    gsap.to('header', {
+     scale: 0.8,
+     ease: 'power1.in',
+     scrollTrigger: {
+      trigger: 'header',
+      scrub: true,
+      start: 'center top',
+      end: 'bottom top'
+     }
+    });
+    gsap.set('header', {
+     '--opacity': 1
+    });
+    gsap.to('header', {
+     '--opacity': 0,
+     ease: 'power1.in',
+     scrollTrigger: {
+      trigger: 'header',
+      scrub: true,
+      start: 'center bottom',
+      end: 'bottom bottom'
+     }
+    });
+   }
+  }
+ </script>
+</body>
+
+</html>

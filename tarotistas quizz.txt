@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Untitled</title>
+
+    <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/MYYGpoq">
+  
+  
+  
+  
+<style>
+/* Basic Reset and Body Styling */
+body {
+ margin: 0;
+ font-family: sans-serif;
+ line-height: 1.6;
+ transition: background-color 0.3s ease, color 0.3s ease;
+ min-height: 100vh; /* Ensure body covers full viewport */
+ display: flex;
+ flex-direction: column; /* Arrange elements vertically */
+ color: #333; /* Default light mode text color */
+ background-color: #f4f4f4; /* Default light mode background */
+}
+
+/* Dark Mode Styles (Default) */
+body.dark-mode {
+ background-color: #1a1a1a;
+ color: #e0e0e0;
+}
+
+body.dark-mode .survey-container {
+ background-color: #2a2a2a;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .question label {
+ color: #cccccc;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode textarea,
+body.dark-mode select {
+ background-color: #3a3a3a;
+ color: #e0e0e0;
+ border-color: #555;
+}
+
+body.dark-mode input[type="radio"] + label,
+body.dark-mode input[type="checkbox"] + label {
+ color: #e0e0e0; /* Match text color */
+}
+
+body.dark-mode input[type="radio"]:checked + label::before,
+body.dark-mode input[type="checkbox"]:checked + label::before {
+ border-color: #66aaff; /* Highlight color */
+ background-color: #66aaff; /* Fill color */
+}
+
+body.dark-mode button {
+ background-color: #555;
+ color: #e0e0e0;
+ border-color: #555;
+}
+
+body.dark-mode button:not(:disabled):hover {
+ background-color: #666;
+ border-color: #666;
+}
+
+body.dark-mode button:disabled {
+ background-color: #444;
+ border-color: #444;
+ color: #888;
+}
+
+/* Progress Bar */
+.progress-bar {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 8px; /* Thickness of the bar */
+ background-color: #e0e0e0; /* Background of the bar track */
+ z-index: 1000; /* Ensure it's above other content */
+}
+
+body.dark-mode .progress-bar {
+ background-color: #555; /* Dark mode track color */
+}
+
+.progress-fill {
+ height: 100%;
+ width: 0%; /* Starts at 0% */
+ background-color: #007bff; /* Blue fill color */
+ transition: width 0.4s ease-in-out; /* Smooth transition for width */
+}
+
+body.dark-mode .progress-fill {
+ background-color: #66aaff; /* Dark mode fill color */
+}
+
+/* Survey Container (Main Content Area) */
+.survey-container {
+ flex-grow: 1; /* Allows container to take up available space */
+ width: 90%;
+ max-width: 700px; /* Max width like Typeform */
+ margin: 60px auto 80px auto; /* Top margin for fixed progress bar, bottom for fixed nav */
+ padding: 30px;
+ background-color: #fff; /* Default light mode background */
+ border-radius: 8px;
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+ display: flex;
+ flex-direction: column; /* Arrange slides vertically */
+ justify-content: center; /* Center content vertically within container */
+ min-height: calc(100vh - 148px); /* Minimum height considering fixed bar/nav */
+}
+
+/* Individual Survey Slides */
+.survey-slide {
+ display: none; /* Hide all slides by default */
+ animation: fadeIn 0.5s ease-out; /* Simple fade in animation */
+}
+
+.survey-slide.active-slide {
+ display: block; /* Show the active slide */
+}
+
+/* Slide Content Styling */
+.slide-content {
+ padding: 20px 0;
+}
+
+.slide-content h1,
+.slide-content h2 {
+ text-align: center;
+ margin-bottom: 20px;
+ color: #007bff; /* Highlight color for headings */
+}
+
+body.dark-mode .slide-content h1,
+body.dark-mode .slide-content h2 {
+ color: #66aaff; /* Dark mode highlight color */
+}
+
+.question {
+ margin-bottom: 30px;
+}
+
+.question label {
+ display: block;
+ font-size: 1.2em; /* Larger font for questions */
+ margin-bottom: 15px;
+ font-weight: bold;
+}
+
+/* Input Styling */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+ width: calc(100% - 22px); /* Adjust for padding and border */
+ padding: 10px;
+ margin-top: 5px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ font-size: 1em;
+ box-sizing: border-box; /* Include padding and border in element's total width/height */
+ transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+ border-color: #007bff; /* Highlight on focus */
+ outline: none; /* Remove default outline */
+}
+
+textarea {
+ resize: vertical; /* Allow vertical resize */
+}
+
+/* Radio and Checkbox Styling (Custom Look) */
+/* Hide default input */
+input[type="radio"],
+input[type="checkbox"] {
+ position: absolute;
+ opacity: 0;
+ pointer-events: none; /* Make it non-interactive */
+}
+
+/* Style the label to act as the clickable area */
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+ display: inline-block;
+ position: relative;
+ padding-left: 30px; /* Space for the custom indicator */
+ margin-bottom: 10px;
+ cursor: pointer;
+ font-size: 1em;
+ line-height: 1.5em; /* Align text nicely */
+ user-select: none; /* Prevent text selection on click */
+ color: #333; /* Default light mode text */
+}
+
+/* Create the custom indicator */
+input[type="radio"] + label::before,
+input[type="checkbox"] + label::before {
+ content: "";
+ position: absolute;
+ left: 0;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 20px;
+ height: 20px;
+ border: 2px solid #ccc;
+ background-color: #fff;
+ transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Style for Radio (Round) */
+input[type="radio"] + label::before {
+ border-radius: 50%;
+}
+
+/* Style for Checkbox (Square) */
+input[type="checkbox"] + label::before {
+ border-radius: 4px;
+}
+
+/* Style the inner indicator when checked */
+input[type="radio"]:checked + label::before {
+ border-color: #007bff; /* Highlight border */
+ background-color: #007bff; /* Fill */
+}
+
+input[type="checkbox"]:checked + label::before {
+ border-color: #007bff; /* Highlight border */
+ background-color: #007bff; /* Fill */
+}
+
+/* Create the checkmark/dot */
+input[type="radio"]:checked + label::after {
+ content: "";
+ position: absolute;
+ left: 6px; /* Position the dot */
+ top: 50%;
+ transform: translateY(-50%);
+ width: 10px;
+ height: 10px;
+ background-color: #fff; /* White dot */
+ border-radius: 50%;
+}
+
+input[type="checkbox"]:checked + label::after {
+ content: "";
+ position: absolute;
+ left: 5px; /* Position the checkmark */
+ top: 50%;
+ transform: translateY(-50%);
+ width: 10px;
+ height: 5px; /* Shape of the checkmark */
+ border-left: 2px solid #fff;
+ border-bottom: 2px solid #fff;
+ transform: translateY(-50%) rotate(-45deg); /* Rotate to form checkmark */
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ background-color: #f8f9fa; /* Light background for nav */
+ padding: 15px 30px;
+ box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* Subtle top shadow */
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ z-index: 1000; /* Ensure it's above other content */
+}
+
+body.dark-mode .navigation-buttons {
+ background-color: #3a3a3a;
+ box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-buttons button {
+ padding: 10px 20px;
+ font-size: 1em;
+ cursor: pointer;
+ border: 1px solid #007bff;
+ border-radius: 5px;
+ background-color: #007bff;
+ color: white;
+ transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.navigation-buttons button:disabled {
+ opacity: 0.5;
+ cursor: not-allowed;
+}
+
+.navigation-buttons button:not(:disabled):hover {
+ background-color: #0056b3;
+}
+
+#prev-btn {
+ background-color: #6c757d;
+ border-color: #6c757d;
+}
+
+#prev-btn:not(:disabled):hover {
+ background-color: #5a6268;
+}
+
+body.dark-mode #prev-btn {
+ background-color: #555;
+ border-color: #555;
+}
+body.dark-mode #prev-btn:not(:disabled):hover {
+ background-color: #666;
+}
+
+#slide-counter {
+ font-size: 1em;
+ color: #555;
+}
+body.dark-mode #slide-counter {
+ color: #ccc;
+}
+
+/* Animation */
+@keyframes fadeIn {
+ from {
+  opacity: 0;
+  transform: translateY(20px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+/* Specific styles for textarea below checkbox/radio 'Other' option */
+.question textarea[name$="_other_text"] {
+ /* Targets textareas whose name ends with _other_text */
+ display: block; /* Ensure it's on a new line */
+ width: calc(100% - 22px);
+ margin-top: 10px;
+ /* Initially hide or manage display via JS if needed, but block is fine */
+}
+
+/* Style for the "Clear Progress" button */
+#clear-progress-btn {
+ background-color: #dc3545; /* Red */
+ border-color: #dc3545;
+ margin-top: 20px;
+}
+
+#clear-progress-btn:not(:disabled):hover {
+ background-color: #c82333;
+}
+body.dark-mode #clear-progress-btn {
+ background-color: #e57373; /* Lighter red in dark mode */
+ border-color: #e57373;
+}
+body.dark-mode #clear-progress-btn:not(:disabled):hover {
+ background-color: #ef9a9a;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Encuesta para Tarotistas 2025</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+ <div class="progress-bar">
+  <div class="progress-fill"></div>
+ </div>
+
+ <div class="survey-container">
+
+  <!-- Introducción -->
+  <div class="survey-slide active-slide" data-slide-type="intro">
+   <div class="slide-content">
+    <h1>Encuesta para Tarotistas 2025</h1>
+    <p>¡Hola!</p>
+    <p>Agradecemos sinceramente tu tiempo y disposición para participar en esta encuesta. Somos [Tu Nombre/Nombre de la Organización] y estamos realizando una investigación detallada para comprender mejor las realidades, desafíos y aspiraciones de los tarotistas profesionales en el mundo de habla hispana.</p>
+    <p>Tu perspectiva es increíblemente valiosa para nosotros. La información que nos proporciones nos ayudará a identificar las tendencias actuales y, lo más importante, a entender tus necesidades para poder diseñar herramientas, recursos y servicios que realmente agreguen valor y apoyen tu crecimiento y el de la comunidad.</p>
+    <p>Tus respuestas serán tratadas con la más estricta confidencialidad y utilizadas únicamente con fines de investigación agregada. No se compartirá información personal ni se identificarán tus respuestas individualmente.</p>
+    <p>Completar esta encuesta te tomará aproximadamente 15-20 minutos.</p>
+    <p>Como muestra de nuestro agradecimiento por tu valiosa contribución, al finalizar la encuesta podrás optar por recibir [Describe aquí la recompensa: un descuento en un futuro producto/servicio, acceso a un webinar exclusivo con un resumen de resultados, una guía especializada, etc.].</p>
+    <p>¡Tu contribución es fundamental! ¡Comencemos!</p>
+   </div>
+  </div>
+
+  <!-- Sección 1: Sobre Ti y Tu Práctica -->
+  <div class="survey-slide" data-question-key="demographics">
+   <div class="slide-content">
+    <h2>Sección 1: Sobre Ti y Tu Práctica</h2>
+
+    <div class="question">
+     <label for="age">1.1. ¿Cuál es tu edad?</label>
+     <select id="age" name="age" required>
+      <option value="">Selecciona una opción</option>
+      <option value="<25">Menos de 25 años</option>
+      <option value="25-34">25-34 años</option>
+      <option value="35-44">35-44 años</option>
+      <option value="45-54">45-54 años</option>
+      <option value="55-64">55-64 años</option>
+      <option value="65+">65 años o más</option>
+      <option value="prefer_not_say_age">Prefiero no decir</option>
+     </select>
+    </div>
+
+    <div class="question">
+     <label for="gender">1.2. ¿Cuál es tu género?</label>
+     <select id="gender" name="gender" required>
+      <option value="">Selecciona una opción</option>
+      <option value="masculine">Masculino</option>
+      <option value="feminine">Femenino</option>
+      <option value="nonbinary">No binario</option>
+      <option value="other_gender">Otro</option>
+      <option value="prefer_not_say_gender">Prefiero no decir</option>
+     </select>
+    </div>
+
+    <div class="question">
+     <label for="country">1.3. ¿En qué país resides?</label>
+     <select id="country" name="country" required>
+      <option value="">Selecciona un país</option>
+      <option value="mexico">México</option>
+      <option value="argentina">Argentina</option>
+      <option value="colombia">Colombia</option>
+      <option value="spain">España</option>
+      <option value="chile">Chile</option>
+      <option value="peru">Perú</option>
+      <option value="ecuador">Ecuador</option>
+      <option value="venezuela">Venezuela</option>
+      <option value="dom_rep">República Dominicana</option>
+      <option value="cuba">Cuba</option>
+      <option value="guatemala">Guatemala</option>
+      <option value="honduras">Honduras</option>
+      <option value="elsalvador">El Salvador</option>
+      <option value="nicaragua">Nicaragua</option>
+      <option value="costarica">Costa Rica</option>
+      <option value="panama">Panamá</option>
+      <option value="puertorico">Puerto Rico</option>
+      <option value="bolivia">Bolivia</option>
+      <option value="paraguay">Paraguay</option>
+      <option value="uruguay">Uruguay</option>
+      <option value="other_country">Otro</option>
+     </select>
+    </div>
+
+    <div class="question">
+     <label for="experience_years">1.4. ¿Cuántos años de experiencia tienes realizando lecturas de tarot de forma profesional o semi-profesional?</label>
+     <select id="experience_years" name="experience_years" required>
+      <option value="">Selecciona una opción</option>
+      <option value="<1">Menos de 1 año</option>
+      <option value="1-3">1-3 años</option>
+      <option value="4-6">4-6 años</option>
+      <option value="7-10">7-10 años</option>
+      <option value=">10">Más de 10 años</option>
+     </select>
+    </div>
+
+    <div class="question">
+     <label for="main_income">1.5. ¿Consideras que el tarot es tu fuente principal de ingresos?</label>
+     <div>
+      <input type="radio" id="income_yes" name="main_income" value="yes" required>
+      <label for="income_yes">Sí</label><br>
+      <input type="radio" id="income_no" name="main_income" value="no" required>
+      <label for="income_no">No</label><br>
+      <input type="radio" id="income_secondary" name="main_income" value="secondary" required>
+      <label for="income_secondary">Es una fuente secundaria importante</label><br>
+      <input type="radio" id="income_hobby" name="main_income" value="hobby" required>
+      <label for="income_hobby">Es un hobby que a veces genera ingresos</label>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>1.6. ¿Cuál es tu motivación principal para practicar tarot? (Selecciona las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="motivation_clarity" name="motivation" value="clarity">
+      <label for="motivation_clarity">Ayudar a otros a obtener claridad/perspectiva</label><br>
+      <input type="checkbox" id="motivation_spiritual" name="motivation" value="spiritual">
+      <label for="motivation_spiritual">Conexión espiritual/crecimiento personal</label><br>
+      <input type="checkbox" id="motivation_symbols" name="motivation" value="symbols">
+      <label for="motivation_symbols">Exploración de símbolos y arquetipos</label><br>
+      <input type="checkbox" id="motivation_business" name="motivation" value="business">
+      <label for="motivation_business">Como profesión/negocio</label><br>
+      <input type="checkbox" id="motivation_tradition" name="motivation" value="tradition">
+      <label for="motivation_tradition">Tradición familiar/cultural</label><br>
+      <input type="checkbox" id="motivation_curiosity" name="motivation" value="curiosity">
+      <label for="motivation_curiosity">Curiosidad e investigación</label><br>
+      <input type="checkbox" id="motivation_other" name="motivation" value="other_motivation">
+      <label for="motivation_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="motivation_other_text" rows="2" placeholder="Especifica otra motivación si seleccionaste 'Otra'"></textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Sección 2: Tus Herramientas y Técnicas -->
+  <div class="survey-slide" data-question-key="tools_techniques">
+   <div class="slide-content">
+    <h2>Sección 2: Tus Herramientas y Técnicas</h2>
+
+    <div class="question">
+     <label for="num_decks">2.1. ¿Cuántos mazos de tarot estimas que tienes en tu colección?</label>
+     <select id="num_decks" name="num_decks" required>
+      <option value="">Selecciona una opción</option>
+      <option value="1-5">1-5 mazos</option>
+      <option value="6-15">6-15 mazos</option>
+      <option value="16-30">16-30 mazos</option>
+      <option value="31-50">31-50 mazos</option>
+      <option value=">50">Más de 50 mazos</option>
+     </select>
+    </div>
+
+    <div class="question">
+     <label>2.2. ¿Qué tipo de mazos prefieres o utilizas con más frecuencia? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="deck_rws" name="preferred_decks" value="RWS">
+      <label for="deck_rws">Rider-Waite-Smith (RWS) y sus clones</label><br>
+      <input type="checkbox" id="deck_marsella" name="preferred_decks" value="Marsella">
+      <label for="deck_marsella">Marsella</label><br>
+      <input type="checkbox" id="deck_thoth" name="preferred_decks" value="Thoth">
+      <label for="deck_thoth">Thoth</label><br>
+      <input type="checkbox" id="deck_modern" name="preferred_decks" value="Modern">
+      <label for="deck_modern">Mazos con arte moderno/temático</label><br>
+      <input type="checkbox" id="deck_oracles" name="preferred_decks" value="Oracles">
+      <label for="deck_oracles">Oráculos</label><br>
+      <input type="checkbox" id="deck_other" name="preferred_decks" value="other_deck">
+      <label for="deck_other">Otros (Por favor, especifica)</label><br>
+      <textarea name="preferred_decks_other_text" rows="2" placeholder="Especifica otros tipos de mazos"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>2.3. ¿Cuál es tu técnica o tirada de tarot más utilizada en la práctica profesional?</label>
+     <div>
+      <input type="radio" id="spread_3cards" name="most_used_spread" value="3-cards" required>
+      <label for="spread_3cards">Tirada de 3 cartas</label><br>
+      <input type="radio" id="spread_celtic" name="most_used_spread" value="celtic_cross" required>
+      <label for="spread_celtic">Cruz Celta</label><br>
+      <input type="radio" id="spread_cross" name="most_used_spread" value="cross" required>
+      <label for="spread_cross">Tirada en cruz</label><br>
+      <input type="radio" id="spread_horseshoe" name="most_used_spread" value="horseshoe" required>
+      <label for="spread_horseshoe">Tirada en Herradura</label><br>
+      <input type="radio" id="spread_astrological" name="most_used_spread" value="astrological" required>
+      <label for="spread_astrological">Tirada Astrológica</label><br>
+      <input type="radio" id="spread_intuitive" name="most_used_spread" value="intuitive" required>
+      <label for="spread_intuitive">Tirada Libre/Intuitiva</label><br>
+      <input type="radio" id="spread_other" name="most_used_spread" value="other_spread" required>
+      <label for="spread_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="most_used_spread_other_text" rows="2" placeholder="Especifica otra técnica o tirada"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>2.4. Además del tarot, ¿qué otras técnicas o conocimientos utilizas o integras en tus sesiones? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="other_num" name="other_skills" value="numerology">
+      <label for="other_num">Numerología</label><br>
+      <input type="checkbox" id="other_astro" name="other_skills" value="astrology">
+      <label for="other_astro">Astrología</label><br>
+      <input type="checkbox" id="other_reiki" name="other_skills" value="reiki">
+      <label for="other_reiki">Reiki u otras terapias energéticas</label><br>
+      <input type="checkbox" id="other_meditation" name="other_skills" value="meditation">
+      <label for="other_meditation">Meditación/Mindfulness</label><br>
+      <input type="checkbox" id="other_psychic" name="other_skills" value="psychic">
+      <label for="other_psychic">Clarividencia/Clariaudiencia/Otros dones psíquicos</label><br>
+      <input type="checkbox" id="other_coaching" name="other_skills" value="coaching">
+      <label for="other_coaching">Coaching/Asesoramiento</label><br>
+      <input type="checkbox" id="other_elements" name="other_skills" value="elements">
+      <label for="other_elements">Herbolaria/Cristales/Otros elementos</label><br>
+      <input type="checkbox" id="other_none" name="other_skills" value="none">
+      <label for="other_none">Ninguna otra técnica</label><br>
+      <input type="checkbox" id="other_skill_other" name="other_skills" value="other_skill">
+      <label for="other_skill_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="other_skills_other_text" rows="2" placeholder="Especifica otras técnicas"></textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Sección 3: Tu Práctica Digital y Online -->
+  <div class="survey-slide" data-question-key="digital_practice">
+   <div class="slide-content">
+    <h2>Sección 3: Tu Práctica Digital y Online</h2>
+
+    <div class="question">
+     <label>3.1. ¿Realizas lecturas de tarot a distancia (online, telefónico, email, etc.)?</label>
+     <div>
+      <input type="radio" id="distance_main" name="distance_readings" value="main" required>
+      <label for="distance_main">Sí, es mi formato principal</label><br>
+      <input type="radio" id="distance_combined" name="distance_readings" value="combined" required>
+      <label for="distance_combined">Sí, lo combino con presencial</label><br>
+      <input type="radio" id="distance_none" name="distance_readings" value="none" required>
+      <label for="distance_none">No, solo presencial</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if distance_readings is 'main' or 'combined' -->
+    <div class="question" data-dependent-on="distance_readings" data-dependent-value="main,combined">
+     <label>3.2. Si respondiste "Sí" a la pregunta anterior, ¿qué plataformas o medios utilizas con más frecuencia para las sesiones en tiempo real (video/voz)? (Selecciona las 3 más frecuentes)</label>
+     <div>
+      <input type="checkbox" id="platform_zoom" name="online_platforms" value="Zoom">
+      <label for="platform_zoom">Zoom</label><br>
+      <input type="checkbox" id="platform_skype" name="online_platforms" value="Skype">
+      <label for="platform_skype">Skype</label><br>
+      <input type="checkbox" id="platform_whatsapp" name="online_platforms" value="WhatsApp">
+      <label for="platform_whatsapp">WhatsApp (Videollamada/Llamada)</label><br>
+      <input type="checkbox" id="platform_googlemeet" name="online_platforms" value="Google Meet">
+      <label for="platform_googlemeet">Google Meet</label><br>
+      <input type="checkbox" id="platform_instagram" name="online_platforms" value="Instagram/Facebook">
+      <label for="platform_instagram">Instagram/Facebook Messenger (Videollamada)</label><br>
+      <input type="checkbox" id="platform_own" name="online_platforms" value="own_platform">
+      <label for="platform_own">Plataforma propia o de terceros (Ej: Calendly integrado, etc.)</label><br>
+      <input type="checkbox" id="platform_other" name="online_platforms" value="other_platform">
+      <label for="platform_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="online_platforms_other_text" rows="2" placeholder="Especifica otras plataformas"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>3.3. ¿Tienes una página web o perfiles profesionales activos en redes sociales para promocionar tus servicios de tarot?</label>
+     <div>
+      <input type="radio" id="promo_both" name="online_promo" value="both" required>
+      <label for="promo_both">Sí, ambos</label><br>
+      <input type="radio" id="promo_web" name="online_promo" value="web" required>
+      <label for="promo_web">Sí, solo web</label><br>
+      <input type="radio" id="promo_social" name="online_promo" value="social" required>
+      <label for="promo_social">Sí, solo redes sociales</label><br>
+      <input type="radio" id="promo_wish" name="online_promo" value="wish" required>
+      <label for="promo_wish">No, pero me gustaría tenerlos</label><br>
+      <input type="radio" id="promo_none" name="online_promo" value="none" required>
+      <label for="promo_none">No, y no me interesa</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if distance_readings is 'main' or 'combined' -->
+    <div class="question" data-dependent-on="distance_readings" data-dependent-value="main,combined">
+     <label>3.4. ¿Cuántas lecturas realizas presencialmente y cuántas en línea?</label>
+     <div>
+      <input type="radio" id="format_mostly_inperson" name="reading_format_split" value="mostly_inperson" required>
+      <label for="format_mostly_inperson">Mayoría presenciales</label><br>
+      <input type="radio" id="format_mostly_online" name="reading_format_split" value="mostly_online" required>
+      <label for="format_mostly_online">Mayoría en línea</label><br>
+      <input type="radio" id="format_half" name="reading_format_split" value="half" required>
+      <label for="format_half">Mitad y mitad</label>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>3.5. ¿Has creado contenido (blogs, videos, podcasts) relacionado con el tarot?</label>
+     <div>
+      <input type="radio" id="content_yes" name="created_content" value="yes" required>
+      <label for="content_yes">Sí</label><br>
+      <input type="radio" id="content_no" name="created_content" value="no" required>
+      <label for="content_no">No</label>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>3.6. Pensando en el entorno online, ¿cuál consideras que es el mayor desafío para los tarotistas que trabajan por internet? (Selecciona la opción principal)</label>
+     <div>
+      <input type="radio" id="challenge_bad_pros" name="online_challenge" value="bad_pros" required>
+      <label for="challenge_bad_pros">Competencia desleal / Malos profesionales que afectan la reputación</label><br>
+      <input type="radio" id="challenge_connection" name="online_challenge" value="connection" required>
+      <label for="challenge_connection">Dificultad para conectar con el cliente a distancia</label><br>
+      <input type="radio" id="challenge_tech" name="online_challenge" value="tech_issues" required>
+      <label for="challenge_tech">Problemas técnicos (conexión, plataformas)</label><br>
+      <input type="radio" id="challenge_marketing" name="online_challenge" value="marketing" required>
+      <label for="challenge_marketing">Marketing y encontrar clientes online</label><br>
+      <input type="radio" id="challenge_expectations" name="online_challenge" value="expectations" required>
+      <label for="challenge_expectations">Gestionar las expectativas de los clientes online</label><br>
+      <input type="radio" id="challenge_payments" name="online_challenge" value="payments" required>
+      <label for="challenge_payments">Cobros y seguridad de pagos</label><br>
+      <input type="radio" id="challenge_none" name="online_challenge" value="none" required>
+      <label for="challenge_none">No considero que haya un gran desafío</label><br>
+      <input type="radio" id="challenge_other" name="online_challenge" value="other_online_challenge" required>
+      <label for="challenge_other">Otro (Por favor, especifica)</label><br>
+      <textarea name="online_challenge_other_text" rows="2" placeholder="Especifica otro desafío online"></textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Sección 4: Gestión del Negocio y Clientes -->
+  <div class="survey-slide" data-question-key="business_clients">
+   <div class="slide-content">
+    <h2>Sección 4: Gestión del Negocio y Clientes</h2>
+
+    <div class="question">
+     <label>4.1. ¿Cómo gestionas actualmente tus citas/reservas?</label>
+     <div>
+      <input type="radio" id="booking_manual" name="booking_management" value="manual" required>
+      <label for="booking_manual">Manualmente (mensajes directos, email)</label><br>
+      <input type="radio" id="booking_paper" name="booking_management" value="paper_agenda" required>
+      <label for="booking_paper">Agenda de papel</label><br>
+      <input type="radio" id="booking_digital_calendar" name="booking_management" value="digital_calendar" required>
+      <label for="booking_digital_calendar">Calendario digital (Google Calendar, Outlook)</label><br>
+      <input type="radio" id="booking_software" name="booking_management" value="booking_software" required>
+      <label for="booking_software">Software de reservas online (Calendly, Acuity Scheduling, etc.)</label><br>
+      <input type="radio" id="booking_marketplace" name="booking_management" value="marketplace" required>
+      <label for="booking_marketplace">Plataforma de terceros que gestiona todo (Ej: un marketplace de tarotistas)</label><br>
+      <input type="radio" id="booking_other" name="booking_management" value="other_booking" required>
+      <label for="booking_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="booking_management_other_text" rows="2" placeholder="Especifica otra forma de gestionar reservas"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>4.2. ¿Llevas un registro de tus clientes y las lecturas que realizas para ellos?</label>
+     <div>
+      <input type="radio" id="record_detailed" name="client_record" value="detailed" required>
+      <label for="record_detailed">Sí, de forma detallada</label><br>
+      <input type="radio" id="record_basic" name="client_record" value="basic" required>
+      <label for="record_basic">Sí, de forma básica</label><br>
+      <input type="radio" id="record_wish" name="client_record" value="wish" required>
+      <label for="record_wish">No, pero me gustaría</label><br>
+      <input type="radio" id="record_none" name="client_record" value="none" required>
+      <label for="record_none">No, y no lo veo necesario</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if client_record is 'detailed' or 'basic' -->
+    <div class="question" data-dependent-on="client_record" data-dependent-value="detailed,basic">
+     <label>4.3. Si llevas registro, ¿qué tipo de información sueles guardar (respetando la privacidad)? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="record_contact" name="record_info" value="contact">
+      <label for="record_contact">Datos de contacto</label><br>
+      <input type="checkbox" id="record_dates" name="record_info" value="dates">
+      <label for="record_dates">Fechas de lecturas</label><br>
+      <input type="checkbox" id="record_topics" name="record_info" value="topics">
+      <label for="record_topics">Temas consultados</label><br>
+      <input type="checkbox" id="record_summary" name="record_info" value="summary">
+      <label for="record_summary">Resumen/Notas de la lectura</label><br>
+      <input type="checkbox" id="record_feedback" name="record_info" value="feedback">
+      <label for="record_feedback">Feedback del cliente</label><br>
+      <input type="checkbox" id="record_other_info" name="record_info" value="other_record_info">
+      <label for="record_other_info">Otros datos relevantes (Ej: fecha de nacimiento si usas astrología)</label><br>
+      <input type="checkbox" id="record_none_info" name="record_info" value="none_detailed">
+      <label for="record_none_info">No llevo registro detallado (solo básico)</label><br>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>4.4. ¿Con qué frecuencia, en promedio, te consulta un mismo cliente?</label>
+     <div>
+      <input type="radio" id="freq_weekly" name="client_frequency" value="weekly" required>
+      <label for="freq_weekly">Semanal o más</label><br>
+      <input type="radio" id="freq_monthly" name="client_frequency" value="monthly" required>
+      <label for="freq_monthly">Mensualmente</label><br>
+      <input type="radio" id="freq_fewmonths" name="client_frequency" value="few_months" required>
+      <label for="freq_fewmonths">Cada pocos meses (3-6 meses)</label><br>
+      <input type="radio" id="freq_annually" name="client_frequency" value="annually" required>
+      <label for="freq_annually">Anualmente</label><br>
+      <input type="radio" id="freq_sporadic" name="client_frequency" value="sporadic" required>
+      <label for="freq_sporadic">De forma muy esporádica</label><br>
+      <input type="radio" id="freq_new" name="client_frequency" value="new_clients" required>
+      <label for="freq_new">La mayoría son clientes nuevos</label>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>4.5. ¿Cuál es el mayor desafío que enfrentas al interactuar o gestionar a tus clientes? (Selecciona la opción principal)</label>
+     <div>
+      <input type="radio" id="client_challenge_expectations" name="client_challenge" value="expectations" required>
+      <label for="client_challenge_expectations">Gestionar expectativas poco realistas (predicciones exactas, "soluciones mágicas")</label><br>
+      <input type="radio" id="client_challenge_dependency" name="client_challenge" value="dependency" required>
+      <label for="client_challenge_dependency">Clientes que se vuelven dependientes de las lecturas</label><br>
+      <input type="radio" id="client_challenge_question" name="client_challenge" value="question" required>
+      <label for="client_challenge_question">Clientes que cuestionan la lectura</label><br>
+      <input type="radio" id="client_challenge_unsatisfied" name="client_challenge" value="unsatisfied" required>
+      <label for="client_challenge_unsatisfied">Clientes que no están satisfechos</label><br>
+      <input type="radio" id="client_challenge_boundaries" name="client_challenge" value="boundaries" required>
+      <label for="client_challenge_boundaries">Dificultad para poner límites/gestionar el tiempo de la sesión</label><br>
+      <input type="radio" id="client_challenge_communication" name="client_challenge" value="communication" required>
+      <label for="client_challenge_communication">Comunicar conceptos complejos de forma clara</label><br>
+      <input type="radio" id="client_challenge_followup" name="client_challenge" value="followup" required>
+      <label for="client_challenge_followup">Seguimiento post-lectura</label><br>
+      <input type="radio" id="client_challenge_none" name="client_challenge" value="none" required>
+      <label for="client_challenge_none">No enfrento desafíos significativos con mis clientes</label><br>
+      <input type="radio" id="client_challenge_other" name="client_challenge" value="other_client_challenge" required>
+      <label for="client_challenge_other">Otro (Por favor, especifica)</label><br>
+      <textarea name="client_challenge_other_text" rows="2" placeholder="Especifica otro desafío con clientes"></textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Sección 5: Aprendizaje, Desarrollo y Comunidad -->
+  <div class="survey-slide" data-question-key="learning_community">
+   <div class="slide-content">
+    <h2>Sección 5: Aprendizaje, Desarrollo y Comunidad</h2>
+
+    <div class="question">
+     <label>5.1. ¿Cómo aprendiste principalmente sobre tarot? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="learn_self" name="how_learned" value="self_taught">
+      <label for="learn_self">De forma autodidacta (libros, internet, práctica)</label><br>
+      <input type="checkbox" id="learn_mentor" name="how_learned" value="mentor">
+      <label for="learn_mentor">Con un mentor o profesor particular</label><br>
+      <input type="checkbox" id="learn_presencial" name="how_learned" value="presencial_courses">
+      <label for="learn_presencial">En cursos o talleres presenciales</label><br>
+      <input type="checkbox" id="learn_online" name="how_learned" value="online_courses">
+      <label for="learn_online">En cursos o talleres online</label><br>
+      <input type="checkbox" id="learn_family" name="how_learned" value="family_tradition">
+      <label for="learn_family">Tradición familiar/cultural</label><br>
+      <input type="checkbox" id="learn_community" name="how_learned" value="community">
+      <label for="learn_community">A través de comunidades/grupos de estudio</label><br>
+      <input type="checkbox" id="learn_other" name="how_learned" value="other_learning">
+      <label for="learn_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="how_learned_other_text" rows="2" placeholder="Especifica otra forma de aprendizaje"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>5.2. ¿En qué áreas te gustaría profundizar o formarte más profesionalmente como tarotista? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="develop_advanced" name="development_areas" value="advanced_techniques">
+      <label for="develop_advanced">Técnicas de lectura avanzada</label><br>
+      <input type="checkbox" id="develop_specific_decks" name="development_areas" value="specific_decks">
+      <label for="develop_specific_decks">Interpretación de mazos específicos (Marsella, Thoth, etc.)</label><br>
+      <input type="checkbox" id="develop_integration" name="development_areas" value="integration">
+      <label for="develop_integration">Integración con otras disciplinas (astrología, numerología, etc.)</label><br>
+      <input type="checkbox" id="develop_ethics" name="development_areas" value="ethics">
+      <label for="develop_ethics">Ética profesional en el tarot</label><br>
+      <input type="checkbox" id="develop_coaching" name="development_areas" value="coaching_skills">
+      <label for="develop_coaching">Habilidades de comunicación y coaching</label><br>
+      <input type="checkbox" id="develop_marketing" name="development_areas" value="marketing">
+      <label for="develop_marketing">Marketing y promoción de servicios de tarot</label><br>
+      <input type="checkbox" id="develop_business_mgmt" name="development_areas" value="business_management">
+      <label for="develop_business_mgmt">Gestión de negocio (finanzas, legalidad)</label><br>
+      <input type="checkbox" id="develop_intuition" name="development_areas" value="intuition">
+      <label for="develop_intuition">Desarrollo de la intuición/habilidades psíquicas</label><br>
+      <input type="checkbox" id="develop_history" name="development_areas" value="history">
+      <label for="develop_history">Historia y simbolismo del tarot</label><br>
+      <input type="checkbox" id="develop_healing" name="development_areas" value="healing">
+      <label for="develop_healing">Sanación/terapia asistida con tarot</label><br>
+      <input type="checkbox" id="develop_none" name="development_areas" value="none">
+      <label for="develop_none">No me interesa formarme más actualmente</label><br>
+      <input type="checkbox" id="develop_other" name="development_areas" value="other_development">
+      <label for="develop_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="development_areas_other_text" rows="2" placeholder="Especifica otra área de desarrollo"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label for="reliable_resources">5.3. ¿Qué sitios web, plataformas o recursos (libros, autores, canales) consideras más confiables y valiosos para aprender y/o promocionar tus servicios de tarot? (Opcional)</label>
+     <textarea id="reliable_resources" name="reliable_resources" rows="4"></textarea>
+    </div>
+
+    <div class="question">
+     <label>5.4. ¿Participas activamente en alguna comunidad o grupo de tarotistas (online o presencial)?</label>
+     <div>
+      <input type="radio" id="community_yes_several" name="tarot_community" value="yes_several" required>
+      <label for="community_yes_several">Sí, en varios</label><br>
+      <input type="radio" id="community_yes_one" name="tarot_community" value="yes_one" required>
+      <label for="community_yes_one">Sí, en uno o dos</label><br>
+      <input type="radio" id="community_wish" name="tarot_community" value="wish" required>
+      <label for="community_wish">No, pero me gustaría</label><br>
+      <input type="radio" id="community_none" name="tarot_community" value="none" required>
+      <label for="community_none">No, y no me interesa</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if tarot_community is 'yes_several' or 'yes_one' -->
+    <div class="question" data-dependent-on="tarot_community" data-dependent-value="yes_several,yes_one">
+     <label>5.5. Si participas, ¿qué valor encuentras en esas comunidades? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="community_value_share" name="community_value" value="share_knowledge">
+      <label for="community_value_share">Compartir experiencias/conocimientos</label><br>
+      <input type="checkbox" id="community_value_support" name="community_value" value="support">
+      <label for="community_value_support">Recibir apoyo/consejo (sobre lecturas, clientes, negocio)</label><br>
+      <input type="checkbox" id="community_value_networking" name="community_value" value="networking">
+      <label for="community_value_networking">Networking y colaboraciones</label><br>
+      <input type="checkbox" id="community_value_learn" name="community_value" value="learn_techniques">
+      <label for="community_value_learn">Aprender nuevas técnicas</label><br>
+      <input type="checkbox" id="community_value_promo" name="community_value" value="promote_services">
+      <label for="community_value_promo">Encontrar/promocionar servicios</label><br>
+      <input type="checkbox" id="community_value_belonging" name="community_value" value="belonging">
+      <label for="community_value_belonging">Sentido de pertenencia</label><br>
+      <input type="checkbox" id="community_value_none" name="community_value" value="none">
+      <label for="community_value_none">No encuentro valor significativo</label><br>
+      <input type="checkbox" id="community_value_other" name="community_value" value="other_community_value">
+      <label for="community_value_other">Otro (Por favor, especifica)</label><br>
+      <textarea name="community_value_other_text" rows="2" placeholder="Especifica otro valor de la comunidad"></textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Sección 6: Herramientas Futuras y Necesidades -->
+  <div class="survey-slide" data-question-key="future_tools">
+   <div class="slide-content">
+    <h2>Sección 6: Herramientas Futuras y Necesidades</h2>
+
+    <div class="question">
+     <label>6.1. Pensando en tu día a día como tarotista, ¿cuáles son las tareas o áreas que más tiempo te quitan o que encuentras más tediosas? (Selecciona hasta 3)</label>
+     <div>
+      <input type="checkbox" id="tedious_marketing" name="tedious_tasks" value="marketing">
+      <label for="tedious_marketing">Marketing y promoción</label><br>
+      <input type="checkbox" id="tedious_social" name="tedious_tasks" value="social_media">
+      <label for="tedious_social">Gestión de redes sociales</label><br>
+      <input type="checkbox" id="tedious_booking" name="tedious_tasks" value="booking">
+      <label for="tedious_booking">Gestión de citas y agenda</label><br>
+      <input type="checkbox" id="tedious_communication" name="tedious_tasks" value="communication">
+      <label for="tedious_communication">Comunicación con clientes (antes/después de la sesión)</label><br>
+      <input type="checkbox" id="tedious_notes" name="tedious_tasks" value="notes">
+      <label for="tedious_notes">Tomar notas y registrar lecturas</label><br>
+      <input type="checkbox" id="tedious_preparation" name="tedious_tasks" value="preparation">
+      <label for="tedious_preparation">Preparación para la lectura (meditación, espacio, etc.)</label><br>
+      <input type="checkbox" id="tedious_study" name="tedious_tasks" value="study">
+      <label for="tedious_study">Estudio y aprendizaje continuo</label><br>
+      <input type="checkbox" id="tedious_admin" name="tedious_tasks" value="admin">
+      <label for="tedious_admin">Aspectos administrativos (facturación, pagos)</label><br>
+      <input type="checkbox" id="tedious_none" name="tedious_tasks" value="none">
+      <label for="tedious_none">Ninguna en particular, todo fluye</label><br>
+      <input type="checkbox" id="tedious_other" name="tedious_tasks" value="other_tedious">
+      <label for="tedious_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="tedious_tasks_other_text" rows="2" placeholder="Especifica otra tarea tediosa"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>6.2. ¿Estarías interesado/a en utilizar una aplicación o software diseñado específicamente para tarotistas que te ayude a gestionar tu práctica?</label>
+     <div>
+      <input type="radio" id="app_definitely_yes" name="interested_in_app" value="definitely_yes" required>
+      <label for="app_definitely_yes">Definitivamente sí</label><br>
+      <input type="radio" id="app_probably_yes" name="interested_in_app" value="probably_yes" required>
+      <label for="app_probably_yes">Probablemente sí</label><br>
+      <input type="radio" id="app_maybe" name="interested_in_app" value="maybe" required>
+      <label for="app_maybe">Quizás</label><br>
+      <input type="radio" id="app_probably_no" name="interested_in_app" value="probably_no" required>
+      <label for="app_probably_no">Probablemente no</label><br>
+      <input type="radio" id="app_definitely_no" name="interested_in_app" value="definitely_no" required>
+      <label for="app_definitely_no">Definitivamente no</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if interested_in_app is not 'definitely_no' -->
+    <div class="question" data-dependent-on="interested_in_app" data-dependent-value="definitely_yes,probably_yes,maybe,probably_no">
+     <label>6.3. Si estarías interesado/a, ¿qué funcionalidades serían más valiosas para ti en una herramienta digital para tarotistas? (Selecciona hasta 5)</label>
+     <div>
+      <input type="checkbox" id="app_feature_booking" name="app_features" value="booking_management">
+      <label for="app_feature_booking">Gestión de calendario y reservas online</label><br>
+      <input type="checkbox" id="app_feature_clients" name="app_features" value="client_database">
+      <label for="app_feature_clients">Base de datos de clientes con historial de lecturas</label><br>
+      <input type="checkbox" id="app_feature_notes" name="app_features" value="notes_record">
+      <label for="app_feature_notes">Herramientas para registrar notas de lectura (texto, audio, fotos)</label><br>
+      <input type="checkbox" id="app_feature_spreads" name="app_features" value="spread_generator">
+      <label for="app_feature_spreads">Generador de tiradas o layouts personalizables</label><br>
+      <input type="checkbox" id="app_feature_reference" name="app_features" value="deck_reference">
+      <label for="app_feature_reference">Referencia digital de significados de cartas/mazos</label><br>
+      <input type="checkbox" id="app_feature_analysis" name="app_features" value="reading_analysis">
+      <label for="app_feature_analysis">Herramientas de análisis de lecturas a lo largo del tiempo para un cliente</label><br>
+      <input type="checkbox" id="app_feature_integration" name="app_features" value="video_integration">
+      <label for="app_feature_integration">Integración con plataformas de videollamada</label><br>
+      <input type="checkbox" id="app_feature_marketing" name="app_features" value="marketing_tools">
+      <label for="app_feature_marketing">Herramientas de marketing (emailing, gestión de redes sociales)</label><br>
+      <input type="checkbox" id="app_feature_payments" name="app_features" value="payments">
+      <label for="app_feature_payments">Gestión de pagos y facturación</label><br>
+      <input type="checkbox" id="app_feature_learning" name="app_features" value="learning_resources">
+      <label for="app_feature_learning">Recursos de aprendizaje integrados (significados, historia, técnicas)</label><br>
+      <input type="checkbox" id="app_feature_multi_deck" name="app_features" value="multideck_support">
+      <label for="app_feature_multi_deck">Soporte para múltiples mazos y sistemas de interpretación</label><br>
+      <input type="checkbox" id="app_feature_intuition" name="app_features" value="intuition_support">
+      <label for="app_feature_intuition">Funciones de apoyo a la intuición (música, guías de meditación)</label><br>
+      <input type="checkbox" id="app_feature_other" name="app_features" value="other_app_feature">
+      <label for="app_feature_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="app_features_other_text" rows="2" placeholder="Especifica otra funcionalidad"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label>6.4. ¿Qué opinas sobre el uso potencial de la inteligencia artificial (IA) como herramienta de APOYO para los tarotistas?</label>
+     <div>
+      <input type="radio" id="ai_positive_very" name="opinion_ai" value="very_positive" required>
+      <label for="ai_positive_very">Muy positivo, podría ser útil</label><br>
+      <input type="radio" id="ai_positive" name="opinion_ai" value="positive" required>
+      <label for="ai_positive">Positivo, si se usa éticamente</label><br>
+      <input type="radio" id="ai_neutral" name="opinion_ai" value="neutral" required>
+      <label for="ai_neutral">Neutral, no le veo mucho uso</label><br>
+      <input type="radio" id="ai_negative_dehumanize" name="opinion_ai" value="negative_dehumanize" required>
+      <label for="ai_negative_dehumanize">Negativo, deshumaniza la práctica</label><br>
+      <input type="radio" id="ai_negative_essence" name="opinion_ai" value="negative_essence" required>
+      <label for="ai_negative_essence">Muy negativo, va en contra de la esencia del tarot</label>
+     </div>
+    </div>
+
+    <!-- Conditionally show this question if opinion_ai is not 'negative_essence' or 'negative_dehumanize' or 'neutral' -->
+    <div class="question" data-dependent-on="opinion_ai" data-dependent-value="very_positive,positive">
+     <label>6.5. ¿Para qué tareas específicas podrías considerar usar IA en tu práctica (si estuviera disponible y fuera confiable)? (Selecciona todas las que apliquen)</label>
+     <div>
+      <input type="checkbox" id="ai_task_content" name="ai_tasks" value="content_ideas">
+      <label for="ai_task_content">Generar ideas para contenido (blogs, redes sociales)</label><br>
+      <input type="checkbox" id="ai_task_writing" name="ai_tasks" value="writing_descriptions">
+      <label for="ai_task_writing">Redactar descripciones de servicios o promociones</label><br>
+      <input type="checkbox" id="ai_task_analysis" name="ai_tasks" value="analyze_trends">
+      <label for="ai_task_analysis">Analizar tendencias generales en preguntas de clientes</label><br>
+      <input type="checkbox" id="ai_task_reference" name="ai_tasks" value="quick_reference">
+      <label for="ai_task_reference">Como referencia rápida para significados de cartas o simbolismo</label><br>
+      <input type="checkbox" id="ai_task_organize" name="ai_tasks" value="organize_info">
+      <label for="ai_task_organize">Para organizar información y notas</label><br>
+      <input type="checkbox" id="ai_task_admin" name="ai_tasks" value="admin_tasks">
+      <label for="ai_task_admin">Para tareas administrativas (responder emails básicos, gestionar agenda)</label><br>
+      <input type="checkbox" id="ai_task_spread_ideas" name="ai_tasks" value="spread_ideas">
+      <label for="ai_task_spread_ideas">Para generar ideas de tiradas o enfoques de lectura</label><br>
+      <input type="checkbox" id="ai_task_none" name="ai_tasks" value="none_ai">
+      <label for="ai_task_none">No usaría IA para mi práctica de tarot</label><br>
+      <input type="checkbox" id="ai_task_other" name="ai_tasks" value="other_ai_task">
+      <label for="ai_task_other">Otra (Por favor, especifica)</label><br>
+      <textarea name="ai_tasks_other_text" rows="2" placeholder="Especifica otra tarea para IA"></textarea>
+     </div>
+    </div>
+
+    <div class="question">
+     <label for="desired_products">6.6. ¿Qué tipo de productos físicos (no mazos) o digitales (no software de gestión) te gustaría ofrecer o encontrar para complementar tu práctica o la experiencia de tus clientes? (Ej: guías imprimibles, materiales de estudio, objetos ritualísticos, plantillas, etc.)</label>
+     <textarea id="desired_products" name="desired_products" rows="4"></textarea>
+    </div>
+
+   </div>
+  </div>
+
+  <!-- Sección 7: Tu Visión y Desafíos -->
+  <div class="survey-slide" data-question-key="vision_challenges">
+   <div class="slide-content">
+    <h2>Sección 7: Tu Visión y Desafíos</h2>
+
+    <div class="question">
+     <label for="community_challenge_overall">7.1. En tu opinión, ¿cuál es el mayor desafío actual que enfrenta la comunidad tarotista profesional en general?</label>
+     <textarea id="community_challenge_overall" name="community_challenge_overall" rows="4" required></textarea>
+    </div>
+
+    <div class="question">
+     <label for="one_thing">7.2. Si pudieras pedir UNA COSA (una herramienta, un servicio, un recurso) que facilitara enormemente tu trabajo o te ayudara a crecer, ¿qué sería?</label>
+     <textarea id="one_thing" name="one_thing" rows="4" required></textarea>
+    </div>
+   </div>
+  </div>
+
+  <!-- Conclusión -->
+  <div class="survey-slide" data-slide-type="conclusion">
+   <div class="slide-content">
+    <h1>¡Encuesta Completada!</h1>
+    <p>¡Muchas gracias por dedicar tu tiempo y compartir tus valiosas perspectivas! Tu participación es esencial para nosotros y para el desarrollo de recursos que beneficien a toda la comunidad tarotista de habla hispana.</p>
+    <p>Hemos tomado nota de tus respuestas y empezaremos el proceso de análisis.</p>
+    <p>Te informaremos sobre los resultados de esta investigación una vez que se complete el análisis. Recibirás un correo electrónico con un resumen de los hallazgos y la notificación cuando el informe final esté disponible. [**Nota:** Asegúrate de tener un mecanismo para recoger el email si prometes notificar. Esto no está incluido en este código simple].</p>
+    <p>¡Gracias de nuevo por tu increíble colaboración!</p>
+    <!-- Optionally add a button to clear progress for testing -->
+    <button id="clear-progress-btn">Limpiar mi progreso (Solo para pruebas)</button>
+   </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+   <button id="prev-btn" disabled>Anterior</button>
+   <span id="slide-counter"></span>
+   <button id="next-btn">Siguiente</button>
+  </div>
+
+ </div>
+
+ <script src="script.js"></script>
+</body>
+
+</html>
+  
+    <script id="rendered-js" >
+document.addEventListener("DOMContentLoaded", () => {
+ const slides = document.querySelectorAll(".survey-slide");
+ const prevBtn = document.getElementById("prev-btn");
+ const nextBtn = document.getElementById("next-btn");
+ const progressBarFill = document.querySelector(".progress-fill");
+ const slideCounter = document.getElementById("slide-counter");
+ const clearProgressBtn = document.getElementById("clear-progress-btn");
+
+ let currentSlideIndex = 0;
+ const totalSlides = slides.length;
+ const localStorageDataKey = "tarotSurveyProgress";
+ const localStorageIndexKey = "lastSlideIndex";
+
+ // Load progress from Local Storage
+ let surveyData = {};
+ const savedData = localStorage.getItem(localStorageDataKey);
+ if (savedData) {
+  try {
+   surveyData = JSON.parse(savedData);
+  } catch (e) {
+   console.error("Error parsing saved survey data:", e);
+   // Clear corrupted data
+   localStorage.removeItem(localStorageDataKey);
+   localStorage.removeItem(localStorageIndexKey);
+  }
+ }
+
+ // Load last visited slide index
+ const savedIndex = localStorage.getItem(localStorageIndexKey);
+ if (savedIndex !== null && savedIndex !== undefined) {
+  const parsedIndex = parseInt(savedIndex, 10);
+  if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < totalSlides) {
+   currentSlideIndex = parsedIndex;
+  }
+ }
+
+ // --- Core Functions ---
+
+ function showSlide(index) {
+  // Hide all slides
+  slides.forEach((slide) => {
+   slide.classList.remove("active-slide");
+   slide.style.display = "none"; // Explicitly hide
+  });
+
+  // Show the current slide
+  if (slides[index]) {
+   slides[index].style.display = "block"; // Explicitly show
+   slides[index].classList.add("active-slide");
+
+   // Pre-fill answers for the current slide
+   prefillAnswer(index);
+   // Update conditional questions visibility
+   updateConditionalQuestions(index);
+
+   // Save the current index
+   localStorage.setItem(localStorageIndexKey, index.toString());
+  }
+
+  // Update UI
+  updateProgressBar();
+  updateButtonStates();
+  updateSlideCounter();
+ }
+
+ function updateProgressBar() {
+  // Calculate progress percentage (exclude intro from question count for progress?)
+  // Let's calculate based on getting *through* question slides for simplicity here.
+  // The progress bar represents completion towards the *end* slide.
+  const progressPercentage = (currentSlideIndex / (totalSlides - 1)) * 100;
+  progressBarFill.style.width = `${progressPercentage}%`;
+ }
+
+ function updateButtonStates() {
+  // Disable Previous button on the first slide (index 0)
+  prevBtn.disabled = currentSlideIndex === 0;
+
+  // Disable Next button on the last slide
+  nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+
+  // Additional: Could add logic here to disable next if required fields on the current slide are not filled
+  // This requires checking specific input types (radio, select usually, text/textarea if marked required).
+  // For this example, we'll keep it simple and allow skipping unless it's the very last slide.
+  const currentSlide = slides[currentSlideIndex];
+  const requiredInputs = currentSlide.querySelectorAll(
+   "input[required], select[required], textarea[required]"
+  );
+  let allRequiredFilled = true;
+
+  if (
+   requiredInputs.length > 0 &&
+   currentSlide.dataset.slideType !== "intro" &&
+   currentSlide.dataset.slideType !== "conclusion"
+  ) {
+   // Only check required fields on question slides
+   requiredInputs.forEach((input) => {
+    if (input.type === "radio" || input.type === "checkbox") {
+     // For radio/checkbox, check if any with the same name are checked
+     const groupName = input.name;
+     if (!document.querySelector(`input[name="${groupName}"]:checked`)) {
+      allRequiredFilled = false;
+     }
+    } else if (input.value.trim() === "") {
+     allRequiredFilled = false;
+    }
+   });
+   // nextBtn.disabled = !allRequiredFilled && currentSlideIndex < totalSlides - 1;
+   // Decided against disabling next based on required for simple demo, user can skip if they want.
+   // Reverting to original logic: only disable on the very last slide.
+   nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+  }
+ }
+
+ function updateSlideCounter() {
+  // Only show counter for question slides, not intro/conclusion
+  const slideType = slides[currentSlideIndex].dataset.slideType;
+  if (slideType === "intro" || slideType === "conclusion") {
+   slideCounter.textContent = ""; // Hide counter
+  } else {
+   // Assuming question slides are indices > 0 and < totalSlides - 1
+   // Adjust counting if intro/conclusion logic changes
+   const questionSlides = Array.from(slides).filter(
+    (slide) => slide.dataset.questionKey
+   );
+   const currentQuestionIndex = questionSlides.indexOf(
+    slides[currentSlideIndex]
+   );
+   if (currentQuestionIndex !== -1) {
+    slideCounter.textContent = `Pregunta ${currentQuestionIndex + 1} de ${
+     questionSlides.length
+    }`;
+   } else {
+    slideCounter.textContent = "";
+   }
+  }
+ }
+
+ function collectAnswer(slideIndex) {
+  const slide = slides[slideIndex];
+  const questionKey = slide.dataset.questionKey;
+
+  if (!questionKey) return; // Don't collect from intro/conclusion
+
+  // Get all relevant input types within the slide
+  const inputs = slide.querySelectorAll("input, select, textarea");
+  const slideAnswers = {};
+
+  inputs.forEach((input) => {
+   const name = input.name;
+   const type = input.type;
+
+   // Skip the hidden textareas used for 'Other' options if they are empty
+   if (name && name.endsWith("_other_text") && input.value.trim() === "") {
+    return;
+   }
+
+   if (type === "radio") {
+    if (input.checked) {
+     slideAnswers[name] = input.value;
+    }
+   } else if (type === "checkbox") {
+    if (!slideAnswers[name]) {
+     slideAnswers[name] = [];
+    }
+    if (input.checked) {
+     slideAnswers[name].push(input.value);
+    }
+    // Handle the linked textarea for 'Other' checkbox
+    if (
+     input.value.endsWith("_other") &&
+     slide.querySelector(`textarea[name="${name}_other_text"]`)
+    ) {
+     const otherTextarea = slide.querySelector(
+      `textarea[name="${name}_other_text"]`
+     );
+     if (input.checked && otherTextarea && otherTextarea.value.trim() !== "") {
+      // Append the text value if the checkbox is checked and textarea is not empty
+      slideAnswers[name].push(otherTextarea.value.trim());
+     } else if (!input.checked && otherTextarea) {
+      // If the 'Other' checkbox is unchecked, remove the specific 'other_[name]' value
+      // This handles cases where they type text but then uncheck "Other"
+      const otherVal = `other_${name.replace(/s$/, "")}`; // e.g., motivation -> other_motivation
+      slideAnswers[name] = slideAnswers[name].filter(
+       (val) => val !== input.value && val !== otherVal
+      );
+     }
+    }
+   } else if (type === "select-one" || type === "textarea" || type === "text") {
+    // Handle linked textarea for 'Other' radio options
+    if (name.endsWith("_other_text")) {
+     // This textarea is linked to a radio button 'other_[radio_name]'
+     // The value will be stored under its own name, which is fine.
+     if (input.value.trim() !== "") {
+      slideAnswers[name] = input.value.trim();
+     } else {
+      // Ensure empty 'Other' text is not saved if the radio is not selected
+      const radioName = name.replace("_other_text", "");
+      const otherRadio = slide.querySelector(
+       `input[name="${radioName}"][value="other_${radioName.replace(
+        /s$/,
+        ""
+       )}"]`
+      ); // e.g., most_used_spread -> other_most_used_spread
+      if (!otherRadio || !otherRadio.checked) {
+       delete slideAnswers[name]; // Remove if not selected
+      } else {
+       slideAnswers[name] = ""; // Save as empty string if radio is checked but text is empty
+      }
+     }
+    } else if (input.value.trim() !== "" || input.type === "select-one") {
+     // Save select even if empty, text/textarea only if not empty
+     slideAnswers[name] = input.value.trim();
+    } else {
+     // If text/textarea is empty and not required, don't save its key
+     delete slideAnswers[name];
+    }
+   }
+   // Add other input types if needed
+  });
+
+  // Store answers under the question key
+  surveyData[questionKey] = slideAnswers;
+
+  // Save to Local Storage
+  localStorage.setItem(localStorageDataKey, JSON.stringify(surveyData));
+ }
+
+ function prefillAnswer(slideIndex) {
+  const slide = slides[slideIndex];
+  const questionKey = slide.dataset.questionKey;
+
+  if (!questionKey || !surveyData[questionKey]) return; // No data to prefill
+
+  const slideData = surveyData[questionKey];
+  const inputs = slide.querySelectorAll("input, select, textarea");
+
+  inputs.forEach((input) => {
+   const name = input.name;
+   const type = input.type;
+   const savedValue = slideData[name];
+
+   // Skip the hidden textareas used for 'Other' options initially - they are handled via the linked radio/checkbox
+   if (name && name.endsWith("_other_text")) {
+    return;
+   }
+
+   if (savedValue !== undefined) {
+    if (type === "radio") {
+     if (input.value === savedValue) {
+      input.checked = true;
+      // If this is an 'Other' radio, also prefill its textarea
+      if (
+       input.value.startsWith("other_") &&
+       slide.querySelector(`textarea[name="${name}_other_text"]`)
+      ) {
+       const otherTextarea = slide.querySelector(
+        `textarea[name="${name}_other_text"]`
+       );
+       if (slideData[`${name}_other_text`] !== undefined) {
+        otherTextarea.value = slideData[`${name}_other_text`];
+       }
+      }
+     } else {
+      input.checked = false;
+     }
+    } else if (type === "checkbox") {
+     if (Array.isArray(savedValue)) {
+      if (savedValue.includes(input.value)) {
+       input.checked = true;
+       // If this is an 'Other' checkbox, also prefill its textarea
+       if (
+        input.value.endsWith("_other") &&
+        slide.querySelector(`textarea[name="${name}_other_text"]`)
+       ) {
+        const otherTextarea = slide.querySelector(
+         `textarea[name="${name}_other_text"]`
+        );
+        // Find the custom text value associated with this checkbox
+        const customOtherValue = savedValue.find(
+         (val) => !input.value.startsWith("other_") && val !== input.value
+        ); // Find a value that isn't the specific checkbox value
+        // A better approach is needed here if multiple 'other' textareas could exist per question key.
+        // Assuming only ONE 'other_text' area per question key that might link to ONE '_other' checkbox/radio value.
+        // Let's prefill the textarea directly from savedData if it exists under its own key.
+        if (slideData[`${name}_other_text`] !== undefined) {
+         otherTextarea.value = slideData[`${name}_other_text`];
+        }
+       }
+      } else {
+       input.checked = false;
+      }
+     }
+    } else if (
+     type === "select-one" ||
+     type === "textarea" ||
+     type === "text"
+    ) {
+     input.value = savedValue;
+    }
+    // Add other input types
+   } else {
+    // If no saved value, ensure input is cleared/unchecked
+    if (type === "radio" || type === "checkbox") {
+     input.checked = false;
+    } else if (type === "select-one") {
+     input.value = ""; // Reset select to default option
+    } else if (type === "textarea" || type === "text") {
+     input.value = ""; // Clear text inputs
+    }
+   }
+  });
+
+  // Also handle prefilling for the linked textarea if it exists and has saved data
+  inputs.forEach((input) => {
+   if (input.name && input.name.endsWith("_other_text")) {
+    const textareaName = input.name;
+    if (slideData[textareaName] !== undefined) {
+     input.value = slideData[textareaName];
+    } else {
+     input.value = "";
+    }
+   }
+  });
+ }
+
+ // Function to hide/show questions based on previous answers
+ function updateConditionalQuestions(slideIndex) {
+  const slide = slides[slideIndex];
+  const dependentQuestions = slide.querySelectorAll(
+   ".question[data-dependent-on]"
+  );
+
+  dependentQuestions.forEach((q) => {
+   const dependentOn = q.dataset.dependentOn; // e.g., 'distance_readings'
+   const dependentValues = q.dataset.dependentValue.split(","); // e.g., ['main', 'combined']
+
+   // Find the question slide that contains the input for 'dependentOn'
+   // This is a bit complex as it requires looking at previous slides.
+   // A simpler approach for this structure is to assume dependency is based on
+   // an input *within this same slide* or a *previous slide's collected data*.
+   // Let's simplify and assume it depends on the *collected data* from a previous slide's key.
+
+   let dependencyMet = false;
+   // Find the data for the key this question depends on
+   const dependencyData = surveyData[dependentOn]; // dependentOn is actually the question key from a PREVIOUS slide
+
+   if (dependencyData) {
+    // Assuming the dependency is on a specific input name *within* that question key's data
+    // The dataset.dependent-on is actually the *input name*, not the *question key*
+    // Let's correct the HTML data attribute definition to point to the INPUT NAME.
+    // e.g., data-dependent-on="distance_readings" where 'distance_readings' is an input name.
+    // We need to find which QUESTION KEY holds this input name.
+    // This requires iterating through surveyData keys to find the one containing the input name.
+
+    // A more robust way: Store dependencies centrally or link question keys to input names.
+    // Simpler approach for this demo: Assume dependent-on refers to an INPUT NAME
+    // collected from a *previous* slide, and check its value directly in surveyData.
+    // This needs careful mapping in HTML. Let's refine HTML data attributes:
+    // data-dependent-on-key="digital_practice" (The key where the input lives)
+    // data-dependent-on-input="distance_readings" (The input name)
+    // data-dependent-value="main,combined" (Values of that input)
+
+    const dependentOnKey = q.dataset.dependentOnKey; // e.g., 'digital_practice'
+    const dependentOnInputName = q.dataset.dependentOnInput; // e.g., 'distance_readings'
+
+    if (
+     surveyData[dependentOnKey] &&
+     surveyData[dependentOnKey][dependentOnInputName] !== undefined
+    ) {
+     const actualValue = surveyData[dependentOnKey][dependentOnInputName]; // Value of the input
+
+     if (Array.isArray(actualValue)) {
+      // If the dependent input is a checkbox (array of values)
+      dependencyMet = dependentValues.some((val) => actualValue.includes(val));
+     } else {
+      // If the dependent input is radio, select, text etc.
+      dependencyMet = dependentValues.includes(actualValue);
+     }
+    }
+   } else {
+    // If the dependency data hasn't even been collected yet (user skipped or is on a very early slide)
+    dependencyMet = false;
+   }
+
+   // Apply display based on dependency met
+   if (dependencyMet) {
+    q.style.display = "block"; // Show the question
+    // Make inputs required if the question is shown (optional but good for data)
+    q.querySelectorAll("input, select, textarea").forEach((input) => {
+     if (input.dataset.originalRequired !== "false") {
+      // Check if it wasn't originally false
+      input.required = true;
+     }
+    });
+   } else {
+    q.style.display = "none"; // Hide the question
+    // Make inputs NOT required if the question is hidden
+    q.querySelectorAll("input, select, textarea").forEach((input) => {
+     // Store original required state? Or just disable required
+     input.required = false;
+     // Clear any potentially pre-filled answers in hidden questions
+     // This prevents saving data for questions that weren't visible/answered
+     const inputName = input.name;
+     if (
+      surveyData[questionKey] &&
+      surveyData[questionKey][inputName] !== undefined
+     ) {
+      delete surveyData[questionKey][inputName];
+      localStorage.setItem(localStorageDataKey, JSON.stringify(surveyData)); // Re-save data after clearing
+     }
+    });
+   }
+  });
+ }
+
+ // --- Event Listeners ---
+
+ nextBtn.addEventListener("click", () => {
+  // Validate current slide before moving? (Optional)
+  // For this demo, we allow skipping most questions
+
+  // Collect answer(s) from the current slide BEFORE moving
+  collectAnswer(currentSlideIndex);
+
+  if (currentSlideIndex < totalSlides - 1) {
+   currentSlideIndex++;
+   showSlide(currentSlideIndex);
+  }
+ });
+
+ prevBtn.addEventListener("click", () => {
+  // No need to collect data on 'Previous' click as it was saved on 'Next'
+  if (currentSlideIndex > 0) {
+   currentSlideIndex--;
+   showSlide(currentSlideIndex);
+  }
+ });
+
+ // Optional: Add a clear progress button listener
+ if (clearProgressBtn) {
+  clearProgressBtn.addEventListener("click", () => {
+   if (confirm("¿Estás seguro de que quieres borrar todo tu progreso?")) {
+    localStorage.removeItem(localStorageDataKey);
+    localStorage.removeItem(localStorageIndexKey);
+    surveyData = {}; // Clear in memory data
+    currentSlideIndex = 0; // Reset to start
+    showSlide(currentSlideIndex); // Show the first slide
+    alert("Progreso borrado.");
+   }
+  });
+ }
+
+ // --- Initialization ---
+ // Show the initial slide (either first or resumed)
+ showSlide(currentSlideIndex);
+
+ // Initial update of conditional questions in case we resume on a slide with dependencies
+ updateConditionalQuestions(currentSlideIndex);
+
+ // Add event listeners to inputs within the active slide to update conditional questions visibility IF the dependency is within the SAME slide
+ // This is only needed if a question in slide N depends on an answer in slide N.
+ // If dependencies are ONLY on *previous* slides, updateConditionalQuestions is sufficient on showSlide.
+ // For simplicity, let's assume dependencies are only on *previous* slides' data.
+ // If you add same-slide dependencies, you'd need listeners here.
+});
+  </script>
+
+  
+</body>
+
+</html>

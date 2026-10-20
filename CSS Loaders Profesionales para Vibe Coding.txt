@@ -1,0 +1,2073 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>CSS Loaders Profesionales para Vibe Coding | Guía 2026</title>
+
+    <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/KwPQoeJ">
+   <meta name="description" content="Descarga 9 CSS loaders profesionales optimizados para Vibe Coding. Guía completa con código listo para copiar, ejemplos interactivos y mejores prácticas de UX. Sin JavaScript, 100% responsive.">
+ <meta name="keywords" content="css loaders, spinners css, preloaders, vibe coding, animaciones css, loading spinners, web development, frontend development, ux design">
+ <meta name="author" content="Vibe Coding Community">
+ <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+ <link rel="canonical" href="https://vibecoding.dev/css-loaders">
+
+ <!-- Open Graph / Facebook -->
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://vibecoding.dev/css-loaders">
+ <meta property="og:title" content="CSS Loaders Profesionales para Vibe Coding | Guía 2026">
+ <meta property="og:description" content="9 loaders CSS profesionales con código listo para copiar. Performance superior, 100% responsive, sin dependencias JavaScript.">
+ <meta property="og:image" content="https://vibecoding.dev/images/css-loaders-preview.jpg">
+ <meta property="og:locale" content="es_MX">
+
+ <!-- Twitter Card -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:url" content="https://vibecoding.dev/css-loaders">
+ <meta name="twitter:title" content="CSS Loaders Profesionales para Vibe Coding">
+ <meta name="twitter:description" content="9 loaders CSS profesionales con código listo para copiar. Performance superior, 100% responsive.">
+ <meta name="twitter:image" content="https://vibecoding.dev/images/css-loaders-preview.jpg">
+
+ <!-- Voice Assistant Optimization -->
+ <meta name="apple-mobile-web-app-title" content="CSS Loaders">
+ <meta name="application-name" content="CSS Loaders Vibe Coding">
+
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  
+  
+  
+<style>
+:root {
+ --bg-primary: #0a0a0a;
+ --bg-secondary: #1a1a1a;
+ --bg-tertiary: #2a2a2a;
+ --text-primary: #ffffff;
+ --text-secondary: #a0a0a0;
+ --accent: #000000;
+ --accent-light: #333333;
+ --border: rgba(255, 255, 255, 0.1);
+ --shadow: rgba(0, 0, 0, 0.5);
+}
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+html {
+ scroll-behavior: smooth;
+}
+
+body {
+ font-family: "Inter", sans-serif;
+ background: var(--bg-primary);
+ color: var(--text-primary);
+ line-height: 1.6;
+ overflow-x: hidden;
+}
+
+/* Animated background grid */
+body::before {
+ content: "";
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-image: linear-gradient(
+   rgba(255, 255, 255, 0.02) 1px,
+   transparent 1px
+  ),
+  linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+ background-size: 50px 50px;
+ pointer-events: none;
+ z-index: 0;
+}
+
+.container {
+ max-width: 1400px;
+ margin: 0 auto;
+ padding: 0 20px;
+ position: relative;
+ z-index: 1;
+}
+
+/* Navigation */
+.nav {
+ position: sticky;
+ top: 0;
+ background: rgba(10, 10, 10, 0.8);
+ backdrop-filter: blur(10px);
+ border-bottom: 1px solid var(--border);
+ padding: 20px 0;
+ z-index: 100;
+ transition: all 0.3s ease;
+}
+
+.nav-content {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ max-width: 1400px;
+ margin: 0 auto;
+ padding: 0 20px;
+}
+
+.logo {
+ font-size: 1.5rem;
+ font-weight: 800;
+ background: linear-gradient(135deg, #ffffff 0%, #808080 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+}
+
+.nav-links {
+ display: flex;
+ gap: 30px;
+ list-style: none;
+}
+
+.nav-links a {
+ color: var(--text-secondary);
+ text-decoration: none;
+ font-weight: 500;
+ transition: color 0.3s ease;
+ font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+ color: var(--text-primary);
+}
+
+/* Hero Section */
+.hero {
+ text-align: center;
+ padding: 100px 20px 80px;
+ position: relative;
+}
+
+.hero::before {
+ content: "";
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 600px;
+ height: 600px;
+ background: radial-gradient(
+  circle,
+  rgba(255, 255, 255, 0.05) 0%,
+  transparent 70%
+ );
+ pointer-events: none;
+}
+
+.hero-badge {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ background: rgba(255, 255, 255, 0.05);
+ border: 1px solid var(--border);
+ border-radius: 50px;
+ padding: 8px 20px;
+ margin-bottom: 30px;
+ font-size: 0.85rem;
+ font-weight: 500;
+ color: var(--text-secondary);
+ animation: fadeInUp 0.6s ease;
+}
+
+.hero-badge .dot {
+ width: 8px;
+ height: 8px;
+ background: #4ade80;
+ border-radius: 50%;
+ animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+ 0%,
+ 100% {
+  opacity: 1;
+ }
+
+ 50% {
+  opacity: 0.5;
+ }
+}
+
+.hero h1 {
+ font-size: 4rem;
+ font-weight: 800;
+ margin-bottom: 20px;
+ line-height: 1.1;
+ background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+ animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.hero .subtitle {
+ font-size: 1.25rem;
+ color: var(--text-secondary);
+ max-width: 700px;
+ margin: 0 auto 40px;
+ animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+ from {
+  opacity: 0;
+  transform: translateY(30px);
+ }
+
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+/* Stats Section */
+.stats {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 20px;
+ margin: 60px 0;
+ animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.stat-card {
+ background: rgba(255, 255, 255, 0.03);
+ border: 1px solid var(--border);
+ border-radius: 16px;
+ padding: 30px;
+ text-align: center;
+ backdrop-filter: blur(10px);
+ transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+ background: rgba(255, 255, 255, 0.05);
+ transform: translateY(-5px);
+ border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+ font-size: 2.5rem;
+ font-weight: 800;
+ background: linear-gradient(135deg, #ffffff 0%, #808080 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+ margin-bottom: 10px;
+}
+
+.stat-label {
+ color: var(--text-secondary);
+ font-size: 0.9rem;
+ font-weight: 500;
+}
+
+/* Benefits Section */
+.section-title {
+ font-size: 2.5rem;
+ font-weight: 800;
+ text-align: center;
+ margin-bottom: 60px;
+ background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ background-clip: text;
+}
+
+.benefits-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ gap: 24px;
+ margin-bottom: 80px;
+}
+
+.benefit-card {
+ background: rgba(255, 255, 255, 0.03);
+ border: 1px solid var(--border);
+ border-radius: 16px;
+ padding: 32px;
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+}
+
+.benefit-card::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 2px;
+ background: linear-gradient(
+  90deg,
+  transparent,
+  rgba(255, 255, 255, 0.3),
+  transparent
+ );
+ transform: translateX(-100%);
+ transition: transform 0.6s ease;
+}
+
+.benefit-card:hover::before {
+ transform: translateX(100%);
+}
+
+.benefit-card:hover {
+ background: rgba(255, 255, 255, 0.05);
+ transform: translateY(-5px);
+ border-color: rgba(255, 255, 255, 0.2);
+}
+
+.benefit-icon {
+ font-size: 2.5rem;
+ margin-bottom: 20px;
+ display: block;
+}
+
+.benefit-card h3 {
+ font-size: 1.25rem;
+ font-weight: 700;
+ margin-bottom: 12px;
+ color: var(--text-primary);
+}
+
+.benefit-card p {
+ color: var(--text-secondary);
+ line-height: 1.7;
+ font-size: 0.95rem;
+}
+
+/* Loader Gallery */
+.loader-gallery {
+ margin: 80px 0;
+}
+
+.loader-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ gap: 24px;
+ margin-bottom: 40px;
+}
+
+.loader-card {
+ background: rgba(255, 255, 255, 0.03);
+ border: 2px solid var(--border);
+ border-radius: 16px;
+ padding: 40px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ min-height: 200px;
+ cursor: pointer;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ position: relative;
+ overflow: hidden;
+}
+
+.loader-card::after {
+ content: "";
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ width: 0;
+ height: 0;
+ border-radius: 50%;
+ background: rgba(255, 255, 255, 0.1);
+ transform: translate(-50%, -50%);
+ transition: width 0.6s ease, height 0.6s ease;
+}
+
+.loader-card:hover::after {
+ width: 300px;
+ height: 300px;
+}
+
+.loader-card:hover {
+ transform: translateY(-8px) scale(1.02);
+ border-color: rgba(255, 255, 255, 0.3);
+ background: rgba(255, 255, 255, 0.05);
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.loader-card.selected {
+ border-color: #ffffff;
+ background: rgba(255, 255, 255, 0.08);
+ box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.loader {
+ width: 40px;
+ height: 40px;
+ position: relative;
+ z-index: 2;
+}
+
+.loader::before,
+.loader::after {
+ content: "";
+ position: absolute;
+}
+
+.loader-name {
+ margin-top: 20px;
+ font-weight: 600;
+ color: var(--text-primary);
+ font-size: 0.95rem;
+ z-index: 2;
+}
+
+/* Code Section */
+.code-section {
+ background: rgba(255, 255, 255, 0.03);
+ border: 1px solid var(--border);
+ border-radius: 20px;
+ padding: 40px;
+ margin-bottom: 80px;
+ display: none;
+ backdrop-filter: blur(10px);
+ animation: slideUp 0.4s ease;
+}
+
+.code-section.active {
+ display: block;
+}
+
+@keyframes slideUp {
+ from {
+  opacity: 0;
+  transform: translateY(20px);
+ }
+
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+.code-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 30px;
+ flex-wrap: wrap;
+ gap: 20px;
+}
+
+.code-title {
+ font-size: 1.75rem;
+ font-weight: 700;
+ color: var(--text-primary);
+}
+
+.button-group {
+ display: flex;
+ gap: 12px;
+}
+
+.btn {
+ padding: 12px 24px;
+ border-radius: 10px;
+ font-size: 0.95rem;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ border: none;
+ position: relative;
+ overflow: hidden;
+}
+
+.btn-primary {
+ background: #ffffff;
+ color: #000000;
+}
+
+.btn-primary:hover {
+ background: #e0e0e0;
+ transform: translateY(-2px);
+ box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+ background: rgba(255, 255, 255, 0.1);
+ color: var(--text-primary);
+ border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+ background: rgba(255, 255, 255, 0.15);
+ border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn.copied {
+ background: #4ade80;
+ color: #000000;
+}
+
+.instructions {
+ background: rgba(255, 255, 255, 0.05);
+ border-left: 3px solid #ffffff;
+ padding: 24px;
+ margin-bottom: 24px;
+ border-radius: 12px;
+}
+
+.instructions h3 {
+ color: var(--text-primary);
+ margin-bottom: 16px;
+ font-size: 1.1rem;
+}
+
+.instructions ol {
+ margin-left: 20px;
+ line-height: 2;
+ color: var(--text-secondary);
+}
+
+.code-block {
+ background: #0a0a0a;
+ border: 1px solid var(--border);
+ border-radius: 12px;
+ overflow: hidden;
+ position: relative;
+}
+
+.code-header-bar {
+ background: rgba(255, 255, 255, 0.05);
+ padding: 12px 20px;
+ border-bottom: 1px solid var(--border);
+ display: flex;
+ align-items: center;
+ gap: 8px;
+}
+
+.code-dot {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ background: var(--text-secondary);
+}
+
+.code-dot:nth-child(1) {
+ background: #ff5f56;
+}
+
+.code-dot:nth-child(2) {
+ background: #ffbd2e;
+}
+
+.code-dot:nth-child(3) {
+ background: #27c93f;
+}
+
+.code-content {
+ padding: 24px;
+ overflow-x: auto;
+ font-family: "JetBrains Mono", monospace;
+ font-size: 0.9rem;
+ line-height: 1.7;
+ color: #e0e0e0;
+}
+
+.code-content pre {
+ margin: 0;
+}
+
+/* Syntax highlighting */
+.token-comment {
+ color: #6a9955;
+}
+
+.token-tag {
+ color: #569cd6;
+}
+
+.token-attr-name {
+ color: #9cdcfe;
+}
+
+.token-attr-value {
+ color: #ce9178;
+}
+
+.token-punctuation {
+ color: #d4d4d4;
+}
+
+.token-selector {
+ color: #d7ba7d;
+}
+
+.token-property {
+ color: #9cdcfe;
+}
+
+.token-value {
+ color: #ce9178;
+}
+
+/* Footer */
+.footer {
+ text-align: center;
+ padding: 60px 20px 40px;
+ border-top: 1px solid var(--border);
+ margin-top: 80px;
+}
+
+.footer-content {
+ max-width: 600px;
+ margin: 0 auto;
+}
+
+.footer p {
+ color: var(--text-secondary);
+ margin: 12px 0;
+ font-size: 0.95rem;
+}
+
+.footer-links {
+ display: flex;
+ justify-content: center;
+ gap: 30px;
+ margin-top: 30px;
+}
+
+.footer-links a {
+ color: var(--text-secondary);
+ text-decoration: none;
+ font-size: 0.9rem;
+ transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+ color: var(--text-primary);
+}
+
+/* Accessibility */
+.skip-link {
+ position: absolute;
+ top: -40px;
+ left: 0;
+ background: #ffffff;
+ color: #000000;
+ padding: 8px 16px;
+ text-decoration: none;
+ z-index: 100;
+ border-radius: 4px;
+ font-weight: 600;
+}
+
+.skip-link:focus {
+ top: 10px;
+ left: 10px;
+}
+
+.visually-hidden {
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ padding: 0;
+ margin: -1px;
+ overflow: hidden;
+ clip: rect(0, 0, 0, 0);
+ white-space: nowrap;
+ border-width: 0;
+}
+
+/* Loader Animations */
+.loader-1::before,
+.loader-1::after {
+ border-radius: 50%;
+ width: 100%;
+ height: 100%;
+ top: calc(50% - 20px);
+ left: calc(50% - 20px);
+ animation-duration: 3s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+.loader-1::before {
+ border-style: solid;
+ border-width: 3px 3px 3px 0;
+ border-color: #ffffff transparent transparent;
+ transform: scale(0.3) rotate(0deg);
+ opacity: 0.5;
+ animation-name: foregroundCircle;
+}
+
+.loader-1::after {
+ background: #ffffff;
+ opacity: 0.5;
+ transform: scale(0);
+ animation-name: backgroundCircle;
+}
+
+@keyframes foregroundCircle {
+ 0% {
+  transform: scale(0.3) rotate(0deg);
+ }
+
+ 12.5% {
+  transform: scale(0.3) rotate(180deg);
+ }
+
+ 25%,
+ 50% {
+  opacity: 1;
+ }
+
+ 50% {
+  transform: scale(1) rotate(720deg);
+ }
+
+ 100% {
+  transform: scale(0.3) rotate(1800deg);
+  opacity: 0.5;
+ }
+}
+
+@keyframes backgroundCircle {
+ 12.5% {
+  transform: scale(0.3);
+ }
+
+ 90%,
+ 100% {
+  transform: scale(2);
+  opacity: 0;
+ }
+}
+
+.loader-2 {
+ perspective: 500px;
+ transform-style: preserve-3d;
+ transform: rotate3d(2, 1, -1, 90deg);
+}
+
+.loader-2::before,
+.loader-2::after {
+ border-radius: 50%;
+ width: 20px;
+ height: 20px;
+ top: calc(50% - 10px);
+ background: #ffffff;
+ animation-duration: 3s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+.loader-2::before {
+ left: 0;
+ opacity: 0.7;
+ border-top-right-radius: 0;
+ transform-origin: right top;
+ animation-name: flapL;
+}
+
+.loader-2::after {
+ left: 50%;
+ opacity: 0.5;
+ border-top-left-radius: 0;
+ transform-origin: left top;
+ animation-name: flapR;
+}
+
+@keyframes flapL {
+ 25%,
+ 50% {
+  transform: rotateY(-45deg);
+ }
+
+ 12.5%,
+ 37.5%,
+ 65% {
+  transform: rotateY(45deg);
+ }
+
+ 0%,
+ 100% {
+  transform: rotateY(-30deg);
+ }
+}
+
+@keyframes flapR {
+ 25%,
+ 50% {
+  transform: rotateY(45deg);
+ }
+
+ 12.5%,
+ 37.5%,
+ 65% {
+  transform: rotateY(-45deg);
+ }
+
+ 0%,
+ 100% {
+  transform: rotateY(30deg);
+ }
+}
+
+.loader-3::before,
+.loader-3::after {
+ border-radius: 50%;
+ animation-duration: 1s;
+ animation-timing-function: ease-in-out;
+ animation-iteration-count: infinite;
+}
+
+.loader-3::before {
+ width: 20px;
+ height: 20px;
+ top: calc(50% - 10px);
+ left: calc(50% - 10px);
+ border-bottom-right-radius: 0;
+ box-shadow: 0 0 0 2px #ffffff;
+ background: radial-gradient(transparent 0, transparent 4px, #ffffff 4px);
+ transform: rotate(45deg);
+ animation-name: mapPin;
+}
+
+.loader-3::after {
+ width: 5px;
+ height: 3px;
+ opacity: 0.8;
+ top: 100%;
+ left: calc(50% - 2.5px);
+ background: #ffffff;
+ animation-name: mapPinShadow;
+}
+
+@keyframes mapPin {
+ 50% {
+  transform: rotate(45deg) translate(-50%, -50%);
+ }
+}
+
+@keyframes mapPinShadow {
+ 50% {
+  transform: scaleX(3);
+  opacity: 0.2;
+ }
+}
+
+.loader-4::before,
+.loader-4::after {
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ background: #ffffff;
+ top: calc(50% - 5px);
+ animation-duration: 1s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+.loader-4::before {
+ left: 0;
+ animation-name: firstDot;
+}
+
+.loader-4::after {
+ right: 0;
+ opacity: 0.8;
+ animation-name: secondDot;
+}
+
+@keyframes firstDot {
+ 0%,
+ 50% {
+  transform-origin: 20px center;
+ }
+
+ 50% {
+  transform: rotateZ(180deg);
+ }
+
+ 51%,
+ 100% {
+  transform-origin: center;
+ }
+
+ 51% {
+  transform: rotateZ(180deg) translateX(-30px);
+ }
+
+ 100% {
+  transform: rotateZ(180deg) translateX(0);
+ }
+}
+
+@keyframes secondDot {
+ 0%,
+ 50% {
+  transform: rotateZ(-180deg);
+ }
+
+ 51%,
+ 100% {
+  transform-origin: -10px center;
+ }
+}
+
+.loader-5::before,
+.loader-5::after {
+ border-radius: 50%;
+ background: #ffffff;
+ width: 20px;
+ height: 20px;
+ top: calc(50% - 10px);
+ left: calc(50% - 10px);
+ animation-duration: 2s;
+ animation-timing-function: ease-in-out;
+ animation-iteration-count: infinite;
+}
+
+.loader-5::before {
+ opacity: 0.7;
+ animation-name: upperDot;
+}
+
+.loader-5::after {
+ opacity: 0.5;
+ animation-name: lowerDot;
+}
+
+@keyframes upperDot {
+ 25% {
+  transform: translateY(-50%);
+ }
+
+ 47.5%,
+ 52.5% {
+  transform: translateY(0);
+ }
+
+ 75% {
+  transform: translateY(50%);
+ }
+}
+
+@keyframes lowerDot {
+ 25% {
+  transform: translateY(50%);
+ }
+
+ 47.5%,
+ 52.5% {
+  transform: translateY(0);
+ }
+
+ 75% {
+  transform: translateY(-50%);
+ }
+}
+
+.loader-6 {
+ border-radius: 50%;
+ width: 5px;
+ height: 5px;
+ background: #ffffff;
+ animation-name: pacmanDot;
+ transform: translateX(18px);
+}
+
+.loader-6::before,
+.loader-6::after {
+ border-radius: 50%;
+ border: 18px solid #ffffff;
+ border-right-color: transparent;
+ top: -16px;
+ left: -32px;
+}
+
+.loader-6,
+.loader-6::before,
+.loader-6::after {
+ animation-duration: 0.5s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+.loader-6::before {
+ animation-name: upperJaw;
+}
+
+.loader-6::after {
+ animation-name: lowerJaw;
+}
+
+@keyframes pacmanDot {
+ 0%,
+ 50% {
+  background: #ffffff;
+ }
+
+ 51%,
+ 100% {
+  background: none;
+ }
+
+ 0%,
+ 100% {
+  transform: translateX(24px);
+ }
+
+ 50% {
+  transform: translateX(18px);
+ }
+}
+
+@keyframes upperJaw {
+ 50% {
+  transform: rotate(50deg) translate(2px, -2px);
+ }
+}
+
+@keyframes lowerJaw {
+ 50% {
+  transform: rotate(-50deg) translate(2px, 2px);
+ }
+}
+
+.loader-7 {
+ border: 1px solid #ffffff;
+ height: 18px;
+ width: 40px;
+}
+
+.loader-7::before {
+ width: 5px;
+ height: 14px;
+ background: #ffffff;
+ left: 1px;
+ top: calc(50% - 7px);
+ animation: blockBar 2s infinite;
+}
+
+@keyframes blockBar {
+ 0%,
+ 80% {
+  opacity: 1;
+ }
+
+ 0%,
+ 20% {
+  box-shadow: 10px 0 0 0 rgba(255, 255, 255, 0),
+   20px 0 0 0 rgba(255, 255, 255, 0), 30px 0 0 0 rgba(255, 255, 255, 0);
+ }
+
+ 21%,
+ 40% {
+  box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 rgba(255, 255, 255, 0),
+   30px 0 0 0 rgba(255, 255, 255, 0);
+ }
+
+ 41%,
+ 60% {
+  box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 #ffffff,
+   30px 0 0 0 rgba(255, 255, 255, 0);
+ }
+
+ 61%,
+ 80% {
+  box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 #ffffff, 30px 0 0 0 #ffffff;
+ }
+
+ 81%,
+ 100% {
+  opacity: 0;
+ }
+}
+
+.loader-8::before,
+.loader-8::after {
+ border-radius: 50%;
+ width: 12px;
+ height: 12px;
+ top: calc(50% - 6px);
+ left: calc(50% - 6px);
+ animation-duration: 3s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+.loader-8::before {
+ background: #ffffff;
+ animation-name: droplets;
+}
+
+.loader-8::after {
+ border: 1px solid #ffffff;
+ opacity: 0;
+ animation-name: ripples;
+}
+
+@keyframes droplets {
+ 0%,
+ 15% {
+  opacity: 1;
+ }
+
+ 15% {
+  transform: scale(0.5);
+ }
+
+ 60% {
+  transform: scale(4);
+ }
+
+ 60%,
+ 90% {
+  opacity: 0;
+ }
+
+ 90% {
+  transform: scale(3);
+ }
+
+ 95%,
+ 100% {
+  opacity: 1;
+ }
+
+ 100% {
+  transform: scale(1);
+ }
+}
+
+@keyframes ripples {
+ 0%,
+ 30% {
+  opacity: 0;
+  transform: scale(1);
+ }
+
+ 60% {
+  opacity: 0.3;
+ }
+
+ 90% {
+  transform: scale(3);
+ }
+
+ 100% {
+  opacity: 0;
+ }
+}
+
+.loader-9 {
+ border: 1px solid rgba(255, 255, 255, 0.3);
+ border-radius: 50%;
+ animation: counterClockwise 4s linear infinite;
+}
+
+.loader-9::before,
+.loader-9::after {
+ border-radius: 50%;
+}
+
+.loader-9::before {
+ width: 10px;
+ height: 10px;
+ background: #ffffff;
+ animation: clockwise 4s linear infinite;
+}
+
+.loader-9::after {
+ width: 5px;
+ height: 5px;
+ top: 10px;
+ left: 10px;
+ background: #ffffff;
+ transform-origin: -5px -5px;
+ animation: counterClockwise 1s linear infinite;
+}
+
+@keyframes clockwise {
+ to {
+  transform: rotate(1turn);
+ }
+}
+
+@keyframes counterClockwise {
+ to {
+  transform: rotate(-1turn);
+ }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ .hero h1 {
+  font-size: 2.5rem;
+ }
+
+ .hero .subtitle {
+  font-size: 1.1rem;
+ }
+
+ .nav-links {
+  display: none;
+ }
+
+ .stats {
+  grid-template-columns: repeat(2, 1fr);
+ }
+
+ .benefits-grid {
+  grid-template-columns: 1fr;
+ }
+
+ .loader-grid {
+  grid-template-columns: repeat(2, 1fr);
+ }
+
+ .code-header {
+  flex-direction: column;
+  align-items: flex-start;
+ }
+
+ .button-group {
+  width: 100%;
+ }
+
+ .btn {
+  flex: 1;
+ }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <body>
+ <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+ <!-- Navigation -->
+ <nav class="nav" role="navigation">
+  <div class="nav-content">
+   <div class="logo">⚡ CSS Loaders</div>
+   <ul class="nav-links">
+    <li><a href="#loaders">Galería</a></li>
+    <li><a href="#benefits">Beneficios</a></li>
+    <li><a href="#code">Código</a></li>
+   </ul>
+  </div>
+ </nav>
+
+ <div class="container">
+  <!-- Hero Section -->
+  <header class="hero" role="banner">
+   <div class="hero-badge">
+    <span class="dot"></span>
+    <span>Actualizado 2026 • Open Source</span>
+   </div>
+   <h1>CSS Loaders<br>Profesionales</h1>
+   <p class="subtitle">Colección curada de 9 loaders ultra-ligeros para Vibe Coding. Código listo para copiar, sin dependencias, performance superior.</p>
+  </header>
+
+  <!-- Stats -->
+  <section class="stats">
+   <div class="stat-card">
+    <div class="stat-number">9</div>
+    <div class="stat-label">Loaders Premium</div>
+   </div>
+   <div class="stat-card">
+    <div class="stat-number">0KB</div>
+    <div class="stat-label">JavaScript</div>
+   </div>
+   <div class="stat-card">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">CSS Puro</div>
+   </div>
+   <div class="stat-card">
+    <div class="stat-number">∞</div>
+    <div class="stat-label">Personalizable</div>
+   </div>
+  </section>
+
+  <main id="main-content" role="main">
+   <!-- Benefits Section -->
+   <article id="benefits" class="benefits-section">
+    <h2 class="section-title">Por qué elegir CSS Loaders</h2>
+    <div class="benefits-grid" role="list">
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">🚀</span>
+      <h3>Performance Superior</h3>
+      <p>Ultra-ligeros, sin JavaScript. Cargan instantáneamente sin bloquear el hilo principal. Perfectos para aplicaciones de alta velocidad.</p>
+     </div>
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">💎</span>
+      <h3>Experiencia Premium</h3>
+      <p>Transforma tiempos de espera en momentos de anticipación. Comunica profesionalismo y eleva la percepción de tu app.</p>
+     </div>
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">🎯</span>
+      <h3>UX Intuitiva</h3>
+      <p>Feedback visual inmediato que reduce frustración y abandono durante operaciones asíncronas. Esencial para retención.</p>
+     </div>
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">⚙️</span>
+      <h3>Plug & Play</h3>
+      <p>Solo HTML + CSS. Copia, pega y funciona. Sin configuración compleja. Personaliza en segundos. Ideal para desarrollo ágil.</p>
+     </div>
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">📱</span>
+      <h3>100% Responsive</h3>
+      <p>Escalan perfectamente en cualquier dispositivo. De móviles a 4K, siempre nítidos y profesionales sin ajustes.</p>
+     </div>
+     <div class="benefit-card" role="listitem">
+      <span class="benefit-icon" aria-hidden="true">🎨</span>
+      <h3>Identidad Visual</h3>
+      <p>Cada loader tiene personalidad única. Elige uno que refleje tu marca y crea una experiencia memorable.</p>
+     </div>
+    </div>
+   </article>
+
+   <!-- Loader Gallery -->
+   <section id="loaders" class="loader-gallery" aria-labelledby="loaders-heading">
+    <h2 id="loaders-heading" class="section-title">Explora la Galería</h2>
+    <div class="loader-grid" role="list" aria-label="Galería de loaders CSS">
+     <div class="loader-card" onclick="selectLoader(1)" role="listitem" tabindex="0" aria-label="Seleccionar Spinning Circle Loader">
+      <div class="loader loader-1" aria-hidden="true"></div>
+      <div class="loader-name">Spinning Circle</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(2)" role="listitem" tabindex="0" aria-label="Seleccionar 3D Flaps Loader">
+      <div class="loader loader-2" aria-hidden="true"></div>
+      <div class="loader-name">3D Flaps</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(3)" role="listitem" tabindex="0" aria-label="Seleccionar Map Pin Loader">
+      <div class="loader loader-3" aria-hidden="true"></div>
+      <div class="loader-name">Map Pin</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(4)" role="listitem" tabindex="0" aria-label="Seleccionar Rotating Dots Loader">
+      <div class="loader loader-4" aria-hidden="true"></div>
+      <div class="loader-name">Rotating Dots</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(5)" role="listitem" tabindex="0" aria-label="Seleccionar Bouncing Dots Loader">
+      <div class="loader loader-5" aria-hidden="true"></div>
+      <div class="loader-name">Bouncing Dots</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(6)" role="listitem" tabindex="0" aria-label="Seleccionar Pac-Man Loader">
+      <div class="loader loader-6" aria-hidden="true"></div>
+      <div class="loader-name">Pac-Man</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(7)" role="listitem" tabindex="0" aria-label="Seleccionar Progress Bar Loader">
+      <div class="loader loader-7" aria-hidden="true"></div>
+      <div class="loader-name">Progress Bar</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(8)" role="listitem" tabindex="0" aria-label="Seleccionar Ripple Drop Loader">
+      <div class="loader loader-8" aria-hidden="true"></div>
+      <div class="loader-name">Ripple Drop</div>
+     </div>
+     <div class="loader-card" onclick="selectLoader(9)" role="listitem" tabindex="0" aria-label="Seleccionar Orbital Loader">
+      <div class="loader loader-9" aria-hidden="true"></div>
+      <div class="loader-name">Orbital</div>
+     </div>
+    </div>
+   </section>
+
+   <!-- Code Section -->
+   <section id="code" class="code-section" aria-labelledby="code-heading" aria-live="polite">
+    <div class="code-header">
+     <h2 class="code-title" id="code-heading">Loader Code</h2>
+     <div class="button-group">
+      <button class="btn btn-primary" onclick="copyCode()" aria-label="Copiar código del loader seleccionado">
+       <span id="copyIcon" aria-hidden="true">📋</span>
+       <span id="copyText">Copiar Código</span>
+      </button>
+      <button class="btn btn-secondary" onclick="downloadCode()" aria-label="Descargar código como archivo">
+       <span aria-hidden="true">⬇️</span>
+       <span>Descargar</span>
+      </button>
+     </div>
+    </div>
+
+    <div class="instructions" role="complementary">
+     <h3>📝 Guía de Implementación Rápida</h3>
+     <ol>
+      <li>Haz clic en "Copiar Código" para obtener HTML + CSS completo</li>
+      <li>Pega directamente en tu proyecto de Vibe Coding</li>
+      <li>Personaliza colores cambiando #ffffff por tu paleta</li>
+      <li>Ajusta tamaño con las propiedades width/height del .loader</li>
+      <li>¡Listo! Loader profesional funcionando en segundos</li>
+     </ol>
+    </div>
+
+    <div class="code-block">
+     <div class="code-header-bar">
+      <span class="code-dot"></span>
+      <span class="code-dot"></span>
+      <span class="code-dot"></span>
+     </div>
+     <div class="code-content">
+      <pre id="codeContent" aria-live="polite"></pre>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="footer">
+   <div class="footer-content">
+    <p><strong>Vibe Coding Community</strong> | <time datetime="2026-02-09">2026</time></p>
+    <p>9 CSS Loaders Profesionales • 0 Dependencias • 100% Open Source</p>
+    <div class="footer-links">
+     <a href="#loaders">Galería</a>
+     <a href="#benefits">Beneficios</a>
+     <a href="https://github.com/vibecoding" target="_blank" rel="noopener">GitHub</a>
+     <a href="https://vibecoding.dev" target="_blank" rel="noopener">Documentación</a>
+    </div>
+   </div>
+  </footer>
+ </div>
+</body>
+  
+    <script id="rendered-js" >
+const loaderCodes = {
+ 1: `<!-- HTML -->
+<div class="loader loader-1"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-1::before, 
+.loader-1::after {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loader-1::before {
+  border-style: solid;
+  border-width: 3px 3px 3px 0;
+  border-color: #ffffff transparent transparent;
+  transform: scale(0.3) rotate(0deg);
+  opacity: 0.5;
+  animation-name: foregroundCircle;
+}
+
+.loader-1::after {
+  background: #ffffff;
+  opacity: 0.5;
+  transform: scale(0);
+  animation-name: backgroundCircle;
+}
+
+@keyframes foregroundCircle {
+  0% { transform: scale(0.3) rotate(0deg); }
+  12.5% { transform: scale(0.3) rotate(180deg); }
+  25%, 50% { opacity: 1; }
+  50% { transform: scale(1) rotate(720deg); }
+  100% { transform: scale(0.3) rotate(1800deg); opacity: 0.5; }
+}
+
+@keyframes backgroundCircle {
+  12.5% { transform: scale(0.3); }
+  90%, 100% { transform: scale(2); opacity: 0; }
+}
+</style>`,
+
+ 2: `<!-- HTML -->
+<div class="loader loader-2"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-2 {
+  perspective: 500px;
+  transform-style: preserve-3d;
+  transform: rotate3d(2, 1, -1, 90deg);
+}
+
+.loader-2::before, 
+.loader-2::after {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  top: calc(50% - 10px);
+  background: #ffffff;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loader-2::before {
+  left: 0;
+  opacity: 0.7;
+  border-top-right-radius: 0;
+  transform-origin: right top;
+  animation-name: flapL;
+}
+
+.loader-2::after {
+  left: 50%;
+  opacity: 0.5;
+  border-top-left-radius: 0;
+  transform-origin: left top;
+  animation-name: flapR;
+}
+
+@keyframes flapL {
+  25%, 50% { transform: rotateY(-45deg); }
+  12.5%, 37.5%, 65% { transform: rotateY(45deg); }
+  0%, 100% { transform: rotateY(-30deg); }
+}
+
+@keyframes flapR {
+  25%, 50% { transform: rotateY(45deg); }
+  12.5%, 37.5%, 65% { transform: rotateY(-45deg); }
+  0%, 100% { transform: rotateY(30deg); }
+}
+</style>`,
+
+ 3: `<!-- HTML -->
+<div class="loader loader-3"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-3::before, 
+.loader-3::after {
+  border-radius: 50%;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.loader-3::before {
+  width: 20px;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 0 2px #ffffff;
+  background: radial-gradient(transparent 0, transparent 4px, #ffffff 4px);
+  transform: rotate(45deg);
+  animation-name: mapPin;
+}
+
+.loader-3::after {
+  width: 5px;
+  height: 3px;
+  opacity: 0.8;
+  top: 100%;
+  left: calc(50% - 2.5px);
+  background: #ffffff;
+  animation-name: mapPinShadow;
+}
+
+@keyframes mapPin {
+  50% { transform: rotate(45deg) translate(-50%, -50%); }
+}
+
+@keyframes mapPinShadow {
+  50% { transform: scaleX(3); opacity: 0.2; }
+}
+</style>`,
+
+ 4: `<!-- HTML -->
+<div class="loader loader-4"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-4::before, 
+.loader-4::after {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  top: calc(50% - 5px);
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loader-4::before {
+  left: 0;
+  animation-name: firstDot;
+}
+
+.loader-4::after {
+  right: 0;
+  opacity: 0.8;
+  animation-name: secondDot;
+}
+
+@keyframes firstDot {
+  0%, 50% { transform-origin: 20px center; }
+  50% { transform: rotateZ(180deg); }
+  51%, 100% { transform-origin: center; }
+  51% { transform: rotateZ(180deg) translateX(-30px); }
+  100% { transform: rotateZ(180deg) translateX(0); }
+}
+
+@keyframes secondDot {
+  0%, 50% { transform: rotateZ(-180deg); }
+  51%, 100% { transform-origin: -10px center; }
+}
+</style>`,
+
+ 5: `<!-- HTML -->
+<div class="loader loader-5"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-5::before, 
+.loader-5::after {
+  border-radius: 50%;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.loader-5::before {
+  opacity: 0.7;
+  animation-name: upperDot;
+}
+
+.loader-5::after {
+  opacity: 0.5;
+  animation-name: lowerDot;
+}
+
+@keyframes upperDot {
+  25% { transform: translateY(-50%); }
+  47.5%, 52.5% { transform: translateY(0); }
+  75% { transform: translateY(50%); }
+}
+
+@keyframes lowerDot {
+  25% { transform: translateY(50%); }
+  47.5%, 52.5% { transform: translateY(0); }
+  75% { transform: translateY(-50%); }
+}
+</style>`,
+
+ 6: `<!-- HTML -->
+<div class="loader loader-6"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-6 {
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+  animation-name: pacmanDot;
+  transform: translateX(18px);
+}
+
+.loader-6::before, 
+.loader-6::after {
+  border-radius: 50%;
+  border: 18px solid #ffffff;
+  border-right-color: transparent;
+  top: -16px;
+  left: -32px;
+}
+
+.loader-6, 
+.loader-6::before, 
+.loader-6::after {
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loader-6::before {
+  animation-name: upperJaw;
+}
+
+.loader-6::after {
+  animation-name: lowerJaw;
+}
+
+@keyframes pacmanDot {
+  0%, 50% { background: #ffffff; }
+  51%, 100% { background: none; }
+  0%, 100% { transform: translateX(24px); }
+  50% { transform: translateX(18px); }
+}
+
+@keyframes upperJaw {
+  50% { transform: rotate(50deg) translate(2px, -2px); }
+}
+
+@keyframes lowerJaw {
+  50% { transform: rotate(-50deg) translate(2px, 2px); }
+}
+</style>`,
+
+ 7: `<!-- HTML -->
+<div class="loader loader-7"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+}
+
+.loader-7 {
+  border: 1px solid #ffffff;
+  height: 18px;
+  width: 40px;
+}
+
+.loader-7::before {
+  width: 5px;
+  height: 14px;
+  background: #ffffff;
+  left: 1px;
+  top: calc(50% - 7px);
+  animation: blockBar 2s infinite;
+}
+
+@keyframes blockBar {
+  0%, 80% { opacity: 1; }
+  0%, 20% { box-shadow: 10px 0 0 0 rgba(255, 255, 255, 0), 20px 0 0 0 rgba(255, 255, 255, 0), 30px 0 0 0 rgba(255, 255, 255, 0); }
+  21%, 40% { box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 rgba(255, 255, 255, 0), 30px 0 0 0 rgba(255, 255, 255, 0); }
+  41%, 60% { box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 #ffffff, 30px 0 0 0 rgba(255, 255, 255, 0); }
+  61%, 80% { box-shadow: 10px 0 0 0 #ffffff, 20px 0 0 0 #ffffff, 30px 0 0 0 #ffffff; }
+  81%, 100% { opacity: 0; }
+}
+</style>`,
+
+ 8: `<!-- HTML -->
+<div class="loader loader-8"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-8::before, 
+.loader-8::after {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  top: calc(50% - 6px);
+  left: calc(50% - 6px);
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loader-8::before {
+  background: #ffffff;
+  animation-name: droplets;
+}
+
+.loader-8::after {
+  border: 1px solid #ffffff;
+  opacity: 0;
+  animation-name: ripples;
+}
+
+@keyframes droplets {
+  0%, 15% { opacity: 1; }
+  15% { transform: scale(0.5); }
+  60% { transform: scale(4); }
+  60%, 90% { opacity: 0; }
+  90% { transform: scale(3); }
+  95%, 100% { opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes ripples {
+  0%, 30% { opacity: 0; transform: scale(1); }
+  60% { opacity: 0.3; }
+  90% { transform: scale(3); }
+  100% { opacity: 0; }
+}
+</style>`,
+
+ 9: `<!-- HTML -->
+<div class="loader loader-9"></div>
+
+<!-- CSS -->
+<style>
+.loader {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.loader::before, 
+.loader::after {
+  content: "";
+  position: absolute;
+}
+
+.loader-9 {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: counterClockwise 4s linear infinite;
+}
+
+.loader-9::before, 
+.loader-9::after {
+  border-radius: 50%;
+}
+
+.loader-9::before {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  animation: clockwise 4s linear infinite;
+}
+
+.loader-9::after {
+  width: 5px;
+  height: 5px;
+  top: 10px;
+  left: 10px;
+  background: #ffffff;
+  transform-origin: -5px -5px;
+  animation: counterClockwise 1s linear infinite;
+}
+
+@keyframes clockwise {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes counterClockwise {
+  to { transform: rotate(-1turn); }
+}
+</style>`
+};
+
+const loaderNames = {
+ 1: "Spinning Circle Loader",
+ 2: "3D Flaps Loader",
+ 3: "Map Pin Loader",
+ 4: "Rotating Dots Loader",
+ 5: "Bouncing Dots Loader",
+ 6: "Pac-Man Loader",
+ 7: "Progress Bar Loader",
+ 8: "Ripple Drop Loader",
+ 9: "Orbital Loader"
+};
+
+function selectLoader(num) {
+ document.querySelectorAll(".loader-card").forEach((card) => {
+  card.classList.remove("selected");
+  card.setAttribute("aria-selected", "false");
+ });
+
+ event.currentTarget.classList.add("selected");
+ event.currentTarget.setAttribute("aria-selected", "true");
+
+ const codeSection = document.getElementById("code");
+ const loaderTitle = document.getElementById("code-heading");
+ const codeContent = document.getElementById("codeContent");
+
+ loaderTitle.textContent = loaderNames[num];
+ codeContent.textContent = loaderCodes[num];
+ codeSection.classList.add("active");
+
+ announceToScreenReader(
+  `${loaderNames[num]} seleccionado. Código listo para copiar.`
+ );
+
+ codeSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function announceToScreenReader(message) {
+ const announcement = document.createElement("div");
+ announcement.setAttribute("role", "status");
+ announcement.setAttribute("aria-live", "polite");
+ announcement.className = "visually-hidden";
+ announcement.textContent = message;
+ document.body.appendChild(announcement);
+ setTimeout(() => announcement.remove(), 1000);
+}
+
+async function copyCode() {
+ const codeContent = document.getElementById("codeContent").textContent;
+ const copyBtn = document.querySelector(".btn-primary");
+ const copyText = document.getElementById("copyText");
+ const copyIcon = document.getElementById("copyIcon");
+
+ try {
+  await navigator.clipboard.writeText(codeContent);
+
+  copyBtn.classList.add("copied");
+  copyText.textContent = "¡Copiado!";
+  copyIcon.textContent = "✅";
+
+  announceToScreenReader("Código copiado al portapapeles exitosamente");
+
+  setTimeout(() => {
+   copyBtn.classList.remove("copied");
+   copyText.textContent = "Copiar Código";
+   copyIcon.textContent = "📋";
+  }, 2000);
+ } catch (err) {
+  announceToScreenReader("Error al copiar el código");
+  alert(
+   "Error al copiar. Por favor, selecciona y copia manualmente el código."
+  );
+ }
+}
+
+function downloadCode() {
+ const codeContent = document.getElementById("codeContent").textContent;
+ const loaderTitle = document.getElementById("code-heading").textContent;
+ const blob = new Blob([codeContent], { type: "text/html" });
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement("a");
+ a.href = url;
+ a.download = `${loaderTitle.toLowerCase().replace(/\s+/g, "-")}.html`;
+ document.body.appendChild(a);
+ a.click();
+ document.body.removeChild(a);
+ URL.revokeObjectURL(url);
+
+ announceToScreenReader("Código descargado como archivo HTML");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+ document.querySelectorAll(".loader-card").forEach((card, index) => {
+  card.addEventListener("keydown", function (e) {
+   if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    card.click();
+   }
+  });
+ });
+
+ // Smooth scroll for navigation links
+ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+   e.preventDefault();
+   const target = document.querySelector(this.getAttribute("href"));
+   if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+   }
+  });
+ });
+});
+  </script>
+
+  
+</body>
+
+</html>

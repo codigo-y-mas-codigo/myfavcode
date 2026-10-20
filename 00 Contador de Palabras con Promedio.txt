@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Contador de Palabras con Promedio</title>
+ <style>
+  html {
+   height: 100%;
+  }
+
+  body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f4f4f4;
+   display: flex;
+   flex-direction: column;
+   height: auto;
+   /* Cambiado para que el cuerpo se ajuste al contenido */
+   overflow: hidden;
+   /* Oculta la barra de desplazamiento */
+  }
+
+  h1 {
+   text-align: center;
+  }
+
+  .section {
+   flex: 1;
+   /* Toma el espacio restante */
+   margin: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   overflow-y: auto;
+   /* Permite el desplazamiento vertical dentro de la sección */
+  }
+
+  textarea {
+   width: 98%;
+   height: 100px;
+   margin-bottom: 10px;
+   padding: 10px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+  }
+
+  .counter,
+  .info {
+   font-size: 18px;
+   font-weight: bold;
+   margin-top: 10px;
+  }
+
+  #toast {
+   visibility: hidden;
+   min-width: 250px;
+   margin-left: -125px;
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   border-radius: 2px;
+   padding: 16px;
+   position: fixed;
+   z-index: 1;
+   left: 50%;
+   bottom: 30px;
+   font-size: 17px;
+  }
+
+  #toast.show {
+   visibility: visible;
+   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+
+  @keyframes fadein {
+   from {
+    bottom: 0;
+    opacity: 0;
+   }
+
+   to {
+    bottom: 30px;
+    opacity: 1;
+   }
+  }
+
+  @keyframes fadeout {
+   from {
+    bottom: 30px;
+    opacity: 1;
+   }
+
+   to {
+    bottom: 0;
+    opacity: 0;
+   }
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+   position: relative;
+  }
+
+  .contact-button {
+   display: block;
+   margin: 20px auto;
+   padding: 10px 20px;
+   background-color: #007BFF;
+   color: #fff;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+  }
+
+  .contact-button:hover {
+   background-color: #0056b3;
+  }
+
+  /* Modal Styles */
+  #contactModal {
+   display: none;
+   position: fixed;
+   z-index: 1000;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0, 0, 0, 0.7);
+   justify-content: center;
+   align-items: center;
+  }
+
+  .modal-content {
+   background-color: #fff;
+   margin: 15% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   border-radius: 4px;
+  }
+
+  .close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+  }
+
+  html,
+  body {
+   height: 100%;
+   margin: 0;
+  }
+
+  body {
+   display: flex;
+   flex-direction: column;
+  }
+
+  .section {
+   flex: 1;
+   /* Toma el espacio restante */
+   margin: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   overflow-y: auto;
+   /* Permite el desplazamiento vertical dentro de la sección */
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+  }
+
+  html,
+  body {
+   height: 100%;
+   margin: 0;
+  }
+
+  body {
+   display: flex;
+   flex-direction: column;
+  }
+
+  .section {
+   flex: 0 1 auto;
+   /* Permite que la sección se ajuste a su contenido */
+   margin: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+  }
+
+  html,
+  body {
+   height: 100%;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+  }
+
+  body {
+   background-color: #f4f4f4;
+  }
+
+  .section {
+   flex: 1;
+   /* Esto permite que la sección ocupé el espacio restante */
+   margin: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   overflow-y: auto;
+   /* Permite el desplazamiento vertical dentro de la sección */
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+  }
+
+  html,
+  body {
+   height: 100%;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+  }
+
+  body {
+   background-color: #f4f4f4;
+  }
+
+  .section {
+   flex: 1 0 auto;
+   /* Permite que la sección crezca pero no se expanda más allá de su contenido */
+   margin: 20px;
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 4px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   overflow-y: auto;
+   /* Permite el desplazamiento vertical dentro de la sección */
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 10px 0;
+  }
+ </style>
+</head>
+
+<body>
+ <h1>Contador de Palabras con Promedio</h1>
+
+ <div class="section">
+  <h2>Contenedores de Texto</h2>
+  <div>
+   <textarea id="textInput1" placeholder="Escribe aquí..."></textarea>
+   <div class="counter" id="wordCount1">Palabras: 0</div>
+  </div>
+  <div>
+   <textarea id="textInput2" placeholder="Escribe aquí..."></textarea>
+   <div class="counter" id="wordCount2">Palabras: 0</div>
+  </div>
+  <div>
+   <textarea id="textInput3" placeholder="Escribe aquí..."></textarea>
+   <div class="counter" id="wordCount3">Palabras: 0</div>
+  </div>
+ </div>
+
+ <div class="section">
+  <h2>Resultados</h2>
+  <div class="counter" id="totalWords">Total Palabras: 0</div>
+  <div class="counter" id="averageWords">Promedio Palabras: 0</div>
+  <div class="info" id="wordInfo"></div>
+ </div>
+
+ <button class="contact-button" id="contactBtn">Contacto</button>
+
+ <footer>
+  MacielLabs © <span id="currentYear"></span>
+ </footer>
+
+ <div id="contactModal">
+  <div class="modal-content">
+   <span class="close" id="closeModal">×</span>
+   <h2>Contacto</h2>
+   <p>Por favor, envía tu consulta a contacto@maciellabs.com.</p>
+  </div>
+ </div>
+
+ <div id="toast">Texto copiado al portapapeles!</div>
+
+ <script>
+  const textInputs = [
+   document.getElementById('textInput1'),
+   document.getElementById('textInput2'),
+   document.getElementById('textInput3')
+  ];
+  const wordCounts = [
+   document.getElementById('wordCount1'),
+   document.getElementById('wordCount2'),
+   document.getElementById('wordCount3')
+  ];
+  const totalWords = document.getElementById('totalWords');
+  const averageWords = document.getElementById('averageWords');
+  const wordInfo = document.getElementById('wordInfo');
+  const toast = document.getElementById('toast');
+  const currentYear = document.getElementById('currentYear');
+  const contactModal = document.getElementById('contactModal');
+  const contactBtn = document.getElementById('contactBtn');
+  const closeModal = document.getElementById('closeModal');
+  currentYear.textContent = new Date().getFullYear();
+  textInputs.forEach((input, index) => {
+   input.addEventListener('input', () => {
+    const text = input.value.trim();
+    const words = text ? text.split(/\s+/) : [];
+    wordCounts[index].textContent = `Palabras: ${words.length}`;
+    updateTotals();
+   });
+  });
+
+  function updateTotals() {
+   let total = 0;
+   let filledContainers = 0;
+   let minWords = Infinity;
+   let maxWords = 0;
+   textInputs.forEach((input) => {
+    const text = input.value.trim();
+    const words = text ? text.split(/\s+/) : [];
+    const wordCount = words.length;
+    total += wordCount;
+    if (wordCount > 0) {
+     filledContainers++;
+     minWords = Math.min(minWords, wordCount);
+     maxWords = Math.max(maxWords, wordCount);
+    }
+   });
+   totalWords.textContent = `Total Palabras: ${total}`;
+   const average = filledContainers > 0 ? (total / filledContainers).toFixed(2) : 0;
+   averageWords.textContent = `Promedio Palabras: ${average}`;
+   // Actualizar el texto informativo
+   wordInfo.textContent = `Desarrolla el contenido entre un mínimo de ${minWords + 10} y un máximo de ${maxWords + 10} palabras.`;
+   wordInfo.onmouseup = () => copyToClipboard(wordInfo.textContent);
+  }
+
+  function copyToClipboard(text) {
+   navigator.clipboard.writeText(text).then(() => {
+    showToast();
+   }).catch(err => {
+    console.error('Error al copiar: ', err);
+   });
+  }
+
+  function showToast() {
+   toast.className = "show";
+   setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+   }, 3000);
+  }
+  contactBtn.onclick = function() {
+   contactModal.style.display = "flex";
+  }
+  closeModal.onclick = function() {
+   contactModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+   if (event.target === contactModal) {
+    contactModal.style.display = "none";
+   }
+  }
+ </script>
+
+</body>
+
+</html>

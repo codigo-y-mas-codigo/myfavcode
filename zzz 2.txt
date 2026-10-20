@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Matthew Morete - Web Developer & Designer</title>
+<meta name="description" content="Belfast-based developer and designer who loves building for the web">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preload" as="image" href="computer.avif" fetchpriority="high">
+<link rel="icon" href="favicon.svg">
+<script>
+ const theme = localStorage.getItem("theme"),
+  root = document.documentElement;
+ "light" !== theme && "dark" !== theme || (root.dataset.theme = theme)
+</script>
+<style>
+ @charset "UTF-8";
+
+ .background *,
+ .cta,
+ .intro,
+ .side-projects,
+ .side-projects li,
+ .writing,
+ .writing li,
+ hgroup,
+ hgroup p {
+  display: flex;
+  flex-direction: column
+ }
+
+ *,
+ :after,
+ :before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+ }
+
+ html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none
+ }
+
+ [role=list] {
+  list-style: none
+ }
+
+ img,
+ picture,
+ svg {
+  display: block;
+  height: auto
+ }
+
+ .sr-only {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  user-select: none;
+  white-space: nowrap;
+  width: 1px
+ }
+
+ html {
+  --s-6: .41rem;
+  --s-5: .47rem;
+  --s-1: clamp(.82rem, .16vi + .77rem, .9rem);
+  --s0: clamp(.94rem, .23vi + .88rem, 1.06rem);
+  --s1: clamp(1.08rem, .31vi + 1rem, 1.25rem);
+  --s2: clamp(1.24rem, .41vi + 1.14rem, 1.47rem);
+  --s3: clamp(1.43rem, .54vi + 1.29rem, 1.72rem);
+  --s4: clamp(1.64rem, .7vi + 1.46rem, 2.03rem);
+  --s6: clamp(2.17rem, 1.14vi + 1.88rem, 2.8rem);
+  --s8: clamp(2.87rem, 1.8vi + 2.42rem, 3.86rem);
+  --s9: clamp(3.3rem, 2.25vi + 2.74rem, 4.54rem);
+  --s10: clamp(3.79rem, 2.79vi + 3.09rem, 5.33rem);
+  --bg: #fff;
+  --c: #000;
+  --screen-pad: var(--s3);
+  --box-pad: var(--s4);
+  display: grid;
+  height: 100%;
+  overflow-x: hidden
+ }
+
+ html .light {
+  display: none
+ }
+
+ html {
+  color-scheme: light
+ }
+
+ @media (prefers-color-scheme:dark) {
+  html {
+   color-scheme: dark;
+   filter: Invert()
+  }
+
+  html .dark {
+   display: none
+  }
+
+  html .light {
+   display: block
+  }
+ }
+
+ html[data-theme=dark] {
+  color-scheme: dark;
+  filter: Invert()
+ }
+
+ html[data-theme=dark] .dark {
+  display: none
+ }
+
+ html[data-theme=dark] .light {
+  display: block
+ }
+
+ html[data-theme=light] {
+  color-scheme: light;
+  filter: none
+ }
+
+ html[data-theme=light] .dark {
+  display: block
+ }
+
+ html[data-theme=light] .light {
+  display: none
+ }
+
+ .background {
+  --h1: "Cache Cleared After Lengthy Investigation";
+  --h2: "Developers And Designers Maintain Uneasy Alliance";
+  --h3: "Experts Unable To Locate The Fold";
+  --h4: "New CSS Property Discovered off the Coast of New Zealand";
+  --h5: "PHP Developers Facing Extinction";
+  --h6: "Browsers Reach Agreement Despite Slight Inconsistencies";
+  --h7: "Comic Sans Not As Bad As First Suspected";
+  --h8: "New Framework Promises To Replace Previous New Framework";
+  --h9: "Scientists Reclassify Bug As Feature";
+  --h10: "Search for Missing Semicolon Continues";
+  --be: " Integer commodo magna at consequat posuere, nisl purus viverra augue, sed posuere massa lorem vitae arcu. Donec feugiat neque vel sem tincidunt vitae placerat lectus fermentum. Suspendisse potenti. Mauris finibus ligula nec consequat blandit, eros urna luctus odio, vitae tempor lectus magna sed augue.";
+  --b1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus malesuada sapien vitae interdum luctus, arcu lectus consequat mauris, vitae malesuada erat lorem non purus."var(--be);
+  --b2: "Praesent vitae justo eget sapien fermentum vulputate. Nulla facilisi. Aliquam erat volutpat."var(--be);
+  --b3: "Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."var(--be);
+  --b4: "Nam commodo, risus vel luctus bibendum, justo urna malesuada odio, vitae ullamcorper purus lorem."var(--be);
+  background: var(--bg);
+  height: 100%;
+  inset: 0;
+  max-width: 100%;
+  position: absolute;
+  --p: calc(var(--s6)/2);
+  column-count: calc(var(--columns)/2);
+  font-family: serif;
+  gap: 0;
+  line-height: 1.35;
+  overflow: hidden;
+  padding-block: var(--p);
+  pointer-events: none;
+  z-index: -1
+ }
+
+ .background:after,
+ .background:before {
+  content: "";
+  inset: 0;
+  position: absolute
+ }
+
+ .background:before {
+  filter: url(#bg-fade) blur(10px);
+  opacity: .75;
+  z-index: 1
+ }
+
+ .background:after {
+  filter: url(#bg-grit);
+  z-index: 2
+ }
+
+ .background * {
+  gap: .6rem;
+  letter-spacing: .02em;
+  opacity: .15;
+  padding-inline: var(--p)
+ }
+
+ .background *+* {
+  margin-top: 1.2rem
+ }
+
+ .background :before {
+  break-inside: avoid;
+  content: var(--h);
+  font-size: var(--hsize, 11px);
+  font-style: var(--hstyle, normal);
+  font-weight: var(--hweight, bold);
+  text-transform: var(--htransform, none)
+ }
+
+ .background :after {
+  content: var(--b);
+  font-size: var(--bsize, 8px);
+  text-align: justify;
+  white-space: pre-line
+ }
+
+ .background :nth-child(10n+1) {
+  --h: var(--h1);
+  --b: var(--b1) "\A\A"var(--b2)
+ }
+
+ .background :nth-child(10n+2) {
+  --h: var(--h2);
+  --b: var(--b3) var(--b2) "\A\A"var(--h8) "\A\A"var(--b4) "\A\A"var(--b1)
+ }
+
+ .background :nth-child(10n+3) {
+  --h: var(--h3);
+  --b: var(--b4) "\A\A"var(--b1)
+ }
+
+ .background :nth-child(10n+4) {
+  --h: var(--h4);
+  --b: var(--b2) "\A\A"var(--b4) "\A\A"var(--b3)
+ }
+
+ .background :nth-child(10n+5) {
+  --h: var(--h5);
+  --b: var(--b1) "\A\A"var(--b2) "\A\A"var(--h10) "\A\A"var(--b3) var(--b4)
+ }
+
+ .background :nth-child(10n+6) {
+  --h: var(--h6);
+  --b: var(--b2) var(--b4)
+ }
+
+ .background :nth-child(10n+7) {
+  --h: var(--h7);
+  --b: var(--b4)
+ }
+
+ .background :nth-child(10n+8) {
+  --h: var(--h8);
+  --b: var(--b3) "\A\A"var(--b1) "\A\A"var(--h2) "\A\A"var(--b3) var(--b4) "\A\A"var(--b2)
+ }
+
+ .background :nth-child(10n+9) {
+  --h: var(--h9);
+  --b: var(--b4) var(--b3) "\A\A"var(--b2) "\A\A"var(--b1)
+ }
+
+ .background :nth-child(10n) {
+  --h: var(--h10);
+  --b: var(--b1) "\A\A"var(--b4)
+ }
+
+ .background :nth-child(2n) {
+  --hsize: 10px;
+  --hweight: 700;
+  --htransform: uppercase
+ }
+
+ .background :nth-child(3n) {
+  --hsize: 13px;
+  --hweight: 900
+ }
+
+ .background :nth-child(5n) {
+  --hstyle: italic;
+  --hweight: 600;
+  --bsize: 7px
+ }
+
+ .background :nth-child(7n) {
+  --hsize: 14px;
+  --hweight: 900
+ }
+
+ .background :nth-child(11n) {
+  --hsize: 9px;
+  --hweight: 900;
+  --hstyle: italic;
+  --htransform: uppercase
+ }
+
+ .tape {
+  background: var(--c);
+  clip-path: polygon(1% 0, 99% 0, 100% 100%, 0 100%);
+  color: var(--bg);
+  display: block;
+  width: max-content;
+  -webkit-font-smoothing: antialiased;
+  filter: contrast(4);
+  font-weight: 700;
+  letter-spacing: .15em;
+  line-height: 1;
+  padding: .45em .75em;
+  text-transform: uppercase;
+  transform: rotate(calc(1deg*var(--t, 2)))
+ }
+
+ .tape ::selection {
+  background: var(--bg);
+  color: var(--c)
+ }
+
+ .tape:before {
+  content: "";
+  filter: url(#logo-filter) invert(1);
+  inset: 0;
+  position: absolute
+ }
+
+ .tape b {
+  display: inline-block;
+  filter: blur(min(1px, .03em));
+  transform: rotate(var(--rotation, 0deg))
+ }
+
+ .tape :nth-child(2n) {
+  --rotation: -4deg
+ }
+
+ .tape :nth-child(3n) {
+  --rotation: 2deg
+ }
+
+ .tape :nth-child(5n) {
+  --rotation: -6deg
+ }
+
+ .tape :nth-child(7n) {
+  --rotation: 4deg
+ }
+
+ body {
+  --tape-height: calc(var(--s2) + 0.9em);
+  color: var(--c);
+  font: var(--s0)/1.5 Courier New, Courier, monospace;
+  position: relative
+ }
+
+ main {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  min-height: 100%;
+  overflow: hidden;
+  padding-top: var(--s9);
+  place-items: start center
+ }
+
+ svg {
+  fill: currentColor
+ }
+
+ :root {
+  --columns: 4
+ }
+
+ .intro .box {
+  max-width: 60ch
+ }
+
+ hgroup p {
+  align-items: center;
+  font-size: var(--s3);
+  gap: var(--s-5)
+ }
+
+ .computer-wrapper,
+ .cta,
+ .intro,
+ .side-projects,
+ .writing {
+  grid-column: 1/-1
+ }
+
+ .cta,
+ .intro,
+ .side-projects,
+ .writing {
+  margin-inline: var(--screen-pad)
+ }
+
+ .intro {
+  gap: var(--s3);
+  grid-row: 1/2;
+  margin-top: var(--s1)
+ }
+
+ hgroup {
+  align-items: center;
+  gap: var(--s1)
+ }
+
+ .logo {
+  max-width: 100%;
+  width: clamp(300px, 9.375vw + 262.5px, 375px)
+ }
+
+ .cta {
+  margin-bottom: var(--s10);
+  margin-top: var(--s4);
+  text-align: center
+ }
+
+ .side-projects {
+  justify-self: stretch;
+  z-index: 1
+ }
+
+ .computer-wrapper {
+  grid-row: 4/5;
+  overflow: hidden;
+  position: relative
+ }
+
+ .writing {
+  margin-bottom: var(--s8);
+  margin-top: -10px;
+  z-index: 0
+ }
+
+ .fire {
+  align-self: flex-end;
+  background: #fff;
+  font-size: 180px;
+  grid-column: 1/3;
+  grid-row: 2/3;
+  height: .9em;
+  line-height: 1.2;
+  overflow: hidden;
+  transform: translateX(-10%);
+  width: 1em
+ }
+
+ .fire,
+ .stamp {
+  display: none
+ }
+
+ .wp {
+  align-self: center;
+  grid-column: 4/5;
+  grid-row: 1/2;
+  transform: translateX(40%);
+  width: 150px
+ }
+
+ .wt {
+  grid-row: 1/2;
+  justify-self: flex-end;
+  transform: translate(-40%, 40%)
+ }
+
+ .bw,
+ .wt {
+  grid-column: 1/3;
+  width: 160px
+ }
+
+ .bw {
+  grid-row: 4/5;
+  transform: translateY(50%)
+ }
+
+ @media (min-width:500px) {
+  .cta {
+   grid-column: 2/-1;
+   grid-row: 2/3
+  }
+
+  .fire,
+  .wp {
+   display: block
+  }
+ }
+
+ @media (min-width:700px) {
+  :root {
+   --columns: 6
+  }
+
+  .intro {
+   grid-column: 1/7
+  }
+
+  .cta {
+   grid-column: 3/-1
+  }
+
+  .fire {
+   transform: none
+  }
+
+  .wp {
+   grid-column: 5/7;
+   transform: translateX(20%);
+   width: 170px
+  }
+
+  .bw,
+  .wt {
+   display: block
+  }
+ }
+
+ @media (min-width:900px) {
+  :root {
+   --columns: 8
+  }
+
+  .intro {
+   grid-column: 2/8
+  }
+
+  .cta {
+   grid-column: 4/-1
+  }
+
+  .side-projects {
+   grid-column: 1/5;
+   grid-row: 3/5
+  }
+
+  .computer-wrapper {
+   align-items: flex-end;
+   align-self: stretch;
+   display: flex;
+   grid-column: 5/9;
+   grid-row: 4/7
+  }
+
+  .computer-wrapper .computer {
+   bottom: 0;
+   position: sticky !important
+  }
+
+  .computer-wrapper img {
+   max-height: 640px
+  }
+
+  .writing {
+   grid-column: 1/5;
+   grid-row: 5/6;
+   margin-top: var(--s10)
+  }
+
+  .fire {
+   grid-column: 1/4
+  }
+
+  .wp {
+   grid-column: 7/9;
+   transform: none;
+   width: 180px
+  }
+
+  .wt {
+   transform: translateY(40%)
+  }
+
+  .bw {
+   grid-column: 6/9;
+   grid-row: 3/4;
+   margin-bottom: -50px;
+   transform: none
+  }
+ }
+
+ @media (min-width:1100px) {
+  :root {
+   --columns: 10
+  }
+
+  .intro {
+   grid-column: 1/7;
+   grid-row: 1/3
+  }
+
+  .cta {
+   grid-column: 3/7;
+   grid-row: 3/4
+  }
+
+  .side-projects {
+   grid-column: 7/11;
+   grid-row: 1/2
+  }
+
+  .computer-wrapper {
+   grid-column: 6/11;
+   grid-row: 2/6
+  }
+
+  .writing {
+   grid-column: 1/7;
+   grid-row: 5/6;
+   margin-top: 0;
+   z-index: 1
+  }
+
+  .fire {
+   grid-column: 1/3;
+   grid-row: 3/4;
+   transform: translateX(10%)
+  }
+
+  .wp {
+   align-self: flex-end;
+   grid-column: 5/8;
+   transform: translateY(50%);
+   z-index: 1
+  }
+
+  .wt {
+   align-self: center;
+   justify-self: flex-start;
+   transform: translateX(-20%)
+  }
+
+  .bw {
+   display: none
+  }
+ }
+
+ @media (min-width:1300px) {
+  :root {
+   --columns: 12
+  }
+
+  .side-projects {
+   grid-column: 7/13;
+   justify-self: center;
+   width: min(600px, 100%)
+  }
+
+  .computer-wrapper,
+  .writing {
+   grid-row: 2/4
+  }
+
+  .writing {
+   grid-column: 9/13;
+   margin-top: var(--s8);
+   max-width: 400px
+  }
+
+  .wp {
+   transform: translate(10%, 80%)
+  }
+ }
+
+ @media (min-width:1500px) {
+  :root {
+   --columns: 14
+  }
+
+  .writing {
+   grid-column: 11/15
+  }
+
+  .wp {
+   transform: translateY(75%);
+   width: 210px
+  }
+
+  .wt {
+   grid-column: 13/15;
+   justify-self: center;
+   translate: none;
+   width: 180px
+  }
+
+  .bw {
+   align-self: flex-end;
+   display: block;
+   grid-column: 10/12;
+   margin-bottom: 0;
+   transform: translateY(-20%);
+   width: 120px;
+   z-index: 1
+  }
+ }
+
+ a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  text-wrap: balance
+ }
+
+ p {
+  text-wrap: pretty
+ }
+
+ :focus-visible {
+  outline: 2px dashed var(--c);
+  outline-offset: 10px
+ }
+
+ @keyframes squiggly {
+  0% {
+   filter: url(#s0)
+  }
+
+  33% {
+   filter: url(#s1)
+  }
+
+  66% {
+   filter: url(#s2)
+  }
+
+  to {
+   filter: url(#s3)
+  }
+ }
+
+ .computer button,
+ .fire,
+ h1 {
+  animation: squiggly .4s infinite;
+  animation-play-state: paused
+ }
+
+ .computer button:hover,
+ .fire:hover,
+ h1:hover {
+  animation-play-state: running
+ }
+
+ h2 {
+  font-size: var(--s2);
+  margin-top: calc(var(--tape-height)/-2 - var(--box-pad))
+ }
+
+ #toggle {
+  padding: var(--s1);
+  position: absolute;
+  right: 0;
+  top: 0
+ }
+
+ #toggle svg {
+  width: var(--s4)
+ }
+
+ button {
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer
+ }
+
+ .computer button {
+  left: 28.6%;
+  position: absolute;
+  top: 13.9%;
+  transform: rotate(4deg) skewY(18deg);
+  width: 27%
+ }
+
+ .computer button svg {
+  fill: var(--bg)
+ }
+
+ .halftone {
+  mix-blend-mode: darken
+ }
+
+ .halftone .halftone-wrapper {
+  filter: contrast(2000%);
+  overflow: hidden;
+  position: relative
+ }
+
+ .halftone .halftone-wrapper:before {
+  background: radial-gradient(circle at center, var(--c), #fff);
+  background-size: 4px 4px;
+  content: "";
+  inset: -50%;
+  position: absolute;
+  transform: rotate(20deg)
+ }
+
+ .halftone .halftone-target {
+  background: #fff;
+  filter: grayscale(1) brightness(90%) contrast(140%) blur(2px);
+  mix-blend-mode: hard-light;
+  user-select: none
+ }
+
+ .box {
+  background: var(--bg);
+  padding: var(--s4)
+ }
+
+ .side-projects {
+  gap: var(--s4);
+  --w: 200px
+ }
+
+ .writing {
+  gap: var(--s4);
+  --w: 250px
+ }
+
+ .writing a[href^=http]:after {
+  content: "↗";
+  display: inline-block;
+  margin-left: .35em
+ }
+
+ .side-projects li,
+ .writing li {
+  gap: var(--s-6);
+  position: relative
+ }
+
+ .side-projects ul,
+ .writing ul {
+  display: grid;
+  gap: var(--box-pad);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--w)), 1fr))
+ }
+
+ .side-projects a:before,
+ .writing a:before {
+  content: "";
+  inset: 0;
+  position: absolute
+ }
+
+ .side-projects p,
+ .writing p {
+  font-size: var(--s-1)
+ }
+
+ .cta {
+  align-items: center;
+  gap: var(--s0)
+ }
+
+ .cta a {
+  display: block;
+  font-size: var(--s2);
+  margin-bottom: calc(var(--tape-height)/-2 - var(--box-pad))
+ }
+
+ .top-corner {
+  left: 0;
+  max-width: 220px;
+  position: absolute;
+  top: 0;
+  width: 35%
+ }
+
+ .bottom-corner {
+  bottom: 0;
+  max-width: 100px;
+  position: absolute;
+  right: 0;
+  transform: rotate(180deg);
+  width: 20%
+ }
+
+ @media (hover:hover) {
+  #cursor {
+   left: 0;
+   mix-blend-mode: difference;
+   pointer-events: none;
+   position: fixed;
+   top: 0;
+   will-change: transform;
+   z-index: 9999
+  }
+
+  #cursor:before {
+   background: #fff;
+   border-radius: 50%;
+   content: "";
+   display: block;
+   height: 150px;
+   transform: scale(.05);
+   transition: transform .2s ease .1s;
+   width: 150px
+  }
+
+  #cursor.is-hover:before {
+   transform: scale(1);
+   transition-delay: 0s
+  }
+ }
+
+ ::selection {
+  background: var(--c);
+  color: var(--bg)
+ }
+
+ .stamp {
+  mask: url(#stamp-mask);
+  rotate: var(--r, -15deg);
+  stroke-linecap: square
+ }
+
+ .bw,
+ .wt {
+  --r: 10deg
+ }
+
+ /*# sourceMappingURL=main.min.css.map */
+</style>
+<link rel="stylesheet" href="css/pixel-vt.css" media="print" onload='this.media="all",this.onload=null'>
+
+<body><svg aria-hidden="true" width="0" height="0" style="position: absolute;">
+  <defs>
+   <path id='rip' d="m2 143 5-2 1 4 5 1 2-2 2 5h9l6 10 3-2v6l6 5 2 5 6-13 6-4v-4l4 2 5-6v-6l3 5 7-4 6 2 2-2 4 5 5-2 2-10 5-4-1-5 3-1 1-8 5-6-1-5 6-7 7 4 8-12 3 1 5-8 6 2 2-2h10l5-3 6-12 3 2v6l3 3 6-7 4-1 1-5 8-6-2-5 5-8V33l3 3 8-8 6-1 2-3 2 2 2-4h9l9-14 6-4 4 3 5-2 19 9 1-8 6-6H0v140z" />
+   <filter id="s0">
+    <feTurbulence baseFrequency=".02" numOctaves="3" seed="0" result='r' />
+    <feDisplacementMap in="SourceGraphic" in2="r" scale="4" />
+   </filter>
+   <filter id="s1">
+    <feTurbulence baseFrequency=".02" numOctaves="3" seed="1" result='r' />
+    <feDisplacementMap in="SourceGraphic" in2="r" scale="6" />
+   </filter>
+   <filter id="s2">
+    <feTurbulence baseFrequency=".02" numOctaves="3" seed="2" result='r' />
+    <feDisplacementMap in="SourceGraphic" in2="r" scale="4" />
+   </filter>
+   <filter id="s3">
+    <feTurbulence baseFrequency=".02" numOctaves="3" seed="3" result='r' />
+    <feDisplacementMap in="SourceGraphic" in2="r" scale="6" />
+   </filter>
+   <filter x='0%' y='0%' width='100%' height='100%' id="bg-fade">
+    <feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="3" />
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -12 6" />
+   </filter>
+   <filter x='0%' y='0%' width='100%' height='100%' id="bg-grit">
+    <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" />
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 1.75" />
+   </filter>
+   <filter id="stamp-grit" filterUnits="userSpaceOnUse" height="750" width="750" x="0" y="0">
+    <feTurbulence baseFrequency=".1" numOctaves="5" type="fractalNoise" result="n1"></feTurbulence>
+    <feTurbulence baseFrequency=".02" numOctaves="5" seed="7" result="n2" type="fractalNoise"></feTurbulence>
+    <feTurbulence baseFrequency=".01" numOctaves="5" seed="2" result="n3" type="fractalNoise"></feTurbulence>
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 3.5" in="n1" result="a1"></feColorMatrix>
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 2.5" in="n2" result="a2"></feColorMatrix>
+    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 3.25" in="n3" result="a3"></feColorMatrix>
+    <feComposite in2="a1"></feComposite>
+    <feComposite in2="a2"></feComposite>
+   </filter>
+   <mask id="stamp-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="750" height="750">
+    <rect width="750" height="750" fill="white" />
+    <rect width="750" height="750" filter="url(#stamp-grit)" />
+   </mask>
+   <path id="w" d="m76.7 186.5 14.8 38 15.4-40.8 14.9 40.8 15.7-38h9.3L121.4 247l-14.6-40.3L91.5 247l-24.2-60.5z" />
+   <path id="e" d="M196.6 194.5h-22.8v13.7h22.1v8h-22.1v19h22.8v8.1h-31.4v-56.8h31.4z" />
+   <path id="b" d="M219.2 243.3v-56.8h8.5q5.8 0 9.1.8a14 14 0 019.6 8.4q1.5 3.3 1.4 6.7 0 6-4.6 10.3 4.5 1.6 7.1 5.4 2.7 3.9 2.7 9 0 6.6-4.8 11.2-2.9 2.9-6.3 4a37 37 0 01-9.7 1zm8.6-32.4h2.6q4.8 0 7-2.1t2.3-6.3q0-4-2.3-6-2.2-2.2-6.6-2.2h-3zm0 24.4h5.3q5.8 0 8.5-2.3 3-2.5 2.9-6.3a8 8 0 00-2.8-6.2q-2.7-2.4-9.6-2.4h-4.3z" />
+   <path id="s" d="m307.3 195-7 4a12 12 0 00-3.7-4.4 9 9 0 00-4.8-1.1q-3.6 0-5.9 2a6 6 0 00-2.4 5q0 4.2 6.2 6.7l5.7 2.3q7 2.8 10.1 6.9 3.3 4 3.2 9.8 0 8-5.2 13a18 18 0 01-13 5.2q-7.4 0-12.3-4.4-4.7-4.4-6-12.4l8.8-1.9q.5 5 2 7a9 9 0 007.8 3.6 9 9 0 006.6-2.6q2.7-2.7 2.7-6.9 0-1.5-.5-3t-1.4-2.5q-1-1.2-2.5-2.2-1.6-1-3.7-2l-5.5-2.2q-11.7-5-11.7-14.5 0-6.3 5-10.7 4.8-4.3 12.1-4.3 9.9 0 15.4 9.5" />
+   <path id="t" d="M392.6 194.5v-8H358v8h13v48.8h8.7V194.5Z" />
+   <path id="r" d="m209.2 301.4 17.6 24.3h-10.5L200 302.3h-1.5v23.3h-8.6v-57h10q11.4 0 16.3 4.3 5.6 4.7 5.6 12.5 0 6-3.5 10.3a15 15 0 01-9.1 5.6m-10.7-6.5h2.7q12.2 0 12.2-9.3 0-8.8-11.9-8.8h-3z" />
+   <path id="o" d="M299.1 297q0-12 8.8-20.7a29 29 0 0121-8.6q12.2 0 21 8.7a28 28 0 018.7 20.9 28 28 0 01-8.8 20.8q-8.8 8.6-21.3 8.6-11 0-19.8-7.6a28 28 0 01-9.6-22.1m8.7 0q0 9.4 6.3 15.6 6.3 6 14.5 6 9 0 15.1-6.1a21 21 0 006.2-15.3q0-9-6-15.2a20 20 0 00-15-6.2q-9 0-15 6.2-6.1 6-6.1 15" />
+   <path id="star" d="m342.2 417 4.4 13.5H361l-11.5 8.4 4.4 13.5-11.6-8.3-11.5 8.3 4.4-13.5-11.5-8.4h14.2z" />
+   <filter id="logo-filter">
+    <feTurbulence type="fractalNoise" baseFrequency=".3" numOctaves="5" result="n1" />
+    <feTurbulence type="fractalNoise" baseFrequency=".001" numOctaves="5" result="n2" seed='1' />
+    <feColorMatrix in="n1" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 2.5" result="a1" />
+    <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -10 2" result="a2" />
+    <feComposite in2="a1" />
+   </filter>
+   <mask id="logo-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="365" height="272">
+    <rect width="365" height="272" fill="white" />
+    <rect width="365" height="272" fill="black" filter="url(#logo-filter)" />
+   </mask>
+   <path id="lm" d="m67.8 0q11.7 3 11.7 8 .4 0 .4.6l-1.5 29.8H78q0 .6.4.6-1 6.4-1 12.1v.5q0 .5-.4.5 0 .5.4.5l-.4 6.1v28.8q0 1.2.4 2 0 .6-.4.6l.4 2q0 9.8 1 25.3H78l3 12.7-1 .5h-1q-4.5 0-8.2-3-6.5 0-6.5-2.6-1.3 0-3-27.8h.5l-.6-1q0-.6.6-.5l-.6-1v-2q0-2-.4-4.6 0-.6.4-.6l-.4-2.5v-6.6l-.6-2.4h-.5q-2.2 18.7-4.5 18.7-2.1 0-4 .4a19 19 0 01-5.6-6.6l-6.2-1.9q-1.8-1.1-6-17.2.5-1 .5-1.6-1 0-1-1v-.5q0-1.7.5-2.5-.5-2-.5-3.6l-1 .6h-.5l-1-4.1h1v1h.5q-.5-2-.5-3.5l-1 .4h-.6v-3h.6q-.6-2-.6-3.5h-.4A744 744 0 0119.7 116l.6.9q0 2-3 4-5.7 0-7.2-4.5-2.2-2-4-2h-5l-1.1-.5q2.8-9.6 3.5-9.6h.6v-1.6H3a42 42 0 002.5-8.5q-.5-1-.5-1.6.6-2.4 1.5-2.5L6 87.5q2 0 6.6-37.8 1.5-13 3.5-24.9l-.6-1q3-11.7 3.7-11.7h.4v1q-1.5 9.5-2.5 10.7l.5 2q0 9-2 11.6V44h.5q3.6-28 7.6-37.4l1.5-.5 2 .5 1-.5q9 3.2 9.1 13.2Q42 36.7 44.6 49q1 7 2 7.1 1.1-9.2 3-9.2l-.5-1.4q.7 0 1.6-2-.6-1-.6-2.1 1.9 0 5.6-13.2.8 0 1.5-3a3 3 0 01-.5-1.5l1 .5q4-10.5 4-12.6h-.5V11a47 47 0 001.6-6l-.6-3q2-2.1 5.6-2.1M15.2 44.6q0 2-1 7.5 1 0 1.4-5.5v-2zm-1.5 10q0 1.8-1 10.7 1.2 0 2-10.7z" />
+   <path id="lt" d="M141.9 125v1.5h-1q.5-.9.4-1.4ZM166.3 10q-1.4 0-3.2.4-15.7 4.1-38.5 8.6v.7h4l1 .5q0 .4-.5.4l.5 2.8q0 .4-.5 1.3a9 9 0 003.2 5.9l7.7-.4h.5v3.1h1.3q1.4 33.3 1.4 49.5l-.5 5q.5 0 .5 1.3 0 .6-.5 1.4.5.8.5 1.8v1.8q0 .9-1 .9 0 .9 1 .9l-1.4 12.7.5.9q-.5 0-.5.5v4.1q0 1.5-.4 4 .5.6.5 3.2l-1 1.4v.4h.9v.9q-.4.1-.4-.5-.9 0-.9 1v1.8q.8 3.2.8 4.5h1v-2.2h.4q0 1.8.9 1.8h1.8l.9-.5q.1.4 5.5 1.9l4.6-1q0-.9-1-5.4a7 7 0 01.9-2.7l-.4-.9.4-2.7-.4-1q.4.1.4-.5v-4l.5-3.2q-.5 0-.5-.4 1.4-4.7 1.4-27.2V70.1l-.5-.9h.5l-.5-3.7q0-1.4.5-2.2l-.5-2.8V54.7l-.4-2.3q.4 0 .4-1.4V49.8l-.4-.9h.4l-.5-5.5V35.7q0-1.6 1-7.7 0-.4-.5-1.4 18.6-3.1 18.6-6.7v-1q0-2-1.8-5.4-4.3-1-7.7-3.6" />
+   <path id="le" d="M261.5 111.4q0 .6-.5 1.4v.6h1v-2h-.5m6.3-49v3.2l-1-.4q0-.4.5-2.8Zm1.3-8.7-.4 3.9h-.5v-1q0-.5.5-1.4l-.5-1v-.5Zm1.1-10.3q0-.8 1-1h.4q0 1-2.4 11h-.5v-.5l2-8.6-.4-.8m5.2-13q0 .6-.5 1.4l.5 1q-3.3 5.4-3.3 9h-1v-.4l3.3-11Zm0-.9q0-1.5 1-1.5l-.6 1.9h-.4v-.4m8.1-13.4q-1.4 0-2.4 1.5-4.1 0-10.1 12.3v.8h1l2-4.3h.5v.6q-4 9.9-4.8 10.9 0 .6.5.6-2.7 12.3-5.3 14.6v1h1v1.9l-1-.5h-.5v2q1.4-.1 1.4 1.4-.7 1-1.4 7.1l1 .6q0 .8-1 .8l.5 1v1l-.5 2.4q.5 0 .5.4-.5.1-1 1.9 0 1 .5 2L264 79v.6l.5 1q-.4 0-.9 4.7l.5 1q-1 6.9-1 16.2 0 1.5-1.5 1.5v1.3h1v1.9h-1v1.6h1v6l-1-.4v1.4q0 10 8.7 10 1 0 7.5 4.8h3.4l6.6-2.4q5.3-4.7 6.3-4.7l4.7-7.2v-1l-.4-.9h.4q0-3-5.2-4.8l-3.4.5-1.9-.5q-4.9 4.2-10 7.2h-.5v-3.9l.5-4.8q-.5 0-.5-.4h.5q0-1-.5-1.9l.5-.9-.5-1.5h.5q.6-11.3.6-16.7V83.4q0-.7.8-1 1.1 0 2 .6 3-1 3.7-1 15.3-5.3 15.3-11.9-1.5-3.5-9-6.3l-.9.6a3 3 0 01-1.5-.6q-5.7 1.5-8.1 3-.5 0-1-1.5.7.1 1-2.9l-.5-1q1.1-2.5 2.4-9.5 5.7-22.3 11-22.3a21 21 0 003.4 2.8h1.3l1-.4v.4q2.7 0 3.3-4.8l-.4-1h.4q-3.9-10.4-19.5-10.4" />
+  </defs>
+ </svg>
+ <div class="background" aria-hidden="true">
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+  <p>
+ </div><button class="hover" id="toggle"><span class="light"><span class='sr-only'>Activate Light Mode</span> <svg viewBox="0 0 24 24">
+    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75M7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0m11.4-5.83a.75.75 0 00-1.07-1.06L16.24 6.7a.75.75 0 101.06 1.06zM21.74 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75m-3.92 6.9a.75.75 0 001.06-1.07l-1.59-1.59a.75.75 0 10-1.06 1.06zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18m-4.24-.7A.75.75 0 006.7 16.24l-1.6 1.6a.75.75 0 001.07 1.05zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12m.7-4.24A.75.75 0 007.76 6.7l-1.6-1.6A.75.75 0 005.11 6.17z" />
+   </svg> </span><span class="dark"><span class='sr-only'>Activate Dark Mode</span> <svg viewBox="0 0 24 24">
+    <path d="M9.53 1.72a.8.8 0 01.16.82A9 9 0 009 6a9 9 0 009 9 9 9 0 003.46-.69.75.75 0 01.98.98 10.5 10.5 0 01-9.69 6.46 10.5 10.5 0 01-4.04-20.2.8.8 0 01.82.17" />
+   </svg></span></button>
+ <main>
+  <div class="intro">
+   <hgroup>
+    <h1><svg class='logo' role='img' viewBox="0 0 365 272">
+      <title>Matthew Morete</title>
+      <g mask='url(#logo-mask)'>
+       <use href="#lm" />
+       <path d="M110.4 95.1h1V93.8h-1ZM89.6 72v2.7h-.5V72Zm3.1-5v.5q-.4.5-.4 3.1h-.5V68.8l.5-1.8Zm18.6-6.8h1V58.8h-1ZM94.1 58q-.6 4-1.4 4 0-.4.5-1.3l-.5-.9q.5-.1.5-1.8Zm-.9-1q.9-4 1.8-4h.5q-1.2 1.5-1.4 4h-.9m2.7-7.1q-.4.8-.4 1.8H95V49.9Zm15-3.5v4.4l.4 1h-.4l.4 1.4q-.5.8-.5 1.8v.3h1V54h.4l.5 2.2v6.3l-.5 1q.5 0 .5.4h-.4l-1-.4v2.2h.9V64.4h.5v2.2h-1.4v1q1.4 0 1.4 1.3 0 1.8-1.4 1.8v.5h.9v1.4q-.4 0-.4-.5l-.9.5q-1.1 0-1.8-.5-2.3.9-3.7.9V69.8q0-.4-.4-1.3l5.4-22.2Zm-13.6-2v.5q-.5.7-.5 2.7h-.4V46.3l.4-1.8Zm3.1-9.9v.4l-2.2 6.8h-.5v-.4l2.3-6.8Zm3.2-6.9q0 .4-2.3 6h-.4v-.5q1.8-4.4 1.8-5.4Zm5-12.6q-3.2 0-10.4 17.2v1.4h.4v-1h.5v.5q-.9 2-.9 2.7h-.5V34.4h-.4q0 1.4-2.3 6v.5h.9v-1h.5v.5q-.5.9-.5 1.3l-.9-.4q0 .4.5 1.3v.5q-.5 0-.5-.5-.8 0-2.3 5.5h.9V46.7h.5v.9q-2.4 2.8-2.8 6.8h1v.9q-.5 0-.5-.4-2.2 2.5-3.7 21.7 0 .5 1 .4v1q-1.8 0-1.8 6.3l.4.9q-.4 0-.4.5V98.3q0 5.2-.5 15.9.5 0 .5.4-.5 0-.5.5v4.5l.5.9q-.5 0-.5.5v.4l.9 1.4q.9-.5 4.6-.9.9.4 1.3.4l.9-.4q3.1 1.8 4.6 2.2 4.5 0 4.5-4.5v-33l.5-1 2.7.5q4.4-.9 5.4-1.9l-.4 6.4h-1V91h1v2.9q.1 2.2-1.4 2.2V97h.9v2.8q.1 1.4-1.4 3.1v2.3h1v4.1h-.4v-.9h-1v.4l.5.9q-.5.1-.5.4l.4 1 1-.5v2.3h-.4v-1.4h-1v.5l.5.9q-.5 0-.9 4.5.4 0 .4.5-.4 0-.4.4l.4 1q-.4 0-.4.4v2.7l.4.9q-.5 0-.5.4v1h1v-.9h.5v1.8h-1q0 .7.9 3.7.9 0 3.2-1 0 .5.4.5l.9-.5q0 .5.5.5l2.3-.5q0 1.5 7.2 2.3 0-.9 1-.9-1-6.2-1-7.7 0-9.8.9-20.4-.5 0-.5-.5 1 0 1-6.8V90.7l.4-3.2q-.4 0-.4-.4l.4-2.8V73.5l.5-3.2q-.5 0-.5-.9l.5-.9-.5-.9q.5 0 .5-.5v-.4l-.5-1q.5 0 .5-.4V63l-.5-2.7q.5-.8.5-2.3v-.4l-.5-2.7q.5-.8.5-2.3v-.9l-.5-.9h.5l-.5-3.2V45.8l.5-2.3q-.5 0-.5-.4h.5l-.5-2.3q0-2.6.5-3.2 0-14.8-3.6-20.4-2.7-2.7-10-4Z" />
+       <use href="#lt" />
+       <use x="35.9" href="#lt" />
+       <path d="m215.7 16.8 1 1.3q-.6 1-.5 1.4l2.7-2.3q4.4.6 8.6 4.6l1 1.3a41 41 0 00-2.8 8.6v6.4q0 3.9 1 21.3h-.5l.4 1v8.5q0 1 1 1h.4q9-1.3 9-4.6 0-1 .5-1.8-.4-3.6-1-3.6l.5-2.3v-2.7q0-1-.4-1.8.4-.9.4-1.9V50h1v-1q-1.4-1.7-1.4-2.6.9 0 .9-1l-1-1.3q0-4.6-1.7-20.9 2.7-1.7 2.7-2.2l2.3.4h3.1q8.2 3 8.2 6.8v3.6q0 1-.5 1.9.5.7.5 1.8h-.5q.8 3 1.4 20.4 0 .4-.5.4l.5 2.3q0 20.8-1.4 35.8.5.8.5 1.8h-.5q.5.8.5 1.4l-.5 3.2.5.9q0 .4-.5.4 0 .5.5 1.4-.5 3.9-.5 6.3v1.8q0 .5-.4.5l.4 1q0 1-.4 1.7.4.8.4 1.4h-.4q.6 4 1.3 7.2l-1.3 1q-1.8-.4-1.8-1l-1 .5h-.4q-4.8-1.4-9-1.8-1-3.2-1.9-9 0-.5.5-1.5-.5-9.7-.5-14.5 0-2.5 1.4-4.5l-.5-1v-1.3q-.5 0-.9-2.2a10 10 0 011.4-3.2q0-1-1-1l.5-.8q0-.8-2.2-1.4l-1 .5h-3.6l-3.6-1.8-.4 2.2q-1 33-2.8 33.1 0 .5.5.5l-.5 3.2q0 .9.5 1.8-.5.9-.5 1.3 1 5.8 1 7.3a5 5 0 01-2.3.9q0-.6-5-1.8 0-.7-5.5-1.8-.7.4-1.8.4a22 22 0 01-1.3-8.1q0-3.3.9-16.4h.4q0-.4-.4-.4.4-5.6 1.3-6.8v-1.4h.5q0-2.2-1-5.4l1-.5q0 .5.4.5v-2.3h-.9q.5-8.4.5-12.2v-1q.9.1.9-.4t-.5-.4l1-6.4q-.5-.8-.5-2.3l.5-.9h-1l1-1.3v-.5h-1.4v-.4q1.4 0 1.4-1l-.5-.9q.5-.7.5-1.8l-1 .5h-.4v-1h.9V55h-1v-1.4h1v-5.4l-1 .4-.4-.9v-.4h.5l.9.4V45h-1q.4-1.8 1-1.8-.5-.9-.5-1.4l-.4-8.6h-1v-.5h1V30h-.5v1h-.9q0-1.4.5-1.4l-.5-2.3v-1.4q0-9 4.6-9zm-5 9.5v1.8h.5v-1.8z" />
+       <use href="#le" />
+       <path d="M313 11q1.6.3 1.6 1.6l1.2-.8h.8q.8 0 .8.8l3.8-.8q1 .5 1 .8l1-.4q.6 0 2.8 2.9-2 12-2 25.7h-.5l.5 1.1-.5 3.8q0 .3.5.3l-.5 2.2v3.2q0 .4-.3.4.3 1.3.8 1.3 0 .5-.5 1.2l-.3 18v2q0 .4-.5.4l.5.8v.8q0 .4-.5.4l.5.8v.8q0 .5-.5.5l.5.8v5.6l-.5.8h.8q.9-6 2-9-.3 0-.3-.3.8 0 1.6-7.8.8-2.4 1.3-2.4-.5-.7-.5-1.2 2-5.1 2.8-12.2l2-1.7h4.3q9 .9 9 7V62q0 9 .7 13h-.4q1.7 11.2 1.7 12.7h.3q0-3 1-5.7 0-.4-.5-.4.4-5.3.8-5.3 0-.5-.4-.5l.8-7.7q0-.4-.4-.4.8-5 .8-12.6l.4-.8q0-.5-.4-.5l.4-4v-6.6q0-.4.5-.4l-.5-.9V35h.8v-1.2h-.8v-4.4q0-.5.5-.5l-.5-.8q0-.4.5-1.2 0-.9-.5-.8l.5-4.1v-2.8l-.5-5q2.8-1.6 3.3-1.6v.4l.8-.4h.8q7.8 0 9 6.6l.4 2q-.8 3-.8 5.7V37q0 .4-.5.4l.5.8-.5 6.6.5 2-1.2 10.6.4 1.7q-.5 12.4-1.7 18.3 0 .4.5.4l-.8 4.5q0 .5.3.5-.2 2.8-.8 2.8l.5.8-1 6.1.5.8q-1.2 5.2-4 25a10 10 0 01-5.4 2h-.8l-4.9-2-4.8.4q-2.7 0-4.6-9h.5q-1-1.9-1-5.3v-1.2h-1.2q-3.8 27.3-6 27.3h-5.3a10 10 0 00-5.3-2h-.8l-2 .4q-2.7-1.7-4.2-9.9l-.4-2.8h.4q-1-5-2-11.4l.3-.8-.3-6.6V95h.8v-.9h-.8v-.3q0-.5.3-.5l-.3-.8v-2h.8v-1.3h-.8l.3-.8q0-1.5-.3-3.6l.3-.9-.7-7.7q.4-1.6.4-3.3l-.4-.8q.4-1.2.7-1.2L309 68v-.4q0-1.2.3-1.2l-.3-2v-6.6q0-.4.3-.4l-.3-1.2.3-.9q-.3-.6-.3-1.6 0-.4.3-.4l-.3-2 .3-5.4q0-.3-.3-1.1.5-4.5.8-5.8-.5-.6-.5-1.6v-3.7q0-.4.5-.4l-.5-.8v-.9q0-.3.5-.3l-.5-.8v-1.2l.5-2.5-.5-.8q.5-.9.5-1.3 0-.3-.5-.3l.5-2v-1.8q0-9.7 3.3-9.7m38.8 9.7v1.7h.3v-1.7z" />
+       <use x="25.7" y="140" href="#lm" />
+       <path d="M144 154.4q4.6 1.2 4.6 6.6 9 24.7 9 31h-.5q1 1.8 1 5.5v3.5a190 190 0 01-11.5 57.7q-6.4 12.7-11.7 12.7-8 0-12.1-5.6-7.8 0-11.7-9v-.6h.4q1 0 2 4h.7v-.5q-2.7-5.5-2.7-7h.6q-1.5-2.7-3-23.8l.4-1-.4-3.1q0-.5.4-.5l-.4-1q.3-10.2 2-10.2-1-1.5-1-3l1-.5q0 .6.4.6v-1h1v1h.6q0-2.7.5-2.6 0-.5-.5-.5 2.3-14 6.6-24.4 1.1-3.5 2-3.5h.5l1 .5q4.9-13 12.2-19.2-1-1.7-1-2.6h.5q1.5 0 1.5 2 1 0 2-4h.6v.5q1.5 0 1.5-1.6l2.4.6q.3-1 1-1m-2.5 15.2v1q.4 1 .4 1.5h.6v-1a3 3 0 01-.6-1.5zm-3 2.5v.5q0 .3 1 1.5v.6h-.5l-1-.6a119 119 0 00-13.2 58.3q.9 23.3 3 23.3 4-7.5 9.1-26.4l1-.4-.5-1q0-3 1.6-5.6l-.6-1 2.5-9.7h.6l-.6-1v-.4q.7 0 1.6-.6 0-.4-.6-.4 1-5.6 1-11.7v-1h-1v-.6h1v-1.5l-1 .5-.4-7h1v3h.4v-3q-.6-1.2-1.4-6.2l.4-1-1.9-7h.5q-.5-1-.5-1.6zm-27 38.5q.6 1 .6 1.5 1 0 1-1v-.5zm.6 2v2.1h.5q0-1.2.5-2zm-1.6 5.2q.4 0 1.6.9 0-1.6.5-2.5h-.5q-.7 0-1.6 1.6m1 1.4q0 1-.4 1l.4 1-1 2.1q1 .1 1 1v1.5q0 1.2-.4 2 .4.7.4 3.6h.6v-12.2zM190.1 154q11.9 0 16.8 9.6l1.8 7.2q-.5.9-.5 1.8 0 .5.5.5-.4 5-1 5l.5.9q-2.7 8.7-6.3 17.7-7.7 14-13.6 32.6v.5q0 5.7 7.2 12.2 10.5 10.6 13.2 19.5 0 1.8.5 3.6-.5 3.6-5 5.5h-1.9l-1.3-1h-2.3q0-9.4-12.2-24.9l-10-9.5h-.5v1.8q0 1.5.5 2.3 0 .5-.5 1.4.6 13 1 15.8-.5.7-.5 2.8 0 .4.5 1.3-.9 3.6-2.8 3.6-11.6-3.6-12.2-3.6 0 .5-.5.5l-.4-1V258q0-4 .4-9l-.4-2.3q.4-1.8.4-3.2-.4-.8-.4-1.4h.9v1h.4v-3.2l-.4-3.2q.4 0 .4-.5h-.9v1.8h-.9q0-2.2 1.8-2.7l-.4-.9v-4q0-.6.4-.5l-.4-1 .4-.8q-.4-.8-.4-1.4h.4q0-.4-.4-.4l.4-3.2v-6q0-.3.5-.4l-.5-.9a113 113 0 0110.5-41.2 89 89 0 0111.3-18.2q2.9-1.3 6-2.2m1.8 17.7q-.5 1.6-7.2 12.7-7.3 19.6-7.3 26.8l1 .4v-.4q-.6-.9-.5-1.4l.9-.4q0 .4.4.4 1.8-6.2 3.7-10-.6 0-.5-.4 1.6 0 4.5-9.5.7-.2 2.8-5.5-.5 0-.5-.4 1.1 0 2.3-3.6 0-.5-.5-.5l1.4-7.3v-.9zm-30.4 39h1v1.4h-1zm0 6.8h.5v2.3h-.5zm-.4 8.7h.4v3.6h-.9v-1.4zm-.5 4.5h1v2.3h-1z" />
+       <use x="-46" y="140" href="#le" />
+       <use x="125.8" y="140" href="#lt" />
+       <use x="37.2" y="140" href="#le" />
+      </g>
+     </svg></h1>
+    <p><span class="sr-only">Web Developer</span> <span translate="no" aria-hidden='true' class="tape"><b>W</b><b>e</b><b>b</b> <b>D</b><b>e</b><b>v</b><b>e</b><b>l</b><b>o</b><b>p</b><b>e</b><b>r</b> </span><span class="sr-only">& Designer</span> <span translate="no" style="--t:-1" aria-hidden='true' class="tape"><b>&</b> <b>D</b><b>e</b><b>s</b><b>i</b><b>g</b><b>n</b><b>e</b><b>r</b></span>
+   </hgroup>
+   <div class="box">
+    <p>I'm a Belfast-based developer and designer who loves building for the web. I create fast and accessible websites that make the most of the platform, and occasionally write about what I learn along the way.
+   </div>
+  </div>
+  <div class="cta box">
+   <p>Need A website? I can help!</p><a class="hover" href='mailto:contact@matthewmorete.com'><span class="sr-only">Get in Touch</span> <span translate="no" style="--t:-3" aria-hidden='true' class="tape"><b>G</b><b>e</b><b>t</b> <b>i</b><b>n</b> <b>T</b><b>o</b><b>u</b><b>c</b><b>h</b></span></a>
+  </div>
+  <div class="box side-projects">
+   <h2><span class="sr-only">Side Projects</span> <span translate="no" aria-hidden='true' class="tape"><b>S</b><b>i</b><b>d</b><b>e</b> <b>P</b><b>r</b><b>o</b><b>j</b><b>e</b><b>c</b><b>t</b><b>s</b></span></h2>
+   <ul role='list'>
+    <li><svg aria-hidden='true' width='64' height='25' viewBox="0 0 99 39">
+      <path d="M0 27.1C0 16.9 1.13 15.77 11.31 15.77s11.32 1.13 11.32 11.31S21.5 38.41 11.3 38.41C1.13 38.4 0 37.28 0 27.09m26.32-3.97c0-3.86.15-6.69.68-8.76a8 8 0 012.02-3.83 8 8 0 013.83-2.03c2.07-.52 4.9-.67 8.76-.67s6.69.15 8.76.67a8 8 0 013.83 2.03c.94.94 1.6 2.18 2.02 3.83.53 2.07.68 4.9.68 8.76s-.15 6.68-.68 8.75A8 8 0 0154.2 35.7a8 8 0 01-3.83 2.03c-2.07.53-4.9.68-8.76.68s-6.69-.15-8.76-.68a8 8 0 01-3.83-2.03A8 8 0 0127 31.87c-.53-2.07-.68-4.9-.68-8.75m3.36 0c0 2.94.07 5.23.38 7 .24 1.44.61 2.48 1.34 3.21.72.72 1.77 1.1 3.2 1.34 1.78.3 4.07.38 7.01.38s5.23-.07 7-.38c1.44-.25 2.49-.62 3.21-1.34.73-.73 1.1-1.77 1.34-3.2.3-1.78.38-4.07.38-7.01s-.07-5.23-.38-7.01c-.24-1.43-.61-2.48-1.34-3.2-.72-.73-1.77-1.1-3.2-1.35-1.78-.3-4.07-.37-7.01-.37s-5.23.07-7.01.37c-1.43.25-2.48.62-3.2 1.34s-1.1 1.78-1.34 3.2c-.31 1.79-.38 4.07-.38 7.02M60.6 19.2C60.6 1.92 62.5 0 79.8 0S99 1.92 99 19.2s-1.92 19.2-19.2 19.2-19.2-1.91-19.2-19.2" />
+     </svg> <a class="hover" href='https://fluidsize.matthewmorete.com/'>Fluid Size</a>
+     <p>A fluid value calculator that supports up to 3 breakpoints.
+    <li><svg aria-hidden='true' width='54' height='25' viewBox="0 0 100 47">
+      <path d="m25.87 1.15 4.97 15.28H46.9a1.67 1.67 0 01.98 3.02l-13 9.44 4.97 15.28a1.67 1.67 0 01-2.57 1.87l-13-9.45-13 9.45a1.67 1.67 0 01-2.56-1.87l4.97-15.28-13-9.44a1.67 1.67 0 01.98-3.02h16.06L22.7 1.15a1.67 1.67 0 013.17 0m51.43 0 4.97 15.28h16.06a1.67 1.67 0 01.98 3.02l-13 9.44 4.97 15.28a1.67 1.67 0 01-2.57 1.87l-13-9.45-13 9.45a1.67 1.67 0 01-2.56-1.87l4.97-15.28-13-9.44a1.67 1.67 0 01.98-3.02h16.06l4.97-15.28a1.67 1.67 0 013.17 0m-1.58 5.92L71.96 18.6a1.7 1.7 0 01-1.58 1.16H58.23l9.83 7.14c.58.42.83 1.17.6 1.86l-3.75 11.55 9.83-7.14a1.7 1.7 0 011.96 0l9.82 7.14-3.75-11.55c-.23-.69.02-1.44.6-1.86l9.83-7.14H81.05c-.72 0-1.36-.47-1.58-1.16z" />
+     </svg> <a class="hover" href='https://pathtoshape.matthewmorete.com/'>Path to Shape</a>
+     <p>A tool for converting SVG paths to CSS shape() syntax.
+   </ul>
+  </div>
+  <div class="computer-wrapper halftone">
+   <div class="computer">
+    <picture class="halftone-wrapper">
+     <source srcset="computer.avif" type="image/avif"><img width="622" height="647" class="halftone-target" src="computer.jpg" alt="Computer">
+    </picture><button id="face"><span class="sr-only">Happy face</span> <svg viewbox='0 0 19 19'>
+      <path d='M6 5.5h2v3H6zm5 0h2v3h-2zm-6 5h1v1h1v1h5v-1h1v-1h1v1h-1v1h-1v1H7v-1H6v-1H5zM25 6h2v3h-2zm5 0h2v3h-2zm-5 6h7v1h-7zM44 5.5h2v3h-2zm5 0h2v3h-2zm-6 7h1v-1h1v-1h5v1h1v1h1v1h-1v-1h-1v-1h-5v1h-1v1h-1zM63 5h2v3h-2zm5 0h2v3h-2zm-6 7h1v1h2v-1h1v-1h-1v-1h3v1h-1v1h1v1h2v-1h1v1h-1v1h-2v-1h-1v-1h-1v1h-1v1h-2v-1h-1z' />
+     </svg></button>
+   </div>
+  </div>
+  <div class="box writing">
+   <h2><span class="sr-only">Writing</span> <span translate="no" aria-hidden='true' class="tape"><b>W</b><b>r</b><b>i</b><b>t</b><b>i</b><b>n</b><b>g</b></span></h2>
+   <ul role='list'>
+    <li><a class="hover" href="https://master.dev/blog/fluid-typography-with-progress/">Fluid Typography with progress()</a>
+     <p>Building a fluid type scale using progress() to calculate everything in the browser.
+    <li><a class="hover" href="https://master.dev/blog/custom-property-fallbacks/">Custom Property Fallbacks</a>
+     <p>Learn common pitfalls and fallback strategies that work.
+    <li><a class="hover" href="https://master.dev/blog/animating-dialog/">Animating the Dialog Element</a>
+     <p>Exploring entry and exit animations with both modern and classic CSS.
+   </ul>
+  </div><svg class='stamp bw' role='img' viewBox="0 0 511 511">
+   <title>Master Browser Whisperer</title>
+   <circle cx="255.2" cy="255.2" r="250" fill="none" stroke="currentColor" stroke-width="10" stroke-dasharray="356,21,74,31,41,21" />
+   <use href="#star" y="-323" x="53" />
+   <use href="#star" y="-62" x="-245" />
+   <path d="m145.2 399.6-4.5 26.7 22.6-18-5.4 28.3 21.9-16.3 5.3 3.2-35 25.8 5.3-28-22.4 17.8 6.9-42.6zm44.6 39.7 15.5 4.8 4.4-14 5.4 1.6-11.1 36-5.5-1.7 5.2-16.8-15.5-4.8-5.2 16.8-5.4-1.7 11.1-36 5.5 1.7zm41.7-5.2-5.6 37.3-5.7-.8 5.7-37.3zm32.5 7.4-4.6 2.6a8 8 0 00-2.4-3q-1.2-.7-3.1-.8-2.4 0-4 1.3-1.5 1.4-1.6 3.3 0 2.8 4 4.5l3.8 1.6a16 16 0 016.7 4.6q2 2.7 2 6.6 0 5.2-3.6 8.6a12 12 0 01-8.7 3.3q-5 0-8-3-3.1-3-3.9-8.3l5.8-1.2q.3 3.4 1.3 4.6a6 6 0 005.1 2.6 6 6 0 004.4-1.8 6 6 0 001.9-4.5q0-1-.3-2t-1-1.7q-.6-.8-1.6-1.4-1-.8-2.4-1.4l-3.7-1.5q-7.5-3.4-7.6-9.7a9 9 0 013.4-7q3.3-3 8-2.8 6.6 0 10.2 6.5m18.1 14.9 2.4 15-5.6 1-6-37.3 6.4-1q4.6-.7 7.2-.4 2.5.2 4.6 1.7 3.8 2.7 4.5 7.4.8 5.1-2.1 8.7t-8.8 4.4zm-.8-5.2 2-.4q7.8-1.2 6.9-7.2-1-5.7-9-4.5l-1.8.3zm41.3-22.5-14.4 4.6 2.8 8.7 14-4.6 1.6 5-14 4.6 4 12 14.4-4.7 1.6 5.1-19.8 6.5-11.7-35.9 19.8-6.4zm27.7 4.8 17.8 8.8-6.1 3.2-16.8-8.6-.9.5 7.2 13.6-5 2.7-17.6-33.3 5.9-3.2q6.6-3.4 10.8-2.5 4.8 1 7.1 5.6 2 3.5 1.2 7.1-.7 3.6-3.6 6.1m-8.3-.5 1.6-.8q7.2-3.8 4.3-9.3-2.7-5.1-9.7-1.4l-1.8 1zm34.1-36.3-12 9.2 5.4 7.2 11.7-9 3.2 4.3-11.6 9 7.6 10 12-9.2 3.3 4.2-16.6 12.6-22.8-30 16.5-12.5zm27.6-4.5 19.7 2.3-4.7 5.1-18.6-2.5-.7.7 11.3 10.5-3.9 4.2-27.6-25.6 4.5-4.9q5-5.6 9.4-6 4.8-.6 8.5 2.9 3 2.8 3.5 6.4t-1.4 6.9m-8 2.3 1.3-1.4q5.4-6 1-10t-9.7 1.8l-1.3 1.4zm-264-271.3L114.1 86l27.8 15.9-6.6-31.5L165 98.6l-4.7 3.5L144 85.9l5.6 26.3L126.3 99l10.3 20.7zm65.1-47.6-15.1 5.6-.7 10-5.8 2.2 3.5-44 30.8 31.2-5.8 2.1zm-4-4.2-9.8-10-1 14zM238.8 44l-4.3 3.2a8 8 0 00-2.8-2.5q-1.4-.7-3.2-.4-2.4.3-3.7 1.8t-1.2 3.5q.4 2.7 4.7 3.9l4 1q4.7 1.3 7.2 3.7 2.4 2.3 3 6.2.6 5.1-2.4 9-3 3.8-8.2 4.5-4.8.6-8.4-1.9-3.5-2.5-5-7.6l5.6-2a10 10 0 002 4.4 6 6 0 005.4 1.8 6 6 0 004.1-2.4q1.5-2 1.2-4.7-.2-1-.6-2L235 62q-.6-.6-1.8-1.2-1-.6-2.6-1l-3.8-1q-8.1-2.2-8.9-8.5a9 9 0 012.3-7.4q2.9-3.3 7.6-4 6.6-.7 11 5m32.6.1-2 32.2-5.7-.3 2-32.3-8.6-.6.4-5.3 22.9 1.5-.3 5.3zm47.3 8.8-14.6-3.8-2.3 8.7 14.2 3.7-1.3 5.2-14.2-3.7-3.2 12.2 14.6 3.8-1.3 5.2-20.2-5.2 9.5-36.5 20.2 5.2zm24.6 27.8 3.2 19.6-6.2-3.2-2.7-18.6-1-.4-6.8 13.7-5.1-2.5 16.9-33.7 6 3q6.6 3.4 8.3 7.3 1.9 4.5-.4 9-1.8 3.7-5.1 5.2-3.4 1.5-7 .6m-4.4-7 1.6.7q7.3 3.7 10-1.9 2.7-5.1-4.4-8.7l-1.8-.9z" />
+   <use href="#b" x="-176" y="40" />
+   <use href="#r" x="-90.5" y="-42.5" />
+   <use href="#o" x="-147" y="-42.5" />
+   <use href="#w" x="157" y="40" />
+   <use href="#s" x="46" y="40" />
+   <use href="#e" x="211" y="40" />
+   <use href="#r" x="240.5" y="-42.5" />
+   <path d="M14.7 186.8h481m0 136.8h-481" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="butt" />
+   <path d="M120 186.2a151.9 151.9 0 01270.8.6m0 136.8a151.9 151.9 0 01-271.1 0" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="butt" />
+  </svg><svg class='stamp wp' role="img" viewBox="0 0 511 511">
+   <title>Certified Website Person</title>
+   <circle cx="255.2" cy="255.2" r="250" fill="none" stroke="currentColor" stroke-width="10" stroke-dasharray="104,31,31,21,417,21" />
+   <path d="M373.1 155a154.4 154.4 0 00-235.7 0m1 201.7a154.4 154.4 0 00233.6 0" fill="none" stroke="currentColor" stroke-width="10" />
+   <use href="#w" />
+   <use href="#e" />
+   <use href="#b" />
+   <use href="#s" />
+   <path d="M330.4 186.5h8.6v56.9h-8.6z" />
+   <use href="#t" />
+   <use href="#e" x="246.5" />
+   <path d="M92.4 302.6v23h-8.6v-56.8h9.8q7 0 10.8 1 3.6 1 6.4 3.7 5 4.8 5 12.1 0 7.8-5.3 12.4t-14 4.6zm0-8h3.2q12 0 11.9-9.1 0-8.8-12.2-8.8h-2.9z" />
+   <use href="#e" x="-29" y="82.5" />
+   <use href="#r" />
+   <use href="#s" x="-28.5" y="82.5" />
+   <use href="#o" />
+   <path d="M380.7 325.7v-60.8l41.4 43.4v-39.5h8.6V329l-41.4-43.3v39.8zM124.2 83.9l4.5 5q-6.5.1-10.4 3.7a14 14 0 00-.9 19.9 13.7 13.7 0 0019.7 1.4 12 12 0 003.2-4.1l1-2.6.6-3.3 4.5 5.2a21 21 0 01-5.8 8.8 19 19 0 01-14.1 5q-8-.6-13.4-6.6a19 19 0 01-4.9-12.8 19 19 0 016.8-15.2q3.8-3.4 9.2-4.4m38.7-19.7-13.3 7.3 4.3 8 13-7.1 2.5 4.7-12.9 7 6 11 13.3-7.2 2.6 4.7-18.3 10-18-33 18.2-10zm36.9 3.4 15.8 12-6.7 2L194.2 70l-1 .3 4.4 14.8-5.4 1.6-10.8-36 6.4-2q7.2-2 11.1-.4 4.5 2 6 6.9 1 3.8-.3 7.2t-4.8 5.3m-8-2.1 1.7-.5q7.8-2.3 6-8.3-1.5-5.5-9.2-3.3l-2 .6zM235 44.3l3.5 32.1-5.7.6-3.4-32.1-8.7 1-.5-5.4L243 38l.6 5.3zm32-6-1.7 37.7-5.7-.3 1.6-37.6zm39.8 11.2-13-2.7-1.7 9 12.4 2.4-1 5.3L291 61l-3.6 17.5-5.5-1 7.5-37 18.4 3.7zM332 52l-12.8 35.4-5.4-2 13-35.3zm36.5 23.9-13.2-7.5-4.4 7.9 12.7 7.2-2.6 4.7-12.8-7.3-6.2 11 13.2 7.5-2.7 4.6-18-10.2L353 61l18.1 10.2zM365 112.5l25.3-28 5.9 5.4q4.2 3.8 5.9 6.8 1.8 3.3 2.2 7.1a18 18 0 01-5 14.3 18 18 0 01-14 6.3q-4 0-7.3-1.5-3-1.3-7.2-5.2zm7.8-.2 1.9 1.7q2.8 2.7 5.3 3.7a13 13 0 0015-3.5q4.2-4.5 3.7-10.2-.5-5-5.9-10l-1.9-1.7z" />
+   <use href="#star" />
+   <use href="#star" x="-174" />
+   <use href="#star" x="-160" y="-109" transform="scale(1.4)" />
+  </svg><svg class='stamp wt' role='img' viewBox="43 42 670 540">
+   <title>JS, CSS, HTML</title>
+   <path d="M355.3 241.6v36.8q0 6.6-.9 9.8-1 3.8-3.1 6.3-4.4 5-11.4 5-5.4 0-10.1-2.8l4.2-7.3q3 2 5.9 2 3.8 0 5.3-2.8 1.5-3 1.5-10.2v-36.8z" />
+   <use href="#s" x="105.5" y="55" />
+   <path d="M341.4 339.5a29 29 0 00-14.7-4.1q-14 0-23 10.4-7.2 8.5-7.2 19.4a28 28 0 008.6 20.7q8.7 8.5 20.9 8.5a31 31 0 0015.4-4.1V379.9q-2 1.8-4 3-1.9 1.3-3.6 2-3.2 1.5-7.7 1.5a20.7 20.7 0 01-20.8-21.3q0-9 6-15.3t14.7-6.3q8 0 15.4 6.2V339.5" />
+   <use href="#s" x="88.5" y="150" />
+   <use href="#s" x="144" y="150" />
+   <path d="M274 431.3h-8.6v57H274V461.7h24.4v26.6H307V431.4h-8.6v22.2H273.9Z" />
+   <use href="#t" x="-32" y="245" />
+   <path d="m377.7 488.3 12-61.2 19.5 44.2 20.2-44.2 10.8 61.2h-8.8l-5.5-34.4-16.9 37-16.3-37-6.1 34.4zm94.4-56.9v48.8H489v8h-25.3v-56.8z" />
+   <path d="M377 52.3 702 575.8H52.3z" fill="none" stroke="currentColor" stroke-width="10" stroke-dasharray="104,31,31,21,516,21" />
+   <path d="m377 101.4 279.9 451H97.3z" fill="none" stroke="currentColor" stroke-width="10" stroke-dasharray="416,31,31,21,516,21" />
+  </svg>
+  <div aria-hidden="true" class="fire halftone">
+   <div class="halftone-wrapper">
+    <div class="halftone-target">🔥</div>
+   </div>
+  </div>
+ </main><svg aria-hidden="true" class="top-corner" viewBox="0 0 314 180">
+  <use href='#rip' fill='color-mix(var(--bg),var(--c) 5%)' transform='scale(1.1)' x='-3' y='-6' />
+  <use href='#rip' />
+ </svg> <svg aria-hidden="true" class="bottom-corner" viewBox="50 50 142 110">
+  <use href='#rip' />
+ </svg>
+ <div id="cursor"></div>
+ <script>
+  let hover_lock = null;
+  const is_chrome = navigator.userAgent.includes("Chrome");
+
+  function toggle_theme() {
+   const e = root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+   root.dataset.theme = "dark" === e ? "light" : "dark", localStorage.setItem("theme", root.dataset.theme)
+  }
+  toggle.onclick = e => {
+   hover_lock = e.currentTarget, document.startViewTransition && is_chrome ? document.startViewTransition(toggle_theme) : toggle_theme()
+  };
+  const vb = [0, 19, 38, 57],
+   l = ["Happy", "Neutral", "Sad", "Dog"];
+  let i = 0;
+  face.onclick = () => {
+   i = (i + 1) % 4, face.querySelector("svg").setAttribute("viewBox", vb[i] + " 0 19 19"), face.querySelector("span").textContent = l[i] + " face"
+  };
+  const can_hover = window.matchMedia("(hover: hover)").matches;
+  let mouse_x = 0,
+   mouse_y = 0,
+   cursor_x = null,
+   cursor_y = null;
+
+  function ani() {
+   can_hover && null != cursor_x && (cursor_x += .25 * (mouse_x - cursor_x), cursor_y += .25 * (mouse_y - cursor_y), cursor.style.transform = `translate3d(${cursor_x-75}px, ${cursor_y-75}px, 0)`), requestAnimationFrame(ani)
+  }
+  document.onpointermove = e => {
+   can_hover && (mouse_x = e.clientX, mouse_y = e.clientY, null === cursor_x && (cursor_x = mouse_x, cursor_y = mouse_y), hover_lock && !hover_lock.contains(e.target) && (hover_lock = null), cursor.classList.toggle("is-hover", !(!hover_lock && !e.target.closest(".hover"))))
+  }, ani()
+ </script>
+ <script data-goatcounter="https://matthewmorete.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

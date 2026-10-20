@@ -1,0 +1,2002 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>NumberFlow Range Slider</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/PwZrPLq">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  <link rel='stylesheet' href='https://codepen.io/simeydotme/pen/jEOaeNd/63809857734821de257097bf620e7121.css'>
+<link rel='stylesheet' href='https://fonts.bunny.net/css?family=jersey-10:400'>
+  
+<style>
+:root {
+    /* vars */
+}
+
+
+#slider {
+    position: relative;
+}
+
+#app {
+    
+    --range-slider: light-dark( hsl(212, 22%, 86%), hsl(212, 16%, 10%) );
+    --range-bar: light-dark( hsl(212, 30%, 95%), hsl(212, 16%, 32%) );
+    --range-range-inactive: var(--range-bar);
+    --range-range: var(--range-bar);
+    --range-nub: light-dark( hsl(212, 15%, 60%), hsl(212, 16%, 10%) );
+    --range-handle-inactive: var(--range-nub);
+    --range-handle: var(--range-nub);
+    --range-pip: light-dark( hsl(212, 15%, 40%), hsl(212, 12%, 80%) );
+    --flow-text: light-dark( hsl(212, 20%, 34%), hsl(212, 15%, 80%) );
+    
+    --track-padding: 3px;
+    --handle-padding: 1em;
+    
+    & #slider {
+        
+        background: var(--range-slider);
+        padding: var(--track-padding);
+        padding-inline: calc(var(--handle-padding) + var(--track-padding));
+        border-radius: 0.5em;
+        margin-bottom: 1em;
+        
+    }
+    
+    & .rangeSlider {
+        height: 2.75em;
+        border-radius: 0.5em;
+        margin: 0;
+    }
+    
+    & .rangeSlider::before {
+        /* this is just to make the end padding click-able */
+        content: "";
+        position: absolute;
+        inset: 0;
+        left: auto;
+        right: calc(var(--handle-padding) * -1);
+        width: var(--handle-padding);
+        z-index: 1;
+        border-radius: inherit;
+    }
+    
+    & .rangeBar {
+        
+        --padding: calc(var(--handle-padding) - ((var(--range-size) / 100 * var(--handle-padding))));
+        
+        width: calc(
+            var(--handle-padding) + var(--handle-padding) + var(--slider-length) *
+                (var(--range-size) / 100 * 1px)
+        );
+        padding-left: var(--padding);
+        margin-left: calc(var(--handle-padding) * -1);
+        
+        height: inherit;
+        top: 0;
+        border-radius: calc( 0.5em - var(--track-padding) );
+        box-shadow:
+            inset 0 1px 1px hsl( from var(--range-bar) h s calc(l + 5) ),
+            0 1px 0 1px hsl( from var(--range-bar) h 10% calc(l - 50) / 0.2 ),
+            0 1px 3px hsl( from var(--range-bar) h 20% calc(l - 25) / 0.1 ),
+            0 3px 6px hsl( from var(--range-bar) h 20% calc(l - 35) / 0.1 ),
+            0 4px 8px hsl( from var(--range-bar) h 20% calc(l - 40) / 0.1 );
+    }
+    
+    & .rangeLimit {
+        display: none;
+    }
+    
+    & .rangeHandle {
+        width: calc(var(--handle-padding) * 2);
+        height: 100%;
+        top: 0;
+        right: 100%;
+        transform: translateX(50%);
+        &::before {
+            display: none;
+        }
+    }
+    
+    & .rangeNub {
+        width: 2px;
+        height: 40%;
+        top: 50%;
+        left: calc( 50% - 2px);
+        transform: translate(-50%, -50%);
+        background: var(--range-nub);
+        border-radius: 99vh;
+        opacity: 0.5;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            translate: 5px 0;
+            border-radius: inherit;
+        }
+    }
+    
+        
+    & .rangeHandle:hover .rangeNub,
+    & .rangeHandle.rsActive .rangeNub {
+        opacity: 1;
+    }
+    
+    & .rsPip {
+        
+        font-family: "Jersey 10", monospace;
+        font-size: 1.2em;
+        display: none;
+        background: transparent;
+        opacity: 0.5;
+        
+        &[data-val="5"],
+        &[data-val="60"] {
+            display: block;
+        }
+        &[data-val="5"] {
+            left: 0!important;
+        }
+        
+        &.rsSelected {
+            opacity: 1;
+        }
+        
+        &.rsSelected,
+        &:hover {
+            & .rsPipVal {
+                font-weight: normal;
+            }
+        }
+    }
+    
+    & .rsPipVal {
+        top: 0;
+        gap: 0.25em;
+        transform: none;
+        color: var(--range-pip);
+        left: calc(var(--handle-padding) * -1);
+    }
+    
+    
+    & [data-val="60"] .rsPipVal {
+        right: calc(var(--handle-padding) * -1 );
+        left: auto;
+    }
+}
+
+number-flow {
+    
+    --offset: calc(var(--handle-padding)/2);
+    
+    font-family: "Jersey 10", monospace;
+    font-size: 1.4em;
+    font-variant: tabular-nums;
+    color: var(--flow-text);
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    translate: calc((var(--slider-length) * (var(--handle-pos) / 100) * 1px) + var(--offset)) -50%;
+    transition: translate 0.15s var(--cubic-out), opacity 0.5s var(--cubic-out) 0.15s; 
+    opacity: 0;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    
+    &.on-left {
+        --offset: calc(-100% - var(--track-padding) * 2 - var(--handle-padding) * 2);
+    }
+    
+    &.initialised {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* demo styles */
+
+:root {
+    
+    color-scheme: light dark;
+    
+    --bg-light: hsl(220, 16%, 94%);
+    --bg-light2: hsl(212, 50%, 92%);
+    --bg-dark: hsl(222, 16%, 16%);
+    --bg-dark2: hsl(222, 20%, 18%);
+    --fg-light: hsl(212 22% 26%);
+    --fg-dark: hsl(222, 39%, 95%);
+    --link-light: hsl(222, 95%, 60%);
+    --link-dark: hsl(222, 95%, 70%);
+    --link-light-hover: hsl(150, 90%, 50%);
+    --link-dark-hover: hsl(150, 95%, 70%);
+    --input-bg-light: hsl(from var(--bg-light) h 15% 100%);
+    --input-bg-dark: hsl(from var(--bg-dark) h 15% 10%);
+    --input-border-light: hsl(from var(--bg-light) h 15% 85%);
+    --input-border-dark: hsl(from var(--bg-light) h 15% 35%);
+    --labels-light: hsl(from var(--fg-light) h 20% 55%);
+    --labels-dark: hsl(from var(--fg-dark) h 20% 55%);
+    
+    /* color-scheme */
+    --bg: light-dark( var(--bg-light), var(--bg-dark) );
+    --bg2: light-dark( var(--bg-light2), var(--bg-dark2) );
+    --fg: light-dark( var(--fg-light), var(--fg-dark) ) ;
+    --link: light-dark( var(--link-light), var(--link-dark) );
+    --linkh: light-dark( var(--link-light-hover), var(--link-dark-hover) );
+    --labels: light-dark( var(--labels-light), var(--labels-dark) );  /* form labels */
+    --b: light-dark( var(--input-bg-light), var(--input-bg-dark) ); /* form element backgrounds */
+    --bor: light-dark( var(--input-border-light), var(--input-border-dark) ); /* form element shadows */
+    --tint: light-dark( hsl(160, 85%, 60%), hsl(260, 85%, 60%) );
+    --tint2: light-dark( hsl(200, 85%, 60%), hsl(300, 85%, 60%) );
+    
+    /* ease */
+    --cubic: cubic-bezier(0.66, 0, 0.34, 1);
+    --cubic-in: cubic-bezier(0.32, 0, 0.67, 0);
+    --cubic-out: cubic-bezier(0.33, 1, 0.68, 1);
+    --spring: linear(0, 0.008 1.1%, 0.034 2.3%, 0.134 4.9%, 0.264 7.3%, 0.683 14.3%, 0.797 16.5%, 0.89 18.6%, 0.967 20.7%, 1.027 22.8%, 1.073 25%, 1.104 27.3%, 1.123 30.6%, 1.119 34.3%, 1.018 49.5%, 0.988 58.6%, 0.985 65.2%, 1 84.5%, 1);
+    
+}
+
+/** extra stuff **/
+
+body, html, #app {
+    display: grid;
+    min-height: 100%;
+}
+
+body {
+    --dot-color: light-dark( 
+        hsl( from var(--bg) h s calc(l - 7) / 90%),
+        hsl( from var(--bg2) h s calc(l + 2) / 90%)
+    );
+    --bg-fade: light-dark(
+        var(--bg2),
+        var(--bg)
+    );
+    
+    background-color: var(--bg2);
+    background-image: 
+        radial-gradient( var(--dot-color) 1.25px, transparent 0px ),
+        linear-gradient(160deg, var(--bg), var(--bg-fade));
+    background-repeat: repeat, no-repeat;
+    background-size: 24px 24px, cover;
+    background-position: center;
+    min-width: 100svw;
+    min-height: 100svh;
+    padding: 0;
+}
+
+#app {
+    min-height: 90svh;
+    width: min( calc(100svw - var(--pads) * 4), 640px );
+    margin: auto;
+    grid-template-rows:
+        auto -webkit-min-content -webkit-min-content auto;
+    grid-template-rows:
+        auto min-content min-content auto;
+}
+
+aside, #toggle {
+    margin-top: auto;
+    transition: opacity 0.3s var(--cubic-out);
+    &:not(:hover):not(:focus-within) {
+        opacity: 0.35;
+    }
+}
+body[is-dark] {
+    aside:not(:hover):not(:focus-within) { opacity: 0.2; }
+}
+
+h1 {
+    place-content: end;
+    margin-bottom: 0;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+.toggle {
+    margin-bottom: auto;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <main id="app">
+    
+    <h1>NumberFlow Slider</h1>
+    
+    <div id="slider">
+        <number-flow data-will-change></number-flow>
+    </div>
+    
+    <div id="toggle" class="group">
+      <input type="checkbox" class="toggle single" id="flowToggle" name="flowToggle" checked>
+      <label for="flowToggle">Toggle NumberFlow</label>
+    </div>
+    
+    
+    <aside>
+        <p>After seeing a <a href="https://x.com/n___vc/status/1856379776849907797" target="_blank">slider design on Twitter</a> that used <a href="https://number-flow.barvian.me/vanilla" target="_blank">NumberFlow</a>
+        for the floating value; I wanted to demo NumberFlow in conjunction with the <a href="https://simeydotme.github.io/svelte-range-slider-pips/en/introduction/" target="_blank">Range Slider Pips</a> library.</p>
+        
+        <p>However; I personally think a spinning number that moves across the screen is disorientating, and I would prefer a static value like shown
+        in the <a href="https://simeydotme.github.io/svelte-range-slider-pips/en/examples/float/#keep-float-inside-container" target="_blank">RangeSlider Docs here</a> 
+            or <a href="https://simeydotme.github.io/svelte-range-slider-pips/en/recipes/daisy-ui/" target="_blank">here</a></p>
+    </aside>
+    
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+
+<!--
+    theme toggle
+-->
+
+<div class="group theme-toggle" title="toggle theme">
+  <label for="theme-toggle">
+    <span class="sr-only">Light Theme</span> 
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <g fill="none">
+        <path d="M17 12a5 5 0 1 1-10 0a5 5 0 0 1 10 0Z" />
+        <path stroke-linecap="round" d="M12 2c-.377.333-.905 1.2 0 2m0 16c.377.333.906 1.2 0 2m7.5-17.497c-.532-.033-1.575.22-1.496 1.495M5.496 17.5c.033.532-.22 1.575-1.496 1.496M5.003 4.5c-.033.532.22 1.576 1.497 1.497M18 17.503c.532-.032 1.575.208 1.496 1.414M22 12c-.333-.377-1.2-.905-2 0m-16-.5c-.333.377-1.2.906-2 0" />
+      </g>
+    </svg>
+  </label>
+  <input type="checkbox" class="toggle dual" id="theme-toggle" name="theme">
+  <label for="theme-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M21.5 14.078A8.557 8.557 0 0 1 9.922 2.5C5.668 3.497 2.5 7.315 2.5 11.873a9.627 9.627 0 0 0 9.627 9.627c4.558 0 8.376-3.168 9.373-7.422" />
+    </svg>
+    <span class="sr-only">Dark Theme</span> 
+  </label>
+</div>
+
+<!--
+    social
+-->
+
+<a class="social-icon codepen" href="https://codepen.io/simeydotme" title="view my codepens">
+    Made by Simey
+</a>
+
+<a class="social-icon twitter" href="https://twitter.com/simeydotme">
+    <svg viewBox="0 0 24 24">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
+    </svg>
+</a>
+<a class="social-icon github" href="https://github.com/simeydotme">
+    <svg viewBox="0 0 24 24">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+    </svg>
+</a>
+  
+    <script id="rendered-js" type="module">
+import RangeSlider from "https://esm.sh/svelte-range-slider-pips";
+import 'https://esm.sh/number-flow'
+
+const startValue = 12;
+const baseValue = 45;
+const min = 5;
+const max = 60;
+const suffix = " min";
+
+// initialise the slider
+const slider = new RangeSlider({
+    target: document.querySelector('#slider'),
+    props: {
+        value: startValue,
+        min,
+        max,
+        range: 'min',
+        pips: true,
+        all: 'label',
+        suffix: suffix,
+        springValues: { stiffness: 0.125, damping: 0.4 },
+    }
+});
+
+// initialise NumberFlow
+const flow = document.querySelector('number-flow')
+flow.numberSuffix = suffix
+flow.update(baseValue);
+flow.classList.add('initialised');
+
+const setSlider = (v, delay = 0) => {
+    setTimeout(() => {
+        slider.$set({ value: v });
+    }, delay);
+};
+
+const setFlow = (v, delay = 0) => {
+    setTimeout(() => {
+        flow.update(v);
+        updateFlowPosition(v);
+    }, delay);
+}
+
+const setBoth = (v, delay = 0) => {
+    setSlider(v,delay);
+    setFlow(v,delay);
+}
+
+// update NumberFlow when slider changes
+slider.$on('change', ({ detail }) => {
+    setFlow( detail.value );
+});
+
+// re-position NumberFlow when the slider changes.
+const updateFlowPosition = (v) => {
+    const flow = document.querySelector('number-flow');
+    const slider = document.querySelector('#slider .rangeSlider');
+    const handle = document.querySelector('#slider .rangeHandle');
+    requestAnimationFrame(() => {
+        let pos = parseFloat( handle.style.getPropertyValue('--handle-pos') || 0);
+        let length = parseFloat( slider.style.getPropertyValue('--slider-length') || 0);
+        if ( v ) {
+            pos = ((v * (100) / (max - min)) - min);
+        }
+        flow.classList.toggle( 'on-left', pos > 70 );
+        flow.style.setProperty( '--handle-pos', pos );
+        flow.style.setProperty( '--slider-length', length );
+    }); 
+};
+
+
+
+
+/* intro animation */
+
+let animationInterval;
+let animationValue = startValue; 
+animationInterval = setInterval(() => {
+    animationValue++;
+    setBoth( animationValue, 50 );
+    if( animationValue >= baseValue) {
+        clearInterval(animationInterval);
+    }
+}, 16);
+
+document.body.addEventListener('pointerdown', () => {
+    clearInterval(animationInterval);
+})
+
+
+
+/* toggle numberflow on/off */
+
+const $toggle = document.querySelector('#toggle > input');
+const $title = document.querySelector('h1');
+$toggle.addEventListener('change', () => {
+    const isChecked = $toggle.checked
+    flow.animated = isChecked;
+    $title.innerText = (isChecked ? 'NumberFlow' : 'Range Pips') + ' Slider';
+});
+
+
+
+
+
+
+
+
+
+
+
+
+/* handle theme toggle */
+
+const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const $themeToggle = document.querySelector('#theme-toggle');
+$themeToggle.checked = prefersDarkMode;
+const setTheme = () => {
+    document.body.classList.add('themed');
+    document.body.toggleAttribute('is-dark', $themeToggle.checked);
+}
+$themeToggle.addEventListener('change', setTheme);
+setTheme();
+  </script>
+
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Pure CSS gravity button</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/RNrzrbb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Orbitron&display=swap" rel="stylesheet">
+  
+  
+  
+<style>
+@charset "UTF-8";
+@property --k {
+  syntax: "<number>";
+  initial-value: -1;
+  inherits: true;
+}
+html, body {
+  display: grid;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  place-content: center;
+  overflow-x: hidden;
+}
+
+button {
+  --m: 1;
+  grid-area: 2/1/span 1/span 2;
+  position: relative;
+  margin: 1em;
+  border: solid 2em transparent;
+  padding: 1.5em 3.25em;
+  border-radius: 5em;
+  box-shadow: inset 0 0 1px #23429e;
+  background: radial-gradient(#111a39, 67.5%, #3476da) padding-box, radial-gradient(#a0c2ed, 35%, #a0c2ed00 70%) 50% 0/80% 50% repeat-y;
+  color: #f2fdfe;
+  font: 700 1.5em/1 montserrat, sans-serif;
+}
+#slow:checked ~ button {
+  --m: 5 ;
+}
+button:active {
+  translate: 0 2px;
+}
+
+@keyframes k {
+  0%, 33.3% {
+    --k: 1 ;
+  }
+}
+.particle {
+  --f: 1;
+  --pos-k: max(0, var(--k));
+  --neg-k: max(0, -1*var(--k));
+  --low-c: min(1, 4*(1 - var(--pos-k)));
+  --abs-d: max(var(--neg-k) - .5, .5 - var(--neg-k));
+  --mov-f: var(--pos-k);
+  display: grid;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  rotate: var(--a);
+  animation: k calc(var(--m)*1s) linear calc(var(--m)*var(--t, 0)*1s) infinite;
+}
+@supports (scale: sqrt(4)) {
+  .particle {
+    --mov-f: sqrt(var(--pos-k)) ;
+  }
+}
+.particle::before, .particle::after {
+  grid-area: 1/1;
+  width: 0.75em;
+  aspect-ratio: 1;
+}
+.particle::before {
+  --sa: calc(min(1, 1 - 2*min(.5, var(--mov-f)))*45deg);
+  border-radius: calc(1.25*min(.8, var(--mov-f))*50%) 50% 50%;
+  transform-origin: 0 0;
+  translate: calc(var(--mov-f)*var(--d));
+  rotate: -45deg;
+  scale: var(--f);
+  transform: skew(var(--sa), var(--sa));
+  opacity: var(--low-c);
+  filter: Saturate(var(--low-c));
+  background: radial-gradient(at 85% 85%, #bad9fa, #3e66a4 75%);
+  content: "";
+}
+.particle::after {
+  translate: -50% -50%;
+  scale: calc(var(--f)*(1 - 2*var(--abs-d)));
+  text-align: center;
+  filter: blur(0.5px);
+  content: "✦";
+}
+
+[type=checkbox] {
+  justify-self: end;
+  margin: 5px;
+  width: 1em;
+  aspect-ratio: 1;
+}
+[type=checkbox], [type=checkbox] + label {
+  align-self: center;
+  font: 1.25em orbitron, monospace;
+  cursor: pointer;
+}
+</style>
+
+  
+  <script src="https://public.codepenassets.com/js/prefixfree-1.0.7.min.js"></script>
+
+  
+</head>
+
+<body>
+  <input id="slow" type="checkbox"/>
+<label for="slow">slow motion</label>
+<button>chocolate coated gingerbread<span class="wrap" aria-hidden="true"><span class="particle" style="--a: -45deg; --x: 53%; --y: 15%; --d: 4em; --f: .7; --t: .15"></span><span class="particle" style="--a: 150deg; --x: 40%; --y: 70%; --d: 7.5em; --f: .8; --t: .08"></span><span class="particle" style="--a: 10deg; --x: 90%; --y: 65%; --d: 7em; --f: .6; --t: .25"></span><span class="particle" style="--a: -120deg; --x: 15%; --y: 10%; --d: 4em"></span><span class="particle" style="--a: -175deg; --x: 10%; --y: 25%; --d: 5.25em; --f: .6; --t: .32"></span><span class="particle" style="--a: -18deg; --x: 80%; --y: 25%; --d: 4.75em; --f: .5; --t: .4"></span><span class="particle" style="--a: -160deg; --x: 30%; --y: 5%; --d: 9em; --f: .9; --t: .5"></span><span class="particle" style="--a: 175deg; --x: 9%; --y: 30%; --d: 6em; --f: .95; --t: .6"></span><span class="particle" style="--a: -10deg; --x: 89%; --y: 25%; --d: 4.5em; --f: .55; --t: .67"></span><span class="particle" style="--a: -140deg; --x: 40%; --y: 10%; --d: 5em; --f: .85; --t: .75"></span><span class="particle" style="--a: 90deg; --x: 45%; --y: 65%; --d: 4em; --f: .5; --t: .83"></span><span class="particle" style="--a: 30deg; --x: 70%; --y: 80%; --d: 6.5em; --f: .75; --t: .92"></span></span></button>
+  
+    <script id="rendered-js" >
+// no JS whatsoever ;) cross-browser ;)
+  </script>
+
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>#CodePenChallenge - Checkbox</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/jEWjbjm">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+  
+<style>
+html, body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #223254;
+}
+
+.cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098A9;
+  transition: all 0.2s ease;
+}
+.cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #506EEC;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+.cbx span:last-child {
+  padding-left: 8px;
+}
+.cbx:hover span:first-child {
+  border-color: #506EEC;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+  background: #506EEC;
+  border-color: #506EEC;
+  animation: wave 0.4s ease;
+}
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+.inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(3.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <input class="inp-cbx" id="cbx" type="checkbox" style="display: none"/>
+<label class="cbx" for="cbx"><span>
+    <svg width="12px" height="10px" viewbox="0 0 12 10">
+      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+    </svg></span><span>CodePenChallenge</span></label>
+  
+  
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Radial SVG Menu - Step 20</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/vELqNgQ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  
+  
+<style>
+:root {
+  --base-spacing-unit: 24px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/background.jpg);
+  background-size: cover;
+  background-position: center top;
+  padding: var(--base-spacing-unit);
+}
+
+.menu {
+  width: 100%;
+  height: auto;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  max-width: 792px;
+  max-height: 100%;
+}
+@media screen and (min-width: 512px) {
+  .menu {
+    max-width: 65vw;
+    max-height: 65vh;
+  }
+}
+
+.main-menu {
+  cursor: pointer;
+}
+.main-menu circle {
+  transition: opacity 250ms;
+}
+.main-menu circle:hover {
+  opacity: 1;
+}
+.main-menu.is-active > circle {
+  opacity: 1;
+}
+
+[class$=-button] {
+  cursor: pointer;
+}
+[class$=-button] circle {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+[class$=-button] circle:hover {
+  opacity: 0.6;
+}
+[class$=-button] path {
+  pointer-events: none;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="container">
+		
+	<svg class="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 792 792">
+		<defs>
+			<path class="path-1" d="M45 67.9c0 2.3 1.9 4.1 4.2 4.1a4.1 4.1 0 1 0 0-8.3 4.1 4.1 0 0 0-4.1 4.2zm6 0c0 1-.8 1.7-1.8 1.7s-1.8-.7-1.8-1.7.8-1.8 1.8-1.8 1.8.7 1.8 1.8z"/>
+		</defs>
+		<g class="Finished---All-on" fill="none" fill-rule="evenodd" transform="translate(-571 -143)">
+			<g class="menu" transform="translate(571 143)">
+				<g class="outside-layer">
+					<circle class="outer-cirlce-background" cx="396" cy="396" r="396" fill="#000" fill-opacity=".4"/>
+					<g class="more-menu" transform="translate(654 229)">
+						<g class="writing-button" transform="translate(24 120)">
+							<title>My Posts</title>
+							<circle class="Oval-2-Copy-11" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M66.7 53.6l-.3.5-1.3 1.8-.3.4-.1.3V60l-.2.3v.1c-.3 1-1 1.4-2.3 1.4h-4.5l-.6.1a9 9 0 0 0-4 1.6l-1.7 1.1-.5.4-1.5 1a302.7 302.7 0 0 0-4 2.6c-.2 0-.3-.1-.5-.3L41.5 66l-1.7-1-.4-.4a141.7 141.7 0 0 1-3-1.8 9 9 0 0 0-2.6-.9h-.1a15.6 15.6 0 0 0-1.4 0h-3.7c-1.2 0-2-.6-2.3-1.5v-.1l-.1-.3V39c0-1.8.7-2.6 2.5-2.6h27.5l.7-2.1H28.7C25.8 34.3 24 36 24 39v21l.1.4a4.5 4.5 0 0 0 .4 1.4v.2l.4.5.2.1c0 .2.2.3.3.4l.2.2a3.4 3.4 0 0 0 .7.4 3.2 3.2 0 0 0 .8.3l.5.1.5.1h4.2l1 .1h.2a7.3 7.3 0 0 1 2.7 1l.3.2.9.6 2.6 1.7v.1l3.7 2.5a3 3 0 0 0 1.7.5 3 3 0 0 0 1.7-.5l3.6-2.5h.1l2.6-1.8 1-.6.2-.2.6-.3c.7-.4 1.4-.6 2.1-.7h5l.3-.1h.6l.5-.2h.3l.5-.3a2.8 2.8 0 0 0 .7-.4 5.3 5.3 0 0 0 .5-.6 3.9 3.9 0 0 0 .8-1.4l.2-.8v-6.9.1z"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M70 25.6l-4-1.2a3 3 0 0 0-1.9 0c-.9.3-1.6 1.1-2 2.1l-.4 1.4-.2.5-.2.7-6.7 20.6.1 8.5v.2c.3.8.7 1.4 1.4 1.7.5.3 1.2.4 1.8.1.4-.1.8-.4 1.2-.8 1.2-1.5 2.4-3 3.4-4.6l1.6-2.3.1-.1 6.3-19.2.6-1.6.6-1.8c.6-1.9-.2-3.6-1.8-4.2zM56.3 50l6.4-19.5.6.2.7.3-6.3 19.3c-.6.2-1 .2-1.4 0V50zm4.1 1.4c-1.5.2-2-.6-2.1-.8l6.3-19.4 2.3.8-6.5 19.4zm.9 2.4a62 62 0 0 1-3 4l-1.9-.7v-6l1.4-.1c.3.5 1 1.2 2.7 1 .1.4.5.8 1.4.9l-.6 1zm1.5-2.2l-.4.6c-1 0-1.3-.3-1.4-.5l6.5-19.5 1.5.5-6.2 19zm7.4-22.4l-.6 1.9-5.8-2-.6-.1.2-.6.4-1.3c.3-1 1-1.4 1.8-1.2l3.8 1.3c.8.3 1.1 1.1.8 2z"/>
+						</g>
+						<g class="new-button">
+							<title>New Posts</title>
+							<circle class="Oval-2-Copy-13" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M46.1 46.5H36c-.4 0-.8.3-.8.8v1.5c0 .4.4.7.8.7h10.1c.2 0 .4.2.4.4V60c0 .4.3.8.8.8h1.5c.4 0 .7-.4.7-.8V49.9c0-.2.2-.4.4-.4H60c.4 0 .8-.3.8-.8v-1.5c0-.4-.4-.7-.8-.7H49.9a.4.4 0 0 1-.4-.4V36c0-.4-.3-.8-.8-.8h-1.5c-.4 0-.7.4-.7.8v10.1c0 .2-.2.4-.4.4z"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M48 69a21 21 0 1 0 0-42 21 21 0 0 0 0 42zm0 3a24 24 0 1 1 0-48 24 24 0 0 1 0 48z"/>
+						</g>
+						<g class="bin-button" transform="translate(0 240)">
+							<title>Deleted Posts</title>
+							<circle class="Oval-2-Copy-12" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M57 28v-3.8H39.2V28h-10v8.2h4.4v35.5h29V36.3h4.3V28H57zm-15.7-1.8h13.6v1.9H41.3v-1.9zm19.2 43.6H35.7V36.3h24.8v33.5zM65 34.2H31.3v-4H65v4z"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M41 42.7h2v20.7h-2zm6.1 0h2v20.7h-2zm6.1 0h2.1v20.7h-2.1z"/>
+						</g>
+					</g>
+					<g class="home-menu" transform="translate(229 18)">
+						<g class="portfolio-button" transform="translate(119)">
+							<title>Portfolio</title>
+							<circle class="Oval-2-Copy-4" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M71.6 46v-5.6c0-3.5-2.9-6.4-6.4-6.4h-7l-1-3.5c-.6-1.8-2.3-3-4.1-3H42.9a4.3 4.3 0 0 0-4 3L37.8 34h-7a6.4 6.4 0 0 0-6.4 6.4V46c0 .5.3.9.7 1l1 .4v15.5c0 3.5 2.8 6.4 6.4 6.4h31c3.6 0 6.5-2.9 6.5-6.4V47.3l1-.4c.3-.1.6-.5.6-1zM40.9 31c.3-.9 1.1-1.5 2-1.5h10.2c.9 0 1.7.6 2 1.5l.9 3H40l1-3zm-14.3 9.3c0-2.3 1.9-4.2 4.2-4.2h34.4a4.3 4.3 0 0 1 4.2 4.2v4.8L48 53.5l-21.4-8.3v-4.8zm41.2 22.4a4.3 4.3 0 0 1-4.2 4.3H32.4c-2.3 0-4.2-2-4.2-4.3V48l19.4 7.5h.8L67.8 48v14.7z"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M52.5 45a4.5 4.5 0 1 0-9 0 4.5 4.5 0 0 0 9 0zm-6.8 0a2.3 2.3 0 1 1 2.3 2.3c-1.3 0-2.3-1-2.3-2.4z"/>
+						</g>
+						<g class="testimonials-button" transform="translate(0 23)">
+							<title>Testimonials</title>
+							<circle class="Oval-2-Copy-6" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M52.9 64.6c-.7 0-1.3-.1-1.8-.5-.5-.3-1.2-1-1.1-2.5 0-2 1.7-3 2.9-3.6l.4-.2c1.6-1 2.8-1.7 3.8-2.6 2-1.7 3-3.2 2.9-3.6l-.3-.1-1.1-.2-1-.1a8.9 8.9 0 0 1-7.7-9.1 10.8 10.8 0 0 1 21.6 0c0 7-3.6 16.9-13.7 21.1l-.3.1c-1.1.5-3 1.3-4.6 1.3zm7.8-31.3c-4.8 0-8.8 4-8.8 8.8 0 3.8 2.2 6.5 6 7.2h.8l1.6.3c1.2.4 1.5 1.2 1.6 1.7.3 1.8-2 4.2-3.6 5.4-1 1-2.4 1.8-4 2.8l-.5.2c-1.2.6-1.9 1-1.9 1.9 0 .5.1.8.3.9.6.4 2.1 0 4.6-1l.2-.1a20.8 20.8 0 0 0 12.6-19.3c0-5-4-8.8-8.9-8.8zM27.4 64.6c-.7 0-1.3-.1-1.8-.5-.5-.3-1.2-1-1.1-2.5 0-2 1.7-3 2.9-3.6l.4-.2c1.6-1 2.8-1.7 3.8-2.6 2-1.7 3-3.2 2.9-3.6l-.3-.1-1.1-.2-1-.1a8.9 8.9 0 0 1-7.6-9.1 10.8 10.8 0 0 1 21.5 0 23 23 0 0 1-13.7 21.1l-.2.1c-1.2.5-3 1.3-4.7 1.3zm7.8-31.3c-4.8 0-8.8 4-8.8 8.8 0 3.8 2.2 6.5 6 7.2h.8l1.6.3c1.2.4 1.5 1.2 1.6 1.7.4 1.8-2 4.2-3.5 5.4-1.2 1-2.5 1.8-4.2 2.8l-.4.2c-1.1.6-1.9 1-1.9 1.9 0 .5.1.8.3.9.9.6 3.7-.6 4.6-1l.2-.1a20.8 20.8 0 0 0 12.6-19.3c0-5-3.9-8.8-8.9-8.8z"/>
+						</g>
+						<g class="contact-button" transform="translate(239 23)">\
+							<title>Contact Us</title>
+							<circle class="Oval-2-Copy-5" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M40.4 42.7c1.4 0 1.4 2 0 2H29.1L36 56.3l7-7c1.1-1 2.5.4 1.6 1.4L37 58.2l3.4 6h21.5a290 290 0 0 0-6.5-10c-.7-1.3 1-2.4 1.8-1.2l2.5 3.8h9l-.4-4.7H57.9c-1.4 0-1.4-2 0-2h10.2l-.4-5.4h-5.8c-1.4 0-1.4-2 0-2h6.7c.6 0 1.1.3 1.1 1 .6 7 1.6 14.5 1.9 21.4a1 1 0 0 1-1.1 1H25.4a1 1 0 0 1-1-1l1.9-21.5c0-.4.5-1 1.1-1h13zM28.2 47l-1.6 17H38l-9.7-17zm36 17h5.2l-.5-5.3h-8l3.3 5.4zm-14-9.2c-2.7-3.3-8.7-11.7-8.7-16.1 0-5.4 4.4-9.4 9.6-9.4 5.1 0 9.7 4 9.7 9.4 0 4.4-6.1 12.8-9 16.1-.3.6-1 .5-1.5 0zm.9-2.2c2.3-2.8 7.5-10.5 7.5-14 0-4.2-3.5-7.1-7.5-7.1s-7.4 3-7.4 7.2c0 3.4 5.2 11.1 7.4 14zm0-19c2.3 0 4.2 2 4.2 4.3 0 2.2-1.9 4-4.2 4a4.1 4.1 0 0 1 0-8.2zm0 2.1c-1.1 0-2 1-2 2.2 0 1 .9 2 2 2a2 2 0 0 0 2.1-2c0-1.3-.9-2.2-2.1-2.2z"/>
+						</g>
+					</g>
+					<g class="settings-menu" transform="translate(228 654)">
+						<g class="security-button" transform="translate(120 24)">
+							<title>Secuirty Settings</title>
+							<circle class="Oval-2-Copy-8" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M48.2 64.6c.5 0 1-.5 1-1v-4.8A4 4 0 0 0 48 51a4 4 0 0 0-.9 8v4.6c0 .6.5 1 1 1zM46 55a2 2 0 1 1 3.9 0 2 2 0 0 1-4 0zm19.2-3.1c.5 0 1-.5 1-1v-4c0-2.2-1.9-4-4.2-4h-3.3v-8.3a10.6 10.6 0 0 0-21.3 0v8.2h-3.3A4.2 4.2 0 0 0 30 47v20.4c0 2.3 1.9 4.2 4.2 4.2h28c2.2 0 4.1-1.9 4.1-4.2V57.3a1 1 0 1 0-2 0v10.1c0 1.2-1 2.1-2.2 2.1h-28a2 2 0 0 1-2-2V47a2 2 0 0 1 2-2.1h28a2 2 0 0 1 2.1 2v4c0 .5.5 1 1 1zm-8.6-9h-17v-8.3a8.5 8.5 0 0 1 17 0v8.2z"/>
+						</g>
+						<g class="profile-button">
+							<title>Profile Settings</title>
+							<circle class="Oval-2-Copy-9" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M60.7 46.5a14.9 14.9 0 1 0-25.6 0A21.7 21.7 0 0 0 26.3 64v3.3c0 2.3 1.9 4.2 4.2 4.2h34.8c2.3 0 4.2-1.9 4.2-4.2V64c0-6.9-3.3-13.3-8.8-17.4zM48 26.4a12.6 12.6 0 0 1 10.3 19.8A12.6 12.6 0 1 1 48 26.4zm19.2 40.8c0 1-.8 1.8-1.8 1.8H30.6c-1 0-1.9-.8-1.9-1.8v-3.3c0-6.1 3-11.8 7.8-15.5a15 15 0 0 0 11.4 5.4c4.5 0 8.6-2 11.5-5.4A19 19 0 0 1 67 64v3.3z"/>
+						</g>
+						<g class="contact-button" transform="translate(240)">
+							<title>Contact Settings</title>
+							<circle class="Oval-2-Copy-10" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M56.5 71.5L40 58.2h-9.4c-3 0-5.4-2.4-5.4-5.4v-23c0-3 2.4-5.3 5.4-5.3h34.1c3 0 5.4 2.4 5.4 5.3v23c0 3-2.4 5.4-5.3 5.4h-8.2v13.3zm-26.7-45c-2 .2-3 2.2-3 3.1v23.2c0 2.1 1 3.3 3 3.6h10.7l14.9 12.4V56.4H65c.8 0 3 .4 3-2.8 0-3.2.3-22 0-24-.2-2 0-3-3-3s-33.1-.2-35.2 0z"/>
+						</g>
+					</g>
+					<g class="faq-menu" transform="translate(18 229)">
+						<g class="writing-button" transform="translate(0 120)">
+							<title>Writing FAQs</title>
+							<circle class="Oval-2-Copy-7" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M69.2 26.8a8.6 8.6 0 0 0-12.1 0L29.1 55h-.2v.2l-.1.2v.1l-.1.2L24.4 70c-.1.4 0 1 .4 1.4.3.2.6.4 1 .4h.4l14.3-4.3h.2l.2-.2h.1l.1-.1h.1l28-28.2a8.6 8.6 0 0 0 0-12.2zM27.9 68.1l2.8-9.6 6.7 6.7-9.5 3zm12.2-4L32 55.8l24-24 8 8.2-24 24zm27-27.2l-1 1-8.1-8 1-1a5.7 5.7 0 0 1 8.1 0 5.6 5.6 0 0 1 0 8z"/>
+						</g>
+						<g class="reading-button" transform="translate(24)">
+							<title>Reading FAQs</title>
+							<circle class="Oval-2-Copy-7" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M71.6 70.7h-2.9V37.9h-9v-9.6H27.5v42.4h-2.9V25.4h38V35h9z"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M69.4 36.9l-8.9-9.5 2.1-2 9 9.6zm-34.1 4.6h12.1v2.9H35.3zm0 11.7h25.5v3H35.3zm0 7.2h25.5v2.9H35.3z"/>
+						</g>
+						<g class="general-button" transform="translate(24 240)">
+							<title>General FAQs</title>
+							<circle class="Oval-2-Copy-7" cx="48" cy="48" r="48" fill="#00F7FF" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M54.3 68h-4V40.5a2 2 0 0 0-2-2h-6a2 2 0 1 0 0 4h4V68h-4a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4zm-7.8-36a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6z"/>
+						</g>
+					</g>
+				</g>
+				<g class="middle-layer" transform="translate(132 132)">
+					<circle class="middle-circle-backgroud" cx="264" cy="264" r="264" fill="#000" fill-opacity=".4"/>
+					<g class="button-group">
+						<g class="settings-button" transform="translate(216 408)">
+							<title>Settings Menu</title>
+							<circle class="Oval-2-Copy-3" cx="48" cy="48" r="48" fill="#F06" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M49.4 30.5a6.2 6.2 0 0 1 0 12.2v24.6a1.4 1.4 0 0 1-2.8 0V42.7a6.2 6.2 0 0 1 0-12.2V29a1.4 1.4 0 0 1 2.8 0v1.6zm-4.8 6.1a3.4 3.4 0 1 0 6.8 0 3.4 3.4 0 0 0-6.8 0zm-12.4 17a6.2 6.2 0 0 1 0 12.1v1.6a1.4 1.4 0 0 1-3 0v-1.6a6.2 6.2 0 0 1 0-12.1V28.9a1.4 1.4 0 0 1 3 0v24.7zm-4.8 6a3.4 3.4 0 1 0 6.7 0 3.4 3.4 0 0 0-6.7 0zM66.7 45a6.2 6.2 0 0 1 0 12v10.3a1.4 1.4 0 0 1-2.9 0V57.1a6.2 6.2 0 0 1 0-12.2V29a1.4 1.4 0 0 1 3 0v16zM62 51a3.4 3.4 0 1 0 6.7 0 3.4 3.4 0 0 0-6.7 0z"/>
+						</g>
+						<g class="faq-button" transform="translate(24 217)">
+							<title>FAQ Menu</title>
+							<circle class="Oval-2-Copy" cx="48" cy="48" r="48" fill="#F06" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" stroke="#fff" d="M36.5 38.8c.6 0 1.2-.5 1.2-1.2a11 11 0 0 1 11.8-11 11 11 0 0 1 10 11.3c-.1 5.2-3.8 9.7-8.9 10.5a3.4 3.4 0 0 0-2.6 3.4v6a1.2 1.2 0 0 0 2.4 0v-6c0-1 .5-1 .7-1a13 13 0 0 0 10.8-12.9 13.3 13.3 0 1 0-26.6-.3c0 .7.5 1.2 1.2 1.2z"/>
+							<g class="Shape" fill-rule="nonzero">
+								<use fill="#fff" fill-rule="evenodd" xlink:href="#path-1"/>
+								<path stroke="#fff" d="M45.6 67.9a3.6 3.6 0 1 0 7.3 0c0-2-1.7-3.7-3.7-3.7s-3.6 1.6-3.6 3.7zm5.9 0c0 1.2-1 2.2-2.3 2.2-1.3 0-2.3-1-2.3-2.2 0-1.3 1-2.3 2.3-2.3 1.3 0 2.3 1 2.3 2.3z"/>
+							</g>
+						</g>
+						<g class="home-button" transform="translate(216 24)">
+							<title>Home Menu</title>
+							<circle class="Oval-2-Copy-2" cx="48" cy="48" r="48" fill="#F06" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M64.2 46.8c-.7 0-1.3.6-1.3 1.3v20.7h-7.3v-8a7.1 7.1 0 0 0-14.3 0v8H34V48.1a1.3 1.3 0 0 0-2.7 0v22c0 .8.6 1.4 1.4 1.4h10c.7 0 1.3-.6 1.3-1.3v-9.3a4.5 4.5 0 0 1 9 0v9.3c0 .7.5 1.3 1.2 1.3h10c.7 0 1.3-.6 1.3-1.3v-22c0-.8-.6-1.4-1.3-1.4zm6-1.2L49.3 25c-.5-.5-1.4-.5-2 0L26.8 45.6a1.3 1.3 0 1 0 2 2l19.7-19.9 19.9 19.8a1.3 1.3 0 1 0 1.8-1.9z"/>
+						</g>
+						<g class="more-button" transform="translate(408 217)">
+							<title>More Menu</title>
+							<circle class="Oval-2" cx="48" cy="48" r="48" fill="#F06" opacity=".6"/>
+							<path class="Shape" fill="#fff" fill-rule="nonzero" d="M29.8 42a5.9 5.9 0 0 0-5.8 5.8c0 3.2 2.6 5.9 5.8 5.9 3.2 0 5.9-2.7 5.9-5.9S33 42 29.8 42zM48 42a5.9 5.9 0 0 0-5.8 5.8c0 3.2 2.6 5.9 5.8 5.9A5.9 5.9 0 1 0 48 42zm18.2 0a5.9 5.9 0 0 0-5.9 5.8c0 3.2 2.7 5.9 5.9 5.9S72 51 72 47.8 69.4 42 66.2 42zm-36.4 2.6c1.8 0 3.3 1.4 3.3 3.2 0 1.8-1.5 3.3-3.3 3.3a3.2 3.2 0 0 1-3.2-3.3c0-1.8 1.4-3.2 3.2-3.2zm18.2 0c1.8 0 3.2 1.4 3.2 3.2 0 1.8-1.4 3.3-3.2 3.3a3.2 3.2 0 0 1-3.2-3.3c0-1.8 1.4-3.2 3.2-3.2zm18.2 0c1.8 0 3.2 1.4 3.2 3.2 0 1.8-1.4 3.3-3.2 3.3a3.2 3.2 0 0 1-3.3-3.3c0-1.8 1.5-3.2 3.3-3.2z"/>
+						</g>
+					</g>
+				</g>
+				<g class="main-menu" transform="translate(276 276)">
+					<title>Main Menu</title>
+					<circle class="inner-circle-background" cx="120" cy="120" r="120" fill="#000" opacity=".4"/>
+					<g class="menu-button" fill="#fff" fill-rule="nonzero" transform="translate(84 95)">
+						<path class="Shape" d="M4.7 29.3a3.7 3.7 0 1 1 0-7.3h63.2a3.7 3.7 0 1 1 0 7.3H4.7zM4.4 8a3.7 3.7 0 0 1 0-7.3h63.2a3.7 3.7 0 0 1 0 7.3H4.4zm0 42a3.7 3.7 0 0 1 0-7.3h63.2a3.7 3.7 0 1 1 0 7.3H4.4z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</svg>
+
+</div>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script id="rendered-js" >
+// Animations
+
+	// Middle layer - First layer of buttons
+		var animate_middle = new TimelineLite({paused: true});
+
+		animate_middle
+			.from(".middle-layer", 0.5, {
+				transformOrigin:"50% 50%", 
+				scale: "0"
+			}, 0, 0)
+
+			.from(".middle-layer .button-group", 0.75, {
+				transformOrigin: "50% 50%",
+				rotation: "-=135"
+			}, 0, 0)
+			
+			.from("middle-layer .button-group", 0.5, {
+				opacity: "0"
+			}, 0, 0)
+		;
+
+	// Outside layer - Outside layer menu background
+		var animate_outside = new TimelineLite({paused: true});
+
+		animate_outside
+			.from(".outside-layer", 0.5, {
+				transformOrigin:"50% 50%", 
+				scale: "0"
+			}, 0, 0)
+		;
+
+	// Home Buttons
+		var animate_home = new TimelineLite({paused: true});
+
+		animate_home
+			.staggerFrom(".home-menu g", 0.5, {
+				transformOrigin:"50% 50%",
+				opacity: "0",
+				scale: "0"
+			}, 0.125, 0.25)
+		;
+
+	// More Buttons
+		var animate_more = new TimelineLite({paused: true});
+
+		animate_more
+			.staggerFrom(".more-menu g", 0.5, {
+				transformOrigin:"50% 50%",
+				opacity: "0",
+				scale: "0"
+			}, 0.125, 0.25)
+		;
+		
+	// Settings Buttons
+		var animate_settings = new TimelineLite({paused: true});
+
+		animate_settings
+			.staggerFrom(".settings-menu g", 0.5, {
+				transformOrigin:"50% 50%",
+				opacity: "0",
+				scale: "0"
+			}, 0.125, 0.25)
+		;
+
+	// FAQ Buttons
+		var animate_faq = new TimelineLite({paused: true});
+
+		animate_faq
+			.staggerFrom(".faq-menu g", 0.5, {
+				transformOrigin:"50% 50%",
+				opacity: "0",
+				scale: "0"
+			}, 0.125, 0.25)
+		;
+
+// Interaction
+
+	// Variables
+		var menuOpen = false;
+		var outsideCircleOpen = false;
+		var homeOpen = false;
+		var faqOpen = false;
+		var settingsOpen = false;
+		var moreOpen = false;
+
+	// Main (Center) Button
+		$('.main-menu').click(function() {
+			
+			if(menuOpen == false) {
+				
+				$('.main-menu').addClass('is-active');
+			
+				animate_middle.play();
+			
+				menuOpen = true;
+			
+			} else {
+				
+				$('.middle-layer [class*="-button"]').removeClass('is-active');
+				$('.outside-layer [class*="-button"]').removeClass('is-active');
+
+				setTimeout(function() {
+					$('.main-menu').removeClass('is-active');
+				}, 750);
+				
+				animate_middle.reverse();
+				animate_outside.reverse();
+
+				animate_home.reverse();
+				animate_faq.reverse();
+				animate_settings.reverse();
+				animate_more.reverse();
+				
+				// reset all variables
+				menuOpen = false;
+				outsideCircleOpen = false;
+				homeOpen = false;
+				faqOpen = false;
+				settingsOpen = false;
+				moreOpen = false;
+			
+			}
+			
+		});
+
+	// Home Button
+		$('.home-button').click(function() {
+			
+			if(homeOpen == false) {
+				
+				if(outsideCircleOpen == false) {
+					animate_outside.play();
+				}
+				
+				animate_home.play();
+
+				outsideCircleOpen = true;
+				homeOpen = true;
+
+				animate_faq.reverse();
+				animate_settings.reverse();
+				animate_more.reverse();
+
+				$(this).addClass('is-active');
+				
+			} else {
+				homeOpen = false;
+				outsideCircleOpen = false;
+				animate_outside.reverse();
+				animate_home.reverse();
+			}
+
+			faqOpen = false;
+			settingsOpen = false;
+			moreOpen = false;
+			
+		});
+
+	// FAQ Button
+		$('.faq-button').click(function() {
+
+			if(faqOpen == false) {
+				
+				if(outsideCircleOpen == false) {
+					animate_outside.play();
+				}
+
+				animate_faq.play()
+				
+				outsideCircleOpen = true;
+				faqOpen = true;
+
+				animate_home.reverse();
+				animate_settings.reverse();
+				animate_more.reverse();
+
+				$(this).addClass('is-active');
+				
+			} else {
+				faqOpen = false;
+				outsideCircleOpen = false;
+				animate_outside.reverse();
+				animate_faq.reverse();
+			}
+			
+			homeOpen = false;
+			settingsOpen = false;
+			moreOpen = false;
+
+		});
+
+	// Settings Button
+		$('.settings-button').click(function() {
+
+			if(settingsOpen == false) {
+				
+				if(outsideCircleOpen == false) {
+					animate_outside.play();
+				}
+				
+				animate_settings.play();
+
+				outsideCircleOpen = true;
+				settingsOpen = true;
+				
+				animate_faq.reverse();
+				animate_home.reverse();
+				animate_more.reverse();
+
+				$(this).addClass('is-active');
+
+			} else {
+				settingsOpen = false;
+				outsideCircleOpen = false;
+				animate_outside.reverse();
+				animate_settings.reverse();
+			}
+			
+			homeOpen = false;
+			faqOpen = false;
+			moreOpen = false;
+			
+		});
+
+	// More Button
+		$('.more-button').click(function() {
+
+			if(moreOpen == false) {
+				
+				if(outsideCircleOpen == false) {
+					animate_outside.play();
+				}
+
+				animate_more.play();
+				
+				outsideCircleOpen = true;
+				moreOpen = true;
+
+				animate_faq.reverse();
+				animate_home.reverse();
+				animate_settings.reverse();
+
+				$(this).addClass('is-active');
+				
+			} else {
+				moreOpen = false;
+				outsideCircleOpen = false;
+				animate_outside.reverse();
+				animate_more.reverse();
+			}
+			
+			homeOpen = false;
+			settingsOpen = false;
+			faqOpen = false;
+			
+		});
+
+	// Middle Layer Active States
+		$('.middle-layer [class*="-button"]').click(function(){
+
+			$('.middle-layer [class*="-button"]').removeClass('is-active');
+			$('.outside-layer [class*="-button"]').removeClass('is-active');
+			$(this).addClass('is-active');
+
+		});
+  </script>
+
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Transparent Knockout Fade-in Text (Pure CSS)</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/QwyXygO">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+  
+  
+<style>
+body {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transform: scale(1.8);
+    animation: scaleImage 5s ease-out forwards;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: calc(10px + 8vw);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #000;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    animation: fadeInText 3s 2s ease-out forwards;
+}
+
+@keyframes scaleImage {
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInText {
+    100% {
+        opacity: 1;
+    }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&h=1080&fit=crop" alt="" class="image">
+
+<h1 class="text">Fade-in Text</h1>
+  
+  
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>SVG Theming with currentColor</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/myVZVwP">
+  
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap'>
+  
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #e6002e;
+  --blue: #2850c9;
+  --green: #208320;
+  --orange: #d63900;
+  --pink: #db0075;
+  --grey: #5c5c5c;
+  --white: #fafafa;
+  --black: #111;
+}
+
+body {
+  color: var(--black);
+  background-color: var(--white);
+}
+
+h1 {
+  font-size: calc(1rem + 2vw);
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-size: calc(1rem + 0.5vw);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.7em;
+}
+p:last-of-type {
+  margin-bottom: 0;
+}
+p strong {
+  font-weight: 700;
+}
+
+button {
+  display: inline-block;
+  font: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.red {
+  color: var(--red);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.green {
+  color: var(--green);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.pink {
+  color: var(--pink);
+}
+
+.grey {
+  color: var(--grey);
+}
+
+.theme-btn {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #fff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25), inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 200ms;
+}
+.theme-btn:hover, .theme-btn:focus {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.45), inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+.theme-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0 30px;
+}
+.theme-btn--red {
+  background-color: var(--red);
+}
+.theme-btn--blue {
+  background-color: var(--blue);
+}
+.theme-btn--green {
+  background-color: var(--green);
+}
+.theme-btn--orange {
+  background-color: var(--orange);
+}
+.theme-btn--pink {
+  background-color: var(--pink);
+}
+.theme-btn--grey {
+  background-color: var(--grey);
+}
+
+.svg-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.svg-container p {
+  flex-basis: 100%;
+}
+.svg-container svg {
+  width: 50px;
+  height: 50px;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="container">
+  <h1>SVG Theming with currentColor</h1>
+
+  <p>
+    Applying the currentColour value to SVG attributes enables SVG elements
+    to be themed using the CSS color property.
+  </p>
+
+  <p><strong>Click a button below to set a theme:</strong></p>
+
+  <div class="theme-btn-container">
+    <button class="theme-btn theme-btn--red" data-theme="red" aria-label="red theme"></button>
+    <button class="theme-btn theme-btn--blue" data-theme="blue" aria-label="blue theme"></button>
+    <button class="theme-btn theme-btn--green" data-theme="green" aria-label="green theme"></button>
+    <button class="theme-btn theme-btn--orange" data-theme="orange" aria-label="orange theme"></button>
+    <button class="theme-btn theme-btn--pink" data-theme="pink" aria-label="pink theme"></button>
+    <button class="theme-btn theme-btn--grey" data-theme="grey" aria-label="grey theme"></button>
+  </div>
+
+  <div class="svg-container">
+    <p>
+      SVG elements inherit the CSS color property defined on the nearest
+      parent element
+    </p>
+
+    <!-- Facebook -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>Facebook</title>
+      <g>
+        <path d="M24,12.073c0,5.989-4.394,10.954-10.13,11.855v-8.363h2.789l0.531-3.46H13.87V9.86c0-0.947,0.464-1.869,1.95-1.869h1.509   V5.045c0,0-1.37-0.234-2.679-0.234c-2.734,0-4.52,1.657-4.52,4.656v2.637H7.091v3.46h3.039v8.363C4.395,23.025,0,18.061,0,12.073   c0-6.627,5.373-12,12-12S24,5.445,24,12.073z" />
+      </g>
+    </svg>
+
+    <!-- Twitter -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>Twitter</title>
+      <path d="M21.543,7.104c0.014,0.211,0.014,0.423,0.014,0.636  c0,6.507-4.954,14.01-14.01,14.01v-0.004C4.872,21.75,2.252,20.984,0,19.539c0.389,0.047,0.78,0.07,1.172,0.071  c2.218,0.002,4.372-0.742,6.115-2.112c-2.107-0.04-3.955-1.414-4.6-3.42c0.738,0.142,1.498,0.113,2.223-0.084  c-2.298-0.464-3.95-2.483-3.95-4.827c0-0.021,0-0.042,0-0.062c0.685,0.382,1.451,0.593,2.235,0.616  C1.031,8.276,0.363,5.398,1.67,3.148c2.5,3.076,6.189,4.946,10.148,5.145c-0.397-1.71,0.146-3.502,1.424-4.705  c1.983-1.865,5.102-1.769,6.967,0.214c1.103-0.217,2.16-0.622,3.127-1.195c-0.368,1.14-1.137,2.108-2.165,2.724  C22.148,5.214,23.101,4.953,24,4.555C23.339,5.544,22.507,6.407,21.543,7.104z" />
+    </svg>
+
+    <!-- Instagram -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>Instagram</title>
+      <g>
+        <path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.308,0.06,2.655,0.358,3.608,1.311c0.962,0.962,1.251,2.296,1.311,3.608   c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.059,1.301-0.364,2.661-1.311,3.608   c-0.962,0.962-2.295,1.251-3.608,1.311c-1.265,0.058-1.645,0.07-4.849,0.07s-3.584-0.012-4.849-0.07   c-1.291-0.059-2.669-0.371-3.608-1.311c-0.957-0.957-1.251-2.304-1.311-3.608c-0.058-1.265-0.07-1.645-0.07-4.849   c0-3.204,0.012-3.584,0.07-4.849c0.059-1.296,0.367-2.664,1.311-3.608c0.96-0.96,2.299-1.251,3.608-1.311   C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C5.197,0.157,3.355,0.673,2.014,2.014   C0.668,3.36,0.157,5.198,0.072,7.052C0.014,8.332,0,8.741,0,12c0,3.259,0.014,3.668,0.072,4.948c0.085,1.853,0.603,3.7,1.942,5.038   c1.345,1.345,3.186,1.857,5.038,1.942C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072   c1.854-0.085,3.698-0.602,5.038-1.942c1.347-1.347,1.857-3.184,1.942-5.038C23.986,15.668,24,15.259,24,12   c0-3.259-0.014-3.668-0.072-4.948c-0.085-1.855-0.602-3.698-1.942-5.038c-1.343-1.343-3.189-1.858-5.038-1.942   C15.668,0.014,15.259,0,12,0z" />
+        <path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162   C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z" />
+        <circle cx="18.406" cy="5.594" r="1.44" />
+      </g>
+    </svg>
+
+    <!-- TikTok -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>TikTok</title>
+      <path d="M22.465,9.866c-2.139,0-4.122-0.684-5.74-1.846v8.385c0,4.188-3.407,7.594-7.594,7.594c-1.618,0-3.119-0.51-4.352-1.376  c-1.958-1.375-3.242-3.649-3.242-6.218c0-4.188,3.407-7.595,7.595-7.595c0.348,0,0.688,0.029,1.023,0.074v0.977v3.235  c-0.324-0.101-0.666-0.16-1.023-0.16c-1.912,0-3.468,1.556-3.468,3.469c0,1.332,0.756,2.489,1.86,3.07  c0.481,0.253,1.028,0.398,1.609,0.398c1.868,0,3.392-1.486,3.462-3.338L12.598,0h4.126c0,0.358,0.035,0.707,0.097,1.047  c0.291,1.572,1.224,2.921,2.517,3.764c0.9,0.587,1.974,0.93,3.126,0.93V9.866z" />
+    </svg>
+
+    <!-- GitHub -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>GitHub</title>
+      <g>
+        <path style="fill-rule: evenodd; clip-rule: evenodd" d="M12,0.296c-6.627,0-12,5.372-12,12c0,5.302,3.438,9.8,8.206,11.387   c0.6,0.111,0.82-0.26,0.82-0.577c0-0.286-0.011-1.231-0.016-2.234c-3.338,0.726-4.043-1.416-4.043-1.416   C4.421,18.069,3.635,17.7,3.635,17.7c-1.089-0.745,0.082-0.729,0.082-0.729c1.205,0.085,1.839,1.237,1.839,1.237   c1.07,1.834,2.807,1.304,3.492,0.997C9.156,18.429,9.467,17.9,9.81,17.6c-2.665-0.303-5.467-1.332-5.467-5.93   c0-1.31,0.469-2.381,1.237-3.221C5.455,8.146,5.044,6.926,5.696,5.273c0,0,1.008-0.322,3.301,1.23   C9.954,6.237,10.98,6.104,12,6.099c1.02,0.005,2.047,0.138,3.006,0.404c2.29-1.553,3.297-1.23,3.297-1.23   c0.653,1.653,0.242,2.873,0.118,3.176c0.769,0.84,1.235,1.911,1.235,3.221c0,4.609-2.807,5.624-5.479,5.921   c0.43,0.372,0.814,1.103,0.814,2.222c0,1.606-0.014,2.898-0.014,3.293c0,0.319,0.216,0.694,0.824,0.576   c4.766-1.589,8.2-6.085,8.2-11.385C24,5.669,18.627,0.296,12,0.296z" />
+        <path d="M4.545,17.526c-0.026,0.06-0.12,0.078-0.206,0.037c-0.087-0.039-0.136-0.121-0.108-0.18   c0.026-0.061,0.12-0.078,0.207-0.037C4.525,17.384,4.575,17.466,4.545,17.526L4.545,17.526z" />
+        <path d="M5.031,18.068c-0.057,0.053-0.169,0.028-0.245-0.055c-0.079-0.084-0.093-0.196-0.035-0.249   c0.059-0.053,0.167-0.028,0.246,0.056C5.076,17.903,5.091,18.014,5.031,18.068L5.031,18.068z" />
+        <path d="M5.504,18.759c-0.074,0.051-0.194,0.003-0.268-0.103c-0.074-0.107-0.074-0.235,0.002-0.286   c0.074-0.051,0.193-0.005,0.268,0.101C5.579,18.579,5.579,18.707,5.504,18.759L5.504,18.759z" />
+        <path d="M6.152,19.427c-0.066,0.073-0.206,0.053-0.308-0.046c-0.105-0.097-0.134-0.234-0.068-0.307   c0.067-0.073,0.208-0.052,0.311,0.046C6.191,19.217,6.222,19.355,6.152,19.427L6.152,19.427z" />
+        <path d="M7.047,19.814c-0.029,0.094-0.164,0.137-0.3,0.097C6.611,19.87,6.522,19.76,6.55,19.665   c0.028-0.095,0.164-0.139,0.301-0.096C6.986,19.609,7.075,19.719,7.047,19.814L7.047,19.814z" />
+        <path d="M8.029,19.886c0.003,0.099-0.112,0.181-0.255,0.183c-0.143,0.003-0.26-0.077-0.261-0.174c0-0.1,0.113-0.181,0.256-0.184   C7.912,19.708,8.029,19.788,8.029,19.886L8.029,19.886z" />
+        <path d="M8.943,19.731c0.017,0.096-0.082,0.196-0.224,0.222c-0.139,0.026-0.268-0.034-0.286-0.13   c-0.017-0.099,0.084-0.198,0.223-0.224C8.797,19.574,8.925,19.632,8.943,19.731L8.943,19.731z" />
+      </g>
+    </svg>
+
+    <!-- Discord -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="512" height="512" fill="currentColor">
+      <title>Discord</title>
+      <g>
+        <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z" />
+      </g>
+    </svg>
+  </div>
+</div>
+  
+    <script id="rendered-js" >
+const themeBtns = document.querySelectorAll('.theme-btn');
+const svgContainer = document.querySelector('.svg-container');
+
+themeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    svgContainer.className = 'svg-container';
+    svgContainer.classList.add(btn.dataset.theme);
+  });
+});
+  </script>
+
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Take Notes with Voice (Chrome Only)</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/JoGQGJq">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+  
+  
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Indie Flower", cursive;
+    font-size: 25px;
+    line-height: 1.5;
+    color: #222;
+    background-image: linear-gradient(#efd798, #ebcf82);
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 45px;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.instructions {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+.notes-container {
+    flex-basis: 1000px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fcfcfc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 
+                0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.notes-list {
+    width: 90%;
+    min-height: 57px;
+    background-image: repeating-linear-gradient(
+        #a7d3ff 0px,
+        #a7d3ff 1px,
+        transparent 2px,
+        transparent 55px
+    );
+    margin: 0 auto;
+    padding-bottom: 2px;
+    text-align: left;
+    counter-reset: listCounter;
+}
+
+.note {
+    line-height: 2.2;
+    animation: fadeInUp 400ms linear;
+}
+
+.note::before {
+    color: #26383a;
+    content: counter(listCounter) ". ";
+    counter-increment: listCounter;
+}
+
+.note:focus {
+    cursor: text;
+}
+
+.btn-save {
+    font-family: inherit;
+    font-size: inherit;
+    color: #fff;
+    background-color: #999;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 5px 25px;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+.unsaved {
+    background-color: #40ad40;
+    animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.07);
+    }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <!-- 
+
+Please enable your microphone.
+
+Please close any other tabs/windows containing speech API projects, even if only showing the preview window. 
+
+-->
+
+<div class="notes-container">
+    <h1>Take Notes with Your Voice</h1>
+    <ul class="instructions">
+        <li>Speak and your words will appear below!</li>
+        <li>Click on any note to edit or delete it.</li>
+        <li>Click the 'Save' button to save your notes.</li>
+    </ul>
+    <ol class="notes-list"></ol>
+    <button class="btn-save">Save</button>
+</div>
+  
+    <script id="rendered-js" >
+//DOM load event
+window.addEventListener("DOMContentLoaded", () => {
+
+  //Set speech recognition fallback
+  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const recognition = new SpeechRecognition(),
+  notes = document.querySelector('.notes-list'),
+  saveBtn = document.querySelector('.btn-save'),
+  createNote = (transcript, newNote = true) => {
+    //Create list item element
+    const note = document.createElement('li');
+
+    //Add attributes to note
+    note.textContent = transcript;
+    note.classList.add('note');
+    note.setAttribute('contenteditable', '');
+
+    //Add note to notes list
+    notes.appendChild(note);
+
+    //Check save button class
+    if (newNote && !saveBtn.classList.contains('unsaved')) saveBtn.classList.add('unsaved');
+  },
+  saveNotes = () => {
+    //Get notes
+    const noteList = document.querySelectorAll('.note');
+
+    if (noteList.length > 0) {
+      //Store notes in local storage
+      localStorage.setItem('notes', Array.from(noteList).map(note => note.textContent).join(', '));
+    } else {
+      //Delete notes entry from local storage
+      if (localStorage.getItem('notes') !== null) localStorage.removeItem('notes');
+    }
+
+    //Check save button class
+    if (saveBtn.classList.contains('unsaved')) saveBtn.classList.remove('unsaved');
+  },
+  loadNotes = () => {
+    //Check if notes exist in local storage
+    if (localStorage.getItem('notes') !== null) {
+      //Get notes from local storage
+      const noteList = localStorage.getItem('notes').split(', ');
+
+      //Display notes
+      noteList.forEach(note => createNote(note, false));
+    }
+  },
+  checkNoteLength = e => {
+    //Check if note should be deleted
+    if (e.target.textContent.length === 0) e.target.remove();
+
+    //Check save button class
+    if (!saveBtn.classList.contains('unsaved')) saveBtn.classList.add('unsaved');
+  };
+
+  notes.addEventListener('keyup', e => checkNoteLength(e));
+
+  saveBtn.addEventListener('click', () => saveNotes());
+
+  recognition.addEventListener('result', e => createNote(e.results[0][0].transcript));
+
+  recognition.addEventListener('end', recognition.start);
+
+  recognition.start();
+
+  loadNotes();
+});
+  </script>
+
+  
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Continuous Numbering of Separate Ordered Lists with CSS Counters</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/OPMeMxW">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+  
+  
+<style>
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
+body {
+  font-family: "Indie Flower", cursive;
+  letter-spacing: 0.1rem;
+  background-image: linear-gradient(90deg, #e8b6b6, 2px, rgba(255,255,255,0), 2px, rgba(255,255,255,0)), linear-gradient(0, #d9eaf3, 1px, rgba(255,255,255,0), 2px, rgba(255,255,255,0));
+  background-position: 4rem 0;
+  background-size: 100% 2.4rem;
+  color: #111;
+  padding: 2.2rem 0 0 5rem;  
+  white-space: nowrap;
+
+  /* Initialize Counter */
+  counter-reset: listCounter;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  border-bottom: 2px solid #111;
+}
+
+.continuous-list {
+  font-size: 1.8rem;
+  font-weight: 400;
+  padding-left: 0.5rem;
+  margin-bottom: 2.8rem;
+}
+
+.continuous-list li {
+  margin-bottom: 0.6rem;
+}
+
+.continuous-list li::before {  
+  content: counter(listCounter) ". ";  
+  counter-increment: listCounter;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <h1>Shopping List</h1>
+
+<h2>Food</h2>
+
+<ol class="continuous-list">
+  <li>Bread</li>
+  <li>Eggs</li>
+  <li>Apples</li>
+  <li>Cereal</li>
+  <li>Canned Soup</li>
+  <li>Frozen Pizza</li>
+  <li>Chocolate</li>
+</ol>
+
+<h2>Drink</h2>
+
+<ol class="continuous-list">
+  <li>Soda</li>
+  <li>Milk</li>
+  <li>Bottled Water</li>
+  <li>Beer</li>
+  <li>Wine</li>
+</ol>
+
+<h2>Toiletries</h2>
+
+<ol class="continuous-list">
+  <li>Toothpaste</li>
+  <li>Toilet Paper</li>
+  <li>Razors</li>
+  <li>Soap</li>
+</ol>
+  
+  
+  
+</body>
+
+</html>

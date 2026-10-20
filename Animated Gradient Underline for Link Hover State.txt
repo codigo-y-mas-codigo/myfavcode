@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Animated Gradient Underline for Link Hover State</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/RNrzrLr">
+  
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+  
+  
+<style>
+@import url(https://fonts.googleapis.com/css?family=Great+Vibes);
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	min-height: 100vh;
+	padding: 1em;
+	background-color: #fff;
+
+	/* Link color variable containing RGB value */
+	--link-color: 102, 153, 255;
+}
+
+p {
+	font-family: Arial, sans-serif;
+	font-size: calc(1em + 1.5vw);
+	margin-bottom: .8em;
+	color: #222;
+}
+
+a {
+	position: relative;
+	display: inline-block;
+	font-family: "Great Vibes", serif;
+	font-size: calc(1.5em + 5vw);
+	text-decoration: none;
+	color: rgb(var(--link-color));
+}
+
+a:hover::after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+
+	/* Adjust height and bottom values to work with selected font */
+	height: .05em;
+	bottom: .1em;
+
+	/* Create gradient */
+	background-image: linear-gradient(
+		to right,
+		transparent 0%,
+		rgba(var(--link-color), .6) 30%,
+		rgba(var(--link-color), .7) 50%,
+		rgba(var(--link-color), .6) 70%,
+		transparent 100%
+	);
+
+	/* Set-up fade-in animation */
+	opacity: 0;
+	animation: fadeIn 400ms ease-out forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+	100% {
+		opacity: 1;
+	}
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <p>Hover over link to see animated gradient underline:</p>
+<a href="#">link gradient underline</a>
+  
+  
+  
+</body>
+
+</html>

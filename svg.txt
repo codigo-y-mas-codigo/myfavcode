@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>CodePen - A Pen by luis</title>
+
+    <link rel="canonical" href="https://codepen.io/helloluis/pen/gOzVjxp">
+  
+  
+  
+  
+<style>
+:root {
+  --ink: green;
+}
+
+img {
+  --ink: blue;
+  color: red;
+}
+
+body {
+  color: red;
+}
+
+.logo {
+  background-color: #666;
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  width: 100%;
+  aspect-ratio: 271/189;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="logo" style="--mask:url('https://www.xbr.pw/go/icon-xbrpw/ico-estudiante-secundaria.svg');"></div>
+  
+  
+  
+</body>
+
+</html>

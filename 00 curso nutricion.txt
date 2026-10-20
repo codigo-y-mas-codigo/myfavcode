@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es" class="">
+<!-- La clase 'dark' se añadirá aquí con JS -->
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Curso: Mitos y Realidades de la Nutrición Holística</title>
+
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.2/dist/vis-network.min.js"></script>
+
+ <style>
+  :root {
+   --bg-light: #f8f9fa;
+   --text-light: #2D3B36;
+   --title-color-light: #2B563E;
+   --subtitle-color-light: #4A7862;
+   --card-bg-light: white;
+   --bg-dark: #1a202c;
+   --text-dark: #e2e8f0;
+   --title-color-dark: #68d391;
+   --subtitle-color-dark: #9ae6b4;
+   --card-bg-dark: #2d3748;
+   /* Colores para los fondos de Mito/Realidad - MODO CLARO */
+   --myth1-start: #b64e97;
+   --myth1-end: #8a3b87;
+   --reality1-start: #3b8a69;
+   --reality1-end: #2d6b51;
+   --myth2-start: #e67e22;
+   --myth2-end: #d35400;
+   --reality2-start: #2980b9;
+   --reality2-end: #1a5276;
+   --myth3-start: #4caf50;
+   --myth3-end: #2e7d32;
+   --reality3-start: #673ab7;
+   --reality3-end: #4527a0;
+  }
+
+  html.dark {
+   /* Versiones atenuadas/oscuras para el Dark Mode */
+   --myth1-start: #5c1a4d;
+   --myth1-end: #3b1239;
+   --reality1-start: #1e4a36;
+   --reality1-end: #133023;
+   --myth2-start: #7c4412;
+   --myth2-end: #693301;
+   --reality2-start: #164360;
+   --reality2-end: #0c2a3d;
+   --myth3-start: #235d25;
+   --myth3-end: #123d14;
+   --reality3-start: #391f69;
+   --reality3-end: #261545;
+  }
+
+  body,
+  html {
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+   scroll-behavior: smooth;
+   background-color: var(--bg-light);
+   color: var(--text-light);
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .slide-section {
+   width: 100%;
+   min-height: 100vh;
+   font-family: 'Open Sans', sans-serif;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  html.dark .slide-section {
+   border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #progress-container {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 8px;
+   background-color: #e5e7eb;
+   z-index: 1000;
+  }
+
+  html.dark #progress-container {
+   background-color: #4a5568;
+  }
+
+  #progress-bar {
+   height: 100%;
+   width: 0%;
+   background: linear-gradient(90deg, #48bb78, #2B563E);
+   transition: width 0.1s linear;
+  }
+
+  #dark-mode-toggle {
+   position: fixed;
+   bottom: 2rem;
+   right: 2rem;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: var(--card-bg-light);
+   color: var(--text-light);
+   border: 2px solid var(--text-light);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   z-index: 1000;
+   transition: all 0.3s ease;
+  }
+
+  html.dark #dark-mode-toggle {
+   background-color: var(--card-bg-dark);
+   color: var(--text-dark);
+   border-color: var(--text-dark);
+  }
+
+  #dark-mode-toggle:hover {
+   transform: scale(1.1);
+  }
+
+  #dark-mode-toggle .icon {
+   font-size: 24px;
+  }
+
+  .sun-icon {
+   display: block;
+  }
+
+  .moon-icon {
+   display: none;
+  }
+
+  html.dark .sun-icon {
+   display: none;
+  }
+
+  html.dark .moon-icon {
+   display: block;
+  }
+
+  .title {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 700;
+   color: var(--title-color-light);
+  }
+
+  .subtitle {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 500;
+   color: var(--subtitle-color-light);
+  }
+
+  html.dark .title {
+   color: var(--title-color-dark);
+  }
+
+  html.dark .subtitle {
+   color: var(--subtitle-color-dark);
+  }
+
+  .slide-container-01 {
+   background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80');
+   background-size: cover;
+   background-position: center;
+  }
+
+  html.dark .slide-container-01 {
+   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80');
+   background-size: cover;
+   background-position: center;
+  }
+
+  .bg-patterned {
+   background-color: var(--bg-light);
+   background-image: radial-gradient(circle at 10% 90%, rgba(71, 129, 109, 0.07) 0%, transparent 30%), radial-gradient(circle at 90% 10%, rgba(71, 129, 109, 0.07) 0%, transparent 30%);
+  }
+
+  html.dark .bg-patterned {
+   background-image: radial-gradient(circle at 10% 90%, rgba(104, 211, 145, 0.07) 0%, transparent 30%), radial-gradient(circle at 90% 10%, rgba(104, 211, 145, 0.07) 0%, transparent 30%);
+  }
+
+  .myth-section,
+  .reality-section-1,
+  .myth-section-2,
+  .reality-section-2,
+  .myth-section-3,
+  .reality-section-3 {
+   transition: background 0.3s ease;
+  }
+
+  .myth-section {
+   background: linear-gradient(135deg, var(--myth1-start), var(--myth1-end));
+   color: white;
+  }
+
+  .reality-section-1 {
+   background: linear-gradient(135deg, var(--reality1-start), var(--reality1-end));
+   color: white;
+  }
+
+  .myth-section-2 {
+   background: linear-gradient(135deg, var(--myth2-start), var(--myth2-end));
+   color: white;
+  }
+
+  .reality-section-2 {
+   background: linear-gradient(135deg, var(--reality2-start), var(--reality2-end));
+   color: white;
+  }
+
+  .myth-section-3 {
+   background: linear-gradient(135deg, var(--myth3-start), var(--myth3-end));
+   color: white;
+  }
+
+  .reality-section-3 {
+   background: linear-gradient(135deg, var(--reality3-start), var(--reality3-end));
+   color: white;
+  }
+
+  .point-box {
+   background-color: rgba(255, 255, 255, 0.9);
+   transition: background-color 0.3s ease, border 0.3s ease;
+  }
+
+  html.dark .point-box {
+   background-color: rgba(0, 0, 0, 0.25);
+   border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .reflection-box {
+   background-color: var(--card-bg-light);
+  }
+
+  html.dark .reflection-box {
+   background-color: var(--card-bg-dark);
+  }
+
+  .insight-box,
+  .category-card,
+  .learning-card,
+  .takeaway-card {
+   background-color: var(--card-bg-light);
+  }
+
+  html.dark .insight-box,
+  html.dark .category-card,
+  html.dark .learning-card,
+  html.dark .takeaway-card {
+   background-color: var(--card-bg-dark);
+  }
+
+  #network {
+   border: 1px solid #f0f0f0;
+   background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  html.dark #network {
+   border-color: #4a5568;
+   background-color: rgba(45, 55, 72, 0.7);
+  }
+
+  .flex-container-split {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   flex-grow: 1;
+  }
+
+  @media (min-width: 768px) {
+   .flex-container-split {
+    flex-direction: row;
+   }
+  }
+ </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900">
+
+ <div id="progress-container">
+  <div id="progress-bar"></div>
+ </div>
+ <div id="dark-mode-toggle" title="Toggle Dark Mode">
+  <i class="fas fa-sun sun-icon icon"></i><i class="fas fa-moon moon-icon icon"></i>
+ </div>
+
+ <main>
+  <!-- Diapositivas 1 a 2 sin cambios -->
+  <section id="slide-1" class="slide-section slide-container-01">
+   <div class="main-content text-center z-10 p-4">
+    <h1 class="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl">Mitos y Realidades de la <br class="hidden sm:block">Nutrición Holística</h1>
+    <div class="w-24 h-1 bg-green-700 mx-auto my-6"></div>
+    <h2 class="subtitle text-xl sm:text-2xl md:text-3xl">Introducción Crítica a un Enfoque Integral</h2>
+   </div>
+  </section>
+  <section id="slide-2" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-6xl flex flex-col items-center">
+    <h1 class="title text-2xl md:text-4xl mb-2 text-center">Un Enfoque Integral: Cuerpo, Mente y Espíritu</h1>
+    <p class="text-base md:text-lg text-center mb-8 max-w-3xl text-gray-700 dark:text-gray-300">La nutrición holística considera la interconexión de todos los aspectos del individuo para optimizar el bienestar.</p>
+    <div class="relative w-full h-auto md:h-96 flex items-center justify-center">
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center w-full max-w-4xl">
+      <div class="flex flex-col items-center">
+       <div class="w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-green-300 to-green-500 shadow-lg"><i class="fas fa-brain text-5xl text-white"></i></div>
+       <h3 class="font-bold text-xl mt-4 text-gray-800 dark:text-gray-100">Mente</h3>
+       <p class="text-gray-600 dark:text-gray-400">Pensamientos, emociones, estrés.</p>
+      </div>
+      <div class="flex flex-col items-center">
+       <div class="w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-green-500 to-green-700 shadow-lg"><i class="fas fa-seedling text-5xl text-white"></i></div>
+       <h3 class="font-bold text-xl mt-4 text-gray-800 dark:text-gray-100">Espíritu</h3>
+       <p class="text-gray-600 dark:text-gray-400">Conexiones, propósito, entorno.</p>
+      </div>
+      <div class="flex flex-col items-center">
+       <div class="w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600 shadow-lg"><i class="fas fa-walking text-5xl text-white"></i></div>
+       <h3 class="font-bold text-xl mt-4 text-gray-800 dark:text-gray-100">Cuerpo</h3>
+       <p class="text-gray-600 dark:text-gray-400">Alimentación, actividad, sueño.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Diapositiva 3: Mito 1 (CORREGIDA) -->
+  <section id="slide-3" class="slide-section p-0">
+   <div class="w-full flex flex-col h-full">
+    <div class="w-full bg-gray-100 dark:bg-gray-800 py-4 px-4">
+     <h1 class="title text-2xl md:text-4xl text-center">Mito 1: Los Superalimentos son Curas Milagrosas</h1>
+    </div>
+    <div class="flex-container-split">
+     <div class="myth-section w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">MITO</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-pills text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-purple-800 dark:text-purple-300">Superalimentos como "curas milagrosas"</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-purple-800 dark:text-purple-300">Nutrientes exóticos y caros = salud garantizada</p>
+       </div>
+      </div>
+     </div>
+     <div class="reality-section-1 w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">REALIDAD</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-seedling text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-green-800 dark:text-green-300">Variedad y balance nutricional es clave</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-green-800 dark:text-green-300">Alimentos integrales y accesibles son suficientes</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="w-full bg-gray-100 dark:bg-gray-800 p-4 md:p-6">
+     <div class="reflection-box mx-auto max-w-3xl">
+      <h3 class="text-lg md:text-xl font-bold text-green-800 dark:text-green-300 mb-2">Reflexión:</h3>
+      <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Prioriza la variedad y densidad nutricional en tu dieta diaria con alimentos comunes y accesibles.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Diapositiva 4: Mito 2 (CORREGIDA) -->
+  <section id="slide-4" class="slide-section p-0">
+   <div class="w-full flex flex-col h-full">
+    <div class="w-full bg-gray-100 dark:bg-gray-800 py-4 px-4">
+     <h1 class="title text-2xl md:text-4xl text-center">Mito 2: Dieta Holística = Pérdida de Peso Segura</h1>
+    </div>
+    <div class="flex-container-split">
+     <div class="myth-section-2 w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">MITO</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-weight text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-yellow-900 dark:text-yellow-200">Cualquier dieta "holística" garantiza pérdida de peso</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-yellow-900 dark:text-yellow-200">Resultados rápidos y permanentes sin esfuerzo</p>
+       </div>
+      </div>
+     </div>
+     <div class="reality-section-2 w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">REALIDAD</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-running text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-blue-800 dark:text-blue-300">Múltiples factores afectan el peso</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-blue-800 dark:text-blue-300">Balance energético + consistencia = resultados</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="w-full bg-gray-100 dark:bg-gray-800 p-4 md:p-6">
+     <div class="reflection-box mx-auto max-w-3xl">
+      <h3 class="text-lg md:text-xl font-bold text-blue-800 dark:text-blue-300 mb-2">Reflexión:</h3>
+      <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Un enfoque holístico promueve hábitos saludables que <span class="font-bold">pueden</span> ayudar con el manejo del peso, pero no es una fórmula mágica universal.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Diapositiva 5: Mito 3 (CORREGIDA) -->
+  <section id="slide-5" class="slide-section p-0">
+   <div class="w-full flex flex-col h-full">
+    <div class="w-full bg-gray-100 dark:bg-gray-800 py-4 px-4">
+     <h1 class="title text-2xl md:text-4xl text-center">Mito 3: Natural Siempre Significa Seguro</h1>
+    </div>
+    <div class="flex-container-split">
+     <div class="myth-section-3 w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">MITO</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-leaf text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-green-800 dark:text-green-300">"Natural" = seguro para todos</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-green-800 dark:text-green-300">Sin efectos secundarios ni interacciones</p>
+       </div>
+      </div>
+     </div>
+     <div class="reality-section-3 w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center">REALIDAD</h2>
+      <div class="flex justify-center mb-8">
+       <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-prescription-bottle text-white text-6xl"></i></div>
+      </div>
+      <div class="space-y-4">
+       <div class="point-box">
+        <p class="font-semibold text-purple-800 dark:text-purple-300">"Natural" no es término regulado</p>
+       </div>
+       <div class="point-box">
+        <p class="font-semibold text-purple-800 dark:text-purple-300">Potencial de interacciones medicamentosas</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="w-full bg-gray-100 dark:bg-gray-800 p-4 md:p-6">
+     <div class="reflection-box mx-auto max-w-3xl">
+      <h3 class="text-lg md:text-xl font-bold text-purple-800 dark:text-purple-300 mb-2">Reflexión:</h3>
+      <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Consulta a un profesional de salud calificado antes de tomar suplementos. La base siempre debe ser una alimentación completa.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Resto de diapositivas con clases dark: aplicadas para consistencia -->
+  <section id="slide-6" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-6xl flex flex-col items-center">
+    <h1 class="title text-4xl mb-4 text-center">Percepción Común vs. Evidencia Científica</h1>
+    <div class="w-full flex flex-col md:flex-row items-center gap-8">
+     <div class="w-full md:w-2/3 h-80 md:h-96"><canvas id="comparisonChart"></canvas></div>
+     <div class="w-full md:w-1/3 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+      <h3 class="subtitle text-xl mb-4">Claves</h3>
+      <div class="insight-box border-l-4 border-red-500 p-3 mb-3">
+       <p class="text-sm text-gray-700 dark:text-gray-300">Mayor brecha = Mayor desconexión.</p>
+      </div>
+      <div class="insight-box border-l-4 border-blue-500 p-3 mb-3">
+       <p class="text-sm text-gray-700 dark:text-gray-300">Prácticas populares pueden tener escaso respaldo.</p>
+      </div>
+      <div class="insight-box border-l-4 border-green-500 p-3">
+       <p class="text-sm text-gray-700 dark:text-gray-300">Moderación y personalización se alinean con la evidencia.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="slide-7" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-6xl flex flex-col items-center">
+    <h1 class="title text-4xl mb-2 text-center">La Interconexión: Más Allá del Plato</h1>
+    <p class="text-gray-600 dark:text-gray-300 text-lg mb-8 text-center">El bienestar holístico es una red de factores interdependientes.</p>
+    <div id="network" class="w-full h-96 md:h-[60vh] rounded-lg shadow-lg"></div>
+   </div>
+  </section>
+  <section id="slide-8" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-7xl flex flex-col items-center">
+    <h1 class="title text-4xl mb-8 text-center">Semáforo de Prácticas Nutricionales</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+     <div class="category-card p-6 flex flex-col items-center border-t-8 border-green-500 shadow-lg">
+      <div class="w-24 h-24 rounded-full bg-green-500 flex items-center justify-center mb-4"><i class="fas fa-check text-5xl text-white"></i></div>
+      <h2 class="text-2xl font-bold text-green-700 dark:text-green-300 text-center">Recomendadas</h2>
+      <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+       <li>Alimentos integrales</li>
+       <li>Hidratación</li>
+       <li>Manejo del estrés</li>
+      </ul>
+     </div>
+     <div class="category-card p-6 flex flex-col items-center border-t-8 border-yellow-500 shadow-lg">
+      <div class="w-24 h-24 rounded-full bg-yellow-500 flex items-center justify-center mb-4"><i class="fas fa-exclamation text-5xl text-white"></i></div>
+      <h2 class="text-2xl font-bold text-yellow-700 dark:text-yellow-300 text-center">Con Precaución</h2>
+      <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+       <li>Ayuno intermitente</li>
+       <li>Suplementos específicos</li>
+       <li>Dietas de exclusión</li>
+      </ul>
+     </div>
+     <div class="category-card p-6 flex flex-col items-center border-t-8 border-red-500 shadow-lg">
+      <div class="w-24 h-24 rounded-full bg-red-500 flex items-center justify-center mb-4"><i class="fas fa-times text-5xl text-white"></i></div>
+      <h2 class="text-2xl font-bold text-red-700 dark:text-red-400 text-center">Cuestionables</h2>
+      <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 dark:text-gray-300">
+       <li>Dietas "detox" extremas</li>
+       <li>Megadosis de vitaminas</li>
+       <li>Curas milagrosas</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="slide-9" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-6xl flex flex-col items-center">
+    <h1 class="title text-5xl mb-3 text-center">¿Qué Aprenderás Aquí?</h1>
+    <h2 class="subtitle text-2xl mb-10 text-center">Habilidades Clave</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+     <div class="learning-card p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+      <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mb-4"><i class="fas fa-search text-5xl text-white"></i></div>
+      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Pensamiento Crítico</h3>
+      <p class="text-gray-600 dark:text-gray-400">Evaluar fuentes.</p>
+     </div>
+     <div class="learning-card p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+      <div class="w-24 h-24 bg-purple-500 rounded-full flex items-center justify-center mb-4"><i class="fas fa-balance-scale text-5xl text-white"></i></div>
+      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Discernir Mitos</h3>
+      <p class="text-gray-600 dark:text-gray-400">Basarse en evidencia.</p>
+     </div>
+     <div class="learning-card p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+      <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mb-4"><i class="fas fa-utensils text-5xl text-white"></i></div>
+      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Visión Integral</h3>
+      <p class="text-gray-600 dark:text-gray-400">Comprender interconexión.</p>
+     </div>
+     <div class="learning-card p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+      <div class="w-24 h-24 bg-yellow-500 rounded-full flex items-center justify-center mb-4"><i class="fas fa-comments text-5xl text-white"></i></div>
+      <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">Comunicación</h3>
+      <p class="text-gray-600 dark:text-gray-400">Dialogar con profesionales.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="slide-10" class="slide-section bg-patterned w-full p-4 md:p-12">
+   <div class="w-full max-w-6xl flex flex-col items-center">
+    <h1 class="title text-5xl mb-10 text-center">Ideas Clave para Llevar Contigo</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mb-10">
+     <div class="takeaway-card p-8 flex items-center gap-6 shadow-lg">
+      <div class="w-20 h-20 bg-blue-500 rounded-full flex-shrink-0 flex items-center justify-center"><i class="fas fa-puzzle-piece text-4xl text-white"></i></div>
+      <div>
+       <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">La salud es un todo interconectado.</h3>
+       <p class="text-gray-600 dark:text-gray-400">Cuerpo, mente y espíritu.</p>
+      </div>
+     </div>
+     <div class="takeaway-card p-8 flex items-center gap-6 shadow-lg">
+      <div class="w-20 h-20 bg-green-500 rounded-full flex-shrink-0 flex items-center justify-center"><i class="fas fa-balance-scale text-4xl text-white"></i></div>
+      <div>
+       <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">El equilibrio es clave.</h3>
+       <p class="text-gray-600 dark:text-gray-400">Combina sabiduría y ciencia.</p>
+      </div>
+     </div>
+     <div class="takeaway-card p-8 flex items-center gap-6 shadow-lg">
+      <div class="w-20 h-20 bg-yellow-500 rounded-full flex-shrink-0 flex items-center justify-center"><i class="fas fa-shield-alt text-4xl text-white"></i></div>
+      <div>
+       <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Sé crítico.</h3>
+       <p class="text-gray-600 dark:text-gray-400">Cuestiona afirmaciones extremas.</p>
+      </div>
+     </div>
+     <div class="takeaway-card p-8 flex items-center gap-6 shadow-lg">
+      <div class="w-20 h-20 bg-purple-500 rounded-full flex-shrink-0 flex items-center justify-center"><i class="fas fa-lightbulb text-4xl text-white"></i></div>
+      <div>
+       <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Empodérate con información.</h3>
+       <p class="text-gray-600 dark:text-gray-400">Toma decisiones informadas.</p>
+      </div>
+     </div>
+    </div>
+    <div class="text-center italic text-xl max-w-3xl border-t-2 border-b-2 border-green-200 dark:border-green-800 py-4 text-gray-700 dark:text-gray-300">"La mejor dieta no es una dieta, sino un estilo de vida consciente, basado en evidencia y adaptado a tus necesidades individuales."</div>
+   </div>
+  </section>
+ </main>
+
+ <script>
+  const darkModeToggle = document.getElementById("dark-mode-toggle"),
+   htmlEl = document.documentElement;
+  localStorage.getItem("mode") === "dark" && htmlEl.classList.add("dark"), darkModeToggle.addEventListener("click", () => {
+   htmlEl.classList.toggle("dark"), localStorage.setItem("mode", htmlEl.classList.contains("dark") ? "dark" : "light"), window.comparisonChartInstance && window.comparisonChartInstance.destroy(), renderComparisonChart()
+  });
+  const progressBar = document.getElementById("progress-bar");
+  window.addEventListener("scroll", () => {
+   const e = (window.pageYOffset || document.documentElement.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+   progressBar.style.width = e + "%"
+  });
+
+  function renderComparisonChart() {
+   const e = document.getElementById("comparisonChart")?.getContext("2d");
+   if (!e) return;
+   const t = document.documentElement.classList.contains("dark"),
+    o = t ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
+    l = t ? "#e2e8f0" : "#333",
+    a = t ? "#a0aec0" : "#666";
+   window.comparisonChartInstance = new Chart(e, {
+    type: "radar",
+    data: {
+     labels: ["Ayuno Extremo", "Detox de Jugos", "Dieta Sin Gluten", 'Suplementos "Naturales"', "Superalimentos", "Dietas Anti-Inflamatorias"],
+     datasets: [{
+      label: "Popularidad",
+      data: [85, 90, 75, 80, 90, 70],
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(255, 99, 132, 1)",
+      borderWidth: 2
+     }, {
+      label: "Evidencia Científica",
+      data: [45, 20, 30, 40, 35, 55],
+      backgroundColor: "rgba(54, 162, 235, 0.2)",
+      borderColor: "rgba(54, 162, 235, 1)",
+      borderWidth: 2
+     }]
+    },
+    options: {
+     responsive: !0,
+     maintainAspectRatio: !1,
+     scales: {
+      r: {
+       beginAtZero: !0,
+       max: 100,
+       grid: {
+        color: o
+       },
+       pointLabels: {
+        color: l,
+        font: {
+         size: 12
+        }
+       },
+       ticks: {
+        color: a,
+        backdropColor: "transparent"
+       }
+      }
+     },
+     plugins: {
+      legend: {
+       labels: {
+        color: l
+       }
+      }
+     }
+    }
+   })
+  }
+  renderComparisonChart();
+  const networkContainer = document.getElementById("network");
+  networkContainer && new vis.Network(networkContainer, {
+   nodes: new vis.DataSet([{
+    id: 1,
+    label: "Bienestar",
+    color: "#e74c3c",
+    size: 35
+   }, {
+    id: 2,
+    label: "Nutrición",
+    color: "#47816d"
+   }, {
+    id: 3,
+    label: "Mente",
+    color: "#8e44ad"
+   }, {
+    id: 4,
+    label: "Actividad",
+    color: "#3498db"
+   }, {
+    id: 5,
+    label: "Entorno",
+    color: "#e67e22"
+   }]),
+   edges: new vis.DataSet([{
+    from: 1,
+    to: 2
+   }, {
+    from: 1,
+    to: 3
+   }, {
+    from: 1,
+    to: 4
+   }, {
+    from: 1,
+    to: 5
+   }, {
+    from: 2,
+    to: 3,
+    dashes: !0
+   }, {
+    from: 3,
+    to: 4,
+    dashes: !0
+   }, {
+    from: 4,
+    to: 5,
+    dashes: !0
+   }, {
+    from: 5,
+    to: 2,
+    dashes: !0
+   }])
+  }, {
+   nodes: {
+    font: {
+     color: "white"
+    },
+    shape: "circle",
+    size: 25
+   },
+   edges: {
+    color: {
+     inherit: "from"
+    },
+    arrows: {
+     to: {
+      enabled: !0,
+      scaleFactor: .5
+     }
+    }
+   },
+   physics: {
+    stabilization: !0,
+    barnesHut: {
+     gravitationalConstant: -5e3
+    }
+   }
+  });
+ </script>
+</body>
+
+</html>

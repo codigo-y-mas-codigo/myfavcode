@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>jQuery Greeting depending on the time of day</title>
+
+    <link rel="canonical" href="https://codepen.io/helloluis/pen/PoxRadZ">
+  
+  
+  
+  
+<style>
+body {
+  font-family: sans-serif;
+  background: white;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.greeting {
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <span class="greeting"></span>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script id="rendered-js" >
+var thehours = new Date().getHours();
+	var themessage;
+	var morning = ('Buenos días');
+	var afternoon = ('Buenas tardes');
+	var evening = ('Buenas noches');
+
+	if (thehours >= 0 && thehours < 12) {
+		themessage = morning; 
+
+	} else if (thehours >= 12 && thehours < 17) {
+		themessage = afternoon;
+
+	} else if (thehours >= 17 && thehours < 24) {
+		themessage = evening;
+	}
+
+	$('.greeting').append(themessage);
+  </script>
+
+  
+</body>
+
+</html>

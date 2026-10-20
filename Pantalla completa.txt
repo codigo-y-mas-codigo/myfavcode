@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Pantalla completa</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/myrZPGz">
+  
+  
+  
+  
+
+  
+  
+  
+</head>
+
+<body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Esfera del Dragón 3D</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      display: block;
+    }
+    .btn {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 20px;
+      background: rgba(255, 215, 0, 0.7);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 100;
+    }
+    .btn:hover {
+      background: rgba(255, 215, 0, 1);
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas_container"></div>
+  <button class="btn" id="fullscreenBtn">Pantalla Completa</button>
+
+  <script src='https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/three@0.121.1/examples/js/controls/OrbitControls.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js'></script>
+
+  <script>
+    // Variables globales
+    let renderer, scene, camera, dragonBall, stars, controls, clock, container;
+    let noise = new SimplexNoise();
+    let blobScale = 3;
+    let delta = 0;
+
+    // Texturas (reemplaza estas URLs con imágenes de la Esfera del Dragón)
+    const dragonBallTexture = 'https://i.ibb.co/XYZ1234/dragon-ball-texture.jpg'; // Textura de la esfera
+    const starTexture = 'https://i.ibb.co/ABC5678/star-texture.png'; // Textura para estrellas
+
+    init();
+    limitFPS(1 / 60);
+
+    function init() {
+      // Configuración básica de Three.js
+      container = document.getElementById("canvas_container");
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.01, 1000);
+      camera.position.set(0, 0, 200);
+
+      // Luces
+      const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffcc99, 1);
+      directionalLight.position.set(0, 50, -20);
+      scene.add(directionalLight);
+
+      // Renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      clock = new THREE.Clock();
+
+      // Controles de órbita
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 2;
+      controls.maxDistance = 350;
+      controls.minDistance = 150;
+      controls.enablePan = false;
+
+      // Cargar texturas
+      const textureLoader = new THREE.TextureLoader();
+      const dragonBallTex = textureLoader.load(dragonBallTexture);
+      const starTex = textureLoader.load(starTexture);
+
+      // Crear la Esfera del Dragón
+      const dragonBallGeometry = new THREE.IcosahedronGeometry(30, 10);
+      const dragonBallMaterial = new THREE.MeshPhongMaterial({
+        map: dragonBallTex,
+        shininess: 50,
+        specular: 0x111111,
+        emissive: 0xff9900, // Brillo naranja/dorado
+        emissiveIntensity: 0.3
+      });
+      dragonBall = new THREE.Mesh(dragonBallGeometry, dragonBallMaterial);
+      scene.add(dragonBall);
+
+      // Añadir efecto de brillo (aura)
+      const auraGeometry = new THREE.SphereGeometry(32, 32, 32);
+      const auraMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffcc00,
+        transparent: true,
+        opacity: 0.3,
+        side: THREE.BackSide
+      });
+      const aura = new THREE.Mesh(auraGeometry, auraMaterial);
+      dragonBall.add(aura); // El aura sigue a la esfera
+
+      // Estrellas de fondo (como en el espacio)
+      const starsGeometry = new THREE.BufferGeometry();
+      const starsMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 1,
+        transparent: true,
+        opacity: 0.8,
+        map: starTex,
+        blending: THREE.AdditiveBlending
+      });
+
+      const starsVertices = [];
+      for (let i = 0; i < 2000; i++) {
+        const x = (Math.random() - 0.5) * 2000;
+        const y = (Math.random() - 0.5) * 2000;
+        const z = (Math.random() - 0.5) * 2000;
+        starsVertices.push(x, y, z);
+      }
+      starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+      stars = new THREE.Points(starsGeometry, starsMaterial);
+      scene.add(stars);
+
+      // Estrellas de 4 puntas (como las de las esferas del dragón)
+      const starPoints = createStarPoints(7, 10); // 7 estrellas de 4 puntas
+      scene.add(starPoints);
+
+      // Botón de pantalla completa
+      document.getElementById("fullscreenBtn").addEventListener("click", toggleFullscreen);
+    }
+
+    // Crear estrellas de 4 puntas (como las de las esferas)
+    function createStarPoints(total, size) {
+      const group = new THREE.Group();
+      const starTexture = new THREE.TextureLoader().load(starTexture);
+      const material = new THREE.SpriteMaterial({ map: starTexture, color: 0xff0000 });
+
+      for (let i = 0; i < total; i++) {
+        const sprite = new THREE.Sprite(material);
+        sprite.scale.set(size, size, 1);
+        const angle = (i / total) * Math.PI * 2;
+        const radius = 80;
+        sprite.position.set(
+          Math.cos(angle) * radius,
+          Math.sin(angle) * radius,
+          0
+        );
+        group.add(sprite);
+      }
+      return group;
+    }
+
+    // Animación de la esfera (efecto de "latido" o deformación)
+    function animateDragonBall() {
+      const time = Date.now() * 0.0005;
+      dragonBall.geometry.vertices.forEach(function(v) {
+        v.normalize();
+        const distance = 30 + noise.noise3D(
+          v.x + time,
+          v.y + time,
+          v.z + time
+        ) * blobScale;
+        v.multiplyScalar(distance);
+      });
+      dragonBall.geometry.verticesNeedUpdate = true;
+      dragonBall.geometry.normalsNeedUpdate = true;
+      dragonBall.geometry.computeVertexNormals();
+      dragonBall.rotation.y += 0.002;
+    }
+
+    // Animación principal
+    function animate() {
+      animateDragonBall();
+      stars.rotation.y += 0.0005;
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    // Limitar FPS para mejor rendimiento
+    function limitFPS(interval) {
+      requestAnimationFrame(limitFPS.bind(this, interval));
+      delta += clock.getDelta();
+      if (delta > interval) {
+        animate();
+        delta = delta % interval;
+      }
+    }
+
+    // Manejar redimensionamiento de ventana
+    window.addEventListener("resize", () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    // Botón de pantalla completa
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
+  
+  
+  
+</body>
+
+</html>

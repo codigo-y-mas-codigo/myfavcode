@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>CSS Only Animated Light-leak Effect</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/GgZgRVG">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  
+  
+<style>
+@import url("https://fonts.googleapis.com/css?family=Jaldi&display=swap");
+@-webkit-keyframes hero {
+  50% {
+    transform: scale(3) translate(-25vmax, 0%) rotate(12deg);
+    opacity: 1;
+  }
+}
+@keyframes hero {
+  50% {
+    transform: scale(3) translate(-25vmax, 0%) rotate(12deg);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes herolight {
+  50% {
+    transform: scale(3) translate(0%, 0%) rotate(12deg);
+    opacity: 0.6;
+  }
+}
+@keyframes herolight {
+  50% {
+    transform: scale(3) translate(0%, 0%) rotate(12deg);
+    opacity: 0.6;
+  }
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: #7355ce;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__cover {
+  background-color: #7355ce;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+@supports (mix-blend-mode: multiply) {
+  .hero__cover::before, .hero__cover::after {
+    content: "";
+    width: 100vmax;
+    height: 100vmax;
+    position: absolute;
+    top: 0;
+    left: 0;
+    mix-blend-mode: multiply;
+    will-change: transform;
+  }
+  .hero__cover::before {
+    opacity: 0.9;
+    background: radial-gradient(at bottom left, #d847ad, #7852a3, #7852a3);
+    transform: scale(1.5) translate(3vmax, 0vmax) rotate(3deg);
+    will-change: transform, opacity;
+    -webkit-animation: hero 2s ease-in-out;
+            animation: hero 2s ease-in-out;
+  }
+  .hero__cover::after {
+    opacity: 0.3;
+    background: radial-gradient(at top right, #a953ff, #420aea, #5ba9f9, #3d0bf7, #7852a3);
+    mix-blend-mode: luminosity;
+    transform: scale(1.6) translate(0%, 0%) rotate(-7deg);
+    will-change: transform, opacity;
+    -webkit-animation: herolight 2s ease-in-out;
+            animation: herolight 2s ease-in-out;
+  }
+}
+@media not all and (-webkit-min-device-pixel-ratio: 0), not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+    .hero__cover::after {
+      mix-blend-mode: exclusion;
+    }
+  }
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 1.618rem;
+  color: white;
+  max-width: 25.888rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.hero__title {
+  font-size: 48px;
+  font-family: "Jaldi", sans-serif;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="hero hero--home">
+
+	<div class="hero__cover"></div>
+
+	<div class="hero__content">
+		<h1 class="hero__title">CSS Only Animated Light-leak Effect</h1>
+	</div>
+
+</div>
+  
+  
+  
+</body>
+
+</html>

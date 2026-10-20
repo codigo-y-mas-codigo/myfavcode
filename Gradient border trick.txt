@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Gradient border trick</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/emZmYQm">
+  
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  
+  
+<style>
+body {
+  padding: 1.618rem;
+}
+
+.box {
+  padding: 1.618rem;
+  border: 0.25rem solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(120deg, #54e0e4 0%, #ef536d 100%) border-box;
+  border-radius: 1rem;
+}
+
+h1 {
+  margin: 0;
+  line-height: 1;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class="box">
+	<h1>Gradient border trick</h1>
+</div>
+  
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Simple Drag and Drop Test</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/myWRExM">
+  
+  
+  
+  
+<style>
+/* Layout */
+   body {
+	  margin:0;
+	  padding:0;
+	  font-family: sans-serif;
+	  background-image:url(https://i.imgur.com/07t2mb2.gif);
+	  background-repeat:repeat;
+	  color:#ACACAC;
+   }
+   h1 {
+	  margin-bottom:50px;   
+   }
+   #container {
+	  width:960px;
+	  margin:0 auto; 
+	  padding:1em;  
+   }
+   #dragElements {
+	  list-style:none;
+	  padding:0;
+	  margin:0 0 1em;
+	  height:40px;  
+   }
+   #dragElements li {
+	  display:inline-block;
+	  padding:0.5em 1em;
+	  margin:0 1em 1em 0;
+	  border: 1px solid #000000;
+	  border-radius: 6px;
+	  color:#2D2D2D; 
+   }
+   .dragg * {
+      pointer-events: none !important;
+   }
+
+   
+   /* Demo One */
+   #spanText{
+	  color:rgba(248,124,50,1.00);   
+   }
+   #resetBox {
+	  float:right;
+	  background-color:#CBCBCB;  
+   }
+   #resetBox:hover {
+	  background-color:#A3A3A3;
+   }
+   
+   #blueBox {
+	  background-color:#257B95;   
+   }
+   #blueBox:hover {
+	   background-color:#2F95B3;
+	   border:1px solid #2F95B3;
+   }
+   #turquoiseBox {
+	  background-color:#1F8A70;   
+   }
+   #turquoiseBox:hover {
+	  background-color:#33B393;
+	  border:1px solid #33B393;  
+   }
+   #greenBox {
+	  background-color:#BEDB39;   
+   }
+   #greenBox:hover {
+	  background-color:#C8EF17;
+	  border:1px solid #C8EF17;   
+   }
+   #yellowBox {
+	  background-color:#FFE11A;   
+   }
+   #yellowBox:hover {
+	  background-color:#F4FF1A;
+	  border:1px solid #F4FF1A;  
+   }
+   #orangeBox {
+	  background-color:#FD7400;   
+   }
+   #orangeBox:hover {
+	  background-color:#F58900;
+	  border:1px solid #F58900;  
+   }
+
+   #dropAreaBox,
+   #dropAreaText {
+	  border:6px dashed #CFCFCF;
+	  border-radius: 10px;
+	  padding:80px 10px;
+	  text-align:center;
+	  margin-bottom:60px;
+	  color:#ACACAC;
+	  font-size:3em;
+   }
+    
+   .dropBoxHover {
+	   border:6px dashed #000000 !important;
+   }
+
+   .blueBoxHover {
+	   background-color:rgba(21,164,211,0.19);
+	   color:#257B95 !important;
+	   border:6px dashed #257B95 !important;
+   }
+   .turquoiseBoxHover {
+	   background-color:rgba(28,208,163,0.23);
+	   color:#1F8A70 !important;
+	   border:6px dashed #1F8A70 !important;
+   }
+   .greenBoxHover {
+	   background-color:rgba(79,185,36,0.32);
+	   color:#BEDB39 !important;
+	   border:6px dashed #BEDB39 !important;
+   }
+   .yellowBoxHover {
+	   background-color:rgba(249,255,51,0.23);
+	   color:#FFE11A !important;
+	   border:6px dashed #FFE11A !important;
+   }
+   .orangeBoxHover {
+	   background-color:rgba(255,149,19,0.21);
+	   color:#FD7400 !important;
+	   border:6px dashed #FD7400 !important;
+   }
+   
+   pre {
+	margin-top: -30px;  
+   }
+   
+   
+   /* Clearfix Utils */
+  .clearfix {
+	  *zoom: 1; }
+  
+  .clearfix:before,
+  .clearfix:after {
+	  display: table;
+	  line-height: 0;
+	  content: ""; }
+  
+  .clearfix:after {
+	  clear: both; 
+	}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div id="container">
+       <h1>Simple Drag and Drop Test</h1>
+       <p>Drag color box into drop area.</p>
+       
+       <ul id="dragElements" class="clearfix">
+           <li draggable="true" id="blueBox">Blue Box</li>
+           <li draggable="true" id="turquoiseBox">Turquoise box</li>
+           <li draggable="true" id="greenBox">Green box</li>
+           <li draggable="true" id="yellowBox">Yellow box</li>
+           <li draggable="true" id="orangeBox">Orange box</li>
+           <li draggable="true" id="resetBox">Reset box</li>
+       </ul>
+       <div id="dropAreaBox">Drop color box Here!</div>
+       
+       <p>Drag a <span id="spanText">.txt </span> file from your computer onto the drop target.</p>
+       <div id="dropAreaText">Drop a .txt file here</div>
+       <pre></pre>
+       <span></span>
+    </div>
+  
+    <script id="rendered-js" >
+/*
+	*
+	*	Demo 1: Elements
+	*
+	*/
+	
+  var dragElements = document.getElementsByTagName('li');
+	var dropAreaBox = document.getElementById('dropAreaBox');
+	var currentlyDragElement = null;
+	
+	for(var i = 0; i<dragElements.length; i++) {
+		// Event Listener for when the drag interaction starts.
+		dragElements[i].ondragstart = function(event) {
+			event.dataTransfer.effectAllowed = 'move';
+			event.dataTransfer.setData('text', this.innerHTML);
+			currentlyDragElement = this;
+			//event.dataTransfer.setDragImage(event.target, 100,0);
+		}
+		// Event Listener for when the drag interaction finishes.
+		dragElements[i].ondragend = function() {
+		 	currentlyDragElement = null;
+		}
+	};
+	
+	//enable drop area
+	dropAreaBox.ondragover = function(event) {
+	    event.preventDefault();
+		event.dataTransfer.dropEffect = 'move';
+	}
+	
+	//hover effect on drop element
+	dropAreaBox.ondragenter = function(event) {   
+	   this.className = 'dropBoxHover';
+	}
+	dropAreaBox.ondragleave = function(event) {
+	   this.className = '';	
+	}
+	
+	// Event Listener for when the dragged element dropped in the drop zone.
+	dropAreaBox.ondrop = function (event) {
+	    event.preventDefault();
+		event.stopPropagation();
+		var data = event.dataTransfer.getData('text');
+		this.innerHTML = 'Dropped ' + data;
+		
+		// Remove the element from the list.
+		document.getElementsByTagName('ul')[0].removeChild(currentlyDragElement);
+		
+		//hover effect on drop area
+		if(data == "Blue Box") this.className = 'blueBoxHover';
+		else if(data == "Turquoise box") this.className = 'turquoiseBoxHover';
+		else if(data == "Green box") this.className = 'greenBoxHover';
+		else if(data == "Yellow box") this.className = 'yellowBoxHover';
+		else if(data == "Orange box") this.className = 'orangeBoxHover';
+ 
+		if(currentlyDragElement.id == 'resetBox') {
+		   //location.reload();
+       history.go(0);
+		   this.innerHTML = 'Drop a box Here!';
+		}
+	}
+
+	/**
+	*
+	*	Demo 2: text files
+	*
+	*/
+	var dropAreaText = document.getElementById('dropAreaText');
+	var pre = document.getElementsByTagName('pre')[0];
+	var span = document.getElementsByTagName('span')[1];
+	
+    dropAreaText.ondragover = function(e) {
+	    e.preventDefault();
+		e.stopPropagation();
+	}
+	
+	//hover effect on drop element
+	dropAreaText.ondragenter = function(e) {
+	   this.className = 'dropBoxHover';
+	}
+	dropAreaText.ondragleave = function(e) {
+		this.className = '';
+	}
+	
+    dropAreaText.ondrop = function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		this.className = '';
+		var file = event.dataTransfer.files[0];
+		
+		//display information about file
+		pre.innerHTML = 'File name: ' + file.name + '<br>'
+		                + 'File size: ' + file.size + '<br>'
+					        	+ 'File type: ' + file.type + '<br><br>' ;
+		
+		if(file.type == 'text/plain') {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+			  var text = reader.result;
+			  span.innerHTML = '<strong>Context of file: </strong>' + text;
+			  dropAreaText.innerHTML = 'Thank you';
+			  dropAreaText.style.color = '#ACACAC';
+			}
+			reader.readAsText(file);
+		} else {
+			this.innerHTML = 'Wrong format';
+			this.style.color = 'red';
+			span.innerHTML = '';
+		  }
+	}
+  </script>
+
+  
+</body>
+
+</html>

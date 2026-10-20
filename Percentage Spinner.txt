@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Percentage Spinner</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/JoGQGqo">
+  
+  
+  
+  
+<style>
+@import url("https://fonts.googleapis.com/css?family=Dosis:800&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --spacing: 1.618rem;
+  --half-spacing: calc(var(--spacing) / 2);
+  --border-radius: calc(var(--half-spacing) / 2);
+  --color-alpha: #409fff;
+  --color-bravo: #9ACE46;
+  --color-charlie: #cd2828;
+  --color-delta: #ededed;
+  --color-text: #321321;
+  --spinner-background: #e1e5e1;
+  --spinner-highlight: var(--color-alpha);
+  --spinner-complete: var(--color-bravo);
+}
+
+body {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--color-text);
+  padding: calc(var(--spacing) * 2);
+  font-family: "Dosis", sans-serif;
+  line-height: 1.618;
+}
+
+h1 {
+  text-transform: uppercase;
+  margin-bottom: calc(var(--half-spacing) / 4);
+}
+
+h1 + p {
+  margin-top: 0;
+}
+
+svg {
+  height: auto;
+  width: 100%;
+  overflow: visible;
+}
+
+ins {
+  text-decoration: none;
+}
+
+small {
+  font-size: 0.6em;
+}
+
+.card {
+  text-align: center;
+  min-width: calc(var(--spacing) * 10);
+  background-color: white;
+  padding: var(--spacing);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 10px 26px -13px rgba(0, 0, 0, 0.3);
+}
+
+.spinner-container {
+  position: relative;
+  text-align: center;
+  margin: calc(var(--spacing) * 1.5) 0;
+}
+
+.percentage-radial {
+  position: relative;
+  transform: rotate(-90deg);
+  stroke: var(--spinner-background);
+  max-width: calc(var(--spacing) * 6);
+  stroke-width: 1px;
+}
+.percentage-radial__value {
+  stroke: var(--spinner-highlight);
+  stroke-width: 8px;
+  stroke-dasharray: 351.8583772021px;
+  stroke-dashoffset: 351.8583772021px;
+  transition: stroke-dashoffset 100ms, stroke 250ms;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+}
+.percentage-radial__value--complete {
+  stroke: var(--spinner-complete);
+}
+.percentage-radial__value-container {
+  font-size: 2.6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  margin: 0;
+}
+
+.button {
+  border: 0 none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--half-spacing);
+  border-radius: calc(var(--border-radius) * 0.5);
+  background-color: var(--color-alpha);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.75;
+  transition: background-color 250ms;
+  margin-bottom: calc(var(--half-spacing) / 2);
+  cursor: pointer;
+}
+.button[disabled] {
+  background-color: var(--color-delta);
+  color: #CCC;
+  cursor: not-allowed;
+}
+.button:last-of-type {
+  margin-bottom: 0;
+}
+.button--small {
+  font-size: 0.8em;
+  line-height: 1;
+  padding: calc(var(--half-spacing) * 0.75);
+}
+.button--success {
+  background-color: var(--color-bravo);
+}
+.button--cancel {
+  background-color: var(--color-charlie);
+  color: white;
+}
+
+@keyframes spin {
+  33% {
+    transform: rotate(360deg);
+  }
+  66% {
+    transform: rotate(0deg);
+  }
+  99%, 100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <article class="card">
+
+        <h1>Percentage Spinner</h1>
+        <p>By Steven Roberts</p>
+
+        <div class="spinner-container">
+
+            <svg id="js-percentage-radial" class="percentage-radial" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="55.146" fill="none" />
+                <circle id="js-percentage-stroke" class="percentage-radial__value" cx="60" cy="60" r="55.146"
+                    fill="none" />
+            </svg>
+
+            <p class="percentage-radial__value-container">
+                <ins id="js-percentage-value" class="percentage-radial__value">0<small>%</small></ins>
+            </p>
+
+        </div>
+
+        <button id="js-spinner-toggle" class="button">Start</button>
+        <button id="js-cancel-button" class="button button--cancel button--small" disabled>Cancel</button>
+
+    </article>
+  
+    <script id="rendered-js" >
+const value = document.getElementById('js-percentage-value'); // Element the value will be updated
+const stroke = document.getElementById('js-percentage-stroke'); // Element where the stroke will be updated
+const button = document.getElementById('js-spinner-toggle'); // Start/Pause/Resume button element
+const cancel = document.getElementById('js-cancel-button'); // Cancel button element
+let percentage = 0; // Starting percentage
+let animationStopped = true; // Start stop Bool
+
+function updatePercentage() {
+
+    if (animationStopped == true) {
+        return; // If the stop variable is true and stop the function
+    }
+
+    setTimeout(function(e) { // Set timeout used to stagger the increase
+
+        let percentage_converted = percentage / 100; // Convert to decimal
+        let percentage_stroke = 351.858377202 * (1 - percentage_converted); // Work out the new value for the stroke dashoffset
+
+        if(percentage < 100) { // If less than 100
+
+            value.innerHTML = percentage + '<small>%</small>'; // Update the value
+            stroke.style.strokeDashoffset = percentage_stroke; // Update the stroke-dashoffset
+
+            updatePercentage(); // Run the function again
+
+        }
+
+        if (percentage == 100) { // If complete
+            stroke.classList.add('percentage-radial__value--complete'); // Add complete class to stroke
+            value.innerHTML = '🎉'; // Update value to party popper emojii
+            button.innerHTML = 'Complete'; // Change button text to complete
+            button.classList.add('button--success'); // Add success class to button
+            cancel.innerHTML = 'Reset';
+        }
+
+        percentage++; // Add 1 to the percentage
+
+    }, 33); // Timeout length can be updated to speed up or slow down the animation
+
+}
+
+button.addEventListener('click', function () { // On click of the Start/Pause/Resume button
+
+    animationStopped = !animationStopped; // Toggle true/false animationStopped variable
+
+    if (percentage < 100) { // If percentage is less than 100 when the button is clicked
+
+        if (this.innerHTML == 'Start') { // If button text is 'start'
+            this.innerHTML = 'Pause'; // Change button text to 'pause'
+        } else if (this.innerHTML == 'Pause') { // If button text is 'pause'
+            this.innerHTML = 'Resume'; // Change button text to 'resume'
+        } else { // otherwise
+            this.innerHTML = 'Pause'; // Change button text to 'pause'
+        }
+
+        updatePercentage(); // Run the update percentage function
+
+        cancel.disabled = false; // Remove disabled attribute from the cancel button
+
+    }
+
+});
+
+cancel.addEventListener('click', function() { // On click of the cancel button
+
+    animationStopped = true; // Stop the animation the next time updatePercentage Runs
+    percentage = 0; // Reset percentage to 0
+    value.innerHTML = percentage + '<small>%</small>'; // update the value to the on screen to 0%
+    button.innerHTML = 'Start'; // Update button text to say start
+    stroke.style.strokeDashoffset = 351.858377202; // reset stroke-dashoffset
+    cancel.disabled = true; // Disable the cancel button
+
+    // If complete remove the extra classes and change the cancel button text back
+    cancel.innerHTML = 'Cancel';
+    button.classList.remove('button--success');
+    stroke.classList.remove('percentage-radial__value--complete');
+
+});
+  </script>
+
+  
+</body>
+
+</html>

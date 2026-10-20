@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Display HTML as text</title>
+ <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/BaeWbEp">
+ <style>
+  html {
+   background-color: #1D1F20;
+  }
+
+  code {
+   font-family: 'Monaco', monotype;
+   color: white;
+   font-size: 15px;
+  }
+
+  .tag {
+   color: #A7925A;
+   text-transform: lowercase;
+  }
+
+  .attribute-name {
+   color: #DDCA7B;
+  }
+
+  .attribute-value {
+   color: #95B289;
+  }
+
+  /* Modal styles */
+  .modal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0, 0, 0, 0.75);
+  }
+
+  .modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+  }
+
+  .close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+  }
+ </style>
+</head>
+
+<body>
+ <code>
+  <h1>Display HTML as text</h1>
+  <article>
+   <h1>Display HTML as text</h1>
+   <p>This pen takes the content of the first <strong>code</strong> element, and by interpreting the DOM of the element it replaces the rendered elements with the raw HTML code. It also adds some style to it.</p>
+  </article>
+  <figure>
+   <svg width="300" height="300">
+    <circle cx="100" cy="100" r="20" fill="red" />
+    <circle cx="150" cy="150" r="20" fill="lime" />
+    <circle cx="200" cy="200" r="20" fill="blue" />
+   </svg>
+  </figure>
+ </code>
+
+ <!-- Modal Structure -->
+ <div id="modal" class="modal">
+  <div class="modal-content">
+   <span class="close">&times;</span>
+   <div id="modal-body"></div>
+  </div>
+ </div>
+
+ <!-- Button to Open Modal -->
+ <button id="open-modal">View Preview</button>
+
+ <script id="rendered-js">
+  function isInline(node) {
+   return (
+    node.tagName === 'A' ||
+    node.tagName === 'SPAN' ||
+    node.tagName === 'STRONG' ||
+    node.tagName === 'SMALL' ||
+    node.tagName === 'CODE' ||
+    node.tagName === 'LABEL' ||
+    node.tagName === 'INPUT'
+   );
+  }
+
+  function convertAttributestoString(attrs) {
+   let string = '';
+   if (attrs.length === 0) {
+    return string;
+   }
+   for (let i = 0; i < attrs.length; i++) {
+    let attr = attrs[i];
+    string += ` <span class="attribute-name">${attr.name}</span>`;
+    string += `=<span class="attribute-value">"${attr.value}"</span>`;
+   }
+   return string;
+  }
+
+  function convertHTMLtoString(node, level = 0) {
+   let string = '';
+   if (node.nodeType === document.ELEMENT_NODE) {
+    // If not inline then create a new block and add some padding
+    if (isInline(node) !== true) {
+     string += `<div style="padding-left: ${level * 10}px">`;
+    }
+    // Self closing tag
+    if (node.childNodes.length === 0) {
+     string += '<span class="tag">&lt;' + node.tagName + '</span>';
+     string += convertAttributestoString(node.attributes);
+     string += '<span class="tag">/&gt;</span>';
+     // Node with opening and closing tag
+    } else {
+     // Opening tag
+     string += '<span class="tag">&lt;' + node.tagName + '</span>';
+     string += convertAttributestoString(node.attributes);
+     string += '<span class="tag">&gt;' + '</span>';
+     // Content
+     for (let i = 0; i < node.childNodes.length; i++) {
+      const child = node.childNodes[i];
+      string += convertHTMLtoString(child, level + 1);
+     }
+     // Closing tag
+     string += '<span class="tag">&lt;/' + node.tagName + '&gt;</span>';
+    }
+    // Padding close
+    if (isInline(node) !== true) {
+     string += "</div>";
+    }
+   } else if (node.nodeType === document.TEXT_NODE) {
+    if (node.nodeValue.trim() !== '') {
+     string += node.nodeValue;
+    }
+   }
+   return string;
+  }
+  let root = document.getElementsByTagName('code')[0];
+  const string = convertHTMLtoString(root);
+  document.getElementsByTagName('code')[0].innerHTML = string; // Comment this line to see the original render
+  // Get the modal
+  var modal = document.getElementById("modal");
+  // Get the button that opens the modal
+  var btn = document.getElementById("open-modal");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+   modal.style.display = "block";
+   // Get the content of the code element and render it
+   let codeContent = document.getElementsByTagName('code')[0].textContent;
+   document.getElementById('modal-body').innerHTML = codeContent;
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+   modal.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+   if (event.target == modal) {
+    modal.style.display = "none";
+   }
+  }
+ </script>
+</body>
+
+</html>

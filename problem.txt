@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Problem :´( </title>
+  <style>
+    /* Estilos para el enlace con la clase "ahover" */
+    .ahover {
+      position: relative;
+      grid-auto-flow: column; /* Esto parece innecesario para un enlace */
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Estilos para el pseudo-elemento ::before del enlace */
+    .ahover::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; 
+      inset: 0 0 0 0;
+      background: hsl(100 80% 60% );
+      z-index: -1;
+      transition: transform .3s ease;
+      transform: scaleX(0); /* Inicialmente oculto */
+      transform-origin: bottom right;
+      color: inherit; /* Esto puede ser redundante */
+    }
+
+    /* Al pasar el cursor sobre el enlace, el pseudo-elemento se hace visible */
+    .ahover:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Enlace con la clase "ahover" -->
+  <a href="#aHover" class="ahover">Hover me</a>
+</body>
+
+</html>

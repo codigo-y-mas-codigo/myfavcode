@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Simple Mandala drawing app</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/YPqPPya">
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
+  
+<style>
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+#svg {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.path {
+  stroke: #000;
+  stroke-width: 1px;
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: crosshair;
+}
+
+/* toolbar */
+#toolbar {
+  display: flex;
+  position: fixed;
+  z-index: 30;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: #f0f0f0;
+  box-shadow: 0 2px 4px #c0c0c0;
+  justify-content: center;
+}
+
+#toolbar>* {
+  margin: 0;
+  line-height: 40px;
+}
+
+.tbtn {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0);
+  padding: 0 15px;
+}
+
+.tbtn:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.ibtn {
+  font-size: 20px;
+  line-height: 40px;
+  color: #ccc;
+}
+
+.tbtn:hover .ibtn {
+  color: #555;
+}
+
+.itbtn.active {
+  color: #666;
+}
+
+.tbtn:hover .ibtn.active {
+  color: #333;
+}
+
+.toggle {
+  position: absolute;
+  z-index: 25;
+  box-sizing: border-box;
+  background: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px #555;
+  text-align: left;
+  line-height: initial;
+  animation-duration: 0.2s;
+}
+
+#zoom-info {
+  padding: 0 5px;
+  font-size: 14px;
+}
+
+#stroke {
+  width: 200px;
+  margin-left: -90px;
+}
+#layer {
+  width: 200px;
+  margin-left: -160px;
+}
+
+/* toolbar - color */
+#color {
+  margin: 10px 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px #888;
+  cursor: pointer;
+}
+
+.colors {
+  list-style: none;
+  width: 254px;
+  margin-left: -117px;
+}
+
+.colors li {
+  float: left;
+  margin: 3px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.colors li.active {
+  border-color: #000;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div id="app">
+
+  <svg id="svg" ref="svg" xmlns="http://www.w3.org/2000/svg" :view-box.camel="viewBox">
+    <defs>
+      <g id="svg-group">
+        <template v-for="e in layer.elements">
+          <path v-if="e.type=='path'" :d="e.d" :style="estyle(e)" class="path" />
+        </template>
+        <path v-if="current.type=='path'" :d="pathd(current.points)" :style="estyle(current)" class="path" />
+      </g>
+    </defs>
+    <transition enter-active-class="fadeIn animated" leave-active-class="fadeOut animated">
+      <template v-if="showMarks">
+        <g v-if="layer.mirror" id="svg-marks" :transform="transform">
+          <line v-for="i in layer.repeat*2" :transform="rotatePart(i, layer.repeat*2)" stroke="#ccc" stroke-width="1" x1="0" y1="0" x2="1000" y2="0"></line>
+        </g>
+        <g v-else id="svg-marks" :transform="transform">
+          <line v-if="layer.repeat>1" v-for="i in layer.repeat" :transform="rotatePart(i, layer.repeat)" stroke="#ccc" stroke-width="1" x1="0" y1="0" x2="1000" y2="0"></line>
+        </g>
+      </template>
+    </transition>
+    <g id="svg-mandala" :transform="transform">
+      <g id="svg-layer">
+        <template v-for="i in layer.repeat">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-group"
+            :transform="rotatePart(i, layer.repeat)"></use>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-group"
+            :transform="rotatePart(i, layer.repeat)+' scale(1,-1)'" v-if="layer.mirror"></use>
+        </template>
+      </g>
+    </g>
+  </svg>
+
+  <div id="overlay" v-on:mousedown="onMouseDown" v-on:mousemove="onMouseMove" v-on:mouseup="onMouseEnd"
+    v-on:mouseleave="onMouseEnd" v-on:wheel="onMouseWheel" v-on:touchstart="onTouchStart" v-on:touchmove="onTouchMove"
+    v-on:touchend="onTouchEnd" v-on:touchleave="onTouchEnd"></div>
+
+  <div id="toolbar">
+
+    <div class="tbtn tbtn-clear" @click="onReset">
+      <i class="ibtn far fa-file"></i>
+    </div>
+    <div class="tbtn tbtn-undo" @click="onCtrlZ">
+      <i class="ibtn fas fa-undo"></i>
+    </div>
+
+    <div class="tbtn tbtn-color" @click="showPalette=!showPalette">
+      <div id="color" :style="{ 'background-color': strokeColor }"></div>
+      <transition enter-active-class="fadeIn animated" leave-active-class="fadeOut animated">
+        <ul v-if="showPalette" class="colors toggle" @click.stop>
+          <li v-for="color in palette" @click.stop="strokeColor=color;showPalette=false;"
+            :style="{ 'background-color': color }" :class="{ active: strokeColor==color }"></li>
+        </ul>
+      </transition>
+    </div>
+
+    <div class="tbtn tbtn-stroke" @click="showStroke=!showStroke">
+      <i class="ibtn fas fa-pencil-alt"></i>
+      <transition enter-active-class="fadeIn animated" leave-active-class="fadeOut animated">
+        <div v-if="showStroke" id="stroke" class="toggle" @click.stop>
+          <div>Stroke width : {{ strokeWidth }}px</div>
+          <input v-model="strokeWidth" type="range" min="0.2" max="20" step="0.2" class="custom-range">
+          <div>Precision : {{ strokePrecision }}px</div>
+          <input v-model="strokePrecision" type="range" min="1" max="100" class="custom-range">
+        </div>
+      </transition>
+    </div>
+
+    <div class="tbtn tbtn-zoomout" @click="zoomOut">
+      <i class="ibtn fas fa-search-minus"></i>
+    </div>
+    <div id="zoom-info">{{ zoom }} %</div>
+    <div class="tbtn tbtn-zoomin" @click="zoomIn">
+      <i class="ibtn fas fa-search-plus"></i>
+    </div>
+    
+    <div class="tbtn tbtn-layer" @click="showLayer=!showLayer">
+      <i class="ibtn fas fa-cog"></i>
+      <transition enter-active-class="fadeIn animated" leave-active-class="fadeOut animated">
+        <div v-if="showLayer" id="layer" class="toggle" @click.stop>
+          <switch-btn v-model="showMarks" id="showMarks" label="Show marks"></switch-btn>
+          <switch-btn v-model="layer.mirror" id="mirror" label="Mirror"></switch-btn>
+          <div class="form-group">
+            <label for="repeat">Repeat : {{ repeat }}</label>
+            <input v-model="repeat" id="repeat" type="range" min="1" max="20" step="1" class="custom-range">
+          </div>
+        </div>
+      </transition>
+    </div>
+  </div>
+
+</div>
+
+<script type="x-template" id="switchBtn">
+  <div class="custom-control custom-switch">
+    <input type="checkbox" :checked="value" @input="$emit('input', $event.target.checked)" class="custom-control-input" :id="id">
+    <label :for="id" class="custom-control-label">{{ label }}</label>
+  </div>
+</script>
+  <script src='https://cdn.jsdelivr.net/npm/vue@2.6.0'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js'></script>
+    <script id="rendered-js" >
+const palette = [
+"#9BDAF3", "#D8CCF4", "#FAC2BB", "#F8CD94", "#9EDDDD", "#FBE491", "#FFC4E4", "#C7E59A", "#D0D3D6",
+"#34B3E4", "#A589D9", "#F16D64", "#F59640", "#35BEC1", "#F3C746", "#F371AF", "#95C753", "#A0A3A6",
+"#008CC9", "#7C5BBB", "#DD2E1F", "#EC640C", "#009EA5", "#E6A700", "#E2247F", "#60AA14", "#737679",
+"#005E93", "#573B93", "#A40F1C", "#AF4104", "#00727D", "#AA7D00", "#B10C5C", "#3B7511", "#000000"];
+
+
+Vue.component('switch-btn', {
+  props: ['id', 'label', 'value'],
+  template: '#switchBtn' });
+
+
+new Vue({
+  el: '#app',
+  data: {
+    strokeWidth: 1,
+    strokeColor: '#008CC9',
+    strokePrecision: 100,
+    repeat: 7,
+    width: 0, height: 0,
+    cx: 0, cy: 0,
+    layer: {
+      mirror: true,
+      repeat: 7,
+      elements: [] },
+
+    current: {
+      type: '',
+      points: [] },
+
+    viewBox: null,
+    zoom: 100,
+    palette,
+    showPalette: false,
+    showStroke: false,
+    showLayer: false,
+    showMarks: true },
+
+
+  watch: {
+    strokeColor(value) {
+      this.current.stroke = value;
+    },
+    repeat(value) {
+      this.layer.repeat = parseInt(value);
+    },
+    showPalette(value) {
+      if (value) {
+        this.showStroke = false;
+        this.showLayer = false;
+      }
+    },
+    showStroke(value) {
+      if (value) {
+        this.showPalette = false;
+        this.showLayer = false;
+      }
+    },
+    showLayer(value) {
+      if (value) {
+        this.showPalette = false;
+        this.showStroke = false;
+      }
+    } },
+
+
+  computed: {
+    transform() {
+      return this.translate(this.cx, this.cy);
+    } },
+
+
+  created() {
+    this.line = d3.line().curve(d3.curveBasis);
+  },
+
+  mounted() {
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    document.addEventListener('keyup', this.onKeyUp);
+  },
+
+  mixins: [mouseMixin()],
+  methods: {
+    pathd(points) {
+      return this.line(points);
+    },
+
+    resetPath(e) {
+      e.type = 'path';
+      e.points = [];
+      e.stroke = this.strokeColor;
+      e.strokeWidth = this.strokeWidth;
+    },
+
+    /**
+      * input events
+      */
+    onInputStart(e) {
+      this.showPalette = this.showStroke = this.showLayer = false;
+      this.resetPath(this.current);
+      this.x0 = this.x1;this.y0 = this.y1;
+      this.current.points = [[this.x1, this.y1], [this.x1, this.y1]];
+    },
+    onInputMove(e) {
+      let points = this.current.points;
+      const dx = this.x1 - this.x0;
+      const dy = this.y1 - this.y0;
+      if (dx * dx + dy * dy > this.strokePrecision) points.push([this.x0 = this.x1, this.y0 = this.y1]);else
+      this.$set(points, points.length - 1, [this.x1, this.y1]);
+    },
+    onInputEnd(e) {
+      if (this.current.points.length > 1) {
+        this.layer.elements.push({ ...this.current, d: this.pathd(this.current.points) });
+      }
+      this.resetPath(this.current);
+    },
+    updateInputCoords(e) {
+      this.x1 = this.vbX + this.currX * (this.vbW / this.width) - this.cx;
+      this.y1 = this.vbY + this.currY * (this.vbH / this.height) - this.cy;
+    },
+
+    /**
+      * misc events
+      */
+    onResize() {
+      const r = this.$refs.svg.getBoundingClientRect();
+      this.width = r.width;
+      this.height = r.height;
+      this.cx = r.width / 2;
+      this.cy = r.height / 2;
+      this.updateViewBox();
+    },
+    onMouseWheel(e) {
+      e.preventDefault();
+      if (e.deltaY < 0) this.zoomIn();else
+      this.zoomOut();
+    },
+    zoomIn() {
+      this.zoom = Math.min(195, this.zoom + 5);
+      this.updateViewBox();
+    },
+    zoomOut() {
+      this.zoom = Math.max(5, this.zoom - 5);
+      this.updateViewBox();
+    },
+    updateViewBox() {
+      this.vbX = (this.width * this.zoom / 100 - this.width) / 2;
+      this.vbY = (this.height * this.zoom / 100 - this.height) / 2;
+      this.vbW = this.width - 2 * this.vbX;
+      this.vbH = this.height - 2 * this.vbY;
+      this.viewBox = this.vbX + ' ' + this.vbY + ' ' + this.vbW + ' ' + this.vbH;
+    },
+
+    onKeyUp(e) {
+      if (e.ctrlKey && e.keyCode == 90) {
+        this.onCtrlZ();
+      }
+    },
+    onCtrlZ() {
+      this.layer.elements.pop();
+    },
+    onReset() {
+      this.layer.elements = [];
+    },
+
+    /**
+      * misc
+      */
+    estyle(e) {
+      return {
+        stroke: e.stroke,
+        'stroke-width': e.strokeWidth };
+
+    },
+    rotatePart(i, n) {
+      return this.rotate(i * 360 / n);
+    },
+    translate(x, y) {
+      return 'translate(' + x + ', ' + y + ')';
+    },
+    rotate(r) {
+      return 'rotate(' + r + ')';
+    } } });
+
+
+
+function mouseMixin() {
+  return {
+    created() {
+      this.mouseDown = false;
+      this.touchDown = false;
+    },
+    methods: {
+      /**
+        * mouse events
+        */
+      onMouseDown(e) {
+        if (e.which == 1) {
+          this.mouseDown = true;
+          this.updateMouseCoords(e);
+          this.onInputStart(e);
+        }
+      },
+      onMouseMove(e) {
+        if (this.mouseDown) {
+          this.prevX = this.currX;
+          this.prevY = this.currY;
+          this.updateMouseCoords(e);
+          this.onInputMove(e);
+        }
+      },
+      onMouseEnd(e) {
+        if (this.mouseDown) {
+          this.mouseDown = false;
+          this.onInputEnd(e);
+        }
+      },
+      updateMouseCoords(e) {
+        var clientRect = e.target.getBoundingClientRect();
+        this.currX = e.clientX - clientRect.left;
+        this.currY = e.clientY - clientRect.top;
+        this.updateInputCoords(e);
+      },
+
+      /**
+        * touch events
+        */
+      onTouchStart(e) {
+        e.preventDefault();
+        this.touchDown = true;
+        this.updateTouchCoords(e);
+        this.onInputStart(e);
+      },
+      onTouchMove(e) {
+        if (this.touchDown) {
+          this.prevX = this.currX;
+          this.prevY = this.currY;
+          this.updateTouchCoords(e);
+          this.onInputMove(e);
+        }
+      },
+      onTouchEnd(e) {
+        if (this.touchDown) {
+          e.preventDefault();
+          this.touchDown = false;
+          this.onInputEnd(e);
+        }
+      },
+      updateTouchCoords(e) {
+        var clientRect = e.target.getBoundingClientRect();
+        this.currX = e.changedTouches[0].clientX - clientRect.left;
+        this.currY = e.changedTouches[0].clientY - clientRect.top;
+        this.updateInputCoords(e);
+      } } };
+
+
+}
+
+function rnd(max, negative) {
+  return negative ? Math.random() * 2 * max - max : Math.random() * max;
+}
+  </script>
+
+  
+</body>
+
+</html>

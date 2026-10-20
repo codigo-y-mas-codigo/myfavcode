@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mueganitos - Tu evento impecable, sin que muevas un dedo</title>
+    <meta name="description" content="Mueganitos es tu aliada de eventos. Ofrecemos centros de mesa, mesas de dulces, invitaciones digitales y recuerdos útiles para eventos en Ciudad de México. Transformamos la ansiedad en seguridad." />
+    <meta name="keywords" content="Mueganitos, eventos, decoración de fiestas, centros de mesa, mesas de dulces, invitaciones digitales, recuerdos de fiesta, organización de eventos, Ciudad de México" />
+    <link rel="canonical" href="https://mueganitos.com/" />
+    <meta property="og:title" content="Mueganitos - Tu evento impecable, sin que muevas un dedo" />
+    <meta property="og:description" content="Vecinas expertas en eventos. Decoración, centros de mesa, mesas de dulces, invitaciones digitales y recuerdos útiles en Ciudad de México." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mueganitos.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css">
+        <meta name="readdy-project-version" content="f2074c12e162f7bb9377da03782e15af:e7a0304b79cd28693f37fd150ea531c7:224eb60f5efbb9bce11708dcec3268f3e749eb77b79bf44179f2ba422dce3762d1145ad587a4da4b6d6f20f8decf7c8c01f8086cc9040484c47277125db77143e2">
+          <script type="module" crossorigin src="/preview/f7072654-f3d9-44a8-96bd-7cbb6ee14bb6/10413414/assets/index-DfkeL6Se.js"></script>
+          <link rel="stylesheet" crossorigin href="/preview/f7072654-f3d9-44a8-96bd-7cbb6ee14bb6/10413414/assets/index-BPt9Upop.css">
+        </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

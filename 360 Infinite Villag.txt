@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Infinite Village</title>
+
+    <link rel="canonical" href="https://codepen.io/Iv-n-Baez-Camacho/pen/YPwowEy">
+  
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+
+  
+  
+<style>
+body {
+  display: grid;
+  place-items: center;
+  height: auto;
+  overflow-y: scroll;
+  max-width: 100vmin;
+  overflow-x: hidden;
+  background: #51703E;
+}
+body .indicator {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 15px;
+  height: 27.5px;
+  box-shadow: 0 0 0 2px #000;
+  border-radius: 30px/35px;
+  z-index: 999;
+}
+body .indicator:before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #000;
+  left: calc(50% - 2.5px);
+  top: 5px;
+  border-radius: 100%;
+  -webkit-animation: scroll 1s ease-in-out infinite;
+          animation: scroll 1s ease-in-out infinite;
+}
+@-webkit-keyframes scroll {
+  50% {
+    transform: translateY(7.5px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(7.5px);
+    opacity: 0;
+  }
+}
+@keyframes scroll {
+  50% {
+    transform: translateY(7.5px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(7.5px);
+    opacity: 0;
+  }
+}
+body #sentinel {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 25vmin;
+  z-index: 999;
+  bottom: -150vmin;
+}
+body #wrap {
+  transform: translateY(-100vh) translateX(-50%);
+  left: 50%;
+  max-width: 900px;
+  display: inline-block;
+  position: absolute;
+}
+body .row {
+  z-index: 1;
+  transition: transform 0.5s linear;
+}
+body .row:nth-last-of-type(1) {
+  z-index: 39;
+  transform: translateX(1vmin);
+}
+body .row:nth-last-of-type(1):nth-of-type(even) {
+  transform: translateX(0.5vmin);
+}
+body .row:nth-last-of-type(2) {
+  z-index: 38;
+  transform: translateX(2vmin);
+}
+body .row:nth-last-of-type(2):nth-of-type(even) {
+  transform: translateX(1vmin);
+}
+body .row:nth-last-of-type(3) {
+  z-index: 37;
+  transform: translateX(3vmin);
+}
+body .row:nth-last-of-type(3):nth-of-type(even) {
+  transform: translateX(1.5vmin);
+}
+body .row:nth-last-of-type(4) {
+  z-index: 36;
+  transform: translateX(4vmin);
+}
+body .row:nth-last-of-type(4):nth-of-type(even) {
+  transform: translateX(2vmin);
+}
+body .row:nth-last-of-type(5) {
+  z-index: 35;
+  transform: translateX(5vmin);
+}
+body .row:nth-last-of-type(5):nth-of-type(even) {
+  transform: translateX(2.5vmin);
+}
+body .row:nth-last-of-type(6) {
+  z-index: 34;
+  transform: translateX(6vmin);
+}
+body .row:nth-last-of-type(6):nth-of-type(even) {
+  transform: translateX(3vmin);
+}
+body .row:nth-last-of-type(7) {
+  z-index: 33;
+  transform: translateX(7vmin);
+}
+body .row:nth-last-of-type(7):nth-of-type(even) {
+  transform: translateX(3.5vmin);
+}
+body .row:nth-last-of-type(8) {
+  z-index: 32;
+  transform: translateX(8vmin);
+}
+body .row:nth-last-of-type(8):nth-of-type(even) {
+  transform: translateX(4vmin);
+}
+body .row:nth-last-of-type(9) {
+  z-index: 31;
+  transform: translateX(9vmin);
+}
+body .row:nth-last-of-type(9):nth-of-type(even) {
+  transform: translateX(4.5vmin);
+}
+body .row:nth-last-of-type(10) {
+  z-index: 30;
+  transform: translateX(10vmin);
+}
+body .row:nth-last-of-type(10):nth-of-type(even) {
+  transform: translateX(5vmin);
+}
+body .row:nth-last-of-type(11) {
+  z-index: 29;
+  transform: translateX(11vmin);
+}
+body .row:nth-last-of-type(11):nth-of-type(even) {
+  transform: translateX(5.5vmin);
+}
+body .row:nth-last-of-type(12) {
+  z-index: 28;
+  transform: translateX(12vmin);
+}
+body .row:nth-last-of-type(12):nth-of-type(even) {
+  transform: translateX(6vmin);
+}
+body .row:nth-last-of-type(13) {
+  z-index: 27;
+  transform: translateX(13vmin);
+}
+body .row:nth-last-of-type(13):nth-of-type(even) {
+  transform: translateX(6.5vmin);
+}
+body .row:nth-last-of-type(14) {
+  z-index: 26;
+  transform: translateX(14vmin);
+}
+body .row:nth-last-of-type(14):nth-of-type(even) {
+  transform: translateX(7vmin);
+}
+body .row:nth-last-of-type(15) {
+  z-index: 25;
+  transform: translateX(15vmin);
+}
+body .row:nth-last-of-type(15):nth-of-type(even) {
+  transform: translateX(7.5vmin);
+}
+body .row:nth-last-of-type(16) {
+  z-index: 24;
+  transform: translateX(16vmin);
+}
+body .row:nth-last-of-type(16):nth-of-type(even) {
+  transform: translateX(8vmin);
+}
+body .row:nth-last-of-type(17) {
+  z-index: 23;
+  transform: translateX(17vmin);
+}
+body .row:nth-last-of-type(17):nth-of-type(even) {
+  transform: translateX(8.5vmin);
+}
+body .row:nth-last-of-type(18) {
+  z-index: 22;
+  transform: translateX(18vmin);
+}
+body .row:nth-last-of-type(18):nth-of-type(even) {
+  transform: translateX(9vmin);
+}
+body .row:nth-last-of-type(19) {
+  z-index: 21;
+  transform: translateX(19vmin);
+}
+body .row:nth-last-of-type(19):nth-of-type(even) {
+  transform: translateX(9.5vmin);
+}
+body .row:nth-last-of-type(20) {
+  z-index: 20;
+  transform: translateX(20vmin);
+}
+body .row:nth-last-of-type(20):nth-of-type(even) {
+  transform: translateX(10vmin);
+}
+body .row:nth-last-of-type(21) {
+  z-index: 19;
+  transform: translateX(21vmin);
+}
+body .row:nth-last-of-type(21):nth-of-type(even) {
+  transform: translateX(10.5vmin);
+}
+body .row:nth-last-of-type(22) {
+  z-index: 18;
+  transform: translateX(22vmin);
+}
+body .row:nth-last-of-type(22):nth-of-type(even) {
+  transform: translateX(11vmin);
+}
+body .row:nth-last-of-type(23) {
+  z-index: 17;
+  transform: translateX(23vmin);
+}
+body .row:nth-last-of-type(23):nth-of-type(even) {
+  transform: translateX(11.5vmin);
+}
+body .row:nth-last-of-type(24) {
+  z-index: 16;
+  transform: translateX(24vmin);
+}
+body .row:nth-last-of-type(24):nth-of-type(even) {
+  transform: translateX(12vmin);
+}
+body .row:nth-last-of-type(25) {
+  z-index: 15;
+  transform: translateX(25vmin);
+}
+body .row:nth-last-of-type(25):nth-of-type(even) {
+  transform: translateX(12.5vmin);
+}
+body .row:nth-last-of-type(26) {
+  z-index: 14;
+  transform: translateX(26vmin);
+}
+body .row:nth-last-of-type(26):nth-of-type(even) {
+  transform: translateX(13vmin);
+}
+body .row:nth-last-of-type(27) {
+  z-index: 13;
+  transform: translateX(27vmin);
+}
+body .row:nth-last-of-type(27):nth-of-type(even) {
+  transform: translateX(13.5vmin);
+}
+body .row:nth-last-of-type(28) {
+  z-index: 12;
+  transform: translateX(28vmin);
+}
+body .row:nth-last-of-type(28):nth-of-type(even) {
+  transform: translateX(14vmin);
+}
+body .row:nth-last-of-type(29) {
+  z-index: 11;
+  transform: translateX(29vmin);
+}
+body .row:nth-last-of-type(29):nth-of-type(even) {
+  transform: translateX(14.5vmin);
+}
+body .row:nth-last-of-type(30) {
+  z-index: 10;
+  transform: translateX(30vmin);
+}
+body .row:nth-last-of-type(30):nth-of-type(even) {
+  transform: translateX(15vmin);
+}
+body .row .cell:not(.new) {
+  transform: translateY(125vh);
+}
+body .row .cell:not(.new):before, body .row .cell:not(.new):after {
+  left: 50%;
+}
+body .row .cell:not(.new).cell7:before {
+  bottom: calc(100% - 7.5vmin);
+}
+body .row .cell:not(.new) .inner {
+  top: calc(var(--translateY)+0%);
+}
+body .row:nth-of-type(even) .cell:nth-of-type(1) {
+  transition-delay: 0.0333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(1).cell7:before {
+  transition-delay: 0.8333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(1) .inner {
+  transition-delay: 0.2333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(2) {
+  transition-delay: 0.0666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(2).cell7:before {
+  transition-delay: 0.8666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(2) .inner {
+  transition-delay: 0.2666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(3) {
+  transition-delay: 0.1s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(3).cell7:before {
+  transition-delay: 0.9s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(3) .inner {
+  transition-delay: 0.3s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(4) {
+  transition-delay: 0.1333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(4).cell7:before {
+  transition-delay: 0.9333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(4) .inner {
+  transition-delay: 0.3333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(5) {
+  transition-delay: 0.1666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(5).cell7:before {
+  transition-delay: 0.9666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(5) .inner {
+  transition-delay: 0.3666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(6) {
+  transition-delay: 0.2s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(6).cell7:before {
+  transition-delay: 1s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(6) .inner {
+  transition-delay: 0.4s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(7) {
+  transition-delay: 0.2333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(7).cell7:before {
+  transition-delay: 1.0333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(7) .inner {
+  transition-delay: 0.4333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(8) {
+  transition-delay: 0.2666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(8).cell7:before {
+  transition-delay: 1.0666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(8) .inner {
+  transition-delay: 0.4666666667s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(9) {
+  transition-delay: 0.3s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(9).cell7:before {
+  transition-delay: 1.1s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(9) .inner {
+  transition-delay: 0.5s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(10) {
+  transition-delay: 0.3333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(10).cell7:before {
+  transition-delay: 1.1333333333s;
+}
+body .row:nth-of-type(even) .cell:nth-of-type(10) .inner {
+  transition-delay: 0.5333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(1) {
+  transition-delay: 0.3s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(1).cell7:before {
+  transition-delay: 0.4333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(1) .inner {
+  transition-delay: 0.5s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(2) {
+  transition-delay: 0.2666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(2).cell7:before {
+  transition-delay: 0.4666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(2) .inner {
+  transition-delay: 0.4666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(3) {
+  transition-delay: 0.2333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(3).cell7:before {
+  transition-delay: 0.5s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(3) .inner {
+  transition-delay: 0.4333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(4) {
+  transition-delay: 0.2s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(4).cell7:before {
+  transition-delay: 0.5333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(4) .inner {
+  transition-delay: 0.4s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(5) {
+  transition-delay: 0.1666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(5).cell7:before {
+  transition-delay: 0.5666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(5) .inner {
+  transition-delay: 0.3666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(6) {
+  transition-delay: 0.1333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(6).cell7:before {
+  transition-delay: 0.6s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(6) .inner {
+  transition-delay: 0.3333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(7) {
+  transition-delay: 0.1s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(7).cell7:before {
+  transition-delay: 0.6333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(7) .inner {
+  transition-delay: 0.3s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(8) {
+  transition-delay: 0.0666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(8).cell7:before {
+  transition-delay: 0.6666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(8) .inner {
+  transition-delay: 0.2666666667s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(9) {
+  transition-delay: 0.0333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(9).cell7:before {
+  transition-delay: 0.7s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(9) .inner {
+  transition-delay: 0.2333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(10) {
+  transition-delay: 0s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(10).cell7:before {
+  transition-delay: 0.7333333333s;
+}
+body .row:nth-of-type(odd) .cell:nth-of-type(10) .inner {
+  transition-delay: 0.2s;
+}
+body .row {
+  width: 100vmin;
+  height: 10vmin;
+  min-height: 10vmin;
+  float: left;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  overflow: visible;
+  position: relative;
+  background: #51703E;
+}
+body .row .cell {
+  position: relative;
+  height: 10vmin;
+  width: 10vmin;
+  z-index: calc(50 - (var(--width) + var(--height)));
+  opacity: var(--opacity);
+  transform: translateY(125vh);
+  --tree1: #BDAE4F;
+}
+body .row .cell:before, body .row .cell:after {
+  content: "";
+  position: absolute;
+  width: calc(var(--width) * 175%);
+  height: calc(var(--height) * 75%);
+  bottom: calc(-50% - 0vmin);
+  z-index: 200;
+  left: -100vmin;
+  transform: translateX(-50%) rotateY(var(--transform)) translateY(calc(var(--translateY) + (10vmin * var(--height))));
+  border-radius: 5vmin 5vmin 0 0;
+  transition: left 0.2s ease-in-out;
+}
+body .row .cell:before {
+  background: #51703E;
+  box-shadow: 0 5vmin 0 0 #51703E, 0 10vmin 0 0 #51703E, 0 15vmin 0 0 #51703E, 0 20vmin 0 0 #51703E, 0 25vmin 0 0 #51703E, 0 30vmin 0 0 #51703E;
+}
+body .row .cell:after {
+  background: #BDAE4F;
+  z-index: -1;
+  transform: rotateY(var(--transform)) translateX(calc(var(--translateX) + (5vmin * var(--height)))) translateY(calc(var(--translateY) + (7.5vmin * var(--height))));
+  box-shadow: 0 5vmin 0 0 #BDAE4F, 0 10vmin 0 0 #BDAE4F, 0 15vmin 0 0 #BDAE4F, 0 20vmin 0 0 #BDAE4F, 0 25vmin 0 0 #BDAE4F, 0 30vmin 0 0 #BDAE4F;
+  left: 100vmin;
+}
+body .row .cell.cell1 {
+  --color1: #C5A497;
+  --color2: #FFE0C2;
+}
+body .row .cell.cell2 {
+  --color1: #BECEBB;
+  --color2: #698C88;
+}
+body .row .cell.cell3 {
+  --color1: #DD743D;
+  --color2: #B84636;
+}
+body .row .cell.cell4 {
+  --color2: #C5A497;
+  --color1: #FFE0C2;
+}
+body .row .cell.cell5 {
+  --color2: #BECEBB;
+  --color1: #698C88;
+}
+body .row .cell.cell6 {
+  --color2: #DD743D;
+  --color1: #B84636;
+}
+body .row .cell.cell7 .inner {
+  display: none;
+}
+body .row .cell.cell7:before {
+  width: 7.5vmin;
+  height: 7.5vmin;
+  background: var(--tree1);
+  border-radius: 25vmin 0 25vmin 25vmin;
+  transform: scaleY(2) translateX(var(--translateX)) translateY(calc(var(--translateY) + (10vmin * var(--height)) - 15vmin)) rotate(-45deg);
+  box-shadow: none;
+  left: calc(var(--translateY) + -20vmin);
+  bottom: calc(-50% - 50vmin);
+  transition: bottom 0.2s ease-in-out;
+  z-index: -1;
+}
+body .row .cell .inner {
+  position: absolute;
+  width: calc(var(--width) * 100%);
+  height: calc(var(--height) * 100%);
+  background: var(--color);
+  background: linear-gradient(to right, transparent calc(40%/var(--width)), var(--color2) calc(40%/var(--width)), var(--color2) calc(60%/var(--width)), transparent calc(60%/var(--width))) 50% 7.5%/100% 2.5vmin no-repeat, linear-gradient(to right, var(--color1) calc(100%/var(--width)), var(--color2) calc(100%/var(--width)));
+  transform: rotateY(var(--transform)) translateX(var(--translateX));
+  top: calc(var(--translateY)+100vmin);
+  transition: top 0.2s ease-in-out;
+}
+body .row .cell .inner:before {
+  content: "";
+  position: absolute;
+  width: calc(100%/var(--width));
+  height: calc((100%/var(--height))/2);
+  top: calc((100%/var(--height)/2) * -1);
+  background: var(--color1);
+  -webkit-clip-path: polygon(50% 0%, 0% 101%, 100% 101%);
+          clip-path: polygon(50% 0%, 0% 101%, 100% 101%);
+  z-index: 2;
+}
+body .row .cell .inner:after {
+  content: "";
+  position: absolute;
+  width: calc(100.5% - ((100%/var(--width))/1));
+  height: calc(1px + (100%/var(--height))/2);
+  top: calc((100%/var(--height)/2) * -1);
+  left: calc(((99.5%/var(--width))/1.3333));
+  background: #2B3643;
+  z-index: 1;
+  transform: skewX(45deg);
+}
+body .row .cell:nth-of-type(1) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(2) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(3) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(4) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(5) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(6) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(7) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(8) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(9) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(10) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(11) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(12) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(13) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(14) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(15) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(16) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(17) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(18) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(19) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(20) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(21) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(22) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(23) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(24) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(25) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(26) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(27) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(28) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(29) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(30) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(31) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(32) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(33) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(34) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(35) {
+  z-index: 1;
+}
+body .row .cell:nth-of-type(36) {
+  z-index: 1;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <div class='indicator'></div>
+<div id='wrap'>
+  <div class='row'>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='cell new prev'>
+      <div class='inner'></div>
+    </div>
+    <div id='sentinel'></div>
+  </div>
+</div>
+  
+    <script id="rendered-js" >
+function draw(){
+  document.querySelectorAll(".new").forEach(cell => { 
+    cell.style.setProperty("--width",((Math.floor(Math.random() * 3) + 2)));
+    cell.style.setProperty("--height",((Math.floor(Math.random() * 2) + 2)));
+    cell.style.setProperty("--opacity",((Math.floor(Math.random() * 4) - 1)));
+    cell.style.setProperty("--transform",((Math.floor(Math.random() * 2) * 180))+ "deg");
+    cell.style.setProperty("--translateX",((Math.floor(Math.random() * 5) * 15))+ "%");
+    cell.style.setProperty("--translateY",((Math.floor(Math.random() * 5) * -15))+ "%");
+    cell.style.setProperty("--mix-blend","var(--mix-blend"+((Math.floor(Math.random() * 2) + 1))+")");
+    
+    setTimeout(function(){ cell.classList.add('cell' + (Math.floor(Math.random() * 7) + 1)); cell.classList.remove("new"); }, 20);
+  });
+    
+};
+draw();
+const rows = document.querySelectorAll('.row');
+const wrap = document.querySelector('#wrap');
+var sentinel = document.querySelector('#sentinel');
+observer = new IntersectionObserver(sections => {
+  sections.forEach(section => {
+    if (section.intersectionRatio > 0) {
+      newRow = document.createElement("div");
+      newRow.classList.add('row');
+      newRow.classList.add('newRow');
+      wrap.append(newRow);
+        for (j=1; j<=5; j++){
+        newCells = document.createElement("div");
+        newCells.classList.add('cell');
+        newCells.classList.add('new');
+        newInner = document.createElement("div");
+        newInner.classList.add('inner');
+        newCells.append(newInner);
+        newRow.append(newCells);
+      }
+      draw();
+      setInterval(function(){ newRow.appendChild(sentinel); }, 10);
+
+    }
+  });
+});
+
+observer.observe(sentinel)
+  </script>
+
+  
+</body>
+
+</html>

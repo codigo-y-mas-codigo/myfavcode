@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Colour onhover effect</title>
+  <link rel="canonical" href="https://codepen.io/helloluis/pen/LYrbPPx">
+  <style>
+    body {
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    img {
+      width: 100%;
+      -webkit-filter: grayscale(1);
+      -moz-filter: grayscale(1);
+      -o-filter: grayscale(1);
+      filter: grayscale(1);
+    }
+
+    .skeleton {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      background: url(https://yarticulospromocionales.vercel.app/img/servicio-de-impresion-digital.webp) no-repeat fixed left top;
+      background-size: 100%;
+      position: absolute;
+      border: 8px solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <img class="img1" src="https://yarticulospromocionales.vercel.app/img/servicio-de-impresion-digital.webp" alt="image 1">
+  <div class="skeleton"></div>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+  <script>
+    // Seleccionamos el elemento cuerpo una vez que el DOM está completamente cargado
+    document.addEventListener("DOMContentLoaded", function() {
+      const body = document.body;
+
+      // Usamos addEventListener para vincular el evento mousemove
+      body.addEventListener("mousemove", function(event) {
+        // Obtenemos las coordenadas del ratón
+        const mouseX = event.pageX;
+        const mouseY = event.pageY;
+
+        // Obtenemos el elemento skeleton
+        const skeleton = document.querySelector(".skeleton");
+
+        // Calculamos las nuevas posiciones del skeleton para que siga al ratón
+        const newLeft = mouseX - skeleton.offsetWidth / 2;
+        const newTop = mouseY - skeleton.offsetHeight / 2;
+
+        // Aplicamos las nuevas posiciones al skeleton
+        skeleton.style.left = newLeft + "px";
+        skeleton.style.top = newTop + "px";
+      });
+    });
+  </script>
+</body>
+
+</html>
