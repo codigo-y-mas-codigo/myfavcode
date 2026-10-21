@@ -1,0 +1,23 @@
+{
+  "title": "Conecta+: Comprendiendo la Arquitectura y el Diseño de un Prototipo Web Moderno",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "1826dcba-5655-4a3d-8c96-520a43013979"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Resumen Conceptual",
+      "description": "Explicación simplificada de la arquitectura de un prototipo web moderno y su diseño visual.",
+      "sourceIds": [{
+        "id": "1826dcba-5655-4a3d-8c96-520a43013979"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Explicar de forma didáctica qué es una \u0027Single Page Application\u0027 (SPA) simulada y cómo se utiliza el diseño visual (Tailwind CSS) para crear aplicaciones. El documento debe servir como una introducción a la lógica detrás del proyecto Conecta+, aclarando cómo se logra el \u0027Modo Oscuro\u0027 y la navegación sin recargas, permitiendo que un principiante comprenda los fundamentos de la tecnología web sin necesidad de leer código directamente.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_BEGINNER",
+      "enableU18Classifier": true
+    }
+  }
+}

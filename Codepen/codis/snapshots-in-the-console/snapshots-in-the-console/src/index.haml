@@ -1,0 +1,35 @@
+.content
+    %h1 Snapshots in the Console
+    %h4 (Chrome only)
+
+    %svg{:viewBox => '0 0 256 256'}
+        %defs
+            %g{:id => "chrome-logo"}
+                %circle{:cx => '128', :cy => '128', :r => '110', :class => "bg"}
+                %circle{:cx => '50%', :cy => '50%', :r => '41', :class => "center"}
+                %path{:class => "top", :d => 'M 228 78 A 112 112 0 0 0 35 65 L 80 143 A 50 50 0 0 1 127 78'}
+                %path{:class => "left", :d => 'M 35 65 A 112 112 0 0 0 119 239 L 166 159 A 50 50 0 0 1 80 143'}
+                %path{:class => "right", :d => 'M 119 239 A 112 112 0 0 0 228 78 L 127 78 A 50 50 0 0 1 166 159'}
+            %g{:id => "canary-logo"}
+                %circle{:cx => '128', :cy => '128', :r => '110', :class => "bg"}
+                %circle{:cx => '50%', :cy => '50%', :r => '41', :class => "center"}
+                %path{:class => "top", :d => 'M 228 78 A 112 112 0 0 0 35 65 L 80 143 A 50 50 0 0 1 127 78'}
+                %path{:class => "left", :d => 'M 35 65 A 112 112 0 0 0 119 239 L 166 159 A 50 50 0 0 1 80 143'}
+                %path{:class => "right", :d => 'M 119 239 A 112 112 0 0 0 228 78 L 127 78 A 50 50 0 0 1 166 159'}
+        %use{:"xlink:href" => "#chrome-logo", :x => "-150", :y => "0"}
+        %use{:"xlink:href" => "#canary-logo", :x => "150", :y => "0"}
+
+    %ul
+        %li 1. Open this page on Google Chrome or Canary</li>
+        %li 2. Open the Chrome DevTools and Focus to the Console <code>Cmd</code>+<code>Opt</code>+<code>J</code>
+        %li 3. Click the "Take Shot" button below
+        %li 4. Allow access to your camera
+        %li 5. Voilà!
+
+    %button{:class => "cta"} Take Shot
+    
+.not
+    .box
+        %h1 No Stream API
+        %p Sorry, this experiment requires the Stream API.
+        %a{:href => "http://caniuse.com/#feat=stream", :target => "_blank"} See browser support

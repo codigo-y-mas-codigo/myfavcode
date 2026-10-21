@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Toggle Switch</title>
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+ <style>
+  body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   font-family: "Open Sans", sans-serif;
+   background: #f5f7fa;
+   padding: 20px;
+  }
+
+  .settings-panel {
+   background: white;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   max-width: 400px;
+   width: 100%;
+  }
+
+  .settings-panel h3 {
+   margin: 0 0 25px 0;
+   color: #223254;
+   font-size: 18px;
+  }
+
+  .toggle-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 15px 0;
+   border-bottom: 1px solid #e8ecf1;
+  }
+
+  .toggle-item:last-child {
+   border-bottom: none;
+  }
+
+  .toggle-info {
+   flex: 1;
+   margin-right: 15px;
+  }
+
+  .toggle-title {
+   color: #223254;
+   font-size: 15px;
+   font-weight: 600;
+   margin-bottom: 4px;
+  }
+
+  .toggle-description {
+   color: #9098A9;
+   font-size: 13px;
+   line-height: 1.4;
+  }
+
+  .inp-toggle {
+   display: none;
+  }
+
+  .toggle-switch {
+   position: relative;
+   width: 48px;
+   height: 26px;
+   background: #dde1e7;
+   border-radius: 13px;
+   cursor: pointer;
+   transition: background 0.3s ease;
+   flex-shrink: 0;
+  }
+
+  .toggle-circle {
+   position: absolute;
+   top: 3px;
+   left: 3px;
+   width: 20px;
+   height: 20px;
+   background: white;
+   border-radius: 50%;
+   transition: transform 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .toggle-circle:before {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   background: #506EEC;
+   opacity: 0;
+   transition: opacity 0.3s ease;
+  }
+
+  .toggle-switch:after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 13px;
+   transform: translate(-50%, -50%);
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: #506EEC;
+   opacity: 0;
+   transition: all 0.6s ease;
+  }
+
+  .inp-toggle:checked+.toggle-switch {
+   background: #506EEC;
+  }
+
+  .inp-toggle:checked+.toggle-switch .toggle-circle {
+   transform: translateX(22px);
+  }
+
+  .inp-toggle:checked+.toggle-switch:after {
+   animation: ripple-toggle 0.6s ease;
+  }
+
+  @keyframes ripple-toggle {
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+   }
+
+   100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <div class="settings-panel">
+  <h3>Configuración de Notificaciones</h3>
+
+  <div class="toggle-item">
+   <div class="toggle-info">
+    <div class="toggle-title">Notificaciones Email</div>
+    <div class="toggle-description">Recibe actualizaciones por correo</div>
+   </div>
+   <input class="inp-toggle" id="toggle1" type="checkbox" checked>
+   <label class="toggle-switch" for="toggle1">
+    <span class="toggle-circle"></span>
+   </label>
+  </div>
+
+  <div class="toggle-item">
+   <div class="toggle-info">
+    <div class="toggle-title">Notificaciones Push</div>
+    <div class="toggle-description">Alertas en tiempo real</div>
+   </div>
+   <input class="inp-toggle" id="toggle2" type="checkbox">
+   <label class="toggle-switch" for="toggle2">
+    <span class="toggle-circle"></span>
+   </label>
+  </div>
+
+  <div class="toggle-item">
+   <div class="toggle-info">
+    <div class="toggle-title">Newsletter Semanal</div>
+    <div class="toggle-description">Resumen de contenidos nuevos</div>
+   </div>
+   <input class="inp-toggle" id="toggle3" type="checkbox" checked>
+   <label class="toggle-switch" for="toggle3">
+    <span class="toggle-circle"></span>
+   </label>
+  </div>
+
+  <div class="toggle-item">
+   <div class="toggle-info">
+    <div class="toggle-title">Modo Oscuro</div>
+    <div class="toggle-description">Tema oscuro para reducir fatiga visual</div>
+   </div>
+   <input class="inp-toggle" id="toggle4" type="checkbox">
+   <label class="toggle-switch" for="toggle4">
+    <span class="toggle-circle"></span>
+   </label>
+  </div>
+ </div>
+</body>
+
+</html>

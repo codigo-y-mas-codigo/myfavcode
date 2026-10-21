@@ -1,0 +1,49 @@
+textarea {
+	width: 100%;
+}
+.bg {
+	width: 100%;
+	height: 55px;
+	border: none;
+	font-size: large;
+	background: #ccc;
+}
+input {
+	background: #ccc;
+}
+
+button {
+	width: 100%;
+	border: none;
+	font-size: large;
+	height: 40px;
+	width: 100%;
+	height: 60px;
+	position: fixed;
+	background: #ccc;
+	left: 10px;
+	bottom: 10px;
+}
+label {
+	width: 100%;
+	border: none;
+	font-size: large;
+	/*background: #ccc;*/
+	text-align: center;
+	line-height: 1.5;
+	/*height: 200px;*/
+}
+
+form {
+	width: 100%;
+	border: none;
+	font-size: large;
+	/*background: #ccc;*/
+	text-align: center;
+	line-height: 1;
+	height: 200px;
+}
+
+textarea {
+	height: 200px;
+}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>My database </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Agregar Información</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   margin: 20px;
+  }
+
+  .container {
+   max-width: 800px;
+   margin: 0 auto;
+  }
+
+  .section {
+   margin-bottom: 20px;
+  }
+
+  .input-group {
+   margin-bottom: 20px;
+  }
+
+  .input-group input,
+  .input-group textarea,
+  .input-group select {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: -15px;
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  }
+
+  .input-group button {
+   padding: 10px 20px;
+   background-color: #007BFF;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+  }
+
+  .input-group button:hover {
+   background-color: #0056b3;
+  }
+
+  .item {
+   margin-bottom: 10px;
+   padding: 10px;
+   border: 1px solid #ccc;
+   cursor: pointer;
+   position: relative;
+   border-radius: 5px;
+  }
+
+  .item .description {
+   display: none;
+   margin-top: 10px;
+  }
+
+  .item .actions {
+   display: none;
+   position: absolute;
+   top: 10px;
+   right: 10px;
+  }
+
+  .item:hover .actions {
+   display: block;
+  }
+
+  .toast {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   background-color: #333;
+   color: white;
+   padding: 10px 20px;
+   border-radius: 5px;
+   opacity: 0;
+   transition: opacity 0.3s;
+  }
+
+  .toast.show {
+   opacity: 1;
+  }
+
+  .modal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgb(0, 0, 0);
+   background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+  }
+
+  .fixed-search {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   background-color: #fff;
+   padding: 10px;
+   border-bottom: 1px solid #ccc;
+   z-index: 1000;
+  }
+
+  .fixed-menu {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: #fff;
+   padding: 10px;
+   border-top: 1px solid #ccc;
+   z-index: 1000;
+   display: flex;
+   justify-content: space-around;
+  }
+
+  .fixed-menu button {
+   padding: 10px 20px;
+   background-color: #007BFF;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+  }
+
+  .fixed-menu button:hover {
+   background-color: #0056b3;
+  }
+
+  .modal h2 {
+   margin-bottom: 20px;
+  }
+
+  .modal input,
+  .modal textarea,
+  .modal select {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 10px;
+   box-sizing: border-box;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  }
+
+  .modal button {
+   padding: 10px 20px;
+   background-color: #007BFF;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+  }
+
+  .modal button:hover {
+   background-color: #0056b3;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="fixed-search">
+  <div class="input-group">
+   <input type="text" id="search" placeholder="Buscar..." oninput="filterItems()">
+  </div>
+ </div>
+ <div class="container">
+  <div class="section">
+   <h2>Elementos</h2><br>
+   <div id="items-container"></div>
+  </div>
+ </div>
+ <div id="toast" class="toast">Prompt copiado</div>
+
+ <!-- Modal para Agregar Nuevo Elemento -->
+ <div id="addModal" class="modal">
+  <div class="modal-content">
+   <span class="close" onclick="closeModal()">&times;</span>
+   <h2>Agregar Nuevo Elemento</h2>
+   <input type="text" id="modal-title" placeholder="Título">
+   <textarea id="modal-description" placeholder="Descripción"></textarea>
+   <select id="modal-tag">
+    <option value="imagen">Imagen</option>
+    <option value="escritura">Escritura</option>
+    <option value="mkt">MKT</option>
+    <option value="negocio">Negocio</option>
+    <option value="codigo">Código</option>
+    <option value="otro">Otro</option>
+    <option value="creadores_de_contenido">Creadores de Contenido</option>
+    <option value="prompts_para_tiktok">Prompts para TikTok</option>
+    <option value="ideas_para_youtube">Ideas para YouTube</option>
+    <option value="contenido_para_instagram">Contenido para Instagram</option>
+    <option value="emprendedores">Emprendedores</option>
+    <option value="prompts_para_redes_sociales">Prompts para redes sociales</option>
+    <option value="ideas_para_marketing_digital">Ideas para marketing digital</option>
+    <option value="contenido_para_sitios_web">Contenido para sitios web</option>
+    <option value="escribir_y_contar_historias">Escribir y Contar Historias</option>
+    <option value="prompts_para_escritores">Prompts para escritores</option>
+    <option value="ideas_para_bloggers">Ideas para bloggers</option>
+    <option value="contenido_para_podcast">Contenido para podcast</option>
+    <option value="diseñadores_y_artistas">Diseñadores y Artistas</option>
+    <option value="prompts_para_diseño_grafico">Prompts para diseño gráfico</option>
+    <option value="ideas_para_ilustracion">Ideas para ilustración</option>
+    <option value="contenido_para_arte_digital">Contenido para arte digital</option>
+    <option value="general">General</option>
+    <option value="prompts_para_brainstorming">Prompts para brainstorming</option>
+    <option value="ideas_para_innovacion">Ideas para innovación</option>
+    <option value="contenido_para_creatividad">Contenido para creatividad</option>
+   </select>
+   <input type="text" id="modal-custom-tag" placeholder="Etiqueta personalizada" style="display: none;">
+   <button onclick="addItem()">Agregar</button>
+  </div>
+ </div>
+
+ <!-- Modal para Editar Elemento -->
+ <div id="editModal" class="modal">
+  <div class="modal-content">
+   <span class="close" onclick="closeEditModal()">&times;</span>
+   <h2>Editar Elemento</h2>
+   <input type="text" id="edit-title" placeholder="Título">
+   <textarea id="edit-description" placeholder="Descripción"></textarea>
+   <select id="edit-tag">
+    <option value="imagen">Imagen</option>
+    <option value="escritura">Escritura</option>
+    <option value="mkt">MKT</option>
+    <option value="negocio">Negocio</option>
+    <option value="codigo">Código</option>
+    <option value="otro">Otro</option>
+    <option value="creadores_de_contenido">Creadores de Contenido</option>
+    <option value="prompts_para_tiktok">Prompts para TikTok</option>
+    <option value="ideas_para_youtube">Ideas para YouTube</option>
+    <option value="contenido_para_instagram">Contenido para Instagram</option>
+    <option value="emprendedores">Emprendedores</option>
+    <option value="prompts_para_redes_sociales">Prompts para redes sociales</option>
+    <option value="ideas_para_marketing_digital">Ideas para marketing digital</option>
+    <option value="contenido_para_sitios_web">Contenido para sitios web</option>
+    <option value="escribir_y_contar_historias">Escribir y Contar Historias</option>
+    <option value="prompts_para_escritores">Prompts para escritores</option>
+    <option value="ideas_para_bloggers">Ideas para bloggers</option>
+    <option value="contenido_para_podcast">Contenido para podcast</option>
+    <option value="diseñadores_y_artistas">Diseñadores y Artistas</option>
+    <option value="prompts_para_diseño_grafico">Prompts para diseño gráfico</option>
+    <option value="ideas_para_ilustracion">Ideas para ilustración</option>
+    <option value="contenido_para_arte_digital">Contenido para arte digital</option>
+    <option value="general">General</option>
+    <option value="prompts_para_brainstorming">Prompts para brainstorming</option>
+    <option value="ideas_para_innovacion">Ideas para innovación</option>
+    <option value="contenido_para_creatividad">Contenido para creatividad</option>
+   </select>
+   <input type="text" id="edit-custom-tag" placeholder="Etiqueta personalizada" style="display: none;">
+   <button onclick="saveEdit()">Guardar</button>
+   <button onclick="cancelEdit()">Cancelar</button>
+  </div>
+ </div>
+
+ <!-- Fixed Menu -->
+ <div class="fixed-menu">
+  <button onclick="openModal()">Agregar</button>
+  <button onclick="exportData()">Exportar JSON</button>
+ </div>
+
+ <script>
+  let editingIndex = -1;
+  document.getElementById('modal-tag').addEventListener('change', function() {
+   const customTagInput = document.getElementById('modal-custom-tag');
+   if (this.value === 'otro') {
+    customTagInput.style.display = 'block';
+   } else {
+    customTagInput.style.display = 'none';
+   }
+  });
+  document.getElementById('edit-tag').addEventListener('change', function() {
+   const customTagInput = document.getElementById('edit-custom-tag');
+   if (this.value === 'otro') {
+    customTagInput.style.display = 'block';
+   } else {
+    customTagInput.style.display = 'none';
+   }
+  });
+
+  function openModal() {
+   document.getElementById('addModal').style.display = 'block';
+  }
+
+  function closeModal() {
+   document.getElementById('addModal').style.display = 'none';
+   clearModalForm();
+  }
+
+  function openEditModal() {
+   document.getElementById('editModal').style.display = 'block';
+  }
+
+  function closeEditModal() {
+   document.getElementById('editModal').style.display = 'none';
+   clearEditForm();
+  }
+
+  function addItem() {
+   const title = document.getElementById('modal-title').value;
+   const description = document.getElementById('modal-description').value;
+   const tag = document.getElementById('modal-tag').value;
+   const customTag = document.getElementById('modal-custom-tag').value;
+   if (title && description) {
+    const items = JSON.parse(localStorage.getItem('items')) || [];
+    const currentDate = new Date().toISOString();
+    const newItem = {
+     id: Date.now(),
+     title,
+     description,
+     tag: tag === 'otro' ? customTag : tag,
+     createdAt: currentDate,
+     editHistory: []
+    };
+    items.push(newItem);
+    localStorage.setItem('items', JSON.stringify(items));
+    displayItems();
+    closeModal();
+    showToast('Elemento agregado');
+   }
+  }
+
+  function displayItems() {
+   const itemsContainer = document.getElementById('items-container');
+   itemsContainer.innerHTML = '';
+   const items = JSON.parse(localStorage.getItem('items')) || [];
+   items.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'item';
+    itemDiv.innerHTML = `
+                    <div class="title">${item.title} <span style="color: gray;">(${item.tag})</span></div>
+                    <div class="description">${item.description}</div>
+                    <div class="actions">
+                        <button onclick="editItem(${index})">Editar</button>
+                        <button onclick="deleteItem(${index})">Eliminar</button>
+                    </div>
+                `;
+    itemDiv.addEventListener('click', () => {
+     const description = itemDiv.querySelector('.description');
+     description.style.display = description.style.display === 'none' ? 'block' : 'none';
+    });
+    itemDiv.querySelector('.description').addEventListener('click', () => {
+     copyToClipboard(item.description);
+    });
+    itemsContainer.appendChild(itemDiv);
+   });
+  }
+
+  function filterItems() {
+   const searchQuery = document.getElementById('search').value.toLowerCase();
+   const itemsContainer = document.getElementById('items-container');
+   const items = JSON.parse(localStorage.getItem('items')) || [];
+   itemsContainer.innerHTML = '';
+   items.forEach((item, index) => {
+    if (item.title.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery) || item.tag.toLowerCase().includes(searchQuery)) {
+     const itemDiv = document.createElement('div');
+     itemDiv.className = 'item';
+     itemDiv.innerHTML = `
+                        <div class="title">${item.title} <span style="color: gray;">(${item.tag})</span></div>
+                        <div class="description">${item.description}</div>
+                        <div class="actions">
+                            <button onclick="editItem(${index})">Editar</button>
+                            <button onclick="deleteItem(${index})">Eliminar</button>
+                        </div>
+                    `;
+     itemDiv.addEventListener('click', () => {
+      const description = itemDiv.querySelector('.description');
+      description.style.display = description.style.display === 'none' ? 'block' : 'none';
+     });
+     itemDiv.querySelector('.description').addEventListener('click', () => {
+      copyToClipboard(item.description);
+     });
+     itemsContainer.appendChild(itemDiv);
+    }
+   });
+  }
+
+  function editItem(index) {
+   const items = JSON.parse(localStorage.getItem('items')) || [];
+   const item = items[index];
+   document.getElementById('edit-title').value = item.title;
+   document.getElementById('edit-description').value = item.description;
+   document.getElementById('edit-tag').value = item.tag;
+   document.getElementById('edit-custom-tag').value = item.tag;
+   document.getElementById('edit-custom-tag').style.display = item.tag === 'otro' ? 'block' : 'none';
+   editingIndex = index;
+   openEditModal();
+  }
+
+  function saveEdit() {
+   const title = document.getElementById('edit-title').value;
+   const description = document.getElementById('edit-description').value;
+   const tag = document.getElementById('edit-tag').value;
+   const customTag = document.getElementById('edit-custom-tag').value;
+   if (title && description && editingIndex >= 0) {
+    const items = JSON.parse(localStorage.getItem('items')) || [];
+    const currentDate = new Date().toISOString();
+    const editedItem = items[editingIndex];
+    editedItem.title = title;
+    editedItem.description = description;
+    editedItem.tag = tag === 'otro' ? customTag : tag;
+    editedItem.editHistory.push({
+     editedAt: currentDate,
+     title,
+     description,
+     tag: tag === 'otro' ? customTag : tag
+    });
+    items[editingIndex] = editedItem;
+    localStorage.setItem('items', JSON.stringify(items));
+    displayItems();
+    closeEditModal();
+    showToast('Elemento editado');
+   }
+  }
+
+  function cancelEdit() {
+   closeEditModal();
+  }
+
+  function deleteItem(index) {
+   const items = JSON.parse(localStorage.getItem('items')) || [];
+   items.splice(index, 1);
+   localStorage.setItem('items', JSON.stringify(items));
+   displayItems();
+   showToast('Elemento eliminado');
+  }
+
+  function copyToClipboard(text) {
+   navigator.clipboard.writeText(text).then(() => {
+    showToast('Prompt copiado');
+   }).catch(err => {
+    console.error('Error al copiar al portapapeles: ', err);
+   });
+  }
+
+  function showToast(message) {
+   const toast = document.getElementById('toast');
+   toast.textContent = message;
+   toast.classList.add('show');
+   setTimeout(() => {
+    toast.classList.remove('show');
+   }, 2000);
+  }
+
+  function clearModalForm() {
+   document.getElementById('modal-title').value = '';
+   document.getElementById('modal-description').value = '';
+   document.getElementById('modal-tag').value = 'imagen';
+   document.getElementById('modal-custom-tag').value = '';
+   document.getElementById('modal-custom-tag').style.display = 'none';
+  }
+
+  function clearEditForm() {
+   document.getElementById('edit-title').value = '';
+   document.getElementById('edit-description').value = '';
+   document.getElementById('edit-tag').value = 'imagen';
+   document.getElementById('edit-custom-tag').value = '';
+   document.getElementById('edit-custom-tag').style.display = 'none';
+   editingIndex = -1;
+  }
+
+  function exportData() {
+   const items = JSON.parse(localStorage.getItem('items')) || [];
+   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items, null, 2));
+   const downloadAnchorNode = document.createElement('a');
+   const currentDate = new Date();
+   const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+   downloadAnchorNode.setAttribute("href", dataStr);
+   downloadAnchorNode.setAttribute("download", `promts-${formattedDate}.json`);
+   document.body.appendChild(downloadAnchorNode);
+   downloadAnchorNode.click();
+   downloadAnchorNode.remove();
+   showToast('Datos exportados');
+  }
+  window.onload = displayItems;
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

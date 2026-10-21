@@ -1,0 +1,19 @@
+{
+  "title": "Protocolo: Conflictos en Condominios",
+  "type": "ARTIFACT_TYPE_EXPLAINER_VIDEO",
+  "sources": [{
+    "sourceId": {
+      "id": "3e49191f-d66b-4a09-8663-49ef4a0ebaa5"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "explainerVideo": {
+    "generationOptions": {
+      "languageCode": "es_419",
+      "videoFocus": "Protocolo Operativo\nProcedimiento técnico para la gestión de controversias y aplicación de sanciones bajo la ley vigente.\nDefinir un protocolo riguroso que oriente al administrador profesional en la documentación de conductas prohibidas y el inicio de procedimientos ante la PROSOC, asegurando la validez legal de cada acción administrativa tomada frente a infracciones del Artículo 21.",
+      "length": "EXPLAINER_VIDEO_LENGTH_UNSPECIFIED",
+      "templateFormat": "TEMPLATE_FORMAT_EXPLAINER",
+      "videoOverviewStyle": "VIDEO_OVERVIEW_STYLE_UNSPECIFIED"
+    }
+  }
+}

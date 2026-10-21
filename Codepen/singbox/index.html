@@ -1,0 +1,135 @@
+<!--
+Código extraído del view source https://view-source-editor.vercel.app/
+Fecha de descarga: 14/11/2025, 11:05:58 p.m.
+¡Excelente día!
+-->
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Signup Box Design</title>
+
+    <link rel="canonical" href="https://codepen.io/Luis-Angel-Maciel/pen/ogxLowy">
+  
+  
+  
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+body { background: #F6F6F6; color: #FFFFFF; font-family: 'Poppins', sans-serif; overflow-x: hidden; height: 100vh; margin: auto; display: flex; justify-content: center; align-items: center; flex-flow: row wrap; }
+.app { width: 330px; min-height: 560px; margin: auto; border-radius: 5px; padding: 1rem; position: relative; overflow: hidden; box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.3); background-color: #FFFFFF; }
+.intro-viewer { width: 100%; height: 450px; background: #2F55A4; position: absolute; top: 0; left: 0; right: 0; margin: auto; text-align: center; padding: 4rem 3rem; transition: 0.45s ease all 0.1s; transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94 all .1s); }  
+.active { height: 200px; }
+h2 { font-weight: normal; margin: 10px auto; }
+.display { display: none; }
+p { font-size: 13px; color: #FFFFFF; line-height: 1.5; }
+.img { width: 100%; height: 300px; margin: 2em auto; }
+img { max-width: 100%; }
+.btn { position: absolute; left: 0; right: 0; bottom: 4.5em; margin: auto; text-align: center; background: #FFFFFF; padding: 10px; height: 70px; width: 70px; border-radius: 50%; transition: 0.45s ease all 0.1s; }
+button { width: 100%; height: 100%; border-radius: 50%; cursor: pointer; padding: 0.5rem; border: none; outline: none; background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); color: #FFFFFF; display: flex; justify-content: center; align-items: center; }
+    button i { font-size: 1.5rem; }
+form { width: 90%; height: 380px; background: #FFFFFF; box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.3); position: absolute; bottom: 7em; left: 0; right: 0; padding: 1em; margin: auto; border-radius: 5px; transform: translateY(30px); transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.1s; text-align: center; z-index: 0; visibility: hidden; opacity: 0; }
+    form h3 { color: #333333; }
+    form input { width: 100%; padding: 10px 15px; margin: 5px auto; border-radius: 100px; border: none; background: rgba(255, 255, 255, 0.3); outline: none; color: #333333; border: 1px solid #2F55A4; transition: all 0.2s ease; font-family: 'Poppins', sans-serif; }
+        form input:focus { box-shadow: 0 4px 24px -1px rgba(22, 42, 90, 0.16); border-color: #FFFFFF; }
+    form p {  color: gray; }
+    form a { text-decoration: none; color: #257AA6; }
+.submit { background: #2F55A4; color: #FFFFFF; cursor: pointer; transition: all 0.5s; }
+    .submit:hover { background: #FFFFFF; border-color: #2F55A4; color: #333333; font-weight: 500; }
+input::placeholder { color: #333333; font-size: 13px; }
+footer { position: absolute; bottom: 0.5em; left: 0; right: 0; margin: auto; text-align: center; transition: 0.45s ease all 0.1s; visibility: hidden; opacity: 0; }
+    footer p { color: #333333; }
+    footer a { font-size: 32px; margin: 0 10px; transform: translateY(30px); transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) all 0.1s; }
+    footer .fa-square-facebook { color: #108DEC; }
+    footer .fa-square-whatsapp { color: #25D366; }
+    footer .fa-google { color: #F44336; }
+
+.open-login form { transform: translateY(0px); opacity: 1; transition-delay: 0.15s; visibility: visible; }
+.open-login .intro-viewer { height: 200px; transition-delay: 0.25s; }
+.open-login .none { opacity: 0; visibility: hidden; z-index: 0; }
+.open-login .display { display: block; transform: translateY(-50px); }
+.open-login .btn { transform: rotate(90deg); transition-delay: 0.35s; }
+.open-login footer { opacity: 1; transition-delay: 0.5s; visibility: visible; }
+
+@media screen and (max-width: 640px) {
+    .app { width: 100%; height: 100vh; border-radius: 0; }
+    input, button { padding: 18px 15px; }
+    .open-login, .display { transform: translateY(0px) !important; }
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login || Signup</title>
+    <link rel="stylesheet" href="./css/0_style.css">
+    <link rel="stylesheet" href="./css/1_all.min.css">
+
+
+    <div class="app">
+        <div class="intro-viewer">
+            <h2 class="display">Welcome to Cloxe</h2>
+            <h2 class="none">Linking people</h2>
+            <p class="none">Click in the button below to start signing up</p>
+
+            <div class="img none">
+                <img src="https://i.postimg.cc/qRkLRYFT/Admission-Officers.png" alt="">
+            </div>
+        </div>
+
+        <form action="">
+            <h3>Register</h3>
+            <input type="text" placeholder="Full name">
+            <input type="email" name="" id="" placeholder="Email address">
+            <input type="password" name="" id="" placeholder="Password">
+            <input type="password" name="" id="" placeholder="Repeat Password">
+            <input type="button" value="Submit" class="submit">
+            <p>By clicking 'Submit' button, you agree to our <a href="https://cdpn.io/pen/debug/ogxLowy?authentication_hash=bYrdyWyQGDNA">terms and conditions</a></p>
+        </form>
+
+        <div class="btn">
+            <button class="toggle-btn">
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
+        </div>
+        
+
+        <footer>
+            <p>or signup with</p>
+            <a href="https://cdpn.io/pen/debug/ogxLowy?authentication_hash=bYrdyWyQGDNA#"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://cdpn.io/pen/debug/ogxLowy?authentication_hash=bYrdyWyQGDNA#"><i class="fa-brands fa-google"></i></a>
+            <a href="https://cdpn.io/pen/debug/ogxLowy?authentication_hash=bYrdyWyQGDNA#"><i class="fa-brands fa-square-whatsapp"></i></a>
+        </footer>
+    </div>
+
+    <script src="./js/0_app.js"></script>
+
+
+  
+    <script id="rendered-js">
+var body = document.querySelector('body');
+var btnOpen = document.querySelector('.toggle-btn');
+
+btnOpen.addEventListener('click', () => {
+    body.classList.toggle('open-login');
+})
+  </script>
+
+  
+
+
+
+</body></html>

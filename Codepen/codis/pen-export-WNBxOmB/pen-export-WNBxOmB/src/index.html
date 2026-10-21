@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Test de Personalidad Myers-Briggs</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   background-color: #f2f2f2;
+  }
+
+  .question {
+   margin: 20px;
+   padding: 20px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  button {
+   margin-top: 10px;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 5px;
+  }
+
+  #resultado img {
+   margin-top: 20px;
+   max-width: 100%;
+   border-radius: 10px;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="question">
+  <h2>Test de Personalidad Myers-Briggs</h2>
+  <p>1. ¿Prefieres pasar tiempo solo/a o rodeado/a de gente?</p>
+  <input type="radio" name="q1" value="a">Solo/a<br>
+  <input type="radio" name="q1" value="b">Con gente<br>
+
+  <p>2. ¿Cómo te sientes en eventos sociales abarrotados?</p>
+  <input type="radio" name="q2" value="a">Me siento incómodo/a y prefiero evitarlos si es posible.<br>
+  <input type="radio" name="q2" value="b">Disfruto interactuar con muchas personas.<br>
+  <input type="radio" name="q2" value="c">Prefiero grupos pequeños donde puedo tener conversaciones más profundas.<br>
+  <input type="radio" name="q2" value="d">Me adapto fácilmente y puedo disfrutar tanto de grandes eventos como de momentos íntimos.<br>
+
+  <p>3. ¿Cuál es tu enfoque ante nuevas ideas o cambios?</p>
+  <input type="radio" name="q3" value="a">Me resisto al cambio y prefiero mantenerme en lo conocido.<br>
+  <input type="radio" name="q3" value="b">Me entusiasman y me gusta probar cosas nuevas.<br>
+  <input type="radio" name="q3" value="c">Soy cauteloso/a pero estoy dispuesto/a a considerar nuevas perspectivas.<br>
+  <input type="radio" name="q3" value="d">Analizo cuidadosamente antes de tomar una decisión, pero puedo adaptarme si es necesario.<br>
+
+  <p>4. ¿Cómo te sientes en situaciones de conflicto?</p>
+  <input type="radio" name="q4" value="a">Me siento incómodo/a y prefiero evitar confrontaciones.<br>
+  <input type="radio" name="q4" value="b">Prefiero enfrentarlo directamente y resolverlo de inmediato.<br>
+  <input type="radio" name="q4" value="c">Busco un compromiso y trato de encontrar una solución pacífica.<br>
+  <input type="radio" name="q4" value="d">Busco entender todas las perspectivas antes de tomar medidas.<br>
+
+  <p>5. ¿Qué cualidad valoras más en ti mismo/a?</p>
+  <input type="radio" name="q5" value="a">Mi habilidad para mantener la calma en situaciones difíciles.<br>
+  <input type="radio" name="q5" value="b">Mi energía y entusiasmo por la vida.<br>
+  <input type="radio" name="q5" value="c">Mi capacidad para comprender y apoyar a los demás.<br>
+  <input type="radio" name="q5" value="d">Mi capacidad para analizar y resolver problemas de manera efectiva.<br>
+
+  <p>6. ¿Cómo sueles planificar tus actividades diarias?</p>
+  <input type="radio" name="q6" value="a">No suelo hacer muchos planes, prefiero dejar que las cosas sucedan.<br>
+  <input type="radio" name="q6" value="b">Tiendo a ser espontáneo/a y adaptable.<br>
+  <input type="radio" name="q6" value="c">Me gusta tener un plan claro y seguirlo.<br>
+  <input type="radio" name="q6" value="d">Me gusta tener una estructura pero también ser flexible según las circunstancias.<br>
+
+  <p>7. ¿Cómo te sientes acerca de liderar un grupo?</p>
+  <input type="radio" name="q7" value="a">No me siento cómodo/a liderando, prefiero seguir instrucciones.<br>
+  <input type="radio" name="q7" value="b">Puedo liderar si es necesario, pero también puedo ser un buen seguidor.<br>
+  <input type="radio" name="q7" value="c">Me gusta asumir el liderazgo y motivar a los demás.<br>
+  <input type="radio" name="q7" value="d">Prefiero contribuir desde el equipo y apoyar al líder.<br>
+
+  <p>8. ¿Cómo manejas el estrés?</p>
+  <input type="radio" name="q8" value="a">Prefiero manejarlo solo/a y encontrar soluciones por mi cuenta.<br>
+  <input type="radio" name="q8" value="b">Busco actividades divertidas y relajantes para liberar la tensión.<br>
+  <input type="radio" name="q8" value="c">Busco el apoyo de amigos y familiares para enfrentar los desafíos.<br>
+  <input type="radio" name="q8" value="d">Me enfoco en analizar la situación y encontrar una solución práctica.<br>
+
+  <p>9. ¿Qué tipo de actividades prefieres en tu tiempo libre?</p>
+  <input type="radio" name="q9" value="a">Disfrutar de momentos de tranquilidad y reflexión.<br>
+  <input type="radio" name="q9" value="b">Actividades emocionantes y aventureras.<br>
+  <input type="radio" name="q9" value="c">Pasar tiempo con amigos y familiares en un entorno relajado.<br>
+  <input type="radio" name="q9" value="d">Aprender algo nuevo o profundizar en un hobby o interés.<br>
+
+  <p>10. ¿Cuál es tu mayor fortaleza?</p>
+  <input type="radio" name="q10" value="a">Mi capacidad para mantener la calma bajo presión.<br>
+  <input type="radio" name="q10" value="b">Mi creatividad y capacidad para pensar fuera de la caja.<br>
+  <input type="radio" name="q10" value="c">Mi empatía y habilidad para comprender a los demás.<br>
+  <input type="radio" name="q10" value="d">Mi capacidad para analizar problemas y encontrar soluciones efectivas.<br>
+ </div>
+
+ <button onclick="calcularPersonalidad()">Calcular Resultado</button>
+
+ <div id="resultado" style="display:none;" class="question">
+  <h2>Tu personalidad Myers-Briggs es:</h2>
+  <p id="resultadoTexto"></p>
+  <img id="imagenPersonalidad" src="" alt="Imagen de la personalidad">
+  <p id="descripcionPersonalidad"></p>
+ </div>
+ <script>
+  function calcularPersonalidad() {
+   var respuestas = {
+    'a': 0,
+    'b': 0,
+    'c': 0,
+    'd': 0
+   };
+   // Obtener las respuestas seleccionadas
+   var preguntas = document.querySelectorAll('input[type="radio"]');
+   preguntas.forEach(function(pregunta) {
+    if (pregunta.checked) {
+     respuestas[pregunta.value]++;
+    }
+   });
+   // Determinar la personalidad Myers-Briggs según las respuestas
+   var personalidad = '';
+   if (respuestas['a'] > respuestas['b']) {
+    personalidad += 'I'; // Introvertido
+   } else {
+    personalidad += 'E'; // Extrovertido
+   }
+   if (respuestas['c'] > respuestas['d']) {
+    personalidad += 'S'; // Sensible
+   } else {
+    personalidad += 'N'; // Intuitivo
+   }
+   if (respuestas['a'] > respuestas['b']) {
+    personalidad += 'F'; // Sentimiento
+   } else {
+    personalidad += 'T'; // Pensamiento
+   }
+   if (respuestas['c'] > respuestas['d']) {
+    personalidad += 'J'; // Juicio
+   } else {
+    personalidad += 'P'; // Percepción
+   }
+   // Mostrar el resultado
+   var resultadoTexto = '';
+   var imagenPersonalidad = '';
+   var descripcionPersonalidad = '';
+   switch (personalidad) {
+    case 'ISTJ':
+     resultadoTexto = 'Tu personalidad es ISTJ (Guardián) Piccolo .';
+     imagenPersonalidad = 'imagen_istj.jpg';
+     descripcionPersonalidad = 'Los ISTJ son personas responsables, organizadas y comprometidas. Son excelentes para seguir instrucciones y cumplir con sus deberes de manera confiable. Prefieren un enfoque práctico y valoran la estabilidad y la tradición.';
+     break;
+    case 'ISFJ':
+     resultadoTexto = 'Tu personalidad es ISFJ (Defensor) Gohan.';
+     imagenPersonalidad = 'Gohan-imagen_isfj.jpg';
+     descripcionPersonalidad = 'Los ISFJ son personas pacientes, leales y dedicadas. Se preocupan profundamente por los demás y tienden a poner las necesidades de los demás por encima de las suyas. Son muy responsables y confiables.';
+     break;
+    case 'INFJ':
+     resultadoTexto = 'Tu personalidad es INFJ (Abogado) Goku.';
+     imagenPersonalidad = 'imagen_infj.jpg';
+     descripcionPersonalidad = 'Los INFJ son personas compasivas, creativas y visionarias. Tienen una profunda comprensión de las emociones humanas y son excelentes para leer entre líneas. Valoran la autenticidad y buscan significado en todo lo que hacen.';
+     break;
+    case 'INTJ':
+     resultadoTexto = 'Tu personalidad es INTJ (Arquitecto) Vegeta.';
+     imagenPersonalidad = 'imagen_intj.jpg';
+     descripcionPersonalidad = 'Los INTJ son personas analíticas, visionarias y estratégicas. Son expertos en analizar problemas complejos y encontrar soluciones innovadoras. Valoran la independencia y la eficiencia.';
+     break;
+    case 'ISTP':
+     resultadoTexto = 'Tu personalidad es ISTP (Virtuoso) Trunks.';
+     imagenPersonalidad = 'imagen_istp.jpg';
+     descripcionPersonalidad = 'Los ISTP son personas prácticas, ingeniosas y aventureras. Disfrutan explorando el mundo y aprendiendo cómo funcionan las cosas. Son expertos en resolver problemas técnicos y mecánicos.';
+     break;
+    case 'ISFP':
+     resultadoTexto = 'Tu personalidad es ISFP (Aventurero) Krilin.';
+     imagenPersonalidad = 'imagen_isfp.jpg';
+     descripcionPersonalidad = 'Los ISFP son personas creativas, sensibles y pacíficas. Disfrutan explorando su creatividad a través del arte, la música o la escritura. Valoran la libertad y la expresión personal.';
+     break;
+    case 'INFP':
+     resultadoTexto = 'Tu personalidad es INFP (Mediador) Yamcha.';
+     imagenPersonalidad = 'imagen_infp.jpg';
+     descripcionPersonalidad = 'Los INFP son personas idealistas, creativas y compasivas. Tienen una profunda conexión con sus valores personales y se esfuerzan por hacer del mundo un lugar mejor. Son soñadores y tienen una rica vida interior.';
+     break;
+    case 'INTP':
+     resultadoTexto = 'Tu personalidad es INTP (Lógico) Bulma.';
+     imagenPersonalidad = 'imagen_intp.jpg';
+     descripcionPersonalidad = 'Los INTP son personas curiosas, analíticas y lógicas. Les encanta explorar ideas nuevas y desafiantes. Son excelentes para encontrar soluciones innovadoras a problemas complejos.';
+     break;
+    case 'ESTP':
+     resultadoTexto = 'Tu personalidad es ESTP (Emprendedor) Freezer.';
+     imagenPersonalidad = 'imagen_estp.jpg';
+     descripcionPersonalidad = 'Los ESTP son personas enérgicas, prácticas y audaces. Disfrutan del riesgo y la aventura, y son expertos en pensar sobre la marcha. Son muy buenos para adaptarse a nuevas situaciones.';
+     break;
+    case 'ESFP':
+     resultadoTexto = 'Tu personalidad es ESFP (Animador) Mr. Satan.';
+     imagenPersonalidad = 'imagen_esfp.jpg';
+     descripcionPersonalidad = 'Los ESFP son personas entusiastas, divertidas y sociables. Disfrutan ser el centro de atención y animar a los demás. Son excelentes para hacer que las situaciones sean divertidas y emocionantes.';
+     break;
+    case 'ENFP':
+     resultadoTexto = 'Tu personalidad es ENFP (Campeón) Goten.';
+     imagenPersonalidad = 'imagen_enfp.jpg';
+     descripcionPersonalidad = 'Los ENFP son personas creativas, entusiastas y sociables. Les encanta explorar nuevas ideas y posibilidades. Son muy buenos para inspirar a los demás y motivarlos hacia el cambio.';
+     break;
+    case 'ENTP':
+     resultadoTexto = 'Tu personalidad es ENTP (Innovador) Dr. Gero.';
+     imagenPersonalidad = 'imagen_entp.jpg';
+     descripcionPersonalidad = 'Los ENTP son personas ingeniosas, analíticas y visionarias. Les encanta desafiar el status quo y explorar nuevas formas de hacer las cosas. Son excelentes para generar ideas innovadoras.';
+     break;
+    case 'ESTJ':
+     resultadoTexto = 'Tu personalidad es ESTJ (Supervisor) Rey Vegeta.';
+     imagenPersonalidad = 'imagen_estj.jpg';
+     descripcionPersonalidad = 'Los ESTJ son personas prácticas, organizadas y responsables. Disfrutan estableciendo metas claras y trabajando duro para alcanzarlas. Son muy buenos para liderar equipos y mantener la disciplina.';
+     break;
+    case 'ESFJ':
+     resultadoTexto = 'Tu personalidad es ESFJ (Proveedor) Chichi.';
+     imagenPersonalidad = 'imagen_esfj.jpg';
+     descripcionPersonalidad = 'Los ESFJ son personas amables, sociables y serviciales. Se preocupan profundamente por los demás y disfrutan ayudando en lo que puedan. Son excelentes para crear armonía en su entorno.';
+     break;
+    case 'ENFJ':
+     resultadoTexto = 'Tu personalidad es ENFJ (Protagonista) Dende.';
+     imagenPersonalidad = 'imagen_enfj.jpg';
+     descripcionPersonalidad = 'Los ENFJ son personas carismáticas, compasivas y motivadoras. Disfrutan ayudando a los demás a alcanzar su máximo potencial. Son excelentes para conectar con las emociones de las personas y crear un sentido de comunidad.';
+     break;
+    case 'ENTJ':
+     resultadoTexto = 'Tu personalidad es ENTJ (Comandante) Cell.';
+     imagenPersonalidad = 'imagen_entj.jpg';
+     descripcionPersonalidad = 'Los ENTJ son personas decididas, estratégicas y líderes naturales. Tienen una visión clara de sus objetivos y harán lo que sea necesario para alcanzarlos. Son excelentes para organizar y dirigir equipos hacia el éxito.';
+     break;
+    default:
+     resultadoTexto = 'No se pudo determinar tu personalidad correctamente.';
+     break;
+   }
+   document.getElementById('resultadoTexto').innerHTML = resultadoTexto;
+   document.getElementById('imagenPersonalidad').src = imagenPersonalidad;
+   document.getElementById('descripcionPersonalidad').innerHTML = descripcionPersonalidad;
+   document.getElementById('resultado').style.display = 'block';
+  }
+ </script>
+</body>
+
+</html>

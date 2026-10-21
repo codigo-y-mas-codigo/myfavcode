@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>TinyMCE - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+   
+    <!-- CSS files -->
+    <link href="https://preview.tabler.io//dist/css/tabler.min.css?1695847769" rel="stylesheet"/>
+    <link href="https://preview.tabler.io//dist/css/tabler-flags.min.css?1695847769" rel="stylesheet"/>
+    <link href="https://preview.tabler.io//dist/css/tabler-payments.min.css?1695847769" rel="stylesheet"/>
+    <link href="https://preview.tabler.io//dist/css/tabler-vendors.min.css?1695847769" rel="stylesheet"/>
+    <link href="https://preview.tabler.io//dist/css/demo.min.css?1695847769" rel="stylesheet"/>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
+</head>
+<body >
+<script src="https://preview.tabler.io//dist/js/demo-theme.min.js?1695847769"></script>
+  <div class="page">
+        <!-- Navbar -->
+        <header class="navbar navbar-expand-md d-print-none">
+            <div class="container-xl">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+                    aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                    <a href="#">
+                        Registro de proyectos
+                    </a>
+                </h1>
+                <div class="navbar-nav flex-row order-md-last">
+                    <div class="nav-item d-none d-md-flex me-3">
+                        <div class="btn-list">
+                            <div class="btn" target="_blank" rel="noreferrer" id="downloadButton">
+                                Descargar Json
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-md-flex">
+                        <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                            </svg>
+                        </a>
+                        <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                <path
+                                    d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="page-wrapper">
+            <!-- Page header -->
+            <div class="page-header d-print-none">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasStart" role="button"
+                                    aria-controls="offcanvasStart">
+                                    TinyMCE
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page body -->
+            <div class="page-header d-print-none">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
+                                        <li class="nav-item"> <a href="#tabs-home-4" class="nav-link active"
+                                                data-bs-toggle="tab">Home</a> </li>
+                                        <li class="nav-item"> <a href="#tabs-profile-4" class="nav-link"
+                                                data-bs-toggle="tab">Profile</a> </li>
+
+
+                                        <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle"
+                                                data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+                                                aria-expanded="false">Dropdown</a>
+                                            <div class="dropdown-menu"> <a class="dropdown-item" href="#"> Action </a> <a
+                                                    class="dropdown-item" href="#"> Another action </a> </div>
+                                        </li>
+                                        <input type="search" class="nav-item" id="search"
+                                            placeholder="Buscar por proyecto" style="background:none: border:none">
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active show" id="tabs-home-4">
+                                            <div class="car">
+                                                <div class="card-body">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Titulo</label>
+                                                        <input type="text" class="form-control" placeholder="Name"
+                                                            id="NamePromt">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Descripcion</label>
+                                                        <form id="projectForm" method="post">
+                                                            <textarea id="tinymce-mytextarea">Hello, <b>Tabler</b>!
+                                                            </textarea>
+                                                            <button type="submit" class="btn btn-primary">Guardar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tabs-profile-4">
+                                            <h4>Profile tab</h4>
+                                            <div>Fringilla egestas nunc quis tellus diam rhoncus ultricies
+                                                tristique enim at diam, sem nunc amet, pellentesque id egestas velit
+                                                sed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="container-xl">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h2>Tabla de Registros</h2>
+                            </div>
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-vcenter card-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Descripción</th>
+                                                <th>Fecha y Hora</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableBody" aria-live="polite"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasStart"
+                aria-labelledby="offcanvasStartLabel">
+                <div class="offcanvas-header">
+                    <h2 class="offcanvas-title" id="offcanvasStartLabel">Start offcanvas</h2>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-bodyxx">
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                            The current link item
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+                        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+                        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                        <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const form = document.getElementById('projectForm'); // Selecciona el formulario por su id
+        const downloadButton = document.getElementById('downloadButton');
+        const tableBody = document.getElementById('tableBody');
+        const searchInput = document.getElementById('search');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const projectName = document.getElementById('NamePromt').value;
+            const description = tinymce.get('tinymce-mytextarea').getContent(); // Obtener contenido de TinyMCE
+
+            const project = {
+                projectName,
+                description,
+                dateTime: new Date().toLocaleString() // Agregar fecha y hora al objeto del proyecto
+            };
+
+            // Guardar en localStorage
+            let xbrLamp = JSON.parse(localStorage.getItem('xbrLamp')) || [];
+            xbrLamp.push(project);
+            localStorage.setItem('xbrLamp', JSON.stringify(xbrLamp));
+
+            // Actualizar la tabla
+            updateTable();
+
+            // Limpiar el formulario
+            form.reset();
+        });
+
+        downloadButton.addEventListener('click', function () {
+            downloadxbrLamp();
+        });
+
+        searchInput.addEventListener('input', function () {
+            updateTable();
+        });
+
+        function updateTable() {
+            const xbrLamp = JSON.parse(localStorage.getItem('xbrLamp')) || [];
+            const tableBody = document.getElementById('tableBody');
+            const searchInput = document.getElementById('search').value.toLowerCase();
+
+            // Limpiar la tabla antes de actualizar
+            tableBody.innerHTML = '';
+
+            // Filtrar los proyectos que coincidan con la búsqueda
+            const filteredProjects = xbrLamp.filter(project => {
+                const projectName = project.projectName.toLowerCase();
+                return projectName.includes(searchInput);
+            });
+
+            // Llenar la tabla con los datos filtrados
+            filteredProjects.forEach(project => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${project.projectName}</td>
+                <td>${project.description}</td>
+                <td>${project.dateTime}</td>
+                <td>Acciones</td>
+            `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function deleteProject(index) {
+            const xbrLamp = JSON.parse(localStorage.getItem('xbrLamp')) || [];
+
+            // Eliminar el proyecto de la lista
+            xbrLamp.splice(index, 1);
+
+            // Actualizar el localStorage
+            localStorage.setItem('xbrLamp', JSON.stringify(xbrLamp));
+
+            // Actualizar la tabla
+            updateTable();
+        }
+    </script>
+
+
+    <script>
+        // @formatter:off
+        document.addEventListener("DOMContentLoaded", function () {
+            let options = {
+                selector: '#tinymce-mytextarea',
+                height: 300,
+                menubar: false,
+                statusbar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                    'bold italic backcolor | alignleft aligncenter ' +
+                    'alignright alignjustify | bullist numlist outdent indent | ' +
+                    'removeformat',
+                content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+            };
+            if (localStorage.getItem("tablerTheme") === 'dark') {
+                options.skin = 'oxide-dark';
+                options.content_css = 'dark';
+            }
+            tinyMCE.init(options);
+        });
+        // @formatter:on
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>Formulario Interactivo</title>
+ <script>
+  function compute(form, fieldName, day) {
+   const label = getLabel(day);
+   form.content.value = label;
+   form[fieldName.replace('edit', 'editday')].value = label;
+   updateResult();
+  }
+
+  function updateResult() {
+   const result = document.getElementById('result');
+   const form1Value = document.getElementById('form1').content.value;
+   const form2Value = document.getElementById('form2').content.value;
+   const form3Value = document.getElementById('form3').content.value;
+   result.innerHTML = `Respuesta final: ${form1Value}, ${form2Value}, ${form3Value}`;
+  }
+
+  function createButtons(form, names, fieldName) {
+   names.forEach((name, index) => {
+    form.innerHTML += `
+          <input type="hidden" name="${name}" value="${getLabel(index)}">
+          <input type="button" value="${name}" onClick="compute(this.form, '${name}', ${index})">
+        `;
+   });
+  }
+
+  function getLabel(index) {
+   const labels = ["Mi jefe", "El chacal", "Un borracho", "Un oso", "Un twink", "Un viejito", "Un vagabundo", "Mi tio", "El vecino", "Mi amigo"];
+   return labels[index];
+  }
+ </script>
+</head>
+
+<body>
+
+ <h2>Elige el último dígito de tu celular</h2>
+ <form method="post" id="form1"></form>
+
+ <h2>Elige tu signo zodiacal</h2>
+ <form method="post" id="form2"></form>
+
+ <h2>Elige el mes de tu nacimiento</h2>
+ <form method="post" id="form3"></form>
+
+ <div id="result"></div>
+
+ <script>
+  const form1 = document.getElementById('form1');
+  const form2 = document.getElementById('form2');
+  const form3 = document.getElementById('form3');
+  const digits = Array.from({
+   length: 10
+  }, (_, i) => i.toString());
+  const zodiacalSigns = ["Aries", "Tauro", "Geminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpión", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+  const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  createButtons(form1, digits, 'editday1');
+  createButtons(form2, zodiacalSigns, 'editday2');
+  createButtons(form3, months, 'editday3');
+ </script>
+
+</body>
+
+</html>

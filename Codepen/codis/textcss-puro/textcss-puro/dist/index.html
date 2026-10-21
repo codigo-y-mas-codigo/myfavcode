@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Text - CSS Puro</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sparkly Text - CSS Puro</title>
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			background: #0a0a0a;
+			font-family: system-ui, -apple-system, sans-serif;
+			margin: 0;
+			padding: 20px;
+		}
+
+		.pretty {
+			text-wrap: balance;
+			text-align: center;
+			font-size: 2rem;
+			color: #ffffff;
+			line-height: 1.6;
+		}
+
+		/* Método 1: Usando ::before y ::after con gradientes animados */
+		.sparkly-gradient {
+			position: relative;
+			display: inline-block;
+			background: linear-gradient(90deg,
+					#ff6b6b,
+					#feca57,
+					#48dbfb,
+					#ff9ff3,
+					#54a0ff,
+					#00d2d3);
+			background-size: 200% 100%;
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: shimmer 3s linear infinite;
+		}
+
+		@keyframes shimmer {
+			0% {
+				background-position: 0% 0%;
+			}
+
+			100% {
+				background-position: 200% 0%;
+			}
+		}
+
+		/* Método 2: Sparkles flotantes con pseudo-elementos */
+		.sparkly-float {
+			position: relative;
+			display: inline-block;
+			color: #ffd700;
+			font-weight: 700;
+			text-shadow:
+				0 0 10px rgba(255, 215, 0, 0.8),
+				0 0 20px rgba(255, 215, 0, 0.6),
+				0 0 30px rgba(255, 215, 0, 0.4);
+		}
+
+		.sparkly-float::before,
+		.sparkly-float::after {
+			content: "✨";
+			position: absolute;
+			font-size: 1.5rem;
+			animation: float 2s ease-in-out infinite;
+			opacity: 0;
+		}
+
+		.sparkly-float::before {
+			top: -20px;
+			left: -10px;
+			animation-delay: 0s;
+		}
+
+		.sparkly-float::after {
+			bottom: -20px;
+			right: -10px;
+			animation-delay: 1s;
+		}
+
+		@keyframes float {
+
+			0%,
+			100% {
+				opacity: 0;
+				transform: translateY(0) scale(0.5);
+			}
+
+			50% {
+				opacity: 1;
+				transform: translateY(-10px) scale(1);
+			}
+		}
+
+		/* Método 3: Glitter con múltiples box-shadows */
+		.sparkly-glitter {
+			position: relative;
+			display: inline-block;
+			color: #fff;
+			font-weight: 700;
+			animation: glitter 1.5s ease-in-out infinite;
+		}
+
+		@keyframes glitter {
+
+			0%,
+			100% {
+				text-shadow:
+					-1px -1px 0 #ffd700,
+					1px -1px 0 #ff69b4,
+					-1px 1px 0 #00ffff,
+					1px 1px 0 #ff6347,
+					0 0 20px rgba(255, 215, 0, 0.5);
+			}
+
+			25% {
+				text-shadow:
+					-2px 0 0 #ff69b4,
+					2px 0 0 #ffd700,
+					0 -2px 0 #00ffff,
+					0 2px 0 #ff6347,
+					0 0 25px rgba(255, 105, 180, 0.6);
+			}
+
+			50% {
+				text-shadow:
+					0 -2px 0 #00ffff,
+					0 2px 0 #ff69b4,
+					-2px 0 0 #ff6347,
+					2px 0 0 #ffd700,
+					0 0 30px rgba(0, 255, 255, 0.7);
+			}
+
+			75% {
+				text-shadow:
+					1px 1px 0 #ff6347,
+					-1px -1px 0 #00ffff,
+					1px -1px 0 #ffd700,
+					-1px 1px 0 #ff69b4,
+					0 0 25px rgba(255, 99, 71, 0.6);
+			}
+		}
+
+		/* Separadores */
+		.demo-section {
+			margin-bottom: 60px;
+		}
+
+		.demo-label {
+			font-size: 0.9rem;
+			color: #888;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<!-- Método 1: Gradiente Animado -->
+		<div class="demo-section">
+			<div class="demo-label">Método 1: Gradiente Animado</div>
+			<p class="pretty">
+				Web Components are <span class="sparkly-gradient">pretty cool</span> aren't they?
+			</p>
+		</div>
+
+		<!-- Método 2: Sparkles Flotantes -->
+		<div class="demo-section">
+			<div class="demo-label">Método 2: Sparkles Flotantes</div>
+			<p class="pretty">
+				Web Components are <span class="sparkly-float">pretty cool</span> aren't they?
+			</p>
+		</div>
+
+		<!-- Método 3: Efecto Glitter -->
+		<div class="demo-section">
+			<div class="demo-label">Método 3: Efecto Glitter</div>
+			<p class="pretty">
+				Web Components are <span class="sparkly-glitter">pretty cool</span> aren't they?
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

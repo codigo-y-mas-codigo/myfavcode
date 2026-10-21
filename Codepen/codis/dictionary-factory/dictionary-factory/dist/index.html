@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Dictionary Factory</title>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
+<link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <header>
+  <p>Inspired by the phrase <em>"If I were to search the word x in the dictionary, I'd see a picture of you!"</em></p>
+  <p>... here is a "dictionary page" generator. Sort of.</p>
+</header>
+<main>
+  <form class="inputs" autocomplete="off">
+    <h2>Fill up this form!</h2>
+    <div class="input__wrapper">
+      <input class="js-mirror" id="word" type="text" maxlength="20" required="required" data-destination="word"/>
+      <label>Word You're "Searching"</label>
+    </div>
+    <div class="input__wrapper radio-label"><span>Word Type:</span>
+      <input type="radio" id="noun" name="word-type" value="noun" checked="checked"/>
+      <label for="noun">Noun</label>
+      <input type="radio" id="adjective" name="word-type" value="adjective"/>
+      <label for="adjective">Adjective</label>
+      <input type="radio" id="verb" name="word-type" value="verb"/>
+      <label for="verb">Verb</label>
+    </div>
+    <div class="input__wrapper">
+      <textarea class="js-mirror" id="explanation" data-destination="explanation"></textarea>
+      <label>Explanation (optional)</label>
+    </div>
+    <div class="input__wrapper">
+      <input class="js-mirror" id="name" type="text" data-destination="name"/>
+      <label>Name</label>
+    </div>
+    <label class="your-face" id="image-form" for="image-input">
+      <input type="file" id="image-input"/>
+      <div class="image-persuader">
+        	Upload An Image (Square images work best)<br/><span class="js-file-name"></span></div>
+    </label>
+  </form>
+  <section class="design">
+    <div class="alphabet js-alphabet">Hh</div>
+    <section>
+      <div class="word js-word">human perfection</div>
+      <div class="type js-type">(noun)</div>
+      <p class="context js-explanation">Features include deep Australian voice, charisma and winning personality.</p>
+      <p class="see-also">
+         (see also: <strong class="js-name">Chris Hemsworth</strong>)</p>
+      <div class="image"><img id="imager" src="https://meowlivia.s3.us-east-2.amazonaws.com/codepen/avengers/thor.png"/>
+        <p>
+           an example of <span class="js-word">human perfection</span></p>
+      </div>
+    </section>
+  </section>
+  <input id="save-image" type="button" value="Export As Image"/>
+</main>
+<aside class="context">
+  <div class="explanation">Note: The export feature doesn't export Thor's face for some reason, but should work if you upload your own image.<br/><br/>Part of the<a href="https://codepen.io/collection/ANgNEw/" target="_blank">
+      Factories collection here .</a></div>
+</aside>
+<footer><a href="https://twitter.com/meowlivia_" target="_blank"><i class="icon-social-twitter icons"></i></a><a href="https://github.com/oliviale" target="_blank"><i class="icon-social-github icons"></i></a><a href="https://dribbble.com/oliviale" target="_blank"><i class="icon-social-dribbble icons"></i></a></footer>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'></script>
+<script src='https://superal.github.io/canvas2image/canvas2image.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>

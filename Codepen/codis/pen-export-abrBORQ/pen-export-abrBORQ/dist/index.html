@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Registro de Consumo</title>
+ <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/eYaBNjM">
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   margin: 5px;
+   padding: 5px;
+   background-color: #f0f0f0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   overflow-x: hidden
+  }
+
+  .container {
+   max-width: 600px;
+   width: 100%;
+   margin: 0px;
+   padding: 20px;
+   background-color: #ffffff;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+   text-align: center;
+   margin-bottom: 20px;
+   font-size: 24px;
+   color: #333;
+  }
+
+  form {
+   display: flex;
+   flex-direction: column;
+  }
+
+  label {
+   margin-bottom: 5px;
+   font-weight: bold;
+   color: #555;
+  }
+
+  input,
+  select,
+  button {
+   padding: 10px;
+   margin-bottom: 15px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   font-size: 16px;
+   box-sizing: border-box;
+  }
+
+  button {
+   background-color: #007bff;
+   color: #fff;
+   cursor: pointer;
+   border: none;
+  }
+
+  button:hover {
+   background-color: #0056b3;
+  }
+
+  #registros {
+   margin-top: 20px;
+  }
+
+  .registro {
+   background-color: #fff;
+   padding: 15px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+   display: flex;
+   flex-direction: column;
+  }
+
+  .registro p {
+   margin: 5px 0;
+  }
+
+  .registro button {
+   margin-top: 10px;
+   padding: 8px;
+   font-size: 14px;
+  }
+
+  @media (min-width: 600px) {
+   .registro {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   }
+
+   .registro p {
+    margin: 0 10px 0 0;
+   }
+
+   .registro button {
+    margin-top: 0;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <h1>Registro de Consumo</h1>
+  <form id="registroForm">
+   <label for="nombre">Nombre:</label>
+   <input type="text" id="nombre">
+   <label for="fechaPrimerConsumo">Fecha de Primer Consumo:</label>
+   <input type="date" id="fechaPrimerConsumo">
+   <label for="cantidad">Cantidad de Fumes:</label>
+   <input type="number" id="cantidad" min="0" max="30" step="0.01" required>
+   <label for="intensidad">Intensidad:</label>
+   <select id="intensidad" required>
+    <option value="leve">Leve</option>
+    <option value="moderado">Moderado</option>
+    <option value="intenso">Intenso</option>
+   </select>
+   <label for="producto">Producto Utilizado:</label>
+   <input type="number" id="producto" min="0.01" max="0.30" step="0.01" required>
+   <button type="submit">Agregar Registro</button>
+   <button type="button" onclick="descargarDatos()">Descargar Datos</button>
+  </form>
+  <div id="registros"></div>
+ </div>
+ <script>
+  // Función para agregar un nuevo registro
+  function agregarRegistro(event) {
+   event.preventDefault();
+   const cantidad = document.getElementById("cantidad").value;
+   const intensidad = document.getElementById("intensidad").value;
+   const producto = document.getElementById("producto").value;
+   const fecha = new Date().toLocaleString();
+   const registro = {
+    cantidad,
+    intensidad,
+    producto,
+    fecha
+   };
+   let registros = JSON.parse(localStorage.getItem("registros")) || [];
+   registros.push(registro);
+   localStorage.setItem("registros", JSON.stringify(registros));
+   mostrarRegistros();
+   document.getElementById("registroForm").reset();
+  }
+  // Función para mostrar los registros almacenados
+  function mostrarRegistros() {
+   const registrosDiv = document.getElementById("registros");
+   registrosDiv.innerHTML = "";
+   let registros = JSON.parse(localStorage.getItem("registros")) || [];
+   let totalLeves = 0;
+   let totalModerados = 0;
+   let totalIntensos = 0;
+   let totalProducto = 0;
+   registros.forEach((registro, index) => {
+    registrosDiv.innerHTML += `
+          <div class="registro">
+            <div>
+              <p><strong>Fecha:</strong> ${registro.fecha}</p>
+              <p><strong>Cantidad de Fumes:</strong> ${registro.cantidad}</p>
+              <p><strong>Intensidad:</strong> ${registro.intensidad}</p>
+              <p><strong>Producto Utilizado:</strong> ${registro.producto}</p>
+            </div>
+            <div>
+              <button onclick="editarRegistro(${index})">Editar</button>
+              <button onclick="eliminarRegistro(${index})">Eliminar</button>
+            </div>
+          </div>
+        `;
+    switch (registro.intensidad) {
+     case "leve":
+      totalLeves += parseFloat(registro.cantidad);
+      break;
+     case "moderado":
+      totalModerados += parseFloat(registro.cantidad);
+      break;
+     case "intenso":
+      totalIntensos += parseFloat(registro.cantidad);
+      break;
+    }
+    totalProducto += parseFloat(registro.producto);
+   });
+   registrosDiv.innerHTML += `
+        <div class="registro">
+          <h3>Totales:</h3>
+          <p><strong>Total de Fumes Leves:</strong> ${totalLeves.toFixed(2)}</p>
+          <p><strong>Total de Fumes Moderados:</strong> ${totalModerados.toFixed(2)}</p>
+          <p><strong>Total de Fumes Intensos:</strong> ${totalIntensos.toFixed(2)}</p>
+          <p><strong>Total del Producto Utilizado:</strong> ${totalProducto.toFixed(2)}</p>
+        </div>
+      `;
+  }
+  // Función para editar un registro
+  function editarRegistro(index) {
+   let registros = JSON.parse(localStorage.getItem("registros")) || [];
+   const registro = registros[index];
+   const nuevaCantidad = parseFloat(prompt("Ingrese la nueva cantidad de fumes:", registro.cantidad));
+   const nuevaIntensidad = prompt("Ingrese la nueva intensidad (leve, moderado, intenso):", registro.intensidad);
+   const nuevoProducto = parseFloat(prompt("Ingrese el nuevo producto utilizado:", registro.producto));
+   if (!isNaN(nuevaCantidad) && !isNaN(nuevoProducto) && ["leve", "moderado", "intenso"].includes(nuevaIntensidad)) {
+    registro.cantidad = nuevaCantidad;
+    registro.intensidad = nuevaIntensidad;
+    registro.producto = nuevoProducto;
+    registros[index] = registro;
+    localStorage.setItem("registros", JSON.stringify(registros));
+    mostrarRegistros();
+   } else {
+    alert("Por favor, ingrese valores válidos.");
+   }
+  }
+  // Función para eliminar un registro
+  function eliminarRegistro(index) {
+   if (confirm("¿Seguro que quieres eliminar este registro?")) {
+    let registros = JSON.parse(localStorage.getItem("registros")) || [];
+    registros.splice(index, 1);
+    localStorage.setItem("registros", JSON.stringify(registros));
+    mostrarRegistros();
+   }
+  }
+  // Función para descargar los datos
+  function descargarDatos() {
+   let registros = JSON.parse(localStorage.getItem("registros")) || [];
+   let nombre = localStorage.getItem("nombre") || "usuario";
+   let fechaPrimerConsumo = localStorage.getItem("fechaPrimerConsumo") || "sin fecha";
+   let datos = {
+    nombre,
+    fechaPrimerConsumo,
+    registros
+   };
+   let blob = new Blob([JSON.stringify(datos, null, 2)], {
+    type: "application/json"
+   });
+   let url = URL.createObjectURL(blob);
+   let a = document.createElement("a");
+   a.href = url;
+   a.download = "datos_consumo.json";
+   a.click();
+  }
+  // Mostrar los registros al cargar la página
+  mostrarRegistros();
+  // Obtener nombre y fecha de primer consumo del localStorage
+  const nombre = localStorage.getItem("nombre") || "";
+  const fechaPrimerConsumo = localStorage.getItem("fechaPrimerConsumo") || "";
+  document.getElementById("nombre").value = nombre;
+  document.getElementById("fechaPrimerConsumo").value = fechaPrimerConsumo;
+  // Guardar nombre y fecha de primer consumo en el localStorage al cambiar los valores
+  document.getElementById("nombre").addEventListener("input", function() {
+   localStorage.setItem("nombre", this.value);
+  });
+  document.getElementById("fechaPrimerConsumo").addEventListener("change", function() {
+   localStorage.setItem("fechaPrimerConsumo", this.value);
+  });
+  // Agregar evento al formulario
+  document.getElementById("registroForm").addEventListener("submit", agregarRegistro);
+ </script>
+</body>
+
+</html>
+
+<p>
+ Seguridad y tratamiento de la información
+ <br>
+ Nuestra aplicación de registro de consumo de cristal está diseñada con un enfoque en la privacidad y seguridad de los datos de nuestros usuarios. En ningún momento almacenamos ningún tipo de registro de su información, a menos que el usuario decida enviarla por correo electrónico activando la casilla de compartir con fines estadísticos.
+ <br>
+ No solicitamos ni almacenamos información personal identificable, como nombres o números de teléfono, lo que hace que nuestra aplicación sea aún más segura y privada para los usuarios.
+ <br>
+ Todos los datos que el usuario elija compartir con fines estadísticos se utilizarán exclusivamente con el propósito de mejorar nuestra aplicación y brindar una mejor experiencia de usuario. Nos comprometemos a no compartir esta información con terceros sin el consentimiento explícito del usuario.
+</p>
+
+<p>
+
+ **Política de privacidad**
+ <br>
+ Esta Política de Privacidad describe cómo tratamos la información personal que recopilamos cuando utiliza nuestra aplicación de registro de consumo de cristal.
+ <br>
+ **Recopilación y uso de información**
+ <br>
+ No recopilamos ni almacenamos información personal identificable, como nombres, direcciones de correo electrónico o números de teléfono, a menos que el usuario decida enviarla por correo electrónico activando la casilla de compartir con fines estadísticos. En ese caso, la información se utiliza únicamente con el propósito de mejorar nuestra aplicación y brindar una mejor experiencia de usuario.
+ <br>
+ **Seguridad de la información**
+ <br>
+ Nos comprometemos a proteger la seguridad de la información personal que recopilamos y a tomar todas las medidas razonables para garantizar su seguridad. Sin embargo, no podemos garantizar la seguridad absoluta de la información transmitida a través de Internet.
+ <br>
+ **Divulgación de información**
+ <br>
+ No compartimos información personal con terceros sin el consentimiento explícito del usuario, a menos que estemos legalmente obligados a hacerlo.
+ <br>
+ **Cambios en la política de privacidad**
+ <br>
+ Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Se notificarán cambios significativos en la Política de Privacidad a través de nuestra aplicación.
+ <br>
+ **Términos de uso**
+ <br>
+ Al utilizar nuestra aplicación, usted acepta cumplir con estos términos. Si no está de acuerdo con estos términos, no utilice nuestra aplicación.
+ <br>
+ **Limitación de responsabilidad**
+ <br>
+ Nos esforzamos por garantizar la precisión y la actualización de la información proporcionada en nuestra aplicación, pero no garantizamos su exactitud ni su actualidad. No nos hacemos responsables de ningún daño directo, indirecto, incidental, especial o consecuente que surja del uso de nuestra aplicación.
+
+</p>
+
+<p>
+
+ **¿Qué hace la app?**
+ <br>
+ Nuestra aplicación de registro de consumo de cristal está diseñada para ayudar a los usuarios a llevar un control responsable de su consumo de cristal. Permite a los usuarios registrar detalles específicos sobre su consumo, así como sus sentimientos y experiencias relacionadas.
+ <br>
+ **Objetivo del control responsable**
+ <br>
+ El objetivo principal de la aplicación es ayudar a los usuarios a moderar su consumo de cristal y a tomar conciencia de sus hábitos. Al registrar detalles como la cantidad consumida, el costo, el tiempo dedicado y cómo se sienten, los usuarios pueden identificar patrones y tendencias en su consumo. Esto les permite tomar decisiones más informadas sobre su consumo y, en última instancia, llevar un estilo de vida más saludable y responsable.
+ <br>
+ Además, al guardar estos detalles, los usuarios también pueden evitar olvidar información importante sobre su consumo, lo que les permite llevar un seguimiento más preciso y detallado a lo largo del tiempo.
+</p>
+<p>
+ Donaciones y Mejoras
+ <br>
+ Nuestra aplicación es completamente gratuita para todos los usuarios. Sin embargo, si deseas apoyar nuestro trabajo y contribuir al desarrollo continuo de la aplicación, las donaciones son bienvenidas y nos ayudarán a seguir mejorando y ofreciendo nuevos servicios.
+ <br>
+ Tu Opinión es Valiosa
+ <br>
+ Valoramos profundamente la opinión de nuestros usuarios y estamos siempre abiertos a sugerencias para mejorar la aplicación. Si tienes alguna idea o comentario sobre cómo podemos hacerla mejor, no dudes en hacérnoslo saber. Nos comprometemos a revisar todas las sugerencias y a implementar los cambios que mejoren la experiencia del usuario.
+ <br>
+ Responsabilidad del Usuario
+ <br>
+ Es importante tener en cuenta que nuestra aplicación no recomienda ni promueve el consumo de cristal. La información proporcionada en la aplicación es meramente informativa y educativa, y depende del usuario decidir si desea seguir esas prácticas o no. Instamos a nuestros usuarios a ser responsables y tomar decisiones informadas sobre su consumo.
+</p>
+    
+  </body>
+  
+</html>

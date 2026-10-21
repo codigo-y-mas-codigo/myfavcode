@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Control de Tiempo</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Control de Tiempo</title>
+</head>
+
+<body>
+ <h1>Control de Tiempo</h1>
+ <div id="time-info">
+  <p>Fecha actual: <span id="current-date"></span></p>
+  <p>Tiempo en vivo: <span id="live-time">00:00:00</span></p>
+  <p>Tiempo total acumulado: <span id="total-time">00:00:00</span></p>
+  <p>Veces que has entrado: <span id="entry-count">0</span></p>
+ </div>
+ <div id="pomodoro-controls">
+  <label>
+   <input type="checkbox" id="pomodoro-toggle"> Activar modo Pomodoro
+  </label>
+  <p>Estado Pomodoro: <span id="pomodoro-status">Desactivado</span></p>
+  <p>Tiempo restante: <span id="pomodoro-time">00:00</span></p>
+ </div>
+ <div id="notifications"></div>
+
+ <script>
+  // Función para formatear el tiempo en segundos a HH:MM:SS
+  function formatTime(seconds) {
+   const hours = Math.floor(seconds / 3600);
+   const minutes = Math.floor((seconds % 3600) / 60);
+   const secs = seconds % 60;
+   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+  // Función para guardar el tiempo en localStorage
+  function saveTime(key, value) {
+   localStorage.setItem(key, value);
+  }
+  // Función para obtener el tiempo de localStorage
+  function getTime(key) {
+   return parseInt(localStorage.getItem(key)) || 0;
+  }
+  // Función para actualizar la interfaz
+  function updateUI() {
+   const totalTime = getTime('totalTime');
+   const entryCount = getTime('entryCount');
+   document.getElementById('total-time').textContent = formatTime(totalTime);
+   document.getElementById('entry-count').textContent = entryCount;
+  }
+  // Función para mostrar notificaciones
+  function showNotification(message) {
+   const notifications = document.getElementById('notifications');
+   notifications.innerHTML = `<p>${message}</p>`;
+  }
+  // Función para verificar premios y recordatorios
+  function checkPrizesAndReminders(totalTime) {
+   if (totalTime >= 3600) { // 1 hora
+    showNotification('¡Felicidades! Has ganado un premio por estar 1 hora en la página.');
+   }
+   if (totalTime >= 7200) { // 2 horas
+    showNotification('¡Es hora de descansar! Has estado 2 horas en la página.');
+   }
+  }
+  // Inicializar el contador de tiempo
+  let startTime = Date.now();
+  let intervalId;
+  // Función para iniciar el contador de tiempo
+  function startTimer() {
+   intervalId = setInterval(() => {
+    const currentTime = Date.now();
+    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    const totalTime = getTime('totalTime') + elapsedTime;
+    saveTime('totalTime', totalTime);
+    document.getElementById('live-time').textContent = formatTime(elapsedTime);
+    updateUI();
+    checkPrizesAndReminders(totalTime);
+   }, 1000);
+  }
+  // Función para detener el contador de tiempo
+  function stopTimer() {
+   clearInterval(intervalId);
+   const currentTime = Date.now();
+   const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+   const totalTime = getTime('totalTime') + elapsedTime;
+   saveTime('totalTime', totalTime);
+  }
+  // Función para incrementar el contador de entradas
+  function incrementEntryCount() {
+   const entryCount = getTime('entryCount') + 1;
+   saveTime('entryCount', entryCount);
+  }
+  // Función para actualizar la fecha actual
+  function updateCurrentDate() {
+   const currentDate = new Date().toLocaleDateString();
+   document.getElementById('current-date').textContent = currentDate;
+  }
+  // Función para iniciar el modo Pomodoro
+  function startPomodoro() {
+   let pomodoroTime = 25 * 60; // 25 minutos
+   let breakTime = 5 * 60; // 5 minutos
+   let longBreakTime = 15 * 60; // 15 minutos
+   let pomodoroCount = 0;
+   let timer;
+
+   function updatePomodoroTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    document.getElementById('pomodoro-time').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+   }
+
+   function startCountdown(time, isBreak) {
+    let remainingTime = time;
+    clearInterval(timer);
+    timer = setInterval(() => {
+     remainingTime--;
+     updatePomodoroTime(remainingTime);
+     if (remainingTime <= 0) {
+      clearInterval(timer);
+      if (isBreak) {
+       pomodoroCount++;
+       if (pomodoroCount % 4 === 0) {
+        startCountdown(longBreakTime, true);
+       } else {
+        startCountdown(pomodoroTime, false);
+       }
+      } else {
+       startCountdown(breakTime, true);
+      }
+     }
+    }, 1000);
+   }
+   startCountdown(pomodoroTime, false);
+  }
+  // Evento cuando la página se carga
+  window.addEventListener('load', () => {
+   incrementEntryCount();
+   startTimer();
+   updateUI();
+   updateCurrentDate();
+   const pomodoroToggle = document.getElementById('pomodoro-toggle');
+   pomodoroToggle.addEventListener('change', (event) => {
+    if (event.target.checked) {
+     document.getElementById('pomodoro-status').textContent = 'Activado';
+     startPomodoro();
+    } else {
+     document.getElementById('pomodoro-status').textContent = 'Desactivado';
+     clearInterval(timer);
+    }
+   });
+  });
+  // Evento cuando la página se cierra
+  window.addEventListener('beforeunload', () => {
+   stopTimer();
+  });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

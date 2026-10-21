@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>GFormulario</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Generador de Formularios</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   line-height: 1.6;
+   margin: 0;
+   background-color: #f4f4f4;
+  }
+
+  .container {
+   max-width: 800px;
+   margin: auto;
+   background: #fff;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+   text-align: center;
+  }
+
+  .field {
+   background-color: #f9f9f9;
+   border: 1px solid #ddd;
+   padding: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+  }
+
+  label {
+   display: block;
+   margin-bottom: 5px;
+  }
+
+  input,
+  select,
+  textarea {
+   width: 100%;
+   padding: 8px;
+   margin-bottom: 10px;
+   border: 1px solid #ddd;
+   border-radius: 4px;
+   box-sizing: border-box;
+  }
+
+  button {
+   background-color: #4CAF50;
+   color: white;
+   padding: 10px 15px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+  }
+
+  button:hover {
+   background-color: #45a049;
+  }
+
+  #generatedCode {
+   width: 100%;
+   height: 200px;
+   margin-top: 20px;
+   font-family: monospace;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <h1>Generador de Formularios</h1>
+  <div id="emailSubjectInput">
+   <label for="customEmailSubject">Asunto del Email: ✔️</label>
+   <input type="text" id="customEmailSubject" value=" " required>
+  </div>
+  <div id="formFields"></div>
+
+  <button onclick="addField()">Agregar Campo</button>
+  <button onclick="generateCode()">Generar Código</button>
+  <textarea id="generatedCode" readonly></textarea>
+
+ </div>
+
+ <script>
+  let fieldCount = 0;
+
+  function addField() {
+   const formFields = document.getElementById('formFields');
+   const fieldDiv = document.createElement('div');
+   fieldDiv.className = 'field';
+   fieldDiv.id = `field-${fieldCount}`;
+   fieldDiv.innerHTML = `
+                <select onchange="updateFieldType(${fieldCount})">
+                    <option value="text">Texto</option>
+                    <option value="number">Número</option>
+                    <option value="email">Email</option>
+                    <option value="textarea">Área de texto</option>
+                    <option value="select">Selección</option>
+                    <option value="checkbox">Checkbox</option>
+                </select>
+                <input type="text" placeholder="Input" onchange="updateFieldLabel(${fieldCount})">
+                <input type="text" placeholder="Label" onchange="updateFieldName(${fieldCount})">
+                <label>
+                    <input type="checkbox" onchange="updateFieldRequired(${fieldCount})"> Requerido
+                </label>
+                <button onclick="removeField(${fieldCount})">Eliminar Campo</button>
+            `;
+   formFields.appendChild(fieldDiv);
+   fieldCount++;
+  }
+
+  function removeField(id) {
+   const field = document.getElementById(`field-${id}`);
+   field.remove();
+  }
+
+  function updateFieldType(id) {
+   // Esta función se puede expandir para manejar cambios específicos de tipo
+  }
+
+  function updateFieldLabel(id) {
+   // Esta función se puede usar para validar o procesar la etiqueta
+  }
+
+  function updateFieldName(id) {
+   // Esta función se puede usar para validar o procesar el nombre del campo
+  }
+
+  function updateFieldRequired(id) {
+   // Esta función se puede usar para manejar el estado requerido
+  }
+
+  function generateCode() {
+   let code = '<div>\n<style>.hidden {display: none;}#thankyou-message {}</style>\n <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec">\n';
+   const fields = document.querySelectorAll('.field');
+   fields.forEach(field => {
+    const type = field.querySelector('select').value;
+    const label = field.querySelector('input[placeholder="Input"]').value;
+    const name = field.querySelector('input[placeholder="Label"]').value;
+    const required = field.querySelector('input[type="checkbox"]').checked;
+    code += `  <div>\n    <label for="${name}">${label}</label>\n`;
+    switch (type) {
+     case 'textarea':
+      code += `    <textarea id="${name}" name="${name}" ${required ? 'required' : ''}></textarea>\n`;
+      break;
+     case 'select':
+      code += `    <select id="${name}" name="${name}" ${required ? 'required' : ''}>\n      <option value="">Seleccione una opción</option>\n    </select>\n`;
+      break;
+     case 'checkbox':
+      code += `    <input type="checkbox" id="${name}" name="${name}" ${required ? 'required' : ''} />\n`;
+      break;
+     default:
+      code += `    <input type="${type}" id="${name}" name="${name}" ${required ? 'required' : ''} />\n`;
+    }
+    code += '  </div>\n';
+   });
+   const emailSubject = document.getElementById('customEmailSubject').value;
+   code += `  <input type="hidden" id="emailSubject" name="emailSubject" value="${emailSubject}">\n`;
+   code += '  <button id="submit-button" type="submit" style="background:none; border:none">\n';
+   code += '    <span id="button-text">Entrar</span>\n';
+   code += '    <span id="wait-message" class="hidden">Espere un momento, por favor...</span>\n';
+   code += '  </button>\n';
+   code += '</form>\n\n';
+   code += ' <div id="thankyou-message" class="hidden">✔️</div>';
+   code += '  <script data-cfasync="false" type="text/javascript">\n';
+   code += '    document.addEventListener("DOMContentLoaded", function() {\n';
+   code += '      const form = document.getElementById("gform");\n';
+   code += '      const submitButton = document.getElementById("submit-button");\n';
+   code += '      const buttonText = document.getElementById("button-text");\n';
+   code += '      const waitMessage = document.getElementById("wait-message");\n';
+   code += '      const thankYouMessage = document.getElementById("thankyou-message");\n';
+   code += '      form.addEventListener("submit", handleFormSubmit);\n';
+   code += '\n';
+   code += '      function handleFormSubmit(event) {\n';
+   code += '        event.preventDefault();\n';
+   code += '        const data = getFormData(form);\n';
+   code += '        localStorage.setItem("formData", JSON.stringify(data));\n';
+   code += '        setSubmitting(true);\n';
+   code += '        const xhr = new XMLHttpRequest();\n';
+   code += '        xhr.open("POST", form.action);\n';
+   code += '        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");\n';
+   code += '        xhr.onreadystatechange = function() {\n';
+   code += '          if (xhr.readyState === 4) {\n';
+   code += '            console.log(xhr.status, xhr.statusText);\n';
+   code += '            console.log(xhr.responseText);\n';
+   code += '            setSubmitting(false);\n';
+   code += '            showThankYouMessage();\n';
+   code += '            hideFormContent();\n';
+   code += '          }\n';
+   code += '        };\n';
+   code += '        const encoded = Object.keys(data).map(k =>\n';
+   code += '          encodeURIComponent(k) + "=" + encodeURIComponent(data[k])\n';
+   code += '        ).join("&");\n';
+   code += '        xhr.send(encoded);\n';
+   code += '      }\n';
+   code += '\n';
+   code += '      function setSubmitting(isSubmitting) {\n';
+   code += '        submitButton.disabled = isSubmitting;\n';
+   code += '        buttonText.classList.toggle("hidden", isSubmitting);\n';
+   code += '        waitMessage.classList.toggle("hidden", !isSubmitting);\n';
+   code += '      }\n';
+   code += '\n';
+   code += '      function showThankYouMessage() {\n';
+   code += '        thankYouMessage.classList.remove("hidden");\n';
+   code += '      }\n';
+   code += '\n';
+   code += '      function hideFormContent() {\n';
+   code += '        form.classList.add("hidden");\n';
+   code += '      }\n';
+   code += '\n';
+   code += '      function getFormData(form) {\n';
+   code += '        const elements = form.elements;\n';
+   code += '        const fields = Object.keys(elements).filter(k =>\n';
+   code += '          elements[k].name !== "honeypot"\n';
+   code += '        ).map(k =>\n';
+   code += '          elements[k].name !== undefined ? elements[k].name :\n';
+   code += '          elements[k].length > 0 ? elements[k].item(0).name : null\n';
+   code += '        ).filter((item, pos, self) =>\n';
+   code += '          item && self.indexOf(item) == pos\n';
+   code += '        );\n';
+   code += '        const formData = {};\n';
+   code += '        fields.forEach(name => {\n';
+   code += '          const element = elements[name];\n';
+   code += '          formData[name] = element.value;\n';
+   code += '          if (element.length) {\n';
+   code += '            formData[name] = Array.from(element)\n';
+   code += '              .filter(item => item.checked || item.selected)\n';
+   code += '              .map(item => item.value)\n';
+   code += '              .join(", ");\n';
+   code += '          }\n';
+   code += '        });\n';
+   code += '        formData.formDataNameOrder = JSON.stringify(fields);\n';
+   code += '        formData.formGoogleSheetName = form.dataset.sheet || "Accesos";\n';
+   code += '        formData.formGoogleSendEmail = form.dataset.email || "luis.el.de.las.tarjetas@gmail.com";\n';
+   code += '        formData.emailSubject = form.querySelector("#emailSubject").value || "Nuevo formulario de contacto";\n';
+   code += '        return formData;\n';
+   code += '      }\n';
+   code += '    });\n';
+   code += '<\/script>\n';
+   code += '<\/style>\n';
+   document.getElementById('generatedCode').value = code;
+  }
+ </script>
+ <div class="Bottom-icon-Based-Navigation hide-large" style="color:black">
+  <nav class="navBottom-icon-Based-Navigation">
+   <button class="nav__link" data-bs-toggle="offcanvas" href="#offcanvasStart" role="button" aria-controls="offcanvasStart" id="elOffCanvas" aria-label="OffCanvasStart">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+     <path d="M4 6l16 0" />
+     <path d="M4 12l16 0" />
+     <path d="M4 18l16 0" />
+    </svg>
+    <span class="">Menu</span>
+   </button>
+
+   <a href="/blog/" class="nav__link ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-article">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+     <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+     <path d="M7 8h10" />
+     <path d="M7 12h10" />
+     <path d="M7 16h10" />
+    </svg>
+    <span class="">Blog</span> </a>
+
+   <a href="/" class="nav__link nav__link--active">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+     <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+     <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+     <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+    </svg>
+    <span class="">Home</span>
+   </a>
+
+   <a href="#Buscar" class="nav__link" data-bs-toggle="modal" data-bs-target="#modal-report">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+     <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+     <path d="M21 21l-6 -6" />
+    </svg><span class="">Buscar</span> </a>
+
+   <button class="nav__link nav__link--active" data-bs-toggle="offcanvas" href="#offcanvasEnd" role="button" aria-controls="offcanvasEnd">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+     <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+    </svg>
+    <span class="">
+     Perfil</span>
+   </button>
+   <!-- 
+            <button class="nav__link nav__link--active" data-bs-toggle="offcanvas" href="#offcanvasEnd" role="button" aria-controls="offcanvasEnd">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings material-icons nav__icon" width="48" height="48" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+          <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+        </svg> <span class="">
+          Configuraciones</span>
+      </button> -->
+  </nav>
+ </div>
+</body>
+
+</html>
+<style>
+ .Bottom-icon-Based-Navigation {
+  z-index: 888;
+  margin: 0 0 55px 0;
+ }
+
+ .navBottom-icon-Based-Navigation {
+  z-index: 888;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 55px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  display: flex;
+  overflow-x: auto;
+ }
+
+ .nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  /*min-width: 50px;*/
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #444444;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+ }
+
+ .nav__link:hover {
+  background-color: #eeeeee;
+ }
+
+ .nav__link--active {
+  color: #009578;
+ }
+
+ .nav__icon {
+  font-size: 18px;
+ }
+
+ button {
+  background: transparent;
+  border: none
+ }
+</style>
+    
+  </body>
+  
+</html>

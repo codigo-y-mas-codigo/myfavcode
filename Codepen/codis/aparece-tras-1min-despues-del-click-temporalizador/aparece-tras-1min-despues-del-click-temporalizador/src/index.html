@@ -1,0 +1,58 @@
+<title>Aparece Tras 1Min Despues Del Click Temporalizador</title>
+<div>
+<style>
+    #lapromo {
+      border: 1px solid #ccc;
+      padding: 10px;
+      position: relative;
+    }
+
+    #lapromo span {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
+    #cronometro {
+      display: none;
+    }
+  </style>
+<div id="lapromo">
+  <span onclick="cerrarPromo()">&times;</span>
+  <h2>London</h2>
+  <p>London is the capital city of England.</p>
+</div>
+<div id="cronometro"></div>
+<script>
+  // Función para cerrar la promo y mostrar el temporizador
+  function cerrarPromo() {
+    document.getElementById('lapromo').style.display = 'none';
+    iniciarTemporizador();
+  }
+
+  // Función para iniciar el temporizador
+  function iniciarTemporizador() {
+    var segundos = 60;
+    var cronometro = document.getElementById('cronometro');
+    cronometro.style.display = 'block';
+
+    var temporizador = setInterval(function() {
+      cronometro.innerHTML = segundos;
+
+      segundos--;
+
+      if (segundos < 0) {
+        clearInterval(temporizador);
+        cronometro.style.display = 'none';
+        mostrarPromo();
+      }
+    }, 1000);
+  }
+
+  // Función para mostrar la promo después de que el temporizador llega a cero
+  function mostrarPromo() {
+    document.getElementById('lapromo').style.display = 'block';
+  }
+</script>
+</div>

@@ -1,0 +1,39 @@
+@import url(https://unpkg.com/open-props/open-props.min.css);
+@import url(https://unpkg.com/open-props/normalize.min.css);
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: 'Google Sans', sans-serif, system-ui;
+    align-content: center;
+    gap: var(--size-2);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  label {
+    padding-left: calc(var(--size-4) + 4px);
+    font-weight: var(--font-weight-9);
+  }
+
+  form {
+    display: grid;
+    gap: var(--size-2);
+  }

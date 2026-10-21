@@ -1,0 +1,23 @@
+{
+  "title": "Manual de Operaciones para la Administración de Condominios en la Ciudad de México",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Manual operativo",
+      "description": "Guía detallada para la correcta administración y gestión de condominios según la normativa.",
+      "sourceIds": [{
+        "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Desarrollar un manual exhaustivo que sirva como referencia para administradores de condominios y comités de vigilancia. El documento debe estar estructurado lógicamente, basándose estrictamente en la Ley de Propiedad en Condominio para el Distrito Federal, con un tono profesional y claro para asegurar la correcta ejecución de sus funciones y el cumplimiento normativo.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_PROFESSIONAL",
+      "enableU18Classifier": true
+    }
+  }
+}

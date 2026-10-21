@@ -1,0 +1,51 @@
+  /* 
+           ¿Qué te parece?
+           Sin JavaScript, solamente CSS3, 
+           utilizando una secuencia de animación, 
+           ¡cool! 
+        */
+body {
+    text-align: center;
+}
+
+@keyframes secuencia-de-animacion {
+    from {
+        background-position: 0px;
+    }
+    to {
+        background-position: -1000px;
+    }
+}
+
+.img {
+    display: block;
+    margin-top: 50px;
+}
+
+.img-max-width {
+    max-width: 100%;
+}
+
+.saltando {
+    width: 100px;
+    height: 232px;
+    display: inline-block;
+    background-image: url("https://luisangelmaciel.github.io/one/secuencia-de-animacion/saltando.png");
+    animation: secuencia-de-animacion 1s steps(10, end) infinite;
+}
+
+.dance {
+    width: 100px;
+    height: 131px;
+    display: inline-block;
+    background-image: url("https://luisangelmaciel.github.io/one/secuencia-de-animacion/dance.png");
+    animation: secuencia-de-animacion 1s steps(10, end) infinite;
+}
+
+.llorar {
+    width: 100px;
+    height: 131px;
+    display: inline-block;
+    background-image: url("https://luisangelmaciel.github.io/one/secuencia-de-animacion/llorar.png");
+    animation: secuencia-de-animacion 1s steps(10, end) infinite;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Agradecimiento Aleatorio con Conteo</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Agradecimiento Aleatorio</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   margin-top: 100px;
+  }
+
+  #mensaje {
+   font-size: 20px;
+   margin-bottom: 20px;
+  }
+ </style>
+</head>
+
+<body>
+ <div id="mensaje"></div>
+
+ <script>
+  // Arreglo con las frases de agradecimiento
+  var frases = [
+   "En un mundo lleno de opciones, valoramos que nos haya elegido. ¡Gracias! Trabajamos con pasión para el éxito de su negocio.",
+   "En un entorno repleto de posibilidades, apreciamos sinceramente su elección. ¡Gracias por confiar en nosotros! Nos dedicamos con pasión para asegurar el éxito de su empresa.",
+   "Agradecemos sinceramente que nos haya elegido en este mar de opciones. ¡Su confianza significa mucho para nosotros!",
+   "Nos sentimos honrados de que haya optado por nosotros. ¡Gracias por permitirnos ser parte de su éxito!",
+   "Es un privilegio contar con su preferencia entre tantas alternativas. ¡Le agradecemos por confiar en nuestra pasión y compromiso!",
+   "Valoramos profundamente su elección en este mundo lleno de posibilidades. ¡Gracias por permitirnos contribuir al crecimiento de su negocio!",
+   "Nos complace que haya depositado su confianza en nosotros. ¡Le agradecemos por ser parte de nuestro viaje hacia el éxito!"
+  ];
+  // Función para seleccionar una frase aleatoria y mostrarla en la página
+  function mostrarFraseAleatoria() {
+   var indice = Math.floor(Math.random() * frases.length);
+   document.getElementById("mensaje").textContent = frases[indice];
+  }
+  // Llamar a la función al cargar la página
+  window.onload = mostrarFraseAleatoria;
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

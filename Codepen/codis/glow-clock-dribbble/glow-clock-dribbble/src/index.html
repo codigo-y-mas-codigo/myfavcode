@@ -1,0 +1,40 @@
+<title>Glow Clock Dribbble</title>
+<div class="half" id="left">
+  <div class="outer">
+    <div class="inner" id="analog">
+      <div class="interface" id="time">
+        <span id="meridiem"></span>
+        <div id="hour"></div>
+        <div id="minute"></div>
+      </div>
+    </div>  
+  </div>
+</div>
+<div class="half" id="right">
+  <div class="outer">
+    <div class="inner" id="digital">
+      <div class="interface" id="temp-int">
+        <div id="temp"></div>
+      <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/textPath -->
+
+<svg width="200px" height="100px" viewBox="0 0 200 100"
+     xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="MyPath"
+          d="M35 35 C 63 29, 110 70, 86 78" />
+  </defs>
+
+  <use xlink:href="#MyPath" fill="none" />
+
+  <text font-family="Oswald" font-size="8">
+    <textPath xlink:href="#MyPath">
+      T E M P E R A T U R E
+    </textPath>
+  </text>
+</svg>
+        <span id="weather"></span>
+      </div>
+    </div>  
+  </div>
+</div>

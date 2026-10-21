@@ -1,0 +1,254 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  line-height: 1.65rem;
+  color: #222;
+  overflow: hidden;
+}
+
+.preview {
+  height: 33.3vh;
+  transition: 0.5s;
+  background: #f3f3f3;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+}
+
+.color p {
+  padding-right: 10px;
+  display: inline-block;
+}
+
+.black,
+.white {
+  border-radius: 300px;
+  transition: 0.35s;
+  height: 26px;
+  width: 26px;
+  margin: 4px;
+  border: 1px solid #ddd;
+}
+
+.black.focus,
+.white.focus {
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 3px #2aaaff44 !important;
+}
+
+.color .black {
+  background: #000;
+}
+
+.color .white {
+  background: #fff;
+}
+
+.editor {
+  border-bottom: 1px solid #e4e4e4;
+  display: flex;
+  justify-content: center;
+}
+
+.editor p {
+  margin: 1rem 0;
+  color: #222;
+}
+
+.container {
+  height: calc(66.66vh - 92px);
+  overflow-y: scroll;
+}
+
+.icon-blocks {
+  max-width: 587px;
+  margin: 4rem auto;
+}
+
+.icon-grid {
+  font-size: 0;
+  margin: 0 -0.75rem;
+}
+
+button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0.75rem;
+  transition: 0.35s;
+  cursor: pointer;
+}
+
+button svg {
+  width: 22px;
+  height: 22px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  border-color: #9cf;
+}
+
+p {
+  /*font-weight: 900;*/
+  color: #999;
+  margin: 2rem 0;
+}
+
+button svg {
+  margin-bottom: -2px;
+  stroke: #222;
+}
+
+button:hover svg {
+  stroke: #2aaaff;
+}
+
+.focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #9cf6;
+  border-color: #9cf;
+}
+
+.focus svg {
+  stroke: #2aaaff;
+}
+
+.size-unit:after,
+.stroke-unit:after {
+  content: "px";
+}
+
+.stroke-unit {
+  width: 5rem;
+  text-align: right;
+}
+
+.input-block {
+  display: flex;
+  width: 33.33%;
+  max-width: 300px;
+  padding: 20px 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-block span {
+  color: #999;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  display: inline-block;
+  margin: 7.5px 0;
+  margin: 0 20px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  background: #2aaaff;
+  border-radius: 0px;
+  border: 0px solid rgba(255, 255, 255, 0);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #aaa;
+  height: 16px;
+  width: 25px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7.5px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2aaaff;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  background: #c8c7c8;
+  border-radius: 0px;
+  border: 0px solid rgba(255, 255, 255, 0);
+}
+
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #68f;
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #c8c7c8;
+  border: 0px solid rgba(255, 255, 255, 0);
+  border-radius: 0px;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #c8c7c8;
+  border: 0px solid rgba(255, 255, 255, 0);
+  border-radius: 0px;
+}
+
+input[type=range]::-ms-thumb {
+  border: 1px solid #b4b4b4;
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 1px;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #c8c7c8;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #c8c7c8;
+}

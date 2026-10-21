@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Wake Up Platform | Contenido Consciente</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <style>
+  body {
+   font-family: 'Poppins', sans-serif;
+   background-color: #121212;
+   color: #f0f0f0;
+  }
+
+  .branding-green {
+   color: #aac63e;
+  }
+
+  .branding-bg-green {
+   background-color: #839a2a;
+  }
+
+  .card-bg {
+   background-color: #1c1c1c;
+   border: 1px solid #282627;
+  }
+
+  .line-clamp-3 {
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+  }
+
+  header {
+   background-color: #121212;
+   border-bottom: 1px solid #282627;
+  }
+
+  .video-thumbnail:hover .play-overlay {
+   opacity: 1;
+  }
+ </style>
+</head>
+
+<body class="antialiased">
+
+ <!-- Header -->
+ <header class="sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+  <div class="logo">
+   <img src="https://wakeupplatform.com/wp-content/uploads/2024/11/cropped-wake-up-gente-consciente-SOLO-blanco-final-web.webp" alt="Wake Up Logo" class="h-10 w-auto">
+  </div>
+  <nav class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-wider">
+   <a href="#" class="hover:text-green-400 transition">Youtube</a>
+   <a href="#" class="hover:text-green-400 transition">Recursos</a>
+   <!-- <a href="#" class="hover:text-green-400 transition">Eventos</a>-->
+  </nav>
+  <button class="branding-bg-green px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-white hover:opacity-90 transition">
+   Iniciar Chat
+  </button>
+ </header>
+
+ <!-- Main Content -->
+ <main class="max-w-7xl mx-auto px-6 py-12">
+  <div class="mb-12">
+   <h1 class="text-4xl md:text-5xl font-semibold mb-4">Explora el <span class="branding-green">Despertar</span></h1>
+   <p class="text-gray-400 max-w-2xl">Entrevistas, documentales y reflexiones para acompañarte en tu camino de autoconocimiento.</p>
+  </div>
+
+  <!-- Grid de Videos -->
+  <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+   <!-- Los videos se inyectarán aquí mediante JavaScript -->
+  </div>
+ </main>
+
+ <!-- Footer -->
+ <footer class="mt-20 py-12 px-6 border-t border-gray-800 text-center">
+  <img src="https://wakeupplatform.com/wp-content/uploads/2024/07/cropped-wake-up-gente-consciente-SOLO-blanco-final-web.webp" alt="Wake Up" class="h-8 w-auto mx-auto mb-6 opacity-50">
+  <p class="text-gray-500 text-sm">El contenido pertenece a sus creadores © 2026 Wake Up - Plataforma de Contenido Consciente. Esto es una práctica educativa</p>
+ </footer>
+
+ <script>
+  // Datos JSON inyectados
+  const videoData = [{
+    id: "cBveR8lFbF8",
+    titulo: "¿Qué es realmente despertar la consciencia? | Pablo d'Ors | Documental DESPIERTA | Cap. 3",
+    fecha_publicacion: "2026-01-26",
+    url: "https://www.youtube.com/watch?v=cBveR8lFbF8",
+    autor: "Wake Up Platform",
+    idioma: "Español",
+    metricas: {
+     vistas: "12K",
+     duracion: "48:55"
+    },
+    imagen_url: "https://i.ytimg.com/vi/cBveR8lFbF8/hqdefault.jpg",
+    summary: "Pablo d'Ors explora el silencio no como una ausencia de sonido, sino como una escucha profunda esencial para el autoconocimiento y la capacidad de amar."
+   },
+   {
+    id: "rP0jinz6VtU",
+    titulo: "El despertar de la consciencia de la humanidad, IA y el futuro de la humanidad",
+    fecha_publicacion: "2026-01-18",
+    url: "https://www.youtube.com/watch?v=rP0jinz6VtU",
+    autor: "Wake Up Platform",
+    idioma: "Español",
+    metricas: {
+     vistas: "11K",
+     duracion: "1:03:25"
+    },
+    imagen_url: "https://i.ytimg.com/vi/rP0jinz6VtU/hqdefault.jpg",
+    summary: "Este análisis examina la encrucijada evolutiva entre la consciencia humana y la inteligencia artificial, proponiendo un 'giro copernicano' que sitúe a la consciencia como base de la realidad."
+   },
+   {
+    id: "PfimLAUkLdM",
+    titulo: "Vamos camino del desastre - David Attenborough",
+    fecha_publicacion: "2022-01-26",
+    url: "https://www.youtube.com/watch?v=PfimLAUkLdM",
+    autor: "Wake Up Platform",
+    idioma: "Español/Inglés",
+    metricas: {
+     vistas: "1.2K",
+     duracion: "1:55"
+    },
+    imagen_url: "https://i.ytimg.com/vi/PfimLAUkLdM/hqdefault.jpg",
+    summary: "David Attenborough emite una advertencia crítica sobre la trayectoria actual de la humanidad hacia un colapso ecológico irreversible debido a la desconexión con la naturaleza."
+   }
+  ];
+
+  function renderVideos() {
+   const grid = document.getElementById('video-grid');
+   videoData.forEach(video => {
+    const card = document.createElement('div');
+    card.className = 'card-bg rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2 group';
+    card.innerHTML = `
+                    <div class="relative video-thumbnail cursor-pointer" onclick="window.open('${video.url}', '_blank')">
+                        <img src="${video.imagen_url}" alt="${video.titulo}" class="w-full h-52 object-cover">
+                        <div class="absolute bottom-3 right-3 bg-black/80 px-2 py-1 rounded text-xs font-bold">
+                            ${video.metricas.duracion}
+                        </div>
+                        <div class="play-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 transition-opacity">
+                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-[10px] uppercase tracking-widest text-gray-500 mb-3 space-x-4">
+                            <span class="branding-green font-bold">${video.autor}</span>
+                            <span>${new Date(video.fecha_publicacion).toLocaleDateString('es-ES', { day:'numeric', month:'long', year:'numeric' })}</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3 leading-tight group-hover:branding-green transition-colors">
+                            <a href="${video.url}" target="_blank">${video.titulo}</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm line-clamp-3 mb-4 font-light">
+                            ${video.summary}
+                        </p>
+                        <div class="flex items-center justify-between border-t border-gray-800 pt-4 mt-auto">
+                            <span class="text-xs text-gray-500 italic">${video.idioma}</span>
+                            <span class="text-xs text-gray-500">${video.metricas.vistas} vistas</span>
+                        </div>
+                    </div>
+                `;
+    grid.appendChild(card);
+   });
+  }
+  // Ejecutar al cargar el DOM
+  document.addEventListener('DOMContentLoaded', renderVideos);
+ </script>
+</body>
+
+</html>

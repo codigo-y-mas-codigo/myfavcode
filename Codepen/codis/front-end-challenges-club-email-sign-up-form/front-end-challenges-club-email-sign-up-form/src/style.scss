@@ -1,0 +1,201 @@
+:root {
+   --color-primary: #4c2982;
+   --color-secondary: #f9d170;
+   --color-bg: #f9f7f3;
+   --color-text: #252525;
+   --color-light: #f3f3f3;
+   --color-success: #067973;
+   --color-success-bg: #f5fffe;
+   --color-error: #b71540;
+   --color-error-bg: #fdeff3;
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+* {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   border: 0;
+   -webkit-tap-highlight-color: transparent;
+   text-decoration: none;
+   color: inherit;
+   box-sizing: border-box;
+
+   &:focus {
+      outline: 0;
+   }
+
+   input::-webkit-outer-spin-button,
+   input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+   }
+}
+body {
+   background: var(--color-bg);
+   font-family: "Inter", sans-serif;
+   * {
+      transition: all 0.4s ease;
+   }
+}
+.signUp {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   padding: 40px 20px;
+   &__content {
+      max-width: 350px;
+   }
+   &__title {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+   }
+   &__form {
+      position: relative;
+   }
+   &__label {
+      color: var(--color-primary);
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 16px;
+   }
+   &__email {
+      position: relative;
+      height: 48px;
+      display: flex;
+      margin-top: 8px;
+      box-shadow: 0px 2px 8px 0px rgba(black, 0.1);
+   }
+   &__input {
+      width: 100%;
+      height: auto;
+      border: none;
+      display: flex;
+      align-items: center;
+      padding: 0px 0px;
+      font-size: 16px;
+      color: var(--color-text);
+      transition: all 0.4s ease;
+      box-shadow: inset 0px 0px 0px 1px transparent;
+
+      &:focus {
+         color: var(--color-text);
+         border: none;
+         outline: 0;
+         box-shadow: inset 0px 0px 0px 1px var(--color-primary);
+         &:placeholder {
+            display: none;
+         }
+      }
+      &:placeholder {
+         color: var(--color-text);
+         opacity: 0.3;
+      }
+   }
+
+   &__placeholder {
+      position: absolute;
+   }
+   &__submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      min-width: 48px;
+      height: 48px;
+      background: var(--color-secondary);
+      border: 0;
+      .icon {
+         width: 24px;
+         height: 24px;
+         fill: var(--color-primary);
+      }
+      &:focus,
+      &:active {
+         box-shadow: inset 0px 0px 0px 1px var(--color-primary);
+      }
+   }
+   &__error,
+   &__success {
+      position: absolute;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 40px;
+      width: 100%;
+      transition: all 0.4s ease;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      p {
+         font-weight: bold;
+         font-size: 16px;
+      }
+      small {
+         font-size: 14px;
+      }
+      .icon {
+         width: 24px;
+         height: 24px;
+         position: absolute;
+         left: 8px;
+         top: 16px;
+      }
+
+      &.show {
+         opacity: 1;
+         visibility: visible;
+      }
+   }
+   &__error {
+      background: var(--color-error-bg);
+      border: 1px solid var(--color-error);
+      color: var(--color-error);
+      margin-top: 16px;
+
+      .icon {
+         fill: var(--color-error);
+      }
+      &.show {
+         animation: error 0.4s ease both;
+      }
+   }
+   &__success {
+      background: var(--color-success-bg);
+      border: 1px solid var(--color-success);
+      color: var(--color-success);
+      position: absolute;
+      top: 0;
+      transform: translatey(40px);
+      transition: all 0.4s cubic-bezier(0.52, 0.62, 0.42, 1.14);
+      .icon {
+         fill: var(--color-success);
+      }
+      &.show {
+         transform: translatey(0px);
+      }
+   }
+}
+
+@keyframes error {
+   0% {
+      transform: translatex(0px);
+   }
+   25% {
+      transform: translatex(-8px);
+   }
+   50% {
+      transform: translatex(8px);
+   }
+   75% {
+      transform: translatex(-8px);
+   }
+   100% {
+      transform: translatex(0px);
+   }
+}

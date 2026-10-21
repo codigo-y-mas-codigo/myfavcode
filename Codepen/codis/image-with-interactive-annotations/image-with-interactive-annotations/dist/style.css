@@ -1,0 +1,410 @@
+:root {
+  --point-1-top: 220px;
+  --point-1-left: 120px;
+  --point-2-top: 20px;
+  --point-2-left: 220px;
+  --point-3-top: 130px;
+  --point-3-left: 10px;
+  --point-4-top: 155px;
+  --point-4-left: 260px;
+  --point-width: 15px;
+  --point-height: 15px;
+  --point-1-scale: 5;
+  --point-2-scale: 3;
+  --point-3-scale: 5;
+  --point-4-scale: 4;
+}
+
+.description p {
+  margin: 0;
+  font-size: 12px;
+  z-index: -1;
+  color: #ffffff;
+}
+
+.image-indicators img {
+  width: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease, transform 0.4s ease;
+}
+
+.image-indicators {
+  position: relative;
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0;
+  margin: auto;
+}
+
+.image-indicators label {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition: opacity 0.3s ease-out 0.5s;
+  z-index: 1;
+}
+
+.image-indicators > label > span {
+  background-color: #2196f3;
+  width: 10px;
+  height: 10px;
+  border-radius: 60px;
+  transform: scale(1);
+}
+
+.image-indicators > label > span > span {
+  display: inline-block;
+  vertical-align: 20px;
+  background-color: #2196f3;
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  border-radius: 60px;
+  animation: scaleGrow 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation-play-state: running;
+}
+
+@keyframes scaleGrow {
+  from {
+    transform: scale(0);
+    background-color: #2196f3;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+@keyframes scaleDecreases {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  transition-property: width, height, left, top;
+  transition-delay: 650ms;
+}
+
+.point:checked {
+  top: -50% !important;
+  left: -50% !important;
+  width: 200%;
+  height: 200%;
+  z-index: 9;
+}
+
+.point:checked ~ label {
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.3s ease-out 0s;
+}
+
+.description {
+  position: relative;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 1px 10px 10px;
+  color: black;
+  z-index: 1;
+}
+
+.description div {
+  display: none;
+}
+
+.description div:first-child {
+  display: block;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition: opacity 0.3s ease-out 0.5s;
+}
+
+.description div:first-child p {
+  color: #000000;
+}
+
+.description p {
+  line-height: 18px;
+}
+
+.point:checked ~ .description {
+  background: rgba(191, 191, 191, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#label-1 {
+  top: var(--point-1-top);
+  left: var(--point-1-left);
+}
+
+#point-1 {
+  left: var(--point-1-left);
+  top: var(--point-1-top);
+}
+
+#point-1:checked ~ img {
+  transform-origin: calc(var(--point-1-left)) calc(var(--point-1-top));
+  transform: scale(var(--point-1-scale));
+}
+
+#point-1:hover ~ img {
+  transform-origin: calc(var(--point-1-left)) calc(var(--point-1-top));
+}
+
+#point-1:checked ~ .description div:first-child {
+  height: 0;
+  opacity: 0;
+  transition: opacity 0s ease-out 0s;
+}
+
+#point-1:checked ~ .description div:nth-child(2) {
+  display: block;
+}
+
+#point-1:checked ~ .description div:nth-child(2) p:first-child {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  animation-play-state: running;
+}
+
+#point-1:checked ~ .description div:nth-child(2) p:nth-child(2) {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+  animation-play-state: running;
+}
+
+#label-2 {
+  top: var(--point-2-top);
+  left: var(--point-2-left);
+}
+
+#point-2 {
+  left: var(--point-2-left);
+  top: var(--point-2-top);
+}
+
+#point-2:checked ~ img {
+  transform-origin: calc(var(--point-2-left)) calc(var(--point-2-top));
+  transform: scale(var(--point-2-scale));
+}
+
+#point-2:hover ~ img {
+  transform-origin: calc(var(--point-2-left)) calc(var(--point-2-top));
+}
+
+#point-2:checked ~ .description div:first-child {
+  height: 0;
+  opacity: 0;
+  transition: opacity 0s ease-out 0s;
+}
+
+#point-2:checked ~ .description div:nth-child(3) {
+  display: block;
+}
+
+#point-2:checked ~ .description div:nth-child(3) p:first-child {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  animation-play-state: running;
+}
+
+#point-2:checked ~ .description div:nth-child(3) p:nth-child(2) {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+  animation-play-state: running;
+}
+
+#label-3 {
+  top: var(--point-3-top);
+  left: var(--point-3-left);
+}
+
+#point-3 {
+  left: var(--point-3-left);
+  top: var(--point-3-top);
+}
+
+#point-3:checked ~ img {
+  transform-origin: calc(var(--point-3-left)) calc(var(--point-3-top));
+  transform: scale(var(--point-3-scale));
+}
+
+#point-3:hover ~ img {
+  transform-origin: calc(var(--point-3-left)) calc(var(--point-3-top));
+}
+
+#point-3:checked ~ .description div:first-child {
+  height: 0;
+  opacity: 0;
+  transition: opacity 0s ease-out 0s;
+}
+
+#point-3:checked ~ .description div:nth-child(4) {
+  display: block;
+}
+
+#point-3:checked ~ .description div:nth-child(4) p:first-child {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  animation-play-state: running;
+}
+
+#point-3:checked ~ .description div:nth-child(4) p:nth-child(2) {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+  animation-play-state: running;
+}
+
+#label-4 {
+  top: var(--point-4-top);
+  left: var(--point-4-left);
+}
+
+#point-4 {
+  left: var(--point-4-left);
+  top: var(--point-4-top);
+}
+
+#point-4:checked ~ img {
+  transform-origin: calc(var(--point-4-left)) calc(var(--point-4-top));
+  transform: scale(var(--point-4-scale));
+}
+
+#point-4:hover ~ img {
+  transform-origin: calc(var(--point-4-left)) calc(var(--point-4-top));
+}
+
+#point-4:checked ~ .description div:first-child {
+  height: 0;
+  opacity: 0;
+  transition: opacity 0s ease-out 0s;
+}
+
+#point-4:checked ~ .description div:nth-child(5) {
+  display: block;
+}
+
+#point-4:checked ~ .description div:nth-child(5) p:first-child {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  animation-play-state: running;
+}
+
+#point-4:checked ~ .description div:nth-child(5) p:nth-child(2) {
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+  animation-play-state: running;
+}
+
+@-webkit-keyframes type2 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+    border: none;
+  }
+}
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ececec;
+}

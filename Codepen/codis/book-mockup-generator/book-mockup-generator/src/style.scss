@@ -1,0 +1,124 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700';
+
+$font:'Source Sans Pro', sans-serif;
+$second:#644cad;
+  
+@mixin transform($transforms) {
+    -webkit-transform: $transforms;
+    -moz-transform: $transforms;
+    -ms-transform: $transforms;
+    -o-transform: $transforms;
+    transform: $transforms;
+}
+@mixin transformOrigin($x,$y) {
+    -webkit-transform-origin: $x $y;
+    -moz-transform-origin: $x $y;
+    -ms-transform-origin: $x $y;
+    -o-transform-origin: $x $y;
+    transform-origin: $x $y;
+}
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+@mixin gradientAngle($start-color, $end-color, $angle) { 
+    background: $start-color;
+    background: -webkit-linear-gradient($angle, $start-color, $end-color);
+    background: linear-gradient($angle, $start-color, $end-color);
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body{
+    height:100%;
+    width: 100%;
+}
+
+body {
+  padding:0px;
+  margin:0;
+  font-family:$font;
+  background: #24252A;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  width:600px;
+  margin:0 auto;
+  text-align:center;
+  position:relative;
+  z-index:9999;
+  h2 {
+    color:$second;
+    font-weight:400;
+  }
+  input {
+    padding:8px;
+    font-size:14px;
+    min-width:200px;
+  }
+}
+
+.book {
+  padding-top:100px;
+  display:flex;
+  justify-content:center;
+  @include transform(skew(30deg,0deg) rotate(-15deg));
+  .cover {
+    height:600px;
+    width:480px;
+    background-color:#FFF;
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    background-image:url('https://placeholdit.imgix.net/~text?txtsize=33&txt=Paste+Image+URL+480%C3%97600&w=480&h=600');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    &:before {
+      content:'';
+      position:absolute;
+      left:15px;
+      width:6px;
+      height:100%;
+      background:rgba(0,0,0,0.2);
+    }
+    &:after {
+      content:'';
+      display:inline-block;
+      width:480px;
+      height:40px;
+      position:absolute;
+      bottom:-40px;
+      @include transform(skewX(-45deg) translate(-20px, 0px));
+      @include gradientAngle(darken(#DDD,10%),#EEE,45deg);
+    }
+  }
+  .spine {
+    height:600px;
+    width:40px;
+    display: flex;
+    position:relative;
+    overflow:hidden;
+    flex-direction: column;
+    @include gradientAngle(darken(#DDD,10%),#EEE,90deg);
+    @include transform(skewY(-45deg) translate(0px, 20px));
+    content:attr(data-text);
+    font-size:22px;
+    letter-spacing:30px;
+    overflow-wrap:break-word;
+    color:#333;
+    padding:13px;
+    text-align:center;
+    font-family:$font;
+    font-weight:700;
+    text-transform:uppercase;
+    border-top-left-radius:2px;
+    border-bottom-left-radius:2px;
+  }
+}

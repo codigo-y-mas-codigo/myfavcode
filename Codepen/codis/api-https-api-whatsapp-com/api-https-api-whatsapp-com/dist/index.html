@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>API https://api.whatsapp.com</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Formulario de Contacto</title>
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+ <main class="w-full max-w-md mx-auto p-6">
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+   <div class="p-4 sm:p-7">
+    <div class="text-center">
+     <h4 class="block text-2xl font-bold text-gray-800 dark:text-white">Formulario de contacto</h4>
+    </div>
+
+    <div class="mt-5">
+     <form id="contactForm" class="gform pure-form pure-form-stacked" method="POST" data-email="luis.el.de.las.tarjetas@gmail.com" action="https://script.google.com/macros/s/AKfycbwOBg05h-H3-7sbFFr-aoVsgewy4ZGv-mfv-QJjqWbZpQigYd3AslrbLVe_aRRmxuR9zw/exec">
+      <div class="form-elements">
+       <div class="mb-4">
+        <label for="nombre" class="block text-sm mb-2 dark:text-white">Nombre:</label>
+        <input type="text" id="nombre" name="Nombre" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="whatsapp" class="block text-sm mb-2 dark:text-white">WhatsApp:</label>
+        <input type="tel" id="whatsapp" name="WhatsApp" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="email" class="block text-sm mb-2 dark:text-white">Email:</label>
+        <input type="email" id="email" name="Email" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-6">
+        <label class="control control--checkbox" for="Terminos_y_condiciones">
+         <input class="control__input" type="checkbox" id="Terminos_y_condiciones" name="Terminos_y_condiciones" required>
+         <span class="control__label">Aceptar términos y condiciones</span>
+        </label>
+       </div>
+       <div class="flex justify-center">
+        <button type="submit" id="js-comm_btn" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Enviar</button>
+       </div>
+       <div id="wait-message" class="hidden mt-2 text-gray-600 text-center">Espere un momento, por favor...</div>
+      </div>
+      <div class="thankyou_message hidden">
+       <h4 class="block text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">¡Gracias por tu mensaje!</h4>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </main>
+
+ <script>
+  function validEmail(email) {
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+  }
+
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   var form = event.target;
+   var data = getFormData(form);
+   localStorage.setItem('formData', JSON.stringify(data));
+   var waitMessage = document.getElementById('wait-message');
+   waitMessage.classList.remove('hidden');
+   if (data.Email && !validEmail(data.Email)) {
+    alert("Por favor, introduce un email válido.");
+    return false;
+   } else {
+    disableAllButtons(form);
+    var url = form.action;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+     if (xhr.readyState === 4 && xhr.status === 200) {
+      form.reset();
+      var formElements = form.querySelector(".form-elements");
+      if (formElements) {
+       formElements.style.display = "none";
+      }
+      var thankYouMessage = form.querySelector(".thankyou_message");
+      if (thankYouMessage) {
+       thankYouMessage.classList.remove("hidden");
+      }
+      waitMessage.classList.add('hidden');
+      // Enviar mensaje a WhatsApp
+      var mensaje = `Hola, mi nombre es *${data.Nombre}*\nMi número de WhatsApp es *${data.WhatsApp}*\nMi correo electrónico es *${data.Email}*\nMe gustaría recibir más información.`;
+      window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+     }
+    };
+    var encoded = Object.keys(data).map(function(k) {
+     return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+    }).join('&');
+    xhr.send(encoded);
+   }
+  }
+
+  function disableAllButtons(form) {
+   var buttons = form.querySelectorAll("button");
+   for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+   }
+  }
+
+  function getFormData(form) {
+   var elements = form.elements;
+   var fields = Object.keys(elements).filter(function(k) {
+    return (elements[k].name !== "honeypot");
+   }).map(function(k) {
+    if (elements[k].name !== undefined) {
+     return elements[k].name;
+    } else if (elements[k].length > 0) {
+     return elements[k].item(0).name;
+    }
+   }).filter(function(item, pos, self) {
+    return self.indexOf(item) == pos && item;
+   });
+   var formData = {};
+   fields.forEach(function(name) {
+    var element = elements[name];
+    formData[name] = element.value;
+    if (element.length) {
+     var data = [];
+     for (var i = 0; i < element.length; i++) {
+      var item = element.item(i);
+      if (item.checked || item.selected) {
+       data.push(item.value);
+      }
+     }
+     formData[name] = data.join(', ');
+    }
+   });
+   formData.formDataNameOrder = JSON.stringify(fields);
+   formData.formGoogleSheetName = form.dataset.sheet || "Hoja 1";
+   formData.formGoogleSendEmail = form.dataset.email || "";
+   return formData;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+   var form = document.getElementById("contactForm");
+   form.addEventListener("submit", handleFormSubmit, false);
+  });
+  const waitMessage = document.getElementById('wait-message');
+  const submitButton = document.getElementById('js-comm_btn');
+  document.getElementById("contactForm").addEventListener('submit', function() {
+   waitMessage.classList.remove('hidden');
+   waitMessage.textContent = 'Espere un momento, por favor...';
+   setTimeout(function() {
+    waitMessage.textContent = 'Ya casi estamos...';
+   }, 250);
+   setTimeout(function() {
+    waitMessage.textContent = 'Gracias por tu paciencia...';
+   }, 500);
+   submitButton.classList.add('ag-comm_btn-blink');
+   setTimeout(function() {
+    submitButton.classList.remove('ag-comm_btn-blink');
+   }, 500);
+  });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

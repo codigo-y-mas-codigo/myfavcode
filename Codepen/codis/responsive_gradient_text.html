@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAC360 - Metal Plate Styles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Righteous&family=Russo+One&family=Teko:wght@700&family=Audiowide&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      overflow-x: hidden;
+    }
+
+    *, *:after, *:before {
+      box-sizing: border-box;
+    }
+
+    /* Estilo 1: Placa de Aluminio Grabada */
+    .logo-aluminum {
+      background: linear-gradient(145deg, #e0e0e0, #a8a8a8);
+      box-shadow: 
+        20px 20px 60px #7a7a7a,
+        -20px -20px 60px #ffffff,
+        inset 2px 2px 5px rgba(255,255,255,0.5),
+        inset -2px -2px 5px rgba(0,0,0,0.3);
+      border-radius: 20px;
+      padding: 1.5em 3em;
+      text-decoration: none;
+      position: relative;
+      max-width: 90vw;
+      border: 3px solid #b8b8b8;
+    }
+
+    .logo-aluminum h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5em);
+      margin: 0;
+      color: #888;
+      text-shadow: 
+        1px 1px 2px rgba(255,255,255,0.8),
+        -1px -1px 2px rgba(0,0,0,0.6),
+        2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    /* Estilo 2: Acero Inoxidable Bruñido */
+    .logo-steel {
+      background: linear-gradient(135deg, #c9d6df 0%, #8b9da8 50%, #667a86 100%);
+      box-shadow: 
+        0 10px 40px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -1px 0 rgba(0,0,0,0.4);
+      border-radius: 15px;
+      padding: 1.2em 3.5em;
+      text-decoration: none;
+      max-width: 90vw;
+      border: 2px solid #556a78;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-steel:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      to { left: 100%; }
+    }
+
+    .logo-steel h1 {
+      font-family: 'Russo One', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5em);
+      margin: 0;
+      background: linear-gradient(180deg, #f0f0f0 0%, #888 50%, #555 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.5));
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    /* Estilo 3: Cobre Oxidado */
+    .logo-copper {
+      background: linear-gradient(145deg, #b87333, #8b5a2b, #cd7f32);
+      box-shadow: 
+        0 15px 35px rgba(0,0,0,0.4),
+        inset 0 2px 0 rgba(255,200,150,0.4),
+        inset 0 -2px 0 rgba(0,0,0,0.5);
+      border-radius: 25px;
+      padding: 1.3em 3em;
+      text-decoration: none;
+      max-width: 90vw;
+      border: 3px solid #995522;
+      position: relative;
+    }
+
+    .logo-copper:after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: radial-gradient(circle at 30% 30%, rgba(72,209,204,0.2), transparent 50%),
+                  radial-gradient(circle at 70% 70%, rgba(46,139,87,0.2), transparent 50%);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .logo-copper h1 {
+      font-family: 'Righteous', cursive;
+      font-size: clamp(2.5rem, 8vw, 5em);
+      margin: 0;
+      color: #2d1810;
+      text-shadow: 
+        0 1px 0 #d4a574,
+        0 2px 0 #c89860,
+        0 3px 5px rgba(0,0,0,0.5),
+        0 0 10px rgba(255,200,100,0.3);
+      letter-spacing: 0.12em;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Estilo 4: Titanio Anodizado */
+    .logo-titanium {
+      background: linear-gradient(145deg, #4a5568, #2d3748, #1a202c);
+      box-shadow: 
+        0 20px 50px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 0 30px rgba(100,200,255,0.3);
+      border-radius: 10px;
+      padding: 1.4em 3.2em;
+      text-decoration: none;
+      max-width: 90vw;
+      border: 1px solid #4299e1;
+      position: relative;
+    }
+
+    .logo-titanium h1 {
+      font-family: 'Audiowide', cursive;
+      font-size: clamp(2.5rem, 8vw, 5em);
+      margin: 0;
+      background: linear-gradient(45deg, #4299e1, #667eea, #9f7aea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(66,153,225,0.6))
+              drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+      letter-spacing: 0.2em;
+      text-align: center;
+    }
+
+    /* Estilo 5: Bronce Antiguo */
+    .logo-bronze {
+      background: linear-gradient(135deg, #8b7355, #6b5638, #4a3f2e);
+      box-shadow: 
+        0 12px 30px rgba(0,0,0,0.5),
+        inset 0 2px 0 rgba(205,173,127,0.3),
+        inset 0 -2px 5px rgba(0,0,0,0.6);
+      border-radius: 30px;
+      padding: 1.5em 3em;
+      text-decoration: none;
+      max-width: 90vw;
+      border: 4px ridge #a0826d;
+      position: relative;
+    }
+
+    .logo-bronze:before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      background: 
+        repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+      border-radius: 25px;
+      pointer-events: none;
+    }
+
+    .logo-bronze h1 {
+      font-family: 'Teko', sans-serif;
+      font-size: clamp(3rem, 9vw, 6em);
+      margin: 0;
+      color: #1a1410;
+      text-shadow: 
+        1px 1px 0 #cdad7f,
+        2px 2px 0 #a0826d,
+        3px 3px 0 #8b7355,
+        4px 4px 10px rgba(0,0,0,0.7);
+      letter-spacing: 0.08em;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .label {
+      color: rgba(255,255,255,0.6);
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      text-align: center;
+      margin-top: -25px;
+      margin-bottom: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 15px;
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+        gap: 30px;
+      }
+      
+      .logo-aluminum, .logo-steel, .logo-copper, 
+      .logo-titanium, .logo-bronze {
+        padding: 1em 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="label">Aluminio Grabado</div>
+  <a href="#" class="logo-aluminum">
+    <h1>MΛC360</h1>
+  </a>
+
+  <div class="label">Acero Inoxidable</div>
+  <a href="#" class="logo-steel">
+    <h1>MAC360</h1>
+  </a>
+
+  <div class="label">Cobre Oxidado</div>
+  <a href="#" class="logo-copper">
+    <h1>MAC360</h1>
+  </a>
+
+  <div class="label">Titanio Anodizado</div>
+  <a href="#" class="logo-titanium">
+    <h1>MAC360</h1>
+  </a>
+
+  <div class="label">Bronce Antiguo</div>
+  <a href="#" class="logo-bronze">
+    <h1>MAC360</h1>
+  </a>
+</body>
+</html>

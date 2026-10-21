@@ -1,0 +1,71 @@
+// Variables
+$spacing = 0.5rem
+color = {
+  background: #FFF
+  text: #666
+  accent: #F06
+}
+*
+  box-sizing: border-box
+html,
+body
+  padding: 0
+  margin: 0
+body
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: sans-serif
+button,
+input
+  padding: 1rem
+  width: 100%
+  font-size: inherit
+
+// Elements
+#calendar
+  background-color: color.background
+  color: color.text
+  max-width: 30em
+
+h1
+  font-size: 2rem
+  
+button,
+input,
+select,
+textarea
+  border: 2px solid color.text
+
+button
+  cursor: pointer
+  color: color.accent
+  background-color: transparent
+  text-transform: lowercase
+  &:focus,
+  &:hover
+    background-color: #EEE
+    
+a
+  color: color.accent
+  &:hover
+    color: #000
+  
+form
+  p
+    display: flex
+  button,
+  label
+    flex: 1
+  button:not(:first-child)
+    margin-left: 1rem
+
+input
+  color: #000
+  &:invalid
+    border-color: color.accent
+    
+// Classes
+.is-wide
+  flex: 2

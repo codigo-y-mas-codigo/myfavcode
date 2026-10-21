@@ -1,0 +1,98 @@
+<title>Se Queda Aprobadoaisi Okey</title>
+<style>
+ .hidden {
+  display: none;
+ }
+
+ #thankyou-message {
+  /*  margin-top: 20px;
+   padding: 10px;
+   background-color: #e6f7ff;
+   border: 1px solid #91d5ff;
+   border-radius: 4px;*/
+ }
+</style>
+<form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec">
+ <input type="hidden" id="emailSubject" name="emailSubject" value="✔️ Nuevo formulario de contacto recibido">
+ <button id="submit-button" type="submit" style="background:none; border:none">
+  <span id="button-text">Entrar</span>
+  <span id="wait-message" class="hidden">Espere un momento, por favor...</span>
+ </button>
+</form>
+<div id="thankyou-message" class="hidden">✔️</div>
+<script data-cfasync="false" type="text/javascript">
+ document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById('gform');
+  const submitButton = document.getElementById('submit-button');
+  const buttonText = document.getElementById('button-text');
+  const waitMessage = document.getElementById('wait-message');
+  const thankYouMessage = document.getElementById('thankyou-message');
+  form.addEventListener("submit", handleFormSubmit);
+
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   const data = getFormData(form);
+   localStorage.setItem('formData', JSON.stringify(data));
+   setSubmitting(true);
+   const xhr = new XMLHttpRequest();
+   xhr.open('POST', form.action);
+   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+   xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+     console.log(xhr.status, xhr.statusText);
+     console.log(xhr.responseText);
+     setSubmitting(false);
+     showThankYouMessage();
+     hideFormContent();
+    }
+   };
+   const encoded = Object.keys(data).map(k =>
+    encodeURIComponent(k) + "=" + encodeURIComponent(data[k])
+   ).join('&');
+   xhr.send(encoded);
+  }
+
+  function setSubmitting(isSubmitting) {
+   submitButton.disabled = isSubmitting;
+   buttonText.classList.toggle('hidden', isSubmitting);
+   waitMessage.classList.toggle('hidden', !isSubmitting);
+  }
+
+  function showThankYouMessage() {
+   thankYouMessage.classList.remove('hidden');
+  }
+
+  function hideFormContent() {
+   form.classList.add('hidden');
+  }
+
+  function getFormData(form) {
+   const elements = form.elements;
+   const fields = Object.keys(elements).filter(k =>
+    elements[k].name !== "honeypot"
+   ).map(k =>
+    elements[k].name !== undefined ? elements[k].name :
+    elements[k].length > 0 ? elements[k].item(0).name : null
+   ).filter((item, pos, self) =>
+    item && self.indexOf(item) == pos
+   );
+   const formData = {};
+   fields.forEach(name => {
+    const element = elements[name];
+    formData[name] = element.value;
+    if (element.length) {
+     formData[name] = Array.from(element)
+      .filter(item => item.checked || item.selected)
+      .map(item => item.value)
+      .join(', ');
+    }
+   });
+   formData.formDataNameOrder = JSON.stringify(fields);
+   formData.formGoogleSheetName = form.dataset.sheet || "Accesos";
+   formData.formGoogleSendEmail = form.dataset.email || "luis.el.de.las.tarjetas@gmail.com";
+   formData.emailSubject = form.querySelector('#emailSubject').value || "Nuevo formulario de contacto";
+   return formData;
+  }
+ });
+</script>
+</div>

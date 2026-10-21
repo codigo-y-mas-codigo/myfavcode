@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Media Scroller with Grid and Snap Points</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <style>
+:root {
+  --surface1: hsl(210, 15%, 12%);
+  --text1: hsl(210, 15%, 90%);
+  --text2: hsl(210, 5%, 65%);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+a {text-decoration: none;}a{background-color:transparent}a:active,a:hover{outline-width:0}a:link, a:visited {color: inherit;text-decoration: none;} a:hover, a:active {color: inherit; text-decoration: none;}a:hover {text-decoration: underline;}
+.scroller {
+  min-height: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: 2rem;
+  background-color: inherit;
+  color: inherit;
+  display: grid;
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  grid-gap: 4rem;
+  gap: 4rem;
+  align-content: center;
+  justify-content: center;
+  place-content: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+}
+
+section {
+  --gap: 2.5rem;
+  display: grid;
+  grid-gap: var(--gap);
+  gap: var(--gap)
+}
+
+section > header {
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+    display: grid;
+    grid-gap: 1ex;
+    gap: 1ex
+  }
+
+section > header > h2, section > header > h3 {
+      margin: 0;
+    }
+
+.horizontal-media-scroller {
+  --size: 150px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--size);
+  grid-gap: calc(var(--gap) / 2);
+  gap: calc(var(--gap) / 2);
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  padding-bottom: var(--gap);
+  
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -ms-scroll-snap-type: x proximity;
+      scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--gap)
+}
+
+.horizontal-media-scroller > figure {
+    scroll-snap-align: start;
+    
+    display: grid;
+    grid-gap: inherit;
+    gap: inherit;
+    margin: 0;
+
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none
+  }
+
+[dir="ltr"] .horizontal-media-scroller > figure:last-child::after {
+      bottom: calc(var(--gap) * -1);
+      right: calc(var(--gap) * -1);
+}
+
+[dir="rtl"] .horizontal-media-scroller > figure:last-child::after {
+      bottom: calc(var(--gap) * -1);
+      left: calc(var(--gap) * -1);
+}
+
+.horizontal-media-scroller > figure:last-child::after {
+      content: "";
+      position: absolute;
+      width: var(--gap);
+      height: 100%;
+      right: calc(var(--gap) * -1);
+      width: var(--gap);
+      height: 100%;
+      top: 0;
+    }
+
+.horizontal-media-scroller > figure > picture {
+      display: inline-block;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 1ex;
+      box-shadow: 0 1px 2px 0 hsla(0, 0%, 0%, 0.2);
+      overflow: hidden
+    }
+
+.horizontal-media-scroller > figure > picture > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover;
+        background-image: linear-gradient(to bottom, hsl(210, 10%, 40%), hsl(210, 10%, 20%));
+      }
+
+.horizontal-media-scroller > figure > figcaption {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -.5px;
+    }
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .75px;
+}
+
+h3 {
+  color: hsl(210, 5%, 65%);
+  color: var(--text2);
+  font-weight: 400;
+  letter-spacing: .75px;
+}
+</style>
+<!-- 
+title:Similar to Locke & Key
+subtitle:Popular with similar viewers
+img1: https://luisangelmaciel.vercel.app/img/magia/vectorized%20graphic%20brujeria%20y%20magia%20in%20purple%20color%20background%20white%20style%20comic%203d.webp
+alt1: Galería de fotos ´La creatividad de la mágia´
+href1: https://luisangelmaciel.vercel.app/blog/galeria-de-fotos-la-creatividad-de-la-magia/
+img2
+alt2
+href2
+img3
+alt3
+href3
+img4
+alt4
+href4
+img5
+alt5
+href5
+img6
+alt6
+href6
+img7
+alt7
+href7
+img8
+alt8
+href8
+imgb1
+altb1
+hrefb1
+imgb2
+altb2
+hrefb2
+imgb3
+altb3
+hrefb3
+imgb4
+altb4
+hrefb4
+imgb5
+altb5
+hrefb5
+imgb6
+altb6
+hrefb6
+imgb7
+altb7
+hrefb7
+imgb8
+altb8
+hrefb8
+imgc1
+altc1
+hrefc1
+imgc2
+altc2
+hrefc2
+imgc3
+altc3
+hrefc3
+imgc4
+altc4
+hrefc4
+imgc5
+altc5
+hrefc5
+imgc6
+altc6
+hrefc6
+imgc7
+altc7
+hrefc7
+imgc8
+altc8
+hrefc8
+subtitle2:Suspense
+subtitle3:Horror
+-->
+<div class="scroller">
+<section>
+  <header>
+    <h2>{{title}}</h2>
+    <h3>{{subtitle}}</h3>
+  </header>
+
+  <div class="horizontal-media-scroller">
+      <figure>
+    <picture>
+       <img src="https://luisangelmaciel.vercel.app/img/magia/vectorized%20graphic%20brujeria%20y%20magia%20in%20purple%20color%20background%20white%20style%20comic%203d.webp" alt="Galería de fotos La creatividad de la mágia">
+      </picture>
+      <figcaption> <a href="https://luisangelmaciel.vercel.app/blog/galeria-de-fotos-la-creatividad-de-la-magia/">La creatividad de la mágia</a> </figcaption>
+      </figure>
+    <figure>
+      <picture>
+        <img src="{{img1}}" alt="{{alt1}}">
+      </picture>
+      <figcaption>{{alt1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{img2}}" alt="{{alt2}}">
+      </picture>
+      <figcaption>{{alt2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img3}}" alt="{{alt3}}">
+      </picture>
+      <figcaption>{{alt3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img4}}" alt="{{alt4}}">
+      </picture>
+      <figcaption>{{alt4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{img5}}" alt="{{alt5}}">
+      </picture>
+      <figcaption>{{alt5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img6}" alt="{{alt6}}">
+      </picture>
+      <figcaption>{{alt6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{img7}}" alt="{{alt7}}">
+      </picture>
+      <figcaption>{{alt7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img8}" alt="{{alt8}}">
+      </picture>
+      <figcaption>{{alt8}}</figcaption>
+    </figure>       
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2>{{subtitle2}}</h2>
+  </header>
+
+  <div class="horizontal-media-scroller">
+    <figure>
+      <picture>
+        <img src="{{imgb1}}" alt="{{altb1}}">
+      </picture>
+      <figcaption>{{altb1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgb2}}" alt="{{altb2}}">
+      </picture>
+      <figcaption>{{altb2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb3}}" alt="{{altb3}}">
+      </picture>
+      <figcaption>{{altb3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb4}}" alt="{{altb4}}">
+      </picture>
+      <figcaption>{{altb4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgb5}}" alt="{{altb5}}">
+      </picture>
+      <figcaption>{{altb5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb6}" alt="{{altb6}}">
+      </picture>
+      <figcaption>{{altb6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{imgb7}}" alt="{{altb7}}">
+      </picture>
+      <figcaption>{{altb7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb8}" alt="{{altb8}}">
+      </picture>
+      <figcaption>{{altb8}}</figcaption>
+    </figure>    
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2>Horror</h2>
+  </header>
+
+  <div class="horizontal-media-scroller">
+   <figure>
+      <picture>
+        <img src="{{imgc1}}" alt="{{altc1}}">
+      </picture>
+      <figcaption>{{altc1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgc2}}" alt="{{altc2}}">
+      </picture>
+      <figcaption>{{altc2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc3}}" alt="{{altc3}}">
+      </picture>
+      <figcaption>{{altc3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc4}}" alt="{{altc4}}">
+      </picture>
+      <figcaption>{{altc4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgc5}}" alt="{{altc5}}">
+      </picture>
+      <figcaption>{{altc5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc6}" alt="{{altc6}}">
+      </picture>
+      <figcaption>{{altc6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{imgc7}}" alt="{{altc7}}">
+      </picture>
+      <figcaption>{{altc7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc8}" alt="{{altc8}}">
+      </picture>
+      <figcaption>{{altc8}}</figcaption>
+    </figure> 
+  </div>
+</section>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  <!-- watch me build this on https://youtu.be/2xrsK3JSBqw -->
+<!-- also checkout v2 https://codepen.io/argyleink/pen/ZEORoLO -->
+
+<!-- 
+title:Similar to Locke & Key
+subtitle:Popular with similar viewers
+img1: https://luisangelmaciel.vercel.app/img/magia/vectorized%20graphic%20brujeria%20y%20magia%20in%20purple%20color%20background%20white%20style%20comic%203d.webp
+alt1: Galería de fotos ´La creatividad de la mágia´
+href1: https://luisangelmaciel.vercel.app/blog/galeria-de-fotos-la-creatividad-de-la-magia/
+img2
+alt2
+href2
+img3
+alt3
+href3
+img4
+alt4
+href4
+img5
+alt5
+href5
+img6
+alt6
+href6
+img7
+alt7
+href7
+img8
+alt8
+href8
+imgb1
+altb1
+hrefb1
+imgb2
+altb2
+hrefb2
+imgb3
+altb3
+hrefb3
+imgb4
+altb4
+hrefb4
+imgb5
+altb5
+hrefb5
+imgb6
+altb6
+hrefb6
+imgb7
+altb7
+hrefb7
+imgb8
+altb8
+hrefb8
+imgc1
+altc1
+hrefc1
+imgc2
+altc2
+hrefc2
+imgc3
+altc3
+hrefc3
+imgc4
+altc4
+hrefc4
+imgc5
+altc5
+hrefc5
+imgc6
+altc6
+hrefc6
+imgc7
+altc7
+hrefc7
+imgc8
+altc8
+hrefc8
+subtitle2:Suspense
+subtitle3:Horror
+-->
+<div class="scroller">
+<section>
+  <header>
+    <h2>{{title}}</h2>
+    <h3>{{subtitle}}</h3>
+  </header>
+
+  <div class="horizontal-media-scroller">
+      <figure>
+    <picture>
+       <img src="https://luisangelmaciel.vercel.app/img/magia/vectorized%20graphic%20brujeria%20y%20magia%20in%20purple%20color%20background%20white%20style%20comic%203d.webp" alt="Galería de fotos La creatividad de la mágia">
+      </picture>
+      <figcaption> <a href="https://luisangelmaciel.vercel.app/blog/galeria-de-fotos-la-creatividad-de-la-magia/">La creatividad de la mágia</a> </figcaption>
+      </figure>
+    <figure>
+      <picture>
+        <img src="{{img1}}" alt="{{alt1}}">
+      </picture>
+      <figcaption>{{alt1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{img2}}" alt="{{alt2}}">
+      </picture>
+      <figcaption>{{alt2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img3}}" alt="{{alt3}}">
+      </picture>
+      <figcaption>{{alt3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img4}}" alt="{{alt4}}">
+      </picture>
+      <figcaption>{{alt4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{img5}}" alt="{{alt5}}">
+      </picture>
+      <figcaption>{{alt5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img6}" alt="{{alt6}}">
+      </picture>
+      <figcaption>{{alt6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{img7}}" alt="{{alt7}}">
+      </picture>
+      <figcaption>{{alt7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{img8}" alt="{{alt8}}">
+      </picture>
+      <figcaption>{{alt8}}</figcaption>
+    </figure>       
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2>{{subtitle2}}</h2>
+  </header>
+
+  <div class="horizontal-media-scroller">
+    <figure>
+      <picture>
+        <img src="{{imgb1}}" alt="{{altb1}}">
+      </picture>
+      <figcaption>{{altb1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgb2}}" alt="{{altb2}}">
+      </picture>
+      <figcaption>{{altb2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb3}}" alt="{{altb3}}">
+      </picture>
+      <figcaption>{{altb3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb4}}" alt="{{altb4}}">
+      </picture>
+      <figcaption>{{altb4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgb5}}" alt="{{altb5}}">
+      </picture>
+      <figcaption>{{altb5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb6}" alt="{{altb6}}">
+      </picture>
+      <figcaption>{{altb6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{imgb7}}" alt="{{altb7}}">
+      </picture>
+      <figcaption>{{altb7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgb8}" alt="{{altb8}}">
+      </picture>
+      <figcaption>{{altb8}}</figcaption>
+    </figure>    
+  </div>
+</section>
+
+<section>
+  <header>
+    <h2>Horror</h2>
+  </header>
+
+  <div class="horizontal-media-scroller">
+   <figure>
+      <picture>
+        <img src="{{imgc1}}" alt="{{altc1}}">
+      </picture>
+      <figcaption>{{altc1}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgc2}}" alt="{{altc2}}">
+      </picture>
+      <figcaption>{{altc2}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc3}}" alt="{{altc3}}">
+      </picture>
+      <figcaption>{{altc3}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc4}}" alt="{{altc4}}">
+      </picture>
+      <figcaption>{{altc4}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+            <img src="{{imgc5}}" alt="{{altc5}}">
+      </picture>
+      <figcaption>{{altc5}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc6}" alt="{{altc6}}">
+      </picture>
+      <figcaption>{{altc6}}</figcaption>
+    </figure>    
+    <figure>
+      <picture>
+            <img src="{{imgc7}}" alt="{{altc7}}">
+      </picture>
+      <figcaption>{{altc7}}</figcaption>
+    </figure>
+    <figure>
+      <picture>
+        <img src="{{imgc8}" alt="{{altc8}}">
+      </picture>
+      <figcaption>{{altc8}}</figcaption>
+    </figure> 
+  </div>
+</section>
+</div>
+    
+  </body>
+  
+</html>

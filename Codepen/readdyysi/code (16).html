@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería de Componentes Glassmorphism (con Dark Mode)</title>
+    <style>
+        /* --- ESTILOS GLOBALES Y DE PREPARACIÓN --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --text-color-light: #f0f0f0; /* Texto para fondos oscuros */
+            --text-color-dark: #222222; /* Texto para fondos claros */
+            --shadow-color: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* --- Contenedor de Tema --- */
+        #theme-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 5rem 0 2rem 0; /* Más padding superior para el botón de tema */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .light-theme {
+            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1770');
+        }
+        .light-theme h2 { color: var(--text-color-light); }
+
+        .dark-theme {
+            background-image: url('https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&w=1770');
+        }
+        .dark-theme h2 { color: var(--text-color-light); }
+
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        section {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        h2 {
+            margin-top: 0;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .component-grid {
+            display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center;
+        }
+        
+        a, button {
+            text-decoration: none;
+            color: var(--text-color-light);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Botón para cambiar de Tema --- */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        #theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /*
+        =========================================================
+        === PLANTILLA DE COMPONENTES "GLASSMORPHISM" ===
+        =========================================================
+        */
+
+        /* === SECCIÓN 1: BOTONES === */
+        /* ----- ESTILO 1: BOTÓN DE VIDRIO SUAVE (Clásico) ----- */
+        .btn-glass-v1 {
+            display: inline-block; padding: 15px 30px; font-size: 1.2em; font-weight: 600;
+            background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 35px; border: 1.5px solid var(--glass-border); box-shadow: 0 4px 30px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+        .btn-glass-v1:hover { background: rgba(255, 255, 255, 0.2); box-shadow: 0 6px 35px rgba(0, 0, 0, 0.2); transform: translateY(-3px); }
+
+        /* ----- ESTILO 2: BOTÓN DE VIDRIO CON EFECTO "PULSAR" ----- */
+        .btn-glass-v2 {
+            display: inline-block; padding: 15px 30px; font-size: 1.2em; font-weight: 600;
+            background: var(--glass-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border-radius: 12px; border: 1px solid var(--glass-border); border-bottom: 5px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.15s ease-in-out;
+        }
+        .btn-glass-v2:hover { transform: translateY(-2px); border-bottom-width: 7px; }
+        .btn-glass-v2:active { transform: translateY(2px); border-bottom-width: 2px; background: rgba(255, 255, 255, 0.15); }
+
+        /* ----- ESTILO 3: BOTÓN DE VIDRIO CON BORDE ANIMADO (Aurora) ----- */
+        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn-glass-v3 {
+            position: relative; z-index: 1; display: inline-block; padding: 15px 30px; font-size: 1.2em;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; transition: 0.5s;
+        }
+        .btn-glass-v3:hover { box-shadow: 0 0 20px rgba(255, 0, 255, 0.5); background: rgba(255, 0, 255, 0.1); }
+        .btn-glass-v3::before {
+            content: ''; position: absolute; z-index: -1; top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: conic-gradient(#ff00ff, #00ffff, #00ff00, #ffff00, #ff0000, #ff00ff);
+            animation: rotate 5s linear infinite;
+        }
+
+        /* ----- ESTILO 4: BOTÓN DE VIDRIO CON REFRACCIÓN (Requiere JS) ----- */
+        .btn-glass-v4 {
+            position: relative; display: inline-block; padding: 15px 30px; font-size: 1.2em;
+            background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 50px; border: 1px solid var(--glass-border); overflow: hidden;
+        }
+        .btn-glass-v4::before {
+            content: ''; position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%);
+            width: 200px; height: 200px; background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .btn-glass-v4:hover::before { opacity: 1; }
+
+        /* === SECCIÓN 2: OTROS COMPONENTES === */
+        /* ----- TARJETA (CARD) DE VIDRIO ----- */
+        .card-glass {
+            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px; border: 1px solid var(--glass-border); box-shadow: 0 4px 30px var(--shadow-color);
+            padding: 1.5rem; color: var(--text-color-light); width: 100%; max-width: 300px;
+        }
+        .card-glass h3 { margin-top: 0; }
+        .card-glass p { opacity: 0.8; }
+
+        /* ----- TABLA DE VIDRIO ----- */
+        .table-glass {
+            width: 100%; border-collapse: collapse; background: var(--glass-bg);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px; overflow: hidden; box-shadow: 0 4px 30px var(--shadow-color); border: 1px solid var(--glass-border);
+        }
+        .table-glass th, .table-glass td { padding: 12px 15px; text-align: left; color: var(--text-color-light); }
+        .table-glass thead tr { background: rgba(0, 0, 0, 0.2); }
+        .table-glass tbody tr { border-bottom: 1px solid var(--glass-border); }
+        .table-glass tbody tr:last-of-type { border-bottom: none; }
+        .table-glass tbody tr:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+        /* ----- INPUT DE VIDRIO ----- */
+        .input-glass {
+            background: var(--glass-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border); border-radius: 8px; padding: 12px 15px;
+            font-size: 1em; color: var(--text-color-light); outline: none; transition: all 0.3s ease;
+        }
+        .input-glass::placeholder { color: rgba(255, 255, 255, 0.5); }
+        .input-glass:focus { box-shadow: 0 0 15px rgba(0, 191, 255, 0.5); border-color: rgba(0, 191, 255, 0.7); }
+
+        /* ----- MODAL DE VIDRIO ----- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-glass {
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 16px; border: 1px solid var(--glass-border); box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+            padding: 2rem; color: var(--text-color-light); width: 90%; max-width: 500px;
+            transform: scale(0.9); transition: all 0.3s ease; position: relative;
+        }
+        .modal-overlay.active .modal-glass { transform: scale(1); }
+        .modal-glass h3 { margin-top: 0; }
+        .modal-glass .close-btn {
+            background: none; border: none; font-size: 1.5rem; position: absolute; top: 15px; right: 20px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="theme-toggle"></button>
+    
+    <div id="theme-container">
+        <main>
+            <!-- SECCIÓN DE BOTONES -->
+            <section>
+                <h2>Botones de Vidrio</h2>
+                <div class="component-grid">
+                    <a href="#" class="btn-glass-v1">Estilo 1: Suave</a>
+                    <button class="btn-glass-v2">Estilo 2: Pulsar</button>
+                    <button class="btn-glass-v3">Estilo 3: Aurora</button>
+                    <a href="#" class="btn-glass-v4">Estilo 4: Refracción</a>
+                </div>
+            </section>
+
+            <!-- SECCIÓN DE OTROS COMPONENTES -->
+            <section>
+                <h2>Otros Componentes</h2>
+                <div class="component-grid" style="align-items: flex-start;">
+                    <div class="card-glass">
+                        <h3>Tarjeta de Vidrio</h3>
+                        <p>Este es un contenedor con el efecto glassmorphism aplicado.</p>
+                        <a href="#" class="btn-glass-v1" style="font-size: 1em; padding: 10px 20px;">Ver más</a>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <input type="text" class="input-glass" placeholder="Campo de texto de vidrio...">
+                        <button id="openModalBtn" class="btn-glass-v2">Abrir Modal</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECCIÓN DE TABLA -->
+            <section>
+                <h2>Tabla de Vidrio</h2>
+                <table class="table-glass">
+                    <thead><tr><th>ID</th><th>Producto</th><th>Estado</th><th>Precio</th></tr></thead>
+                    <tbody>
+                        <tr><td>001</td><td>Componente A</td><td>Activo</td><td>$49.99</td></tr>
+                        <tr><td>002</td><td>Framework B</td><td>En revisión</td><td>$199.00</td></tr>
+                        <tr><td>003</td><td>Librería C</td><td>Inactivo</td><td>$25.50</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- HTML DEL MODAL -->
+    <div id="myModal" class="modal-overlay">
+        <div class="modal-glass">
+            <button id="closeModalBtn" class="close-btn">&times;</button>
+            <h3>Ventana Modal de Vidrio</h3>
+            <p>Este es un ejemplo de cómo se vería una ventana modal con el efecto.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT (REQUERIDO PARA BOTÓN V4, MODAL Y TEMA) -->
+    <script>
+        // --- Lógica para el botón v4 (Efecto de refracción) ---
+        const btnV4 = document.querySelector('.btn-glass-v4');
+        if (btnV4) {
+            btnV4.addEventListener('mousemove', e => {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+                btnV4.style.setProperty('--x', `${x}px`);
+                btnV4.style.setProperty('--y', `${y}px`);
+            });
+        }
+
+        // --- Lógica para el Modal ---
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalOverlay = document.getElementById('myModal');
+        if (openModalBtn && closeModalBtn && modalOverlay) {
+            openModalBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
+            const closeModal = () => modalOverlay.classList.remove('active');
+            closeModalBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+        }
+
+        // --- Lógica para el cambio de Tema (Light/Dark Mode) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeContainer = document.getElementById('theme-container');
+
+        const setTheme = (theme) => {
+            themeContainer.className = ''; // Limpia clases previas
+            themeContainer.classList.add(`${theme}-theme`);
+            localStorage.setItem('theme', theme);
+            themeToggle.textContent = theme === 'dark' ? '☀️ Ver en Claro' : '🌙 Ver en Oscuro';
+        };
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+
+        // Cargar el tema guardado al iniciar la página
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Inicia en oscuro por defecto
+        setTheme(savedTheme);
+    </script>
+</body>
+</html>

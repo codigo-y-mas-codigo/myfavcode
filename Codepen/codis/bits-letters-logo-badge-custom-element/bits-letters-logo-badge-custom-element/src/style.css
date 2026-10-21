@@ -1,0 +1,9 @@
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; padding: 2rem; }
+      section { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: center; }
+      .demo { display: flex; gap: 12px; align-items: center; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; }
+      .dark { background: #111; color: #fff; }
+      .light { background: #f8f9fa; color: #000; }
+      .code { font-family: monospace; font-size: 0.875em; color: #666; }
+      .demo-grid { display: grid; gap: 24px; }
+      .demo-section { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+      .demo-section h3 { margin-top: 0; margin-bottom: 12px; }

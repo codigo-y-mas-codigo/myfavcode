@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Color Mode y Accesibilidad: Optimiza tu Sitio Web para Todos</title>
+ <meta name="description" content="Optimiza tu sitio web con Color Mode y mejora la accesibilidad. Descubre cómo estos modos pueden reducir la fatiga visual y ahorrar batería.">
+ <meta name="keywords" content="Dark Mode, Color Mode, Diseño Web, Desarrollo Web, UX, Accesibilidad, Fatiga Visual, Ahorro de Batería">
+ <meta name="author" content="Luis Angel Maciel">
+ <link rel="canonical" href="https://luisangelmaciel.github.io/mode.multicolor">
+ <link rel="stylesheet" href="https://wizard-dun.vercel.app/weui.css">
+ <link rel="icon" href="favicon.png" sizes="any" />
+ <style>
+  :root {
+   --background-color: #ffffff;
+   --text-color: #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+   :root {
+    --background-color: #000000;
+    --text-color: #ffffff;
+   }
+  }
+
+  body {
+   background-color: var(--background-color);
+   color: var(--text-color);
+  }
+
+  iframe {
+   width: 100%;
+   height: 480px;
+   overflow-y: hidden
+  }
+ </style>
+ <!-- Open Graph Tags -->
+ <meta property="og:title" content="Color Mode y Accesibilidad: Optimiza tu Sitio Web para Todos">
+ <meta property="og:description" content="Optimiza tu sitio web con Color Mode y mejora la accesibilidad. Descubre cómo estos modos pueden reducir la fatiga visual y ahorrar batería.">
+ <meta property="og:url" content="https://luisangelmaciel.github.io/mode.multicolor">
+ <meta property="og:image" content="https://luisangelmaciel.github.io/mode.multicolor/ogimage.jpg">
+ <meta property="og:type" content="article">
+ <meta property="og:locale" content="es_MX">
+
+ <!-- Twitter Card Tags -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Color Mode y Accesibilidad: Optimiza tu Sitio Web para Todos">
+ <meta name="twitter:description" content="Optimiza tu sitio web con Color Mode y mejora la accesibilidad. Descubre cómo estos modos pueden reducir la fatiga visual y ahorrar batería.">
+ <meta name="twitter:image" content="https://luisangelmaciel.github.io/mode.multicolor/ogimage.jpg">
+
+ <!-- Schema JSON-LD -->
+ <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://luisangelmaciel.github.io/mode.multicolor"
+   },
+   "headline": "Color Mode y Accesibilidad: Optimiza tu Sitio Web para Todos",
+   "description": "Optimiza tu sitio web con Color Mode y mejora la accesibilidad. Descubre cómo estos modos pueden reducir la fatiga visual y ahorrar batería.",
+   "image": "https://luisangelmaciel.github.io/mode.multicolor/ogimage.jpg",
+   "author": {
+    "@type": "Person",
+    "name": "Luis Angel Maciel"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Luis Angel Maciel",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://luisangelmaciel.github.io/mode.multicolor/ogimage.jpg"
+    }
+   },
+   "datePublished": "2024-05-28T22:12:50.439Z",
+   "dateModified": "2024-05-28T22:12:50.439Z"
+  }
+ </script>
+</head>
+
+<body>
+ <div class="page">
+  <div class="page__hd"></br>
+   <h1 class="page__title" style="text-align:center">Mode color</h1> </br>
+  </div>
+  <div class="page__bd" style="height: 100%;">
+   <div class="weui-tab">
+    <div class="weui-navbar">
+     <div role="tab" aria-selected="true" aria-controls="panel1" id="tab1" class="weui-navbar__item weui-bar__item_on">
+      Arcoiris
+     </div>
+     <div role="tab" aria-controls="panel2" id="tab2" class="weui-navbar__item">
+      Rainbown
+     </div>
+     <div role="tab" aria-controls="panel3" id="tab3" class="weui-navbar__item">
+      About
+     </div>
+    </div>
+    <div role="tabpanel" id="panel1" aria-labelledby="tab1" class="weui-tab__panel" style="overflow-y:hidden">
+     <iframe src="https://luisangelmaciel.github.io/mode.multicolor/01/color.html" frameborder="0" allowfullscreen style="overflow-y:hidden"></iframe>
+    </div>
+    <div style="display: none;" role="tabpanel" id="panel2" aria-labelledby="tab2" class="weui-tab__panel">
+     <iframe src="https://luisangelmaciel.github.io/mode.multicolor/go.html" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div style="display: none;" role="tabpanel" id="panel3" aria-labelledby="tab3" class="weui-tab__panel">
+     <article class="weui-article">
+      <h1>Dark Mode y Color Mode: Tendencias y Buenas Prácticas para Desarrolladores y Diseñadores Web</h1>
+      <section>
+       <h2>Introducción</h2>
+       <section>
+        <section>
+         <p>En los últimos años, el &quot;Dark Mode&quot; se ha convertido en una de las tendencias más populares en el diseño y desarrollo web. Con el creciente uso de dispositivos electrónicos y el tiempo prolongado que pasamos frente a las pantallas, la necesidad de modos de visualización que sean más amables con nuestros ojos ha ganado relevancia. En este artículo, exploraremos qué son el Dark Mode y el Color Mode, sus beneficios, y cómo implementarlos efectivamente en tus proyectos web.</p>
+         <h2>¿Qué es el Dark Mode?</h2>
+         <p>El Dark Mode (Modo Oscuro) es una configuración de interfaz de usuario donde el esquema de color se invierte, utilizando tonos oscuros para la mayor parte del fondo y colores claros para el texto y elementos destacados. Este modo ha sido adoptado por muchos sistemas operativos, aplicaciones y sitios web debido a sus beneficios tanto estéticos como funcionales.</p>
+         <h3>Beneficios del Dark Mode</h3>
+         <ol>
+          <li><strong>Reducción de la Fatiga Visual</strong>: El Dark Mode reduce la cantidad de luz emitida por la pantalla, lo que puede disminuir la fatiga visual, especialmente en condiciones de poca luz.</li>
+          <li><strong>Ahorro de Batería</strong>: En dispositivos con pantallas OLED, los píxeles negros no consumen energía, lo que puede contribuir a una mayor duración de la batería.</li>
+          <li><strong>Estética y Enfoque</strong>: Muchos usuarios encuentran el Dark Mode más agradable visualmente y menos distractor, lo que puede mejorar la concentración y la experiencia de usuario.</li>
+         </ol>
+         <h2>¿Qué es el Color Mode?</h2>
+         <p>El Color Mode (Modo de Color) se refiere a la capacidad de una interfaz de usuario para cambiar entre diferentes esquemas de color basados en las preferencias del usuario o condiciones ambientales. Esto incluye tanto el Dark Mode como otros modos personalizados que pueden adaptarse a diversas necesidades y gustos.</p>
+         <h3>Beneficios del Color Mode</h3>
+         <ol>
+          <li><strong>Personalización</strong>: Permite a los usuarios elegir el esquema de color que más les guste o que mejor se adapte a sus necesidades, mejorando la satisfacción y el compromiso.</li>
+          <li><strong>Accesibilidad</strong>: Modos de color específicos pueden hacer que las interfaces sean más accesibles para personas con discapacidades visuales, como daltonismo.</li>
+          <li><strong>Adaptabilidad</strong>: Los Color Modes pueden ajustarse automáticamente según la hora del día o las condiciones de luz, ofreciendo una mejor experiencia de usuario en todo momento.</li>
+         </ol>
+         <h2>Implementación del Dark Mode y Color Mode</h2>
+         <h3>CSS Variables y Media Queries</h3>
+         <p>La forma más común de implementar el Dark Mode es utilizando variables de CSS (CSS Custom Properties) y media queries. Aquí hay un ejemplo básico:</p>
+         <pre><code class="css">:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+   }
+   
+   @media (prefers-color-scheme: dark) {
+    :root {
+     --background-color: #000000;
+     --text-color: #ffffff;
+    }
+   }
+   
+   body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+   }
+   </code></pre>
+         <h3>JavaScript para Cambios Dinámicos</h3>
+         <p>Para permitir a los usuarios cambiar entre modos manualmente, puedes usar JavaScript:</p>
+         <pre><code class="html">&lt;button id=&quot;toggle-mode&quot;&gt;Toggle Dark Mode&lt;/button&gt;
+   
+   &lt;script&gt;
+    const toggleButton = document.getElementById(&quot;toggle-mode&quot;);
+    toggleButton.addEventListener(&quot;click&quot;, () =&gt; {
+     document.body.classList.toggle(&quot;dark-mode&quot;);
+    });
+   &lt;/script&gt;
+   
+   &lt;style&gt;
+    .dark-mode {
+     --background-color: #000000;
+     --text-color: #ffffff;
+    }
+   &lt;/style&gt;
+   </code></pre>
+         <h3>Soporte para Daltonismo</h3>
+         <p>Para mejorar la accesibilidad, considera incluir modos de color adaptados para personas con daltonismo:</p>
+         <pre><code class="css">@media (prefers-color-scheme: light) {
+    :root {
+     --background-color: #ffffff;
+     --text-color: #000000;
+    }
+   }
+   
+   @media (prefers-color-scheme: dark) {
+    :root {
+     --background-color: #000000;
+     --text-color: #ffffff;
+    }
+   }
+   
+   @media (prefers-contrast: high) {
+    :root {
+     --background-color: #000000;
+     --text-color: #00ff00; /* Colores de alto contraste */
+    }
+   }
+   </code></pre>
+         <h2>Conclusión</h2>
+         <p>Implementar Dark Mode y Color Mode no solo mejora la experiencia del usuario sino que también demuestra una atención al detalle y una preocupación por la accesibilidad y el bienestar visual. Como desarrollador o diseñador web, es crucial mantenerse al día con estas tendencias y mejores prácticas para crear interfaces más inclusivas y amigables para todos los usuarios. Aprovecha estas técnicas y herramientas para ofrecer experiencias web modernas y adaptables.</p>
+         <br><a href="https://codepen.io/luisangelmaciel/full/MWdbRgR">Codepen </a>|
+         <a href="https://luisangelmaciel.github.io/mode.multicolor/"> ModeColor </a>|
+         <a href="https://luisangelmaciel.vercel.app/"> Blog </a>|
+         <a href="https://www.yarticulospromocionales.com/"> Shop </a>
+
+        </section>
+       </section>
+      </section>
+     </article>
+    </div>
+   </div>
+  </div>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script>
+  $(function() {
+   $('.weui-navbar__item').on('click', function() {
+    $(this).attr('aria-selected', 'true').addClass('weui-bar__item_on');
+    $(this).siblings('.weui-bar__item_on').removeClass('weui-bar__item_on').attr('aria-selected', 'false');
+    var panelId = '#' + $(this).attr('aria-controls');
+    $(panelId).show();
+    $(panelId).siblings('.weui-tab__panel').hide();
+   });
+  });
+ </script>
+</body>
+
+</html>

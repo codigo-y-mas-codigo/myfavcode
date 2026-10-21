@@ -1,0 +1,100 @@
+@font-face {
+  src: url('https://hellogreg.github.io/fonts/SourceSans3VF-Roman.ttf.woff2') format('woff2-variations');
+  font-family: 'SourceSans';
+  font-weight: 100 900;
+}
+
+/* DEFAULT (LIGHT MODE) CSS */ 
+body {
+  font-family: 'SourceSans';
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 0 .6rem;
+  font-weight: 400;
+  background: #fafafa;
+  color: #111;
+}
+
+strong, 
+b, 
+th, 
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  font-weight: 700; 
+}
+a {color: black}
+.darkmode a {color:white}
+h2 {color: #666;}
+
+/* DARK MODE CSS
+ *
+ * In production, you may want to enclose in a media query:
+ *
+ * @media (prefers-color-scheme: dark) {
+ * 
+ * For our demo, we toggle a .darkmode class.
+ */
+
+body.darkmode {
+  background-color: black;
+  /*: #222;*/
+  color: #fff;
+  font-weight: 350;
+}
+
+.darkmode strong, 
+.darkmode b, 
+.darkmode th, 
+.darkmode h1, 
+.darkmode h2, 
+.darkmode h3, 
+.darkmode h4, 
+.darkmode h5, 
+.darkmode h6 {
+  font-weight: 600;
+}
+
+/* End dark mode media query...
+ *
+ * }
+ * 
+ */
+
+
+/* OTHER CSS (Neither light- nor dark-specific) */
+
+article {
+  font-size: 1.4rem;
+  margin: 0 auto;
+  /*max-width: 60rem;
+  width: 94vw;*/
+}
+
+/* Dark mode toggle button styles */
+
+.switchzone
+{position:relative;display:inline-block;width:2.5rem;height:1.25rem;top:.5rem;}
+.switchzone input{opacity:0;width:0;height:0}.switchzone .toggler{border-radius:1.25rem;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc}.switchzone .toggler:before{border-radius:50%;position:absolute;content:"";height:1.25rem;width:1.25rem;background-color:#222}.switchzone input:checked+.toggler{background-color:#555}.switchzone input:focus+.toggler{-webkit-box-shadow:0 0 1px #555;box-shadow:0 0 1px #555}.switchzone input:checked+.toggler:before{-webkit-transform:translateX(1.25rem);transform:translateX(1.25rem);background-color:#fafafa}
+
+
+details {
+  background-color: #eee;
+ margin-bottom: 2rem;
+  padding: .5rem 1rem;
+  border-radius:10px;
+}
+.darkmode details {
+  background-color: black;
+background: #181a22;}
+
+summary {
+  cursor: pointer;
+}
+.darkmode summary {/* background-color: grey;*/}
+summary > * {
+  display: inline;
+}

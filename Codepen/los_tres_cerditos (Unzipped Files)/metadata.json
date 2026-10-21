@@ -1,0 +1,37 @@
+[
+  {
+    "part": "scene",
+    "description": "Tres cerditos construyen sus casas: paja, madera y ladrillos, buscando seguridad de un lobo feroz que acecha.",
+    "image_filename": "scene.png",
+    "text_filename": "scene.txt",
+    "suggested_alt_text": "Three little pigs building houses of straw, wood, and brick to escape a lurking wolf."
+  },
+  {
+    "part": "ruin",
+    "description": "El lobo sopla y derriba fácilmente las casas de paja y madera, persiguiendo a los cerditos aterrados.",
+    "image_filename": "ruin.png",
+    "text_filename": "ruin.txt",
+    "suggested_alt_text": "El lobo derriba casas de paja y madera, persiguiendo a cerditos aterrorizados."
+  },
+  {
+    "part": "breakingPoint",
+    "description": "El lobo intenta entrar por la chimenea de la casa de ladrillos, pero cae en una olla de agua hirviendo.",
+    "image_filename": "breakingPoint.png",
+    "text_filename": "breakingPoint.txt",
+    "suggested_alt_text": "Lobo cae en olla de agua hirviendo al intentar entrar por chimenea."
+  },
+  {
+    "part": "cleanup",
+    "description": "Los cerditos celebran su victoria. El lobo, chamuscado, huye y no regresa jamás a molestar.",
+    "image_filename": "cleanup.png",
+    "text_filename": "cleanup.txt",
+    "suggested_alt_text": "Cerditos victoriosos celebran; lobo chamuscado huye para siempre."
+  },
+  {
+    "part": "wrap",
+    "description": "Los tres cerditos viven seguros y felices en la robusta casa de ladrillos, habiendo aprendido la lección.",
+    "image_filename": "wrap.png",
+    "text_filename": "wrap.txt",
+    "suggested_alt_text": "Three pigs safe and happy in a sturdy brick house, lesson learned."
+  }
+]

@@ -1,0 +1,2175 @@
+<!--
+Código extraído del view source https://view-source-editor.vercel.app/
+Fecha de descarga: 20/11/2025, 4:42:13 p.m.
+¡Excelente día!
+-->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head>
+
+  <meta charset="UTF-8">
+
+  
+
+  <title>Christmas Countdown Website</title>
+
+  
+
+<style type="text/css">@font-face {font-family:Lato;font-style:normal;font-weight:400;src:url(/cf-fonts/s/lato/5.0.18/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:normal;font-weight:400;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Lato;font-style:normal;font-weight:700;src:url(/cf-fonts/s/lato/5.0.18/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:normal;font-weight:700;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/700/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Lato;font-style:normal;font-weight:900;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/900/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Lato;font-style:normal;font-weight:900;src:url(/cf-fonts/s/lato/5.0.18/latin/900/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:400;src:url(/cf-fonts/s/lato/5.0.18/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:400;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/400/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:700;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/700/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:700;src:url(/cf-fonts/s/lato/5.0.18/latin/700/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:900;src:url(/cf-fonts/s/lato/5.0.18/latin/900/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Lato;font-style:italic;font-weight:900;src:url(/cf-fonts/s/lato/5.0.18/latin-ext/900/italic.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+      <meta name="twitter:title" content="Christmas Countdown Website">
+    <meta name="twitter:description" content="Source: Bedimcode (https://www.youtube.com/watch?v=PCOnO6FG4YU)...">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://shots.codepen.io/username/pen/QwNMwKB-800.jpg?version=1763553887">
+
+
+    <meta property="og:image" content="https://shots.codepen.io/username/pen/QwNMwKB-800.jpg?version=1763553887" itemprop="thumbnailUrl">
+    <meta property="og:title" content="Christmas Countdown Website">
+    <meta property="og:url" content="https://codepen.io/Luis-Angel-Maciel/details/QwNMwKB">
+    <meta property="og:description" content="Source: Bedimcode (https://www.youtube.com/watch?v=PCOnO6FG4YU)...">
+
+
+  <link rel="alternate" type="application/json+oembed" href="https://codepen.io/api/oembed?url=https%3A%2F%2Fcodepen.io%2FLuis-Angel-Maciel%2Fpen%2FQwNMwKB&amp;format=json" title="Christmas Countdown Website">
+
+
+  <link rel="stylesheet" href="./css/0_global-4c552521fc67172f930c95c8ef149c2b154f64fa33836c56c785fec636b1354e.css" media="all">
+  <link rel="stylesheet" href="./css/1_everypage-91ec1171.css">
+  <link rel="stylesheet" href="./css/2_editor-74e9b05132d1286c2791b1bfde8ed3c2f6517e22230829453b1c02fc6fe88b04.css" media="all">
+
+  
+  <meta name="description" content="Source: Bedimcode (https://www.youtube.com/watch?v=PCOnO6FG4YU)...">
+
+  
+
+
+<link rel="stylesheet" href="./css/3_twilight-5624f2aa0a9e5ad3c27da1db150d791e788247e197af02b4cd6db6fbc40f7354.css" id="cm-theme">
+
+<style id="cm-font-family" class="cm-font-family" nonce="8DGQafBLEgw=">
+  
+  .CodeMirror,
+  .console-logs .console-line,
+  .console-command-line-input,
+  .console-message,
+  .CodeMirror-hint {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo,
+  monospace;
+  }
+</style>
+
+<style id="cm-font-size" nonce="8DGQafBLEgw=">
+  .CodeMirror,
+  .console-logs .console-line,
+  .console-command-line-input,
+  .console-message,
+  .CodeMirror-hint {
+    font-size: 14px;
+  }
+</style>
+
+
+
+
+
+
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="Xg2hWmJPM2K1HG9Hx7Wm5RFRh17aN_ItjSdSQaBQ2I3SGUX9GOS_jr2CYoQq71FQ7gr48-tk7mKegObohcA9IQ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body class="room-editor editor state-htmlOn-cssOn-jsOn twilight preload prelayout
+  layout-top
+ logged-out
+">
+  
+
+  
+<header class="main-header" id="main-header">
+</header>
+<div class="item-settings-modal tab-layout tab-layout-modal pen  item-settings-modal-half" id="item-settings-modal">
+
+  <header class="item-settings-modal-header tab-layout-header">
+    <h2 class="item-settings-modal-header-title tab-layout-header-title">Pen Settings</h2>
+    <div class="save-and-close-wrap">
+      <button type="button" class="button mini-button button-no-right-margin close" id="top-close-settings">
+        <svg class="icon-x" viewBox="0 0 100 100">
+          <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="tabs tab-layout-wrapper settings-tabs-wrapper">
+
+    <nav id="settings-tabs" class="no-mobile-nav tab-layout-tabs item-settings-tabs  notranslate" translate="no">
+
+      <div class="tab-layout-tab-group">
+            <a id="settings-html-tab" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#settings-html" class="settings-tab-html" data-type="html">
+              HTML
+            </a>
+            <a id="settings-css-tab" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#settings-css" class="settings-tab-css" data-type="css">
+              CSS
+            </a>
+            <a id="settings-js-tab" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#settings-js" class="settings-tab-js" data-type="js">
+              JS
+            </a>
+
+      </div>
+
+      <div class="tab-layout-tab-group">
+            <a id="settings-behavior-tab" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#settings-behavior" class="settings-tab-behavior" data-type="behavior">
+              Behavior
+            </a>
+            <a id="settings-editor-tab" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#settings-editor" class="settings-tab-editor" data-type="editor">
+              Editor
+            </a>
+      </div>
+    </nav>
+
+      <div class="settings tab-page" id="settings-html">
+        <h3 aria-label="HTML">HTML</h3>
+
+<div class="settings-row top-label-form normal-labels">
+
+  <h4>
+    <label for="html-preprocessor">
+      HTML Preprocessor
+    </label>
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About HTML Preprocessors</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>HTML preprocessors can make writing HTML more powerful or convenient. For instance, Markdown is designed to be easier to write and read for text documents and you could write a loop in Pug.</p>
+      <p><a href="https://blog.codepen.io/documentation/editor/using-html-preprocessors/" target="_blank" rel="noopener">Learn more</a> · <a href="https://codepen.io/versions/" target="_blank" rel="noopener">Versions</a></p>
+    </div>
+  </div>
+
+  <div class="custom-select-wrap">
+    <select name="html-preprocessor" id="html-preprocessor" class="fullwidth">
+          <option value="none">None</option>
+          <option value="haml">Haml</option>
+          <option value="markdown">Markdown</option>
+          <option value="slim">Slim</option>
+          <option value="pug">Pug</option>
+    </select>
+    <div class="select-icon">
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="settings-row top-label-form normal-labels">
+
+  <h4>
+    <label for="html-classes">Add Class(es) to &lt;html&gt;</label>
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>Adding Classes</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>In CodePen, whatever you write in the HTML editor is what goes within the <code>&lt;body&gt;</code> tags in <a target="_blank" rel="noopener" href="https://blog.codepen.io/documentation/features/preview-template/">a basic HTML5 template</a>. So you don't have access to higher-up elements like the <code>&lt;html&gt;</code> tag. If you want to add classes there that can affect the whole document, this is the place to do it.</p>
+    </div>
+  </div>
+
+  <input type="text" id="html-classes" name="html-classes" class="fullwidth" placeholder="e.g. single post post-1234" maxlength="250">
+
+</div>
+
+<div class="settings-row top-label-form normal-labels">
+
+  <h4>
+    <label for="head-content">Stuff for &lt;head&gt;</label>
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About the &lt;head&gt;</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>In CodePen, whatever you write in the HTML editor is what goes within the <code>&lt;body&gt;</code> tags in <a target="_blank" rel="noopener" href="https://blog.codepen.io/documentation/features/preview-template/">a basic HTML5 template</a>. If you need things in the <code>&lt;head&gt;</code> of the document, put that code here.</p>
+    </div>
+  </div>
+
+  <div class="head-content-wrapper">
+    <textarea id="head-content" name="head-content" class="fullwidth is-code head-content notranslate" translate="no" placeholder="e.g. &lt;meta&gt;, &lt;link&gt;, &lt;script&gt;"></textarea>
+    <span class="insecure-resource-tooltip resource-problem-tooltip">
+      <div class="help-flyout-link">
+        <span class="icon-help">!</span>
+        <div class="help-flyout help-flyout-reverse">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+          </svg>
+          <h5>Insecure Resource</h5>
+          <p>The resource you are linking to is using the 'http' protocol, which may not work when the browser is using https.</p>
+        </div>
+      </div>
+    </span>
+  </div>
+
+  <button class="button mini-button button-medium" id="meta-tag-insert">↑ Insert the most common viewport meta tag</button>
+
+</div>
+
+      </div>
+      <div class="settings tab-page" id="settings-css">
+        <h3 aria-label="CSS">CSS</h3>
+
+<div class="settings-row top-label-form normal-labels">
+
+  <h4>
+    <label for="css-preprocessor">
+      CSS Preprocessor
+    </label>
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About CSS Preprocessors</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>CSS preprocessors help make authoring CSS easier. All of them offer things like variables and mixins to provide convenient abstractions.</p>
+      <p><a href="https://blog.codepen.io/documentation/editor/using-css-preprocessors/" target="_blank">Learn more</a> · <a href="https://codepen.io/versions/" target="_blank">Versions</a></p>
+    </div>
+  </div>
+
+  <div class="custom-select-wrap">
+    <select name="css-preprocessor" id="css-preprocessor" class="fullwidth css-preprocessor">
+        <option value="none">None</option>
+        <option value="less">Less</option>
+        <option value="scss">SCSS</option>
+        <option value="sass">Sass</option>
+        <option value="stylus">Stylus</option>
+        <option value="postcss">PostCSS</option>
+    </select>
+    <div class="select-icon">
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div id="need-an-addon" class="align-right hide">
+    <a id="css-need-an-addon-button" href="https://codepen.io/Luis-Angel-Maciel/pen/QwNMwKB#0" class="button button-medium mini-button need-an-addon-button">
+      Need an add-on?
+    </a>
+  </div>
+
+  <div class="add-ons add-ons-scss hide" id="add-ons"></div>
+
+</div>
+
+<div id="startercss-options-form" class="settings-row top-label-form">
+
+  <h4>
+    CSS Base
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About CSS Base</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>It's a common practice to apply CSS to a page that styles elements such that they are consistent across all browsers. We offer two of the most popular choices: <a href="http://necolas.github.io/normalize.css/" target="_blank" rel="noopener">normalize.css</a> and a <a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">reset</a>. Or, choose <b>Neither</b> and nothing will be applied.</p>
+    </div>
+  </div>
+
+  <ul class="radio-list">
+      <li>
+        <input type="radio" id="startercss-normalize" name="startercss" checked="" value="normalize">
+        <label for="startercss-normalize" class="small-inline">Normalize</label>
+      </li>
+      <li>
+        <input type="radio" id="startercss-reset" name="startercss" checked="" value="reset">
+        <label for="startercss-reset" class="small-inline">Reset</label>
+      </li>
+      <li>
+        <input type="radio" id="startercss-neither" name="startercss" checked="" value="neither">
+        <label for="startercss-neither" class="small-inline">Neither</label>
+      </li>
+  </ul>
+
+</div>
+
+<div id="prefix-options-form" class="settings-row top-label-form">
+
+  <h4>
+    Vendor Prefixing
+  </h4>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About Vendor Prefixing</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>To get the best cross-browser support, it is a common practice to apply vendor prefixes to CSS properties and values that require them to work. For instance <code>-webkit-</code> or <code>-moz-</code>.</p>
+      <p>We offer two popular choices: <a href="https://github.com/postcss/autoprefixer" target="blank" rel="noopener">Autoprefixer</a> (which processes your CSS server-side) and <a href="http://leaverou.github.io/prefixfree/" target="_blank" rel="noopener">-prefix-free</a> (which applies prefixes via a script, client-side).</p>
+    </div>
+  </div>
+
+  <ul class="radio-list">
+      <li>
+        <input type="radio" id="prefix-autoprefixer" name="prefix" value="autoprefixer">
+        <label for="prefix-autoprefixer" class="small-inline">Autoprefixer</label>
+      </li>
+      <li>
+        <input type="radio" id="prefix-prefixfree" name="prefix" value="prefixfree">
+        <label for="prefix-prefixfree" class="small-inline">Prefixfree</label>
+      </li>
+      <li>
+        <input type="radio" id="prefix-neither" name="prefix" value="neither">
+        <label for="prefix-neither" class="small-inline">Neither</label>
+      </li>
+  </ul>
+</div>
+
+<div id="external-css-resources" class="settings-row">
+
+  <h4>
+    Add External Stylesheets/Pens
+  </h4>
+
+  <p>Any URLs added here will be added as <code>&lt;link&gt;</code>s in order, and before the CSS in the editor. You can use the CSS from another Pen by using its URL and the proper <a href="https://blog.codepen.io/documentation/url-extensions/">URL extension</a>.</p>
+
+  <div class="resource-search-bar">
+    <svg class="icon icon-mag" viewBox="0 0 56.7 56.7">
+      <path d="M42.8,7.3C33-2.4,17.1-2.4,7.3,7.3c-9.8,9.8-9.8,25.7,0,35.5c8.7,8.7,22.2,9.7,32,2.9l9.6,9.6c1.8,1.8,4.7,1.8,6.4,0
+	c1.8-1.8,1.8-4.7,0-6.4l-9.6-9.6C52.5,29.5,51.5,16,42.8,7.3z M36.6,36.6c-6.4,6.4-16.7,6.4-23.1,0s-6.4-16.7,0-23.1
+	c6.4-6.4,16.7-6.4,23.1,0C43,19.9,43,30.3,36.6,36.6z"></path>
+    </svg>
+
+    <input id="external-css-search" type="text" value="" placeholder="Search for resources (Bootstrap, Foundation, Animate.css...)">
+  </div>
+
+  <div class="algolia-shoutout">
+    <a href="https://www.algolia.com/?utm_source=react-instantsearch&amp;utm_medium=website&amp;utm_content=codepen.io&amp;utm_campaign=poweredby" target="_blank">
+      Powered by <img alt="Algolia" src="https://cpwebassets.codepen.io/assets/settings/algolia-9e1c0c887f4db420704b2a79926864019ef156bcecc9d5774a7e4eaa731fc5b5.svg">
+    </a>
+  </div>
+
+  <div class="help-flyout-link">
+    <svg class="icon-help" viewBox="0 0 100 100">
+      <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+    </svg>
+    <div class="help-flyout help-flyout-reverse">
+      <h5>About External Resources</h5>
+      <svg class="icon-x" viewBox="0 0 100 100">
+        <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+      </svg>
+      <p>You can apply CSS to your Pen from any stylesheet on the web. Just put a URL to it here and we'll apply it, in the order you have them, before the CSS in the Pen itself.</p>
+      <p>You can also link to another Pen here (use the <code>.css</code> <a href="https://blog.codepen.io/documentation/url-extensions/">URL Extension</a>) and we'll pull the CSS from that Pen and include it. If it's using a <em>matching</em> preprocessor, use the appropriate URL Extension and we'll combine the code before preprocessing, so you can use the linked Pen as a true dependency.</p>
+      <p><a href="https://blog.codepen.io/documentation/editor/adding-external-resources/" target="_blank" rel="noopener">Learn more</a></p>
+    </div>
+  </div>
+
+  <div id="css-external-resources" class="external-resource-wrapper">
+</div>
+
+<script id="css-external-resources-template" nonce="8DGQafBLEgw=" type="text/template">
+  <div data-view-id="<%= view_id %>" class="external-resource-url-row <%= insecure_resource %>">
+
+    <span class="move-external-url">
+      <svg viewBox="0 0 17 20" class="icon-drag-handle" width="20" height="17">
+        <path d="m1.5 3a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3z"/>
+      </svg>
+    </span>
+
+    <input
+      id="external-resource-input-<%= view_id %>"
+      class="fullwidth css-resource external-resource"
+      type="text"
+      pattern="^((ftp|http|https):)?\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$"
+      name="external-css"
+      placeholder="<%= placeholder %>"
+      value="<%= url %>"
+      data-view-id="<%= view_id %>">
+
+    <span class="insecure-resource-tooltip resource-problem-tooltip">
+      <div class="help-flyout-link">
+        <span class="icon-help">?</span>
+        <div class="help-flyout help-flyout-reverse">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+          </svg>
+          <h5>Insecure Resource</h5>
+          <p>You are linking to a resource using the non-secure http:// protocol, which may not work when the browser is using https:// like CodePen enforces.</p>
+        </div>
+      </div>
+    </span>
+
+    <span class="not-using-url-extension-tooltip resource-problem-tooltip">
+      <div class="help-flyout-link">
+        <span class="icon-help">?</span>
+        <div class="help-flyout help-flyout-reverse">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+          </svg>
+          <h5>URL Extension Required</h5>
+          <p>When linking another Pen as a resource, make sure you use a <a href="https://blog.codepen.io/documentation/url-extensions/">URL Extension</a> of the type of code you want to link to. Either <code>.css</code>, <code>.js</code>, or the extension of a matching code processor.</p>
+        </div>
+      </div>
+    </span>
+
+    <div class="resource-actions">
+      <span class="remove-external-url external-url-option" data-view-id="<%= view_id %>">
+        <svg class="icon-x" viewBox="0 0 100 100" width="12" height="12">
+          <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+        </svg>
+      </span>
+
+      <a id="external-resource-input-view-link-<%= view_id %>" class="open-external-url external-url-option" target="_blank" rel="noopener" data-view-id="<%= view_id %>" href="<%= url %>">
+        <svg viewBox="0 0 30.5 16.5" id="icon-eye" width="14" height="14">
+          <path d="M15.3,0C8.9,0,3.3,3.3,0,8.3c3.3,5,8.9,8.3,15.3,8.3c6.4,0,12-3.3,15.3-8.3C27.3,3.3,21.7,0,15.3,0z M15.3,14.5 c-3.4,0-6.2-2.8-6.2-6.2C9,4.8,11.8,2,15.3,2c3.4,0,6.2,2.8,6.2,6.2C21.5,11.7,18.7,14.5,15.3,14.5z"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</script>
+
+
+  <div class="external-resource-actions group">
+    <span id="add-css-resource" class="button mini-button button-medium add-resource" data-type="css">
+      <span data-type="css">+ add another resource</span>
+    </span>
+  </div>
+
+</div>
+
+      </div>
+      <div class="settings tab-page" id="settings-js">
+        <div class="item-settings-javascript normal-labels">
+
+
+    <h3>
+      JavaScript
+    </h3>
+
+    <div class="item-settings-javascript-preprocessor settings-row">
+
+      <h4>
+        <label for="js-preprocessor">
+          JavaScript Preprocessor
+        </label>
+      </h4>
+
+      <div class="help-flyout-link">
+        <svg class="icon-help" viewBox="0 0 100 100" width="14" height="14">
+          <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+        </svg>
+        <div class="help-flyout help-flyout-reverse">
+          <h5>About JavaScript Preprocessors</h5>
+          <svg class="icon-x" viewBox="0 0 100 100" width="12" height="12">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+          </svg>
+          <p>JavaScript preprocessors can help make authoring JavaScript easier and more convenient.</p>
+          <p><a href="https://blog.codepen.io/documentation/editor/using-js-preprocessors/" target="_blank" rel="noopener">Learn more</a> · <a href="https://codepen.io/versions/" target="_blank">Versions</a></p>
+        </div>
+      </div>
+
+      <div class="custom-select-wrap">
+        <select name="js-preprocessor" id="js-preprocessor" class="fullwidth">
+            <option value="none">None</option>
+            <option value="babel">Babel</option>
+            <option value="typescript">TypeScript</option>
+            <option value="coffeescript">CoffeeScript</option>
+            <option value="livescript">LiveScript</option>
+        </select>
+        <div class="select-icon">
+          <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+            <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+          </svg>
+          <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+            <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <p><small>Babel includes JSX processing.</small></p>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="external-js-resources" class="item-settings-javascript-external settings-row external-js-resources top-label-form">
+
+      <h4>
+        Add External Scripts/Pens
+      </h4>
+
+      <p>Any URL's added here will be added as <code>&lt;script&gt;</code>s in order, and run <em>before</em> the JavaScript in the editor. You can use the URL of any other Pen and it will include the JavaScript from that Pen.</p>
+
+      <div class="resource-search-bar">
+        <svg viewBox="0 0 56.7 56.7" class="icon icon-mag" width="18" height="18">
+          <path d="M42.8,7.3C33-2.4,17.1-2.4,7.3,7.3c-9.8,9.8-9.8,25.7,0,35.5c8.7,8.7,22.2,9.7,32,2.9l9.6,9.6c1.8,1.8,4.7,1.8,6.4,0
+	c1.8-1.8,1.8-4.7,0-6.4l-9.6-9.6C52.5,29.5,51.5,16,42.8,7.3z M36.6,36.6c-6.4,6.4-16.7,6.4-23.1,0s-6.4-16.7,0-23.1
+	c6.4-6.4,16.7-6.4,23.1,0C43,19.9,43,30.3,36.6,36.6z"></path>
+        </svg>
+
+        <input id="external-js-search" type="text" value="" placeholder="Search CDNjs (jQuery, Lodash, React, Angular, Vue.js, Ember...)">
+      </div>
+
+      <div class="algolia-shoutout">
+        <a href="https://www.algolia.com/?utm_source=react-instantsearch&amp;utm_medium=website&amp;utm_content=codepen.io&amp;utm_campaign=poweredby" target="_blank">
+          Powered by <img alt="Algolia" src="https://cpwebassets.codepen.io/assets/settings/algolia-9e1c0c887f4db420704b2a79926864019ef156bcecc9d5774a7e4eaa731fc5b5.svg">
+        </a>
+      </div>
+
+      <div class="help-flyout-link">
+        <svg class="icon-help" viewBox="0 0 100 100" width="14" height="14">
+          <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+        </svg>
+        <div class="help-flyout help-flyout-reverse">
+          <h5>About External Resources</h5>
+          <svg class="icon-x" viewBox="0 0 100 100" height="12" width="12">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+          </svg>
+          <p>You can apply a script from anywhere on the web to your Pen. Just put a URL to it here and we'll add it, in the order you have them, before the JavaScript in the Pen itself.</p>
+          <p>If the script you link to has the file extension of a preprocessor, we'll attempt to process it before applying.</p>
+          <p>You can also link to another Pen here, and we'll pull the JavaScript from that Pen and include it. If it's using a matching preprocessor, we'll combine the code before preprocessing, so you can use the linked Pen as a true dependency.</p>
+          <p><a href="https://blog.codepen.io/documentation/adding-external-resources/" rel="noopener" target="_blank">Learn more</a></p>
+        </div>
+      </div>
+
+      <div id="js-external-resources" class="external-resource-wrapper">
+</div>
+
+<script id="js-external-resources-template" nonce="8DGQafBLEgw=" type="text/template">
+  <div data-view-id="<%= view_id %>" class="external-resource-url-row <%= insecure_resource %>">
+
+    <span class="move-external-url">
+      <svg viewBox="0 0 17 20" class="icon-drag-handle" width="20" height="17">
+        <path d="m1.5 3a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3zm0 7a1.5 1.5 0 0 1 0-3h17a1.5 1.5 0 0 1 0 3z"/>
+      </svg>
+    </span>
+
+    <input
+      id="external-resource-input-<%= view_id %>"
+      class="fullwidth js-resource external-resource"
+      type="text"
+      pattern="^((ftp|http|https):)?\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$"
+      name="external-js"
+      placeholder="<%= placeholder %>"
+      value="<%= url %>"
+      data-view-id="<%= view_id %>">
+
+    <span class="insecure-resource-tooltip resource-problem-tooltip">
+      <div class="help-flyout-link">
+        <span class="icon-help">?</span>
+        <div class="help-flyout help-flyout-reverse">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+          </svg>
+          <h5>Insecure Resource</h5>
+          <p>You are linking to a resource using the non-secure http:// protocol, which may not work when the browser is using https:// like CodePen enforces.</p>
+        </div>
+      </div>
+    </span>
+
+    <span class="not-using-url-extension-tooltip resource-problem-tooltip">
+      <div class="help-flyout-link">
+        <span class="icon-help">?</span>
+        <div class="help-flyout help-flyout-reverse">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+          </svg>
+          <h5>URL Extension Required</h5>
+          <p>When linking another Pen as a resource, make sure you use a <a href="https://blog.codepen.io/documentation/url-extensions/">URL Extension</a> of the type of code you want to link to. Either <code>.css</code>, <code>.js</code>, or the extension of a matching code processor.</p>
+        </div>
+      </div>
+    </span>
+
+    <div class="resource-actions">
+      <span class="remove-external-url external-url-option" data-view-id="<%= view_id %>">
+        <svg class="icon-x" viewBox="0 0 100 100" width="12" height="12">
+          <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"/>
+        </svg>
+      </span>
+
+      <a id="external-resource-input-view-link-<%= view_id %>" class="open-external-url external-url-option" target="_blank" rel="noopener" data-view-id="<%= view_id %>" href="<%= url %>">
+        <svg viewBox="0 0 30.5 16.5" id="icon-eye" width="14" height="14">
+          <path d="M15.3,0C8.9,0,3.3,3.3,0,8.3c3.3,5,8.9,8.3,15.3,8.3c6.4,0,12-3.3,15.3-8.3C27.3,3.3,21.7,0,15.3,0z M15.3,14.5 c-3.4,0-6.2-2.8-6.2-6.2C9,4.8,11.8,2,15.3,2c3.4,0,6.2,2.8,6.2,6.2C21.5,11.7,18.7,14.5,15.3,14.5z"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</script>
+
+
+      <div class="external-resource-actions group">
+        <span id="add-js-resource" class="button button-medium mini-button add-resource" data-type="js">
+          <span data-type="js">+ add another resource</span>
+        </span>
+      </div>
+    </div>
+
+  <h3 aria-label="Packages">Packages</h3>
+
+  <div class="item-settings-packages settings-row" id="item-settings-packages">
+
+    <h4>Add Packages</h4>
+
+    <p>Search for and use JavaScript packages from <a href="https://www.npmjs.com/" target="blank" rel="noopener">npm</a> here. By selecting a package, an <code>import</code> statement will be added to the top of the JavaScript editor for this package.</p>
+
+    <div class="resource-search-bar">
+      <svg viewBox="0 0 56.7 56.7" class="icon icon-mag" width="18" height="18">
+        <path d="M42.8,7.3C33-2.4,17.1-2.4,7.3,7.3c-9.8,9.8-9.8,25.7,0,35.5c8.7,8.7,22.2,9.7,32,2.9l9.6,9.6c1.8,1.8,4.7,1.8,6.4,0
+c1.8-1.8,1.8-4.7,0-6.4l-9.6-9.6C52.5,29.5,51.5,16,42.8,7.3z M36.6,36.6c-6.4,6.4-16.7,6.4-23.1,0s-6.4-16.7,0-23.1
+c6.4-6.4,16.7-6.4,23.1,0C43,19.9,43,30.3,36.6,36.6z"></path>
+      </svg>
+      <input id="packages-search" type="text" value="" placeholder="Search npm and add a package...">
+    </div>
+
+    <div class="algolia-shoutout">
+      <a href="https://www.algolia.com/?utm_source=react-instantsearch&amp;utm_medium=website&amp;utm_content=codepen.io&amp;utm_campaign=poweredby" target="_blank">
+        Powered by <img alt="Algolia" src="https://cpwebassets.codepen.io/assets/settings/algolia-9e1c0c887f4db420704b2a79926864019ef156bcecc9d5774a7e4eaa731fc5b5.svg">
+      </a>
+    </div>
+
+    <div class="help-flyout-link">
+      <svg class="icon-help" viewBox="0 0 100 100" width="14" height="14">
+        <path d="M75,0H25C11.19,0,0,11.193,0,25v50c0,13.802,11.19,25,25,25h50c13.811,0,25-11.198,25-25V25C100,11.193,88.811,0,75,0z
+   M57.203,85.067H41.504V72.542h15.699V85.067L57.203,85.067z M73.357,42.041c-0.84,2.066-1.873,3.834-3.102,5.298
+  c-1.235,1.474-2.604,2.718-4.101,3.751c-1.498,1.035-2.922,2.066-4.249,3.101c-1.333,1.034-1.553,2.214-2.596,3.547
+  c-1.025,1.335-0.977,3.004-0.977,5.006v3.924H41.668v-4.623c0-2.864,1.366-5.265,2.27-7.202c0.896-1.935,2.255-3.581,3.459-4.947
+  c1.196-1.367,2.62-2.556,3.955-3.557c1.327-0.993,2.637-1.993,3.776-2.995c1.123-1.001,2.083-2.1,2.783-3.304
+  c0.7-1.197,1.043-2.694,0.977-4.5c0-3.06-0.74-5.33-2.245-6.795c-1.498-1.465-3.582-2.206-6.25-2.206c-1.8,0-3.337,0.351-4.639,1.05
+  c-1.303,0.7-2.369,1.635-3.199,2.808c-0.837,1.163-1.448,3.593-1.847,5.156c-0.407,1.57-0.602,6.115-0.602,6.115H25.399
+  c0.073-8.333,0.684-7.963,1.855-10.965c1.164-2.995,2.8-6.132,4.899-8.33c2.099-2.197,4.63-4.179,7.601-5.417
+  c2.962-1.228,6.283-1.977,9.945-1.977c4.736,0,8.683,0.581,11.856,1.876c3.167,1.302,5.713,2.889,7.65,4.817
+  c1.929,1.937,3.312,4.004,4.149,6.234c0.831,2.237,1.245,4.313,1.245,6.242C74.601,37.354,74.187,39.975,73.357,42.041z"></path>
+      </svg>
+      <div class="help-flyout help-flyout-reverse">
+        <h5>About Packages</h5>
+        <svg class="icon-x" viewBox="0 0 100 100" width="12" height="12">
+          <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+        </svg>
+        <p>Using packages here is powered by <a href="https://esm.sh/">esm.sh</a>, which makes packages from npm not only available on a CDN, but prepares them for native JavaScript ESM usage.</p>
+        <p>All packages are different, so refer to their docs for how they work.</p>
+        <p>If you're using React / ReactDOM, make sure to turn on Babel for the JSX processing.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+      </div>
+
+      <div class="settings tab-page" id="settings-behavior">
+        <h3 aria-label="Pen Behavior">Behavior</h3>
+
+<div class="settings-row">
+
+  <h4>Auto Save</h4>
+
+  <div>
+    <p class="hint">If active, Pens will autosave every 30 seconds after being saved once.</p>
+
+    <div class="ios-toggle-mega-label-wrap">
+      <span class="ios-toggle ios-toggle-reverse">
+        <input type="checkbox" id="auto-save" name="auto-save" checked="">
+        <label for="auto-save"></label>
+        <label for="auto-save" class="ios-toggle-mega-label"></label>
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="settings-row">
+
+  <h4>Auto-Updating Preview</h4>
+
+  <p class="hint">If enabled, the preview panel updates automatically as you code. If disabled, use the "Run" button to update.</p>
+
+  <div class="ios-toggle-mega-label-wrap">
+    <span class="ios-toggle ios-toggle-reverse">
+      <input type="checkbox" id="auto-run" name="auto-run" checked="">
+      <label for="auto-run"></label>
+      <label for="auto-run" class="ios-toggle-mega-label"></label>
+    </span>
+  </div>
+
+</div>
+
+<div class="settings-row">
+
+  <h4>Format on Save</h4>
+
+  <p class="hint">If enabled, your code will be formatted when you actively save your Pen. <strong><span class="inline-note">Note:</span> your code becomes un-folded during formatting.</strong></p>
+
+  <div class="ios-toggle-mega-label-wrap">
+    <span class="ios-toggle ios-toggle-reverse">
+      <input type="checkbox" id="format_on_save" name="format_on_save">
+      <label for="format_on_save"></label>
+      <label for="format_on_save" class="ios-toggle-mega-label"></label>
+    </span>
+  </div>
+
+
+</div>
+
+      </div>
+      <div class="settings tab-page" id="settings-editor">
+        <h3 aria-label="Editor Settings">Editor Settings</h3>
+
+<div id="editor-settings-form" class="settings-row top-label-form">
+
+  <h4>
+    Code Indentation
+  </h4>
+
+  <ul class="radio-list">
+    <li>
+      <input type="radio" id="indent-with-spaces" name="indent-with" value="spaces" checked="">
+      <label for="indent-with-spaces" class="small-inline">Spaces</label>
+    </li>
+    <li>
+      <input type="radio" id="indent-with-tabs" name="indent-with" value="tabs">
+      <label for="indent-with-tabs" class="small-inline">Tabs</label>
+    </li>
+  </ul>
+
+</div>
+
+<div class="settings-row top-label-form normal-labels">
+
+  <h4>
+    <label for="tab-size">
+      Code Indent width
+    </label>
+  </h4>
+
+  <div class="custom-select-wrap">
+    <select id="tab-size" class="fullwidth" name="tab-size">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    <div class="select-icon">
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+      <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini">
+        <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+        c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+        C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="settings-row">
+
+  <h4>Want to change your Syntax Highlighting theme, Fonts and more?</h4>
+
+  <p>Visit <a href="https://codepen.io/settings/editor" target="_blank">your global Editor Settings</a>.</p>
+
+</div>
+
+      </div>
+  </div>
+
+  <footer>
+    <div class="save-and-close-wrap">
+        <input type="button" class="button button-small green button-no-right-margin close" value="Close" id="close-settings">
+    </div>
+  </footer>
+</div>
+
+
+<div class="page-wrap">
+
+  <div class="boxes">
+
+    <div class="mobile-editor-nav">
+          <button id="html-toggle" class="selected"><span>HTML</span></button>
+          <button id="css-toggle"><span>CSS</span></button>
+          <button id="js-toggle"><span>JS</span></button>
+      <button id="result-toggle" class="selected"><span>Result</span></button>
+    </div>
+
+    <div class="top-boxes editor-parent" data-number-of-editors="3" elementtiming="pen-editors">
+
+
+
+        <div class="editor-resizer html-editor-resizer" title="Double-click to expand."></div>
+
+        <div id="box-html" class="box box-html" data-type="html">
+
+          <div class="powers">
+            <div class="powers-drag-handle" title="Double-click to expand."></div>
+
+            <div class="editor-actions-left">
+              <h2 class="box-title html-editor-title" id="html-editor-title">
+
+                  <svg viewBox="0 0 15 15" class="file-type-icon" id="icon-file-html">
+    <rect fill="#FF3C41" width="15" height="15" rx="4"></rect>
+    <path d="M10.97 2.29a.563.563 0 0 0-.495-.29.572.572 0 0 0-.488.277l-5.905 9.86a.565.565 0 0 0-.007.574c.102.18.287.289.495.289a.572.572 0 0 0 .488-.277l5.905-9.86a.565.565 0 0 0 .007-.574" fill="#28282B"></path>
+  </svg>
+
+
+                <span class="box-title-name">
+                  HTML
+                </span>
+                <span class="box-title-preprocessor-name "></span>
+              </h2>
+
+            </div>
+
+            <div class="editor-actions-right">
+              <div class="collaborators-indicators"></div>
+
+              <button id="settings-pane-html" class="button button-medium mini-button settings-nub" data-type="html" title="Open HTML Settings">
+                <svg viewBox="0 0 100 100" id="icon-gear" width="10" height="10">
+                  <path d="M87.687,45.077c-0.313-2.433-0.816-4.807-1.542-7.079l8.145-11.73l-5.827-7.515l-0.094-0.123l-5.824-7.514
+                    l-12.955,5.577c-2.041-1.265-4.192-2.362-6.459-3.219L59.42,0h-9.34h-0.153h-9.341l-3.709,13.474
+                    c-2.27,0.857-4.421,1.955-6.463,3.222l-12.957-5.577l-5.825,7.514l-0.097,0.124l-5.822,7.517l8.146,11.731
+                    c-0.726,2.271-1.233,4.645-1.544,7.079L0,52.032l2.08,9.375l0.033,0.15l2.08,9.375l14.001,0.761c1.295,2.028,2.771,3.926,4.4,5.668
+                    l-2.396,14.227l8.416,4.173l0.138,0.067L37.169,100l9.309-10.796c1.161,0.109,2.335,0.173,3.524,0.173s2.358-0.074,3.52-0.184
+                    l9.317,10.804l8.415-4.173l0.141-0.066l8.413-4.172l-2.396-14.228c1.628-1.741,3.104-3.64,4.4-5.672l14-0.759l2.078-9.375
+                    l0.035-0.154L100,52.025L87.687,45.077z M50.003,34.51c8.435,0,15.272,7.035,15.272,15.719c0,8.679-6.839,15.717-15.272,15.717
+                    c-8.436,0-15.272-7.038-15.272-15.717C34.731,41.545,41.569,34.51,50.003,34.51z"></path>
+                </svg>
+              </button>
+
+              <button class="button mini-button button-medium editor-dropdown-button editor-dropdown-button-html" data-dropdown="#editor-dropdown-html" aria-haspopup="true" aria-expanded="false">
+  <span class="visually-hidden">
+    HTML Options
+  </span>
+  <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini" width="10" height="10">
+    <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+    c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+    C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+  </svg>
+</button>
+
+
+              <ul id="editor-dropdown-html" class="link-list is-dropdown editor-dropdown editor-dropdown-html" data-dropdown-position="css" data-dropdown-type="html">
+    <li class="editor-dropdown-list-item">
+      <button id="tidy-html" class="invisible-button tidy-code-button" data-editor-type="html">
+        Format HTML
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="view-compiled-html" class="invisible-button view-compiled-button" data-editor-type="html">
+        View Compiled HTML
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="analyze-html" class="invisible-button analyze-button" data-editor-type="html">
+        Analyze HTML
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="maximize-html-editor" class="invisible-button maximize-button" data-editor-type="html">
+        Maximize HTML Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="minimize-html-editor" class="invisible-button minimize-button" data-editor-type="html">
+        Minimize HTML Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="fold-all-html" class="invisible-button fold-all-button" data-editor-type="html">
+        Fold All
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="unfold-all-html" class="invisible-button unfold-all-button" data-editor-type="html">
+        Unfold All
+      </button>
+    </li>
+</ul>
+
+            </div>
+          </div>
+
+          <div class="code-wrap notranslate" translate="no">
+            <pre id="html" class="code-box" aria-labelledby="html-editor-title">              <code>
+                &lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Christmas Count Landing Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel="shortcut icon" href="https://i.postimg.cc/kXZLYKXF/favicon.png"&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header id="header" class="header"&gt;
+        &lt;nav class="nav container"&gt;
+            &lt;a href="#" class="nav-logo"&gt;&lt;span&gt;Merry&lt;/span&gt;&lt;span&gt;Christmas&lt;/span&gt;&lt;/a&gt;
+
+            &lt;div class="nav-menu" id="nav-menu"&gt;
+                &lt;ul class="nav-list"&gt;
+                    &lt;li class="nav-item"&gt;&lt;a href="#" class="nav-link active-link"&gt;&lt;span&gt;01&lt;/span&gt; Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class="nav-item"&gt;&lt;a href="#" class="nav-link"&gt;&lt;span&gt;02&lt;/span&gt; Card&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class="nav-item"&gt;&lt;a href="#" class="nav-link"&gt;&lt;span&gt;03&lt;/span&gt; Contact us&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+                &lt;div class="nav-buttons"&gt;
+                    &lt;div class="nav-notification"&gt;
+                        &lt;img src="https://i.postimg.cc/wMx3rn2P/bell.png" alt="image" class="nav-bell"&gt;
+                        &lt;div class="nav-circle"&gt;2&lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;a href="#" class="button button-dark"&gt;Send a Card&lt;/a&gt;
+                &lt;/div&gt;
+
+                &lt;div class="nav-close" id="nav-close"&gt;
+                    &lt;i class="ri-close-line"&gt;&lt;/i&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;div class="nav-toggle" id="nav-toggle"&gt;
+                &lt;i class="ri-apps-2-line"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main class="main"&gt;
+        &lt;section class="home"&gt;
+            &lt;div class="home-container container"&gt;
+                &lt;img src="https://i.postimg.cc/VvxY9TJ2/santa.png" alt="image" class="home-img"&gt;
+
+                &lt;div class="home-data"&gt;
+                    &lt;div&gt;
+                        &lt;h1 class="home-title" id="title-data"&gt;
+                            Last
+                            &lt;div class="home-number" id="number-data"&gt;03&lt;/div&gt;
+                            &lt;div class="home-text" id="text-data"&gt;Days&lt;/div&gt;
+                            To Receive Christmas
+                        &lt;/h1&gt;
+
+                        &lt;h1 class="home-title" id="msg-christmas"&gt;&lt;/h1&gt;
+                    &lt;/div&gt;
+
+                    &lt;p class="home-description"&gt;Share some Christmas spirit and happiness with these festives cards&lt;/p&gt;
+
+                    &lt;a href="#" class="button"&gt;Send a Christmas Card&lt;/a&gt;
+                &lt;/div&gt;
+
+                &lt;img src="https://i.postimg.cc/wMx3rn2P/bell.png" alt="image" class="home-bell"&gt;
+                &lt;img src="https://i.postimg.cc/HkkrYrqN/star.png" alt="image" class="home-star"&gt;
+
+                &lt;div class="home-blob"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;script src="https://app.embed.im/snow.js" defer&gt;&lt;/script&gt;
+    &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+            <div class="error-bar" id="error-bar-html">
+              <span class="error-icon" data-type="html">
+                !
+              </span>
+            </div>
+            <span class="code-editor-status"></span>
+          </div>
+
+        </div>
+
+
+
+
+        <div class="editor-resizer css-editor-resizer" title="Double-click to expand."></div>
+
+        <div id="box-css" class="box box-css" data-type="css">
+
+          <div class="powers">
+            <div class="powers-drag-handle" title="Double-click to expand."></div>
+
+            <div class="editor-actions-left">
+              <h2 class="box-title css-editor-title" id="css-editor-title">
+
+                  <svg viewBox="0 0 15 15" class="file-type-icon" id="icon-file-css">
+    <rect fill="#0EBEFF" width="15" height="15" rx="4"></rect><path d="M8 8.366l1.845 1.065a.507.507 0 0 0 .686-.181.507.507 0 0 0-.186-.685L8.5 7.5l1.845-1.065a.507.507 0 0 0 .186-.685.507.507 0 0 0-.686-.181L8 6.634v-2.13A.507.507 0 0 0 7.5 4c-.268 0-.5.225-.5.503v2.131L5.155 5.569a.507.507 0 0 0-.686.181.507.507 0 0 0 .186.685L6.5 7.5 4.655 8.565a.507.507 0 0 0-.186.685c.134.232.445.32.686.181L7 8.366v2.13c0 .271.224.504.5.504.268 0 .5-.225.5-.503V8.366z" fill="#282828"></path>
+  </svg>
+
+
+                <span class="box-title-name">
+                  CSS
+                </span>
+                <span class="box-title-preprocessor-name "></span>
+              </h2>
+
+            </div>
+
+            <div class="editor-actions-right">
+              <div class="collaborators-indicators"></div>
+
+              <button id="settings-pane-css" class="button button-medium mini-button settings-nub" data-type="css" title="Open CSS Settings">
+                <svg viewBox="0 0 100 100" id="icon-gear" width="10" height="10">
+                  <path d="M87.687,45.077c-0.313-2.433-0.816-4.807-1.542-7.079l8.145-11.73l-5.827-7.515l-0.094-0.123l-5.824-7.514
+                    l-12.955,5.577c-2.041-1.265-4.192-2.362-6.459-3.219L59.42,0h-9.34h-0.153h-9.341l-3.709,13.474
+                    c-2.27,0.857-4.421,1.955-6.463,3.222l-12.957-5.577l-5.825,7.514l-0.097,0.124l-5.822,7.517l8.146,11.731
+                    c-0.726,2.271-1.233,4.645-1.544,7.079L0,52.032l2.08,9.375l0.033,0.15l2.08,9.375l14.001,0.761c1.295,2.028,2.771,3.926,4.4,5.668
+                    l-2.396,14.227l8.416,4.173l0.138,0.067L37.169,100l9.309-10.796c1.161,0.109,2.335,0.173,3.524,0.173s2.358-0.074,3.52-0.184
+                    l9.317,10.804l8.415-4.173l0.141-0.066l8.413-4.172l-2.396-14.228c1.628-1.741,3.104-3.64,4.4-5.672l14-0.759l2.078-9.375
+                    l0.035-0.154L100,52.025L87.687,45.077z M50.003,34.51c8.435,0,15.272,7.035,15.272,15.719c0,8.679-6.839,15.717-15.272,15.717
+                    c-8.436,0-15.272-7.038-15.272-15.717C34.731,41.545,41.569,34.51,50.003,34.51z"></path>
+                </svg>
+              </button>
+
+              <button class="button mini-button button-medium editor-dropdown-button editor-dropdown-button-css" data-dropdown="#editor-dropdown-css" aria-haspopup="true" aria-expanded="false">
+  <span class="visually-hidden">
+    CSS Options
+  </span>
+  <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini" width="10" height="10">
+    <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+    c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+    C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+  </svg>
+</button>
+
+
+              <ul id="editor-dropdown-css" class="link-list is-dropdown editor-dropdown editor-dropdown-css" data-dropdown-position="css" data-dropdown-type="css">
+    <li class="editor-dropdown-list-item">
+      <button id="tidy-css" class="invisible-button tidy-code-button" data-editor-type="css">
+        Format CSS
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="view-compiled-css" class="invisible-button view-compiled-button" data-editor-type="css">
+        View Compiled CSS
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="analyze-css" class="invisible-button analyze-button" data-editor-type="css">
+        Analyze CSS
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="maximize-css-editor" class="invisible-button maximize-button" data-editor-type="css">
+        Maximize CSS Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="minimize-css-editor" class="invisible-button minimize-button" data-editor-type="css">
+        Minimize CSS Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="fold-all-css" class="invisible-button fold-all-button" data-editor-type="css">
+        Fold All
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="unfold-all-css" class="invisible-button unfold-all-button" data-editor-type="css">
+        Unfold All
+      </button>
+    </li>
+</ul>
+
+            </div>
+          </div>
+
+          <div class="code-wrap notranslate" translate="no">
+            <pre id="css" class="code-box" aria-labelledby="css-editor-title">              <code>
+                @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&amp;display=swap');
+
+:root {
+    --header-height: 3rem;
+
+    --first-color: hsl(72, 59%, 45%);
+    --first-color-alt: hsl(72, 75%, 38%);
+    --gradient-color: linear-gradient(180deg, hsl(151, 61%, 21%), hsl(151, 80%, 28%));
+    --first-color-dark: hsl(151, 52%, 17%);
+    --first-color-darker: hsl(151, 52%, 12%);
+    --title-color: hsl(49, 96%, 91%);
+    --text-color: hsl(99, 20%, 65%);
+
+    --body-font: 'Montserrat', sans-serif;
+    --second-font: 'Gwendolyn', cursive;
+    --biggest-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: .938rem;
+    --smaller-font-size: .75rem;
+
+    --font-regular: 400;
+    --font-bold: 700;
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 1150px) {
+    :root {
+        --biggest-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background: var(--gradient-color) no-repeat;
+    color: var(--text-color);
+}
+
+ul { list-style: none; }
+a {text-decoration: none; }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.container { max-width: 1120px; margin-inline: 1.5rem; }
+.main { overflow: hidden; }
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: var(--z-fixed);
+}
+
+.nav, .nav-logo, .nav-list, .nav-buttons { display: flex; }
+
+    .nav {
+        position: relative;
+        height: var(--header-height);
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo {
+        color: var(--title-color);
+        font-weight: var(--font-bold);
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .nav-logo span:nth-child(1) {
+            color: var(--first-color);
+            font-size: var(--h1-font-size);
+            font-family: var(--second-font);
+            transform: translateY(4px);
+        }
+
+        .nav-logo span:nth-child(2) { transform: translateY(-4px); }
+
+.nav-toggle, .nav-close {
+    display: inline-flex;
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+.nav-list {
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    font-weight: var(--font-bold);
+    display: inline-flex;
+    flex-direction: column;
+    transition: color .4s;
+}
+
+    .nav-link span { font-size: var(--smaller-font-size); }
+    .nav-link:hover { color: var(--title-color); }
+
+.nav-buttons { align-items: center; column-gap: 1rem; }
+
+.nav-notification {
+    position: relative;
+    background-color: var(--first-color);
+    width: 50px;
+    height: 50px;
+    border-radius: .75rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background-color .4s;
+}
+
+    .nav-notification:hover { background-color: var(--first-color); }
+
+.nav-bell { width: 32px; }
+
+.nav-circle {
+    width: 24px;
+    height: 24px;
+    background-color: hsl(0, 100%, 39%);
+    color: var(--title-color);
+    font-weight: var(--font-bold);
+    font-size: var(--smaller-font-size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}
+
+.nav-close { 
+    position: absolute;
+    top: 1.15rem;
+    right: 1.5rem;
+}
+
+.active-link { color: var(--title-color); }
+    .active-link span { color: var(--first-color); }
+
+.button {
+    display: inline-block;
+    background-color: var(--first-color);
+    color: #FFF;
+    font-weight: var(--font-bold);
+    padding: 1.125rem 2rem;
+    border-radius: .75rem;
+    box-shadow: 0 4px 24px hsla(0, 0%, 0%, .2);
+    transition: background-color .4s;
+}
+
+    .button:hover { background-color: var(--first-color-alt);}
+
+.button-dark { background-color: var(--first-color-dark); }
+    .button-dark:hover { background-color: var(--first-color-darker); }
+
+/*HOME*/
+
+.home {
+    height: 100vh;
+    display: grid;
+    align-items: center;
+}
+
+.home-container {
+    position: relative;
+    padding-block: 5.5rem 3rem;
+    display: grid;
+    row-gap: 6rem;
+}
+
+.home-img {
+    width: 400px;
+    transform: scale(1.2);
+    transform-origin: top;
+    justify-self: center;
+}
+
+.home-data { text-align: center; }
+
+.home-title {
+    font-size: var(--biggest-font-size);
+    font-weight: var(--font-bold);
+    color: var(--title-color);
+    margin-bottom: 1rem;
+}
+
+.home-number, .home-text { display: inline-grid; }
+
+    .home-number {
+        position: relative;
+        place-items: center;
+        margin-left: 0.75rem;
+        width: 44px;
+        height: 44px;
+        background-color: var(--first-color-darker);
+        border-radius: 50%;
+        font-size: var(--h2-font-size);
+        transform: translateY(-4px);
+    }
+
+        .home-number::after {
+            content: '';
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border: 10px solid var(--first-color);
+            border-radius: 50%;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            transform: rotate(45deg);
+        }
+
+.home-description { margin-bottom: 2rem; color: var(--title-color); }
+
+.home-bell, .home-star { position: absolute; }
+
+    .home-bell {
+        width: 50px;
+        top: 14rem;
+        right: -1.25rem;
+        transform: rotate(30deg);
+    }
+
+    .home-star {
+        width: 60px;
+        bottom: 17rem;
+        left: -3rem;
+        transform: rotate(30deg);
+    }
+
+.home-blob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-color: var(--first-color-dark);
+    border-radius: 4rem;
+    transform: rotate(45deg);
+    left: -23rem;
+    top: 6rem;
+    z-index: -1;
+}
+
+
+@media screen and (max-width: 1150px ) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background: var(--gradient-color);
+        width: 80%;
+        height: 100%;
+        box-shadow: -2px 0 12px hsla(0, 0%, 0%, .2);
+        padding: 6rem 2rem 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5rem;
+        transition: right .4s;
+    }
+
+    .show-menu { right: 0; }
+}
+
+@media screen and (max-width: 360px) {
+    .container { margin-inline: 1rem; }
+
+    .nav-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .home-container {
+        grid-template-columns: 360px;
+        justify-content: center;
+        row-gap: 3rem;
+    }
+
+    .home-img { transform: scale(1.1);}
+}
+
+@media screen and (max-width: 968px) and (max-height: 720px) {
+    .home { height: initial; }
+}
+
+@media screen and (min-width: 968px) {
+    .nav-menu { width: 50%; }
+
+    .home-container { grid-template-columns: repeat(2, 400px); align-items: center; }
+    .home-data { text-align: initial;}
+    .home-number { background-color: var(--first-color-dark);}
+
+    .home-blob {
+        width: 800px;
+        height: 800px;
+        left: -28rem;
+    }
+}
+
+@media screen and (min-width: 1150px) {
+    .container { margin-inline: auto; }
+
+    .nav { height: calc(var(--header-height) + 2rem); }
+    .nav-toggle, .nav-close { display: none; }
+    .nav-menu { width: 100%; display: flex; align-items: center; }
+    .nav-list { margin-inline: auto; flex-direction: row; column-gap: 4.5rem; }
+
+    .home-container { grid-template-columns: 650px 485px; padding-block: 6rem 0;}
+    .home-img { width: 650px; transform: translateX(2rem) scale(1); }
+    .home-data { transform: translateX(-2rem); }
+    .home-number, .home-number::after { width: 52px; height: 52px; }
+    .home-description { margin-bottom: 3rem; }
+    .home-bell { width: 60px; top: initial; left: 2rem; bottom: 0; }
+    .home-star { width: 70px; left: initial; right: 3rem; bottom: 10rem; }
+    .home-blob { width: 1200px; height: 1200px; left: -48rem; }
+}
+
+@media screen and (min-width: 1600px ) {
+    .home-blob { left: -100%; top: 0; }
+}
+
+              </code>
+            </pre>
+            <div class="error-bar" id="error-bar-css">
+              <span class="error-icon" data-type="css">
+                !
+              </span>
+            </div>
+            <span class="code-editor-status"></span>
+          </div>
+
+        </div>
+
+
+
+
+        <div class="editor-resizer js-editor-resizer" title="Double-click to expand."></div>
+
+        <div id="box-js" class="box box-js" data-type="js">
+
+          <div class="powers">
+            <div class="powers-drag-handle" title="Double-click to expand."></div>
+
+            <div class="editor-actions-left">
+              <h2 class="box-title js-editor-title" id="js-editor-title">
+
+                  <svg viewBox="0 0 15 15" class="file-type-icon" id="icon-file-js">
+    <rect fill="#FCD000" width="15" height="15" rx="4"></rect>
+    <path d="M6.554 3.705c0 .267-.19.496-.452.543-1.2.217-2.12 1.61-2.12 3.275 0 1.665.92 3.057 2.12 3.274a.554.554 0 0 1-.205 1.087c-1.733-.322-3.022-2.175-3.022-4.361 0-2.187 1.289-4.04 3.022-4.362a.554.554 0 0 1 .657.544zm1.892 0c0-.347.316-.607.657-.544 1.733.322 3.022 2.175 3.022 4.362 0 2.186-1.289 4.04-3.022 4.361a.554.554 0 0 1-.205-1.087c1.2-.217 2.12-1.61 2.12-3.274 0-1.665-.92-3.058-2.12-3.275a.551.551 0 0 1-.452-.543z" fill="#282828"></path>
+  </svg>
+
+
+                <span class="box-title-name">
+                  JS
+                </span>
+                <span class="box-title-preprocessor-name "></span>
+              </h2>
+
+            </div>
+
+            <div class="editor-actions-right">
+              <div class="collaborators-indicators"></div>
+
+              <button id="settings-pane-js" class="button button-medium mini-button settings-nub" data-type="js" title="Open JS Settings">
+                <svg viewBox="0 0 100 100" id="icon-gear" width="10" height="10">
+                  <path d="M87.687,45.077c-0.313-2.433-0.816-4.807-1.542-7.079l8.145-11.73l-5.827-7.515l-0.094-0.123l-5.824-7.514
+                    l-12.955,5.577c-2.041-1.265-4.192-2.362-6.459-3.219L59.42,0h-9.34h-0.153h-9.341l-3.709,13.474
+                    c-2.27,0.857-4.421,1.955-6.463,3.222l-12.957-5.577l-5.825,7.514l-0.097,0.124l-5.822,7.517l8.146,11.731
+                    c-0.726,2.271-1.233,4.645-1.544,7.079L0,52.032l2.08,9.375l0.033,0.15l2.08,9.375l14.001,0.761c1.295,2.028,2.771,3.926,4.4,5.668
+                    l-2.396,14.227l8.416,4.173l0.138,0.067L37.169,100l9.309-10.796c1.161,0.109,2.335,0.173,3.524,0.173s2.358-0.074,3.52-0.184
+                    l9.317,10.804l8.415-4.173l0.141-0.066l8.413-4.172l-2.396-14.228c1.628-1.741,3.104-3.64,4.4-5.672l14-0.759l2.078-9.375
+                    l0.035-0.154L100,52.025L87.687,45.077z M50.003,34.51c8.435,0,15.272,7.035,15.272,15.719c0,8.679-6.839,15.717-15.272,15.717
+                    c-8.436,0-15.272-7.038-15.272-15.717C34.731,41.545,41.569,34.51,50.003,34.51z"></path>
+                </svg>
+              </button>
+
+              <button class="button mini-button button-medium editor-dropdown-button editor-dropdown-button-js" data-dropdown="#editor-dropdown-js" aria-haspopup="true" aria-expanded="false">
+  <span class="visually-hidden">
+    JS Options
+  </span>
+  <svg viewBox="-122.9 121.1 105.9 61.9" class="icon-arrow-down-mini" width="10" height="10">
+    <path d="M-63.2,180.3l43.5-43.5c1.7-1.7,2.7-4,2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.7l-37.2,37.2l-37.2-37.2
+    c-1.7-1.7-4-2.7-6.5-2.7s-4.8,1-6.5,2.6c-1.9,1.8-2.8,4.2-2.8,6.6c0,2.3,0.9,4.6,2.6,6.5l0,0c11.4,11.5,41,41.2,43,43.3l0.2,0.2
+    C-73.5,183.9-66.8,183.9-63.2,180.3z"></path>
+  </svg>
+</button>
+
+
+              <ul id="editor-dropdown-js" class="link-list is-dropdown editor-dropdown editor-dropdown-js" data-dropdown-position="css" data-dropdown-type="js">
+    <li class="editor-dropdown-list-item">
+      <button id="tidy-js" class="invisible-button tidy-code-button" data-editor-type="js">
+        Format JavaScript
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="view-compiled-js" class="invisible-button view-compiled-button" data-editor-type="js">
+        View Compiled JavaScript
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="analyze-js" class="invisible-button analyze-button" data-editor-type="js">
+        Analyze JavaScript
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="maximize-js-editor" class="invisible-button maximize-button" data-editor-type="js">
+        Maximize JavaScript Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="minimize-js-editor" class="invisible-button minimize-button" data-editor-type="js">
+        Minimize JavaScript Editor
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="fold-all-js" class="invisible-button fold-all-button" data-editor-type="js">
+        Fold All
+      </button>
+    </li>
+    <li class="editor-dropdown-list-item">
+      <button id="unfold-all-js" class="invisible-button unfold-all-button" data-editor-type="js">
+        Unfold All
+      </button>
+    </li>
+</ul>
+
+            </div>
+          </div>
+
+          <div class="code-wrap notranslate" translate="no">
+            <pre id="js" class="code-box" aria-labelledby="js-editor-title">              <code>
+                const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const navClose = document.getElementById('nav-close');
+
+if(navToggle){
+    navToggle.addEventListener('click', () =&gt; {
+        navMenu.classList.add('show-menu');
+    })
+}
+
+if(navClose){
+    navClose.addEventListener('click', () =&gt; {
+        navMenu.classList.remove('show-menu');
+    })
+}
+
+//Remove Menu by clicking one of options
+
+const navLink = document.querySelectorAll('.nav-link');
+
+const linkAction = () =&gt; {
+    const navMenu = document.getElementById('nav-menu');
+    navMenu.classList.remove('show-menu');
+}
+
+navLink.forEach(n =&gt; n.addEventListener('click', linkAction));
+
+//Counter for Christmas
+
+const titleData = document.getElementById('title-data');
+const numberData = document.getElementById('number-data');
+const textData = document.getElementById('text-data');
+const msgChristmas = document.getElementById('msg-christmas');
+
+const christmasCountdown = () =&gt; {
+    let now = new Date();
+    let currentMonth = now.getMonth() + 1;
+    let currentDay = now.getDate();
+
+    let nextChristmasYear = now.getFullYear()
+    if(currentMonth == 12 &amp;&amp; currentDay &gt; 25) { nextChristmasYear += 1};
+
+    let nextChristmasDate = `Dec 25, ${nextChristmasYear} 00:00:00`;
+    let chrsitmasDay = new Date(nextChristmasDate);
+    let timeLeft = chrsitmasDay - now;
+
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+
+    if(currentMonth != 12 || (currentMonth == 12 &amp;&amp; currentDay != 25)) {
+        days = Math.floor(timeLeft / 1000 / 60 / 60 / 24)
+        hours = Math.floor(timeLeft / 1000 / 60 / 60) % 24
+        minutes = Math.floor(timeLeft / 1000 / 60) % 60
+        seconds = Math.floor(timeLeft / 1000) % 60
+
+        numberData.innerHTML = days &lt; 10 ? `0${days}` : days
+        textData.innerHTML = `Days`
+    }
+
+    if(currentDay == 24){
+        numberData.innerHTML = hours &lt; 10 ? `0${hours}` : hours
+        textData.innerHTML = 'Hours'
+    }
+
+    if(currentDay == 24 &amp;&amp; hours === 0){
+        numberData.innerHTML = minutes &lt; 10 ? `0${minutes}` : minutes
+        textData.innerHTML = 'Minutes'
+    }
+
+    if(currentDay == 24 &amp;&amp; hours === 0 &amp;&amp; minutes === 0) {
+        numberData.innerHTML = seconds &lt; 10 ? `0${seconds}` : seconds
+        textData.innerHTML = 'Seconds'
+    }
+
+    if(currentMonth == 12 &amp;&amp; currentDay == 25) {
+        titleData.style.display = 'none'
+        msgChristmas.style.display = 'block'
+        msgChristmas.innerHTML = 'Today is Dec 25, Merry Christmas'
+    }
+
+    if(currentMonth == 12 &amp;&amp; currentDay == 26) {
+        titleData.style.display = 'block'
+        msgChristmas.style.display = 'none'
+    }
+}
+
+setInterval(christmasCountdown, 1000);
+              </code>
+            </pre>
+            <div class="error-bar" id="error-bar-js">
+              <span class="error-icon" data-type="js">
+                !
+              </span>
+            </div>
+            <span class="code-editor-status"></span>
+          </div>
+
+            <div class="react-pen-editor-imports" data-props-type="js"></div>
+        </div>
+
+
+
+    </div>
+
+    <div id="resizer" class="resizer">
+      <span></span>
+      <div id="width-readout" class="width-readout">999px</div>
+      <div id="pen-ad"></div>
+    </div>
+
+      <section id="drawer" class="comments">
+
+      </section>
+
+    <div class="output-container">
+      <div class="output-sizer"> 
+        <div id="result_div" class="result">
+          <iframe id="result" name="CodePen" title="CodePen Preview" src="https://codepen.io/Luis-Angel-Maciel/fullpage/QwNMwKB?anon=true&amp;view=" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="accelerometer *; bluetooth *; camera *; clipboard-read *; clipboard-write *; display-capture *; encrypted-media *; geolocation *; gyroscope *; language-detector *; language-model *; microphone *; midi *; rewriter *; serial *; summarizer *; translator *; web-share *; writer *; xr-spatial-tracking *" scrolling="auto" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe " loading="lazy">
+          </iframe>
+
+
+          <div id="editor-drag-cover" class="drag-cover"></div>
+
+        </div>
+
+        <div id="box-console" class="box box-console notranslate" translate="no">
+
+  <div class="editor-resizer editor-resizer-console" title="Drag to resize. Double-click to expand."></div>
+
+  <div class="powers">
+    <div class="powers-drag-handle" title="Drag to resize. Double-click to expand."></div>
+    <div class="editor-actions-left">
+      <h2 class="box-title"><span class="box-title-name">Console</span></h2>
+    </div>
+    <div class="editor-actions-right">
+        <button class="button button-medium mini-button console-clear-button" title="Clear">
+          Clear
+        </button>
+        <button class="button button-medium mini-button close-editor-button" data-type="console" title="Close">
+          <svg class="icon-x" viewBox="0 0 100 100">
+            <path d="M96.8 83.7L63.1 50l33.7-33.7c3.6-3.6 3.6-9.4 0-13.1s-9.5-3.6-13.1 0L50 36.9 16.3 3.2C12.7-.4 6.9-.4 3.2 3.2s-3.6 9.5 0 13.1L36.9 50 3.2 83.7c-3.6 3.6-3.6 9.4 0 13.1s9.5 3.6 13.1 0L50 63.1l33.7 33.7c3.6 3.6 9.4 3.6 13.1 0s3.6-9.5 0-13.1z"></path>
+          </svg>
+        </button>
+      </div>
+  </div>
+
+  <div class="console-wrap">
+    <div class="console-entries short-no-scroll"></div>
+    <div class="console-command-line">
+      <span class="console-arrow forwards"></span>
+      <textarea class="console-command-line-input auto-expand" rows="1" data-min-rows="1"></textarea>
+    </div>
+  </div>
+
+</div>
+
+
+      </div> 
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="asset-bin-goes-here"></div>
+
+  <footer id="react-pen-footer" class="site-footer editor-footer"></footer>
+
+<div id="keycommands" class="modal modal-neutral">
+<div class="keycommands-container">
+
+  <section class="editor-commands inline-editor-commands">
+
+    <h2>Editor Commands</h2>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key pc_only">Ctrl</span>
+        <span class="key mac_only">Ctrl</span>
+        <span class="key">Space</span>
+      </kbd>
+      Autocomplete
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">F</span>
+      </kbd>
+      Find
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">G</span>
+      </kbd>
+      Find Next
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">G</span>
+      </kbd>
+      Find Previous
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only" title="Shift">⇧</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">F</span>
+      </kbd>
+      Find &amp; Replace
+    </div>
+    <div class="key-group mac_only">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">F</span>
+      </kbd>
+      Format Code
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">[</span>
+      </kbd>
+      Indent Code Right
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">]</span>
+      </kbd>
+      Indent Code Left
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">Tab</span>
+      </kbd>
+      Auto Indent Code
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">/</span>
+      </kbd>
+      Line Comment
+    </div>
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only" title="Shift">⇧</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">/</span>
+      </kbd>
+      Block Comment
+    </div>
+
+    <p class="inline-tab-triggers">Also see: <a href="https://blog.codepen.io/documentation/features/tab-triggers/" target="_blank" rel="noopener">Tab Triggers</a></p>
+
+  </section>
+
+  <section class="editor-commands">
+
+    <h2>Editor Focus</h2>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only">Alt</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">1</span>
+      </kbd>
+      HTML Editor
+    </div>
+
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only">Alt</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">2</span>
+      </kbd>
+      CSS Editor
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only">Alt</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">3</span>
+      </kbd>
+      JS Editor
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only">Alt</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">4</span>
+      </kbd>
+      Toggle Console
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key pc_only">Alt</span>
+        <span class="key mac_only">Opt</span>
+        <span class="key">0</span>
+      </kbd>
+      Preview
+    </div>
+
+
+    <div class="key-group">
+
+      <kbd class="keycommand">
+        <span class="key">Esc</span>
+      </kbd>
+
+      Exit currently focused editor
+    </div>
+  </section>
+
+
+  <section class="editor-commands">
+
+    <h2>Misc</h2>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">7</span>
+      </kbd>
+      Re-run Preview
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">8</span>
+      </kbd>
+      Clear All Analyze Errors
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">9</span>
+      </kbd>
+      Open This Dialog
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">0</span>
+      </kbd>
+      Open Debug View
+    </div>
+
+    <h2>HTML Specific</h2>
+
+    <div class="key-group">
+
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">A</span>
+      </kbd>
+      Wrap With...
+    </div>
+
+    <h2>Pen Actions</h2>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">P</span>
+      </kbd>
+      Create New Pen
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">S</span>
+      </kbd>
+      Save
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key" title="Shift">⇧</span>
+        <span class="key">S</span>
+      </kbd>
+      Save As Private <span style="border-radius: 2px; padding: 1px 6px 2px 5px; color: black !important; background: var(--cp-color-yellow); white-space: nowrap; text-shadow: none; letter-spacing: 0; font-size: 71%; position: relative; top: -1px;">PRO</span>
+    </div>
+
+    <div class="key-group">
+      <kbd class="keycommand">
+        <span class="key -command"></span>
+        <span class="key">I</span>
+      </kbd>
+      Info Panel (if owned)
+    </div>
+
+  </section>
+</div>
+</div>
+
+
+  
+
+
+
+  <div id="popup-overlay" class="overlay popup-overlay"></div>
+  <div id="modal-overlay" class="overlay modal-overlay"></div>
+
+  <noscript>
+
+  <input type="checkbox" class="modal-closing-trick" id="modal-closing-trick">
+
+  <div class="overlay noscript-overlay" style="display: block;"></div>
+
+  <div class="modal modal-message group modal-warning">
+
+    <div class="modal-title">CodePen requires JavaScript to render the code and preview areas in this view.</div>
+
+    <p>Trying <a href="https://codepen.io/Luis-Angel-Maciel/debug/QwNMwKB">viewing this Pen in Debug Mode</a>, which is the preview area without any iframe and does not require JavaScript. Although what the preview is of might!</p>
+
+    <p>Need to know how to enable JavaScript? <a href="http://enable-javascript.com/" target="_blank" rel="noopener">Go here.</a></p>
+
+    <label class="button button-medium" for="modal-closing-trick">Close this, use anyway.</label>
+
+  </div>
+
+</noscript>
+
+
+   <textarea id="init-data" style="display:none">{"__browser":{"country":"US","device":"unknown","mobile":true,"name":"chrome","platform":"android","version":"142"},"__constants":{},"__CPDATA":{"domain_iframe":"https://cdpn.io","environment":"production","host":"codepen.io","iframe_allow":"accelerometer *; bluetooth *; camera *; clipboard-read *; clipboard-write *; display-capture *; encrypted-media *; geolocation *; gyroscope *; language-detector *; language-model *; microphone *; midi *; rewriter *; serial *; summarizer *; translator *; web-share *; writer *; xr-spatial-tracking *","iframe_sandbox":"allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"},"__graphql":{"data":{"data":{"sessionUser":{"id":"VoDkNZ","name":"Captain Anonymous","title":"Captain Anonymous","avatar":"https://assets.codepen.io/t-1/user-default-avatar.jpg?format=auto&amp;version=0","currentContext":{"id":"VoDkNZ","title":"Captain Anonymous","name":"Captain Anonymous","avatar":"https://assets.codepen.io/t-1/user-default-avatar.jpg?format=auto&amp;version=0","username":"anon","__typename":"User"},"currentTeamId":null,"username":"anon","admin":false,"anon":true,"pro":false,"verified":false,"featureFlags":[],"teams":[],"__typename":"User"}}},"url":"https://codepen.io/graphql","api":"cprails"},"__user":{"anon":true,"base_url":"/anon/","cohorts":[],"current_team_hashid":null,"current_team_id":0,"hashid":"VoDkNZ","id":1,"itemType":"user","name":"Captain Anonymous","paid":false,"tier":0,"username":"anon","created_at":null,"email_verified":null,"collections_count":0,"collections_private_count":0,"followers_count":0,"followings_count":0,"pens_count":0,"pens_private_count":0,"projects_count":0,"projects_private_count":0},"__firebase":{"config":{"apiKey":"AIzaSyBgLAe7N_MdFpuVofMkcQLGwwhUu5tuxls","authDomain":"codepen-store-production.firebaseapp.com","databaseURL":"https://codepen-store-production.firebaseio.com","disabled":false,"projectId":"codepen-store-production"},"token":"eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJvd25lcklkIjoiVm9Ea05aIiwiYWRtaW4iOmZhbHNlfSwiZXhwIjoxNzYzNjgxOTI0LCJpYXQiOjE3NjM2NzgzMjQsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLThva3lsQGNvZGVwZW4tc3RvcmUtcHJvZHVjdGlvbi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLThva3lsQGNvZGVwZW4tc3RvcmUtcHJvZHVjdGlvbi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6IlZvRGtOWiJ9.P3hNOwVN1-FFa01mRfBnetxemb9SFz-alqQMvnTYA_IhkELS-aTa7D2pDrpIK21x9c3a_EoSvzdHqoEh7uHaRFOpXoga6BzKbHe1h5LXAS7zXVzgr7rB6alM181Tsd41P_dwB2N5ZinhxCKusiTUXRnnt1o6l7MBCsUGp1JanNQ-xUlDmtxAatQH1qR5Mlj5YALGyVQiYKgZf0cfrN6qteHR8XA3lTqleoRX_G10SZcCe9M-74HGrDFAMtFq04EQeBqN6PNDXjQduJrhXihGUf0gVNXf13f2ofrbqxDfaRMY33QfwIuj2yE7tA63bdUnW7fKH2jA0vRxyWjAkvChCw"},"__pay_stripe_public_key":"pk_live_2GndomDfiklqpSNQn8FrGuwZSMIMzha7DkLJqlYe7IR0ihKAlKdiHg68JJc5eVPt68rzAjzAAVXcUwjySHRCsgjQQ00gtRBUFNH","__pay_braintree_env":"production","__boomboom":{"serve_url":"https://cdpn.io/cpe/boomboom","store_url":"https://codepen.io/cpe/boomboom/store"},"__editor_config":{"id":"classic","editors":[{"id":"html","type":"html","name":"HTML","showEditor":true,"showSettings":true,"showProcessors":true,"embeds":{"showViewCompiled":true},"settings":[{"id":"processor","name":"HTML Preprocessor","type":"select","visible":true,"values":[{"id":"none","name":"None","value":"none","default":true},{"id":"haml","name":"Haml","value":"haml"},{"id":"markdown","name":"Markdown","value":"markdown"},{"id":"slim","name":"Slim","value":"slim"},{"id":"pug","name":"Pug","value":"pug"}]},{"id":"html_classes","name":"Add Class(es) to &lt;html&gt;","type":"input","placeholder":"e.g. single post post-1234","visible":true},{"id":"head","name":"Stuff for &lt;head&gt;","type":"textarea","placeholder":"e.g. &lt;meta&gt;, &lt;link&gt;, &lt;script&gt;","visible":true}],"actions":[{"id":"tidy_html","type":"tidy_code","name":"Format HTML","disabled_processors":["haml","slim"]},{"id":"view_compiled_html","type":"view_compiled","name":"View Compiled HTML","disabled_processors":["none"],"showInEmbeds":true},{"id":"analyze_html","type":"analyze","name":"Analyze HTML"},{"id":"maximize_html_editor","type":"maximize","name":"Maximize HTML Editor"},{"id":"minimize_html_editor","type":"minimize","name":"Minimize HTML Editor"},{"id":"fold_all_html","type":"fold_all","name":"Fold All"},{"id":"unfold_all_html","type":"unfold_all","name":"Unfold All"}],"processors":[{"id":"none","name":"None"},{"id":"haml","name":"Haml"},{"id":"markdown","name":"Markdown"},{"id":"slim","name":"Slim"},{"id":"pug","name":"Pug"}]},{"id":"css","type":"css","name":"CSS","showEditor":true,"showSettings":true,"showProcessors":true,"showVendorPrefixing":true,"embeds":{"showViewCompiled":true},"actions":[{"id":"tidy_css","type":"tidy_code","name":"Format CSS","disabled_processors":["sass","stylus"]},{"id":"view_compiled_css","type":"view_compiled","name":"View Compiled CSS","disabled_processors":["none"],"disabled_prefixes":["neither","prefixfree"]},{"id":"analyze_css","type":"analyze","name":"Analyze CSS"},{"id":"maximize_css_editor","type":"maximize","name":"Maximize CSS Editor"},{"id":"minimize_css_editor","type":"minimize","name":"Minimize CSS Editor"},{"id":"fold_all_css","type":"fold_all","name":"Fold All","disabled_processors":["sass"]},{"id":"unfold_all_css","type":"unfold_all","name":"Unfold All","disabled_processors":["sass"]}],"processors":[{"id":"none","name":"None"},{"id":"less","name":"Less"},{"id":"scss","name":"SCSS"},{"id":"sass","name":"Sass"},{"id":"stylus","name":"Stylus"},{"id":"postcss","name":"PostCSS"}],"parSuffixes":["less","scss","sass","styl"]},{"id":"js","type":"js","name":"JS","showEditor":true,"showSettings":true,"showProcessors":true,"detectImports":true,"externalResourcesHidden":false,"embeds":{"showViewCompiled":true},"actions":[{"id":"tidy_js","type":"tidy_code","name":"Format JavaScript","disabled_processors":["coffeescript, livescript"]},{"id":"view_compiled_js","type":"view_compiled","name":"View Compiled JavaScript","disabled_processors":["none"]},{"id":"analyze_js","type":"analyze","name":"Analyze JavaScript"},{"id":"maximize_js_editor","type":"maximize","name":"Maximize JavaScript Editor"},{"id":"minimize_js_editor","type":"minimize","name":"Minimize JavaScript Editor"},{"id":"fold_all_js","type":"fold_all","name":"Fold All"},{"id":"unfold_all_js","type":"unfold_all","name":"Unfold All"}],"processors":[{"id":"none","name":"None"},{"id":"babel","name":"Babel"},{"id":"typescript","name":"TypeScript"},{"id":"coffeescript","name":"CoffeeScript"},{"id":"livescript","name":"LiveScript"}]}],"formatters":[{"id":"classic","name":"Classic","runOn":[{"eventType":"demand"}],"url":"https://fi593g2v2a.execute-api.us-west-2.amazonaws.com/production/format"}],"layout":{"default":"top"},"linters":[{"id":"classic","name":"Classic","runOn":[{"eventType":"demand"}],"url":"https://fi593g2v2a.execute-api.us-west-2.amazonaws.com/production/lint"}],"preview":{"intervalMaxWaitMS":3500,"intervalMS":1200},"settings":[{"id":"behavior","name":"Behavior","type":"setting"},{"id":"editor","name":"Editor","type":"setting"}]},"__item":"{\"editor_settings\":{\"auto_run\":true,\"autocomplete\":false,\"code_folding\":true,\"css_pre_processor\":\"none\",\"css_prefix\":\"neither\",\"css_starter\":\"neither\",\"emmet_active\":true,\"font_size\":14,\"font_type\":\"system\",\"format_on_save\":false,\"html_pre_processor\":\"none\",\"indent_with\":\"spaces\",\"js_pre_processor\":\"none\",\"key_bindings\":\"normal\",\"line_numbers\":true,\"line_wrapping\":true,\"match_brackets\":true,\"snippets\":{\"markupSnippets\":{},\"stylesheetSnippets\":{}},\"tab_size\":2,\"theme\":\"twilight\",\"id\":\"QwNMwKB\",\"auto_save\":true},\"hashid\":\"QwNMwKB\",\"itemType\":\"pen\",\"resources\":[],\"tags\":[\"christmas\",\"landing-page\",\"css\",\"javascript\",\"countdown\"],\"id\":85891894,\"user_id\":15102621,\"html\":\"&lt;!DOCTYPE html&gt;\\n&lt;html lang=\\\"en\\\"&gt;\\n&lt;head&gt;\\n    &lt;meta charset=\\\"UTF-8\\\"&gt;\\n    &lt;meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\"&gt;\\n    &lt;title&gt;Christmas Count Landing Page&lt;/title&gt;\\n    &lt;link rel=\\\"stylesheet\\\" href=\\\"style.css\\\"&gt;\\n    &lt;link rel=\\\"shortcut icon\\\" href=\\\"https://i.postimg.cc/kXZLYKXF/favicon.png\\\"&gt;\\n    &lt;link rel=\\\"stylesheet\\\" href=\\\"https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css\\\"&gt;\\n&lt;/head&gt;\\n&lt;body&gt;\\n    &lt;header id=\\\"header\\\" class=\\\"header\\\"&gt;\\n        &lt;nav class=\\\"nav container\\\"&gt;\\n            &lt;a href=\\\"#\\\" class=\\\"nav-logo\\\"&gt;&lt;span&gt;Merry&lt;/span&gt;&lt;span&gt;Christmas&lt;/span&gt;&lt;/a&gt;\\n\\n            &lt;div class=\\\"nav-menu\\\" id=\\\"nav-menu\\\"&gt;\\n                &lt;ul class=\\\"nav-list\\\"&gt;\\n                    &lt;li class=\\\"nav-item\\\"&gt;&lt;a href=\\\"#\\\" class=\\\"nav-link active-link\\\"&gt;&lt;span&gt;01&lt;/span&gt; Home&lt;/a&gt;&lt;/li&gt;\\n                    &lt;li class=\\\"nav-item\\\"&gt;&lt;a href=\\\"#\\\" class=\\\"nav-link\\\"&gt;&lt;span&gt;02&lt;/span&gt; Card&lt;/a&gt;&lt;/li&gt;\\n                    &lt;li class=\\\"nav-item\\\"&gt;&lt;a href=\\\"#\\\" class=\\\"nav-link\\\"&gt;&lt;span&gt;03&lt;/span&gt; Contact us&lt;/a&gt;&lt;/li&gt;\\n                &lt;/ul&gt;\\n\\n                &lt;div class=\\\"nav-buttons\\\"&gt;\\n                    &lt;div class=\\\"nav-notification\\\"&gt;\\n                        &lt;img src=\\\"https://i.postimg.cc/wMx3rn2P/bell.png\\\" alt=\\\"image\\\" class=\\\"nav-bell\\\"&gt;\\n                        &lt;div class=\\\"nav-circle\\\"&gt;2&lt;/div&gt;\\n                    &lt;/div&gt;\\n\\n                    &lt;a href=\\\"#\\\" class=\\\"button button-dark\\\"&gt;Send a Card&lt;/a&gt;\\n                &lt;/div&gt;\\n\\n                &lt;div class=\\\"nav-close\\\" id=\\\"nav-close\\\"&gt;\\n                    &lt;i class=\\\"ri-close-line\\\"&gt;&lt;/i&gt;\\n                &lt;/div&gt;\\n\\n            &lt;/div&gt;\\n\\n            &lt;div class=\\\"nav-toggle\\\" id=\\\"nav-toggle\\\"&gt;\\n                &lt;i class=\\\"ri-apps-2-line\\\"&gt;&lt;/i&gt;\\n            &lt;/div&gt;\\n        &lt;/nav&gt;\\n    &lt;/header&gt;\\n\\n    &lt;main class=\\\"main\\\"&gt;\\n        &lt;section class=\\\"home\\\"&gt;\\n            &lt;div class=\\\"home-container container\\\"&gt;\\n                &lt;img src=\\\"https://i.postimg.cc/VvxY9TJ2/santa.png\\\" alt=\\\"image\\\" class=\\\"home-img\\\"&gt;\\n\\n                &lt;div class=\\\"home-data\\\"&gt;\\n                    &lt;div&gt;\\n                        &lt;h1 class=\\\"home-title\\\" id=\\\"title-data\\\"&gt;\\n                            Last\\n                            &lt;div class=\\\"home-number\\\" id=\\\"number-data\\\"&gt;03&lt;/div&gt;\\n                            &lt;div class=\\\"home-text\\\" id=\\\"text-data\\\"&gt;Days&lt;/div&gt;\\n                            To Receive Christmas\\n                        &lt;/h1&gt;\\n\\n                        &lt;h1 class=\\\"home-title\\\" id=\\\"msg-christmas\\\"&gt;&lt;/h1&gt;\\n                    &lt;/div&gt;\\n\\n                    &lt;p class=\\\"home-description\\\"&gt;Share some Christmas spirit and happiness with these festives cards&lt;/p&gt;\\n\\n                    &lt;a href=\\\"#\\\" class=\\\"button\\\"&gt;Send a Christmas Card&lt;/a&gt;\\n                &lt;/div&gt;\\n\\n                &lt;img src=\\\"https://i.postimg.cc/wMx3rn2P/bell.png\\\" alt=\\\"image\\\" class=\\\"home-bell\\\"&gt;\\n                &lt;img src=\\\"https://i.postimg.cc/HkkrYrqN/star.png\\\" alt=\\\"image\\\" class=\\\"home-star\\\"&gt;\\n\\n                &lt;div class=\\\"home-blob\\\"&gt;&lt;/div&gt;\\n            &lt;/div&gt;\\n        &lt;/section&gt;\\n    &lt;/main&gt;\\n    \\n    &lt;script src=\\\"https://app.embed.im/snow.js\\\" defer&gt;&lt;/script&gt;\\n    &lt;script src=\\\"main.js\\\"&gt;&lt;/script&gt;\\n&lt;/body&gt;\\n&lt;/html&gt;\",\"css\":\"@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap');\\n@import url('https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&amp;display=swap');\\n\\n:root {\\n    --header-height: 3rem;\\n\\n    --first-color: hsl(72, 59%, 45%);\\n    --first-color-alt: hsl(72, 75%, 38%);\\n    --gradient-color: linear-gradient(180deg, hsl(151, 61%, 21%), hsl(151, 80%, 28%));\\n    --first-color-dark: hsl(151, 52%, 17%);\\n    --first-color-darker: hsl(151, 52%, 12%);\\n    --title-color: hsl(49, 96%, 91%);\\n    --text-color: hsl(99, 20%, 65%);\\n\\n    --body-font: 'Montserrat', sans-serif;\\n    --second-font: 'Gwendolyn', cursive;\\n    --biggest-font-size: 2rem;\\n    --h1-font-size: 1.5rem;\\n    --h2-font-size: 1.25rem;\\n    --normal-font-size: .938rem;\\n    --smaller-font-size: .75rem;\\n\\n    --font-regular: 400;\\n    --font-bold: 700;\\n\\n    --z-tooltip: 10;\\n    --z-fixed: 100;\\n}\\n\\n@media screen and (min-width: 1150px) {\\n    :root {\\n        --biggest-font-size: 3rem;\\n        --h1-font-size: 2.25rem;\\n        --h2-font-size: 1.5rem;\\n        --h3-font-size: 1.25rem;\\n        --normal-font-size: 1rem;\\n        --smaller-font-size: .813rem;\\n    }\\n}\\n\\n* {\\n    box-sizing: border-box;\\n    padding: 0;\\n    margin: 0;\\n}\\n\\nbody {\\n    font-family: var(--body-font);\\n    font-size: var(--normal-font-size);\\n    background: var(--gradient-color) no-repeat;\\n    color: var(--text-color);\\n}\\n\\nul { list-style: none; }\\na {text-decoration: none; }\\n\\nimg {\\n    display: block;\\n    max-width: 100%;\\n    height: auto;\\n}\\n\\n.container { max-width: 1120px; margin-inline: 1.5rem; }\\n.main { overflow: hidden; }\\n\\n.header {\\n    position: fixed;\\n    width: 100%;\\n    top: 0;\\n    left: 0;\\n    background-color: transparent;\\n    z-index: var(--z-fixed);\\n}\\n\\n.nav, .nav-logo, .nav-list, .nav-buttons { display: flex; }\\n\\n    .nav {\\n        position: relative;\\n        height: var(--header-height);\\n        justify-content: space-between;\\n        align-items: center;\\n    }\\n\\n    .nav-logo {\\n        color: var(--title-color);\\n        font-weight: var(--font-bold);\\n        flex-direction: column;\\n        align-items: center;\\n    }\\n\\n        .nav-logo span:nth-child(1) {\\n            color: var(--first-color);\\n            font-size: var(--h1-font-size);\\n            font-family: var(--second-font);\\n            transform: translateY(4px);\\n        }\\n\\n        .nav-logo span:nth-child(2) { transform: translateY(-4px); }\\n\\n.nav-toggle, .nav-close {\\n    display: inline-flex;\\n    font-size: 1.25rem;\\n    color: var(--title-color);\\n    cursor: pointer;\\n}\\n\\n.nav-list {\\n    flex-direction: column;\\n    row-gap: 2rem;\\n}\\n\\n.nav-link {\\n    color: var(--text-color);\\n    font-weight: var(--font-bold);\\n    display: inline-flex;\\n    flex-direction: column;\\n    transition: color .4s;\\n}\\n\\n    .nav-link span { font-size: var(--smaller-font-size); }\\n    .nav-link:hover { color: var(--title-color); }\\n\\n.nav-buttons { align-items: center; column-gap: 1rem; }\\n\\n.nav-notification {\\n    position: relative;\\n    background-color: var(--first-color);\\n    width: 50px;\\n    height: 50px;\\n    border-radius: .75rem;\\n    display: grid;\\n    place-items: center;\\n    cursor: pointer;\\n    transition: background-color .4s;\\n}\\n\\n    .nav-notification:hover { background-color: var(--first-color); }\\n\\n.nav-bell { width: 32px; }\\n\\n.nav-circle {\\n    width: 24px;\\n    height: 24px;\\n    background-color: hsl(0, 100%, 39%);\\n    color: var(--title-color);\\n    font-weight: var(--font-bold);\\n    font-size: var(--smaller-font-size);\\n    border-radius: 50%;\\n    display: grid;\\n    place-items: center;\\n    position: absolute;\\n    top: -6px;\\n    right: -6px;\\n}\\n\\n.nav-close { \\n    position: absolute;\\n    top: 1.15rem;\\n    right: 1.5rem;\\n}\\n\\n.active-link { color: var(--title-color); }\\n    .active-link span { color: var(--first-color); }\\n\\n.button {\\n    display: inline-block;\\n    background-color: var(--first-color);\\n    color: #FFF;\\n    font-weight: var(--font-bold);\\n    padding: 1.125rem 2rem;\\n    border-radius: .75rem;\\n    box-shadow: 0 4px 24px hsla(0, 0%, 0%, .2);\\n    transition: background-color .4s;\\n}\\n\\n    .button:hover { background-color: var(--first-color-alt);}\\n\\n.button-dark { background-color: var(--first-color-dark); }\\n    .button-dark:hover { background-color: var(--first-color-darker); }\\n\\n/*HOME*/\\n\\n.home {\\n    height: 100vh;\\n    display: grid;\\n    align-items: center;\\n}\\n\\n.home-container {\\n    position: relative;\\n    padding-block: 5.5rem 3rem;\\n    display: grid;\\n    row-gap: 6rem;\\n}\\n\\n.home-img {\\n    width: 400px;\\n    transform: scale(1.2);\\n    transform-origin: top;\\n    justify-self: center;\\n}\\n\\n.home-data { text-align: center; }\\n\\n.home-title {\\n    font-size: var(--biggest-font-size);\\n    font-weight: var(--font-bold);\\n    color: var(--title-color);\\n    margin-bottom: 1rem;\\n}\\n\\n.home-number, .home-text { display: inline-grid; }\\n\\n    .home-number {\\n        position: relative;\\n        place-items: center;\\n        margin-left: 0.75rem;\\n        width: 44px;\\n        height: 44px;\\n        background-color: var(--first-color-darker);\\n        border-radius: 50%;\\n        font-size: var(--h2-font-size);\\n        transform: translateY(-4px);\\n    }\\n\\n        .home-number::after {\\n            content: '';\\n            position: absolute;\\n            width: 44px;\\n            height: 44px;\\n            border: 10px solid var(--first-color);\\n            border-radius: 50%;\\n            border-right-color: transparent;\\n            border-top-color: transparent;\\n            transform: rotate(45deg);\\n        }\\n\\n.home-description { margin-bottom: 2rem; color: var(--title-color); }\\n\\n.home-bell, .home-star { position: absolute; }\\n\\n    .home-bell {\\n        width: 50px;\\n        top: 14rem;\\n        right: -1.25rem;\\n        transform: rotate(30deg);\\n    }\\n\\n    .home-star {\\n        width: 60px;\\n        bottom: 17rem;\\n        left: -3rem;\\n        transform: rotate(30deg);\\n    }\\n\\n.home-blob {\\n    position: absolute;\\n    width: 600px;\\n    height: 600px;\\n    background-color: var(--first-color-dark);\\n    border-radius: 4rem;\\n    transform: rotate(45deg);\\n    left: -23rem;\\n    top: 6rem;\\n    z-index: -1;\\n}\\n\\n\\n@media screen and (max-width: 1150px ) {\\n    .nav-menu {\\n        position: fixed;\\n        top: 0;\\n        right: -100%;\\n        background: var(--gradient-color);\\n        width: 80%;\\n        height: 100%;\\n        box-shadow: -2px 0 12px hsla(0, 0%, 0%, .2);\\n        padding: 6rem 2rem 0;\\n        display: flex;\\n        flex-direction: column;\\n        row-gap: 5rem;\\n        transition: right .4s;\\n    }\\n\\n    .show-menu { right: 0; }\\n}\\n\\n@media screen and (max-width: 360px) {\\n    .container { margin-inline: 1rem; }\\n\\n    .nav-buttons {\\n        flex-direction: column;\\n        align-items: flex-start;\\n        row-gap: 1rem;\\n    }\\n}\\n\\n@media screen and (min-width: 400px) {\\n    .home-container {\\n        grid-template-columns: 360px;\\n        justify-content: center;\\n        row-gap: 3rem;\\n    }\\n\\n    .home-img { transform: scale(1.1);}\\n}\\n\\n@media screen and (max-width: 968px) and (max-height: 720px) {\\n    .home { height: initial; }\\n}\\n\\n@media screen and (min-width: 968px) {\\n    .nav-menu { width: 50%; }\\n\\n    .home-container { grid-template-columns: repeat(2, 400px); align-items: center; }\\n    .home-data { text-align: initial;}\\n    .home-number { background-color: var(--first-color-dark);}\\n\\n    .home-blob {\\n        width: 800px;\\n        height: 800px;\\n        left: -28rem;\\n    }\\n}\\n\\n@media screen and (min-width: 1150px) {\\n    .container { margin-inline: auto; }\\n\\n    .nav { height: calc(var(--header-height) + 2rem); }\\n    .nav-toggle, .nav-close { display: none; }\\n    .nav-menu { width: 100%; display: flex; align-items: center; }\\n    .nav-list { margin-inline: auto; flex-direction: row; column-gap: 4.5rem; }\\n\\n    .home-container { grid-template-columns: 650px 485px; padding-block: 6rem 0;}\\n    .home-img { width: 650px; transform: translateX(2rem) scale(1); }\\n    .home-data { transform: translateX(-2rem); }\\n    .home-number, .home-number::after { width: 52px; height: 52px; }\\n    .home-description { margin-bottom: 3rem; }\\n    .home-bell { width: 60px; top: initial; left: 2rem; bottom: 0; }\\n    .home-star { width: 70px; left: initial; right: 3rem; bottom: 10rem; }\\n    .home-blob { width: 1200px; height: 1200px; left: -48rem; }\\n}\\n\\n@media screen and (min-width: 1600px ) {\\n    .home-blob { left: -100%; top: 0; }\\n}\\n\",\"js\":\"const navMenu = document.getElementById('nav-menu');\\nconst navToggle = document.getElementById('nav-toggle');\\nconst navClose = document.getElementById('nav-close');\\n\\nif(navToggle){\\n    navToggle.addEventListener('click', () =&gt; {\\n        navMenu.classList.add('show-menu');\\n    })\\n}\\n\\nif(navClose){\\n    navClose.addEventListener('click', () =&gt; {\\n        navMenu.classList.remove('show-menu');\\n    })\\n}\\n\\n//Remove Menu by clicking one of options\\n\\nconst navLink = document.querySelectorAll('.nav-link');\\n\\nconst linkAction = () =&gt; {\\n    const navMenu = document.getElementById('nav-menu');\\n    navMenu.classList.remove('show-menu');\\n}\\n\\nnavLink.forEach(n =&gt; n.addEventListener('click', linkAction));\\n\\n//Counter for Christmas\\n\\nconst titleData = document.getElementById('title-data');\\nconst numberData = document.getElementById('number-data');\\nconst textData = document.getElementById('text-data');\\nconst msgChristmas = document.getElementById('msg-christmas');\\n\\nconst christmasCountdown = () =&gt; {\\n    let now = new Date();\\n    let currentMonth = now.getMonth() + 1;\\n    let currentDay = now.getDate();\\n\\n    let nextChristmasYear = now.getFullYear()\\n    if(currentMonth == 12 &amp;&amp; currentDay &gt; 25) { nextChristmasYear += 1};\\n\\n    let nextChristmasDate = `Dec 25, ${nextChristmasYear} 00:00:00`;\\n    let chrsitmasDay = new Date(nextChristmasDate);\\n    let timeLeft = chrsitmasDay - now;\\n\\n    let days = 0;\\n    let hours = 0;\\n    let minutes = 0;\\n    let seconds = 0;\\n\\n    if(currentMonth != 12 || (currentMonth == 12 &amp;&amp; currentDay != 25)) {\\n        days = Math.floor(timeLeft / 1000 / 60 / 60 / 24)\\n        hours = Math.floor(timeLeft / 1000 / 60 / 60) % 24\\n        minutes = Math.floor(timeLeft / 1000 / 60) % 60\\n        seconds = Math.floor(timeLeft / 1000) % 60\\n\\n        numberData.innerHTML = days &lt; 10 ? `0${days}` : days\\n        textData.innerHTML = `Days`\\n    }\\n\\n    if(currentDay == 24){\\n        numberData.innerHTML = hours &lt; 10 ? `0${hours}` : hours\\n        textData.innerHTML = 'Hours'\\n    }\\n\\n    if(currentDay == 24 &amp;&amp; hours === 0){\\n        numberData.innerHTML = minutes &lt; 10 ? `0${minutes}` : minutes\\n        textData.innerHTML = 'Minutes'\\n    }\\n\\n    if(currentDay == 24 &amp;&amp; hours === 0 &amp;&amp; minutes === 0) {\\n        numberData.innerHTML = seconds &lt; 10 ? `0${seconds}` : seconds\\n        textData.innerHTML = 'Seconds'\\n    }\\n\\n    if(currentMonth == 12 &amp;&amp; currentDay == 25) {\\n        titleData.style.display = 'none'\\n        msgChristmas.style.display = 'block'\\n        msgChristmas.innerHTML = 'Today is Dec 25, Merry Christmas'\\n    }\\n\\n    if(currentMonth == 12 &amp;&amp; currentDay == 26) {\\n        titleData.style.display = 'block'\\n        msgChristmas.style.display = 'none'\\n    }\\n}\\n\\nsetInterval(christmasCountdown, 1000);\",\"html_pre_processor\":\"none\",\"css_pre_processor\":\"none\",\"js_pre_processor\":\"none\",\"html_classes\":\"\",\"css_starter\":\"neither\",\"js_library\":null,\"created_at\":\"2025-11-19T12:04:47.560Z\",\"updated_at\":\"2025-11-19T12:04:47.560Z\",\"title\":\"Christmas Countdown Website\",\"description\":\"Source: Bedimcode (https://www.youtube.com/watch?v=PCOnO6FG4YU)\",\"slug_hash\":\"QwNMwKB\",\"head\":\"\",\"private\":false,\"has_animation\":true,\"team_id\":0,\"css_prefix\":\"neither\",\"template\":false,\"parent_id\":78402083,\"comments_count\":0,\"custom_screenshot_filename\":null,\"loves_count\":0,\"pick\":false,\"popularity\":0,\"views_count\":0,\"pick_visible_at\":null,\"cpid\":\"019a9c00-c548-7ee3-b466-a3cbaf26c23b\",\"is_new_editor_pen\":false,\"access\":\"Public\",\"pen_hash\":null}","__layoutType":"top","__pageType":"pen","__profiled":{"base_url":"/Luis-Angel-Maciel","hashid":"PmyGpN","id":15102621,"name":"Luis Angel Maciel","type":"user","username":"Luis-Angel-Maciel"},"__processorsMap":{"autoprefixer":"autoprefixer-10","babel":"babel-7","coffeescript":"coffeescript-2","format-1":"format-1","flutter":"flutter-1","haml":"haml-4","less":"less-3","lint-1":"lint-1","livescript":"livescript-1","markdown":"markdown-11","postcss":"postcss-7","pug":"pug-2","sass":"sass-1","scss":"sass-1","sass-ruby-3":"sass-ruby-3","sass-ruby-compass-3":"sass-ruby-compass-3","slim":"slim-3","stylus":"stylus-0","typescript":"typescript-4","vue":"vue-2","vue3":"vue-3"},"__rtData":"{\"maxMembers\":0,\"roomID\":\"QwNMwKB/live\",\"roomType\":\"live\",\"updatedAt\":1763553887,\"user\":{\"id\":\"VoDkNZ\",\"hashid\":\"VoDkNZ\",\"name\":\"Captain Anonymous\",\"username\":\"anon\",\"role\":\"editor\"}}","__eijs":"https://public.codepenassets.com/embed/index.js","__favicon_mask_icon":"https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg","__favicon_shortcut_icon":"https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico","__path_to_iframe_console_runner":"https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6d8bf8b4b479137260842506acbb12717dace0823c023e08b96360e60b0840d9.js","__path_to_iframe_refresh_css":"https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js","__path_to_iframe_runtime_errors":"https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js","__path_to_processor_worker":"https://cpwebassets.codepen.io/assets/packs/router.js","__path_to_stop_execution_on_timeout":"https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js","__pen_normalize_css_url":"https://public.codepenassets.com/css/normalize-5.0.0.min.css","__pen_prefix_free_url":"https://public.codepenassets.com/js/prefixfree-1.0.7.min.js","__pen_reset_css_url":"https://public.codepenassets.com/css/reset-2.0.min.css","__theme_url_twilight":"https://cpwebassets.codepen.io/assets/editor/themes/twilight-5624f2aa0a9e5ad3c27da1db150d791e788247e197af02b4cd6db6fbc40f7354.css","__theme_url_solarized_dark":"https://cpwebassets.codepen.io/assets/editor/themes/solarized-dark-5524d7672bd3f4191755f2f06eb52d9e90e3ae41b4919b94b68e336ee6f8e908.css","__theme_url_tomorrow_night":"https://cpwebassets.codepen.io/assets/editor/themes/tomorrow-night-b24eeddae48ecd6c977bf2059ba10ad91efd3680a1ba93f2e33ce76d5889b3ed.css","__theme_url_oceanic_dark":"https://cpwebassets.codepen.io/assets/editor/themes/oceanic-dark-6c860318d2c1c7700ca3f7a51ac9bf2847699c097f3219d4bdad14426c91df51.css","__theme_url_panda":"https://cpwebassets.codepen.io/assets/editor/themes/panda-aede9c039e179a2c374a5256861d53b097137008ca7fc1ce4b019c66dd0e2fd1.css","__theme_url_duotone_dark":"https://cpwebassets.codepen.io/assets/editor/themes/duotone-dark-47344b940707cb4e6850cef429b6d844aa969b31e4a4741299e4926c036cfc6d.css","__theme_url_highcontrast_dark":"https://cpwebassets.codepen.io/assets/editor/themes/highcontrast-dark-47187de4142cc38f6f5a1e9f846225ded7136f4761bf6a3ec0ed89c8ce9b7382.css","__theme_url_classic":"https://cpwebassets.codepen.io/assets/editor/themes/classic-45c43b72fafc606f79eb802d819ada14ee27946fe25dfe189da767500cc78cf9.css","__theme_url_solarized_light":"https://cpwebassets.codepen.io/assets/editor/themes/solarized-light-81bc654a0e146841fcfbec1f085308252d35f1b9daef8ca23b1ff91cb32b1862.css","__theme_url_xq_light":"https://cpwebassets.codepen.io/assets/editor/themes/xq-light-b4ef10af805d69aee43b581c024e201f80d911d6cc638a309edd2242a2b77565.css","__theme_url_oceanic_light":"https://cpwebassets.codepen.io/assets/editor/themes/oceanic-light-d441824dd2db1a08b893f344b6cf56731c6af6adef3e12c4eaa652e2db553d35.css","__theme_url_mdn_like":"https://cpwebassets.codepen.io/assets/editor/themes/mdn-like-d5ee28ea8d118f387e9c19f0aac088b13655f3e4725cd597296e08d7167a43ae.css","__theme_url_duotone_light":"https://cpwebassets.codepen.io/assets/editor/themes/duotone-light-f63768bb645798048a0e1eef9795b405a351a9edca2d722c0cada0d3672c94dd.css","__theme_url_highcontrast_light":"https://cpwebassets.codepen.io/assets/editor/themes/highcontrast-light-cb745e3989e02d3701df587f5fefa5e9707157de3a129e3d86f1ca7ce6cc4bff.css"}</textarea>
+
+  <script src="./js/0_browser_support-2c1a3d31dbc6b5746fb7dacdbc81dd613906db219f13147c66864a6c3448246c.js"></script>
+  <script src="./js/1_everypage-c0439686246cf4a1465a9bf7bcc4b0a7a720b9724e1e14b3aa3bec47880049c4.js"></script>
+  <script src="./js/2_referrer-tracking-7796354f45310a2ef4c3.js"></script>
+
+
+  <script src="./js/3_vendor-4204ec664cea081d8209.chunk.js"></script>
+<script src="./js/4_3-41e280e7a16938035465.chunk.js"></script>
+<script src="./js/5_everypage-e35c18e0fa3e4ce97eae.js"></script>
+  <script src="./js/6_vendor-4204ec664cea081d8209.chunk.js"></script>
+<script src="./js/7_processorRouter-33059568eec2871c3989.js"></script>
+    <script src="./js/8_filestack.min.js"></script>
+  <script src="./js/9_commonLibs-18d595d95e5894ceae5661c7e40deeca7df254309b42f89edce76949b15a0f31.js"></script>
+
+<script src="./js/10_codemirror-e628acccbc140ed80f9daa48b5e64c775855e64a41d7fad48e7583a7819aa9d6.js"></script>
+  <script src="./js/11_emmet-codemirror-plugin-96396a4ad085138a7f4e501477590b84cedf5a10d5298bdeb2da448cada82d11.js"></script>
+
+
+  <script src="./js/12_index-55b299fe333a1da28c1f1e9ed36f96a66a8f73684bad271c59bb387d3c9625a7.js"></script>
+
+
+
+
+<script nonce="8DGQafBLEgw=">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='8DGQafBLEgw=';d.innerHTML="window.__CF$cv$params={r:'9a1b70798382e786',t:'MTc2MzY3ODMyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='8DGQafBLEgw=';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+
+
+</body></html>

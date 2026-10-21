@@ -1,0 +1,337 @@
+@import: 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800';
+
+@lightBG: #f7f7f7;
+@grey: #efefef;
+@blue: #6883a4;
+@seaGreen: #699ca4;
+@seaGreenLight: #8fd8e3;
+@green: #69a478;
+@greenLight: #98edad;
+@gold: #a1a469;
+@goldLight: #e8ed8c;
+@rust: #a47769;
+@rustLight: #e5a591;
+
+@duration: .5s;
+@unit: 100px;
+
+body {
+  background: @lightBG;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+// navigation
+div.nav {
+  background: #fff;
+  min-height: 80vh;
+  padding: 10vh @unit;
+  width: @unit;
+}
+
+div.dot {
+  height: @unit;
+  margin-bottom: 50px;
+  width: @unit;
+}
+
+div.dot.seaGreen {
+   div.btm div.flap div.flapFront {
+       background: @seaGreen;
+       svg {
+         fill: @seaGreenLight;
+       }
+   }
+  &.dropFlap {
+    div.top {
+       background: @seaGreen;
+       svg {
+         fill: @seaGreenLight;
+       }
+    }
+  }
+}
+
+div.dot.green {
+   div.btm div.flap div.flapFront {
+       background: @green;
+       svg {
+         fill: @greenLight;
+       }
+   }
+  &.dropFlap {
+    div.top {
+       background: @green;
+       svg {
+         fill: @greenLight;
+       }
+    }
+  }
+}
+
+div.dot.gold {
+   div.btm div.flap div.flapFront {
+       background: @gold;
+       svg {
+         fill: @goldLight;
+       }
+   }
+  &.dropFlap {
+    div.top {
+       background: @gold;
+       svg {
+         fill: @goldLight;
+       }
+    }
+  }
+}
+
+div.dot.rust {
+   div.btm div.flap div.flapFront {
+       background: @rust;
+       svg {
+         fill: @rustLight;
+       }
+   }
+  &.dropFlap {
+    div.top {
+       background: @rust;
+       svg {
+         fill: @rustLight;
+       }
+    }
+  }
+}
+
+div.top div.pushDown svg {
+  top: 25px !important;
+}
+div.btm div.pushDown svg {
+  bottom: 25px !important;
+}
+
+div.top {
+  background: darken(@grey, 10);
+  border-radius: @unit @unit 0 0;
+  height: 50%;
+  width: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  svg {
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 20px;
+    height: 50px;
+    transform: translateX(-50%);
+  }
+  &::before {
+    background: rgba(0,0,0,.05);
+    bottom: 0;
+    content: "";
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+  }
+}
+div.btm {
+  background: @grey;
+  border-radius: 0 0 @unit @unit;
+  box-shadow: 0 2px 0 rgba(0,0,0,.1);
+  height: 50%;
+  width: 100%;
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+  &::before {
+    background: rgba(255,255,255,.05);
+    top: 0;
+    content: "";
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+  }
+  div.flap {
+    bottom: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    svg {
+      display: block;
+      left: 50%;
+      position: absolute;
+      bottom: 60%;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    div.flapFront {
+      background: @blue;
+      bottom: 0;
+      transform: rotateX(180deg);
+      svg {
+        bottom: 30px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+
+div.flap {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  div.flapFront {
+    background: @grey;
+    backface-visibility: hidden;
+    border-radius: @unit;
+    overflow: hidden;
+    &::before {
+        background: rgba(0,0,0,0);
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+  }
+}
+
+
+div.flapFront {
+  height: @unit;
+  position: absolute;
+  width: @unit;
+  transition: all @duration ease-in;
+}
+
+
+
+
+div.dot.dropFlap {
+  div.top {
+    background: @blue;
+    div.flapFront {
+      animation: dropTop @duration forwards ease-in;
+      &::before {
+        animation: flapDarken @duration forwards ease-in;
+      }
+    }
+  }
+  div.btm {
+    div.flapFront {
+      animation: dropBtm @duration forwards ease-in;
+      &::before {
+        animation: flapLighten @duration forwards ease-in;
+      }
+    }
+  }
+}
+
+@keyframes dropTop {
+  0%   {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+@keyframes dropBtm {
+  0%   {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes flapDarken {
+  0%   {
+    background: rgba(0,0,0,0);
+  }
+  100% {
+    background: rgba(0,0,0,0.15);
+  }
+}
+
+@keyframes flapLighten {
+  0%, 50%   {
+    background: rgba(255,255,255,.5);
+  }
+  100% {
+    background: rgba(255,255,255,0);
+  }
+}
+
+
+// content
+div.content {
+  padding-top: 10vh;
+  position: absolute;
+  left: 400px;
+  right: 0;
+  top: 0;
+  h1 {
+    color: #333;
+    letter-spacing: -0.05em;
+    margin-top: 0;
+    font-size: 60px;
+  }
+  p {
+    color: #999;
+    font-size: 24px;
+    font-weight: 300;
+    padding-right: 100px;
+    margin-bottom: 4em;
+    max-width: 30em;
+  }
+  div.toggleButton {
+    border-radius: 8px;
+    background: @green;
+    box-shadow: 0 2px 0 rgba(0,0,0,.1);
+    display: inline-block;
+    height: 68px;
+    overflow: hidden;
+    transition: all .2s ease-in;
+    a {
+      color: #fff;
+      display: block;
+      font-family: arial;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 18px 34px 21px;
+      position: relative;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: 140px;
+      transition: all .2s ease-in;
+      svg {
+        fill: @greenLight;
+        margin-right: 10px;
+        position: relative;
+        top: 2px;
+        width: 24px;
+      }
+    }
+    a.reset {
+      opacity: 0;
+      svg {
+        fill: @rustLight;
+      }
+    }
+    &.showReset {
+      background: @rust;
+      a.flapit {
+        margin-top: -68px;
+        opacity: 0;
+      }
+      a.reset {
+        opacity: 1;
+      }
+    }
+  }
+}
+

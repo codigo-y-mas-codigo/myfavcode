@@ -1,0 +1,5 @@
+{
+  "name": "DesignIA - AI Website Assistant",
+  "description": "An AI-powered design assistant for generating and creating websites. It features a prompt-to-design workflow, allowing users to generate designs from natural language, edit them visually, and export production-ready code for HTML, React, and UniApp.",
+  "requestFramePermissions": []
+}

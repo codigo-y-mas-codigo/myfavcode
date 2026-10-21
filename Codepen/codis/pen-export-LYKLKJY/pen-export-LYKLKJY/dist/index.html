@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Lector de Historias Interactivo</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   line-height: 1.6;
+   margin: 0;
+   padding: 0;
+   transition: background-color 0.3s, color 0.3s;
+  }
+
+  header {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 1rem;
+  }
+
+  nav {
+   margin-top: 1rem;
+  }
+
+  button {
+   background-color: #4CAF50;
+   border: none;
+   color: white;
+   padding: 10px 20px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+  }
+
+  main {
+   padding: 2rem;
+  }
+
+  .hidden {
+   display: none;
+  }
+
+  .active {
+   display: block;
+  }
+
+  ul {
+   list-style-type: none;
+   padding: 0;
+  }
+
+  li {
+   background-color: #f4f4f4;
+   margin-bottom: 10px;
+   padding: 10px;
+   cursor: pointer;
+  }
+
+  li:hover {
+   background-color: #e4e4e4;
+  }
+
+  #searchBar,
+  #categoryFilter {
+   margin-top: 1rem;
+  }
+
+  #searchInput {
+   padding: 5px;
+   width: 200px;
+  }
+
+  #settings div {
+   margin-bottom: 1rem;
+  }
+
+  footer {
+   background-color: #333;
+   color: #fff;
+   text-align: center;
+   padding: 1rem;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+  }
+
+  body.dark-mode {
+   background-color: #222;
+   color: #fff;
+  }
+
+  body.dark-mode li {
+   background-color: #444;
+  }
+
+  body.dark-mode li:hover {
+   background-color: #555;
+  }
+
+  #storyEditor textarea,
+  #storyEditor input[type="text"] {
+   width: 100%;
+   margin-bottom: 10px;
+  }
+
+  #imagePreview img {
+   max-width: 100%;
+   height: auto;
+  }
+
+  #draftsList div {
+   background-color: #f4f4f4;
+   margin-bottom: 5px;
+   padding: 5px;
+   cursor: pointer;
+  }
+
+  #draftsList div:hover {
+   background-color: #e4e4e4;
+  }
+ </style>
+</head>
+
+<body>
+ <header>
+  <h1>Lector de Historias Interactivo</h1>
+  <nav>
+   <button id="homeBtn">Inicio</button>
+   <button id="favoritesBtn">Favoritos</button>
+   <button id="settingsBtn">Ajustes</button>
+   <button id="editorBtn">Editor</button>
+  </nav>
+  <div id="searchBar">
+   <input type="text" id="searchInput" placeholder="Buscar historias...">
+   <button id="searchBtn">Buscar</button>
+  </div>
+  <div id="categoryFilter">
+   <select id="categorySelect">
+    <option value="">Todas las categorías</option>
+   </select>
+  </div>
+ </header>
+
+ <main>
+  <section id="storyList" class="active">
+   <h2>Historias Disponibles</h2>
+   <ul id="stories"></ul>
+  </section>
+
+  <section id="storyReader" class="hidden">
+   <h2 id="storyTitle"></h2>
+   <div id="storyContent"></div>
+   <button id="favoriteBtn">Añadir a Favoritos</button>
+   <button id="likeBtn">Me gusta <span id="likeCount">0</span></button>
+  </section>
+
+  <section id="favorites" class="hidden">
+   <h2>Mis Favoritos</h2>
+   <ul id="favoritesList"></ul>
+  </section>
+
+  <section id="settings" class="hidden">
+   <h2>Ajustes</h2>
+   <div>
+    <label for="fontSize">Tamaño de fuente:</label>
+    <input type="range" id="fontSize" min="12" max="24" value="16">
+   </div>
+   <div>
+    <label for="darkMode">Modo oscuro:</label>
+    <input type="checkbox" id="darkMode">
+   </div>
+  </section>
+
+  <section id="storyEditor" class="hidden">
+   <h2>Editor de Historias</h2>
+   <input type="text" id="storyTitleInput" placeholder="Título de la historia">
+   <textarea id="storyContentInput" rows="10" placeholder="Escribe tu historia aquí..."></textarea>
+   <input type="file" id="storyImageInput" accept="image/*">
+   <div id="imagePreview"></div>
+   <button id="saveDraftBtn">Guardar Borrador</button>
+   <button id="publishStoryBtn">Publicar Historia</button>
+   <div id="draftsList"></div>
+  </section>
+
+  <section id="storyPreview" class="hidden">
+   <h2>Vista Previa</h2>
+   <div id="previewContent"></div>
+  </section>
+ </main>
+
+ <footer>
+  <div id="gamification">
+   <span>Puntos: <span id="points">0</span></span>
+   <span>Nivel: <span id="level">1</span></span>
+  </div>
+ </footer>
+
+ <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+ <script>
+  // Datos de ejemplo (en una aplicación real, esto vendría de una base de datos)
+  const stories = [{
+    id: 1,
+    title: "El viaje inesperado",
+    content: "Érase una vez...",
+    category: "Aventura"
+   },
+   {
+    id: 2,
+    title: "La ciudad perdida",
+    content: "En lo profundo de la selva...",
+    category: "Misterio"
+   },
+   {
+    id: 3,
+    title: "El último dinosaurio",
+    content: "Nadie esperaba que...",
+    category: "Ciencia Ficción"
+   }
+  ];
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  let points = parseInt(localStorage.getItem('points')) || 0;
+  let level = parseInt(localStorage.getItem('level')) || 1;
+  let likes = JSON.parse(localStorage.getItem('likes')) || {};
+  let drafts = JSON.parse(localStorage.getItem('story-drafts')) || [];
+  // Elementos del DOM
+  const storyList = document.getElementById('storyList');
+  const storyReader = document.getElementById('storyReader');
+  const favoritesSection = document.getElementById('favorites');
+  const settingsSection = document.getElementById('settings');
+  const storiesUl = document.getElementById('stories');
+  const favoritesUl = document.getElementById('favoritesList');
+  const storyTitle = document.getElementById('storyTitle');
+  const storyContent = document.getElementById('storyContent');
+  const favoriteBtn = document.getElementById('favoriteBtn');
+  const likeBtn = document.getElementById('likeBtn');
+  const likeCount = document.getElementById('likeCount');
+  const homeBtn = document.getElementById('homeBtn');
+  const favoritesBtn = document.getElementById('favoritesBtn');
+  const settingsBtn = document.getElementById('settingsBtn');
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const categorySelect = document.getElementById('categorySelect');
+  const fontSizeInput = document.getElementById('fontSize');
+  const darkModeToggle = document.getElementById('darkMode');
+  const pointsSpan = document.getElementById('points');
+  const levelSpan = document.getElementById('level');
+  const storyEditor = document.getElementById('storyEditor');
+  const storyTitleInput = document.getElementById('storyTitleInput');
+  const storyContentInput = document.getElementById('storyContentInput');
+  const storyImageInput = document.getElementById('storyImageInput');
+  const imagePreview = document.getElementById('imagePreview');
+  const saveDraftBtn = document.getElementById('saveDraftBtn');
+  const publishStoryBtn = document.getElementById('publishStoryBtn');
+  const draftsList = document.getElementById('draftsList');
+  const storyPreview = document.getElementById('storyPreview');
+  const previewContent = document.getElementById('previewContent');
+  const editorBtn = document.getElementById('editorBtn');
+  // Funciones
+  function getInitialColorMode() {
+   const persistedColorPreference = window.localStorage.getItem('color-mode');
+   const hasPersistedPreference = typeof persistedColorPreference === 'string';
+   if (hasPersistedPreference) {
+    return persistedColorPreference;
+   }
+   const mql = window.matchMedia('(prefers-color-scheme: dark)');
+   const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+   if (hasMediaQueryPreference) {
+    return mql.matches ? 'dark' : 'light';
+   }
+   return 'light';
+  }
+
+  function displayStories(storiesToShow = stories) {
+   storiesUl.innerHTML = '';
+   storiesToShow.forEach(story => {
+    const li = document.createElement('li');
+    li.textContent = `${story.title} - Me gusta: ${likes[story.id] || 0}`;
+    li.addEventListener('click', () => readStory(story));
+    storiesUl.appendChild(li);
+   });
+  }
+
+  function readStory(story) {
+   storyTitle.textContent = story.title;
+   storyContent.textContent = story.content;
+   storyList.classList.remove('active');
+   storyList.classList.add('hidden');
+   storyReader.classList.remove('hidden');
+   storyReader.classList.add('active');
+   favoriteBtn.onclick = () => addToFavorites(story);
+   updateLikeButton(story);
+   addPoints(10);
+  }
+
+  function addToFavorites(story) {
+   if (!favorites.some(fav => fav.id === story.id)) {
+    favorites.push(story);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    alert('Historia añadida a favoritos!');
+    displayFavorites();
+    addPoints(5);
+   } else {
+    alert('Esta historia ya está en tus favoritos.');
+   }
+  }
+
+  function displayFavorites() {
+   favoritesUl.innerHTML = '';
+   favorites.forEach(story => {
+    const li = document.createElement('li');
+    li.textContent = story.title;
+    li.addEventListener('click', () => readStory(story));
+    favoritesUl.appendChild(li);
+   });
+  }
+
+  function searchStories() {
+   const searchTerm = searchInput.value.toLowerCase();
+   const filteredStories = stories.filter(story =>
+    story.title.toLowerCase().includes(searchTerm) ||
+    story.content.toLowerCase().includes(searchTerm)
+   );
+   displayStories(filteredStories);
+  }
+
+  function filterByCategory() {
+   const selectedCategory = categorySelect.value;
+   const filteredStories = selectedCategory ?
+    stories.filter(story => story.category === selectedCategory) :
+    stories;
+   displayStories(filteredStories);
+  }
+
+  function updateFontSize() {
+   document.body.style.fontSize = `${fontSizeInput.value}px`;
+  }
+
+  function toggleDarkMode() {
+   const isDarkMode = document.body.classList.toggle('dark-mode');
+   localStorage.setItem('color-mode', isDarkMode ? 'dark' : 'light');
+  }
+
+  function addPoints(amount) {
+   points += amount;
+   localStorage.setItem('points', points);
+   pointsSpan.textContent = points;
+   checkLevelUp();
+  }
+
+  function checkLevelUp() {
+   const newLevel = Math.floor(points / 100) + 1;
+   if (newLevel > level) {
+    level = newLevel;
+    localStorage.setItem('level', level);
+    levelSpan.textContent = level;
+    alert(`¡Felicidades! Has subido al nivel ${level}`);
+   }
+  }
+
+  function updateLikeButton(story) {
+   const storyLikes = likes[story.id] || 0;
+   likeCount.textContent = storyLikes;
+   likeBtn.onclick = () => likeStory(story);
+  }
+
+  function likeStory(story) {
+   if (!likes[story.id]) {
+    likes[story.id] = 0;
+   }
+   likes[story.id]++;
+   localStorage.setItem('likes', JSON.stringify(likes));
+   updateLikeButton(story);
+   addPoints(1);
+  }
+
+  function showEditor() {
+   storyList.classList.add('hidden');
+   storyReader.classList.add('hidden');
+   favoritesSection.classList.add('hidden');
+   settingsSection.classList.add('hidden');
+   storyEditor.classList.remove('hidden');
+   displayDrafts();
+  }
+
+  function displayDrafts() {
+   draftsList.innerHTML = '';
+   drafts.forEach((draft, index) => {
+    const draftItem = document.createElement('div');
+    draftItem.textContent = draft.title;
+    draftItem.onclick = () => loadDraft(index);
+    draftsList.appendChild(draftItem);
+   });
+  }
+
+  function loadDraft(index) {
+   const draft = drafts[index];
+   storyTitleInput.value = draft.title;
+   storyContentInput.value = draft.content;
+   if (draft.image) {
+    imagePreview.innerHTML = `<img src="${draft.image}" alt="Preview">`;
+   }
+  }
+
+  function saveDraft() {
+   const newDraft = {
+    title: storyTitleInput.value,
+    content: storyContentInput.value,
+    image: imagePreview.innerHTML ? imagePreview.querySelector('img').src : null
+   };
+   drafts.push(newDraft);
+   localStorage.setItem('story-drafts', JSON.stringify(drafts));
+   displayDrafts();
+  }
+
+  function publishStory() {
+   // Aquí iría la lógica para publicar la historia
+   console.log('Historia publicada:', {
+    title: storyTitleInput.value,
+    content: storyContentInput.value,
+    image: imagePreview.innerHTML ? imagePreview.querySelector('img').src : null
+   });
+  }
+
+  function previewStory() {
+   previewContent.innerHTML = `
+                <h3>${storyTitleInput.value}</h3>
+                <div>${marked(storyContentInput.value)}</div>
+                ${imagePreview.innerHTML}
+            `;
+   storyPreview.classList.remove('hidden');
+  }
+  Claro, continuaré desde donde me quedé.Aquí está el resto del script:
+   ``
+  `html
+<script>
+    // ... (código anterior)
+
+    // Event Listeners (continuación)
+    homeBtn.addEventListener('click', () => {
+        storyReader.classList.add('hidden');
+        favoritesSection.classList.add('hidden');
+        settingsSection.classList.add('hidden');
+        storyEditor.classList.add('hidden');
+        storyPreview.classList.add('hidden');
+        storyList.classList.remove('hidden');
+        storyList.classList.add('active');
+    });
+
+    favoritesBtn.addEventListener('click', () => {
+        storyReader.classList.add('hidden');
+        storyList.classList.add('hidden');
+        settingsSection.classList.add('hidden');
+        storyEditor.classList.add('hidden');
+        storyPreview.classList.add('hidden');
+        favoritesSection.classList.remove('hidden');
+        favoritesSection.classList.add('active');
+        displayFavorites();
+    });
+
+    settingsBtn.addEventListener('click', () => {
+        storyReader.classList.add('hidden');
+        storyList.classList.add('hidden');
+        favoritesSection.classList.add('hidden');
+        storyEditor.classList.add('hidden');
+        storyPreview.classList.add('hidden');
+        settingsSection.classList.remove('hidden');
+        settingsSection.classList.add('active');
+    });
+
+    searchBtn.addEventListener('click', searchStories);
+    searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') searchStories();
+    });
+
+    categorySelect.addEventListener('change', filterByCategory);
+
+    fontSizeInput.addEventListener('input', updateFontSize);
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+
+    editorBtn.addEventListener('click', showEditor);
+
+    storyImageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.innerHTML = ` < img src = "${e.target.result}"
+  alt = "Preview" > `;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    storyContentInput.addEventListener('input', previewStory);
+    saveDraftBtn.addEventListener('click', saveDraft);
+    publishStoryBtn.addEventListener('click', publishStory);
+
+    // Inicialización
+    displayStories();
+    updateFontSize();
+    
+    const colorMode = getInitialColorMode();
+    document.body.classList.toggle('dark-mode', colorMode === 'dark');
+    darkModeToggle.checked = colorMode === 'dark';
+
+    // Poblar el selector de categorías
+    const categories = [...new Set(stories.map(story => story.category))];
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelect.appendChild(option);
+    });
+
+    pointsSpan.textContent = points;
+    levelSpan.textContent = level;
+
+    // Listener para cambios en la preferencia del sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        const newColorScheme = e.matches ? 'dark' : 'light';
+        document.body.classList.toggle('dark-mode', e.matches);
+        darkModeToggle.checked = e.matches;
+        localStorage.setItem('color-mode', newColorScheme);
+    });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+body {
+  margin: 0; height:100vh;background-color: black; color:white; 
+}
+
+body .bgWhite {
+  /*background-color: white;*/
+  /*position: relative;*/
+  width: 100%;
+  height: 450px;
+  background-image: linear-gradient(to bottom, white, transparent 40%, transparent 60%, white), url('https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/');
+  background-size: cover;
+  background-position: center;
+}
+
+body .bgBlack {
+  /*background-color: black;*/
+  /*position: relative;*/
+  width: 100%;
+  height: 450px;
+  background-image: linear-gradient(to bottom, black, transparent 40%, transparent 60%, black), url('https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/');
+  background-size: cover;
+  background-position: center;
+}

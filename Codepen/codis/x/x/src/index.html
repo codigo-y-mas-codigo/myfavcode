@@ -1,0 +1,53 @@
+
+<!-- Created by @LeaVerou + https://twitter.com/tweeplusapp -->
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Tweet</title>
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+    <hgroup>
+        <h1><a href="?#" title="Click para cambiar de color"><span>xiiber</span>+</a></h1>
+        <h2>Longer tweets, no strings attached</h2>
+    </hgroup>
+
+    <form action="https://twitter.com/intent/tweet" target="_blank">
+        <textarea maxlength="2000" placeholder="Type your long tweet here" required></textarea>
+        <input type="hidden" name="text" />
+        <button type="submit">Post to twitter</button>
+        <p class="counters">
+            <span id="counter">0</span> characters,
+            <span id="counter-encoded">0</span> encoded
+        </p>
+        <div id="reply" class="reply">
+            <label>
+			In reply to
+			<input type="url" id="reply-url" placeholder="Tweet URL" />	
+		</label>
+            <input type="hidden" name="in_reply_to" id="in_reply_to" value="" />
+            <p class="tooltip"><strong>It looks like you’re trying to post a reply.</strong> It’s much better if you paste the tweet URL in this field instead, so that it’s linked to the tweet you’re replying to. The @-mention in the beginning will be added automatically.</p>
+        </div>
+        <p id="links" class="links"></p>
+    </form>
+
+    <footer>
+        <a href="">Browser support</a> +
+
+    </footer>
+
+    <script src="api.js"></script>
+    <script src="tweeplus.js"></script>
+
+
+</body>
+
+</html>

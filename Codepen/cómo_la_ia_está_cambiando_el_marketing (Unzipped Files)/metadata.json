@@ -1,0 +1,38 @@
+[
+  {
+    "part": "hook",
+    "description": "¿Crees que el marketing tradicional sigue funcionando igual? La IA está revolucionando todo, ¡prepárate para el futuro!",
+    "image_filename": "hook.png",
+    "text_filename": "hook.txt",
+    "suggested_alt_text": "IA revolutionizing traditional marketing. Prepare for the future!"
+  },
+  {
+    "part": "problem",
+    "description": "Muchas empresas luchan por conectar con su audiencia. Los métodos antiguos ya no captan la atención en un mundo digital saturado.",
+    "image_filename": "problem.png",
+    "text_filename": "problem.txt",
+    "suggested_alt_text": "Empresas luchan por conectar con audiencia en mundo digital saturado."
+  },
+  {
+    "part": "solution",
+    "description": "Utiliza la Inteligencia Artificial para personalizar campañas, predecir tendencias de consumo y optimizar tu presupuesto publicitario eficientemente.",
+    "image_filename": "solution.png",
+    "text_filename": "solution.txt",
+    "suggested_alt_text": "IA personaliza campañas, predice consumo y optimiza presupuesto publicitario."
+  },
+  {
+    "part": "example",
+    "description": "Imagina emails que se adaptan a cada cliente, o anuncios que aparecen justo cuando más los necesitas. ¡Eso es IA en acción!",
+    "image_filename": "example.png",
+    "text_filename": "example.txt",
+    "suggested_alt_text": "IA adaptando emails y anuncios a clientes, apareciendo justo cuando se necesitan.",
+    "image_caption": ""
+  },
+  {
+    "part": "callToAction",
+    "description": "Guarda este post y sígueme para descubrir más estrategias de marketing impulsadas por IA.",
+    "image_filename": "callToAction.png",
+    "text_filename": "callToAction.txt",
+    "suggested_alt_text": "**Option 1 (Focus on action):** Save this post & follow for AI marketing tips. (62 chars)\n\n**Option 2 (More descriptive):** Save this post & follow for more AI-powered marketing strategies. (76 chars)\n\n**Option 3 (Concise & direct):** Follow for AI marketing strategies. Save this post. (49 chars)"
+  }
+]

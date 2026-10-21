@@ -1,0 +1,39 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(45deg, #042461 0%, rgba(225, 5, 34, 0) 70%),
+              linear-gradient(135deg, #340447 10%, rgba(49, 5, 209, 0) 80%),
+              linear-gradient(225deg, #0f053a 10%, rgba(10, 219, 216, 0) 80%),
+              linear-gradient(315deg, #050813 100%, rgba(9, 245, 5, 0) 70%);
+  animation: changeBackground 10s linear infinite;
+}
+
+@keyframes changeBackground {
+  0% {
+    background: linear-gradient(45deg, #042461 0%, rgba(225, 5, 34, 0) 70%),
+                linear-gradient(135deg, #340447 10%, rgba(49, 5, 209, 0) 80%),
+                linear-gradient(225deg, #0f053a 10%, rgba(10, 219, 216, 0) 80%),
+                linear-gradient(315deg, #050813 100%, rgba(9, 245, 5, 0) 70%);
+  }
+  50% {
+    background: linear-gradient(45deg, #ff0000 0%, rgba(255, 0, 0, 0) 70%),
+                linear-gradient(135deg, #00ff00 10%, rgba(0, 255, 0, 0) 80%),
+                linear-gradient(225deg, #0000ff 10%, rgba(0, 0, 255, 0) 80%),
+                linear-gradient(315deg, #ffff00 100%, rgba(255, 255, 0, 0) 70%);
+  }
+  100% {
+    background: linear-gradient(45deg, #042461 0%, rgba(225, 5, 34, 0) 70%),
+                linear-gradient(135deg, #340447 10%, rgba(49, 5, 209, 0) 80%),
+                linear-gradient(225deg, #0f053a 10%, rgba(10, 219, 216, 0) 80%),
+                linear-gradient(315deg, #050813 100%, rgba(9, 245, 5, 0) 70%);
+  }
+}

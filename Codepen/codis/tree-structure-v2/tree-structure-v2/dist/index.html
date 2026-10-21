@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>tree  structure v2</title>
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div class="flex">
+  <div>
+    <h3>with classes in markup</h3>
+    <ul class="tree2">
+      <li><span class="caret">Pallet</span>
+        <ul class="nested">
+          <li>Container 123</li>
+          <li>Container 456</li>
+          <li><span class="caret">Container 789</span>
+            <ul class="nested">
+              <li>Product x</li>
+              <li>Product y</li>
+              <li><span class="caret">Product z</span>
+                <ul class="nested">
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Container 212</li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+  <div>
+    <h3>NO classes in markup</h3>
+    <ul class="tree2" id="palletcontents">
+      <li><span>Pallet v2</span>
+        <ul>
+          <li>Container 123</li>
+          <li>Container 456</li>
+          <li><span>Container 789</span>
+            <ul>
+              <li>Product x</li>
+              <li>Product y</li>
+              <li><span>Product z</span>
+                <ul>
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                  <li>Contents product 1</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Container 212</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,470 @@
+/* . ===== Current LIVE SitePoint CSS  ==========*/
+@import url("https://d39ayi7b6b3haj.cloudfront.net/premium/assets/styles-ba747f51c6a0d7e09a9358373a93222d24c293ada4a56e697ca61890a7a230ee.css");
+
+/* . ===== NEW CSS  ==========*/
+
+// sass variables
+
+$readerwidth: 42vw;
+$readerheight: $readerwidth/2;
+
+$bookwidth: $readerwidth/1.9;
+$bookheight: $bookwidth/1.55;
+$spinewidth: 5%;
+$coverscale: 955%;
+
+// flat book graphics
+$bookCover-perf1: "https://cdn.rawgit.com/alexmwalker/Complete-Cover-Archive/master/performance1/SVG/Frontend-spread.svg";
+$bookCover-react: "https://cdn.rawgit.com/alexmwalker/Complete-Cover-Archive/master/react1/react-projects.svg";
+$bookCover-angular: "https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/angular2/angular2.png";
+$bookCover-xd: "https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/adobexd1/adobexd1.png";
+$bookCover-cssmaster: "https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/cssmaster1/cssmaster1.jpg";
+$bookCover: "https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/php6/php6.png"; // fallback
+
+/* book cover mixins - each image has a layered gradient on top 
+// This is how we get surface lighting - 
+
+Note: I'm setting up 
+- 5 books 
+- 3 readers 
+- 5 backgrounds
+
+We'll probably only need one set up for each page. The idea is to make it trivially
+easy to change books, readers and backgrounds.
+
+ */
+
+@mixin booksurface {
+  // the default
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover);
+}
+@mixin booksurface-xd {
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover-xd);
+}
+@mixin booksurface-perf1 {
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover-perf1);
+}
+@mixin booksurface-cssmaster {
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover-cssmaster);
+}
+@mixin booksurface-angular {
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover-angular);
+}
+@mixin booksurface-react {
+  background-image: linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(90, 88, 88, 0) 39%,
+      rgba(115, 113, 113, 0) 50%,
+      rgba(142, 141, 141, 0) 60%,
+      rgba(252, 252, 252, 0.46) 100%
+    ),
+    url($bookCover-react);
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 28px;
+    font-size: 1.75rem;
+  }
+}
+
+.f-xlarge {
+  font-size: 2.25rem;
+}
+.f-light {
+  font-weight: 300;
+}
+.f-c-white {
+  color: #fff;
+}
+.l-w-100 {
+  width: 100%;
+}
+@media (min-width: 624px) {
+  .l-w-1col--2col {
+    width: 312px;
+  }
+}
+@media (min-width: 624px) {
+  .l-d-f--2col {
+    display: flex;
+  }
+}
+.l-mb4 {
+  margin-bottom: 32px;
+}
+.l-ph5 {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+.Landing3 section {
+  background-color: #fff;
+}
+
+
+/* ==== background gradients ===== */ 
+.Landing3.bg_gradient { //defaults
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/11/14788516501466142151pattern-final-copy.png),
+    linear-gradient(90deg, #3577ff, #143798);
+}
+
+.Landing3.bg_gradient.orangeBG{
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/11/14788516501466142151pattern-final-copy.png),
+    linear-gradient(90deg, #ef9104, #aa5500);
+}
+.Landing3.bg_gradient.redBG{
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/11/14788516501466142151pattern-final-copy.png),
+    linear-gradient(90deg, #bd2f4c, #8c0426);
+}
+.Landing3.bg_gradient.purpleBG{
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/11/14788516501466142151pattern-final-copy.png),
+    linear-gradient(90deg, #bf2ebf, #520352);
+}
+.Landing3.bg_gradient.greenBG{
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/11/14788516501466142151pattern-final-copy.png),
+    linear-gradient(90deg, #05ab6e, #01452a);
+}
+
+
+
+
+/*  ========== .  New model ======= .  */
+
+.reader {
+  //outline: 1px lime dotted;
+  float: left;
+  perspective: 600px;
+  width: $readerwidth;
+  height: $readerwidth*0.55;
+  max-height: 340px;
+  bottom: 0;
+  left: 55%;
+  z-index: 1;
+  position: absolute;
+  background-size: 100% auto;
+  background-position: 0% bottom;
+  background-repeat: no-repeat;
+  perspective-origin: center top;
+}
+
+/* ++++++++ . The Models  +++++++++++++ . */
+.reader1 {
+  // young woman #1
+  background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-girl-base.png?r342);
+  .hands {
+    background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-girl-hands.png?r=1);
+  }
+}
+
+.reader2 {
+  // young woman #2
+  background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-girl-base2.png?r=1);
+  .hands {
+    background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-girl-hands.png?r=1);
+  }
+}
+.reader3 {
+  // young man #1
+  background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-boy-base.png?r=1w);
+  .hands {
+    background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/geek-boy-hands.png?r=2);
+  }
+}
+
+/* . ========== .  The Book Infrastructure  ========*/
+.bookgroup {
+  //outline: 1px white dashed;
+  width: $bookwidth;
+  height: $bookheight;
+  position: absolute;
+  left: 3.5vw;
+  bottom: 0.6vw;
+  transform: rotateY(0deg) rotateX(-10deg) rotateZ(0deg); //default view
+  transform-style: preserve-3d;
+  perspective-origin: left top;
+}
+
+.spine {
+  position: absolute;
+  @include booksurface; // a default - PHP
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 150% 200%, auto 100%;
+  border-top: 5px #ccc solid;
+  height: 100%;
+  width: $spinewidth;
+  left: 47.5%;
+  position: absolute;
+  &:after,
+  &:before {
+    // backcover
+    background: inherit;
+    transform-style: preserve-3d;
+    transform-origin: 100% 50%;
+    background-position: top right;
+    box-shadow: 0 -3px 0px -1px #ccc, 3px -8px 0px -4px #ddd,
+      7px -13px 0px -7px #eee;
+    transform: rotateY(-20deg) rotateX(0deg) rotateZ(0deg); //default view
+    background-position: top right, top left;
+    background-size: 100% 200%, auto 100%;
+    display: block;
+    position: absolute;
+    content: "";
+    width: $coverscale;
+    height: 100%;
+    top: 0;
+    left: -($coverscale)+2;
+  }
+  &:after {
+    // frontcover
+    right: -$coverscale+1; 
+    left: auto;
+    transform-origin: 0% 50%;
+    box-shadow: 0 -3px 0px -1px #ccc, -3px -8px 0px -4px #ddd,
+      -7px -13px 0px -7px #eee;
+    background-position: bottom right, top right;
+    transform: rotateY(20deg) rotateX(0deg) rotateZ(0deg); //default view
+  }
+
+  /* ======= . The BOOK defaults to PHP - here's the change up ==== */
+
+  &.xd {
+    @include booksurface-xd;
+  }
+  &.cssmaster {
+    @include booksurface-cssmaster;
+  }
+  &.angular {
+    @include booksurface-angular;
+  }
+  &.react {
+    @include booksurface-react;
+  }
+    &.perf1 {
+    @include booksurface-perf1;
+  }
+}
+
+.hands {
+  display: block;
+  position: absolute;
+  width: $readerwidth;
+  height: $readerwidth*0.55;
+  bottom: 0;
+  z-index: 300;
+  left: 0;
+  background-position: center bottom;
+  background-size: 100% auto;
+}
+
+
+
+/*========= .  pre-existing CSS from here down ======*/ 
+
+
+
+.Button {
+  display: inline-block;
+  margin: 0;
+  min-width: 100px;
+  padding: 0.5rem;
+  border: 1px solid;
+  border-color: #3ec9cb;
+  border-radius: 2px;
+  background: #3ec9cb;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: 0.3s ease;
+  transition-property: border-color, background-color, color;
+}
+.Button:active,
+.Button:focus,
+.Button:hover {
+  background-color: #24b3b5;
+  border-color: #24b3b5;
+  color: #fff;
+}
+.Button:visited {
+  color: #fff;
+}
+.Button:active {
+  -webkit-transform: translateY(1px);
+  transform: translateY(1px);
+}
+.Button.u-red {
+  background-color: #f55555;
+  border-color: #f55555;
+}
+.Button.u-red:active,
+.Button.u-red:hover {
+  background-color: #f22525;
+  border-color: #f22525;
+}
+/*! CSS Used from: Embedded */
+.v3Header_panel {
+  position: relative;
+  padding-top: 3rem;
+  color: #fff;
+  overflow: auto;
+  position: relative;
+  max-width: 1600px;
+  margin: auto;
+}
+.v3Header_button {
+  z-index: 2;
+  margin-bottom: 3rem;
+}
+.v3Header_desktop {
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/10/1507006535Desktile.png);
+  height: 40px;
+}
+.v3Header_desktop-inner {
+  height: 40px;
+  position: relative;
+  bottom: 0;
+  max-width: 1600px;
+  margin: auto;
+}
+.v3Header_pitch {
+  float: none;
+  width: 100%;
+}
+.v3Header_reader {
+  width: 100%;
+  height: 300px;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  position: relative;
+  background-image: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/10/1507006607desk-boy-jsnovice.png);
+  background-size: 100% auto;
+  background-position: 0% bottom;
+  background-repeat: no-repeat;
+}
+.v3Header_reader-base {
+  background-image: url(https://raw.githubusercontent.com/alexmwalker/Complete-Cover-Archive/master/misc/desk-boy-base.png?r=345);
+  width: 100%;
+  height: 40px;
+  background-size: 100% auto;
+  background-position: center -100%;
+  background-repeat: no-repeat;
+  float: right;
+}
+.v3Header_reader-base:before,
+.v3Header_reader-base:after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 30%;
+  left: 70%;
+  height: 200px;
+  bottom: 0%;
+  z-index: 1;
+  background: url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/10/1507006745book-stack1-sprite.png)
+    no-repeat;
+  background-size: 700% auto;
+  background-position: 66.6% bottom;
+}
+.v3Header_reader-base:after {
+  background-position: 16.6% bottom;
+  left: 45%;
+  bottom: 10%;
+}
+
+
+
+
+@media only screen and (min-width: 800px) {
+  .v3Header_reader-base {
+    width: 50%;
+    height: 70px;
+  }
+  .v3Header_desktop {
+    height: 70px;
+  }
+  .v3Header_desktop-inner {
+    height: 70px;
+  }
+  .v3Header_reader-base:before,
+  .v3Header_reader-base:after {
+    width: 20%;
+    left: 80%;
+    bottom: 0%;
+  }
+  .v3Header_reader-base:after {
+    bottom: 30%;
+    left: 45%;
+  }
+  .v3Header_pitch {
+    float: left;
+    width: 50%;
+  }
+  .v3Header_reader {
+    width: 50%;
+    position: absolute;
+  }
+  .v3Header_reader-base {
+    background-position: center top;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 1040px) {
+  .v3Header_pitch {
+    float: left;
+    width: 60%;
+  }
+  .v3Header_reader {
+    width: 40%;
+    position: absolute;
+  }
+  .v3Header_reader-base {
+    width: 40%;
+  }
+}

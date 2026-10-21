@@ -1,0 +1,20 @@
+html {
+  background-color: #1D1F20;
+}
+
+code {
+  font-family: 'Monaco', monotype;
+  color: white;
+  font-size: 15px;
+}
+
+.tag {
+  color: #A7925A;
+  text-transform: lowercase;
+}
+.attribute-name {
+  color: #DDCA7B;
+}
+.attribute-value {
+  color: #95B289;
+}

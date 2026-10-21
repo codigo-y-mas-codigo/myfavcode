@@ -1,0 +1,19 @@
+{
+  "title": "-Derechos y Deberes Condominales",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "\n\n#### **INFOGRAFÍA 4: Derechos, Uso y Prohibiciones**\n\nEsta infografía se centrará en las reglas de convivencia y uso del espacio.\n\n*   **Título sugerido:** Conviviencia en Armonía: Lo Permitido y Lo Prohibido.\n*   **Contenido Clave:**\n    *   **Propiedad Privativa (UPP):** El condómino tiene derecho sobre su UPP y derechos de copropiedad sobre los elementos comunes. Puede usar, gozar y disponer de su UPP con las limitaciones de la Ley.\n    *   **Bienes Comunes:** Mencionar ejemplos de bienes comunes (terreno, cimientos, fachadas, sótanos, elevadores, patios, áreas verdes, instalaciones deportivas, portería). El uso debe ser conforme a su naturaleza sin restringir el derecho de los demás.\n    *   **Lista de Prohibiciones (Visual de \"No hacer\"):** Enfocarse en las restricciones cruciales para la convivencia:\n        *   No destinar la UPP a usos distintos al establecido.\n        *   No realizar actos que afecten la tranquilidad, estabilidad, seguridad o salubridad del condominio.\n        *   Prohibición de modificar la fachada o paredes exteriores desentonando con el condominio.\n        *   Prohibición de delimitar o techar áreas de estacionamiento de uso común o cualquier otra área común (excepto áreas verdes para protección).\n        *   Prohibición de poseer animales que afecten la seguridad, salubridad o comodidad.\n    *   **Obras:** Señalar que las obras que afecten la estructura o muros de carga están prohibidas. Las obras en entrepisos son obligatorias para los condóminos colindantes, y las obras en techos o sótanos de construcción vertical son por cuenta de todos los condóminos.\n\n#### **INFOGRAFÍA 5: Estructuras Complejas y Mecanismos de Queja**\n\nEsta infografía abarca temas específicos de organización avanzada y resolución de conflictos.\n\n*   **Título sugerido:** Condominios Complejos y Solución de Conflictos.\n*   **Contenido Clave:**\n    *   **Conjunto Condominal:** Definición (agrupación de dos o más condominios con áreas de uso común para todo el conjunto).\n    *   **Comité de Administración (Conjunto Condominal):** Se elige en Sesión de Consejo de Administradores. Está integrado por un Presidente, un Secretario y un Tesorero.\n    *   **Comité de Vigilancia (Conjunto Condominal):** Integrado por los presidentes de los Comités de Vigilancia de cada condominio, que eligen a un coordinador.\n    *   **Reglamento Interno:** Es el instrumento que regula el uso de áreas comunes y establece las bases de convivencia. Debe ser aprobado o reformado por la Asamblea General.\n    *   **Procedimiento de Queja ante PROSOC:** Indicar los pasos esenciales: formular un escrito con narración clara de hechos, señalar promovente y requerido, y anexar documentación requerida (identificación, prueba de propiedad, y documentos específicos según el caso, como actas de asamblea si es por morosidad).",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_PORTRAIT",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD"
+    },
+    "title": "Derechos y Deberes Condominales"
+  }
+}

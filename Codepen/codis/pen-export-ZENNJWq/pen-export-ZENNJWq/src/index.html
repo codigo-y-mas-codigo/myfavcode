@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Imágenes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container"> 
+    
+    <div class="controls" style="z-index:2">
+      <label for="columns">Imágenes por fila:</label>
+      <select id="columns">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <span id="favorites-icon">❤️</span>
+    </div>
+    <div class="gallery">
+      <!-- Images will be added here dynamically -->
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-image">
+    <form id="quote-form" style="margin:10px 10px 10px 10px">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="company">Nombre de la empresa</label>
+      <input type="text" id="company" name="company" required>
+      <label for="image-url">URL de la imagen</label>
+      <input type="text" id="image-url" name="image-url" readonly>
+      <label for="pieces">Piezas</label>
+      <input type="number" id="pieces" name="pieces" required>
+      <label for="engraving">¿Va a requerir grabado?</label>
+      <select id="engraving" name="engraving" onchange="showEngravingOptions()">
+        <option value="no">No</option>
+        <option value="yes">Sí</option>
+      </select>
+      <div id="engraving-options" style="display: none;">
+        <label for="engraving-type">Tipo de grabado</label>
+        <select id="engraving-type" name="engraving-type">
+          <option value="laser">Láser</option>
+          <option value="serigraphy">Serigrafía</option>
+          <option value="dtf">DTF</option>
+        </select>
+      </div>
+      <label for="observations">Observaciones</label>
+      <textarea id="observations" name="observations"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <div id="favorites-modal" class="modal">
+    <div class="favorites-content">
+      <span class="close">&times;</span>
+      <h2>Imágenes Favoritas</h2>
+      <ul id="favorites-list" class="favorites-list">
+        <!-- Favorite images will be added here dynamically -->
+      </ul>
+      <p>Versión 1.5.11 al 11 de mayo 2024 desarrollado por <a href="https://www.xbr.pw">xbr.pw</a></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

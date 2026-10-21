@@ -1,0 +1,43 @@
+.bottom {
+  --s: 81px; /* control the size */
+  --d: 20px; /* control the depth */
+  
+  --_m: from 45deg at bottom;
+  padding-bottom: var(--s);
+  background: 
+    conic-gradient(var(--_m) var(--d) left 50%,#0004 135deg,#0009 0 270deg,#0000 0) 
+    50%/var(--s);
+  background-color: #78C0A8; /* the main color */
+}
+.top {
+  --s: 67px; /* control the size */
+  --d: 14px; /* control the depth */
+  
+  --_m: from -135deg at top;
+  padding-top: var(--s);
+  background: 
+    conic-gradient(var(--_m) var(--d) left 50%,#0009 135deg,#0004 0 270deg,#0000 0) 
+    50%/var(--s);
+  background-color: #ED303C; /* the main color */
+}
+.top,.bottom {
+  -webkit-mask: conic-gradient(var(--_m),#0000 75%,#000 0) 50%/var(--s);
+}
+
+div[class] {
+  min-height: 150px;
+  padding-inline: 20px;
+  display: grid;
+  place-content: center;
+  font-size: 30px;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  align-content: space-between;
+  background: repeating-linear-gradient(-45deg, #fff 0 20px, #f9f9f9 0 40px)
+}

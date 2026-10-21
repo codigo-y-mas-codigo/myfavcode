@@ -1,0 +1,125 @@
+<title>Pen Export Eyabnjm</title>
+<body>
+ <h1>Registro de Consumo</h1>
+ <form id="registroForm">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" required>
+  <label for="fechaPrimerConsumo">Fecha de Primer Consumo:</label>
+  <input type="date" id="fechaPrimerConsumo" required>
+
+  <button onclick="descargarDatos()">Descargar Datos</button>
+
+  <label for="cantidad">Cantidad de Fumes:</label>
+  <input type="number" id="cantidad" min="0" max="30" step="0.01" required>
+  <label for="intensidad">Intensidad:</label>
+  <select id="intensidad" required>
+   <option value="leve">Leve</option>
+   <option value="moderado">Moderado</option>
+   <option value="intenso">Intenso</option>
+  </select>
+  <label for="producto">Producto Utilizado:</label>
+  <input type="number" id="producto" min="0.01" max="0.30" step="0.01" required>
+  <button type="submit">Agregar Registro</button>
+
+ </form>
+
+ <div id="registros"></div>
+
+ <script src="script.js"></script>
+</body>
+
+</html>
+
+<script id="rendered-js">
+ // Función para agregar un nuevo registro
+ function agregarRegistro(event) {
+  event.preventDefault();
+  const cantidad = document.getElementById("cantidad").value;
+  const intensidad = document.getElementById("intensidad").value;
+  const producto = document.getElementById("producto").value;
+  const fecha = new Date().toLocaleString();
+  const registro = {
+   cantidad,
+   intensidad,
+   producto,
+   fecha
+  };
+  let registros = JSON.parse(localStorage.getItem("registros")) || [];
+  registros.push(registro);
+  localStorage.setItem("registros", JSON.stringify(registros));
+  mostrarRegistros();
+  document.getElementById("registroForm").reset();
+ }
+ // Función para mostrar los registros almacenados
+ function mostrarRegistros() {
+  const registrosDiv = document.getElementById("registros");
+  registrosDiv.innerHTML = "";
+  let registros = JSON.parse(localStorage.getItem("registros")) || [];
+  let totalLeves = 0;
+  let totalModerados = 0;
+  let totalIntensos = 0;
+  let totalProducto = 0;
+  registros.forEach((registro, index) => {
+   registrosDiv.innerHTML += `
+            <div>
+                <p><strong>Fecha:</strong> ${registro.fecha}</p>
+                <p><strong>Cantidad de Fumes:</strong> ${registro.cantidad}</p>
+                <p><strong>Intensidad:</strong> ${registro.intensidad}</p>
+                <p><strong>Producto Utilizado:</strong> ${registro.producto}</p>
+                <button onclick="editarRegistro(${index})">Editar</button>
+                <button onclick="eliminarRegistro(${index})">Eliminar</button>
+            </div>
+        `;
+   switch (registro.intensidad) {
+    case "leve":
+     totalLeves += parseFloat(registro.cantidad);
+     break;
+    case "moderado":
+     totalModerados += parseFloat(registro.cantidad);
+     break;
+    case "intenso":
+     totalIntensos += parseFloat(registro.cantidad);
+     break;
+   }
+   totalProducto += parseFloat(registro.producto);
+  });
+  registrosDiv.innerHTML += `
+        <div>
+            <h3>Totales:</h3>
+            <p><strong>Total de Fumes Leves:</strong> ${totalLeves.toFixed(
+             2
+            )}</p>
+            <p><strong>Total de Fumes Moderados:</strong> ${totalModerados.toFixed(
+             2
+            )}</p>
+            <p><strong>Total de Fumes Intensos:</strong> ${totalIntensos.toFixed(
+             2
+            )}</p>
+            <p><strong>Total del Producto Utilizado:</strong> ${totalProducto.toFixed(
+             2
+            )}</p>
+        </div>
+    `;
+ }
+ // Mostrar los registros al cargar la página
+ mostrarRegistros();
+ // Obtener nombre y fecha de primer consumo del localStorage
+ const nombre = localStorage.getItem("nombre") || "";
+ const fechaPrimerConsumo = localStorage.getItem("fechaPrimerConsumo") || "";
+ // Mostrar nombre y fecha de primer consumo en el formulario
+ document.getElementById("nombre").value = nombre;
+ document.getElementById("fechaPrimerConsumo").value = fechaPrimerConsumo;
+ // Event listener para el formulario de registro
+ document.getElementById("registroForm").addEventListener("submit", (event) => {
+  localStorage.setItem("nombre", document.getElementById("nombre").value);
+  localStorage.setItem(
+   "fechaPrimerConsumo",
+   document.getElementById("fechaPrimerConsumo").value
+  );
+  agregarRegistro(event);
+ });
+ // Event listener para el botón de descarga de datos
+ document
+  .getElementById("descargarDatos")
+  .addEventListener("click", descargarDatos);
+</script>

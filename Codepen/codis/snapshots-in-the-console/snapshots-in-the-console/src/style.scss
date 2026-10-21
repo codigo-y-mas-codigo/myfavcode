@@ -1,0 +1,82 @@
+@import "compass/css3";
+
+// Chrome Logo in SVG by Tab Atkins Jr: http://www.xanthir.com/blog/b4Bc0
+
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+
+/* colors */
+$midnightblue: #2c3e50;
+$alizarin: #e74c3c;
+$clouds: #ecf0f1;
+$silver: #bdc3c7;
+$asbestos: #7f8c8d;
+
+body {
+  font-family: 'Inconsolata', monospace; font-size: 16px; line-height: 1.5;
+  background-color: $clouds; color: $asbestos;
+}
+
+.content {width: 500px; text-align: center; margin: 70px auto 20px}
+
+h1 {font-size: 1.5em; font-weight: 600; margin: 0 0 .5em}
+h4 {font-size: .8em; margin: 0; color: $silver}
+
+svg {width: 100px; height: 32px; margin: 5px 0 20px; opacity: .8;
+  .bg {fill: #f7f7f7}
+  #chrome-logo {
+    .center {fill: #3872e4}
+    .top {fill: #e63d2e}
+    .right {fill: #fdcd44}
+    .left {fill: #1f9838}
+  }
+  #canary-logo {
+    .center {fill: darken(#fdcd44, 20)}
+    .top {fill: darken(#fdcd44, 25)}
+    .right {fill: #fdcd44}
+    .left {fill: darken(#fdcd44, 20)}
+  }
+}
+
+ul {margin: 0; padding: 0; width: 500px; opacity: .9;
+  li {list-style: none}
+}
+
+.cta {margin: 40px 0 20px; text-transform: uppercase}
+
+button {
+  display: inline-block; vertical-align: top; width: 190px; padding: 11px 0 12px 0;
+  color: #FFF; font-size: 17px; line-height: 21px; font-weight: 500;
+  background: $alizarin; border-radius: 5px;
+  border: none; outline: none;
+  @include transition(opacity .2s ease-out);
+  &:hover {opacity: 0.8}
+}
+
+code {
+  font-family: 'Inconsolata', monospace; background-color: lighten($clouds, 2); color: darken($asbestos, 20); border: 1px solid darken($clouds, 10);
+  padding: 0px 5px; font-size: .8em; border-radius: 3px;
+}
+
+
+/* Not yet */
+.no-usermedia .not {display: block}
+.not {
+  display: none;
+  background-color: transparentize($midnightblue, .1);
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  .box {
+    @include box-sizing(border-box);
+    position: absolute; left: 50%; top: 50%; height: 140px; width: 260px;
+    margin: -70px 0 0 -130px; padding: 10px 20px; font-size: 14px;
+    border: 1px solid lighten($alizarin, 20); border-radius: 3px;
+    background: $alizarin; color: lighten($alizarin, 30); text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      inset 0 0 0 2px lighten($alizarin, 7),
+      0 5px 20px darken($midnightblue, 5);
+  }
+  h1 {font-weight: normal; font-size: 18px; line-height: 18px; margin-top: 7px}
+  p {color: lighten($alizarin, 25)}
+  a {font-size: 11px; text-transform: uppercase; text-decoration: none; color: lighten($alizarin, 35);
+    &:hover {color: lighten($alizarin, 40)}
+  }
+}

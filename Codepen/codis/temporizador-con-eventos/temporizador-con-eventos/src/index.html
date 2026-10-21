@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Temporizador con Eventos</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   margin: 20px;
+  }
+
+  #timer {
+   font-size: 2em;
+   margin: 20px;
+  }
+
+  #eventName,
+  #eventDetailsText {
+   width: 100%;
+   margin-top: 10px;
+  }
+
+  #eventList {
+   text-align: left;
+   margin-top: 20px;
+  }
+
+  #eventList table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 10px;
+  }
+
+  #eventList table,
+  #eventList th,
+  #eventList td {
+   border: 1px solid #ddd;
+  }
+
+  #eventList th,
+  #eventList td {
+   padding: 8px;
+   text-align: left;
+  }
+
+  #eventList th {
+   background-color: #f2f2f2;
+  }
+
+  #searchInput {
+   margin-top: 10px;
+  }
+
+  .tabcontent {
+   display: none;
+  }
+
+  .tabcontent.active {
+   display: block;
+  }
+
+  .tab {
+   display: inline-block;
+   margin: 0 10px;
+   cursor: pointer;
+  }
+ </style>
+</head>
+
+<body>
+ <div id="timer">01:00</div>
+ <label for="eventName">Nombre del Temporizador:</label>
+ <input type="text" id="eventName" placeholder="Ingrese el nombre...">
+ <button onclick="startTimer()">Iniciar</button>
+ <button onclick="stopTimer()">Detener</button>
+ <button onclick="increaseTime()">Aumentar</button>
+ <button onclick="decreaseTime()">Disminuir</button>
+
+ <div id="eventDetails">
+  <h2>Detalles del Evento</h2>
+  <label for="eventDetailsText">Detalles:</label>
+  <textarea id="eventDetailsText" placeholder="Añadir detalles..."></textarea>
+  <button onclick="saveEvent()">Guardar Evento</button>
+ </div>
+
+ <div id="eventList">
+  <h2>Lista de Eventos</h2>
+  <input type="text" id="searchInput" oninput="searchEvents()" placeholder="Buscar eventos por nombre...">
+  <button onclick="downloadEvents()">Descargar Eventos</button>
+  <div class="tab" onclick="openTab('eventsTab')">Eventos</div>
+  <div class="tab" onclick="openTab('jsonTab')">Formato JSON</div>
+
+  <div id="eventsTab" class="tabcontent active">
+   <table>
+    <thead>
+     <tr>
+      <th>Nombre</th>
+      <th>Día y Hora</th>
+      <th>Detalles</th>
+      <th>Acciones</th>
+     </tr>
+    </thead>
+    <tbody id="eventListBody"></tbody>
+   </table>
+  </div>
+
+  <div id="jsonTab" class="tabcontent">
+   <textarea id="jsonOutput" readonly></textarea>
+  </div>
+ </div>
+
+ <script>
+  let timer;
+  let time = 60; // 1 minuto en segundos
+  let isRunning = false;
+
+  function startTimer() {
+   if (!isRunning) {
+    isRunning = true;
+    timer = setInterval(updateTimer, 1000);
+   }
+  }
+
+  function stopTimer() {
+   clearInterval(timer);
+   isRunning = false;
+   saveEvent();
+  }
+
+  function updateTimer() {
+   if (time > 0) {
+    time--;
+    updateTimerDisplay();
+   } else {
+    stopTimer();
+   }
+  }
+
+  function updateTimerDisplay() {
+   const minutes = Math.floor(time / 60);
+   const seconds = time % 60;
+   document.getElementById('timer').innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  function increaseTime() {
+   time += 60;
+   updateTimerDisplay();
+  }
+
+  function decreaseTime() {
+   if (time >= 60) {
+    time -= 60;
+    updateTimerDisplay();
+   }
+  }
+
+  function saveEvent() {
+   const eventName = document.getElementById('eventName').value;
+   const eventDetails = document.getElementById('eventDetailsText').value;
+   if (!eventName || eventName.trim() === '') {
+    alert('Ingrese un nombre para el temporizador.');
+    return;
+   }
+   const now = new Date();
+   const eventTime = now.toLocaleString();
+   const eventData = {
+    name: eventName,
+    time: eventTime,
+    details: eventDetails
+   };
+   // Obtener y actualizar la lista de eventos
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const existingEventIndex = eventList.findIndex(event => event.name === eventName);
+   if (existingEventIndex !== -1) {
+    // Si el evento ya existe, reemplazarlo
+    eventList[existingEventIndex] = eventData;
+   } else {
+    // Si es un nuevo evento, agregarlo a la lista
+    eventList.push(eventData);
+   }
+   // Guardar en local storage
+   localStorage.setItem('eventList', JSON.stringify(eventList));
+   // Limpiar campos después de guardar
+   document.getElementById('eventName').value = '';
+   document.getElementById('eventDetailsText').value = '';
+   // Actualizar la visualización de la lista de eventos
+   updateEventList();
+   updateJsonOutput();
+  }
+
+  function updateEventList() {
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const eventListBody = document.getElementById('eventListBody');
+   eventListBody.innerHTML = '';
+   eventList.forEach(event => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+                    <td>${event.name}</td>
+                    <td>${event.time}</td>
+                    <td>${event.details}</td>
+                    <td>
+                        <button onclick="editEvent('${event.name}')">Editar</button>
+                        <button onclick="deleteEvent('${event.name}')">Borrar</button>
+                    </td>
+                `;
+    eventListBody.appendChild(row);
+   });
+  }
+
+  function editEvent(eventName) {
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const selectedEvent = eventList.find(event => event.name === eventName);
+   if (selectedEvent) {
+    document.getElementById('eventName').value = selectedEvent.name;
+    document.getElementById('eventDetailsText').value = selectedEvent.details;
+   }
+  }
+
+  function deleteEvent(eventName) {
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const updatedEventList = eventList.filter(event => event.name !== eventName);
+   localStorage.setItem('eventList', JSON.stringify(updatedEventList));
+   updateEventList();
+   updateJsonOutput();
+  }
+
+  function searchEvents() {
+   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const filteredEvents = eventList.filter(event => event.name.toLowerCase().includes(searchTerm));
+   const eventListBody = document.getElementById('eventListBody');
+   eventListBody.innerHTML = '';
+   filteredEvents.forEach(event => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+                    <td>${event.name}</td>
+                    <td>${event.time}</td>
+                    <td>${event.details}</td>
+                    <td>
+                        <button onclick="editEvent('${event.name}')">Editar</button>
+                        <button onclick="deleteEvent('${event.name}')">Borrar</button>
+                    </td>
+                `;
+    eventListBody.appendChild(row);
+   });
+  }
+
+  function downloadEvents() {
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const jsonString = JSON.stringify(eventList, null, 2);
+   const blob = new Blob([jsonString], {
+    type: 'application/json'
+   });
+   const url = URL.createObjectURL(blob);
+   const a = document.createElement('a');
+   a.href = url;
+   a.download = 'eventos.json';
+   a.click();
+  }
+
+  function openTab(tabName) {
+   const tabs = document.getElementsByClassName('tabcontent');
+   for (const tab of tabs) {
+    tab.classList.remove('active');
+   }
+   document.getElementById(tabName).classList.add('active');
+   updateJsonOutput();
+  }
+
+  function updateJsonOutput() {
+   const eventList = JSON.parse(localStorage.getItem('eventList')) || [];
+   const jsonString = JSON.stringify(eventList, null, 2);
+   document.getElementById('jsonOutput').value = jsonString;
+  }
+  // Al cargar la página, actualizar la lista de eventos
+  updateEventList();
+  updateJsonOutput();
+ </script>
+</body>
+
+</html>

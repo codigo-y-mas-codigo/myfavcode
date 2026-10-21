@@ -1,0 +1,182 @@
+$orange: #f99c1c;
+$grey: #808080;
+$lightGrey: #ccc;
+$dark: #141414;
+$black: #000;
+$bodyFont: "Poppins", sans-serif;
+$headerFont: "Playfair Display", serif;
+
+body {
+  font-family: $bodyFont;
+  color: $dark;
+  font-size: 16px;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+h1 {
+  font-size: 1.25em;
+}
+h2 {
+  font-size: 3em;
+}
+h4 {
+  font-size: 1.25em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $headerFont;
+  font-weight: 900;
+}
+.font-body {
+  font-family: $bodyFont;
+}
+.bg-black {
+  background: $black;
+}
+.container-max {
+  max-width: 1495px;
+  margin: 0 auto;
+}
+.bg-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.bg-lines {
+  background-image: url("https://assets.codepen.io/319606/lines-bg.jpg");
+}
+
+.youtube-gallery {
+  min-height: 100vh;
+  
+  .video {
+    background: url('https://assets.codepen.io/319606/video-placeholder.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.yt-single {
+  background: $dark;
+  border-radius: 10px;
+
+  img {
+    border-bottom: 3px solid $orange;
+    transition: all 0.25s ease-in-out;
+  }
+}
+
+.yt-thumb {
+  max-width: 260px;
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+  min-height: 100%;
+
+  &:hover {
+    img {
+      opacity: 0.75;
+    }
+  }
+}
+.date {
+  color: $grey;
+  font-size: 0.875em;
+}
+.yt-title {
+  color: $lightGrey;
+  font-weight: 900;
+}
+
+.yt-img {
+  position: relative;
+
+  &:before {
+    content: "";
+    background-image: url("https://assets.codepen.io/319606/play-btn.svg");
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+  }
+}
+.ypt-now-playing {
+  .yt-img {
+    &:before {
+      content: "";
+      background-image: url("https://assets.codepen.io/319606/play-btn.svg");
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      bottom: -20px;
+      right: 20px;
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+}
+
+.flickity-prev-next-button {
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+
+  .flickity-button-icon {
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+    height: 40%;
+  }
+
+  &.next {
+    right: -40px;
+  }
+
+  &.previous {
+    left: -40px;
+  }
+}
+
+.flickity-button {
+  position: absolute;
+  background: $dark;
+  border: none;
+  color: #fff;
+
+  &:hover {
+    background: $orange;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 1;
+    cursor: auto;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .flickity-prev-next-button {
+    &.next {
+      right: -32px;
+    }
+  }
+  .flickity-prev-next-button {
+    &.previous {
+      left: -32px;
+    }
+  }
+}

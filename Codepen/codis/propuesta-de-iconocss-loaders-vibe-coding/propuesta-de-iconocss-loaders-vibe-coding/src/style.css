@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@300;400;600;800&display=swap");
+
+body {
+ font-family: "Inter", sans-serif;
+ background-color: #f8fafc;
+ /* Fallback light */
+}
+
+/* Chart Container Styling - Strict Constraints */
+.chart-container {
+ position: relative;
+ width: 100%;
+ max-width: 600px;
+ margin-left: auto;
+ margin-right: auto;
+ height: 300px;
+ max-height: 400px;
+}
+
+@media (min-width: 768px) {
+ .chart-container {
+  height: 350px;
+ }
+}
+
+/* --- ICONO CSS PURO (NO SVG) --- */
+/* Definición de la animación de rotación */
+@keyframes spin-vibe {
+ 0% {
+  transform: rotate(0deg);
+ }
+
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes pulse-glow {
+ 0%,
+ 100% {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(6, 182, 212, 0.5));
+ }
+
+ 50% {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
+ }
+}
+
+/* El Anillo (Loader) */
+.loader-ring {
+ position: absolute;
+ border-radius: 50%;
+ border-style: solid;
+ border-color: transparent;
+ animation: spin-vibe 1.5s linear infinite;
+}
+
+/* Variantes de velocidad */
+.spin-slow {
+ animation-duration: 3s;
+}
+
+.spin-fast {
+ animation-duration: 1s;
+}
+
+/* El Símbolo (Código) */
+.code-tag {
+ font-family: "JetBrains Mono", monospace;
+ font-weight: 800;
+ position: relative;
+ z-index: 10;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: default;
+}

@@ -1,0 +1,290 @@
+/****************************************
+ Variables
+*****************************************/
+
+:root {
+  --neutralLight: #e0d7c8; --neutral: #efebe2;
+  
+  --accent: #e2b29e;
+  --lightAccent: #f4f1ea;
+  --darkAccent: #1e1e1e;
+  
+  --fontBody: Montserrat;
+  --fontTitle: LostaMasta_Medium;
+  --fontSubtitle: Montserrat;
+  --fontTitleAccent: LostaMasta_Bold;
+  --fontOrnament: LostaMasta_Ornaments;
+}
+
+/****************************************
+ Body Background & Text Style
+*****************************************/
+
+* {
+  padding: 0px; margin: 0px;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  min-height:  100%;
+  margin: 0px; padding: 0px;
+}
+
+body {    
+  font: normal 16px/120% var(--fontBody);
+  background: var(--neutralLight);
+  background: linear-gradient(
+    219deg,
+    var(--neutral) 0%, 
+    var(--neutralLight) 100%
+  );
+}
+
+html {
+  overflow-x: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/****************************************
+ Font Support
+ ------------
+
+Please use and purchase your own license for "Losta Masta" here:
+https://creativemarket.com/creativemedialab/4752253-Losta-Masta-Playful-Serif-Family
+
+*****************************************/
+
+@font-face {
+  font-family: "LostaMasta_Thin";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Thin.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Regular";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Regular.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Ornaments";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Ornaments.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Medium";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Medium.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Light";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Light.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_ExtraBold";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_ExtraBold.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Bold";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Bold.otf")
+  format("opentype");
+}
+
+@font-face {
+  font-family: "LostaMasta_Black";
+  src: url("https://files.jcink.net/uploads2/killingfloor/fonts/LostaMasta_Black.otf")
+  format("opentype");
+}
+
+/****************************************
+ Main Wrapper
+*****************************************/
+
+#mainWrapper {
+  position: relative; z-index: 1;
+  max-width: 1200px; width: 100%; 
+  margin: 50px auto; 
+  box-shadow: 0px 0px 20px -5px rgba(000,000,000, 0.25);
+}
+
+/****************************************
+ Main Header
+*****************************************/
+
+#mainHeader {
+  display: -ms-flexbox; display: -webkit-flex; display: flex;
+  -webkit-flex-direction: row; -ms-flex-direction: row; flex-direction: row;
+  -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap;
+  -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
+  -webkit-align-content: flex-start; -ms-flex-line-pack: start; align-content: flex-start;
+  -webkit-align-items: flex-start; -ms-flex-align: start; align-items: flex-start;
+  max-width: 1200px; 
+  padding: 150px 80px 50px;
+  background-color: var(--lightAccent);
+  border-left: solid 25px var(--accent);
+}
+
+#headerAccent {
+  height: 100%; width: 20px;
+  background-color: var(--accent);
+}
+
+icon {
+  display: block;
+  margin: 0px auto 0px;
+  width: 45px; height: 45px; 
+  text-align: center; line-height: 50px; /* Centres */
+  border: solid 1px var(--darkAccent);
+  border-radius: 100%;
+}
+
+icon i {
+  font-size: 25px;
+}
+
+#index {
+  max-width: 72px;
+  display: -ms-flexbox; display: -webkit-flex; display: flex;
+  -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+  -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+  -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;
+  -webkit-align-content: center;b-ms-flex-line-pack: center; align-content: center;
+  -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+}
+
+sectionText {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 50px auto;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+sectionText h1 {
+  font: normal 25px/120% var(--fontTitle);
+}
+
+sectionText h2 {
+  font: normal 16px/120% var(--fontSubtitle);
+}
+
+#titlePage {  
+  padding: 0px 125px 50px;
+  display: -ms-flexbox; display: -webkit-flex; display: flex; 
+  -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+  -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+  -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
+  -webkit-align-content: flex-start; -ms-flex-line-pack: start;  align-content: flex-start;
+  -webkit-align-items: flex-start; -ms-flex-align: start; align-items: flex-start;
+}
+
+#titlePage h1 {
+  font: normal 60px/100% var(--fontTitle);
+}
+
+#titlePage h2 {
+  text-transform: uppercase;
+  font: normal 30px/100% var(--fontTitle); 
+}
+
+#titlePage h3 {
+  display: block;
+  margin: 50px 0px;
+  font: normal 20px/120% var(--fontBody);
+} 
+
+divider {
+  margin: 0px auto 50px;
+  display: block;
+  width: 100%; height: 10px;
+  background-color: var(--accent);
+}
+
+#content { 
+  font: normal 16px/140% var(--fontBody);
+  display: -ms-flexbox; display: -webkit-flex; display: flex; 
+  -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+  -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+  -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
+  -webkit-align-content: flex-start; -ms-flex-line-pack: start;  align-content: flex-start;
+  -webkit-align-items: flex-start; -ms-flex-align: start; align-items: flex-start;
+}
+
+#content p {
+  margin: 0px 0px 25px;
+}
+
+#content b {
+  background-color: var(--accent);
+  padding: 2px;
+}
+
+/****************************************
+ Media 
+*****************************************/
+
+@media all and (max-width: 1000px) {
+  
+  icon,
+  sectionText { 
+    display: none;
+  }
+  
+  #titlePage {  
+    padding: 50px;
+  }
+  
+}
+
+@media all and (max-width: 875px) {
+  
+  #mainWrapper {
+    margin: 0px auto; 
+  }
+}
+
+@media all and (max-width: 768px) {
+  
+  #mainWrapper {
+    margin: 0px auto; 
+  }
+  
+  #mainHeader {
+    padding: 50px;
+    display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+    -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+    -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;
+    -webkit-align-content: center; -ms-flex-line-pack: center; align-content: center;
+    -webkit-align-items: center; -ms-flex-align: center; align-items: center;
+  }
+  
+  icon,
+  sectionText { 
+    display: none; 
+    writing-mode: unset;
+    text-orientation: mixed;
+}
+  
+#titlePage {  
+  padding: 50px 50px 50px 50px;
+  }
+  
+#content {  
+  padding-bottom: 50px;
+  }
+}

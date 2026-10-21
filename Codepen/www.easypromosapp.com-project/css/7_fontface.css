@@ -1,0 +1,41 @@
+/*
+Código extraído del view source https://view-source-editor.vercel.app/
+Fecha de descarga: 12/11/2025, 7:54:40 a.m.
+¡Excelente día!
+*/
+
+@font-face {
+    font-family:"knk-icons";
+    src:url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-roman.eot?v=1.10952");
+    src:url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-roman.eot?#iefix&v=1.10952") format("embedded-opentype"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-roman.woff?v=1.10952") format("woff"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-roman.ttf?v=1.10952") format("truetype"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-roman.svg#knk-icons?v=1.10952") format("svg");
+    font-weight:400;
+    font-style:normal;
+    font-display:swap;
+}
+
+@font-face {
+    font-family:"knk-icons";
+    src:url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-light.eot?v=1.10952");
+    src:url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-light.eot?#iefix&v=1.10952") format("embedded-opentype"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-light.woff?v=1.10952") format("woff"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-light.ttf?v=1.10952") format("truetype"),
+        url("https://wlcdn.cstmapp.com/fonts/knk_icons/knk-icons-light.svg#knk-icons?v=1.10952") format("svg");
+    font-weight:100;
+    font-style:normal;
+    font-display:swap;
+}
+
+@font-face {
+    font-family:"ep-icons";
+    src:url("https://wlcdn.cstmapp.com/fonts/ep_icons/ep-icons.eot?v=1.10952");
+    src:url("https://wlcdn.cstmapp.com/fonts/ep_icons/ep-icons.eot?#iefix&v=1.10952") format("embedded-opentype"),
+        url("https://wlcdn.cstmapp.com/fonts/ep_icons/ep-icons.woff?v=1.10952") format("woff"),
+        url("https://wlcdn.cstmapp.com/fonts/ep_icons/ep-icons.ttf?v=1.10952") format("truetype"),
+        url("https://wlcdn.cstmapp.com/fonts/ep_icons/ep-icons.svg#ep-icons?v=1.10952") format("svg");
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+}

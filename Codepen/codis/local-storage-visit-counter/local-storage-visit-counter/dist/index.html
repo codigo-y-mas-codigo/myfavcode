@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Local Storage Visit Counter</title>
+    
+
+  </head>
+    
+  <body>
+  <div class="visitCounterLocalStorage">
+<span id="result"></span>
+
+<script>
+   function isLocalStorageSupported(){
+  if (typeof Storage !== "undefined")
+    //local storage is supported
+    return true;
+  else{
+    //local storage is not supported
+    return false;
+  }
+}
+
+function doesVariableExist(x){
+  if (localStorage[x]) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function createStorageVariable(x, value){
+  localStorage[x] = value
+  return localStorage[x]
+}
+
+if (isLocalStorageSupported){
+  if(doesVariableExist('test')){
+    localStorage.test = Number(localStorage.test) + 1
+  }else{
+    localStorage.test = 1
+  }
+  console.log(localStorage.test)
+}
+// localStorage.clear()
+if (typeof Storage !== "undefined") {
+  //Local storage is supported
+  if (localStorage.visitcount) {
+    // variable exists for this site they've been here before so do things
+    document.getElementById("result").innerHTML =
+      "logged in " +
+      localStorage.visitcount +
+      " ";
+    localStorage.visitcount = Number(localStorage.visitcount) + 1; //update variable for existing users
+  } else {
+    // variable not found they haven't been here before
+    localStorage.visitcount = 1; //set initial value of variable for this site and then do things for first time
+    document.getElementById("result").innerHTML =
+      "Bienvenida";
+  }
+} else {
+  // their browser doesn't support local storage so let them know or just do nothing
+  alert(
+    "Lo sentimos, su navegador no es compatible con el almacenamiento web. Los cambios no se guardarán"
+  );
+  document.getElementById("result").innerHTML =
+    "Lo sentimos, su navegador no es compatible con el almacenamiento web...";
+}
+
+// console.log("localstorage visit count now: " + localStorage.visitcount);
+
+// localStorage.clear();
+</script>
+</div>
+    
+  </body>
+  
+</html>

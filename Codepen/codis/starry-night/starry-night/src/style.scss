@@ -1,0 +1,66 @@
+$cream: #FFFFD5;
+$mardiGras: #220022;
+$whiteSmoke: #F8F8F8;
+
+$starCount: 100;
+
+$colors: (
+  bg:   $mardiGras,
+  star: $whiteSmoke,
+  glow: $cream
+);
+
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: color(bg);
+  background-image: 
+    radial-gradient(
+      ellipse
+      farthest-corner at 45px 45px,
+      lighten(color(bg), 4%) 0%,
+      darken(color(bg), 10%) 50%,
+      lighten(color(bg), 4%) 95%
+    );
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: color(star);
+  border-radius: 100%;
+  @for $i from 1 through $starCount {
+    $top:       random($starCount) * 1vh;
+    $left:      random($starCount) * 1vw;
+    $size:      random(3) * 1px;
+    $opacity:   random(9) * .1;
+    $glopacity: random(6) * .1;
+    $glowSize:  random(36) * 1px;
+    $delay:     random($starCount) * 1s;
+    &:nth-child(#{$i}) {
+      top: $top;
+      left: $left;
+      width: $size;
+      height: $size;
+      opacity: $opacity;
+      box-shadow: 0 0 $glowSize 2px rgba(color(glow), $glopacity);
+      animation: shimmer .4s $delay;
+    }
+  }
+}
+
+@keyframes shimmer {
+  10% { opacity: 0; }
+  20% { opacity: 1; }
+  30% { opacity: 0; }
+  40% { opacity: 1; }
+  50% { opacity: 0; }
+  60% { opacity: 1; }
+  70% { opacity: 0; }
+  80% { opacity: 1; }
+}

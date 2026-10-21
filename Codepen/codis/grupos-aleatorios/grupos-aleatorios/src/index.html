@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Grupos Aleatorios</title>
+</head>
+
+<body>
+
+ <h1>Grupos Aleatorios</h1>
+
+ <div id="randomGroups"></div>
+
+ <script>
+  // Array de URLs de enlaces y de imágenes
+  var linkUrls = [
+   "https://www.yarticulospromocionales.com/la-historia-de-amor-de-coral-y-perla-un-viaje-de-esperanza-y-tragedia.html",
+   "https://www.yarticulospromocionales.com/",
+   "https://www.yarticulospromocionales.com/blog/Juego-en-linea-de-Miraculous-Ladybug/",
+   "https://www.yarticulospromocionales.com/bombillas/",
+   "https://www.yarticulospromocionales.com/blog/modernismo-vienes/"
+  ];
+  var imageUrls = [
+   "https://pfst.cf2.poecdn.net/base/image/11477401c1082f0ea624b3454fddad3258ce5cc201afe09b929251fbae3a1b3d?w=1024&h=1024&pmaid=63294617",
+   "https://pfst.cf2.poecdn.net/base/image/7d5074ac8a59a7c2469830494d0669a52ddc692206ef9ef0a78802f9d91979cf?w=1024&h=1024&pmaid=63295425",
+   "https://pfst.cf2.poecdn.net/base/image/7d5074ac8a59a7c2469830494d0669a52ddc692206ef9ef0a78802f9d91979cf?w=1024&h=1024&pmaid=63295425",
+   "https://www.yarticulospromocionales.com/img/2023/ai/la%20inteligencia%20artificial%20escribiendo.png",
+   "https://www.yarticulospromocionales.com/img/2023/descargas/A%20metro%20line%20with%20pokemon%20style%20icons%20on%20a%20white%20background.jpg"
+  ];
+  // Función para obtener un grupo aleatorio
+  function getRandomGroup() {
+   var randomIndex = Math.floor(Math.random() * linkUrls.length);
+   return {
+    link: linkUrls[randomIndex],
+    image: imageUrls[randomIndex]
+   };
+  }
+  // Generar tres grupos aleatorios y mostrarlos en la página
+  for (var i = 0; i < 3; i++) {
+   var randomGroup = getRandomGroup();
+   var groupElement = document.createElement("div");
+   var linkElement = document.createElement("a");
+   linkElement.href = randomGroup.link;
+   linkElement.textContent = "Link random " + (i + 1);
+   var imgElement = document.createElement("img");
+   imgElement.src = randomGroup.image;
+   groupElement.appendChild(linkElement);
+   groupElement.appendChild(imgElement);
+   document.getElementById("randomGroups").appendChild(groupElement);
+  }
+ </script>
+
+</body>
+
+</html>

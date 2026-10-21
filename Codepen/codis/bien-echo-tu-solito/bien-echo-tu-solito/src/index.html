@@ -1,0 +1,384 @@
+<title>Bien Echo Tu Solito</title>
+<div>
+
+<style>
+  
+.ag-comm_btn {
+  height: 40px;
+  line-height: 39px;
+  min-width: 150px;
+  margin: 0;
+  padding: 0 25px;
+  border: 1px solid #015c8b;
+  background-color: #015c8b;
+
+  cursor: pointer;
+
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #FFF;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  -o-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.ag-comm_btn:focus {
+  outline: none;
+}
+.ag-comm_btn:not(:disabled):hover {
+  border: 1px solid  #001119;
+  background-color:  #001119;
+}
+.ag-comm_btn:disabled {
+  border: 1px solid #bfbcbc;
+  background: #F4F1F1;
+  cursor: default;
+
+  color: #525c69;
+}
+          
+.ag-comm_btn {
+  height: 40px;
+  line-height: 39px;
+  min-width: 150px;
+  margin: 0;
+  padding: 0 25px;
+  border: 1px solid #015c8b;
+  background-color: #015c8b;
+
+  cursor: pointer;
+
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #FFF;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  -o-box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
+
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.ag-comm_btn:focus {
+  outline: none;
+}
+.ag-comm_btn:not(:disabled):hover {
+  border: 1px solid  #001119;
+  background-color:  #001119;  
+}
+.ag-comm_btn:disabled {
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: default;
+  color: #525c69; 
+}
+  .ag-comm_btn-blink {
+  animation: blink 0.05s linear infinite;
+}
+          .wait {
+  /*animation: blink 0.05s linear infinite;*/
+            text-shadow: 0 0 2px #333;
+  animation: pulsate 1s ease-out infinite;
+}
+
+@keyframes blink {
+  0% { background-color: red; }
+  50% { background-color: pink; }
+  100% { background-color: yellow; }
+}
+@keyframes pulsate {
+  0% { text-shadow: 0 0 2px #333; }
+  50% { text-shadow: 0 0 10px #ccc; }
+  100% { text-shadow: 0 0 2px #333; }
+}
+          .ag-comm_btn {
+  /* ...otras propiedades... */
+  
+}
+</style>
+<form class="gform pure-form pure-form-stacked" method="POST" data-email="luis.el.de.las.tarjetas@gmail.com"
+  action="https://script.google.com/macros/s/AKfycbwOBg05h-H3-7sbFFr-aoVsgewy4ZGv-mfv-QJjqWbZpQigYd3AslrbLVe_aRRmxuR9zw/exec">
+    <div class="form-elements">
+      <div>                               
+          <div class="text">
+               <input class="input" type="text" inputmode="text" value="https://vercelapp-go.vercel.app" style="display:none" id="origen" name="origen"></div>                   
+          <div class="text">
+            <label for="Email" class="label">Email</label>
+            <input type="Email" id="input" name="Email" class="input" min="1"placeholder="Email" required/>
+          </div>        
+        
+        <div class="text">
+    <label class="label" for="describe_tu_idea">Nombre</label>
+<input  class="input"  id="js-comm_textarea"  name="describe_tu_idea"   placeholder="Nombre" required></input>
+<div id="js-comm_alert" style="display:none"></div>   
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const MIX_LENGTH = 1;
+  const textarea = document.getElementById('js-comm_textarea');
+  const button = document.getElementById('js-comm_btn');
+
+  function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+
+  const div = document.createElement('div');
+  div.className = 'js-comm_alert';
+  div.id = 'js-comm_alert';
+  div.innerHTML = '<div id="js-comm_count" class="js-ag-comm_count" hidden><span>0</span> / ' + MIX_LENGTH + '</div>';
+  insertAfter(textarea, div);
+
+  const count = document.getElementById('js-comm_count');
+  const countSpan = count.querySelector('span');
+
+  textarea.onkeyup = function() {
+    countSpan.textContent = this.value.length;
+
+    count.classList.remove('js-ag-comm_count__success');
+
+    button.disabled = 'disabled';
+
+    if (this.value.length >= MIX_LENGTH) {
+      count.classList.add('js-ag-comm_count__success');
+
+      button.disabled = "";
+    }
+  }; 
+
+});</script>
+</div>  
+        <div class="text">
+    <label class="label" for="Mensaje">Tu mensaje</label>
+<textarea  class="input"  id="js-comm_textarea"  name="Mensaje"   placeholder="Nombre" required></textarea>
+<div id="js-comm_alert" style="display:none"></div>   
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const MIX_LENGTH = 1;
+  const textarea = document.getElementById('js-comm_textarea');
+  const button = document.getElementById('js-comm_btn');
+
+  function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+
+  const div = document.createElement('div');
+  div.className = 'js-comm_alert';
+  div.id = 'js-comm_alert';
+  div.innerHTML = '<div id="js-comm_count" class="js-ag-comm_count" hidden><span>0</span> / ' + MIX_LENGTH + '</div>';
+  insertAfter(textarea, div);
+
+  const count = document.getElementById('js-comm_count');
+  const countSpan = count.querySelector('span');
+
+  textarea.onkeyup = function() {
+    countSpan.textContent = this.value.length;
+
+    count.classList.remove('js-ag-comm_count__success');
+
+    button.disabled = 'disabled';
+
+    if (this.value.length >= MIX_LENGTH) {
+      count.classList.add('js-ag-comm_count__success');
+
+      button.disabled = "";
+    }
+  }; 
+
+});</script>
+</div>  
+          <div class="text">  <label class="control control--checkbox" for="Terminos_y_condiciones">
+    <input class="control__input" type="checkbox" id="Terminos_y_condiciones" name="Terminos_y_condiciones" checked >
+    <span class="control__label">Aceptar términos y condiciones</span>
+     </label></div>             
+          <button style="background:none; border:none">
+          <input id="js-comm_btn" type="submit" class="ag-comm_btn" value="Enviar" disabled />
+</button><br><span id="wait-message" class="wait"  style="display: none;">Espere un momento, por favor...</span>
+      </div>
+    </div><!-- Thankyou_message --><br>
+    <div class="thankyou_message" style="display:none;"><div class="container">
+    <div class="header">
+      <h1>¡Gracias por Contactarnos!</h1>
+    </div>
+    <div class="content">
+      <p><strong>Estimado,</strong></p><br>
+      <p>Hemos recibido tu mensaje y queremos agradecerte por ponerte en contacto con nosotros. Tu consulta es muy importante para nosotros y nuestro equipo de soporte está trabajando para responderte lo más pronto posible.</p><br>
+      <p><strong>Mientras tanto, aquí tienes algunos detalles sobre lo que puedes esperar:</strong></p><br>
+      <ul>
+        <li><strong>Tiempo de Respuesta:</strong> Generalmente, respondemos a todas las consultas dentro de las próximas 24-48 horas.</li>
+        <li><strong>Información Adicional:</strong> Si necesitamos más detalles para atender tu solicitud, nos pondremos en contacto contigo a través del correo electrónico o el número de teléfono proporcionado.</li>
+        <li><strong>Soporte:</strong> Para cualquier cuestión urgente, no dudes en llamarnos al +52 55 1234 5678 durante nuestro horario de atención: lunes a viernes de 9:00 a 18:00 horas.</li>
+      </ul><br>
+      <p>Si tienes alguna pregunta adicional mientras tanto, te invitamos a visitar nuestra sección de <a href="https://notas-de-remision-go.vercel.app/faq">Preguntas Frecuentes (FAQ)</a> donde encontrarás información útil sobre nuestros productos y servicios.</p><br><br>
+      <p><strong>Gracias por confiar en Notas de Remisión Go by XBR Code.</strong></p><br>
+      <p>Atentamente,<br>El equipo de <strong>Notas de Remisión Go by XBR Code</strong></p>
+    </div><br><br>
+    <div class="footer">
+      <p><strong>Consejos adicionales para una mejor experiencia:</strong></p>
+      <p><a href="https://notas-de-remision-go.vercel.app/faq">Verifica tu correo electrónico</a>: Asegúrate de que nuestros correos no lleguen a tu carpeta de spam.</p>
+      <p><a href="https://notas-de-remision-go.vercel.app/blog">Navega por nuestro blog</a>: Visita nuestro blog para conocer más sobre las últimas novedades y consejos útiles.</p>
+    </div>
+  </div>  
+    </div>
+</form>
+<a href="https://docs.google.com/spreadsheets/d/1vBMsHX8RfJeUC-9K2ShArTr9uPftLbj6nyeHtwVUGl8/edit#gid=0"><!--function--></a>
+  <script data-cfasync="false" type="text/javascript"> // Función para validar el correo electrónico
+function validEmail(email) {
+  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  return re.test(email);
+}
+
+// Función para manejar el envío del formulario
+function handleFormSubmit(event) {
+  event.preventDefault(); // Prevenir el envío del formulario
+  var form = event.target;
+  var data = getFormData(form);
+
+  // Guardar los datos del formulario en localStorage
+  localStorage.setItem('formData', JSON.stringify(data));
+
+
+  // Mostrar la leyenda de "espera"
+  var waitMessage = document.getElementById('wait-message');
+  waitMessage.style.display = 'block';
+
+  if(data.email && !validEmail(data.email)) {
+    var invalidEmail = form.querySelector(".email-invalid");
+    if (invalidEmail) {
+      invalidEmail.style.display = "block";
+      return false;
+    }
+  } else {
+    disableAllButtons(form);
+    var url = form.action;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        console.log(xhr.status, xhr.statusText);
+        console.log(xhr.responseText);
+        var formElements = form.querySelector(".form-elements");
+        if (formElements) {
+          formElements.style.display = "none"; // ocultar formulario
+        }
+        var thankYouMessage = form.querySelector(".thankyou_message");
+        if (thankYouMessage) {
+          thankYouMessage.style.display = "block"; // mostrar mensaje de agradecimiento
+        }
+        waitMessage.style.display = 'none'; // ocultar leyenda de "espera"
+        return;
+    };
+    var encoded = Object.keys(data).map(function(k) {
+        return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+    }).join('&');
+    xhr.send(encoded);
+  }
+}
+
+// Función para deshabilitar todos los botones del formulario
+function disableAllButtons(form) {
+  var buttons = form.querySelectorAll("button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+  }
+}
+
+// Función para obtener los datos del formulario
+function getFormData(form) {
+  var elements = form.elements;
+  var fields = Object.keys(elements).filter(function(k) {
+        return (elements[k].name !== "honeypot");
+  }).map(function(k) {
+    if(elements[k].name !== undefined) {
+      return elements[k].name;
+    } else if(elements[k].length > 0) {
+      return elements[k].item(0).name;
+    }
+  }).filter(function(item, pos, self) {
+    return self.indexOf(item) == pos && item;
+  });
+
+  var formData = {};
+  fields.forEach(function(name){
+    var element = elements[name];
+    formData[name] = element.value;
+    if (element.length) {
+      var data = [];
+      for (var i = 0; i < element.length; i++) {
+        var item = element.item(i);
+        if (item.checked || item.selected) {
+          data.push(item.value);
+        }
+      }
+      formData[name] = data.join(', ');
+    }
+  });
+
+  formData.formDataNameOrder = JSON.stringify(fields);
+  formData.formGoogleSheetName = form.dataset.sheet || "Hoja 1"; // default sheet name
+  formData.formGoogleSendEmail = form.dataset.email || "";
+
+  console.log(formData);
+  return formData;
+}
+
+// Agregar el event listener al formulario para manejar el envío
+document.addEventListener("DOMContentLoaded", function() {
+  var form = document.querySelector("form.gform");
+  form.addEventListener("submit", handleFormSubmit, false);
+});
+    
+    // tiem
+    // Obtener el elemento que contiene la leyenda de "espera"
+const waitMessage = document.getElementById('wait-message');
+
+// Mostrar la leyenda de "espera" cuando se envía el formulario
+form.addEventListener('submit', function() {
+  waitMessage.style.display = 'block';
+  waitMessage.textContent = 'Espere un momento, por favor...';
+
+  // Cambiar el texto después de 1.5 segundos
+  setTimeout(function() {
+    waitMessage.textContent = 'Ya casi estamos...';
+  }, 250);
+
+  // Cambiar el texto después de 3 segundos más (4.5 segundos en total)
+  setTimeout(function() {
+    waitMessage.textContent = 'Gracias por tu paciencia...';
+  }, 500);
+});
+// Obtener el elemento del botón de enviar
+const submitButton = document.getElementById('js-comm_btn');
+
+// Agregar el efecto de parpadeo cuando se envía el formulario
+form.addEventListener('submit', function() {
+  submitButton.classList.add('ag-comm_btn-blink');
+
+  // Quitar la clase de parpadeo después de un tiempo
+  setTimeout(function() {
+    submitButton.classList.remove('ag-comm_btn-blink');
+  }, 500); // 2 segundos, por ejemplo
+}); 
+  </script>  
+  </div>

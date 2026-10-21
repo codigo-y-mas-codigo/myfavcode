@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codis Component Showcase - Galería & Plantillas</title>
+  
+  <!-- SVG Favicon Data URI -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>">
+  
+  <!-- Open Graph Metadata -->
+  <meta property="og:title" content="Codis Component Showcase - Galería & Plantillas">
+  <meta property="og:description" content="Biblioteca interactiva de componentes web premium de Luis Ángel Maciel. Explora, interactúa y copia códigos.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://codis-preview.local/">
+  
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json" id="schema-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Codis Component Library",
+    "operatingSystem": "Web",
+    "applicationCategory": "DeveloperApplication",
+    "browserRequirements": "Requires HTML5, CSS3, JavaScript",
+    "author": {
+      "@type": "Person",
+      "name": "Luis Ángel Maciel",
+      "url": "https://x.com/luisangelmaciel"
+    },
+    "description": "Biblioteca local de componentes interactivos HTML, CSS, JS para desarrolladores.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "124"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- PWA Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080b11">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Codis Component Library</h1>
+      <p>Explora, interactúa y copia el código de los componentes interactivos premium de la colección para utilizarlos en tus propios desarrollos.</p>
+      <div class="stats-badge" id="total-count">
+        <span></span> Cargando Componentes...
+      </div>
+    </header>
+
+    <!-- Search & Filters -->
+    <section class="search-filter-section">
+      <div class="search-container">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar componente por título, etiqueta o descripción...">
+      </div>
+      
+      <div class="controls-row">
+        <div class="controls-left">
+          <!-- View switcher buttons -->
+          <div class="view-switcher" style="display: flex; gap: 0.35rem;">
+            <button id="grid-view-btn" class="control-btn active" title="Vista Cuadrícula">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+            <button id="list-view-btn" class="control-btn" title="Vista Lista">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Sort select -->
+          <select id="sort-select" class="sort-select" title="Organizar por">
+            <option value="asc">Nombre: A - Z</option>
+            <option value="desc">Nombre: Z - A</option>
+          </select>
+        </div>
+        
+        <div class="controls-right">
+          <!-- Album selector -->
+          <select id="album-select" class="album-select" title="Colecciones">
+            <option value="all">Todos los Componentes</option>
+            <option value="favorites">★ Favoritos</option>
+          </select>
+          <button id="create-album-btn" class="control-btn accent">
+            + Nuevo Álbum
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-tags" id="filter-tags">
+        <span class="filter-label">Filtrar por:</span>
+        <!-- Tags will be dynamically generated here -->
+      </div>
+    </section>
+
+    <!-- Cards Grid -->
+    <main class="components-grid" id="cards-grid">
+      <!-- Dynamic component cards will be rendered here -->
+    </main>
+
+    <!-- Skills Showcase Section -->
+    <section class="skills-section">
+      <h2 class="section-title">Habilidades & Tecnologías</h2>
+      <p class="section-subtitle">Las tecnologías core empleadas en la construcción de los componentes de la biblioteca.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon html">HTML5</div>
+          <h3>HTML5</h3>
+          <p>Estructura semántica, accesibilidad (a11y) y optimización SEO.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon css">CSS3</div>
+          <h3>CSS3 & Preprocesadores</h3>
+          <p>Diseño responsivo, animaciones puras, variables y Less/Stylus.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon js">JS</div>
+          <h3>JavaScript (ES6+)</h3>
+          <p>Lógica dinámica, manipulación del DOM, APIs del navegador y asincronía.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon gsap">GSAP</div>
+          <h3>GSAP Animations</h3>
+          <p>Efectos físicos interactivos y animaciones fluidas basadas en scroll.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon tw">TW</div>
+          <h3>Tailwind CSS</h3>
+          <p>Estilizado ágil con clases de utilidad y sistemas de diseño adaptables.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon webapi">Web APIs</div>
+          <h3>LocalStorage & APIs</h3>
+          <p>Persistencia local, vibración, síntesis de voz y canvas interactivos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faqs-section">
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber sobre el uso y funcionamiento del catálogo Codis.</p>
+      <div class="faqs-container">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Qué es Codis Component Library?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Es un catálogo local y fuera de línea diseñado para recopilar, probar y documentar componentes interactivos web premium. Permite copiar rápidamente el código (HTML, CSS, JS por separado o combinados) y prompts optimizados para IA.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Cómo puedo integrar un componente en mi proyecto?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Tienes dos formas sencillas: copiar individualmente las pestañas HTML, CSS y JS desde la vista del componente, o utilizar la pestaña <strong>HTML Completo</strong> que integra el estilo dentro de un bloque <code>&lt;style&gt;</code> y la lógica dentro de un bloque <code>&lt;script&gt;</code> en un único archivo autónomo.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Cómo se añaden nuevas carpetas o componentes?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Solo debes colocar la carpeta de tu nuevo componente (que contenga un archivo <code>index.html</code>) dentro del directorio raíz <code>codis/</code> y ejecutar el script local <code>python scanner.py</code>. El escáner reparará los títulos por defecto y lo indexará de inmediato.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Cómo funcionan las colecciones y favoritos?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Puedes añadir componentes a tus favoritos pulsando la estrella de las tarjetas, o agruparlos en carpetas virtuales haciendo clic en "+ Nuevo Álbum" y marcando la pertenencia dentro de la vista individual de cada componente. Todo se almacena localmente en tu navegador.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: About -->
+        <div class="footer-col about">
+          <h3>Sobre el Proyecto</h3>
+          <p>Codis Component Library es un catálogo interactivo de código abierto para desarrolladores web. Diseñado para simplificar la replicación y acelerar la creación de interfaces premium.</p>
+          <div class="footer-author" style="margin-top: 1rem; font-size: 0.9rem;">
+            Diseñado e implementado por <a href="https://x.com/luisangelmaciel" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">luisangelmaciel en X</a>
+          </div>
+        </div>
+        
+        <!-- Column 2: Newsletter & Folder Request -->
+        <div class="footer-col newsletter-box">
+          <h3>Newsletter & Crear Carpeta</h3>
+          <p style="margin-bottom: 1rem;">Suscríbete para novedades o envía tu email para solicitar la creación de una carpeta de componente.</p>
+          <form id="newsletter-form" class="footer-form" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <input type="email" id="newsletter-email" placeholder="Tu correo electrónico..." required style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem 0.75rem; color: #fff; font-family: inherit; font-size: 0.9rem;">
+            
+            <div class="form-checkbox-row" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+              <input type="checkbox" id="newsletter-optin" checked style="accent-color: var(--accent-cyan);">
+              <label for="newsletter-optin">Deseo recibir novedades (Newsletter)</label>
+            </div>
+            
+            <div class="form-checkbox-row" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+              <input type="checkbox" id="terms-optin" required style="accent-color: var(--accent-cyan);">
+              <label for="terms-optin">Acepto los <a href="#" id="terms-link" style="color: var(--accent-cyan); text-decoration: none;">Términos</a> y <a href="#" id="privacy-link" style="color: var(--accent-cyan); text-decoration: none;">Privacidad</a></label>
+            </div>
+            
+            <div class="footer-form-actions" style="display: flex; gap: 0.5rem;">
+              <button type="submit" id="newsletter-submit-btn" class="control-btn accent" style="flex: 1; justify-content: center;">Suscribirse</button>
+              <button type="submit" id="folder-submit-btn" class="control-btn accent" style="flex: 1.2; justify-content: center; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Solicitar Carpeta</button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Column 3: Rating Widget -->
+        <div class="footer-col rating-box">
+          <h3>Califica el Sitio</h3>
+          <p style="margin-bottom: 0.75rem;">Tu opinión nos ayuda a mejorar. Selecciona de 1 a 5 estrellas.</p>
+          <div class="site-rating-widget">
+            <div class="stars-row" id="stars-row" style="display: flex; gap: 0.25rem; font-size: 1.5rem; color: var(--text-secondary); cursor: pointer; margin-bottom: 0.75rem; user-select: none;">
+              <span class="star-btn" data-value="1" style="transition: var(--transition-smooth);">★</span>
+              <span class="star-btn" data-value="2" style="transition: var(--transition-smooth);">★</span>
+              <span class="star-btn" data-value="3" style="transition: var(--transition-smooth);">★</span>
+              <span class="star-btn" data-value="4" style="transition: var(--transition-smooth);">★</span>
+              <span class="star-btn" data-value="5" style="transition: var(--transition-smooth);">★</span>
+            </div>
+            <textarea id="rating-review" class="rating-textarea" placeholder="Reseña opcional..." style="width: 100%; height: 60px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem; color: #fff; font-family: inherit; font-size: 0.85rem; resize: none; outline: none; margin-bottom: 0.5rem;"></textarea>
+            <button id="submit-rating-btn" class="control-btn accent" style="width: 100%; justify-content: center;">Enviar Calificación</button>
+            
+            <div id="live-rating-stats" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.75rem; text-align: center; font-style: italic;">
+              Cargando valoración de la comunidad...
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom" style="margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+        <div class="footer-links">
+          <a href="#" id="changelog-link" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-smooth);">Changelog</a> &bull; 
+          <a href="#" id="terms-footer-link" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-smooth);">Términos de Servicio</a> &bull; 
+          <a href="#" id="privacy-footer-link" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-smooth);">Política de Privacidad</a> &bull;
+          <a href="#" id="export-backup-link" style="color: var(--accent-cyan); text-decoration: none; transition: var(--transition-smooth);" title="Exportar copia de seguridad en JSON">Exportar Copia</a> &bull;
+          <a href="#" id="import-backup-link" style="color: var(--accent-cyan); text-decoration: none; transition: var(--transition-smooth);" title="Importar copia de seguridad en JSON">Importar Copia</a>
+          <input type="file" id="import-backup-file" accept=".json" style="display: none;">
+        </div>
+        <div class="footer-copy">
+          &copy; <span id="current-year">2026</span> Luis Ángel Maciel. Todos los derechos reservados.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dynamic details are now loaded in component.html -->
+
+  <!-- Terms Modal -->
+  <div id="terms-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 650px; height: 75vh; padding: 1.5rem; gap: 1.5rem;">
+      <div class="modal-header" style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div class="modal-title-area">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Términos y Condiciones de Uso</h2>
+          <div class="modal-subtitle">Gobernanza & Licenciamiento &bull; Actualizado 2026</div>
+        </div>
+        <button id="close-terms-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" style="flex-grow: 1; overflow-y: auto; padding: 1rem 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">1. Aceptación y Propósito</h4>
+        <p style="margin-bottom: 1rem;">Al utilizar Codis Component Library, declaras estar de acuerdo con estos términos. El catálogo está concebido como una plataforma de código abierto y local-first para fines educativos, de experimentación y de desarrollo profesional.</p>
+        
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">2. Propiedad Intelectual y Licenciamiento MIT</h4>
+        <p style="margin-bottom: 1rem;">La plataforma Codis se distribuye bajo la licencia MIT. Los componentes individuales pueden incluir dependencias de terceros (como GSAP, Tailwind CSS o librerías de animación) que conservan sus respectivas licencias y derechos de autor originales.</p>
+        
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">3. Registro de Información y Formularios</h4>
+        <p style="margin-bottom: 1rem;">Al enviar solicitudes (Newsletter, Crear Carpeta o Calificación), autorizas el registro de los datos enviados en nuestra base de datos de Google Sheets exclusivamente para la gestión de solicitudes, métricas de calidad y soporte.</p>
+
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">4. Descargo de Responsabilidad sobre Inteligencia Artificial</h4>
+        <p style="margin-bottom: 1rem;">Los prompts de IA generados por la plataforma son recomendaciones orientativas. Las respuestas generadas por modelos externos (ChatGPT, Gemini, Claude) son responsabilidad de sus respectivos proveedores y pueden contener imprecisiones técnicas. Verifica siempre el código antes de implementarlo en producción.</p>
+      </div>
+      <div class="modal-actions-row" style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <button id="accept-terms-btn" class="control-btn accent" style="width: auto; padding: 0 1.5rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-color: transparent;">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Modal -->
+  <div id="privacy-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 650px; height: 75vh; padding: 1.5rem; gap: 1.5rem;">
+      <div class="modal-header" style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div class="modal-title-area">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Política de Privacidad y Datos</h2>
+          <div class="modal-subtitle">Tratamiento Seguro de Información &bull; Actualizado 2026</div>
+        </div>
+        <button id="close-privacy-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" style="flex-grow: 1; overflow-y: auto; padding: 1rem 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">1. Tratamiento y Recopilación de Datos</h4>
+        <p style="margin-bottom: 1rem;">La única información recopilada de forma remota corresponde al correo electrónico proporcionado voluntariamente en las suscripciones o solicitudes, y las valoraciones/reseñas del sitio. Estos datos se transmiten cifrados vía HTTPS a Google Sheets mediante Google Apps Script.</p>
+        
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">2. Telemetría y Almacenamiento Local (LocalStorage)</h4>
+        <p style="margin-bottom: 1rem;">Las preferencias de favoritos, carpetas/álbumes creados y los contadores de clics de navegación se almacenan de forma 100% privada dentro del navegador del usuario (LocalStorage). Ningún dato de navegación personal se vende ni se comparte con terceros.</p>
+        
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">3. Derechos ARCO y Baja de Suscripción</h4>
+        <p style="margin-bottom: 1rem;">Tienes derecho en cualquier momento al Acceso, Rectificación, Cancelación y Oposición de tus datos. Para solicitar la eliminación definitiva de tu correo electrónico o comentarios de nuestra base de datos, envía un mensaje directo a <a href="https://x.com/luisangelmaciel" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">@luisangelmaciel en X</a> y tu información será purgada en un plazo no mayor a 48 horas.</p>
+
+        <h4 style="color: #fff; margin-bottom: 0.5rem;">4. Seguridad y No Comercialización</h4>
+        <p style="margin-bottom: 1rem;">Nos comprometemos a nunca vender, alquilar ni transferir tu correo electrónico a empresas de publicidad o bases de datos de spam.</p>
+      </div>
+      <div class="modal-actions-row" style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <button id="accept-privacy-btn" class="control-btn accent" style="width: auto; padding: 0 1.5rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-color: transparent;">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Changelog Modal -->
+  <div id="changelog-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 600px; height: 75vh; padding: 1.5rem; gap: 1.5rem;">
+      <div class="modal-header" style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div class="modal-title-area">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Bitácora de Cambios (Changelog)</h2>
+          <div class="modal-subtitle">Evolución de Codis Component Showcase</div>
+        </div>
+        <button id="close-changelog-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" style="flex-grow: 1; overflow-y: auto; padding: 1rem 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+        <div style="border-left: 2px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 1.5rem;">
+          <h4 style="color: #fff; margin-bottom: 0.25rem;">v2.0.0 &mdash; Integración Masiva & Personalización</h4>
+          <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: bold;">Junio 2026</span>
+          <ul style="margin-top: 0.5rem; margin-left: 1rem; list-style-type: disc;">
+            <li>Integración de 228 nuevos componentes zips extraídos dinámicamente.</li>
+            <li>Soporte ampliado de clasificación en <code>scanner.py</code> para relojes, menús, cargadores, firmas HTML, etc.</li>
+            <li>Control de vista (Lista / Cuadrícula), ordenamiento A-Z, favoritos y gestión de Álbumes locales.</li>
+            <li>Integración del pie de página dinámico con star rating, FAQs y Skills.</li>
+          </ul>
+        </div>
+        <div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem; margin-bottom: 1.5rem;">
+          <h4 style="color: #fff; margin-bottom: 0.25rem;">v1.2.0 &mdash; Migración a standalone y Liquid Glass</h4>
+          <span style="font-size: 0.75rem; color: var(--accent-purple); font-weight: bold;">Mayo 2026</span>
+          <ul style="margin-top: 0.5rem; margin-left: 1rem; list-style-type: disc;">
+            <li>Refactorización del catálogo: se eliminaron los modales por páginas independientes (<code>component.html</code>).</li>
+            <li>Implementación del diseño de tarjetas curvas "Apple Liquid Glass Switcher" con sombras speculars en 3D.</li>
+            <li>Corrección de títulos por defecto (`CodePen`, `Untitled`) inyectados en HTML fuente por el scanner.</li>
+          </ul>
+        </div>
+        <div style="border-left: 2px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+          <h4 style="color: #fff; margin-bottom: 0.25rem;">v1.0.0 &mdash; Lanzamiento del Catálogo</h4>
+          <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: bold;">Abril 2026</span>
+          <ul style="margin-top: 0.5rem; margin-left: 1rem; list-style-type: disc;">
+            <li>Estructura inicial del indexador y renderizado de previsualización en iframe por CORS local.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-actions-row" style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <button id="accept-changelog-btn" class="control-btn accent" style="width: auto; padding: 0 1.5rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-color: transparent;">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Album Creation Modal -->
+  <div id="album-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 500px; height: auto; padding: 1.5rem; gap: 1.5rem;">
+      <div class="modal-header" style="padding: 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div class="modal-title-area">
+          <h2 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Crear Nuevo Álbum</h2>
+          <div class="modal-subtitle">Agrupa tus componentes favoritos</div>
+        </div>
+        <button id="close-album-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="album-modal-body" style="padding: 1rem 0;">
+        <input type="text" id="new-album-name" class="search-input" placeholder="Nombre del álbum (ej: Botones Premium, Menús)" style="padding-left: 1rem;">
+        <div id="album-error-msg" class="album-error" style="color: var(--accent-pink); font-size: 0.85rem; margin-top: 0.5rem; min-height: 20px;"></div>
+      </div>
+      <div class="modal-actions-row" style="display: flex; justify-content: flex-end; gap: 1rem;">
+        <button id="cancel-album-btn" class="control-btn accent" style="background: rgba(255, 255, 255, 0.05); color: #fff; width: auto; padding: 0 1rem;">Cancelar</button>
+        <button id="save-album-btn" class="control-btn accent" style="width: auto; padding: 0 1rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-color: transparent;">Guardar Álbum</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rating Prompt Modal (5 Minutes) -->
+  <div id="rating-prompt-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 650px; height: auto; max-height: 90vh; padding: 1.75rem; gap: 1.25rem;">
+      <div class="modal-header" style="padding: 0 0 1rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <div class="modal-title-area">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">¡Valoramos tu opinión en Codis!</h2>
+          <div class="modal-subtitle">Has estado explorando nuestro catálogo por más de 5 minutos.</div>
+        </div>
+        <button id="close-rating-prompt-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body-scrollable" style="flex-grow: 1; overflow-y: auto; padding: 0.5rem 0; font-size: 0.95rem; display: flex; flex-direction: column; gap: 1.25rem;">
+        
+        <!-- Step 1: Calificación de estrellas -->
+        <div class="rating-prompt-section">
+          <label style="display: block; font-weight: 600; color: #fff; margin-bottom: 0.5rem;">1. ¿Cómo calificarías tu experiencia en Codis? (1 a 5 estrellas)</label>
+          <div class="stars-row" id="prompt-stars-row" style="display: flex; gap: 0.35rem; font-size: 2rem; color: rgba(255, 255, 255, 0.15); cursor: pointer; user-select: none;">
+            <span class="prompt-star-btn" data-value="1" style="transition: var(--transition-smooth);">★</span>
+            <span class="prompt-star-btn" data-value="2" style="transition: var(--transition-smooth);">★</span>
+            <span class="prompt-star-btn" data-value="3" style="transition: var(--transition-smooth);">★</span>
+            <span class="prompt-star-btn" data-value="4" style="transition: var(--transition-smooth);">★</span>
+            <span class="prompt-star-btn" data-value="5" style="transition: var(--transition-smooth);">★</span>
+          </div>
+        </div>
+
+        <!-- Opcional: Reseña -->
+        <div class="rating-prompt-section">
+          <label for="prompt-rating-review" style="display: block; font-weight: 600; color: #fff; margin-bottom: 0.5rem;">2. Déjanos una reseña u opinión (Opcional)</label>
+          <textarea id="prompt-rating-review" placeholder="Cuéntanos qué te gusta o qué podemos mejorar..." style="width: 100%; height: 60px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem 0.75rem; color: #fff; font-family: inherit; font-size: 0.9rem; resize: none; outline: none; transition: var(--transition-smooth);"></textarea>
+        </div>
+
+        <!-- Segmento personalizado: Sección más visitada y Prompt de IA -->
+        <div class="rating-prompt-section" style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 1rem;">
+          <div style="margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Ecosistema Personalizado</span>
+            <h4 style="color: #fff; font-size: 1rem; margin-top: 0.15rem;">Tu sección más visitada: <span id="prompt-top-category" style="color: var(--accent-purple); font-weight: 700;">HTML</span></h4>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+            Hemos preparado un prompt especial basado en tus gustos para que lo copies y lo utilices en tu IA favorita (Gemini, Claude, ChatGPT, etc.).
+          </p>
+          
+          <!-- Prompt interactivo a copiar -->
+          <div class="ai-prompt-copy-container" style="position: relative; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 2.5rem 0.75rem 0.75rem; margin-bottom: 0.75rem;">
+            <pre style="margin: 0; font-family: inherit; font-size: 0.85rem; color: #e5e7eb; white-space: pre-wrap; max-height: 120px; overflow-y: auto;" id="prompt-dynamic-text">Hola, gracias por visitar Codis,...</pre>
+            <button id="copy-prompt-modal-btn" type="button" title="Copiar Prompt" style="position: absolute; right: 0.5rem; top: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-smooth);">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Área para pegar respuesta de la IA -->
+          <div>
+            <label for="prompt-ai-response" style="display: block; font-size: 0.85rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem;">Pega aquí la respuesta de tu IA favorita si deseas registrarla en tu bitácora de Sheets:</label>
+            <textarea id="prompt-ai-response" placeholder="Pega aquí la respuesta generada por tu IA..." style="width: 100%; height: 75px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.5rem; color: #fff; font-family: inherit; font-size: 0.85rem; resize: none; outline: none; transition: var(--transition-smooth);"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-actions-row" style="display: flex; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+        <button id="cancel-rating-prompt-btn" class="control-btn accent" style="background: rgba(255, 255, 255, 0.05); color: #fff; width: auto; padding: 0 1.25rem;">Omitir por ahora</button>
+        <button id="submit-prompt-rating-btn" class="control-btn accent" style="width: auto; padding: 0 1.5rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-color: transparent;">Enviar Calificación y Datos</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Floating Scroll Controls (Top / Bottom) -->
+  <div id="scroll-controls" class="scroll-controls">
+    <button id="scroll-to-top-btn" class="scroll-ctrl-btn" title="Subir al inicio">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+    <button id="scroll-to-bottom-btn" class="scroll-ctrl-btn" title="Bajar al pie de página">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Data and Application Logic -->
+  <script src="components-data.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>

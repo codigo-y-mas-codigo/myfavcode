@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Sosteniendo la Chispa en Relaciones Gay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful -->
+    <!-- Application Structure Plan: La infografía está diseñada como una narrativa visual de desplazamiento vertical, dividida en cinco secciones temáticas clave que se corresponden con los temas principales del informe: Deseo, Equilibrio, Independencia, Conflictos y Rituales. Se eligió esta estructura lineal y guiada para contar una historia cohesiva, llevando al usuario desde los fundamentos psicológicos hasta las acciones prácticas. La navegación se facilita mediante una barra lateral fija con iconos, que permite tanto el desplazamiento guiado como el acceso directo a cualquier sección. Cada sección utiliza una visualización interactiva o un diseño distintivo para presentar la información cualitativa de una manera más atractiva y comprensible que el texto simple, fomentando la exploración y la retención del conocimiento. -->
+    <!-- Visualization & Content Choices: 1. Deseo a Largo Plazo -> Goal: Relationships -> Viz: Gráfico de Radar (Chart.js/Canvas). Justification: Representa visualmente múltiples factores interconectados (estrés, intimidad, etc.) que influyen en un concepto central (deseo), mostrando su impacto relativo en una sola vista. 2. Equilibrio Novedad/Familiaridad -> Goal: Compare -> Viz: Diagrama de flujo HTML/CSS. Justification: Muestra la dinámica y el flujo entre dos conceptos opuestos pero necesarios, más claro que una simple tabla. 3. Independencia -> Goal: Organize -> Viz: Diseño de tarjetas en dos columnas. Justification: Compara y contrasta claramente los aspectos de 'Espacio Individual' y 'Conexión Mutua'. 4. Conflictos -> Goal: Organize/Compare -> Viz: Listas de "Hacer" y "No Hacer" con iconos. Justification: Ofrece una guía visual rápida y digerible sobre comportamientos constructivos vs. destructivos. 5. Rituales -> Goal: Inform/Organize -> Viz: Galería de tarjetas filtrable. Justification: Permite al usuario interactuar con el contenido y personalizarlo según sus necesidades (diarias, semanales), haciéndolo más práctico. CONFIRMATION: NO SVG, NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .nav-link.active i, .nav-link.active span {
+            color: #FF6B6B;
+        }
+        .nav-link:hover i, .nav-link:hover span {
+            color: #118AB2;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 60vh;
+            max-height: 450px;
+            width: 100%;
+            max-width: 450px;
+        }
+    </style>
+</head>
+<body class="text-[#073B4C]">
+
+    <nav class="fixed top-1/2 -translate-y-1/2 left-0 z-50 bg-white/80 backdrop-blur-sm rounded-r-2xl shadow-lg p-2 hidden md:block">
+        <ul class="space-y-4" id="desktop-nav">
+            <li><a href="#deseo" class="nav-link flex items-center space-x-3 p-2 group" title="Deseo"><i class="fas fa-heart text-2xl text-gray-500 transition-colors">❤️</i> <span class="hidden group-hover:block text-sm font-semibold transition-colors">Deseo</span></a></li>
+            <li><a href="#equilibrio" class="nav-link flex items-center space-x-3 p-2 group" title="Equilibrio"><i class="fas fa-balance-scale text-2xl text-gray-500 transition-colors">⚖️</i> <span class="hidden group-hover:block text-sm font-semibold transition-colors">Equilibrio</span></a></li>
+            <li><a href="#independencia" class="nav-link flex items-center space-x-3 p-2 group" title="Independencia"><i class="fas fa-user text-2xl text-gray-500 transition-colors">👤</i> <span class="hidden group-hover:block text-sm font-semibold transition-colors">Independencia</span></a></li>
+            <li><a href="#conflictos" class="nav-link flex items-center space-x-3 p-2 group" title="Conflictos"><i class="fas fa-comments text-2xl text-gray-500 transition-colors">🗣️</i> <span class="hidden group-hover:block text-sm font-semibold transition-colors">Conflictos</span></a></li>
+            <li><a href="#rituales" class="nav-link flex items-center space-x-3 p-2 group" title="Rituales"><i class="fas fa-glass-cheers text-2xl text-gray-500 transition-colors">🥂</i> <span class="hidden group-hover:block text-sm font-semibold transition-colors">Rituales</span></a></li>
+        </ul>
+    </nav>
+    
+    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-[0_-5px_15px_-3px_rgba(0,0,0,0.05)] md:hidden">
+        <ul class="flex justify-around items-center p-2" id="mobile-nav">
+            <li><a href="#deseo" class="nav-link text-2xl p-2">❤️</a></li>
+            <li><a href="#equilibrio" class="nav-link text-2xl p-2">⚖️</a></li>
+            <li><a href="#independencia" class="nav-link text-2xl p-2">👤</a></li>
+            <li><a href="#conflictos" class="nav-link text-2xl p-2">🗣️</a></li>
+            <li><a href="#rituales" class="nav-link text-2xl p-2">🥂</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mx-auto px-4 md:pl-24 py-12">
+        <section class="text-center min-h-screen flex flex-col justify-center items-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#118AB2] to-[#FF6B6B]">Sosteniendo la Chispa</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-[#073B4C]/80">Una infografía interactiva para navegar y nutrir la conexión en relaciones gay duraderas, explorando el deseo, el equilibrio y las estrategias prácticas para un amor que evoluciona y se fortalece.</p>
+            <div class="mt-8 text-2xl animate-bounce">↓</div>
+        </section>
+
+        <section id="deseo" class="min-h-screen py-16 scroll-mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">La Psicología del Deseo a Largo Plazo</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-[#073B4C]/80">El deseo en una relación madura es un ecosistema complejo. No es una sola cosa, sino un balance de múltiples factores. Este gráfico muestra cómo diferentes fuerzas, tanto positivas como negativas, interactúan para influir en la conexión íntima.</p>
+            <div class="card p-4 md:p-8">
+                <div class="chart-container">
+                    <canvas id="desireChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="equilibrio" class="min-h-screen py-16 scroll-mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">El Baile del Equilibrio: Novedad y Familiaridad</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-[#073B4C]/80">Una relación próspera necesita tanto la emoción de lo nuevo como el confort de lo conocido. Son dos fuerzas que se alimentan mutuamente para mantener la relación vibrante y segura. Explora cómo puedes cultivar ambas.</p>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="card p-6 text-center">
+                    <h3 class="text-2xl font-bold text-[#118AB2] mb-3">Novedad</h3>
+                    <p class="mb-4">El motor de la curiosidad y la pasión. Despierta la emoción y nos permite redescubrir a nuestra pareja.</p>
+                    <ul class="text-left space-y-2">
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Probar actividades nuevas juntos.</span></li>
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Hacer preguntas profundas e inesperadas.</span></li>
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Introducir sorpresas en la rutina.</span></li>
+                    </ul>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-2xl font-bold text-[#FFD166] mb-3">Familiaridad</h3>
+                    <p class="mb-4">El refugio de la confianza y la seguridad. Construye la intimidad y el entendimiento profundo.</p>
+                    <ul class="text-left space-y-2">
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Visitar lugares con significado especial.</span></li>
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Mantener rituales que brinden confort.</span></li>
+                        <li class="flex items-start"><span class="text-[#06D6A0] mr-2">✓</span><span>Compartir los detalles del día a día.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="independencia" class="min-h-screen py-16 scroll-mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Independencia Dentro de la Conexión</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-[#073B4C]/80">Ser un "nosotros" fuerte no significa dejar de ser un "yo". Una individualidad sana nutre la relación, aportando nuevas energías y perspectivas. El objetivo es ser interdependientes, no codependientes.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <h3 class="font-bold text-xl mb-2">👤 Fomenta tu Espacio</h3>
+                    <p>Cultiva tus propias pasiones, amistades y metas. Tu crecimiento personal es un regalo para la relación.</p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="font-bold text-xl mb-2">🤝 Apoya su Espacio</h3>
+                    <p>Anima a tu pareja a perseguir sus intereses. Su felicidad y realización también enriquecen el vínculo compartido.</p>
+                </div>
+                <div class="card p-6 md:col-span-2 lg:col-span-1">
+                    <h3 class="font-bold text-xl mb-2">🗣️ Comuniquen Límites</h3>
+                    <p>Hablar abierta y respetuosamente sobre las necesidades de tiempo a solas y tiempo juntos es clave para un equilibrio saludable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conflictos" class="min-h-screen py-16 scroll-mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Resolución Constructiva de Conflictos</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-[#073B4C]/80">Los desacuerdos son inevitables y saludables; son oportunidades de crecimiento. La clave no es evitar el conflicto, sino aprender a manejarlo de manera que fortalezca la relación en lugar de dañarla.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-[#06D6A0]">
+                    <h3 class="font-bold text-2xl mb-4">Hacer ✅</h3>
+                    <ul class="space-y-3">
+                        <li><strong>Usar el "Yo siento":</strong> Expresa tu perspectiva sin culpar.</li>
+                        <li><strong>Escuchar para Entender:</strong> No solo para responder.</li>
+                        <li><strong>Enfocarse en un Tema:</strong> Evita sacar conflictos pasados.</li>
+                        <li><strong>Tomar Pausas:</strong> Si la conversación se caldea, es válido pausar.</li>
+                        <li><strong>Buscar Soluciones Juntos:</strong> El objetivo es ganar-ganar.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-[#FF6B6B]">
+                    <h3 class="font-bold text-2xl mb-4">No Hacer ❌</h3>
+                    <ul class="space-y-3">
+                        <li><strong>Generalizar:</strong> Evita el "tú siempre" o "tú nunca".</li>
+                        <li><strong>Recurrir a Insultos:</strong> Ataca al problema, no a la persona.</li>
+                        <li><strong>Invalidar sus Sentimientos:</strong> Respeta su experiencia emocional.</li>
+                        <li><strong>Dar el "Tratamiento del Silencio":</strong> Evitar el problema no lo soluciona.</li>
+                        <li><strong>Querer "Ganar" la Discusión:</strong> Si uno pierde, la relación pierde.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="rituales" class="min-h-screen py-16 scroll-mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Fábrica de Rituales de Reconexión</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-[#073B4C]/80">Los rituales son hábitos con alma. Son acciones intencionadas que crean momentos sagrados de conexión en la vida cotidiana. Usa los filtros para encontrar inspiración que se ajuste a su ritmo de vida.</p>
+            <div class="flex justify-center space-x-2 md:space-x-4 mb-8" id="ritual-filters">
+                <button data-filter="all" class="filter-btn bg-[#FF6B6B] text-white px-4 py-2 rounded-full font-semibold">Todos</button>
+                <button data-filter="Diario" class="filter-btn bg-white text-[#118AB2] px-4 py-2 rounded-full font-semibold border border-[#118AB2]">Diarios</button>
+                <button data-filter="Semanal" class="filter-btn bg-white text-[#118AB2] px-4 py-2 rounded-full font-semibold border border-[#118AB2]">Semanales</button>
+                <button data-filter="Mensual" class="filter-btn bg-white text-[#118AB2] px-4 py-2 rounded-full font-semibold border border-[#118AB2]">Mensuales</button>
+            </div>
+            <div id="rituals-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+        
+    </main>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const desireChartCanvas = document.getElementById('desireChart');
+    if (desireChartCanvas) {
+        const desireChart = new Chart(desireChartCanvas, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Intimidad Emocional', 
+                    'Novedad', 
+                    ['Comunicación', 'Abierta'], 
+                    'Estrés Cotidiano', 
+                    ['Resentimiento', 'Acumulado'], 
+                    ['Necesidad de', 'Conexión']
+                ],
+                datasets: [{
+                    label: 'Impacto en el Deseo',
+                    data: [9, 7, 8, 3, 2, 7],
+                    backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                    borderColor: '#06D6A0',
+                    pointBackgroundColor: '#06D6A0',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#06D6A0'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(7, 59, 76, 0.2)'
+                        },
+                        grid: {
+                            color: 'rgba(7, 59, 76, 0.2)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12,
+                                weight: '600'
+                            },
+                            color: '#073B4C'
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(248, 249, 250, 0)',
+                            color: 'rgba(7, 59, 76, 0.5)',
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const ritualsData = [
+        { title: 'Beso de 6 segundos', category: 'Diario', icon: '😘', description: 'Un beso intencionado para liberar oxitocina y fortalecer la conexión física y emocional.' },
+        { title: 'Agradecimiento', category: 'Diario', icon: '🙏', description: 'Antes de dormir, compartan una cosa que agradecen del otro. Fomenta la positividad.' },
+        { title: 'Café Matutino Juntos', category: 'Diario', icon: '☕', description: 'Empezar el día con 10 minutos de conversación tranquila, sin teléfonos.' },
+        { title: 'Cita Semanal', category: 'Semanal', icon: '📅', description: 'Programen una noche solo para ustedes, ya sea en casa o fuera, para reconectar sin distracciones.' },
+        { title: 'Hobby Compartido', category: 'Semanal', icon: '🎨', description: 'Dediquen tiempo a una actividad que ambos disfruten, creando nuevas experiencias y recuerdos.' },
+        { title: 'Revisión de la Semana', category: 'Semanal', icon: '📊', description: 'Un momento para hablar sobre cómo se sintieron, qué funcionó y qué pueden mejorar como equipo.' },
+        { title: 'Escapada de Aventura', category: 'Mensual', icon: '🏞️', description: 'Una excursión de un día o un fin de semana a un lugar nuevo para romper la rutina.' },
+        { title: 'Proyecto en Equipo', category: 'Mensual', icon: '🛠️', description: 'Trabajen juntos en algo: redecorar una habitación, planificar un viaje, hacer voluntariado.' },
+        { title: 'Recrear la Primera Cita', category: 'Mensual', icon: '❤️', description: 'Vuelvan al lugar donde todo comenzó para recordar la chispa inicial y celebrar su viaje.' }
+    ];
+
+    const ritualsGrid = document.getElementById('rituals-grid');
+    const ritualFilters = document.getElementById('ritual-filters');
+
+    function displayRituals(filter) {
+        ritualsGrid.innerHTML = '';
+        const filteredData = (filter === 'all') ? ritualsData : ritualsData.filter(r => r.category === filter);
+        filteredData.forEach(ritual => {
+            const card = document.createElement('div');
+            card.className = 'card p-6 flex flex-col items-center text-center';
+            card.innerHTML = `
+                <div class="text-5xl mb-4">${ritual.icon}</div>
+                <h4 class="font-bold text-xl mb-2 text-[#118AB2]">${ritual.title}</h4>
+                <p class="text-sm text-[#073B4C]/80">${ritual.description}</p>
+                <div class="mt-4 text-xs font-semibold uppercase px-3 py-1 rounded-full bg-[#FFD166]/30 text-[#073B4C]">${ritual.category}</div>
+            `;
+            ritualsGrid.appendChild(card);
+        });
+    }
+
+    ritualFilters.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-[#FF6B6B]', 'text-white');
+                btn.classList.add('bg-white', 'text-[#118AB2]', 'border', 'border-[#118AB2]');
+            });
+            e.target.classList.add('bg-[#FF6B6B]', 'text-white');
+            e.target.classList.remove('bg-white', 'text-[#118AB2]', 'border', 'border-[#118AB2]');
+            displayRituals(e.target.dataset.filter);
+        }
+    });
+
+    displayRituals('all');
+    
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === entry.target.id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: "-50% 0px -50% 0px" });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
+</script>
+</body>
+</html>

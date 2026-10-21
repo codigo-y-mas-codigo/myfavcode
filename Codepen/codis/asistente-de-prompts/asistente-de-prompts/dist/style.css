@@ -1,0 +1,5 @@
+body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* bg-slate-900 */
+            background-image: radial-gradient(at 47% 33%, hsl(200, 0%, 12%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(215, 28%, 15%) 0, transparent 55%);
+        }

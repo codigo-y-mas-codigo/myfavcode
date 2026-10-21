@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Pen Export Povpllg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:500'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div id="app">
+  <div class="HERE_NavBar flex y_center x_sb">
+    <div class="Logo fs_10">THE
+      <div>ART</div>MUSEUM
+    </div>
+    <div class="red fs_12">Plan Your Visit</div>
+    <svg width="44" height="44">
+      <g stroke="midnightblue" stroke-width="2">
+        <path d="M5,14 L32,14"></path>
+        <path d="M5,22 L26,22"></path>
+        <path d="M5,30 L20,30"></path>
+      </g>
+    </svg>
+  </div>
+  <div class="fs_24">Skip the Line.</div>
+  <div class="fs_24">Purchase Tickets.</div>
+  <div class="red fs_12">All exhibitions, audio tours, and films </div>
+  <div class="red fs_12">included in the price of admission.</div>
+  <div class="HERE_tabs">
+    <div class="tabLabels">
+      <div class="tabLabels_Item" v-for="tab,idx in Tabs" :class="{curr:idx==TAB}" @click="TAB = idx">{{tab}}</div>
+    </div>
+    <transition-group class="TAB_content" name="tab" v-for="Name,Tab in Tabs">
+      <div class="TAB" :key="Tab" v-show="TAB == Tab">
+        <div class="PERIOD fs_12">{{Name == 'Tomorrow' ? new Date().toLocaleDateString('ru-RU') : Name}}</div>
+        <div class="groupItem flex x_sb" v-for="Item,idx in group">
+          <div>{{Item.title}}
+            <div class="subTitle">{{Item.subTitle}}</div>
+          </div>
+          <div class="flex y_center">
+            <div class="input_num Minus" :class="{disabled: !Item.value}" @click="minus(idx)"></div>
+            <div class="input_numResult">{{Item.value}}</div>
+            <div class="input_num Plus" @click="plus(idx)"></div>
+          </div>
+        </div>
+      </div>
+    </transition-group>
+  </div>
+  <dl class="Total flex x_sb">
+    <dt>Total</dt>
+    <dd>${{total}}</dd>
+  </dl>
+  <center>
+    <div class="btn" role="button">Continue to Payment</div>
+  </center>
+</div>
+    <script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>

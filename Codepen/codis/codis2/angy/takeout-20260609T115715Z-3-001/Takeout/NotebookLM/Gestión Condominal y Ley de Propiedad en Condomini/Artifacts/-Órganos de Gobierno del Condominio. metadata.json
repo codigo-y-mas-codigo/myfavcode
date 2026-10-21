@@ -1,0 +1,19 @@
+{
+  "title": "-Órganos de Gobierno del Condominio.",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "# La Organización Condominal: Asamblea, Administración y Vigilancia**\n\nEsta infografía se enfoca en la estructura de gobierno del condominio.\n\n*   **Título sugerido:** Los Órganos de Gobierno: Roles y Responsabilidades.\n*   **Contenido Clave:**\n    *   **La Asamblea General (Máxima Instancia):** Definición. Tipos: Ordinarias (trimestrales para informar sobre la administración) y Extraordinarias (asuntos urgentes o modificaciones mayores).\n    *   **Convocatoria y Quórum:** Detallar quién puede convocar (Administrador, Comité de Vigilancia, o un porcentaje de condóminos—20%, 15%, o 10% dependiendo del tamaño—acreditando ante PROSOC). Esquema del quórum (1ª convocatoria: 75% asistencia; 2ª convocatoria: mayoría simple; 3ª convocatoria: con los presentes).\n    *   **El Administrador (El Ejecutor):** Funciones clave como llevar el Libro de Actas autorizado, cuidar bienes comunes, recaudar cuotas y difundir acuerdos. Debe entregar mensualmente un estado de cuenta con el visto bueno del Comité de Vigilancia.\n    *   **El Comité de Vigilancia (El Supervisor):** Integración (2 a 5 condóminos). Funciones principales: cerciorarse de que el Administrador cumpla los acuerdos, verificar y emitir dictamen de los estados de cuenta, y convocar a Asamblea si el Administrador no lo hace.\nEstilo: \"Data-Clean\". Evitar saturación visual.\n\nFondo: Blanco puro o Gris muy pálido (#F8F9FA).\n\nPaleta: Usar Verde Salvia para barras/gráficos positivos, Gris Carbón para ejes y texto. Usar el Ocre (#E8A346) exclusivamente para destacar un dato clave (\"Insight\") o alertas.\n\nTipografía: Grandes cifras en Varela Round. Texto explicativo en Roboto.\n\nPie: Siempre incluir el sitio web en Roboto Regular, centrado al final.\nIconografía\n\nEstilo: \"Monoline Rounded\". Iconos de línea con grosor constante (2px o 3px), esquinas redondeadas, sin relleno. Color: Gris Carbón o Verde Salvia.  ",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_PORTRAIT",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD"
+    },
+    "title": "Órganos de Gobierno del Condominio."
+  }
+}

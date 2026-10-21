@@ -1,0 +1,20 @@
+{
+  "title": "Perfil de roles digitales actuales",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "a3c13cd5-af9f-4631-833e-549d5b947857"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "Perfil de Roles Digitales\nUn resumen de las nuevas profesiones en la economía digital, desde anotadores de IA hasta QA Presentar una visión educativa sobre las diversas especialidades que existen en la red de expertos de Arise, describiendo las tareas y habilidades necesarias para roles modernos como el entrenamiento de modelos de lenguaje (RLHF), la evaluación de contenido generativo y el soporte especializado en salud.",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_LANDSCAPE",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD",
+      "style": "STYLE_AUTO"
+    },
+    "title": "Perfil de roles digitales actuales"
+  }
+}

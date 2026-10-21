@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Búsqueda en Tiempo Real</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans">
+ <div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6 text-center text-indigo-600">Búsqueda en Tiempo Real</h1>
+
+  <form id="searchForm" class="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
+   <div class="flex flex-wrap -mx-3 mb-4">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="searchType">
+      Buscar en:
+     </label>
+     <select id="searchType" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+      <option value="all">Todos</option>
+      <option value="functions">Funciones</option>
+      <option value="objectives">Objetivos</option>
+      <option value="examples">Ejemplos</option>
+     </select>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="customSearch">
+      Búsqueda Personalizada:
+     </label>
+     <input type="text" id="customSearch" placeholder="Buscar..." onkeyup="search()" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+    </div>
+   </div>
+   <div class="flex items-center justify-between">
+    <button type="button" onclick="resetFilters()" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+     Limpiar Filtros
+    </button>
+   </div>
+  </form>
+
+  <div id="searchResults" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+   <!-- Los resultados de la búsqueda se mostrarán aquí -->
+  </div>
+ </div>
+
+ <div id="content" class="hidden">
+  <!-- Secciones con contenido a buscar -->
+  <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+   <h4 class="text-xl font-bold mb-4">Sitios Institucionales o de Negocio</h4>
+   <p class="funciones"><strong class="text-indigo-600">Funciones:</strong></p>
+   <ul class="list-disc pl-5 mb-4">
+    <li>Presentar información corporativa.</li>
+    <li>Detallar servicios y productos ofrecidos.</li>
+    <li>Proveer información de contacto.</li>
+    <li>Mostrar la historia y valores de la empresa.</li>
+   </ul>
+   <p class="objetivos"><strong class="text-indigo-600">Objetivos:</strong></p>
+   <ul class="list-disc pl-5 mb-4">
+    <li>Construir credibilidad y confianza.</li>
+    <li>Atraer clientes potenciales.</li>
+    <li>Proveer un punto de contacto y facilitar la comunicación.</li>
+    <li>Representar la marca de manera profesional.</li>
+   </ul>
+   <p class="ejemplos"><strong class="text-indigo-600">Ejemplos:</strong></p>
+   <ul class="list-disc pl-5">
+    <li><strong>Tiendanube:</strong> Plataforma de e-commerce en Latinoamérica que presenta información sobre servicios, beneficios, detalles de la marca y equipo.</li>
+    <li><strong>Coca-Cola:</strong> Página institucional clásica que muestra la historia, productos, campañas publicitarias y responsabilidad social corporativa.</li>
+   </ul>
+  </section>
+
+  <!-- Repite el formato para las demás secciones: Blogs, Comercio Electrónico, Portafolios, Educativos, Redes Sociales, Foros, Wikis -->
+
+  <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+   <h3 class="text-2xl font-bold mb-4">Recomendaciones</h3>
+   <p class="mb-4">Para asegurar que cada tipo de página web cumpla con sus funciones y objetivos de manera efectiva, es esencial:</p>
+   <ul class="list-disc pl-5">
+    <li><strong class="text-indigo-600">Diseño intuitivo y accesible:</strong> Fácil navegación y acceso a la información.</li>
+    <li><strong class="text-indigo-600">Optimización para dispositivos móviles:</strong> Adaptar el contenido para una experiencia fluida en smartphones y tablets.</li>
+    <li><strong class="text-indigo-600">SEO y contenido relevante:</strong> Optimización para motores de búsqueda y contenido que responda a las necesidades de los usuarios.</li>
+    <li><strong class="text-indigo-600">Interactividad y feedback:</strong> Facilitar la interacción del usuario y recoger retroalimentación para mejoras continuas.</li>
+   </ul>
+   <p class="mt-4">Estas prácticas asegurarán que la página web no solo atraiga tráfico, sino que también cumpla con los objetivos específicos de cada tipo de sitio.</p>
+  </section>
+ </div>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+   const searchInput = document.getElementById('customSearch');
+   const searchTypeSelect = document.getElementById('searchType');
+   const resultsContainer = document.getElementById('searchResults');
+   const sections = document.querySelectorAll('#content > section');
+
+   function search() {
+    const query = searchInput.value.toLowerCase();
+    const searchType = searchTypeSelect.value;
+    resultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+    let found = false;
+    sections.forEach(section => {
+     let contentToSearch = '';
+     if (searchType === 'all') {
+      contentToSearch = section.innerText.toLowerCase();
+     } else {
+      const targetParagraph = section.querySelector(`.${searchType}`);
+      if (targetParagraph) {
+       contentToSearch = targetParagraph.innerText.toLowerCase();
+      }
+     }
+     if (query === '' || contentToSearch.includes(query)) {
+      const clonedSection = section.cloneNode(true);
+      clonedSection.classList.add('bg-white', 'shadow-md', 'rounded', 'px-8', 'pt-6', 'pb-8', 'mb-4');
+      resultsContainer.appendChild(clonedSection);
+      found = true;
+     }
+    });
+    if (!found) {
+     resultsContainer.innerHTML = '<p class="text-center text-gray-600">No se encontraron resultados.</p>';
+    }
+   }
+
+   function resetFilters() {
+    searchInput.value = '';
+    searchTypeSelect.value = 'all';
+    search(); // Realizar una búsqueda sin filtros para mostrar todos los resultados
+   }
+
+   function clearInputOnFocus() {
+    if (searchInput.value !== '') {
+     searchInput.value = ''; // Limpiar el input si ya contiene texto
+     search(); // Realizar una búsqueda sin filtros al borrar el contenido del input
+    }
+   }
+   window.search = search;
+   window.resetFilters = resetFilters;
+   // Ejecutar búsqueda inicial para mostrar todo el contenido
+   search();
+   // Limpiar el input y mostrar todos los resultados cuando se le dé foco
+   searchInput.addEventListener('focus', clearInputOnFocus);
+  });
+ </script>
+</body>
+
+</html>

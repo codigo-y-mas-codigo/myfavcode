@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Lotería de Aventuras de Viaje</title>
+ <link rel="stylesheet" href="styles.css">
+ <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+ <style>
+  /* Estilos aquí (puedes copiar los que ya tienes y ajustar según sea necesario) */
+  :root {
+   --primary-color: #4a90e2;
+   --secondary-color: #f39c12;
+   --text-color: #333;
+   --light-bg: #f0f0f0;
+  }
+
+  /* Otros estilos generales y específicos para la página */
+ </style>
+</head>
+
+<body>
+ <header>
+  <h1>Lotería de Aventuras de Viaje</h1>
+  <nav>
+   <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#juega">Juega</a></li>
+    <li><a href="#diseñadores">Diseñadores</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+   </ul>
+  </nav>
+ </header>
+
+ <main>
+  <!-- Sección de Bienvenida -->
+  <section id="inicio" class="container">
+   <h2>Bienvenido a Lotería de Aventuras de Viaje</h2>
+   <p>¡Explora, juega y gana con nuestra divertida lotería de aventuras de viaje! Sigue las instrucciones para comenzar y si tienes ideas nuevas o quieres ver tu arte en el juego, ¡contáctanos!</p>
+  </section>
+
+  <!-- Sección de Juego -->
+  <section id="juega" class="container">
+   <h2>Juega a la Lotería</h2>
+   <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- Modal para "Lotería" -->
+  <div id="modal" class="modal">
+   <div class="modal-content">
+    <h2>¡LOTERÍA!</h2>
+    <p>Has completado todas las tarjetas.</p>
+
+    <!-- Formulario de Valoración -->
+    <div id="form-container">
+     <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec">
+      <h2>Valora tu experiencia</h2>
+      <div class="rating">
+       <!-- Estrellas de valoración -->
+       <!-- Añadir inputs para la valoración -->
+      </div>
+      <input type="text" name="name" placeholder="Tu nombre">
+      <input type="email" name="email" placeholder="Tu email">
+      <button type="submit" class="submit-button">Enviar</button>
+     </form>
+    </div>
+
+    <button class="close" onclick="closeModal()">Cerrar</button>
+   </div>
+  </div>
+
+  <!-- Sección para Diseñadores -->
+  <section id="diseñadores" class="container">
+   <h2>Diseñadores</h2>
+   <p>¿Eres diseñador y quieres ver tu arte en nuestro juego de lotería? ¡Déjanos un mensaje y nos pondremos en contacto contigo!</p>
+   <form id="designer-form" action="#" method="post">
+    <input type="text" name="name" placeholder="Tu nombre">
+    <input type="email" name="email" placeholder="Tu email">
+    <textarea name="message" placeholder="Tu mensaje"></textarea>
+    <button type="submit" class="submit-button">Enviar</button>
+   </form>
+  </section>
+
+  <!-- Sección de Valoraciones -->
+  <section id="valoraciones" class="container">
+   <h2>Valoraciones</h2>
+   <p>Nos encantaría saber tu opinión sobre el juego. Valóralo y compártelo con tus amigos.</p>
+   <!-- Aquí puedes repetir o modificar el formulario de valoración si es necesario -->
+  </section>
+ </main>
+
+ <footer>
+  <p>&copy; 2024 Lotería de Aventuras de Viaje. Todos los derechos reservados.</p>
+  <div class="social-icons">
+   <a href="#"><i class="fab fa-facebook-f"></i></a>
+   <a href="#"><i class="fab fa-twitter"></i></a>
+   <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <nav>
+   <ul>
+    <li><a href="#terminos">Términos y Condiciones</a></li>
+    <li><a href="#privacidad">Política de Privacidad</a></li>
+   </ul>
+  </nav>
+ </footer>
+
+ <script>
+  // Lógica del juego, eventos de clic, etc.
+ </script>
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

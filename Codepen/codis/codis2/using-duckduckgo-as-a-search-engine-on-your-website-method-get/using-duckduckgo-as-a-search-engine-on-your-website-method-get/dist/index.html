@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Using DuckDuckGo as a search engine on your website / method=&quot;get&quot;</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <main>
+	<h1>Using DuckDuckGo as a search engine on your website / method="get" </h1>
+	<p lang="es">Soy algo curioso y leyendo el codigo de Tanteck vi el buscador de DuckDuckGo así que no dude en ver como funcionaba y probandolo. En unos meses que tenga más contenido veremos si ya se indexa tanto y esto facilita de forma rapida el escribir mas lineas para tener un search en nuestro sitio. Una buena opción para algo rápido y sin tanto código. </p>
+	<pre>
+&#60;form class="search" action="https://duckduckgo.com/html/" method="get">
+ &#60;input type="hidden" name="type" value="list" />
+ &#60;input type="search" value="site:luisangelmaciel.vercel.app " name="q" style="width:85%" />
+ &#60;button type="submit">Search Go&#60;/button>
+&#60;/form>
+</pre>
+	<hr>
+
+	<p>+ Escribe tu búsqueda seguido del texto que ya esta prescrito</p>
+	<form class="search" action="https://duckduckgo.com/html/" method="get">
+		<input type="hidden" name="type" value="list" />
+		<input type="search" value="site:luisangelmaciel.vercel.app " name="q" style="width:85%" />
+		<button type="submit">Search Go</button> <span>&nbsp;+</span><br>
+	</form>
+
+	<p>En este ejemplo, aun no se indexan la data puesto que es un site relativamente nuevo</p>
+	<br>
+	<p>Este otro ejemplo es de <a href="tantek.com" rel="" target="_blank" aria-lebel:"Site tantek.com">Tantek Çelik</a> contiene mayor indexación de data. Puedes intentar con la <code>More Thoughtful Reading & Writing on the Web</code>
+	<form class="search" action="https://duckduckgo.com/html/" method="get">
+		<div>
+			<input type="hidden" name="type" value="list" />
+			<input type="search" value="site:tantek.com " name="q" style="width:90%" />
+			<button type="submit">Search</button>
+		</div>
+	</form>
+
+	<p>Este sitio contiene mayor indexación de data</p>
+</main>
+    
+  </body>
+  
+</html>

@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 350px;
+  margin: 0 0;
+  padding: 0px;
+  height: 95vh;
+}
+
+.controls {
+  margin-bottom: 20px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  flex: 1 1 33.33%;
+  margin-bottom: 0px;
+  padding: 0 00px;
+  box-sizing: border-box;
+}
+
+.img-container {
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.heart-icon {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  font-size: 20px;
+  color: #888888; /* Gray by default */
+  cursor: pointer;
+}
+
+.heart-icon.favorited {
+  color: #ff0000; /* Red when favorited */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+ 
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  max-height: 95%;
+  
+
+}
+
+.close {
+  color: #000;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#quote-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#quote-btn:hover {
+  background-color: #45a049;
+}
+
+form {
+  margin-top: 20px;
+     padding: 15 15px;
+  margin: 15 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#engraving-options {
+  margin-top: 10px;
+}
+
+.active {
+  color: #ff0000;
+}
+
+/* Styles for favorites modal */
+#favorites-modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.favorites-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.favorites-content h2 {
+  margin-bottom: 20px;
+}
+
+.favorites-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.favorites-list li {
+  margin-bottom: 10px;
+}
+
+/* Ajustes para los nuevos botones de columnas */
+.column-buttons {
+  display: flex;
+}
+
+.column-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-right: 10px;
+}
+
+.column-button:hover {
+  background-color: #45a049;
+}

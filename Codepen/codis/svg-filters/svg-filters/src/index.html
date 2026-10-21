@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Testeando promt</title>
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+ <style>
+  .modal {
+   display: none;
+   position: fixed;
+   z-index: 50;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+   background-color: white;
+   margin: 10% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   max-width: 500px;
+  }
+ </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+ <div class="container mx-auto p-4">
+  <article class="bg-gray-800 p-6 rounded-lg shadow-md">
+   <h2 class="text-3xl font-bold mb-4">SVG Filters</h2>
+   <p class="mb-4">The Filters #CodePenChallenge continues! Last week, we kicked things off with CSS filters...</p>
+   <p class="mb-4">SVG filters unlock so many creative coding possibilities...</p>
+   <p class="mb-4">This week we have lots of resources and ideas to help you learn to use SVG filters or flex your filtering finesse...</p>
+   <button class="bg-green-500 text-white px-4 py-2 rounded mt-4" onclick="openModal('challengeModal')">View weekly challenge</button>
+  </article>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 1" class="cursor-pointer rounded-lg" onclick="openModal('modal1')">
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 2" class="cursor-pointer rounded-lg" onclick="openModal('modal2')">
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 3" class="cursor-pointer rounded-lg" onclick="openModal('modal3')">
+  </div>
+ </div>
+
+ <!-- Modals -->
+ <div id="modal1" class="modal">
+  <div class="modal-content rounded-lg">
+   <span class="close cursor-pointer text-right text-xl block" onclick="closeModal('modal1')">&times;</span>
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 1" class="rounded-lg">
+  </div>
+ </div>
+ <div id="modal2" class="modal">
+  <div class="modal-content rounded-lg">
+   <span class="close cursor-pointer text-right text-xl block" onclick="closeModal('modal2')">&times;</span>
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 2" class="rounded-lg">
+  </div>
+ </div>
+ <div id="modal3" class="modal">
+  <div class="modal-content rounded-lg">
+   <span class="close cursor-pointer text-right text-xl block" onclick="closeModal('modal3')">&times;</span>
+   <img src="https://ucarecdn.com/96834d6c-b43c-4fa7-bf23-030f381a56f9/-/preview/469x216/-/quality/smart/-/format/auto/" alt="Image 3" class="rounded-lg">
+  </div>
+ </div>
+
+ <script>
+  function openModal(modalId) {
+   document.getElementById(modalId).style.display = "block";
+  }
+
+  function closeModal(modalId) {
+   document.getElementById(modalId).style.display = "none";
+  }
+ </script>
+</body>
+
+</html>

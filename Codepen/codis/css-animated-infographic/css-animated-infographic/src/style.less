@@ -1,0 +1,2153 @@
+/*---------------------------------------------*/
+/* FONTS */
+/*-------------------------------------------*/
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Open+Sans|Open+Sans+Condensed:300,700);
+
+@openSansRegular: 'Open Sans', sans-serif;
+@openSansCondensed: 'Open Sans Condensed', sans-serif;
+@sourceSansPro: 'Source Sans Pro', sans-serif;
+
+// https://www.smashingmagazine.com/2012/04/pure-css3-cycling-slideshow/
+// SLIDER STRUCTURE
+html, body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+#rt-showcase {
+	height: 100%;
+	min-height: 568px;
+	// max-height: 950px;
+    
+	.rt-grid-12 {
+		height: 100%;
+		width:100%;
+		float:none;
+		display:block;
+
+		.rt-block  {
+			 height: 100%;
+			 margin:0;
+			 padding:0;
+
+			 .module-surround {
+				  height: 100%;
+
+				  .module-content {
+						 height: 100%;
+
+						 .custom {
+							  height: 100%;
+						 }
+				  }
+			 }
+		}
+	}
+	
+	#content-slider {
+		height:100%;
+    position:relative;
+    
+    .pauseBtn {
+      position:absolute;
+      top:5vh;
+      right:5vh;
+      width:8vh;
+      height:10vh;
+      z-index:9999;
+      // background:red;
+      opacity: .5;
+      transition: all .3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      span {
+        display:block;
+        position:relative;
+        height:100%;
+        width:100%;
+        text-indent: -999em;
+
+        &:before,
+        &:after {
+          content:'';
+          display:block;
+          position:absolute;
+          width:40%;
+          background: white;
+        }
+
+        &:before {
+          left:0;
+          top:0;
+          bottom:0;
+        }
+
+        &:after {
+          top:0;
+          right:0;
+          bottom:0;
+        }
+      }
+    }
+    
+    
+    .ssSlideDownNew {
+      position:absolute;
+      bottom:15vh;
+      right:50%;
+      margin-right:-10vh;
+      width:20vh;
+      height:20vh;
+      padding:0;
+      background: white;
+      display:block;
+      // margin: 12vh auto 0;
+      text-indent:-9999px;
+      z-index:2;
+      border-radius:9999px;
+      box-shadow: 0 0 5vh #0B6A84;
+      transition: all ease .3s;
+      border:.3vh solid white;
+
+      &::before,
+      &::after {
+        box-sizing:border-box;
+        content: '';
+        position:absolute;
+        top:50%;
+        margin:0;
+        height: .5vh;
+        width: 6vh;
+        background-color: #cc33cc;
+        transition: all ease .3s;
+      }
+
+      &::before {
+        left:50%;
+        margin-left:-1vh;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        right:50%;
+        margin-right:-1vh;
+        transform: rotate(45deg);
+      }
+
+      &:hover {
+        background-color: #cc33cc;
+        box-shadow: 0 0 15vh #0B6A84;
+
+        &::before,
+        &::after {
+          background-color: white;
+        }
+      }
+    }
+
+		#slider {
+			height: 100%;
+			width: 100%;
+			overflow: visible;
+			position: relative;
+			
+			// PROGRESS BAR
+			&:before {
+				content:'';
+				position:absolute;
+				bottom:0;
+				right:0;
+				left:0;
+				height: 5%;
+				width:100%;
+				background: white;
+				z-index:1;
+			}
+			
+			.progress-bar {
+				position: relative;
+				top: -5%;
+				height: 5%;
+				background: black;
+				z-index:2;
+			}
+
+			// HIDE ALL OUTSIDE OF THE SLIDER
+			#mask {
+				overflow: hidden;
+				height: 100%;
+
+				// IMAGE LIST
+				> ul {
+					margin:0;
+					padding:0;
+					list-style: none;
+					position: relative;
+					height: 100%;
+
+					> li {
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						
+						.ssTextWrapper {
+							
+							h3 {
+								color:white;
+								font-size: calc(~"0.75em + 8vmin");
+								line-height: calc(~"0.75em + 8vmin");
+								position:absolute;
+								left:5%;
+								top:5%;
+								font-family: @openSansCondensed;
+								opacity:0;
+								font-weight:700;
+							}
+							
+							.ssMainText {
+								position:absolute;
+								left:5%;
+								top:28%;
+								display:block;
+								opacity:0;
+								width:45%;
+								
+								p {
+									font-size: calc(~"0.5em + 2vmin");
+									line-height: calc(~"0.7em + 2.5vmin");
+									font-family: @openSansRegular;
+									color:black;
+								}
+							}
+						}
+                        
+						&.firstAnimation {
+							/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00ccff+0,33ffff+100 */
+              background: rgb(0,204,255); /* Old browsers */
+              background: -moz-linear-gradient(-45deg,  rgba(0,204,255,1) 0%, rgba(51,255,255,1) 100%); /* FF3.6-15 */
+              background: -webkit-linear-gradient(-45deg,  rgba(0,204,255,1) 0%,rgba(51,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+              background: linear-gradient(135deg,  rgba(0,204,255,1) 0%,rgba(51,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ccff', endColorstr='#33ffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+							.ssGraphicWrapper {
+                position:absolute;
+                bottom:0;
+                top:0;
+                left:0;
+                right:0;
+                // background:green;
+                
+								ul {
+									padding:0;
+									margin:0;
+									list-style:none;
+                  
+									li {
+										position:absolute;
+										bottom:0;
+										right:15%;
+										transform-origin: 50% 100%;
+										// top:80%;
+										// background:red;
+										// height:100%;
+										// width:3%;
+										
+										&:nth-child(1) {
+											top:100%;
+											right:15%;
+											width:3%;
+											
+											span {
+												 font-size: calc(~"0.1em + 1vw");
+											}
+										}
+                    
+									  &:nth-child(2) {
+										  top:100%;
+										  right:2%;
+										  width:6%;
+										  
+										 span {
+											font-size: calc(~"0.2em + 2vw");
+										 }
+									  }
+									  &:nth-child(3) {
+										  top:100%;
+										  right:50%;
+										  width:7%;
+										  
+										 span {
+											font-size: calc(~"0.3em + 3vw");
+										 }
+									  }
+									  &:nth-child(4) {
+										  top:100%;
+										  right:18%;
+										  width:9%;
+										  
+										 span {
+											font-size: calc(~"0.4em + 4vw");
+										 }
+									  }
+									  &:nth-child(5) {
+										  top:100%;
+										  right:35%;
+										  width:10%;
+										  
+										 span {
+											font-size: calc(~"0.5em + 5vw");
+										 }
+									  }
+									  &:nth-child(6) {
+										  top:100%;
+										  right:23%;
+										  width:13%;
+										  
+										 span {
+											font-size: calc(~"0.6em + 7vw");
+										 }
+									  }
+									  &:nth-child(7) {
+										  top:100%;
+										  right:5%;
+										  width:16%;
+										  
+										 span {
+											font-size: calc(~"0.8em + 10vw");
+										 }
+									  }
+                    
+									  // Line
+									  &:before {
+										 content:'';
+										 display:block;
+										 background:black;
+										 position:absolute;
+										 bottom:0;
+										 right:50%;
+										 top:0;
+										 width:6%;
+										 z-index:0;
+										 margin-right:-3%;
+									  }
+                    
+									  > div {
+										 border-radius: 9999px;
+										 background: black;
+										 display:block;
+										 width:100%;
+										 padding-top:100%;
+										 position:relative;
+										  transform-origin: 50% 0%;
+										  
+										 > div {
+											// background: green;
+											position:absolute;
+											display:block;
+											top:0;
+											right:0;
+											bottom:0;
+											left:0;
+
+											div {
+											  position:relative;
+											  display:table;
+											  // background:orange;
+											  height:100%;
+											  width:100%;
+
+											  span {
+												 font-family: @openSansCondensed;
+												 font-weight:700;
+												 color: white;
+												 display: table-cell;
+												 vertical-align: middle;
+												 text-align: center;
+											  }
+											}
+										 }
+									  }
+									}
+								}
+							}
+						}
+            
+						&.secondAnimation {
+							/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#33ffff+0,00ccff+100 */
+              background: rgb(51,255,255); /* Old browsers */
+              background: -moz-linear-gradient(-45deg,  rgba(51,255,255,1) 0%, rgba(0,204,255,1) 100%); /* FF3.6-15 */
+              background: -webkit-linear-gradient(-45deg,  rgba(51,255,255,1) 0%,rgba(0,204,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+              background: linear-gradient(135deg,  rgba(51,255,255,1) 0%,rgba(0,204,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffff', endColorstr='#00ccff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+              
+              .ssGraphicWrapper {
+                ul {
+                  margin:0;
+                  padding:0;
+                  list-style:none;
+                  
+                  li {
+                    position:absolute;
+                    
+                    .device {
+                      border-radius: 1.5em;
+                      border: 3px solid white;
+                      display:block;
+                      position:relative;
+                      
+                      &.iPhone5 {
+                        width: calc(~"32vh - 2vh");
+                        height: calc(~"56.8vh - 2vh");
+                      }
+                      
+                      &.iPhone6 { 
+                        width: calc(~"41.4vh - 2vh");
+                        height: calc(~"73.6vh - 2vh");
+                      }
+                      
+                      &.iPad {
+                        width: calc(~"76.8vh - 2vh");
+                        height: calc(~"102.4vh - 2vh");
+                      }
+                      
+                      .size {
+                        display:table;
+                        background:black;
+                        border-radius: 9999px;
+                        height:20vh;
+                        width:20vh;
+                        position:absolute;
+                        right: 0;
+                        margin-right: -10vh;
+                        margin-top: -10vh;
+                        z-index:1;
+                        
+                        span {
+                          color: white;
+                          font-family: @openSansCondensed;
+                          font-weight: 700;
+                          display: table-cell;
+                          vertical-align: middle;
+                          text-align: center;
+                          font-size: 8vh;
+                          line-height: 20vh;
+                        }
+                      }
+                      
+                      .screen {
+                        position:absolute;
+                        top:9vh;
+                        right:2vh;
+                        bottom:10vh;
+                        left:2vh;
+                        border: 2px solid white;
+                        
+                        > div {
+                          position:relative;
+                          height:100%;
+                          width:100%;
+                          // background:green;
+                          overflow:hidden;
+                          
+                          div {
+                            position:absolute;
+                            display:block;
+                            background:rgba(255,255,255,.3);
+                            transform-origin: 0 50% 0;
+                            transform: scaleX(0);
+                              
+                              &:nth-child(1) {
+                                  top: 10%;
+                                  left: 10%;
+                                  right: 10%;
+                                  height: 5%;
+                                  width: auto;
+                              }
+                              &:nth-child(2) {
+                                  top: 20%;
+                                  left: 10%;
+                                  right: 10%;
+                                  height: 15%;
+                                  width: auto;
+                              }
+                              &:nth-child(3) {
+                                  top: 40%;
+                                  bottom:25%;
+                                  left: 10%;
+                                  width: 20%;
+                              }
+                              &:nth-child(4) {
+                                  top: 40%;
+                                  left: 35%;
+                                  right: 35%;
+                                  bottom: 25%;
+                                  width: auto;
+                              }
+                              &:nth-child(5) {
+                                  top: 40%;
+                                  bottom:25%;
+                                  right: 10%;
+                                  width: 20%;
+                              }
+                              &:nth-child(6) {
+                                  left: 10%;
+                                  right: 10%;
+                                  bottom: 10%;
+                                  height: 10%;
+                                  width: auto;
+                              }
+                            }
+                        }
+                      }
+                      
+                      .camera {
+                        position:absolute;
+                        top:4vh;
+                        height:1vh;
+                        width:1vh;
+                        right:50%;
+                        margin-right: -1.5625%;
+                        border: 2px solid white;
+                        border-radius: 9999px;
+                      }
+                      
+                      .home {
+                        position:absolute;
+                        bottom:1.5vh;
+                        height:6vh;
+                        width:6vh;
+                        right:50%;
+                        margin-right: -3vh;
+                        border: 2px solid white;
+                        border-radius: 9999px;
+                      }
+                    }
+                    
+                    &:nth-child(1) {
+                      bottom: 5%;
+                      right: 15%;
+                      
+                      .size {
+                        span {
+                          transform: rotate(35deg);
+                        }
+                      }
+                      
+                      .device {
+                        transform: rotate(-35deg) scale(.7);
+                        border-color: black;
+                        
+                        .screen, .home, .camera {
+                          border-color: black;
+                        }
+                      }
+                    }
+                    
+                    &:nth-child(2) {
+                      top: -25%;
+                      right: 5%;
+                      
+                      .size {
+                        span {
+                          transform: rotate(215deg);
+                        }
+                      }
+                      
+                      .device {
+                        transform: rotate(-215deg) scale(.7);
+                      }
+                    }
+                    
+                    &:nth-child(3) {
+                      bottom: -50%;
+                      left: 5%;
+                      
+                      .size {
+                        span {
+                          transform: rotate(-15deg);
+                        }
+                      }
+                      
+                      .device {
+                        transform: rotate(15deg) scale(.7);
+                      }
+                    }
+                  }
+                }
+              }
+						}
+            
+						&.thirdAnimation {
+							/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00ccff+0,33ffff+100 */
+              background: rgb(0,204,255); /* Old browsers */
+              background: -moz-linear-gradient(-45deg,  rgba(0,204,255,1) 0%, rgba(51,255,255,1) 100%); /* FF3.6-15 */
+              background: -webkit-linear-gradient(-45deg,  rgba(0,204,255,1) 0%,rgba(51,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+              background: linear-gradient(135deg,  rgba(0,204,255,1) 0%,rgba(51,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ccff', endColorstr='#33ffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+              
+              .ssGraphicWrapper {
+                position:absolute;
+                top:0;
+                right:0;
+                bottom:0;
+                left:0;
+                // background:grey;
+                
+                ul {
+                  margin:0;
+                  padding:0;
+                  list-style:none;
+                  position:relative;
+                  //background:grey;
+                  height:100%;
+                  width:100%;
+                  
+                  li {
+                    position:absolute;
+                    border-radius:9999px;
+                    border-size: .5vh;
+                    border-style: solid;
+                    border-color: white;
+                    
+                    > div {
+                      position:relative;
+                      height:100%;
+                      width:100%;
+                      
+                      i {
+                        text-align:center;
+                        display:block;
+                        color:black;
+                      }
+                      
+                      &:before,
+                      &:after {
+                        content: '';
+                        position: absolute;
+                      }
+                      
+                      &:before {
+                        height: .5vh;
+                        transform-origin: 0 50% 0;
+                        background: white;
+                      }
+                      
+                      &:after {
+                        border-size: .5vh;
+                        border-style: solid;
+                        border-color: white;
+                        border-radius: 9999px;
+                      }
+                    }
+                    
+                    // Main particle
+                    &:nth-child(1) {    
+                      width:45vh;
+                      height:45vh;
+                      top: 56.7vh;
+                      //left: 61.1vh;
+                      right: 76.2vh;
+                      // border-color: red;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:20vh;
+                          line-height: 45vh;
+                        }
+
+                        // Line
+                        &:before {
+                          width: 45vh;
+                          right: -44.6vh;
+                          top:40%;
+                          // background: red;
+                          transform: rotate(-14deg) scaleX(.38);
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 29vh;
+                          height: 29vh;
+                          right: -98.4%;
+                          top:-15.9%;
+                          // border-color: red;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 2
+                    &:nth-child(2) {       
+                      width:29vh;
+                      height:29vh;
+                      top: 49.9vh;
+                      // left:121vh;
+                      right:32.3vh;
+                      // border-color: blue;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:15vh;
+                          line-height: 29vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          right:-68.6vh;
+                          top:27%;
+                          // background: blue;
+                          transform: rotate(-26deg) scaleX(.36);
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 20vh;
+                          height: 20vh;
+                          right: -136.9%;
+                          top:-68.3%;
+                          // border-color: blue;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 3
+                    &:nth-child(3) {       
+                      width:20vh;
+                      height:20vh;
+                      top:30.5vh;
+                      // left:169.3vh;
+                      right:-6.9vh;
+                      // border-color: green;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:9vh;
+                          line-height: 20vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          left:4.2vh;
+                          top:7%;
+                          // background: green;
+                          transform: rotate(-129deg) scaleX(.21);
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 45vh;
+                          height: 45vh;
+                          right: 96.1%;
+                          top:-239.7%;
+                          // border-color: green;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 4
+                    &:nth-child(4) {      
+                      width:45vh;
+                      height:45vh;
+                      top:-16.9vh;
+                      // left:124.8vh;
+                      right: 12.7vh;
+                      // border-color: orange;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:20vh;
+                          line-height: 45vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          left:17vh;
+                          bottom:0.8%;
+                          // background: orange;
+                          transform: rotate(101deg) scaleX(.325);
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 29vh;
+                          height: 29vh;
+                          right: 42.5%;
+                          bottom: -113.5%;
+                          // border-color: orange;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 5
+                    &:nth-child(5) {      
+                      width:30vh;
+                      height:30vh;
+                      top:74.1vh;
+                      // left:156.6vh;
+                      right:-4.4vh;
+                      // border-color: violet;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:15vh;
+                          line-height: 30vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          left:1.5vh;
+                          top:7.6vh;
+                          // background: violet;
+                          transform: rotate(-145deg) scaleX(.20);
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 29vh;
+                          height: 29vh;
+                          right: 120.5%;
+                          bottom: 82.5%;
+                          // border-color: violet;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 6
+                    &:nth-child(6) {      
+                      width:23vh;
+                      height:23vh;
+                      top:50.1vh;
+                      // left:26.6vh;
+                      right:132.8vh;
+                      // border-color: black;
+                    
+                      > div {
+                        
+                        i {
+                          font-size: 12vh;
+                          line-height: 23vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          top: 15.2vh;
+                          // background: black;
+                          transform: rotate(21deg) scaleX(0.205);
+                          right: -69.5vh;
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 45vh;
+                          height: 45vh;
+                          right:-248%;
+                          bottom:-126%;
+                          // border-color: black;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 7
+                    &:nth-child(7) {
+                      width: 29vh;
+                      height: 29vh;
+                      top: 82.8vh;
+                      // left: 9.6vh;
+                      right: 143.6vh;
+                      // border-color: brown;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:14vh;
+                          line-height: 29vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          top: -0.4vh;
+                          // background: brown;
+                          transform: rotate(-62deg) scaleX(0.175);
+                          right: -57.7vh;
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 23vh;
+                          height: 23vh;
+                          right: -39.1%;
+                          bottom: 132%;
+                          // border-color: brown;
+                          display:none;
+                        }
+                      }
+                    }
+                    
+                    // Particle 8
+                    &:nth-child(8) {
+                      width: 29vh;
+                      height: 29vh;
+                      top: 62.9vh;
+                      right: 193.7vh;
+                      // border-color: salmon;
+                    
+                      > div {
+                        
+                        i {
+                          font-size:14vh;
+                          line-height: 29vh;
+                        }
+  
+                        // Line
+                        &:before {
+                          width: 70vh;
+                          // background: salmon;
+                          width: 70vh;
+                          top: 32.6vh;
+                          transform: rotate(-158.5deg) scaleX(0.367);
+                          right: -91.2vh;
+                        }
+
+                        // Sfere
+                        &:after {
+                          width: 29vh;
+                          height: 29vh;
+                          right: -174%;
+                          bottom: -70.0%;
+                          // border-color: salmon;
+                          display:none;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+						}
+            
+						&.fourthAnimation {
+							/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#33ffff+0,00ccff+100 */
+              background: rgb(51,255,255); /* Old browsers */
+              background: -moz-linear-gradient(-45deg,  rgba(51,255,255,1) 0%, rgba(0,204,255,1) 100%); /* FF3.6-15 */
+              background: -webkit-linear-gradient(-45deg,  rgba(51,255,255,1) 0%,rgba(0,204,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+              background: linear-gradient(135deg,  rgba(51,255,255,1) 0%,rgba(0,204,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffff', endColorstr='#00ccff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+							
+							.ssTextWrapper {
+							
+								h3 {
+									position:static;
+									margin: 5% auto 3%;
+									text-align: center;
+								}
+
+								.ssMainText {
+									position:static;
+									margin: 0 auto;
+									text-align: center;
+									width:80%;
+								}
+							}
+              
+              /*
+							.ssSlideDown {
+								width:20vh;
+								height:20vh;
+                padding:0;
+								background: white;
+                display:block;
+                margin: 12vh auto 0;
+								cursor:pointer;
+								text-indent:-9999px;
+								z-index:2;
+								border-radius:9999px;
+								box-shadow: 0 0 5vh #0B6A84;
+								transition: all ease .3s;
+                border:.3vh solid white;
+
+								&::before,
+								&::after {
+									box-sizing:border-box;
+									content: '';
+									position:absolute;
+									top:50%;
+									margin:0;
+									height: .5vh;
+									width: 6vh;
+									background-color: #cc33cc;
+                  transition: all ease .3s;
+								}
+                
+								&::before {
+									left:50%;
+									margin-left:-1vh;
+									transform: rotate(-45deg);
+								}
+                
+								&::after {
+									right:50%;
+									margin-right:-1vh;
+									transform: rotate(45deg);
+								}
+
+								&:hover {
+                  background-color: #cc33cc;
+                  box-shadow: 0 0 15vh #0B6A84;
+                  border: 1vh solid white;
+                  margin-top: calc(~"12vh - 0.35vh");
+                  
+                  &::before,
+                  &::after {
+                    background-color: white;
+                  }
+								}
+							}
+              */
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	&.startAnimating {
+		#content-slider {
+      
+      // Playstates
+      .pauseBtn:hover ~ #slider,
+      .ssSlideDownNew:hover ~ #slider {
+				
+				.progress-bar {
+					animation-play-state: paused;
+				}
+				
+				#mask {
+					ul {
+						li {
+              
+							&.firstAnimation {
+								animation-play-state: paused;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation-play-state: paused;
+									}
+									
+									.ssMainText {
+										animation-play-state: paused;
+									}
+								}
+								
+								.ssGraphicWrapper {
+
+									ul {
+
+										li {
+											
+											&:nth-child(1) {
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(2) {
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(3) {
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(4) {
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(5) { 
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(6) {
+												animation-play-state: paused;
+											}
+                      
+											&:nth-child(7) {
+												animation-play-state: paused;
+											}
+										}
+									}
+								}
+							}
+
+							&.secondAnimation {
+								animation-play-state: paused;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation-play-state: paused;
+									}
+									
+									.ssMainText {
+										animation-play-state: paused;
+									}
+								}
+                
+                .ssGraphicWrapper {
+                  ul {
+                    li {
+
+                      &:nth-child(1) {
+                        animation-play-state: paused;
+                        
+                        .size {
+                          animation-play-state: paused;
+                        }
+
+                        .device {
+                          animation-play-state: paused;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation-play-state: paused;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(3) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(4) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(5) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(6) {
+                                  animation-play-state: paused;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &:nth-child(2) {
+                        animation-play-state: paused;
+                        
+                        .size {
+                          animation-play-state: paused;
+                        }
+
+                        .device {
+                          animation-play-state: paused;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation-play-state: paused;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(3) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(4) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(5) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(6) {
+                                  animation-play-state: paused;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &:nth-child(3) {
+                        animation-play-state: paused;
+                        
+                        .size {
+                          animation-play-state: paused;
+                        }
+
+                        .device {
+                          animation-play-state: paused;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation-play-state: paused;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(3) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(4) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(5) {
+                                  animation-play-state: paused;
+                                }
+
+                                &:nth-child(6) {
+                                  animation-play-state: paused;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+							}
+
+							&.thirdAnimation {
+								animation-play-state: paused;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation-play-state: paused;
+									}
+									
+									.ssMainText {
+										animation-play-state: paused;
+									}
+								}
+                
+                .ssGraphicWrapper {
+                  animation-play-state: paused;
+
+                  ul {
+                    li {
+
+                      // Main particle
+                      &:nth-child(1) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+                        }
+                      }
+
+                      // Particle 2
+                      &:nth-child(2) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+                        }
+                      }
+
+                      // Particle 3
+                      &:nth-child(3) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+                        }
+                      }
+
+                      // Particle 4
+                      &:nth-child(4) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+                        }
+                      }
+
+                      // Particle 5
+                      &:nth-child(5) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+
+                          // Sfere
+                          &:after {}
+                        }
+                      }
+
+                      // Particle 6
+                      &:nth-child(6) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation: particleLine6 24s ease-in-out 3.5s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 7
+                      &:nth-child(7) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+
+                          // Sfere
+                          &:after {}
+                        }
+                      }
+
+                      // Particle 8
+                      &:nth-child(8) {
+                        animation-play-state: paused;
+
+                        > div {
+
+                          i {}
+
+                          // Line
+                          &:before {
+                            animation-play-state: paused;
+                          }
+
+                          // Sfere
+                          &:after {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+							&.fourthAnimation {
+								animation-play-state: paused;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation-play-state: paused;
+									}
+									
+									.ssMainText {
+										animation-play-state: paused;
+									}
+								}
+                
+                /*
+								.ssSlideDownOld {
+									animation-play-state: paused;
+								}
+                */
+							}
+						}
+					}
+				}
+			}
+      
+      .pauseBtn:hover ~ .ssSlideDownNew {
+        animation-play-state: paused;
+      }
+      
+      .ssSlideDownNew {
+        
+        &:hover {
+          animation-play-state: paused;
+        }
+      }
+      
+      // Animations
+      .ssSlideDownNew {
+        animation: call2ActionNew 24s ease-in-out 0s infinite;
+      }
+      
+			#slider {
+				
+				.progress-bar {
+					animation: fullexpand 24s linear infinite;
+				}
+				
+				#mask {
+					ul {
+						li {
+              
+							&.firstAnimation {
+								animation: cycleOne 24s linear infinite;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation: animateTitle1 24s ease-in-out 0s infinite;
+									}
+									
+									.ssMainText {
+										animation: animateP1 24s ease-in-out .3s infinite;
+									}
+								}
+								
+								.ssGraphicWrapper {
+
+									ul {
+
+										li {
+											
+											&:nth-child(1) {
+												animation: animateElements1 24s ease-in-out .5s infinite;
+											}
+                      
+											&:nth-child(2) {
+												animation: animateElements2 24s ease-in-out .8s infinite;
+											}
+                      
+											&:nth-child(3) {
+												animation: animateElements3 24s ease-in-out 1.1s infinite;
+											}
+                      
+											&:nth-child(4) {
+												animation: animateElements4 24s ease-in-out 1.4s infinite;
+											}
+                      
+											&:nth-child(5) { 
+												animation: animateElements5 24s ease-in-out 1.7s infinite;
+											}
+                      
+											&:nth-child(6) {
+												animation: animateElements6 24s ease-in-out 2s infinite;
+											}
+                      
+											&:nth-child(7) {
+												animation: animateElements7 24s ease-in-out 2.3s infinite;
+											}
+										}
+									}
+								}
+							}
+
+							&.secondAnimation {
+								animation: cycleTwo 24s linear infinite;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation: animateTitle2 24s ease-in-out 0s infinite;
+									}
+									
+									.ssMainText {
+										animation: animateP2 24s ease-in-out .3s infinite;
+									}
+								}
+                
+                .ssGraphicWrapper {
+                  ul {
+                    li {
+
+                      &:nth-child(1) {
+                        animation: animateScreen1A 24s ease-in-out .3s infinite;
+                        
+                        .size {
+                          animation: animateSize 24s ease-in-out 1.4s infinite;
+                        }
+
+                        .device {
+                          animation: animateScreen1B 24s ease-in-out .5s infinite;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation: gridSectionX 24s ease-in-out 1s infinite;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation: gridSectionX 24s ease-in-out 1.3s infinite;
+                                }
+
+                                &:nth-child(3) {
+                                  animation: gridSectionY 24s ease-in-out 1.6s infinite;
+                                }
+
+                                &:nth-child(4) {
+                                  animation: gridSectionY 24s ease-in-out 1.9s infinite;
+                                }
+
+                                &:nth-child(5) {
+                                  animation: gridSectionY 24s ease-in-out 2.2s infinite;
+                                }
+
+                                &:nth-child(6) {
+                                  animation: gridSectionX 24s ease-in-out 2.5s infinite;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &:nth-child(2) {
+                        animation: animateScreen2A 24s ease-in-out .5s infinite;
+                        
+                        .size {
+                          animation: animateSize 24s ease-in-out 1.8s infinite;
+                        }
+
+                        .device {
+                          animation: animateScreen2B 24s ease-in-out .6s infinite;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation: gridSectionX 24s ease-in-out 1.3s infinite;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation: gridSectionX 24s ease-in-out 1.6s infinite;
+                                }
+
+                                &:nth-child(3) {
+                                  animation: gridSectionY 24s ease-in-out 1.9s infinite;
+                                }
+
+                                &:nth-child(4) {
+                                  animation: gridSectionY 24s ease-in-out 2.2s infinite;
+                                }
+
+                                &:nth-child(5) {
+                                  animation: gridSectionY 24s ease-in-out 2.5s infinite;
+                                }
+
+                                &:nth-child(6) {
+                                  animation: gridSectionX 24s ease-in-out 2.8s infinite;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+
+                      &:nth-child(3) {
+                        animation: animateScreen3A 24s ease-in-out .7s infinite;
+                        
+                        .size {
+                          animation: animateSize 24s ease-in-out 2.4s infinite;
+                        }
+
+                        .device {
+                          animation: animateScreen3B 24s ease-in-out .8s infinite;
+                          
+                          .screen {
+
+                            > div {
+
+                              div {
+
+                                &:nth-child(1) {
+                                  animation: gridSectionX 24s ease-in-out 1.9s infinite;
+                                }
+                                
+                                &:nth-child(2) {
+                                  animation: gridSectionX 24s ease-in-out 2.2s infinite;
+                                }
+
+                                &:nth-child(3) {
+                                  animation: gridSectionY 24s ease-in-out 2.5s infinite;
+                                }
+
+                                &:nth-child(4) {
+                                  animation: gridSectionY 24s ease-in-out 2.8s infinite;
+                                }
+
+                                &:nth-child(5) {
+                                  animation: gridSectionY 24s ease-in-out 3.1s infinite;
+                                }
+
+                                &:nth-child(6) {
+                                  animation: gridSectionX 24s ease-in-out 3.4s infinite;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+							}
+
+							&.thirdAnimation {
+								animation: cycleThree 24s linear infinite;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation: animateTitle3 24s ease-in-out 0s infinite;
+									}
+									
+									.ssMainText {
+										animation: animateP3 24s ease-in-out .3s infinite;
+									}
+								}
+                
+                .ssGraphicWrapper {
+                  animation: graphicZoom 24s ease-in-out 0s infinite;
+
+                  ul {
+
+                    li {
+
+                      // Main particle
+                      &:nth-child(1) {
+                        animation: particleSfere 24s ease-in-out .5s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine1 24s ease-in-out 1s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 2
+                      &:nth-child(2) {
+                        animation: particleSfere 24s ease-in-out 1s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine2 24s ease-in-out 1.5s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 3
+                      &:nth-child(3) {
+                        animation: particleSfere 24s ease-in-out 1.5s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine3 24s ease-in-out 2s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 4
+                      &:nth-child(4) {
+                        animation: particleSfere 24s ease-in-out 2s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine4 24s ease-in-out 2.5s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 5
+                      &:nth-child(5) {
+                        animation: particleSfere 24s ease-in-out 2.5s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine5 24s ease-in-out 3s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 6
+                      &:nth-child(6) {
+                        animation: particleSfere 24s ease-in-out 3s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine6 24s ease-in-out 3.5s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 7
+                      &:nth-child(7) {
+                        animation: particleSfere 24s ease-in-out 3.5s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine7 24s ease-in-out 4s infinite;
+                          }
+                        }
+                      }
+
+                      // Particle 8
+                      &:nth-child(8) {
+                        animation: particleSfere 24s ease-in-out 4.5s infinite;
+
+                        > div {
+
+                          // Line
+                          &:before {
+                            animation: particleLine8 24s ease-in-out 5s infinite;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+							&.fourthAnimation {
+								animation: cycleFour 24s linear infinite;
+								
+								.ssTextWrapper {
+									
+									h3 {
+										animation: animateTitle4 24s ease-in-out 0s infinite;
+									}
+									
+									.ssMainText {
+										animation: animateP4 24s ease-in-out .3s infinite;
+									}
+								}
+                /*
+								.ssSlideDownOld {
+									animation: call2Action 24s ease-in-out 0s infinite;
+								}
+                */
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// ANIMATION
+@keyframes cycleOne {
+	0%   { }
+	4%   { }
+	23%  { opacity:1; z-index:0; }
+	25%  { opacity: 0; z-index: 0; }
+	26%  { opacity: 0; z-index: -1; }
+	92%  { opacity: 0; z-index: 0; }
+	96%  { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes cycleTwo {
+   0%   { opacity: 0; }
+   23%  { opacity: 0; }
+   25%  { opacity: 1; }
+   26%  { opacity: 1; }
+   48%  { opacity: 1; z-index: 0; } 
+   50%  { opacity: 0; z-index: 0; }
+   51%  { opacity: 0; z-index: -1; }
+   100% { opacity: 0; z-index: -1; }
+}
+@keyframes cycleThree {
+   0%   { opacity: 0; }
+   48%  { opacity: 0; }
+   50%  { opacity: 1; }
+   51%  { opacity: 1; }
+   73%  { opacity: 1; }
+   75%  { opacity: 0; z-index: 0; }
+   76%  { opacity: 0; z-index: -1; }
+   100% { opacity: 0; z-index: -1; }
+}
+@keyframes cycleFour {
+  
+   0%   { opacity: 0; }
+   73%  { opacity: 0; }
+   75%  { opacity: 1; }
+   77%  { opacity: 1; }
+   98%  { opacity: 1; z-index: 0; }
+   100% { opacity: 0; z-index: 0; }
+}
+
+// Animation bar
+@keyframes fullexpand {
+   0%   { width: 0%; }
+   99%  { width: 100%; top:-5%; }
+	 100% { width: 100%; top: 0; }
+}
+
+// Titles
+@keyframes animateTitle1 {
+  0%   { left:-100%; }
+	2%   { opacity: 1; left:5%; }
+	23%  { opacity: 1; transform: translateY(0); }
+	25%  { left: 5%; opacity: 0; transform: translateY(-100%); }
+}
+@keyframes animateTitle2 {
+	23%  { left:-100%; }
+	25%  { opacity: 1; left:5%; }
+	48%  { opacity: 1; transform: translateY(0);  }
+	50%  { left: 5%; opacity: 0; transform: translateY(-100%); }
+}
+@keyframes animateTitle3 {
+	48%  { left:-100%; }
+	50%  { opacity: 1; left:5%; }
+	73%  { opacity: 1; transform: translateY(0); }
+	75%  { left: 5%; opacity: 0; transform: translateY(-100%); }
+}
+@keyframes animateTitle4 {
+	74%  { transform: translateY(-30%); }
+	77%  { opacity: 1; transform: translateY(0); }
+	98%  { opacity: 1; }
+	100% { opacity: 0; transform: translateY(0); }
+}
+
+// Paragraphs
+@keyframes animateP1 {
+	0%   { left: -100%; opacity: 0; }
+	4%   { left: 5%; opacity: 1; }
+	23%  { left: 5%; transform: translateY(0); opacity: 1; }
+	25%  { transform: translateY(30%); opacity: 0; }
+}
+@keyframes animateP2 {
+	23%  { left: -100%; opacity: 0; }
+	27%  { left: 5%; opacity: 1; }
+	48%  { left: 5%; transform: translateY(0); opacity: 1; }
+	50%  { transform: translateY(30%); opacity: 0; }
+}
+@keyframes animateP3 {
+	48%  { left: -100%; opacity: 0; }
+	52%  { left: 5%; opacity: 1; }
+	73%  { left: 5%; transform: translateY(0); opacity: 1; }
+	75%  { transform: translateY(30%); opacity: 0;}
+}
+@keyframes animateP4 {
+	75%  { opacity: 0; transform: translateY(10%); }
+	78%  { opacity: 1; transform: translateY(0); }
+	98%  { transform: translateY(0); opacity: 1; }
+	100% { transform: translateY(0); opacity: 0; }
+}
+
+// Slide 1 Elements
+@keyframes animateElements1 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:75%; transform: scale(1); }
+  5%  { top:80%; transform: scale(1); }
+	13% { top:80%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements2 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:65%; transform: scale(1); }
+  5%  { top:70%; transform: scale(1); }
+	13% { top:70%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements3 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:59%; transform: scale(1); }
+  5%  { top:64%; transform: scale(1); }
+	13% { top:64%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements4 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:50%; transform: scale(1); }
+  5%  { top:55%; transform: scale(1); }
+	13% { top:55%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements5 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:40%; transform: scale(1); }
+  5%  { top:45%; transform: scale(1); }
+	13% { top:45%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements6 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:20%; transform: scale(1); }
+  5%  { top:25%; transform: scale(1); }
+	13% { top:25% }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+@keyframes animateElements7 {
+  0%  { top:100%; transform: scale(.5); }
+	3%  { top:5%; transform: scale(1); }
+  5%  { top:10%; transform: scale(1); }
+	13% { top:10%; }
+	18% { top:100%; }
+  25% { top:100%; }
+}
+
+// Slide 2 Elements
+@keyframes animateSize {
+  0%   { transform: scale(0); }
+  25%   { transform: scale(0); }
+  27%  { transform: scale(1.2); }
+	28%  { transform: scale(1); }
+  50%  { transform: scale(1); }
+}
+@keyframes gridSectionX {
+  25%   { transform: scaleX(0); }
+  27%  { transform: scaleX(1); }
+  50%  { transform: scaleX(1); }
+}
+@keyframes gridSectionY {
+  25%   { transform: scaleX(0); }
+  27%  { transform: scaleX(1); }
+  50%  { transform: scaleX(1); }
+}
+
+// iPhone5
+@keyframes animateScreen1A {
+  25%  { transform: translate(100%, 100%); }
+	28%  { transform: translate(0, 0) }
+	45%  { transform: translate(0, 0) }
+  50%  { transform: translate(0, 100%) }
+}
+@keyframes animateScreen1B {
+  25%  { transform: rotate(-100deg) scale(.7); }
+	28%  { transform: rotate(-35deg) scale(.7); }
+  46%  { transform: rotate(-35deg) scale(.8); }
+  50%  { transform: rotate(-50deg) scale(.8); }
+}
+// iPhone6
+@keyframes animateScreen2A {
+  25%  { transform: translate(100%, -100%); }
+	30%  { transform: translate(0, 0) }
+  45%  { transform: translate(0, 0) }
+  50%  { transform: translate(0, 100%) }
+}
+@keyframes animateScreen2B {
+  25%  { transform: rotate(-150deg) scale(.7); }
+	30%  { transform: rotate(-215deg) scale(.7); }
+  46%  { transform: rotate(-215deg) scale(.6); }
+  50%  { transform: rotate(-230deg) scale(.6); }
+}
+// iPad
+@keyframes animateScreen3A {
+  25%  { transform: translate(-100%, 100%); }
+	32%  { transform: translate(0, 0) }
+  45%  { transform: translate(0, 0) }
+  50%  { transform: translate(0, 100%) }
+}
+@keyframes animateScreen3B {
+  25%  { transform: rotate(-75deg) scale(.7); }
+	32%  { transform: rotate(15deg) scale(.7); }
+  46%  { transform: rotate(15deg) scale(.6); }
+  50%  { transform: rotate(0deg) scale(.6); }
+}
+
+// Slide 3 Elements
+@keyframes graphicZoom {
+	47%  { transform: rotate(0deg) scale(.9); }
+	75%  { transform: rotate(-5deg) scale(1); }
+}
+@keyframes particleSfere {
+  0%   { opacity: 0; transform: scale(0); }
+	48%  { opacity: 0; transform: scale(0); }
+	50%  { opacity: 1; transform: scale(1.1); }
+  51%  { opacity: 1; transform: scale(1); }
+	73%  { opacity: 1; transform: scale(1); }
+	75%  { opacity: 0; transform: scale(2); }
+}
+@keyframes particleLine1 {
+	49%  { transform: rotate(-14deg) scaleX(0); }
+	51%  { transform: rotate(-14deg) scaleX(.38);}
+	75%  { transform: rotate(-14deg) scaleX(.38); }
+}
+@keyframes particleLine2 {
+	49%  { transform: rotate(-26deg) scaleX(0); }
+  51%  { transform: rotate(-26deg) scaleX(.36); }
+	75%  { transform: rotate(-26deg) scaleX(.36); }
+}
+@keyframes particleLine3 {
+	49%  { transform: rotate(-129deg) scaleX(0); }
+  51%  { transform: rotate(-129deg) scaleX(.21); }
+	75%  { transform: rotate(-129deg) scaleX(.21); }
+}
+@keyframes particleLine4 {
+	49%  { transform: rotate(101deg) scaleX(0); }
+  51%  { transform: rotate(101deg) scaleX(.325); }
+	75%  { transform: rotate(101deg) scaleX(.325); }
+}
+@keyframes particleLine5 {
+	49%  { transform: rotate(-145deg) scaleX(0); }
+  51%  { transform: rotate(-145deg) scaleX(.20); }
+	75%  { transform: rotate(-145deg) scaleX(.20); }
+}
+@keyframes particleLine6 {
+	49%  { transform: rotate(21deg) scaleX(0); }
+  51%  { transform: rotate(21deg) scaleX(.205); }
+	75%  { transform: rotate(21deg) scaleX(.205); }
+}
+@keyframes particleLine7 {
+	49%  { transform: rotate(-62deg) scaleX(0); }
+  51%  { transform: rotate(-62deg) scaleX(.175); }
+	75%  { transform: rotate(-62deg) scaleX(.175); }
+}
+@keyframes particleLine8 {
+	49%  { transform: rotate(-158.5deg) scaleX(0); }
+  51%  { transform: rotate(-158.5deg) scaleX(.367); }
+	75%  { transform: rotate(-158.5deg) scaleX(.367); }
+}
+
+// Slide 4 Elements
+/*
+@keyframes call2ActionOld {
+	77%  { opacity: 0; transform: scale(0); box-shadow: 0 0 0 #0B6A84; }
+	79%  { opacity: 1; transform: scale(1.2); box-shadow: 0 0 0 #0B6A84; }
+  80%  { opacity: 1; transform: scale(1); box-shadow: 0 0 25vh #0B6A84; }
+  81%  { opacity: 1; transform: scale(1.1); box-shadow: 0 0 5vh #0B6A84; }
+  82%  { transform: scale(1.0); }
+  83%  { transform: scale(1.1); }
+  84%  { transform: scale(1.0); }
+  85%  { transform: scale(1.1); }
+  86%  { transform: scale(1.0); }
+  87%  { transform: scale(1.1); }
+  88%  { transform: scale(1.0); }
+  89%  { transform: scale(1.1); }
+  90%  { transform: scale(1.0); }
+  91%  { transform: scale(1.1); }
+  92%  { transform: scale(1.0); }
+  93%  { transform: scale(1.1); }
+  94%  { transform: scale(1.0); }
+  95%  { transform: scale(1.1); }
+  96%  { transform: scale(1.0); }
+  97%  { transform: scale(1.1); }
+	98%  { opacity: 1; transform: scale(1); }
+	100% { opacity: 0; transform: scale(2); }
+}
+*/
+
+// Slide 4 Elements
+@keyframes call2ActionNew {
+  0%   { opacity: 0; transform: scale(0); box-shadow: 0 0 0 #0B6A84; }
+	77%  { opacity: 0; transform: scale(0); box-shadow: 0 0 0 #0B6A84; }
+	79%  { opacity: 1; transform: scale(1.2); box-shadow: 0 0 0 #0B6A84; }
+  80%  { opacity: 1; transform: scale(1); box-shadow: 0 0 25vh #0B6A84; }
+  81%  { opacity: 1; transform: scale(1.1); box-shadow: 0 0 5vh #0B6A84; }
+  82%  { transform: scale(1.0); }
+  83%  { transform: scale(1.1); }
+  84%  { transform: scale(1.0); }
+  85%  { transform: scale(1.1); }
+  86%  { transform: scale(1.0); }
+  87%  { transform: scale(1.1); }
+  88%  { transform: scale(1.0); }
+  89%  { transform: scale(1.1); }
+  90%  { transform: scale(1.0); }
+  91%  { transform: scale(1.1); }
+  92%  { transform: scale(1.0); }
+  93%  { transform: scale(1.1); }
+  94%  { transform: scale(1.0); }
+  95%  { transform: scale(1.1); }
+  96%  { transform: scale(1.0); }
+  97%  { transform: scale(1.1); }
+	98%  { opacity: 1; transform: scale(1); }
+	100% { opacity: 0; transform: scale(2); }
+}
+

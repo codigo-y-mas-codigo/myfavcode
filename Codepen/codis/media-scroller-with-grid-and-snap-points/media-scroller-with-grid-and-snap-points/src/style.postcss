@@ -1,0 +1,124 @@
+@use postcss-preset-env {
+  stage: 0
+}
+
+:root {
+  --surface1: hsl(210 15% 12%);
+  --text1: hsl(210 15% 90%);
+  --text2: hsl(210 5% 65%);
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
+}
+a {text-decoration: none;}a{background-color:transparent}a:active,a:hover{outline-width:0}a:link, a:visited {color: inherit;text-decoration: none;} a:hover, a:active {color: inherit; text-decoration: none;}a:hover {text-decoration: underline;}
+.scroller {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: 2rem;
+  background-color: inherit;
+  color: inherit;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 4rem;
+  place-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+section {
+  --gap: 2.5rem;
+  display: grid;
+  gap: var(--gap);
+
+  & > header {
+    padding-inline: var(--gap);
+    display: grid;
+    gap: 1ex;
+
+    & > :matches(h2,h3) {
+      margin: 0;
+    }
+  }
+}
+
+.horizontal-media-scroller {
+  --size: 150px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--size);
+  gap: calc(var(--gap) / 2);
+  padding-inline: var(--gap);
+  padding-block-end: var(--gap);
+  
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--gap);
+
+  & > figure {
+    scroll-snap-align: start;
+    
+    display: grid;
+    gap: inherit;
+    margin: 0;
+
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    &:last-child::after {
+      content: "";
+      position: absolute;
+      width: var(--gap);
+      height: 100%;
+      right: calc(var(--gap) * -1);
+      inline-size: var(--gap);
+      block-size: 100%;
+      inset-block-start: 0;
+      inset-end: calc(var(--gap) * -1);
+    }
+
+    & > picture {
+      display: inline-block;
+      inline-size: var(--size);
+      block-size: var(--size);
+      border-radius: 1ex;
+      box-shadow: 0 1px 2px 0 hsl(0 0% 0% / 20%);
+      overflow: hidden;
+
+      & > img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        background-image: linear-gradient(to bottom, hsl(210 10% 40%), hsl(210 10% 20%));
+      }
+    }
+
+    & > figcaption {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -.5px;
+    }
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .75px;
+}
+
+h3 {
+  color: var(--text2);
+  font-weight: 400;
+  letter-spacing: .75px;
+}

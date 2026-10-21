@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <body>
+ <main class="w-full max-w-md mx-auto p-6">
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+   <div class="p-4 sm:p-7">
+    <div class="text-center">
+     <h4 class="block text-2xl font-bold text-gray-800 dark:text-white">Formulario de cotización vía WhatsApp</h4>
+    </div>
+
+    <div class="mt-5">
+     <!-- Formulario -->
+     <div class="grid gap-y-4" id="formulario">
+      <form id="contactForm" method="post">
+       <label class="block text-sm mb-2 dark:text-white">Contesta el formulario para atenderte a la brevedad posible y de una manera más personalizada.</label>
+       <br>
+       <label for="nombre" class="block text-sm mb-2 dark:text-white">Nombre:</label>
+       <input type="text" id="nombre" name="nombre" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label for="empresa" class="block text-sm mb-2 dark:text-white">Empresa:</label>
+       <input type="text" id="empresa" name="empresa" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label for="email" class="block text-sm mb-2 dark:text-white">Email:</label>
+       <input type="text" id="email" name="email" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label class="block text-sm mb-2 dark:text-white">¿Qué quieres imprimir?</label>
+       <div class="grid gap-y-2">
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Invitaciones" class="mr-2">
+         &nbsp; Invitaciones
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Stickers - Calcomanias" class="mr-2">
+         &nbsp; Stickers - Calcomanías
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Hojas membretadas" class="mr-2">
+         &nbsp; Hojas membretadas
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Folleto" class="mr-2">
+         &nbsp; Folleto
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Volante" class="mr-2">
+         &nbsp; Volante
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Tarjetas promocionales" class="mr-2">
+         &nbsp; Tarjetas promocionales
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Tarjetas de presentación premium" class="mr-2">
+         &nbsp; Tarjetas de presentación premium
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Carpetas" class="mr-2">
+         &nbsp; Carpetas
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Manuales" class="mr-2">
+         &nbsp; Manuales
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Informes" class="mr-2">
+         &nbsp; Informes
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Menus" class="mr-2">
+         &nbsp; Menus
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Bolsas de papel" class="mr-2">
+         &nbsp; Bolsas de papel
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Etiquetas" class="mr-2">
+         &nbsp; Etiquetas
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Etiquetas colgantes" class="mr-2">
+         &nbsp; Etiquetas colgantes
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Invitaciones" class="mr-2">
+         &nbsp; Invitaciones
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Tarjetas de agradecimiento" class="mr-2">
+         &nbsp; Tarjetas de agradecimiento
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Rotulación de vehiculos" class="mr-2">
+         &nbsp; Rotulación de vehículos
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Señalizaciones" class="mr-2">
+         &nbsp; Señalizaciones
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Decoraciones" class="mr-2">
+         &nbsp; Decoraciones
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Etiquetas transparentes" class="mr-2">
+         &nbsp; Etiquetas transparentes
+        </label>
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Laminar (proteger documentos)" class="mr-2">
+         &nbsp; Laminar (proteger documentos)
+        </label>
+       </div>
+       <br>
+       <label for="material_de_impresion" class="block text-sm mb-2 dark:text-white">Material de impresión:</label>
+       <select id="material_de_impresion" name="material_de_impresion" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+        <option value="COUCHE 130G 13X19">$4.00 - COUCHE 130G 13X19</option>
+        <option value="COUCHE 200G 13X19">$5.00 - COUCHE 200G 13X19</option>
+        <option value="COUCHE 300G 13X19">$6.00 - COUCHE 300G 13X19</option>
+        <option value="COUCHE 350G 13X19">$8.00 - COUCHE 350G 13X19</option>
+        <option value="KRAFT 120G 13X19">$6.00 - KRAFT 120G 13X19</option>
+        <option value="KRAFT 14PT 13X19">$10.00 - KRAFT 14PT 13X19</option>
+        <option value="MAYLAR 13X19">$20.00 - MAYLAR 13X19</option>
+        <option value="OPALINA 120G 13X19">$7.00 - OPALINA 120G 13X19</option>
+        <option value="OPALINA 230G 13X19">$10.00 - OPALINA 230G 13X19</option>
+        <option value="SULFATADA 14P 13X19">$6.00 - SULFATADA 14P 13X19</option>
+        <option value="VINIL 13X19">$20.00 - VINIL 13X19</option>
+        <option value="BOND 90G CARTA">$3.00 - BOND 90G CARTA</option>
+        <option value="COUCHE 130G CARTA">$3.00 - COUCHE 130G CARTA</option>
+        <option value="COUCHE 200G CARTA">$3.50 - COUCHE 200G CARTA</option>
+        <option value="COUCHE 300G CARTA">$4.00 - COUCHE 300G CARTA</option>
+        <option value="COUCHE 350G CARTA">$5.00 - COUCHE 350G CARTA</option>
+        <option value="OPALINA 120G CARTA">$4.00 - OPALINA 120G CARTA</option>
+        <option value="OPALINA 230G CARTA">$5.00 - OPALINA 230G CARTA</option>
+        <option value="SULFATADA 14P CARTA">$3.00 - SULFATADA 14P CARTA</option>
+        <option value="SULFATADA 16P OFICIO">$3.00 - SULFATADA 16P OFICIO</option>
+       </select>
+       <br>
+       <label for="comentarios" class="block text-sm mb-2 dark:text-white">Danos detalles de tu cotización:</label>
+       <textarea id="comentarios" name="comentarios" rows="4" cols="50" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Indicanos la cantidad que requieres, sí requieres algun requerimiento en particular."></textarea><br>
+       <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Cotizar</button>
+      </form>
+     </div>
+
+     <!-- Resumen de datos -->
+     <div class="hidden" id="resumenDatos">
+      <h4 class="block text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">Resumen de datos</h4><br>
+      <p id="nombreResumen"></p>
+      <p id="emailResumen"></p>
+      <p id="empresaResumen"></p>
+      <p id="comentariosResumen"></p>
+      <p id="tipoCalendarioResumen"></p>
+      <p id="impresionResumen"></p>
+      <br>
+      <p>Nota. Puedes enviarnos ejemplos, fotos y diseños por WhatsApp</p>
+      <br>
+      <button id="editarDatos" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Editar</button><br><br>
+      <button id="confirmarDatos" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmar y enviar por WhatsApp</button>
+     </div>
+    </div>
+ </main>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+   // Obtener los datos del localStorage
+   const nombre = localStorage.getItem('nombre');
+   const email = localStorage.getItem('email');
+   const empresa = localStorage.getItem('empresa');
+   const comentarios = localStorage.getItem('comentarios');
+   const tipoCalendario = localStorage.getItem('tipoCalendario');
+   const empresa = localStorage.getItem('empresa'); // Obtener empresa del localStorage
+   const opcionesImpresion = localStorage.getItem('opcionesImpresion') ? JSON.parse(localStorage.getItem('opcionesImpresion')) : []; // Obtener opciones de impresión del localStorage
+   // Mostrar los datos en el resumen si existen
+   if (nombre && email && comentarios && tipoCalendario && opcionesImpresion.length > 0) {
+    document.getElementById('nombre').value = nombre;
+    document.getElementById('email').value = email;
+    document.getElementById('empresa').value = empresa;
+    document.getElementById('comentarios').value = comentarios;
+    document.getElementById('material_de_impresion').value = tipoCalendario;
+    opcionesImpresion.forEach(opcion => {
+     document.querySelector(`input[name="imprimir"][value="${opcion}"]`).checked = true;
+    });
+    mostrarResumen();
+   }
+  });
+  const formulario = document.getElementById('formulario');
+  const resumenDatos = document.getElementById('resumenDatos');
+  const editarDatosBtn = document.getElementById('editarDatos');
+  const confirmarDatosBtn = document.getElementById('confirmarDatos');
+  // Función para mostrar el resumen de los datos ingresados
+  const mostrarResumen = () => {
+   const nombre = document.getElementById('nombre').value;
+   const email = document.getElementById('email').value;
+   const empresa = document.getElementById('empresa').value;
+   const comentarios = document.getElementById('comentarios').value;
+   const tipoCalendario = document.getElementById('material_de_impresion').value;
+   const opcionesImpresion = Array.from(document.querySelectorAll('input[name="imprimir"]:checked')).map(checkbox => checkbox.value); // Obtener opciones seleccionadas de impresión
+   document.getElementById('nombreResumen').textContent = `Nombre: ${nombre}`;
+   document.getElementById('emailResumen').textContent = `Email: ${email}`;
+   document.getElementById('empresaResumen').textContent = `Empresa: ${empresa}`;
+   document.getElementById('comentariosResumen').textContent = `Comentarios: ${comentarios}`;
+   document.getElementById('tipoCalendarioResumen').textContent = `Material de impresión: ${tipoCalendario}`;
+   document.getElementById('impresionResumen').textContent = `¿Qué quieres imprimir?: ${opcionesImpresion.join(', ')}`;
+   localStorage.setItem('nombre', nombre);
+   localStorage.setItem('email', email);
+   localStorage.setItem('empresa', empresa);
+   localStorage.setItem('comentarios', comentarios);
+   localStorage.setItem('tipoCalendario', tipoCalendario);
+   localStorage.setItem('opcionesImpresion', JSON.stringify(opcionesImpresion));
+   formulario.classList.add('hidden');
+   resumenDatos.classList.remove('hidden');
+  };
+  // Función para volver al formulario desde el resumen de datos
+  const editarDatos = () => {
+   formulario.classList.remove('hidden');
+   resumenDatos.classList.add('hidden');
+  };
+  // Event listener para mostrar el resumen de datos al enviar el formulario
+  document.getElementById('contactForm').addEventListener('submit', (event) => {
+   event.preventDefault();
+   mostrarResumen();
+  });
+  // Event listener para editar los datos desde el resumen de datos
+  editarDatosBtn.addEventListener('click', editarDatos);
+  // Event listener para confirmar los datos y enviar al WhatsApp
+  confirmarDatosBtn.addEventListener('click', () => {
+   const nombre = localStorage.getItem('nombre');
+   const email = localStorage.getItem('email');
+   const empresa = localStorage.getItem('empresa');
+   const comentarios = localStorage.getItem('comentarios');
+   const tipoCalendario = localStorage.getItem('tipoCalendario');
+   const empresa = document.getElementById('empresa').value; // Agregar empresa
+   const opcionesImpresion = Array.from(document.querySelectorAll('input[name="imprimir"]:checked')).map(checkbox => checkbox.value);
+   const mensaje = `Hola, mi nombre es *${nombre}*\nSoy de la empresa *${empresa}*\nMi correo electrónico *${email}*\nMe gustaría imprimir: *${opcionesImpresion.join(', ')}*\nEl material de impresión: *${tipoCalendario}*\nDetalles de la cotización: *${comentarios}*\nSin más por el momento quedo a espera de su pronta respuesta. Gracias, att. *${nombre}*`;
+   window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+  });
+ </script>
+   </body><body>
+ <main class="w-full max-w-md mx-auto p-6">
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+   <div class="p-4 sm:p-7">
+    <div class="text-center">
+     <h4 class="block text-2xl font-bold text-gray-800 dark:text-white">Formulario de cotización vía WhatsApp</h4>
+    </div>
+
+    <div class="mt-5">
+     <!-- Formulario -->
+     <div class="grid gap-y-4" id="formulario">
+      <form id="contactForm" method="post">
+       <label class="block text-sm mb-2 dark:text-white">Contesta el formulario para atenderte a la brevedad posible y de una manera más personalizada.</label>
+       <br>
+       <label for="nombre" class="block text-sm mb-2 dark:text-white">Nombre:</label>
+       <input type="text" id="nombre" name="nombre" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label for="empresa" class="block text-sm mb-2 dark:text-white">Empresa:</label>
+       <input type="text" id="empresa" name="empresa" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label for="email" class="block text-sm mb-2 dark:text-white">Email:</label>
+       <input type="text" id="email" name="email" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       <br>
+       <label class="block text-sm mb-2 dark:text-white">¿Qué quieres imprimir?</label>
+       <div class="grid gap-y-2">    
+        <label class="flex items-center">
+         <input type="checkbox" name="imprimir" value="Laminar (proteger documentos)" class="mr-2">
+         &nbsp; Laminar (proteger documentos)
+        </label>
+       </div>
+       <br>
+       <label for="material_de_impresion" class="block text-sm mb-2 dark:text-white">Material de impresión:</label>
+       <select id="material_de_impresion" name="material_de_impresion" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+        <option value="COUCHE 130G 13X19">$4.00 - COUCHE 130G 13X19</option>
+        <option value="COUCHE 200G 13X19">$5.00 - COUCHE 200G 13X19</option>
+        <option value="COUCHE 300G 13X19">$6.00 - COUCHE 300G 13X19</option>
+        <option value="COUCHE 350G 13X19">$8.00 - COUCHE 350G 13X19</option>
+        <option value="KRAFT 120G 13X19">$6.00 - KRAFT 120G 13X19</option>
+        <option value="KRAFT 14PT 13X19">$10.00 - KRAFT 14PT 13X19</option>
+        <option value="MAYLAR 13X19">$20.00 - MAYLAR 13X19</option>
+        <option value="OPALINA 120G 13X19">$7.00 - OPALINA 120G 13X19</option>
+        <option value="OPALINA 230G 13X19">$10.00 - OPALINA 230G 13X19</option>
+        <option value="SULFATADA 14P 13X19">$6.00 - SULFATADA 14P 13X19</option>
+        <option value="VINIL 13X19">$20.00 - VINIL 13X19</option>
+        <option value="BOND 90G CARTA">$3.00 - BOND 90G CARTA</option>
+        <option value="COUCHE 130G CARTA">$3.00 - COUCHE 130G CARTA</option>
+        <option value="COUCHE 200G CARTA">$3.50 - COUCHE 200G CARTA</option>
+        <option value="COUCHE 300G CARTA">$4.00 - COUCHE 300G CARTA</option>
+        <option value="COUCHE 350G CARTA">$5.00 - COUCHE 350G CARTA</option>
+        <option value="OPALINA 120G CARTA">$4.00 - OPALINA 120G CARTA</option>
+        <option value="OPALINA 230G CARTA">$5.00 - OPALINA 230G CARTA</option>
+        <option value="SULFATADA 14P CARTA">$3.00 - SULFATADA 14P CARTA</option>
+        <option value="SULFATADA 16P OFICIO">$3.00 - SULFATADA 16P OFICIO</option>
+       </select>
+       <br>
+       <label for="comentarios" class="block text-sm mb-2 dark:text-white">Danos detalles de tu cotización:</label>
+       <textarea id="comentarios" name="comentarios" rows="4" cols="50" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" placeholder="Indicanos la cantidad que requieres, sí requieres algun requerimiento en particular."></textarea><br>
+       <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Cotizar</button>
+      </form>
+     </div>
+
+     <!-- Resumen de datos -->
+     <div class="hidden" id="resumenDatos">
+      <h4 class="block text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">Resumen de datos</h4><br>
+      <p id="nombreResumen"></p>
+      <p id="emailResumen"></p>
+      <p id="empresaResumen"></p>
+      <p id="comentariosResumen"></p>
+      <p id="tipoCalendarioResumen"></p>
+      <p id="impresionResumen"></p>
+      <br>
+      <p>Nota. Puedes enviarnos ejemplos, fotos y diseños por WhatsApp</p>
+      <br>
+      <button id="editarDatos" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Editar</button><br><br>
+      <button id="confirmarDatos" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmar y enviar por WhatsApp</button>
+     </div>
+    </div>
+ </main>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+   // Obtener los datos del localStorage
+   const nombre = localStorage.getItem('nombre');
+   const email = localStorage.getItem('email');
+   const empresa = localStorage.getItem('empresa');
+   const comentarios = localStorage.getItem('comentarios');
+   const tipoCalendario = localStorage.getItem('tipoCalendario');
+   const empresa = localStorage.getItem('empresa'); // Obtener empresa del localStorage
+   const opcionesImpresion = localStorage.getItem('opcionesImpresion') ? JSON.parse(localStorage.getItem('opcionesImpresion')) : []; // Obtener opciones de impresión del localStorage
+   // Mostrar los datos en el resumen si existen
+   if (nombre && email && comentarios && tipoCalendario && opcionesImpresion.length > 0) {
+    document.getElementById('nombre').value = nombre;
+    document.getElementById('email').value = email;
+    document.getElementById('empresa').value = empresa;
+    document.getElementById('comentarios').value = comentarios;
+    document.getElementById('material_de_impresion').value = tipoCalendario;
+    opcionesImpresion.forEach(opcion => {
+     document.querySelector(`input[name="imprimir"][value="${opcion}"]`).checked = true;
+    });
+    mostrarResumen();
+   }
+  });
+  const formulario = document.getElementById('formulario');
+  const resumenDatos = document.getElementById('resumenDatos');
+  const editarDatosBtn = document.getElementById('editarDatos');
+  const confirmarDatosBtn = document.getElementById('confirmarDatos');
+  // Función para mostrar el resumen de los datos ingresados
+  const mostrarResumen = () => {
+   const nombre = document.getElementById('nombre').value;
+   const email = document.getElementById('email').value;
+   const empresa = document.getElementById('empresa').value;
+   const comentarios = document.getElementById('comentarios').value;
+   const tipoCalendario = document.getElementById('material_de_impresion').value;
+   const opcionesImpresion = Array.from(document.querySelectorAll('input[name="imprimir"]:checked')).map(checkbox => checkbox.value); // Obtener opciones seleccionadas de impresión
+   document.getElementById('nombreResumen').textContent = `Nombre: ${nombre}`;
+   document.getElementById('emailResumen').textContent = `Email: ${email}`;
+   document.getElementById('empresaResumen').textContent = `Empresa: ${empresa}`;
+   document.getElementById('comentariosResumen').textContent = `Comentarios: ${comentarios}`;
+   document.getElementById('tipoCalendarioResumen').textContent = `Material de impresión: ${tipoCalendario}`;
+   document.getElementById('impresionResumen').textContent = `¿Qué quieres imprimir?: ${opcionesImpresion.join(', ')}`;
+   localStorage.setItem('nombre', nombre);
+   localStorage.setItem('email', email);
+   localStorage.setItem('empresa', empresa);
+   localStorage.setItem('comentarios', comentarios);
+   localStorage.setItem('tipoCalendario', tipoCalendario);
+   localStorage.setItem('opcionesImpresion', JSON.stringify(opcionesImpresion));
+   formulario.classList.add('hidden');
+   resumenDatos.classList.remove('hidden');
+  };
+  // Función para volver al formulario desde el resumen de datos
+  const editarDatos = () => {
+   formulario.classList.remove('hidden');
+   resumenDatos.classList.add('hidden');
+  };
+  // Event listener para mostrar el resumen de datos al enviar el formulario
+  document.getElementById('contactForm').addEventListener('submit', (event) => {
+   event.preventDefault();
+   mostrarResumen();
+  });
+  // Event listener para editar los datos desde el resumen de datos
+  editarDatosBtn.addEventListener('click', editarDatos);
+  // Event listener para confirmar los datos y enviar al WhatsApp
+  confirmarDatosBtn.addEventListener('click', () => {
+   const nombre = localStorage.getItem('nombre');
+   const email = localStorage.getItem('email');
+   const empresa = localStorage.getItem('empresa');
+   const comentarios = localStorage.getItem('comentarios');
+   const tipoCalendario = localStorage.getItem('tipoCalendario');
+   const empresa = document.getElementById('empresa').value; // Agregar empresa
+   const opcionesImpresion = Array.from(document.querySelectorAll('input[name="imprimir"]:checked')).map(checkbox => checkbox.value);
+   const mensaje = `Hola, mi nombre es *${nombre}*\nSoy de la empresa *${empresa}*\nMi correo electrónico *${email}*\nMe gustaría imprimir: *${opcionesImpresion.join(', ')}*\nEl material de impresión: *${tipoCalendario}*\nDetalles de la cotización: *${comentarios}*\nSin más por el momento quedo a espera de su pronta respuesta. Gracias, att. *${nombre}*`;
+   window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+  });
+ </script>
+</body>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

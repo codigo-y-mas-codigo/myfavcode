@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>PDF en HTML con Google Drive Viewer</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>PDF en HTML con Google Drive Viewer</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background-color: #f0f0f0;
+  }
+
+  h1 {
+   margin-bottom: 20px;
+  }
+
+  iframe {
+   border: none;
+   width: 100%;
+   max-width: 800px;
+   height: 600px;
+  }
+
+  .error-message {
+   display: none;
+   margin-top: 20px;
+   color: red;
+  }
+
+  .download-button,
+  .buy-button {
+   margin-top: 20px;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   text-decoration: none;
+   display: inline-block;
+  }
+
+  .download-button:hover,
+  .buy-button:hover {
+   background-color: #0056b3;
+  }
+ </style>
+</head>
+
+<body>
+ <h1>PDF en HTML con Google Drive Viewer</h1>
+ <iframe id="pdf-iframe" src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://luisangelmaciel.github.io/luisangelmaciel/EC0360-PEDAGOGIA-VOLANTE.pdf" frameborder="0"></iframe>
+ <div class="error-message" id="error-message">
+  <p>El visor de PDF no es compatible con tu navegador. Por favor, <a href="https://luisangelmaciel.github.io/luisangelmaciel/EC0360-PEDAGOGIA-VOLANTE.pdf" download>descarga el PDF</a> directamente.</p>
+ </div>
+ <button id="download-button" class="download-button">Descargar PDF</button>
+ <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "DigitalDocument",
+   "name": "EC0360-PEDAGOGIA-VOLANTE",
+   "description": "Calendario escolar 2022-2023",
+   "url": "https://luisangelmaciel.github.io/luisangelmaciel/EC0360-PEDAGOGIA-VOLANTE.pdf",
+   "encodingFormat": "application/pdf",
+   "fileFormat": "PDF",
+   "author": {
+    "@type": "Person",
+    "name": "Luis Angel Maciel"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Luis Angel Maciel",
+    "url": "https://luisangelmaciel.github.io"
+   },
+   "datePublished": "2022-01-01"
+  }
+ </script>
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+   const iframe = document.getElementById('pdf-iframe');
+   const errorMessage = document.getElementById('error-message');
+   const downloadButton = document.getElementById('download-button');
+   downloadButton.addEventListener('click', function() {
+    const pdfUrl = "https://luisangelmaciel.github.io/luisangelmaciel/EC0360-PEDAGOGIA-VOLANTE.pdf";
+    const fileName = "Libro - EC01245 Desarrollo de cursos - obten un 40% de descuento al usr el codigo UnDescuentoDel40";
+    // Abrir una nueva ventana sin la interfaz del navegador
+    const newWindow = window.open(pdfUrl, '_blank', 'top=100,left=100,width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes');
+    // Cambiar el botón de descarga a un enlace de compra después de un breve retraso
+    setTimeout(function() {
+     downloadButton.textContent = 'Comprar Libro';
+     downloadButton.className = 'buy-button';
+     downloadButton.onclick = function() {
+      window.location.href = 'https://www.eco.com/descuento';
+     };
+    }, 1000); // Espera 1 segundo antes de cambiar el botón
+   });
+   iframe.onerror = function() {
+    iframe.style.display = 'none';
+    errorMessage.style.display = 'block';
+   };
+   iframe.onload = function() {
+    if (iframe.contentWindow.document.body.innerHTML.includes('Error')) {
+     iframe.style.display = 'none';
+     errorMessage.style.display = 'block';
+    }
+   };
+  });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

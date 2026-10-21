@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Toggle anything via data-attribute</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <body  class="multi-toggle multi-toggle"  data-type="test" id="myTogglingElement"><button type="button" data-toggle-target="#myTogglingElement" data-toggle-class="blue">Toggle</button>
+
+<div >
+  This element is targeted by ID and will have the <code>.blue</code> class toggled on it.</div>
+
+<hr>
+
+<button type="button" data-toggle-target="#myTogglingElement" data-toggle-class="black">Toggle</button>
+
+<div>
+  This element is targeted by ID and will have the <code>.blue</code> class toggled on it.</div>
+
+<hr>
+
+<button type="button" data-toggle-target=".multi-toggle" data-toggle-class="green">Toggle 2</button>
+
+<div class="">
+  This second element is targeted by class and will have the <code>.green</code> class toggled on it.</div>
+
+<div class="e">
+  This third element is targeted by class and will also have the <code>.green</code> class toggled on it.</div>
+
+<hr>
+
+<button type="button" data-toggle-target="[data-type=test]" data-toggle-class="purple">Toggle 3</button>
+
+<div>
+  This element is targeted by data attribute and will have the <code>.purple</code> class toggled on it.</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

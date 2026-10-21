@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Bits&amp;Letters logo badge custom element</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <script type="module">
+  import './src/index.ts';
+</script>
+
+<h1>@bitsandletters/logo</h1>
+<p>Lit web component and SVG sprite for the <a href="https://www.bitsandletters.com/">Bits&Letters</a> logo.</p>
+
+<div class="demo-grid">
+  <div class="demo-section">
+    <h3>Default Variants</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo>Site designed by Bits&Letters</bnl-logo>
+        <div class="code">lockup (default) - screen reader only text</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="small-lockup">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">small-lockup - screen reader only text</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="icon">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">icon - screen reader only text</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="wordmark">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">wordmark - screen reader only text</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Caption Examples</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo caption="Powered by">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">caption="Powered by" + screen reader text</div>
+      </div>
+      <div class="demo">
+        <bnl-logo caption="Designed with ❤️ by">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">caption="Designed with ❤️ by" + screen reader text</div>
+      </div>
+      <div class="demo">
+        <bnl-logo caption="Built by" variant="small-lockup">Site designed by Bits&Letters</bnl-logo>
+        <div class="code">caption="Built by" + variant="small-lockup" + screen reader text</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Themes</h3>
+    <section>
+      <div class="demo" style="color: #999">
+        <bnl-logo theme="default">Default theme (uses currentColor)</bnl-logo>
+        <div class="code">theme="default"</div>
+      </div>
+      <div class="demo dark">
+        <bnl-logo theme="on-dark">Dark theme</bnl-logo>
+        <div class="code">theme="on-dark"</div>
+      </div>
+      <div class="demo light">
+        <bnl-logo theme="on-light">Light theme</bnl-logo>
+        <div class="code">theme="on-light"</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Custom Height</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-height: 0.75em">Small (0.75em)</bnl-logo>
+        <div class="code">--bnl-logo-height: 0.75em</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-height: 1.25em">Default (1.25em)</bnl-logo>
+        <div class="code">--bnl-logo-height: 1.25em</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-height: 2em">Large (2em)</bnl-logo>
+        <div class="code">--bnl-logo-height: 2em</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-height: 3em">Extra Large (3em)</bnl-logo>
+        <div class="code">--bnl-logo-height: 3em</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Custom Colors</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-fill: #dc2626">Red</bnl-logo>
+        <div class="code">--bnl-logo-fill: #dc2626</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-fill: #059669">Green</bnl-logo>
+        <div class="code">--bnl-logo-fill: #059669</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-fill: #2563eb">Blue</bnl-logo>
+        <div class="code">--bnl-logo-fill: #2563eb</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-fill: #7c3aed">Purple</bnl-logo>
+        <div class="code">--bnl-logo-fill: #7c3aed</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Theme + Custom Color Override</h3>
+    <section>
+      <div class="demo dark">
+        <bnl-logo theme="on-dark" style="--bnl-logo-fill: #fbbf24">Dark theme + Yellow</bnl-logo>
+        <div class="code">theme="on-dark" + --bnl-logo-fill: #fbbf24</div>
+      </div>
+      <div class="demo light">
+        <bnl-logo theme="on-light" style="--bnl-logo-fill: #dc2626">Light theme + Red</bnl-logo>
+        <div class="code">theme="on-light" + --bnl-logo-fill: #dc2626</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Combined Custom Properties</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-height: 2em; --bnl-logo-fill: #dc2626">Large Red Logo</bnl-logo>
+        <div class="code">--bnl-logo-height: 2em; --bnl-logo-fill: #dc2626</div>
+      </div>
+      <div class="demo dark">
+        <bnl-logo theme="on-dark" style="--bnl-logo-height: 1.5em; --bnl-logo-fill: #10b981">Medium Green on Dark</bnl-logo>
+        <div class="code">theme="on-dark" + --bnl-logo-height: 1.5em; --bnl-logo-fill: #10b981</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Lockup Comparison</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo variant="lockup" style="--bnl-logo-height: 1em">Regular Lockup</bnl-logo>
+        <div class="code">variant="lockup" + --bnl-logo-height: 1em</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="small-lockup" style="--bnl-logo-height: 1em">Small Lockup</bnl-logo>
+        <div class="code">variant="small-lockup" + --bnl-logo-height: 1em</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Different Variants with Custom Properties</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo variant="icon" style="--bnl-logo-height: 2em; --bnl-logo-fill: #7c3aed">Large Purple Icon</bnl-logo>
+        <div class="code">variant="icon" + --bnl-logo-height: 2em; --bnl-logo-fill: #7c3aed</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="wordmark" style="--bnl-logo-height: 1.5em; --bnl-logo-fill: #059669">Medium Green Wordmark</bnl-logo>
+        <div class="code">variant="wordmark" + --bnl-logo-height: 1.5em; --bnl-logo-fill: #059669</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Source Examples</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo source="demo-page">Default source</bnl-logo>
+        <div class="code">source="demo-page"</div>
+      </div>
+      <div class="demo">
+        <bnl-logo source="client-website">Client website source</bnl-logo>
+        <div class="code">source="client-website"</div>
+      </div>
+      <div class="demo">
+        <bnl-logo href="https://www.bitsandletters.com/contact" source="contact-page">Custom href with source</bnl-logo>
+        <div class="code">href="https://www.bitsandletters.com/contact" + source="contact-page"</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-section">
+    <h3>Bordered Examples</h3>
+    <section>
+      <div class="demo">
+        <bnl-logo bordered>Default bordered</bnl-logo>
+        <div class="code">bordered</div>
+      </div>
+      <div class="demo">
+        <bnl-logo variant="small-lockup" bordered>Small lockup bordered</bnl-logo>
+        <div class="code">variant="small-lockup" + bordered</div>
+      </div>
+      <div class="demo dark">
+        <bnl-logo theme="on-dark" bordered>Dark theme bordered</bnl-logo>
+        <div class="code">theme="on-dark" + bordered</div>
+      </div>
+      <div class="demo">
+        <bnl-logo style="--bnl-logo-fill: #dc2626" bordered>Red bordered</bnl-logo>
+        <div class="code">--bnl-logo-fill: #dc2626 + bordered</div>
+      </div>
+    </section>
+  </div>
+</div>
+<footer class="footer">
+  <bnl-logo variant="small-lockup" bordered caption="Website designed by"></bnl-logo>
+</footer>
+    <script type="module" src="./script.js"></script>
+
+  </body>
+  
+</html>

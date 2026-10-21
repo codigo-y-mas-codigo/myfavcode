@@ -1,0 +1,327 @@
+<title>Pen Export Zenojkv</title>
+<!-- local storage form simple -->
+
+
+    <h1>Local Storage Form + Form simple</h1>
+  <div id="complete-fomr">
+  <style>
+  
+    .is-hidden {
+      display: none !important;
+    }
+
+   
+    @keyframes rotate {
+     100% { transform: rotate(360deg); }
+    }
+
+    @keyframes dash {
+     0% { stroke-dasharray: 1,200; stroke-dashoffset: 0; }
+     50% { stroke-dasharray: 89,200; stroke-dashoffset: -35; }
+     100% { stroke-dasharray: 89,200; stroke-dashoffset: -124; }
+    }
+
+    .loading {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+    }
+
+    .loading-spinner svg {
+      position: relative;
+      animation: rotate 2s linear infinite;
+      height: 50px;
+      width: 50px;
+    }
+
+    .loading-spinner circle {
+      stroke: var(--accent);
+      stroke-dasharray: 1,200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }</style>  
+  <div>
+    <form name="submit-to-google-sheet" id="localStorage">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" class="input stored" placeholder="John Smith" type="text" /><br>
+      
+      <label for="elEmail">Email</label>
+      <input type="text" name="elEmail" id="elEmail" class="input stored" placeholder="Email" /><br>
+      
+      <label for="elWhatsapp" >Whatsapp</label>
+      <input type="number" name="elWhatsapp" id="elWhatsapp" class="input stored" placeholder="Whatsapp" /><br>                 
+         
+      <!-- important -->
+      <label for="Site" type="text" class="w3-hide">Site</label>
+      <input  name="Site" type="text" placeholder="Site" class="input stored w3-hide" value="form simple" >                
+
+      <label for="select" class="w3-hide">Select Dropdown Choice</label>
+      <select id="select" name="select" class="select stored w3-hide">
+         <option value="Choice 1">Choice 1</option>
+         <option value="Choice 2">Choice 2</option>
+         <option value="Choice 3">Choice 3</option>
+         <option value="Choice 4">Choice 4</option>
+      </select>
+
+      <label for="textarea" class="w3-hide">Textarea 1</label>
+      <textarea name="textarea" id="textarea" class="textarea stored w3-hide" rows="8"></textarea>
+      
+      <label for="textarea2" class="w3-hide">Textarea 2</label>      
+      <textarea name="textarea2" id="textarea2" class="textarea stored w3-hide" rows="8"></textarea>
+   <!-- checkbox No es localstorage, todavia.. 
+     <div class="clearfix mb2">
+        <label class="stored" for="checkbox">
+           <input type="checkbox" name="checkbox" id="checkbox" >
+           Checkbox
+        </label>
+     </div>
+   Radio, no queda, todavia... 
+      <h4 class="label mt0 mb1">Radio Options:</h4>
+        <label for="radio1" class="mr2">
+           <input type="radio" name="radio1" id="radio1" class="stored" value="1">
+           Option One
+        </label>
+        <label for="radio2" class="mr2">
+           <input type="radio" name="radio2" id="radio2" class="stored" value="2">
+           Option Two
+      </label> -->
+      <br>
+      <input type="submit" id="add" value="Publicar" style="display:none"><!-- se queda, para actualizar, ver -->
+      <button id="clear" class="w3-hide">Borrar</button>
+      <button type="submit" onclick="openTab('Uno')">Enviar</button>
+      <a href="https://docs.google.com/spreadsheets/d/1dlDx4VjGWiMkFU92M5q5z56RvjGu1IKy9QPzIoIJZo8/edit#gid=0"><!-- form--></a>      
+    </form>
+
+    <div class="loading js-loading is-hidden">
+      <div class="loading-spinner">
+        <svg><circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>
+      </div>
+    </div>
+
+    <p class="js-success-message is-hidden">Success!</p>
+    <p class="js-error-message is-hidden"  >Error!</p>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzqv2DT6UZJVg63vkHdiCtY7XSGa3H3S-0K4SsEACR_7XkICwVIhuQmoY5eGQn8niAX/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const loading = document.querySelector('.js-loading')
+    const successMessage = document.querySelector('.js-success-message')
+    const errorMessage = document.querySelector('.js-error-message')
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      showLoadingIndicator()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => showSuccessMessage(response))
+        .catch(error => showErrorMessage(error))
+    })
+
+    function showLoadingIndicator () {
+      form.classList.add('is-hidden')
+      loading.classList.remove('is-hidden')
+    }
+
+    function showSuccessMessage (response) {
+      console.log('Success!', response)
+      setTimeout(() => {
+        successMessage.classList.remove('is-hidden')
+        loading.classList.add('is-hidden')
+      }, 500)
+    }
+
+    function showErrorMessage (error) {
+      console.error('Error!', error.message)
+      setTimeout(() => {
+        errorMessage.classList.remove('is-hidden')
+        loading.classList.add('is-hidden')
+      }, 500)
+    }
+  </script>
+  <script>
+/*
+Paste this script into the 'Code.gs' tab in the Script Editor
+For a detailed explanation of this file, view 'form-script-commented.js'
+*/
+
+var sheetName = 'Sheet1'
+var scriptProp = PropertiesService.getScriptProperties()
+
+function intialSetup () {
+  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  scriptProp.setProperty('key', activeSpreadsheet.getId())
+}
+
+function doPost (e) {
+  var lock = LockService.getScriptLock()
+  lock.tryLock(10000)
+
+  try {
+    var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+    var sheet = doc.getSheetByName(sheetName)
+
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    var nextRow = sheet.getLastRow() + 1
+
+    var newRow = headers.map(function(header) {
+      return header === 'timestamp' ? new Date() : e.parameter[header]
+    })
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  catch (e) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  finally {
+    lock.releaseLock()
+  }
+}
+
+
+// The default sheet name is 'Sheet1'. To target a different sheet, update this variable.
+var sheetName = 'Sheet1'
+
+/*
+Gets a property store that all users can access, but only within this script.
+https://developers.google.com/apps-script/reference/properties/properties-service#getScriptProperties()
+*/
+var scriptProp = PropertiesService.getScriptProperties()
+
+/*
+This is the initial setup function. It gets the active SpreadsheetApp ID and adds it to our PropertiesService.
+https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app#getactivespreadsheet
+*/
+function setup () {
+  var doc = SpreadsheetApp.getActiveSpreadsheet()
+  scriptProp.setProperty('key', doc.getId())
+}
+
+function doPost (e) {
+  /*
+  Gets a lock that prevents any user from concurrently running a section of code. A code section
+  guarded by a script lock cannot be executed simultaneously regardless of the identity of the user.
+  https://developers.google.com/apps-script/reference/lock/lock-service#getScriptLock()
+  */
+  var lock = LockService.getScriptLock()
+
+  /*
+  Attempts to acquire the lock, timing out with an exception after the provided number of milliseconds.
+  This method is the same as tryLock(timeoutInMillis) except that it throws an exception when the lock
+  could not be acquired instead of returning false.
+  https://developers.google.com/apps-script/reference/lock/lock#waitLock(Integer)
+  */
+  lock.waitLock(10000)
+
+  try {
+    /*
+    Opens the spreadsheet with the given ID. A spreadsheet ID can be extracted from its URL. For example,
+    the spreadsheet ID in the URL https://docs.google.com/spreadsheets/d/abc1234567/edit#gid=0 is "abc1234567".
+    https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app#openbyidid
+    */
+    var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+
+    /*
+    Returns a sheet with the given name. If multiple sheets have the same name,
+    the leftmost one is returned. Returns null if there is no sheet with the given name.
+    https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#getSheetByName(String)
+    */
+    var sheet = doc.getSheetByName(sheetName)
+
+    /*
+    Returns the range with the top left cell at the given coordinates, and with the given number of rows.
+    https://developers.google.com/apps-script/reference/spreadsheet/sheet#getRange(Integer,Integer)
+
+    Then returns the position of the last column that has content.
+    https://developers.google.com/apps-script/reference/spreadsheet/sheet#getlastcolumn
+
+    Then returns the rectangular grid of values for this range (a two-dimensional array of values, indexed by row, then by column.)
+    https://developers.google.com/apps-script/reference/spreadsheet/range#getValues()
+    */
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    // Gets the last row and then adds one
+    var nextRow = sheet.getLastRow() + 1
+
+    /*
+    Maps the headers array to a new array. If a header's value is 'timestamp' then it
+    returns a new Date() object, otherwise it returns the value of the matching URL parameter
+    https://developers.google.com/apps-script/guides/web
+    */
+    var newRow = headers.map(function(header) {
+      return header === 'timestamp' ? new Date() : e.parameter[header]
+    })
+
+    /*
+    Gets a range from the next row to the end row based on how many items are in newRow
+    then sets the new values of the whole array at once.
+    https://developers.google.com/apps-script/reference/spreadsheet/range#setValues(Object)
+    */
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+    /*
+    Return success results as JSON
+    https://developers.google.com/apps-script/reference/content/content-service
+    */
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  /*
+  Return error results as JSON
+  https://developers.google.com/apps-script/reference/content/content-service
+  */
+  catch (e) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  finally {
+    /*
+    Releases the lock, allowing other processes waiting on the lock to continue.
+    https://developers.google.com/apps-script/reference/lock/lock#releaseLock()
+    */
+    lock.releaseLock()
+  }
+}
+  </script>
+</div>
+  </div>
+
+  
+  <script>
+    // tabs 
+    function openTab(TabName) {
+      var i;
+      var x = document.getElementsByClassName("Tab");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      document.getElementById(TabName).style.display = "block";  
+    }
+    //    
+  </script>  
+
+
+
+

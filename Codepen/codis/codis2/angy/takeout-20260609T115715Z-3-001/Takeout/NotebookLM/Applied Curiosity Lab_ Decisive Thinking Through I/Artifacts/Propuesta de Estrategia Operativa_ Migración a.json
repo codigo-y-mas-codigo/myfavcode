@@ -1,0 +1,23 @@
+{
+  "title": "Propuesta de Estrategia Operativa: Migración al Modelo de Talento Bajo Demanda",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "a3c13cd5-af9f-4631-833e-549d5b947857"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Propuesta de Estrategia Operativa",
+      "description": "Un análisis sobre cómo migrar hacia un modelo de talento bajo demanda para optimizar costos.",
+      "sourceIds": [{
+        "id": "a3c13cd5-af9f-4631-833e-549d5b947857"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Propuesta de Estrategia Operativa\nUn análisis sobre cómo migrar hacia un modelo de talento bajo demanda para optimizar costos. Crear un documento exhaustivo que evalúe la transición del reclutamiento tradicional al modelo de \u0027experiencia como servicio\u0027 de Arise, enfocándose en el retorno de inversión (ROI), la agilidad operativa y la reducción de costos estructurales para grandes empresas, basándose en los casos de éxito de sectores como Fintech y Healthcare.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_PROFESSIONAL",
+      "enableU18Classifier": true
+    }
+  }
+}

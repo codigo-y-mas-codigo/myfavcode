@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css?v=1.0.0">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistentes de Voz Personalizados para tu Negocio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jai.me - Asistentes de Voz Personalizados para tu Negocio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js'></script>
+</head>
+<body class="font-sans leading-normal tracking-normal">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-gray-500 text-lg">jai.me</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Inicio</a>
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">About</a>
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Recursos</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-3 ">
+                    <a href="#" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300">Iniciar sesión</a>
+                    <a href="#" class="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 transition duration-300">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+  <!-- Hero Section -->
+    <header class="bg-blue-600 text-white">
+        <div class="container mx-auto px-4 py-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Transforma la Experiencia de tus Clientes con Tecnología de Voz</h1>
+            <p class="text-xl mb-8">Asistentes de voz personalizados para tu sitio web o aplicación</p>
+            <a href="#demo" class="bg-white text-blue-600 font-bold py-2 px-4 rounded-full hover:bg-blue-100 transition duration-300">Prueba la Demo</a>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">¿Por qué necesitas un asistente de voz?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-universal-access text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Mejora la accesibilidad</h3>
+                    <p>Haz tu sitio web más inclusivo y fácil de usar para todos los usuarios.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-star text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Experiencia única</h3>
+                    <p>Ofrece una interacción innovadora que destaque tu marca.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-chart-line text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Aumenta el engagement</h3>
+                    <p>Incrementa el tiempo de permanencia y la interacción en tu sitio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-map-signs text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Facilita la navegación</h3>
+                    <p>Permite a los usuarios encontrar información rápidamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Conoce a Jaime, tu asistente de voz personalizado</h2>
+            <p class="text-center mb-8">Interactúa con nuestra demo en vivo y descubre el potencial de los asistentes de voz</p>
+            <div class="bg-gray-200 p-8 rounded-lg shadow-md">
+                <h1 id="msg" class="text-2xl font-bold mb-4"></h1>
+                <p><b>Prueba diciendo:</b></p>
+                <ul class="list-disc list-inside mb-4">
+                    <li>Jaime abrir Facebook</li>
+                    <li>Jaime abrir YouTube</li>
+                    <li>Jaime cambiar color de fondo</li>
+                    <li>Jaime mostrar fecha y hora</li>
+                    <li>Jaime contar un chiste</li>
+                    <li>... y más comandos</li>
+                </ul>
+                <button id="startDemo" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Iniciar Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Soluciones a Medida para tu Negocio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-cogs text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Desarrollo personalizado</h3>
+                    <p>Creamos asistentes de voz únicos adaptados a tus necesidades específicas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-plug text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Integración de sistemas</h3>
+                    <p>Conectamos tu asistente de voz con tus sistemas existentes sin problemas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-search text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Optimización SEO por voz</h3>
+                    <p>Mejoramos tu visibilidad en búsquedas por voz y asistentes virtuales.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <i class="fas fa-tools text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-4">Mantenimiento continuo</h3>
+                    <p>Ofrecemos soporte y actualizaciones para mantener tu asistente siempre al día.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Cómo Trabajamos Contigo</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">1</div>
+                    <p>Consulta inicial gratuita</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">2</div>
+                    <p>Análisis de necesidades</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">3</div>
+                    <p>Propuesta personalizada</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">4</div>
+                    <p>Desarrollo e implementación</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">5</div>
+                    <p>Lanzamiento y soporte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-2">¿Puedo cambiar la voz del asistente de mujer a hombre?</h3>
+                    <p>Sí, es posible cambiar la voz del asistente utilizando la propiedad `voice` de `SpeechSynthesisUtterance`. Podemos ayudarte a configurar la voz que mejor se adapte a tus necesidades.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-2">¿Por qué la respuesta del asistente de voz es lenta?</h3>
+                    <p>La lentitud puede deberse a varios factores, como la carga de recursos externos o el retardo en la inicialización del sistema de síntesis de voz. Optimizamos el rendimiento pre-cargando voces y utilizando técnicas para mejorar la velocidad de respuesta.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-2">¿Qué navegadores son compatibles con los asistentes de voz?</h3>
+                    <p>La mayoría de los navegadores modernos como Chrome, Firefox, Safari y Edge son compatibles con la tecnología de síntesis de voz. Nos aseguramos de que tu asistente funcione en la mayor cantidad de plataformas posible.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-2">¿Puedo personalizar los comandos de voz para mi negocio?</h3>
+                    <p>Absolutamente. Desarrollamos asistentes de voz totalmente personalizados, lo que incluye la creación de comandos específicos para tu negocio y tus necesidades particulares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">¿Listo para dar voz a tu negocio?</h2>
+            <a href="#contact" class="bg-white text-blue-600 font-bold py-2 px-4 rounded-full hover:bg-blue-100 transition duration-300">Solicita una Consulta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-16">
+      <div>
+     <style>
+        .hidden {
+            display: none;
+        }
+        #thankyou-message {
+            text-align: center;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+    </style>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
+            <div class="max-w-lg mx-auto">
+                <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div class="mb-4">
+                        <label class="block mb-2" for="Nombre">
+                            Nombre
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="Nombre" name="Nombre" required />
+                    </div>
+                      <div class="mb-4">                       
+                <div class="mb-4">
+                    <label for="email" class="block mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block mb-2">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" class="w-full p-2 border rounded">
+                </div>
+        
+                <div class="mb-4">
+                    <label for="message" class="block mb-2">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" class="w-full p-2 border rounded" required></textarea>
+                </div>                  
+                    
+                </div>
+                    <input type="hidden" id="emailSubject" name="emailSubject" value="Formulario jai.me">
+                    <div class="flex items-center justify-between">
+                        <button id="submit-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <span id="button-text">Enviar</span>
+                            <span id="wait-message" class="hidden">Espere un momento, por favor...</span>
+                        </button>
+                    </div>
+                </form>
+                <div id="thankyou-message" class="hidden">✔️ ¡Gracias por contactarnos!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer y otras secciones... -->
+
+    <script data-cfasync="false" type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("gform");
+            const submitButton = document.getElementById("submit-button");
+            const buttonText = document.getElementById("button-text");
+            const waitMessage = document.getElementById("wait-message");
+            const thankYouMessage = document.getElementById("thankyou-message");
+            
+            form.addEventListener("submit", handleFormSubmit);
+            
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                const data = getFormData(form);
+                localStorage.setItem("formData", JSON.stringify(data));
+                setSubmitting(true);
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", form.action);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        console.log(xhr.status, xhr.statusText);
+                        console.log(xhr.responseText);
+                        setSubmitting(false);
+                        showThankYouMessage();
+                        hideFormContent();
+                    }
+                };
+                const encoded = Object.keys(data).map(k =>
+                    encodeURIComponent(k) + "=" + encodeURIComponent(data[k])
+                ).join("&");
+                xhr.send(encoded);
+            }
+            
+            function setSubmitting(isSubmitting) {
+                submitButton.disabled = isSubmitting;
+                buttonText.classList.toggle("hidden", isSubmitting);
+                waitMessage.classList.toggle("hidden", !isSubmitting);
+            }
+            
+            function showThankYouMessage() {
+                thankYouMessage.classList.remove("hidden");
+            }
+            
+            function hideFormContent() {
+                form.classList.add("hidden");
+            }
+            
+            function getFormData(form) {
+                const elements = form.elements;
+                const fields = Object.keys(elements).filter(k =>
+                    elements[k].name !== "honeypot"
+                ).map(k =>
+                    elements[k].name !== undefined ? elements[k].name :
+                    elements[k].length > 0 ? elements[k].item(0).name : null
+                ).filter((item, pos, self) =>
+                    item && self.indexOf(item) == pos
+                );
+                const formData = {};
+                fields.forEach(name => {
+                    const element = elements[name];
+                    formData[name] = element.value;
+                    if (element.length) {
+                        formData[name] = Array.from(element)
+                            .filter(item => item.checked || item.selected)
+                            .map(item => item.value)
+                            .join(", ");
+                    }
+                });
+                formData.formDataNameOrder = JSON.stringify(fields);
+                formData.formGoogleSheetName = form.dataset.sheet || "Accesos";
+                formData.formGoogleSendEmail = form.dataset.email || "luis.el.de.las.tarjetas@gmail.com";
+                formData.emailSubject = form.querySelector("#emailSubject").value || "Nuevo formulario de contacto";
+                return formData;
+            }
+        });
+    </script>
+<div>
+     
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; <span id="currentYear"></span> jai.me power by MCL Ideas Full. Todos los derechos reservados.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="privacy-policy.html" class="hover:text-blue-400">Política de Privacidad</a>
+                    <a href="terms-of-service.html" class="hover:text-blue-400">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Actualizar año automáticamente
+        document.getElementById('currentYear').textContent =ormal">
+  
+<!-- Hero --> <div class="relative overflow-hidden"> <!-- Gradients --> <div aria-hidden="true" class="flex absolute -top-96 start-1/2 transform -translate-x-1/2"> <div class="bg-gradient-to-r from-violet-300/50 to-purple-100 blur-3xl w-[25rem] h-[44rem] rotate-[-60deg] transform -translate-x-[10rem] dark:from-violet-900/50 dark:to-purple-900"></div> <div class="bg-gradient-to-tl from-blue-50 via-blue-100 to-blue-50 blur-3xl w-[90rem] h-[50rem] rounded-full origin-top-left -rotate-12 -translate-x-[15rem] dark:from-indigo-900/70 dark:via-indigo-900/70 dark:to-blue-900/70"></div> </div> <!-- End Gradients --> <div class="relative z-10"> <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16"> <div class="max-w-2xl text-center mx-auto"> <h1 class="block font-semibold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-neutral-200"> Transforma la Experiencia de tus Clientes con Tecnología de Voz </h1>
+
+<div class="mt-5 max-w-3xl">
+      <p class="text-lg text-gray-600 dark:text-neutral-400">
+        Asistentes de voz personalizados para tu sitio web o aplicación
+      </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-8 gap-3 flex justify-center">
+      <a class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
+        Prueba la Demo
+        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <!-- End Buttons -->
+  </div>
+</div>
+</div> </div> <!-- End Hero -->
+    <!-- Hero Section -->
+    <header class="bg-blue-600 text-white">
+        <div class="container mx-auto px-4 py-16 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Transforma la Experiencia de tus Clientes con Tecnología de Voz</h1>
+            <p class="text-xl mb-8">Asistentes de voz personalizados para tu sitio web o aplicación</p>
+            <a href="#demo" class="bg-white text-blue-600 font-bold py-2 px-4 rounded-full hover:bg-blue-100 transition duration-300">Prueba la Demo</a>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">¿Por qué necesitas un asistente de voz?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Mejora la accesibilidad</h3>
+                    <p>Haz tu sitio web más inclusivo y fácil de usar para todos los usuarios.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Experiencia única</h3>
+                    <p>Ofrece una interacción innovadora que destaque tu marca.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Aumenta el engagement</h3>
+                    <p>Incrementa el tiempo de permanencia y la interacción en tu sitio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Facilita la navegación</h3>
+                    <p>Permite a los usuarios encontrar información rápidamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Conoce a Jaime, tu asistente de voz personalizado</h2>
+            <p class="text-center mb-8">Interactúa con nuestra demo en vivo y descubre el potencial de los asistentes de voz</p>
+            <div class="bg-gray-200 p-8 rounded-lg shadow-md">
+                <!-- Aquí se insertaría el componente de demo del asistente Jaime -->
+                <p class="text-center">Componente de demo del asistente Jaime</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Soluciones a Medida para tu Negocio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Desarrollo personalizado</h3>
+                    <p>Creamos asistentes de voz únicos adaptados a tus necesidades específicas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Integración de sistemas</h3>
+                    <p>Conectamos tu asistente de voz con tus sistemas existentes sin problemas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Optimización SEO por voz</h3>
+                    <p>Mejoramos tu visibilidad en búsquedas por voz y asistentes virtuales.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-4">Mantenimiento continuo</h3>
+                    <p>Ofrecemos soporte y actualizaciones para mantener tu asistente siempre al día.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Cómo Trabajamos Contigo</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">1</div>
+                    <p>Consulta inicial gratuita</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">2</div>
+                    <p>Análisis de necesidades</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">3</div>
+                    <p>Propuesta personalizada</p>
+                </div>
+                <div class="mb-8 md:mb-0 text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">4</div>
+                    <p>Desarrollo e implementación</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">5</div>
+                    <p>Lanzamiento y soporte</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">¿Listo para dar voz a tu negocio?</h2>
+            <a href="#contact" class="bg-white text-blue-600 font-bold py-2 px-4 rounded-full hover:bg-blue-100 transition duration-300">Solicita una Consulta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
+            <form class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block mb-2">Nombre</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block mb-2">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block mb-2">Mensaje</label>
+                    <textarea id="message" name="message" rows="4" class="w-full p-2 border rounded" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">Política de Privacidad</a>
+                    <a href="#" class="hover:text-blue-400">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Llamar funciones con voz (español)</title>
+
+  <link rel="canonical" href="https://codepen.io/Android07/pen/oNRYmoQ">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="description" content="Ejemplo de uso de reconocimiento de voz en español para llamar funciones.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+</head>
+
+<body>
+
+  <h1 id="msg"></h1>
+
+  <p><b>Prueba también:</b></p>
+
+  <ul>
+
+    <li>Jaime abrir Facebook</li>
+
+    <li>Jaime abrir YouTube</li>
+
+    <li>Jaime abrir Twitter</li>
+
+    <li>Jaime abrir GitHub</li>
+
+    <li>Jaime abrir LinkedIn</li>
+
+    <li>Jaime abrir alerta https://codepen.io/luisangelmaciel/pen/dyQjvoo</li>
+
+    <li>Jaime cambiar color de fondo</li>
+
+    <li>Jaime mostrar fecha y hora</li>
+
+    <li>Jaime reproducir sonido</li>
+
+    <li>Jaime saludar</li>
+
+    <li>Jaime contar un chiste</li>
+
+    <li>Jaime contar otro chiste</li>
+
+    <li>Jaime programar alarma</li>
+
+    <li>Jaime mostrar foto</li>
+
+    <li>Jaime hacer llamada</li>
+
+  </ul>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js'></script>
+
+  <script id="rendered-js">
+
+    const msg = document.querySelector('#msg');
+
+    let voices = [];
+
+    function setVoice(speech) {
+
+      const voice = voices.find(v => v.lang.startsWith('es') && v.name.includes('male'));
+
+      if (voice) {
+
+        speech.voice = voice;
+
+      }
+
+    }
+
+    function speak(txt) {
+
+      if ('speechSynthesis' in window) {
+
+        const s = new SpeechSynthesisUtterance();
+
+        s.volume = 1;
+
+        s.lang = 'es-ES';
+
+        s.text = txt;
+
+        setVoice(s);
+
+        msg.textContent = txt;
+
+        window.speechSynthesis.speak(s);
+
+      } else {
+
+        msg.textContent = txt;
+
+      }
+
+    }
+
+    if ('speechSynthesis' in window) {
+
+      window.speechSynthesis.onvoiceschanged = () => {
+
+        voices = window.speechSynthesis.getVoices();
+
+      };
+
+    }
+
+    if (annyang) {
+
+      const commands = {
+
+        'Jaime abrir Facebook'() {
+
+          window.open('https://facebook.com');
+
+          speak('Abriendo Facebook');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir YouTube'() {
+
+          window.open('https://youtube.com');
+
+          speak('Abriendo Youtube');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir Twitter'() {
+
+          window.open('https://twitter.com');
+
+          speak('Abriendo Twitter');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir GitHub'() {
+
+          window.open('https://github.com');
+
+          speak('Abriendo GitHub');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir LinkedIn'() {
+
+          window.open('https://linkedin.com');
+
+          speak('Abriendo LinkedIn');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir alerta'() {
+
+          alert('La alerta funciona bien');
+
+          speak('Abriendo una alerta');
+
+          annyang.resume();
+
+        },
+
+        'Jaime cambiar color de fondo'() {
+
+          document.body.style.backgroundColor = getRandomColor();
+
+          speak('Cambiando color de fondo');
+
+          annyang.resume();
+
+        },
+
+        'Jaime mostrar fecha y hora'() {
+
+          const now = new Date();
+
+          const dateTime = now.toLocaleString();
+
+          speak(`La fecha y hora actual es ${dateTime}`);
+
+          annyang.resume();
+
+        },
+
+        'Jaime reproducir sonido'() {
+
+          const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+
+          audio.play();
+
+          speak('Reproduciendo sonido');
+
+          annyang.resume();
+
+        },
+
+        'Jaime saludar'() {
+
+          speak('Hola, ¿cómo estás?');
+
+          annyang.resume();
+
+        },
+
+        'Jaime contar un chiste'() {
+
+          speak('¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime contar otro chiste'() {
+
+          speak('¿Por qué el libro de matemáticas está triste? Porque tiene demasiados problemas.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime programar alarma'() {
+
+          setTimeout(() => {
+
+            alert('¡Alarma! Han pasado 1 minuto.');
+
+            speak('¡Alarma! Han pasado 1 minuto.');
+
+          }, 60000); // 1 minuto en milisegundos
+
+          speak('Alarma programada para 1 minuto.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime mostrar foto'() {
+
+          // Simulación de mostrar una foto
+
+          const img = document.createElement('img');
+
+          img.src = 'https://via.placeholder.com/150'; // URL de ejemplo
+
+          img.alt = 'Última foto guardada';
+
+          document.body.appendChild(img);
+
+          speak('Mostrando la última foto guardada.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime hacer llamada'() {
+
+          // Simulación de hacer una llamada
+
+          speak('Haciendo una llamada simulada.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime *term'(term) {
+
+          speak(`Has dicho ${term}`);
+
+          console.log(`Abriendo ${term}`);
+
+          annyang.resume();
+
+        }
+
+      };
+
+      function getRandomColor() {
+
+        const letters = '0123456789ABCDEF';
+
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+
+          color += letters[Math.floor(Math.random() * 16)];
+
+        }
+
+        return color;
+
+      }
+
+      speak('Di algo acompañado de: Jaime');
+
+      annyang.setLanguage('es-MX');
+
+      annyang.addCommands(commands);
+
+      annyang.start({ continuous: true });
+
+    } else {
+
+      speak('Tu navegador no soporta la función de voz');
+
+    }
+
+  </script>
+  
+
+</body>
+
+</html>
+<script>
+        // Actualizar año automáticamente
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Funcionalidad de la demo de voz
+        const msg = document.querySelector('#msg');
+        let voices = [];
+
+        function setVoice(speech) {
+            const voice = voices.find(v => v.lang.startsWith('es') && v.name.includes('male'));
+            if (voice) {
+                speech.voice = voice;
+            }
+        }
+
+        function speak(txt) {
+            if ('speechSynthesis' in window) {
+                const s = new SpeechSynthesisUtterance();
+                s.volume = 1;
+                s.lang = 'es-ES';
+                s.text = txt;
+                setVoice(s);
+                msg.textContent = txt;
+                window.speechSynthesis.speak(s);
+            } else {
+                msg.textContent = txt;
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                voices = window.speechSynthesis.getVoices();
+            };
+        }
+
+        document.getElementById('startDemo').addEventListener('click', function() {
+            if (annyang) {
+                const commands = {
+                    'Jaime abrir Facebook': function() {
+                        window.open('https://facebook.com');
+                        speak('Abriendo Facebook');
+                    },
+                    'Jaime abrir YouTube': function() {
+                        window.open('https://youtube.com');
+                        speak('Abriendo Youtube');
+                    },
+                    'Jaime cambiar color de fondo': function() {
+                        document.body.style.backgroundColor = getRandomColor();
+                        speak('Cambiando color de fondo');
+                    },
+                    'Jaime mostrar fecha y hora': function() {
+                        const now = new Date();
+                        const dateTime = now.toLocaleString();
+                        speak(`La fecha y hora actual es ${dateTime}`);
+                    },
+                    'Jaime contar un chiste': function() {
+                        speak('¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.');
+                    },
+                    'Jaime *term': function(term) {
+                        speak(`Has dicho ${term}`);
+                    }
+                };
+
+                function getRandomColor() {
+                    const letters = '0123456789ABCDEF';
+                    let color = '#';
+                    for (let i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+
+                speak('Di algo acompañado de: Jaime');
+                annyang.setLanguage('es-MX');
+                annyang.addCommands(commands);
+                annyang.start({ continuous: true });
+            } else {
+                speak('Tu navegador no soporta la función de voz');
+            }
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jai.me - Asistentes de Voz Personalizados para tu Negocio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js'></script>
+</head>
+
+    <!-- Footer con menú de Aplicaciones por industria -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">jai.me</h4>
+                    <p>&copy; <span id="currentYear"></span> jai.me power by MCL Ideas Full. Todos los derechos reservados.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Enlaces rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400">Inicio</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Sobre nosotros</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Servicios</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy-policy.html" class="hover:text-blue-400">Política de Privacidad</a></li>
+                        <li><a href="terms-of-service.html" class="hover:text-blue-400">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Aplicaciones por industria</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400">E-commerce</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Educación</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Salud</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Finanzas</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Turismo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Actualizar año automáticamente
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

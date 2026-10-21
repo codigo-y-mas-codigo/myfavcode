@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <body class="darkmode">
+	<main> <label for="checkdark">Toggle dark mode:&nbsp;
+			<span class="switchzone">
+				<input id="checkdark" type="checkbox" checked><span class="toggler"></span>
+			</span>
+		</label>
+		<h1>Using DuckDuckGo as a search engine on your website / method="get" </h1>
+		<p lang="es">Soy algo curioso y leyendo el codigo de Tanteck vi el buscador de DuckDuckGo así que no dude en ver como funcionaba y probandolo. En unos meses que tenga más contenido veremos si ya se indexa tanto y esto facilita de forma rapida el escribir mas lineas para tener un search en nuestro sitio. Una buena opción para algo rápido y sin tanto código. </p>
+		<a href="sms:+17853973001">SMS ?ref=prof_o_infl</a>
+		<pre>
+&#60;form class="search" action="https://duckduckgo.com/html/" method="get">
+ &#60;input type="hidden" name="type" value="list" />
+ &#60;input type="search" value="site:luisangelmaciel.vercel.app " name="q" style="width:85%" />
+ &#60;button type="submit">Search Go&#60;/button>
+&#60;/form>
+</pre>
+
+		<style>
+			.rayado {
+				position: relative;
+				display: inline-block;
+			}
+
+			.rayado::before,
+			.rayado::after {
+				position: absolute;
+				left: 50%;
+				content: "";
+				display: block;
+				height: 0.35em;
+				border-radius: 50%;
+			}
+
+			.rayado::before {
+				bottom: -0.5em;
+				z-index: -2;
+				width: 110%;
+				margin-left: -50%;
+				background-color: #000;
+				background: linear-gradient(90deg, #000 25%, #fff 100%);
+			}
+
+			.rayado::after {
+				bottom: -0.63em;
+				z-index: -1;
+				width: 120%;
+				margin-left: -45%;
+				background-color: #fff;
+			}
+		</style>
+		<style>
+			.darkmode .rayado {
+				z-index: 99;
+				position: relative;
+				display: inline-block;
+			}
+
+			.darkmode .rayado::before,
+			.darkmode .rayado::after {
+				position: absolute;
+				left: 50%;
+				content: "";
+				display: block;
+				height: 0.35em;
+				border-radius: 50%;
+			}
+
+			.darkmode .rayado::before {
+				bottom: -0.5em;
+				z-index: -2;
+				width: 110%;
+				margin-left: -50%;
+				background-color: #fff;
+				background: linear-gradient(90deg, #fff 25%, #000 100%);
+			}
+
+			.darkmode .rayado::after {
+				bottom: -0.63em;
+				z-index: -1;
+				width: 120%;
+				margin-left: -45%;
+				background-color: #000;
+			}
+		</style>
+		<p class="rayado">Luis Ángel Maciel</p>
+
+		<hr>
+
+		<p>+ Escribe tu búsqueda seguido del texto que ya esta prescrito</p>
+		<form class="search" action="https://duckduckgo.com/html/" method="get">
+			<input type="hidden" name="type" value="list" />
+			<input type="search" value="site:luisangelmaciel.vercel.app " name="q" style="width:85%" />
+			<button type="submit">Search Go</button> <span>&nbsp;+</span><br>
+		</form>
+
+		<p>En este ejemplo, aun no se indexan la data puesto que es un site relativamente nuevo</p>
+		<br>
+		<p>Este otro ejemplo es de <a href="tantek.com" rel="" target="_blank" aria-lebel:"Site tantek.com">Tantek Çelik</a> contiene mayor indexación de data. Puedes intentar con la <code>More Thoughtful Reading & Writing on the Web</code>
+		<form class="search" action="https://duckduckgo.com/html/" method="get">
+			<div>
+				<input type="hidden" name="type" value="list" />
+				<input type="search" value="site:tantek.com " name="q" style="width:90%" />
+				<button type="submit">Search</button>
+			</div>
+		</form>
+
+		<article>
+
+			<h1>Our Mutual Friend</h1>
+			<p>Plashwater Weir Mill Lock looked tranquil and pretty...</p>
+			<script>
+				const script = document.createElement("script");
+				script.src = "https://kit.fontawesome.com/944eb371a4.js";
+				document.body.appendChild(script);
+			</script>
+			<hr>
+			<p>Preferred: Changing the default cursor to a pointer symbol when you hover over the summary text.</p>
+			<details>
+				<summary>
+					<h3>How will we conduct IEP and 504 meetings?</h3>
+				</summary>
+				<div>
+					<p>All meetings will be held remotely.</p>
+				</div>
+			</details>
+		</article>
+	</main>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librería de Componentes Avanzada (Glass, Gel, Neumorfismo)</title>
+    <style>
+        /* --- ESTILOS GLOBALES Y DE PREPARACIÓN --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@350;390;600&family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --text-color-light: #f0f0f0;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            transition: background 0.5s ease-in-out;
+        }
+
+        #theme-container {
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            padding: 5rem 1.5rem 2rem 1.5rem; background-size: cover; background-position: center center;
+            background-attachment: fixed; transition: background-image 0.5s ease-in-out;
+        }
+
+        .light-theme { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1770'); }
+        .dark-theme { background-image: url('https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&w=1770'); }
+        
+        main { display: flex; flex-direction: column; gap: 3rem; width: 100%; max-width: 1200px; }
+        section {
+            background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            border-radius: 20px; padding: 2rem; border: 1px solid var(--glass-border);
+        }
+        h2 {
+            color: var(--text-color-light); margin-top: 0; border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem; margin-bottom: 2rem;
+        }
+        .component-grid { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center; }
+        a, button { text-decoration: none; font-family: 'Poppins', sans-serif; color: var(--text-color-light); }
+        
+        #theme-toggle {
+            position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 10px 20px;
+            font-size: 0.9em; font-weight: 600; cursor: pointer; background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;
+        }
+        #theme-toggle:hover { transform: scale(1.05); }
+
+        /*
+        =========================================================
+        === PLANTILLA DE COMPONENTES ===
+        =========================================================
+        */
+
+        /* ... [Estilos 1 a 4 de Glassmorphism se mantienen aquí, omitidos por brevedad, pero están en el código anterior] ... */
+        /* Puedes copiar los estilos .btn-glass-v1 a v4 de la respuesta anterior y pegarlos aquí si los quieres todos juntos */
+
+
+        /*
+        =========================================================
+        === ESTILO 5: BOTÓN GEL CON PARALLAX (NEUMÓRFICO) ===
+        =========================================================
+        */
+        /* Inspirado en: https://codepen.io/luisangelmaciel/pen/LEVgJpa */
+
+        .thumb {
+            width: 400px; height: 560px; min-width: 320px;
+            border-radius: 4.5em; position: relative;
+            cursor: none; /* Oculta el cursor para que el botón sea el puntero */
+            color: #FFFFFF; background: transparent;
+            display: flex; justify-content: center; align-items: center;
+            font-family: "Inter", sans-serif; /* Usa una fuente diferente para este componente */
+        }
+        .thumb-details {
+            display: flex; flex-direction: column; align-items: center;
+            position: absolute; width: 90%; left: 5%; bottom: 3.5rem;
+            font-size: .85rem; opacity: 0; transition: opacity .2s ease;
+        }
+        .thumb:hover .thumb-details { opacity: 1; }
+        .thumb-wrapper {
+            border-radius: inherit; position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; overflow: hidden; transition: all .4s ease;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .thumb:hover .thumb-wrapper {
+            width: calc(100% - 1em); height: calc(100% - 1em);
+            top: .5em; left: .5em; border-radius: 4em;
+        }
+        .thumb-img {
+            position: absolute; width: calc(100% + 2.5em); height: calc(100% + 2.5em);
+            transition: transform .5s ease-out; object-fit: cover; transform-origin: center center;
+        }
+
+        /* El botón principal de este estilo */
+        .btn-gel {
+            position: relative; z-index: 2; padding: 1.75em; border-radius: 999px;
+            background: radial-gradient(100% 200% at 50% 50%, rgba(50, 50, 50, 0) 25%, rgba(50, 50, 50, .5) 75%), 
+                        radial-gradient(100% 200% at 50% 50%, rgba(50, 50, 50, 0) 50%, rgba(50, 50, 50, .5) 75%);
+            box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.15), 0px -1px 2px 0px rgba(0, 0, 0, 0.125) inset, 
+                        -4px -4px 2px -2px rgba(55, 55, 55, 0.125) inset, 0px 1px 4px 0px rgba(125, 125, 125, 0.25) inset;
+            backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+            display: flex; justify-content: center; align-items: center;
+            transition: padding .3s ease; isolation: auto;
+        }
+        .btn-gel:after, .btn-gel:before {
+            content: ''; position: absolute; z-index: 1; background: transparent;
+            width: calc(100% - .5em); height: calc(100% - .5em); top: .25em; left: .25em;
+            border-radius: inherit; filter: blur(1px); -webkit-filter: blur(1px);
+        }
+        .btn-gel:before { box-shadow: -2px -2px 2px 0px rgba(0, 0, 0, 0.075) inset; }
+        .btn-gel:after {
+            box-shadow: 4px 4px 2px 0px rgba(255, 255, 255, .75) inset;
+            background: radial-gradient(150% 150% at 100% 100%, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, .75));
+        }
+        .btn-gel span {
+            filter: drop-shadow( 4px 4px 1.5px rgba(0, 0, 0, .25)) drop-shadow( 8px 8px 2px rgba(0, 0, 0, .125)) drop-shadow( -4px -2px 2px rgba(225, 225, 225, .25));
+            font-size: 1.15rem; line-height: 100%; font-weight: 350;
+            z-index: 2; transition: all .4s ease; background: transparent; color: white;
+        }
+        .thumb:hover .btn-gel, .btn-gel:hover { padding: 2.25em 2.5em 2.25em 2.5em; cursor: none; }
+        .btn-gel .refractions {
+            position: absolute; border-radius: inherit; width: calc(100% - 1.5em); height: calc(100% - 1.5em);
+            top: .75em; left: .75em; z-index: 1;
+            background: linear-gradient(rgba(25, 25, 25, .125), rgba(25, 25, 25, 0)), 
+                        radial-gradient(2em 1em at 0% 0%, rgba(255, 255, 255, .5) 55%, rgba(255, 255, 255, 0));
+            box-shadow: 0px -2px 12px -6px rgba(255, 255, 255, 0.15) inset, 4px 0px 6px 0px rgba(20, 20, 20, 0.15) inset;
+            filter: blur(2px); -webkit-filter: blur(2px);
+        }
+        .btn-gel .refractions:after {
+            content: ''; position: absolute; border-radius: inherit; width: calc(100% + .25em); height: calc(100% + .25em);
+            top: -.125em; left: -.125em; z-index: -1;
+            box-shadow: 2px 2px 12px 0px rgba(25, 25, 25, .125), -4px -4px 4px 0px rgba(25, 25, 25, .25);
+            background: radial-gradient(5em .75em at 95% 100%, rgba(255, 255, 255, .25) 55%, rgba(255, 255, 255, 0));
+            filter: blur(2px); -webkit-filter: blur(2px);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="theme-toggle"></button>
+    
+    <div id="theme-container">
+        <main>
+            <!-- SECCIÓN PARA EL NUEVO ESTILO -->
+            <section style="background: none; backdrop-filter: none; border: none; padding: 0;">
+                <h2 style="padding-left: 1rem;">Estilo 5: Botón Gel con Parallax</h2>
+                <div class="component-grid">
+                    <!-- Componente 1 -->
+                    <div class="thumb">
+                        <div class="thumb-wrapper">
+                            <img class="thumb-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800">
+                        </div>
+                        <div class="thumb-details">
+                            <span>Light Project</span>
+                            <span style="opacity: 0.4;">2024</span>
+                        </div>
+                        <div class="btn-gel">
+                            <span>Ver Proyecto</span>
+                            <div class="refractions"></div>
+                        </div>
+                    </div>
+                    <!-- Componente 2 -->
+                    <div class="thumb">
+                        <div class="thumb-wrapper">
+                            <img class="thumb-img" src="https://images.unsplash.com/photo-1663517768994-a65e6ab3a40a?auto=format&fit=crop&w=800">
+                        </div>
+                        <div class="thumb-details">
+                            <span>Dark Project</span>
+                            <span style="opacity: 0.4;">2024</span>
+                        </div>
+                        <div class="btn-gel">
+                            <span>Ver Trabajo</span>
+                            <div class="refractions"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- DEPENDENCIAS PARA ESTILO 5 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://unpkg.com/gsap@3/dist/gsap.min.js'></script>
+
+    <!-- JAVASCRIPT (REQUERIDO PARA TEMA Y ESTILO 5) -->
+    <script>
+        // --- Lógica para el cambio de Tema (Light/Dark Mode) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeContainer = document.getElementById('theme-container');
+        const setTheme = (theme) => {
+            themeContainer.className = '';
+            themeContainer.classList.add(`${theme}-theme`);
+            localStorage.setItem('theme', theme);
+            themeToggle.textContent = theme === 'dark' ? '☀️ Ver en Claro' : '🌙 Ver en Oscuro';
+        };
+        themeToggle.addEventListener('click', () => {
+            const newTheme = (localStorage.getItem('theme') || 'dark') === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+        setTheme(localStorage.getItem('theme') || 'dark');
+
+        // --- Lógica para Estilo 5: Botón Gel con Parallax ---
+        function setupThumbPanning() {
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach((thumb) => {
+                const image = thumb.querySelector('.thumb-img');
+                thumb.addEventListener('mousemove', (e) => {
+                    const rect = thumb.getBoundingClientRect();
+                    const xPercent = (e.clientX - rect.left) / rect.width * 100 - 50;
+                    const yPercent = (e.clientY - rect.top) / rect.height * 100 - 50;
+                    gsap.to(image, { duration: 0.25, x: `${-xPercent * 0.05}%`, y: `${-yPercent * 0.05}%`, ease: 'power3.out' });
+                });
+                thumb.addEventListener('mouseleave', () => {
+                    gsap.to(image, { duration: 0.25, x: '0%', y: '0%', ease: 'power3.out' });
+                });
+            });
+        }
+
+        function setupButtonMovement() {
+            const thumbs = document.querySelectorAll(".thumb");
+            thumbs.forEach((thumb) => {
+                const button = thumb.querySelector(".btn-gel");
+                const xTo = gsap.quickTo(button, "x", { duration: 0.3, ease: "power3" });
+                const yTo = gsap.quickTo(button, "y", { duration: 0.3, ease: "power3" });
+                thumb.addEventListener("mousemove", (e) => {
+                    const { left, top, width, height } = thumb.getBoundingClientRect();
+                    const x = e.clientX - left - width / 2;
+                    const y = e.clientY - top - height / 2;
+                    xTo(x);
+                    yTo(y);
+                });
+                thumb.addEventListener("mouseleave", () => {
+                    xTo(0);
+                    yTo(0);
+                });
+            });
+        }
+        
+        // Ejecutar las funciones para el Estilo 5
+        document.addEventListener('DOMContentLoaded', () => {
+            setupThumbPanning();
+            setupButtonMovement();
+        });
+    </script>
+</body>
+</html>

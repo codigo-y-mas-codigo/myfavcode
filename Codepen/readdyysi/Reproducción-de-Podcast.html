@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Futuro de la IA Generativa - NeuroWave</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E5BFF',
+secondary: '#121212'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+body {
+background-color: #0a0a0a;
+color: #ffffff;
+}
+.custom-range {
+appearance: none;
+width: 100%;
+height: 6px;
+background: #374151;
+border-radius: 3px;
+outline: none;
+}
+.custom-range::-webkit-slider-thumb {
+appearance: none;
+width: 20px;
+height: 20px;
+background: #2E5BFF;
+border-radius: 50%;
+cursor: pointer;
+}
+.custom-range::-moz-range-thumb {
+width: 20px;
+height: 20px;
+background: #2E5BFF;
+border-radius: 50%;
+cursor: pointer;
+border: none;
+}
+.transcript-time {
+color: #2E5BFF;
+cursor: pointer;
+font-weight: 600;
+}
+.transcript-time:hover {
+color: #1E40AF;
+}
+.comment-item {
+border-left: 3px solid transparent;
+}
+.comment-item:hover {
+border-left-color: #2E5BFF;
+background-color: rgba(55, 65, 81, 0.3);
+}
+.speed-btn {
+transition: all 0.2s;
+}
+.speed-btn.active {
+background-color: #2E5BFF;
+color: white;
+}
+.volume-slider {
+width: 0;
+opacity: 0;
+transition: all 0.3s ease;
+}
+.volume-slider.show {
+width: 100px;
+opacity: 1;
+}
+</style>
+</head>
+<body class="bg-secondary min-h-screen">
+<header class="bg-secondary border-b border-gray-800 px-6 py-4 sticky top-0 z-50">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<a href="https://readdy.ai/home/5daee13a-1d15-4539-97f3-f680273aa406/0903ad9f-5c5c-4977-adec-4863c4162301" data-readdy="true" class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<i class="ri-brain-line text-white text-xl"></i>
+</div>
+<span class="font-['Pacifico'] text-2xl text-white">NeuroWave</span>
+</a>
+</div>
+<div class="flex-1 max-w-md mx-8">
+<div class="relative">
+<input type="text" placeholder="Buscar podcasts, charlas de IA..."
+class="w-full bg-gray-800 border border-gray-700 rounded-full px-4 py-2 pl-12 pr-12 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<div class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+<div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-mic-line text-primary cursor-pointer hover:text-blue-400"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-notification-line text-gray-300 text-xl cursor-pointer hover:text-white"></i>
+</div>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+</div>
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-user-line text-white"></i>
+</div>
+</div>
+</div>
+</header>
+
+<main class="px-6 py-8 max-w-7xl mx-auto">
+<div class="mb-6">
+<a href="https://readdy.ai/home/5daee13a-1d15-4539-97f3-f680273aa406/0903ad9f-5c5c-4977-adec-4863c4162301" data-readdy="true" class="inline-flex items-center space-x-2 text-gray-400 hover:text-white transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-left-line"></i>
+</div>
+<span>Volver al inicio</span>
+</a>
+</div>
+
+<div class="bg-gray-900 rounded-2xl overflow-hidden mb-8">
+<div class="relative h-80" style="background-image: url('https://readdy.ai/api/search-image?query=futuristic%20artificial%20intelligence%20neural%20network%20visualization%20with%20glowing%20blue%20circuits%20and%20data%20streams%20in%20dark%20technological%20environment%2C%20cyberpunk%20aesthetic%2C%20digital%20brain%20concept%2C%20high-tech%20background%20perfect%20for%20podcast%20cover&width=1200&height=320&seq=podcasthero&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="flex items-center space-x-2 mb-3">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">#MachineLearning</span>
+<span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-medium">#GPT</span>
+</div>
+<h1 class="text-4xl font-bold text-white mb-2">El Futuro de la IA Generativa</h1>
+<div class="flex items-center space-x-4 text-gray-300">
+<span>Dr. Elena Martínez</span>
+<span>•</span>
+<span>2.3M reproducciones</span>
+<span>•</span>
+<span>45 min</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="mb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center space-x-4">
+<button id="prevBtn" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-skip-back-line text-white"></i>
+</div>
+</button>
+<button id="playBtn" class="w-12 h-12 bg-primary hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors !rounded-button whitespace-nowrap">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-play-fill text-white text-xl"></i>
+</div>
+</button>
+<button id="nextBtn" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-skip-forward-line text-white"></i>
+</div>
+</button>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<span class="text-sm text-gray-400">1.2x</span>
+<div class="flex items-center space-x-1">
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700" data-speed="0.5">0.5x</button>
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700" data-speed="0.75">0.75x</button>
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700 active" data-speed="1">1x</button>
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700" data-speed="1.25">1.25x</button>
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700" data-speed="1.5">1.5x</button>
+<button class="speed-btn px-2 py-1 rounded text-xs bg-gray-800 text-gray-300 hover:bg-gray-700" data-speed="2">2x</button>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<button id="volumeBtn" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-volume-up-line text-gray-400 hover:text-white cursor-pointer"></i>
+</button>
+<div class="volume-slider">
+<input type="range" class="custom-range" min="0" max="100" value="75" id="volumeSlider">
+</div>
+</div>
+<button id="favoriteBtn" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line text-gray-400 hover:text-red-500 cursor-pointer"></i>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-sm text-gray-400">
+<span id="currentTime">12:34</span>
+<span id="totalTime">45:00</span>
+</div>
+<input type="range" class="custom-range w-full" min="0" max="2700" value="754" id="progressSlider">
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<button class="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-download-line text-gray-300"></i>
+</div>
+<span class="text-gray-300 text-sm">Descargar</span>
+</button>
+<button class="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-share-line text-gray-300"></i>
+</div>
+<span class="text-gray-300 text-sm">Compartir</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="bg-gray-900 rounded-xl p-6">
+<h2 class="text-2xl font-bold text-white mb-4">Descripción del Episodio</h2>
+<div class="text-gray-300 leading-relaxed space-y-4">
+<p>En este fascinante episodio, exploramos las fronteras más avanzadas de la inteligencia artificial generativa y su impacto transformador en nuestra sociedad. La Dra. Elena Martínez, reconocida investigadora en machine learning, nos guía a través de los últimos avances en modelos de lenguaje como GPT-4, DALL-E y otras tecnologías revolucionarias.</p>
+<p>Analizamos cómo estas herramientas están redefiniendo la creatividad, la productividad y la forma en que interactuamos con la tecnología. Desde la generación de contenido hasta la automatización de tareas complejas, descubrimos las oportunidades y desafíos que presenta esta nueva era de la IA.</p>
+<p>También abordamos temas cruciales como la ética en el desarrollo de IA, los sesgos algorítmicos y las implicaciones sociales de estas tecnologías emergentes. Un episodio imprescindible para entender hacia dónde se dirige el futuro de la inteligencia artificial.</p>
+</div>
+</div>
+
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-2xl font-bold text-white">Transcripción</h2>
+<div class="flex items-center space-x-2">
+<input type="text" placeholder="Buscar en transcripción..." class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary">
+<button class="bg-primary hover:bg-blue-600 px-4 py-2 rounded-lg text-sm text-white transition-colors !rounded-button whitespace-nowrap">
+Buscar
+</button>
+</div>
+</div>
+<div class="max-h-96 overflow-y-auto space-y-4 text-gray-300 leading-relaxed">
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[00:00]</span>
+<p>Bienvenidos a NeuroWave, el podcast que explora las fronteras de la inteligencia artificial. Soy la Dra. Elena Martínez, y hoy vamos a sumergirnos en el fascinante mundo de la IA generativa.</p>
+</div>
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[01:23]</span>
+<p>La inteligencia artificial generativa ha experimentado un crecimiento exponencial en los últimos años. Modelos como GPT-4, Claude, y Gemini han demostrado capacidades que parecían imposibles hace apenas una década.</p>
+</div>
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[03:45]</span>
+<p>Pero, ¿qué hace que estos modelos sean tan poderosos? La respuesta radica en su arquitectura transformer y en la cantidad masiva de datos con los que han sido entrenados.</p>
+</div>
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[06:12]</span>
+<p>Una de las aplicaciones más impactantes que estamos viendo es en el campo de la creatividad. Desde la generación de imágenes hasta la composición musical, la IA está expandiendo los límites de lo que consideramos creativo.</p>
+</div>
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[08:30]</span>
+<p>Sin embargo, con gran poder viene gran responsabilidad. Los desafíos éticos que presenta la IA generativa son complejos y requieren nuestra atención inmediata.</p>
+</div>
+<div class="flex space-x-4">
+<span class="transcript-time text-sm">[11:45]</span>
+<p>Los sesgos algorítmicos, la desinformación y el impacto en el mercado laboral son solo algunos de los temas que debemos abordar como sociedad.</p>
+</div>
+</div>
+</div>
+
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-white">Comentarios</h2>
+<span class="text-gray-400">1,247 comentarios</span>
+</div>
+<div class="mb-6">
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-user-line text-white"></i>
+</div>
+<div class="flex-1">
+<textarea placeholder="Añade un comentario..." class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-primary" rows="3"></textarea>
+<div class="flex items-center justify-between mt-3">
+<div class="flex items-center space-x-2">
+<button class="text-gray-400 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-emotion-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-attachment-line"></i>
+</div>
+</button>
+</div>
+<button class="bg-primary hover:bg-blue-600 px-4 py-2 rounded-lg text-sm text-white transition-colors !rounded-button whitespace-nowrap">
+Comentar
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="comment-item p-4 rounded-lg transition-all">
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-user-line text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center space-x-2 mb-2">
+<span class="font-semibold text-white">María González</span>
+<span class="text-gray-400 text-sm">hace 2 horas</span>
+</div>
+<p class="text-gray-300 mb-3">Excelente episodio, Dra. Martínez. La explicación sobre los transformers fue muy clara. Me gustaría saber más sobre las implicaciones éticas que mencionó al final.</p>
+<div class="flex items-center space-x-4">
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-thumb-up-line"></i>
+</div>
+<span class="text-sm">23</span>
+</button>
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-reply-line"></i>
+</div>
+<span class="text-sm">Responder</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-item p-4 rounded-lg transition-all">
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-user-line text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center space-x-2 mb-2">
+<span class="font-semibold text-white">Carlos Mendoza</span>
+<span class="text-gray-400 text-sm">hace 5 horas</span>
+</div>
+<p class="text-gray-300 mb-3">Como desarrollador de IA, puedo confirmar que todo lo que dice es muy acertado. Los desafíos técnicos son enormes, pero las posibilidades son infinitas.</p>
+<div class="flex items-center space-x-4">
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-thumb-up-line"></i>
+</div>
+<span class="text-sm">45</span>
+</button>
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-reply-line"></i>
+</div>
+<span class="text-sm">Responder</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-item p-4 rounded-lg transition-all">
+<div class="flex space-x-4">
+<div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-user-line text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center space-x-2 mb-2">
+<span class="font-semibold text-white">Ana Rodríguez</span>
+<span class="text-gray-400 text-sm">hace 1 día</span>
+</div>
+<p class="text-gray-300 mb-3">¿Podrían hacer un episodio específico sobre IA en medicina? Es un tema que me interesa mucho y creo que tiene un potencial increíble.</p>
+<div class="flex items-center space-x-4">
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-thumb-up-line"></i>
+</div>
+<span class="text-sm">67</span>
+</button>
+<button class="flex items-center space-x-1 text-gray-400 hover:text-white">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-reply-line"></i>
+</div>
+<span class="text-sm">Responder</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 text-center">
+<button class="text-primary hover:text-blue-400 font-medium">Cargar más comentarios</button>
+</div>
+</div>
+</div>
+
+<div class="space-y-6">
+<div class="bg-gray-900 rounded-xl p-6">
+<h3 class="text-xl font-bold text-white mb-4">Episodios Relacionados</h3>
+<div class="space-y-4">
+<div class="flex space-x-4 p-3 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=advanced%20robotics%20and%20artificial%20intelligence%20laboratory%20with%20holographic%20displays%20and%20quantum%20computing%20elements%2C%20futuristic%20tech%20environment%2C%20blue%20and%20purple%20lighting%2C%20scientific%20research%20facility&width=64&height=64&seq=related1&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h4 class="font-semibold text-white text-sm mb-1">Robótica Avanzada y IA</h4>
+<p class="text-gray-400 text-xs mb-2">Prof. Carlos Ruiz • 32 min</p>
+<div class="flex items-center space-x-2">
+<span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">#Robotics</span>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white text-sm"></i>
+</div>
+</div>
+<div class="flex space-x-4 p-3 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=quantum%20computing%20and%20artificial%20intelligence%20convergence%20with%20glowing%20quantum%20circuits%20and%20neural%20pathways%2C%20futuristic%20technology%20visualization%2C%20deep%20blue%20and%20cyan%20colors%2C%20scientific%20breakthrough%20concept&width=64&height=64&seq=related2&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h4 class="font-semibold text-white text-sm mb-1">Computación Cuántica e IA</h4>
+<p class="text-gray-400 text-xs mb-2">Dra. Ana Vega • 28 min</p>
+<div class="flex items-center space-x-2">
+<span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs">#QuantumAI</span>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white text-sm"></i>
+</div>
+</div>
+<div class="flex space-x-4 p-3 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=artificial%20intelligence%20neural%20network%20visualization%20with%20interconnected%20nodes%20and%20data%20flow%2C%20futuristic%20digital%20brain%20concept%2C%20blue%20and%20purple%20gradient%20colors%2C%20technology%20background&width=64&height=64&seq=related3&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h4 class="font-semibold text-white text-sm mb-1">Redes Neuronales Explicadas</h4>
+<p class="text-gray-400 text-xs mb-2">Dr. Miguel Torres • 42 min</p>
+<div class="flex items-center space-x-2">
+<span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">#NeuralNetworks</span>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white text-sm"></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-gray-900 rounded-xl p-6">
+<h3 class="text-xl font-bold text-white mb-4">Marcadores Favoritos</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="text-white text-sm">Introducción a GPT-4</span>
+</div>
+<span class="transcript-time text-sm">01:23</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="text-white text-sm">Arquitectura Transformer</span>
+</div>
+<span class="transcript-time text-sm">03:45</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="text-white text-sm">IA y Creatividad</span>
+</div>
+<span class="transcript-time text-sm">06:12</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="text-white text-sm">Desafíos Éticos</span>
+</div>
+<span class="transcript-time text-sm">08:30</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<nav class="fixed bottom-0 left-0 right-0 bg-secondary border-t border-gray-800 px-6 py-4">
+<div class="flex items-center justify-around max-w-md mx-auto">
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Inicio</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-compass-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Explorar</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Biblioteca</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Perfil</span>
+</div>
+</div>
+</nav>
+
+<script id="player-controls">
+document.addEventListener('DOMContentLoaded', function() {
+const playBtn = document.getElementById('playBtn');
+const playIcon = playBtn.querySelector('i');
+const favoriteBtn = document.getElementById('favoriteBtn');
+const favoriteIcon = favoriteBtn.querySelector('i');
+const volumeBtn = document.getElementById('volumeBtn');
+const volumeSlider = document.querySelector('.volume-slider');
+const progressSlider = document.getElementById('progressSlider');
+const currentTimeEl = document.getElementById('currentTime');
+const totalTimeEl = document.getElementById('totalTime');
+let isPlaying = false;
+
+playBtn.addEventListener('click', function() {
+isPlaying = !isPlaying;
+if (isPlaying) {
+playIcon.className = 'ri-pause-fill text-white text-xl';
+} else {
+playIcon.className = 'ri-play-fill text-white text-xl';
+}
+});
+
+favoriteBtn.addEventListener('click', function() {
+if (favoriteIcon.classList.contains('ri-heart-line')) {
+favoriteIcon.className = 'ri-heart-fill text-red-500 cursor-pointer';
+} else {
+favoriteIcon.className = 'ri-heart-line text-gray-400 hover:text-red-500 cursor-pointer';
+}
+});
+
+volumeBtn.addEventListener('click', function() {
+volumeSlider.classList.toggle('show');
+});
+
+progressSlider.addEventListener('input', function() {
+const value = parseInt(this.value);
+const minutes = Math.floor(value / 60);
+const seconds = value % 60;
+currentTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+});
+});
+</script>
+
+<script id="speed-controls">
+document.addEventListener('DOMContentLoaded', function() {
+const speedButtons = document.querySelectorAll('.speed-btn');
+speedButtons.forEach(btn => {
+btn.addEventListener('click', function() {
+speedButtons.forEach(b => b.classList.remove('active'));
+this.classList.add('active');
+});
+});
+});
+</script>
+
+<script id="transcript-navigation">
+document.addEventListener('DOMContentLoaded', function() {
+const transcriptTimes = document.querySelectorAll('.transcript-time');
+transcriptTimes.forEach(time => {
+time.addEventListener('click', function() {
+const timeText = this.textContent.replace('[', '').replace(']', '');
+const [minutes, seconds] = timeText.split(':').map(Number);
+const totalSeconds = minutes * 60 + seconds;
+const progressSlider = document.getElementById('progressSlider');
+progressSlider.value = totalSeconds;
+const currentTimeEl = document.getElementById('currentTime');
+currentTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+});
+});
+});
+</script>
+
+<script id="comment-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+const likeButtons = document.querySelectorAll('[class*="ri-thumb-up"]');
+likeButtons.forEach(btn => {
+btn.addEventListener('click', function() {
+const countSpan = this.parentElement.querySelector('span');
+let count = parseInt(countSpan.textContent);
+if (this.classList.contains('ri-thumb-up-line')) {
+this.className = 'ri-thumb-up-fill text-primary';
+countSpan.textContent = count + 1;
+} else {
+this.className = 'ri-thumb-up-line';
+countSpan.textContent = count - 1;
+}
+});
+});
+});
+</script>
+
+<script id="navigation-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+const navItems = document.querySelectorAll('nav .group');
+navItems.forEach(item => {
+item.addEventListener('click', function() {
+navItems.forEach(nav => {
+const icon = nav.querySelector('i');
+const text = nav.querySelector('span');
+icon.className = icon.className.replace('text-primary', 'text-gray-400');
+text.className = text.className.replace('text-primary', 'text-gray-400');
+});
+const icon = this.querySelector('i');
+const text = this.querySelector('span');
+icon.className = icon.className.replace('text-gray-400', 'text-primary');
+text.className = text.className.replace('text-gray-400', 'text-primary');
+});
+});
+});
+</script>
+</body>
+</html>

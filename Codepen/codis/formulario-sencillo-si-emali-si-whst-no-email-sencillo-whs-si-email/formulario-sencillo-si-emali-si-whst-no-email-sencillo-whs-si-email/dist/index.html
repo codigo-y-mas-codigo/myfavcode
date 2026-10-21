@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>formulario sencillo si emali +  si whst no email = sencillo whs si email </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Formulario de Contacto y Tienda de Productos a Granel</title>
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+ <style>
+  table {
+   width: 100%;
+   border-collapse: collapse;
+  }
+
+  th,
+  td {
+   border: 1px solid #ddd;
+   padding: 8px;
+  }
+
+  th {
+   background-color: #f2f2f2;
+  }
+
+  .loader {
+   border: 5px solid #f3f3f3;
+   border-top: 5px solid #3498db;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   animation: spin 1s linear infinite;
+   margin: 20px auto;
+  }
+
+  @keyframes spin {
+   0% {
+    transform: rotate(0deg);
+   }
+
+   100% {
+    transform: rotate(360deg);
+   }
+  }
+
+  .hidden {
+   display: none;
+  }
+ </style>
+</head>
+
+<body class="bg-gray-100">
+ <main class="w-full max-w-4xl mx-auto p-6">
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+   <div class="p-4 sm:p-7">
+    <div class="text-center">
+     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Formulario de contacto y Productos a Granel</h1>
+    </div>
+
+    <div class="mt-5">
+     <form id="contactForm" class="gform pure-form pure-form-stacked" method="POST" data-email="luisemojix@gmail.com" action="https://script.google.com/macros/s/AKfycbzRBI2hNAeACw3AoNXDNBeipjFkvm4xGnga7kBAAiUdJKQeN5kIVu8-KgV4dCvJaPwtyQ/exec">
+      <div class="form-elements">
+       <input type="hidden" id="EmailTitle" name="EmailTitle" value="Nuevo pedido de Burbulimpia">
+       <input type="hidden" id="Origen" name="Origen" value="https://burbulimpia.vercel.app/">
+       <div class="mb-4">
+        <label for="nombre" class="block text-sm mb-2 dark:text-white">Nombre:</label>
+        <input type="text" id="nombre" name="Nombre" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="whatsapp" class="block text-sm mb-2 dark:text-white">WhatsApp:</label>
+        <input type="tel" id="whatsapp" name="WhatsApp" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="email" class="block text-sm mb-2 dark:text-white">Email:</label>
+        <input type="email" id="email" name="Email" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+      </div>
+
+      <div class="mt-8">
+       <h2 class="text-xl font-bold mb-4 dark:text-white">Productos a Granel para la Limpieza</h2>
+       <table id="productTable" class="mb-4">
+        <thead>
+         <tr>
+          <th>Seleccionar</th>
+          <th>Producto</th>
+          <th>Precio Público de 1 a 9 litros (por litro)</th>
+          <th>Precio Especial después de 10 litros (por litro)</th>
+          <th>Cantidad (litros)</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Más Color</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Zote c/Bicarbonato</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Ariel</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido Lavatrastes</td>
+          <td data-public="25.00" data-special="22.50">$25.00</td>
+          <td>$22.50</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Suavizante para Ropa Downy</td>
+          <td data-public="20.00" data-special="18.00">$20.00</td>
+          <td>$18.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Suavizante para Ropa Tipo Ensueño</td>
+          <td data-public="20.00" data-special="18.00">$20.00</td>
+          <td>$18.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Suavizante para Ropa Plus Tipo Dove</td>
+          <td data-public="20.00" data-special="18.00">$20.00</td>
+          <td>$18.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Cloro en Gel</td>
+          <td data-public="20.00" data-special="18.00">$20.00</td>
+          <td>$18.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador Tipo Fabuloso Mar Fresco</td>
+          <td data-public="15.00" data-special="13.00">$15.00</td>
+          <td>$13.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador Tipo Fabuloso Limón</td>
+          <td data-public="15.00" data-special="13.00">$15.00</td>
+          <td>$13.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador Tipo Fabuloso Lavanda</td>
+          <td data-public="15.00" data-special="13.00">$15.00</td>
+          <td>$13.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador Tipo Pino</td>
+          <td data-public="15.00" data-special="13.00">$15.00</td>
+          <td>$13.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador con Aroma Menta</td>
+          <td data-public="15.00" data-special="13.00">$15.00</td>
+          <td>$13.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Limpiador para Baños con Cloro Antihongos</td>
+          <td data-public="28.00" data-special="27.00">$28.00</td>
+          <td>$27.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Prelavador con Agua Oxigenada (Tipo Vanish)</td>
+          <td data-public="27.00" data-special="26.00">$27.00</td>
+          <td>$26.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Shampoo para Manos Almendra</td>
+          <td data-public="26.00" data-special="25.00">$26.00</td>
+          <td>$25.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Shampoo para Manos Manzana Verde</td>
+          <td data-public="26.00" data-special="25.00">$26.00</td>
+          <td>$25.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Shampoo para Manos Uva</td>
+          <td data-public="26.00" data-special="25.00">$26.00</td>
+          <td>$25.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+        </tbody>
+       </table>
+       <p class="mb-4 dark:text-white">Total: $<span id="totalPrice">0.00</span></p>
+      </div>
+
+      <div class="mb-6">
+       <label class="flex items-center space-x-2">
+        <input type="checkbox" id="Terminos_y_condiciones" name="Terminos_y_condiciones" required class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <span class="text-sm text-gray-600 dark:text-gray-400">Aceptar términos y condiciones</span>
+       </label>
+      </div>
+
+      <div class="flex justify-center mb-4">
+       <button type="button" onclick="showPreview()" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Previsualizar</button>
+      </div>
+
+      <div id="wait-message" class="hidden mt-2 text-gray-600 text-center">
+       <div class="loader"></div>
+       <p id="wait-text">Enviando formulario...</p>
+      </div>
+
+      <div class="thankyou_message hidden">
+       <h4 class="block text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">¡Gracias por tu mensaje!</h4>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </main>
+
+ <div id="preview" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+   <h3 class="text-lg font-bold mb-2">Previsualización del Pedido</h3>
+   <div id="previewContent"></div>
+   <div class="flex justify-end mt-4">
+    <button type="button" onclick="hidePreview()" class="px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
+     Editar
+    </button>
+    <button type="submit" id="js-comm_btn" form="contactForm" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+     Confirmar y Enviar
+    </button>
+   </div>
+  </div>
+ </div>
+ <script>
+  // Función para validar el email
+  function validEmail(email) {
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+  }
+  // Función principal para manejar el envío del formulario
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   var form = event.target;
+   var data = getFormData(form);
+   if (data.WhatsApp.length < 10) {
+    alert("Por favor, ingrese un número de WhatsApp válido.");
+    return;
+   }
+   if (!validEmail(data.Email)) {
+    alert("Por favor, ingrese un correo electrónico válido.");
+    return;
+   }
+   showWaitMessage();
+   disableAllButtons(form);
+   var url = form.action;
+   var xhr = new XMLHttpRequest();
+   xhr.open('POST', url);
+   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+   xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+     if (xhr.status === 200) {
+      form.reset();
+      hideWaitMessage();
+      showThankYouMessage();
+      sendWhatsAppMessage(data);
+     } else {
+      hideWaitMessage();
+      alert("Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo.");
+     }
+     enableAllButtons(form);
+    }
+   };
+   var encoded = Object.keys(data).map(function(k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+   }).join('&');
+   xhr.send(encoded);
+  }
+  // Funciones auxiliares
+  function showWaitMessage() {
+   var waitMessage = document.getElementById('wait-message');
+   var waitText = document.getElementById('wait-text');
+   waitMessage.classList.remove('hidden');
+   var messages = [
+    "Enviando formulario...",
+    "Ya casi estamos...",
+    "Un poquito más...",
+    "Gracias por tu paciencia..."
+   ];
+   var currentMessage = 0;
+
+   function updateMessage() {
+    waitText.textContent = messages[currentMessage];
+    currentMessage = (currentMessage + 1) % messages.length;
+   }
+   updateMessage();
+   setInterval(updateMessage, 3000);
+  }
+
+  function hideWaitMessage() {
+   document.getElementById('wait-message').classList.add('hidden');
+  }
+
+  function showThankYouMessage() {
+   var formElements = document.querySelector(".form-elements");
+   if (formElements) {
+    formElements.style.display = "none";
+   }
+   var thankYouMessage = document.querySelector(".thankyou_message");
+   if (thankYouMessage) {
+    thankYouMessage.classList.remove("hidden");
+   }
+  }
+  // Función modificada para enviar mensaje de WhatsApp con detalles del pedido
+  function sendWhatsAppMessage(data) {
+   var productDetails = getProductDetails();
+   var total = document.getElementById('totalPrice').textContent;
+   var mensaje = `Hola, soy *${data.Nombre}*, mi email es *${data.Email}*. Envío este mensaje desde el sitio *${data.Origen}*.\n\n*Detalles del pedido:*\n${productDetails.details}\n*Total de litros:* ${productDetails.totalLitros}\n*Total a pagar:* $${total}`;
+   window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+  }
+  // Nueva función para obtener detalles del pedido
+  function getProductDetails() {
+   let details = '';
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const productName = row.cells[1].textContent;
+    const quantity = row.querySelector('.quantity-input').value;
+    details += `- ${productName}: ${quantity} litros\n`;
+   });
+   return details;
+  }
+
+  function disableAllButtons(form) {
+   var buttons = form.querySelectorAll("button");
+   for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+   }
+  }
+
+  function enableAllButtons(form) {
+   var buttons = form.querySelectorAll("button");
+   for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = false;
+   }
+  }
+
+  function getFormData(form) {
+   var elements = form.elements;
+   var fields = Object.keys(elements).filter(function(k) {
+    return (elements[k].name !== "honeypot");
+   }).map(function(k) {
+    if (elements[k].name !== undefined) {
+     return elements[k].name;
+    } else if (elements[k].length > 0) {
+     return elements[k].item(0).name;
+    }
+   }).filter(function(item, pos, self) {
+    return self.indexOf(item) == pos && item;
+   });
+   var formData = {};
+   fields.forEach(function(name) {
+    var element = elements[name];
+    formData[name] = element.value;
+    if (element.length) {
+     var data = [];
+     for (var i = 0; i < element.length; i++) {
+      var item = element.item(i);
+      if (item.checked || item.selected) {
+       data.push(item.value);
+      }
+     }
+     formData[name] = data.join(', ');
+    }
+   });
+   formData.formDataNameOrder = JSON.stringify(fields);
+   formData.formGoogleSheetName = form.dataset.sheet || "Hoja 1";
+   formData.formGoogleSendEmail = form.dataset.email || "";
+   return formData;
+  }
+  // Event listeners
+  document.addEventListener("DOMContentLoaded", function() {
+   var form = document.getElementById("contactForm");
+   form.addEventListener("submit", handleFormSubmit, false);
+  });
+  document.querySelectorAll('.product-checkbox').forEach((checkbox, index) => {
+   checkbox.addEventListener('change', function() {
+    const quantityInput = document.querySelectorAll('.quantity-input')[index];
+    quantityInput.disabled = !this.checked;
+    if (!this.checked) {
+     quantityInput.value = '';
+    }
+    calculateTotal();
+   });
+  });
+  document.querySelectorAll('.quantity-input').forEach(input => {
+   input.addEventListener('input', calculateTotal);
+  });
+
+  function calculateTotal() {
+   let total = 0;
+   document.querySelectorAll('.product-checkbox').forEach((checkbox, index) => {
+    if (checkbox.checked) {
+     const quantity = parseFloat(document.querySelectorAll('.quantity-input')[index].value) || 0;
+     const publicPrice = parseFloat(document.querySelectorAll('[data-public]')[index].dataset.public);
+     const specialPrice = parseFloat(document.querySelectorAll('[data-special]')[index].dataset.special);
+     const price = quantity >= 10 ? specialPrice : publicPrice;
+     total += quantity * price;
+    }
+   });
+   document.getElementById('totalPrice').innerText = total.toFixed(2);
+  }
+
+  function showPreview() {
+   const nombre = document.getElementById('nombre').value;
+   const whatsapp = document.getElementById('whatsapp').value;
+   const email = document.getElementById('email').value;
+   const total = document.getElementById('totalPrice').textContent;
+   let productDetails = '';
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const productName = row.cells[1].textContent;
+    const quantity = row.querySelector('.quantity-input').value;
+    productDetails += `<p>${productName}: ${quantity} litros</p>`;
+   });
+   const previewContent = `
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Productos:</strong></p>
+        ${productDetails}
+        <p><strong>Total:</strong> $${total}</p>
+    `;
+   document.getElementById('previewContent').innerHTML = previewContent;
+   document.getElementById('preview').classList.remove('hidden');
+   document.getElementById('contactForm').classList.add('hidden');
+  }
+
+  function hidePreview() {
+   document.getElementById('preview').classList.add('hidden');
+   document.getElementById('contactForm').classList.remove('hidden');
+  }
+  // Función para validar el email
+  function validEmail(email) {
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+  }
+  // Función principal para manejar el envío del formulario
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   var form = event.target;
+   var formData = new FormData(form);
+   var data = Object.fromEntries(formData.entries());
+   if (data.WhatsApp.length < 10) {
+    alert("Por favor, ingrese un número de WhatsApp válido.");
+    return;
+   }
+   if (!validEmail(data.Email)) {
+    alert("Por favor, ingrese un correo electrónico válido.");
+    return;
+   }
+   // Capturar los productos seleccionados
+   data.productos = getSelectedProducts();
+   if (data.productos.length === 0) {
+    alert("Por favor, seleccione al menos un producto.");
+    return;
+   }
+   showWaitMessage();
+   disableAllButtons(form);
+   // Enviar datos al servidor (Google Sheet)
+   sendToGoogleSheet(form.action, data)
+    .then(() => {
+     form.reset();
+     hideWaitMessage();
+     showThankYouMessage();
+     sendWhatsAppMessage(data);
+     sendEmailMessage(data);
+    })
+    .catch((error) => {
+     hideWaitMessage();
+     alert("Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo.");
+     console.error('Error:', error);
+    })
+    .finally(() => {
+     enableAllButtons(form);
+    });
+  }
+  // Función para obtener los productos seleccionados
+  function getSelectedProducts() {
+   let products = [];
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const productName = row.cells[1].textContent;
+    const quantity = parseFloat(row.querySelector('.quantity-input').value);
+    const price = parseFloat(row.cells[2].textContent.replace('$', ''));
+    products.push({
+     name: productName,
+     quantity: quantity,
+     price: price
+    });
+   });
+   return products;
+  }
+  // Función para enviar datos al Google Sheet
+  function sendToGoogleSheet(url, data) {
+   const params = new URLSearchParams();
+   for (const key in data) {
+    if (key === 'productos') {
+     params.append(key, JSON.stringify(data[key]));
+    } else {
+     params.append(key, data[key]);
+    }
+   }
+   return fetch(url, {
+    method: 'POST',
+    body: params
+   });
+  }
+  // Función para enviar mensaje de WhatsApp
+  function sendWhatsAppMessage(data) {
+   let productDetails = data.productos.map(p => `- ${p.name}: ${p.quantity} litros`).join('\n');
+   let totalLitros = data.productos.reduce((sum, p) => sum + p.quantity, 0);
+   let totalPagar = data.productos.reduce((sum, p) => sum + (p.quantity * p.price), 0);
+   let mensaje = `Hola, soy *${data.Nombre}*, mi email es *${data.Email}*. Envío este mensaje desde el sitio *${data.Origen}*.\n\n*Detalles del pedido:*\n${productDetails}\n*Total de litros:* ${totalLitros.toFixed(2)}\n*Total a pagar:* $${totalPagar.toFixed(2)}`;
+   window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+  }
+  // Función para enviar email (simulada)
+  function sendEmailMessage(data) {
+   console.log('Enviando email con los datos:', data);
+   // Aquí iría la lógica para enviar el email
+  }
+
+  function doPost(e) {
+   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+   var data = e.parameter;
+   // Process and append data to sheet
+   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+   var newRow = headers.map(function(header) {
+    return header === 'productos' ? JSON.stringify(data[header]) : data[header];
+   });
+   sheet.appendRow(newRow);
+   // Send email
+   var emailAddress = "your-email@example.com"; // Replace with your email
+   var subject = "Nuevo pedido de " + data.Nombre;
+   var message = createEmailBody(data);
+   MailApp.sendEmail(emailAddress, subject, message);
+   return ContentService.createTextOutput("Success");
+  }
+
+  function createEmailBody(data) {
+   var body = "Nuevo pedido recibido:\n\n";
+   body += "Nombre: " + data.Nombre + "\n";
+   body += "WhatsApp: " + data.WhatsApp + "\n";
+   body += "Email: " + data.Email + "\n\n";
+   body += "Productos:\n";
+   var productos = JSON.parse(data.productos);
+   productos.forEach(function(producto) {
+    body += "- " + producto.name + ": " + producto.quantity + " litros\n";
+   });
+   var total = productos.reduce(function(sum, producto) {
+    return sum + (producto.quantity * producto.price);
+   }, 0);
+   body += "\nTotal a pagar: $" + total.toFixed(2);
+   return body;
+  }
+  // Funciones auxiliares (showWaitMessage, hideWaitMessage, showThankYouMessage, disableAllButtons, enableAllButtons) permanecen iguales
+  // Event listeners
+  document.addEventListener("DOMContentLoaded", function() {
+   var form = document.getElementById("contactForm");
+   form.addEventListener("submit", handleFormSubmit, false);
+   document.querySelectorAll('.product-checkbox').forEach((checkbox, index) => {
+    checkbox.addEventListener('change', function() {
+     const quantityInput = document.querySelectorAll('.quantity-input')[index];
+     quantityInput.disabled = !this.checked;
+     if (!this.checked) {
+      quantityInput.value = '';
+     }
+     calculateTotal();
+    });
+   });
+   document.querySelectorAll('.quantity-input').forEach(input => {
+    input.addEventListener('input', calculateTotal);
+   });
+  });
+
+  function calculateTotal() {
+   let total = 0;
+   document.querySelectorAll('.product-checkbox:checked').forEach((checkbox, index) => {
+    const quantity = parseFloat(document.querySelectorAll('.quantity-input')[index].value) || 0;
+    const price = parseFloat(checkbox.closest('tr').cells[2].textContent.replace('$', ''));
+    total += quantity * price;
+   });
+   document.getElementById('totalPrice').innerText = total.toFixed(2);
+  }
+  // Las funciones showPreview y hidePreview permanecen iguales
+ </script>
+ <script>
+  function validEmail(email) {
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+  }
+
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   var form = event.target;
+   var data = getFormData(form);
+   if (data.WhatsApp.length < 10) {
+    alert("Por favor, ingrese un número de WhatsApp válido.");
+    return;
+   }
+   if (!validEmail(data.Email)) {
+    alert("Por favor, ingrese un correo electrónico válido.");
+    return;
+   }
+   showWaitMessage();
+   disableAllButtons(form);
+   var url = form.action;
+   var xhr = new XMLHttpRequest();
+   xhr.open('POST', url);
+   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+   xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+     if (xhr.status === 200) {
+      form.reset();
+      hideWaitMessage();
+      showThankYouMessage();
+      sendWhatsAppMessage(data);
+     } else {
+      hideWaitMessage();
+      alert("Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo.");
+     }
+     enableAllButtons(form);
+    }
+   };
+   var encoded = Object.keys(data).map(function(k) {
+    return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+   }).join('&');
+   xhr.send(encoded);
+  }
+
+  function showWaitMessage() {
+   var waitMessage = document.getElementById('wait-message');
+   var waitText = document.getElementById('wait-text');
+   waitMessage.classList.remove('hidden');
+   var messages = [
+    "Enviando formulario...",
+    "Ya casi estamos...",
+    "Un poquito más...",
+    "Gracias por tu paciencia..."
+   ];
+   var currentMessage = 0;
+
+   function updateMessage() {
+    waitText.textContent = messages[currentMessage];
+    currentMessage = (currentMessage + 1) % messages.length;
+   }
+   updateMessage();
+   setInterval(updateMessage, 3000);
+  }
+
+  function hideWaitMessage() {
+   document.getElementById('wait-message').classList.add('hidden');
+  }
+
+  function showThankYouMessage() {
+   var formElements = document.querySelector(".form-elements");
+   if (formElements) {
+    formElements.style.display = "none";
+   }
+   var thankYouMessage = document.querySelector(".thankyou_message");
+   if (thankYouMessage) {
+    thankYouMessage.classList.remove("hidden");
+   }
+  }
+
+  function sendWhatsAppMessage(data) {
+   var mensaje = `Hola, soy *${data.Nombre}*, mi email es *${data.Email}*. Envío este mensaje desde el sitio *${data.Origen}*.`;
+   window.open(`https://api.whatsapp.com/send?phone=5539793727&text=${encodeURIComponent(mensaje)}`);
+  }
+
+  function disableAllButtons(form) {
+   var buttons = form.querySelectorAll("button");
+   for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+   }
+  }
+
+  function enableAllButtons(form) {
+   var buttons = form.querySelectorAll("button");
+   for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = false;
+   }
+  }
+
+  function getFormData(form) {
+   var elements = form.elements;
+   var fields = Object.keys(elements).filter(function(k) {
+    return (elements[k].name !== "honeypot");
+   }).map(function(k) {
+    if (elements[k].name !== undefined) {
+     return elements[k].name;
+    } else if (elements[k].length > 0) {
+     return elements[k].item(0).name;
+    }
+   }).filter(function(item, pos, self) {
+    return self.indexOf(item) == pos && item;
+   });
+   var formData = {};
+   fields.forEach(function(name) {
+    var element = elements[name];
+    formData[name] = element.value;
+    if (element.length) {
+     var data = [];
+     for (var i = 0; i < element.length; i++) {
+      var item = element.item(i);
+      if (item.checked || item.selected) {
+       data.push(item.value);
+      }
+     }
+     formData[name] = data.join(', ');
+    }
+   });
+   formData.formDataNameOrder = JSON.stringify(fields);
+   formData.formGoogleSheetName = form.dataset.sheet || "Hoja 1";
+   formData.formGoogleSendEmail = form.dataset.email || "";
+   return formData;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+   var form = document.getElementById("contactForm");
+   form.addEventListener("submit", handleFormSubmit, false);
+  });
+  document.querySelectorAll('.product-checkbox').forEach((checkbox, index) => {
+   checkbox.addEventListener('change', function() {
+    const quantityInput = document.querySelectorAll('.quantity-input')[index];
+    quantityInput.disabled = !this.checked;
+    if (!this.checked) {
+     quantityInput.value = '';
+    }
+    calculateTotal();
+   });
+  });
+  document.querySelectorAll('.quantity-input').forEach(input => {
+   input.addEventListener('input', calculateTotal);
+  });
+
+  function calculateTotal() {
+   let total = 0;
+   document.querySelectorAll('.product-checkbox').forEach((checkbox, index) => {
+    if (checkbox.checked) {
+     const quantity = parseFloat(document.querySelectorAll('.quantity-input')[index].value) || 0;
+     const publicPrice = parseFloat(document.querySelectorAll('[data-public]')[index].dataset.public);
+     const specialPrice = parseFloat(document.querySelectorAll('[data-special]')[index].dataset.special);
+     const price = quantity >= 10 ? specialPrice : publicPrice;
+     total += quantity * price;
+    }
+   });
+   document.getElementById('totalPrice').innerText = total.toFixed(2);
+  }
+
+  function showPreview() {
+   const nombre = document.getElementById('nombre').value;
+   const whatsapp = document.getElementById('whatsapp').value;
+   const email = document.getElementById('email').value;
+   const total = document.getElementById('totalPrice').textContent;
+   let productDetails = '';
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const productName = row.cells[1].textContent;
+    const quantity = row.querySelector('.quantity-input').value;
+    productDetails += `<p>${productName}: ${quantity} litros</p>`;
+   });
+   const previewContent = `
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Productos:</strong></p>
+                ${productDetails}
+                <p><strong>Total:</strong> $${total}</p>
+            `;
+   document.getElementById('previewContent').innerHTML = previewContent;
+   document.getElementById('preview').classList.remove('hidden');
+   document.getElementById('contactForm').classList.add('hidden');
+  }
+
+  function hidePreview() {
+   document.getElementById('preview').classList.add('hidden');
+   document.getElementById('contactForm').classList.remove('hidden');
+  }
+ </script>
+
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

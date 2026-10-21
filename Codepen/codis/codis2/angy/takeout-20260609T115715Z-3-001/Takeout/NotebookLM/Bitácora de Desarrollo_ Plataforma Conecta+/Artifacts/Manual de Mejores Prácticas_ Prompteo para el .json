@@ -1,0 +1,22 @@
+{
+  "title": "Manual de Mejores Prácticas: Prompteo para el Desarrollo del Ecosistema Conecta+",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "1826dcba-5655-4a3d-8c96-520a43013979"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Manual de Mejores Prácticas",
+      "description": "Guía de prompteo para desarrollo de ecosistemas digitales SaaS.",
+      "sourceIds": [{
+        "id": "1826dcba-5655-4a3d-8c96-520a43013979"
+      }],
+      "languageCode": "es-419",
+      "documentDirective": "Crear una guía exhaustiva de mejores prácticas de prompteo basada en el desarrollo del proyecto Conecta+. El documento debe incluir cómo definir el contexto y propósito, la importancia de especificar la arquitectura técnica (SPA, delegación de eventos) desde el inicio, la agrupación por módulos de usuario (Residente vs. Administrador), el uso de mock data para realismo, y cómo manejar ciclos de retroalimentación para corregir errores de navegación o lógica. El tono debe ser profesional y educativo.",
+      "enableU18Classifier": true
+    }
+  }
+}

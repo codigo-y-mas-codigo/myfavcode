@@ -1,0 +1,23 @@
+.as-settings__main {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   grid-gap: 1rem 3rem;
+}
+
+.as-settings__checkbox {   
+   &:nth-of-type(odd) {
+      background-color: #f3f3f3;
+   }
+   
+   &:nth-of-type(4n + 1) {
+      transform: scale(1.01) rotate(-1deg);
+   }
+   
+   &:nth-of-type(4n + 3) {
+      transform: scale(1.01) rotate(1deg);
+   }
+}
+
+.as-settings__submit {
+   border: 0;
+}

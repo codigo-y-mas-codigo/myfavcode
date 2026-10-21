@@ -1,0 +1,145 @@
+:root {
+  --surface1: hsl(210, 15%, 12%);
+  --text1: hsl(210, 15%, 90%);
+  --text2: hsl(210, 5%, 65%);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+a {text-decoration: none;}a{background-color:transparent}a:active,a:hover{outline-width:0}a:link, a:visited {color: inherit;text-decoration: none;} a:hover, a:active {color: inherit; text-decoration: none;}a:hover {text-decoration: underline;}
+.scroller {
+  min-height: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: 2rem;
+  background-color: inherit;
+  color: inherit;
+  display: grid;
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  grid-gap: 4rem;
+  gap: 4rem;
+  align-content: center;
+  justify-content: center;
+  place-content: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+}
+
+section {
+  --gap: 2.5rem;
+  display: grid;
+  grid-gap: var(--gap);
+  gap: var(--gap)
+}
+
+section > header {
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+    display: grid;
+    grid-gap: 1ex;
+    gap: 1ex
+  }
+
+section > header > h2, section > header > h3 {
+      margin: 0;
+    }
+
+.horizontal-media-scroller {
+  --size: 150px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--size);
+  grid-gap: calc(var(--gap) / 2);
+  gap: calc(var(--gap) / 2);
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  padding-bottom: var(--gap);
+  
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -ms-scroll-snap-type: x proximity;
+      scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--gap)
+}
+
+.horizontal-media-scroller > figure {
+    scroll-snap-align: start;
+    
+    display: grid;
+    grid-gap: inherit;
+    gap: inherit;
+    margin: 0;
+
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none
+  }
+
+[dir="ltr"] .horizontal-media-scroller > figure:last-child::after {
+      bottom: calc(var(--gap) * -1);
+      right: calc(var(--gap) * -1);
+}
+
+[dir="rtl"] .horizontal-media-scroller > figure:last-child::after {
+      bottom: calc(var(--gap) * -1);
+      left: calc(var(--gap) * -1);
+}
+
+.horizontal-media-scroller > figure:last-child::after {
+      content: "";
+      position: absolute;
+      width: var(--gap);
+      height: 100%;
+      right: calc(var(--gap) * -1);
+      width: var(--gap);
+      height: 100%;
+      top: 0;
+    }
+
+.horizontal-media-scroller > figure > picture {
+      display: inline-block;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 1ex;
+      box-shadow: 0 1px 2px 0 hsla(0, 0%, 0%, 0.2);
+      overflow: hidden
+    }
+
+.horizontal-media-scroller > figure > picture > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover;
+        background-image: linear-gradient(to bottom, hsl(210, 10%, 40%), hsl(210, 10%, 20%));
+      }
+
+.horizontal-media-scroller > figure > figcaption {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -.5px;
+    }
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: .75px;
+}
+
+h3 {
+  color: hsl(210, 5%, 65%);
+  color: var(--text2);
+  font-weight: 400;
+  letter-spacing: .75px;
+}

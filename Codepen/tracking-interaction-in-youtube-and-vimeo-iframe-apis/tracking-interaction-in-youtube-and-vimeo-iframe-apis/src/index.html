@@ -1,0 +1,41 @@
+<header>
+<div class=container>
+  <div class=col-full>
+  <h1>Tracking Interaction in YouTube and Vimeo iFrame APIs</h1>
+  <p>Interact with the videos below and watch the data update. The behavior for both players is very similar, with a few discrepancies as to when different events fire (see below).</p> 
+  </div>
+</div>
+</header>
+<div class=container>
+  <div class=col-full>
+  <p>In the data, <code>sequence</code> is a history of the interaction with completed percentages when the event was triggered. <code>furthest</code> is the highest percentage of completion achieved in the interaction. <code>stops</code> is a count of the amount of times the video complete event fired. These metrics should be enough to derive an accurate picture of how the interaction unfolded; however, they are dependent on the pause, play, and stop events. If you were to navigate from the page while the video is playing, progress would not be updated.</p>
+  <p>This Vimeo approach uses their suggested <a href="https://github.com/vimeo/player-api/tree/master/javascript" target=blank>froogaloop</a> plugin. Vimeo API Documentation can be found on <a href="https://developer.vimeo.com/player/js-api" target=blank>developer.vimeo.com</a>. YouTube's documentation can be found on <a href="https://developers.google.com/youtube/iframe_api_reference" target=blank>developers.google.com</a>. Oh, and <a href="http://www.ratatatmusic.com/" target=blank>Ratatat</a> is amazing.</p>
+  </div>
+</div>
+
+<div class=container>
+  <div class=col>
+    <div id=youtube_player></div>
+    <pre id=yt-output></pre>
+  </div>
+
+  <div class=col>
+    <iframe id=vimeo_player src="https://player.vimeo.com/video/125104138?api=1&player_id=vimeo_player" width=500 height=281 frameborder=0 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <pre id=vm-output></pre>
+  </div>
+</div>
+
+<footer>
+<div class=container>
+  <div class=col-full>
+    <h2>Discrepancies</h2>
+    <ul>
+      <li>Vimeo player indicates the <code>stop</code> event and <code>play</code> event after <code>stop</code> are at <code>100.2%</code>.</li> 
+      <li>YouTube player indicates <code>stop</code> is at <code>100%</code> and <code>play</code> after <code>stop</code> is at <code>0%</code>. 
+      <li>Vimeo player fires two <code>stop</code> events on finish.</li>
+      <li>YouTube player fires an additional <code>play</code> event if you skip ahead past the buffer.</li> 
+      <li>YouTube player fires an additional <code>pause</code> event when skipping ahead while paused.</li>
+    </ul>
+  </div>
+</div>
+</footer>

@@ -1,0 +1,11 @@
+textarea, select, button, input {
+    outline: none;
+    border:none;
+    background:transparent;
+}
+/*input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:1px solid #5AB0DB;
+}*/
+.stored {font:inherit}

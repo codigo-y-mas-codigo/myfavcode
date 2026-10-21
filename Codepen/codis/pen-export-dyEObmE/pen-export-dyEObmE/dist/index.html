@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Programa de 30 días</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+ <div id="app">
+  <div v-if="!userName">
+   <h2>Registro</h2>
+   <input type="text" v-model="userNameInput" placeholder="Introduce tu nombre">
+   <button @click="registerUser">Registrar</button>
+  </div>
+  <div v-else>
+   <div class="progress-container">
+    <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+   </div>
+   <div id="day-content">
+    <h1>{{ currentDayText }}</h1>
+    <p>{{ currentLessonText }}</p>
+    <div v-if="currentDay === 1">
+     <textarea v-model="companyName" placeholder="Nombre de la empresa"></textarea>
+     <select v-model="objective">
+      <option disabled value="">Selecciona un objetivo</option>
+      <option>Más ventas</option>
+      <option>Más usuarios nuevos</option>
+      <option>Descarga de ebook</option>
+     </select>
+     <div>
+      <button @click="completeDay(true)">Sí lo hice</button>
+      <button @click="completeDay(false)">No lo hice</button>
+     </div>
+    </div>
+    <div v-else-if="currentDay === 2">
+     <textarea v-model="mission" placeholder="Objetivo y misión"></textarea>
+     <div>
+      <button @click="completeDay(true)">Sí lo hice</button>
+      <button @click="completeDay(false)">No lo hice</button>
+     </div>
+    </div>
+    <p>Hola, {{ userName }}. Comenzaste el programa el {{ startDate }}. Deberías concluir el {{ endDate }}.</p>
+    <button @click="prevDay" :disabled="currentDay === 1">Atrás</button>
+    <button @click="nextDay">Siguiente</button>
+    <button @click="editUser">Editar</button>
+   </div>
+   <div id="menu">
+    <h2>Selecciona un día:</h2>
+    <ul>
+     <li v-for="day in 30" :key="day" @click="goToDay(day)" :class="{ completed: isDayCompleted(day) }">
+      Día {{ day }}
+     </li>
+    </ul>
+    <button @click="showModal('about')">Sobre Nosotros</button>
+    <button @click="showModal('summary')">Ver Resumen</button>
+    <button @click="downloadData">Descargar información</button>
+    <button @click="resetProgram">Reiniciar</button>
+   </div>
+  </div>
+  <!-- Modales -->
+  <div v-if="modalVisible" class="modal">
+   <div class="modal-content">
+    <span class="close" @click="closeModal">&times;</span>
+    <div v-if="modalType === 'about'">
+     <h2>Sobre Nosotros</h2>
+     <p>Esta aplicación fue desarrollada por [Nombre de la Empresa].</p>
+    </div>
+    <div v-if="modalType === 'summary'">
+     <h2>Resumen</h2>
+     <p>Nombre: {{ userName }}</p>
+     <p>Objetivo: {{ objective }}</p>
+     <p>Misión: {{ mission }}</p>
+     <p>Nombre de la Empresa: {{ companyName }}</p>
+     <p>Fecha de Inicio: {{ startDate }}</p>
+     <p>Fecha de Finalización: {{ endDate }}</p>
+    </div>
+    <div v-if="modalType === 'reset'">
+     <h2>Reiniciar Programa</h2>
+     <p>¿Seguro que quiere reiniciar? Esto hará que se pierda toda la información y vuelva a empezar.</p>
+     <button @click="confirmReset">Sí</button>
+     <button @click="closeModal">No</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+ <script src="script.js"></script>
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

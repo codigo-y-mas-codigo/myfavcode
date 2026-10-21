@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Prompts para Portadas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'navy-trust': '#000080',
+              'pink-passion': '#FF2D55',
+              'cyber-bg': '#0a0a1a',
+              'cyber-surface': '#1a1a2e',
+              'cyber-border': '#2a2a4e',
+              'cyber-text': '#e0e0ff',
+              'cyber-accent': '#c0c0ff',
+            },
+            fontFamily: {
+                sans: ['Roboto', 'sans-serif'],
+                orbitron: ['Orbitron', 'sans-serif'],
+            },
+            boxShadow: {
+              'glow': '0 0 15px rgba(255, 45, 85, 0.5), 0 0 5px rgba(0, 0, 128, 0.7)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-cyber-bg text-cyber-text font-sans antialiased">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

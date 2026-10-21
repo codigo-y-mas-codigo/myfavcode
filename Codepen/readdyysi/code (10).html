@@ -1,0 +1,124 @@
+                            <path d="M40 30 Q50 20 60 30" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <path d="M38 25 Q50 15 62 25" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <path d="M36 20 Q50 10 64 20" fill="none" stroke="#3498db" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">Telemedicina</div>
+                    <div class="icon-description">Salud a distancia</div>
+                    <button class="download-btn" onclick="downloadSVG('telemedicina')">Descargar SVG</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Diapositiva 4 (Conclusión) -->
+        <div class="section">
+            <h2 class="section-title">✨ Diapositiva 4: Conclusión - Bienestar Integral</h2>
+            <div class="icons-grid">
+                <div class="icon-card">
+                    <div class="icon-container">
+                        <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Figura humana estilizada con rayos de luz -->
+                            <circle cx="50" cy="35" r="12" fill="none" stroke="#2c3e50" stroke-width="4"/>
+                            <path d="M42 45 L42 60 L50 75 L58 60 L58 45 Z" fill="none" stroke="#2c3e50" stroke-width="4"/>
+                            <line x1="38" y1="50" x2="62" y2="50" stroke="#2c3e50" stroke-width="4" stroke-linecap="round"/>
+                            
+                            <!-- Rayos de luz emanando del centro (corazón/chakra) -->
+                            <path d="M50 50 L50 20" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L70 30" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L80 50" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L70 70" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L50 80" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L30 70" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L20 50" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <path d="M50 50 L30 30" stroke="#f1c40f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="5" fill="#e74c3c" opacity="0.8"/>
+                        </svg>
+                    </div>
+                    <div class="icon-name">Bienestar Integral</div>
+                    <div class="icon-description">Armonía y plenitud</div>
+                    <button class="download-btn" onclick="downloadSVG('bienestar-integral')">Descargar SVG</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="usage-info">
+            <h3>¿Cómo usar estos iconos SVG?</h3>
+            <p>Puedes hacer clic en el botón "Descargar SVG" debajo de cada icono para obtener el archivo individual. Luego, simplemente arrastra y suelta estos archivos SVG en tu presentación (PowerPoint, Google Slides, Keynote, etc.). Mantendrán su calidad sin importar el tamaño y podrás cambiar el color del contorno si lo deseas.</p>
+            <p><strong>Para cambiar el color del contorno:</strong> En la mayoría de los programas de presentación, después de insertar el SVG, puedes seleccionarlo y usar las opciones de "Formato de gráficos" o "Color de línea" para cambiar el color del trazo (stroke) a tu gusto.</p>
+        </div>
+    </div>
+
+    <script>
+        function downloadSVG(iconId) {
+            const iconCard = document.querySelector(`.icon-card .icon-name:contains('${getIconName(iconId)}')`).closest('.icon-card');
+            const svgElement = iconCard.querySelector('svg');
+            
+            // Clone the SVG element to ensure no live changes interfere with the download
+            const clonedSvg = svgElement.cloneNode(true);
+            
+            // Set explicit width and height for standalone download if not already set by the user (viewBox will handle scaling)
+            clonedSvg.setAttribute('width', '100'); // Standard size for consistent download
+            clonedSvg.setAttribute('height', '100'); // Standard size for consistent download
+
+            const svgData = new XMLSerializer().serializeToString(clonedSvg);
+            const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${iconId}.svg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Helper function to get icon name for finding the correct card
+        function getIconName(iconId) {
+            const names = {
+                'plato': 'Plato Nutritivo',
+                'cerebro': 'Cerebro',
+                'corazon': 'Corazón',
+                'balanza': 'Balanza',
+                'smartphone': 'Smartphone',
+                'adn': 'ADN',
+                'cuerpo': 'Cuerpo',
+                'entorno': 'Entorno',
+                'social': 'Cultura/Social',
+                'evidencia': 'Evidencia Emergente',
+                'tradicional': 'Conocimientos Tradicionales',
+                'teorico': 'Conceptos Teóricos',
+                'consulta': 'Consulta Personalizada',
+                'estres': 'Manejo del Estrés',
+                'telemedicina': 'Telemedicina',
+                'bienestar-integral': 'Bienestar Integral'
+            };
+            return names[iconId] || iconId;
+        }
+
+        // Polyfill for :contains for older browsers (optional, modern browsers often support it in JS context)
+        // Not strictly necessary for this example as we use closest, but good practice if direct :contains was critical
+        if (!Element.prototype.matches) {
+            Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+        }
+        if (!Element.prototype.closest) {
+            Element.prototype.closest = function(s) {
+                var el = this;
+                do {
+                    if (el.matches(s)) return el;
+                    el = el.parentElement || el.parentNode;
+                } while (el !== null && el.nodeType === 1);
+                return null;
+            };
+        }
+        // Add a simple :contains selector polyfill for demonstration/robustness if needed for specific cases
+        // (though in this script, we're using textContent comparison)
+        Node.prototype.containsText = function(text) {
+            return this.textContent.includes(text);
+        };
+        // Extend Element.prototype to add a contains method for general use with querySelector
+        // This is a common pattern for custom selectors if you want to use them directly in querySelectorAll.
+        // For simplicity, the `getIconName` approach combined with `closest` and `textContent` comparison is more direct here.
+        // The current JS does not use :contains directly with querySelector. The `closest` method is robust.
+    </script>
+</body>
+</html>

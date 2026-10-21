@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+button,
+input {
+  padding: 1rem;
+  width: 100%;
+  font-size: inherit;
+}
+#calendar {
+  background-color: #fff;
+  color: #666;
+  max-width: 30em;
+}
+h1 {
+  font-size: 2rem;
+}
+button,
+input,
+select,
+textarea {
+  border: 2px solid #666;
+}
+button {
+  cursor: pointer;
+  color: #f06;
+  background-color: transparent;
+  text-transform: lowercase;
+}
+button:focus,
+button:hover {
+  background-color: #eee;
+}
+a {
+  color: #f06;
+}
+a:hover {
+  color: #000;
+}
+form p {
+  display: flex;
+}
+form button,
+form label {
+  flex: 1;
+}
+form button:not(:first-child) {
+  margin-left: 1rem;
+}
+input {
+  color: #000;
+}
+input:invalid {
+  border-color: #f06;
+}
+.is-wide {
+  flex: 2;
+}

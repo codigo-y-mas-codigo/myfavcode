@@ -1,0 +1,160 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+/* colors */
+body {
+  font-family: 'Inconsolata', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.content {
+  width: 500px;
+  text-align: center;
+  margin: 70px auto 20px;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0 0 .5em;
+}
+
+h4 {
+  font-size: .8em;
+  margin: 0;
+  color: #bdc3c7;
+}
+
+svg {
+  width: 100px;
+  height: 32px;
+  margin: 5px 0 20px;
+  opacity: .8;
+}
+svg .bg {
+  fill: #f7f7f7;
+}
+svg #chrome-logo .center {
+  fill: #3872e4;
+}
+svg #chrome-logo .top {
+  fill: #e63d2e;
+}
+svg #chrome-logo .right {
+  fill: #fdcd44;
+}
+svg #chrome-logo .left {
+  fill: #1f9838;
+}
+svg #canary-logo .center {
+  fill: #d9a102;
+}
+svg #canary-logo .top {
+  fill: #bf8e02;
+}
+svg #canary-logo .right {
+  fill: #fdcd44;
+}
+svg #canary-logo .left {
+  fill: #d9a102;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  opacity: .9;
+}
+ul li {
+  list-style: none;
+}
+
+.cta {
+  margin: 40px 0 20px;
+  text-transform: uppercase;
+}
+
+button {
+  display: inline-block;
+  vertical-align: top;
+  width: 190px;
+  padding: 11px 0 12px 0;
+  color: #FFF;
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 500;
+  background: #e74c3c;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  -moz-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+code {
+  font-family: 'Inconsolata', monospace;
+  background-color: #f2f5f5;
+  color: #4e5758;
+  border: 1px solid #cfd9db;
+  padding: 0px 5px;
+  font-size: .8em;
+  border-radius: 3px;
+}
+
+/* Not yet */
+.no-usermedia .not {
+  display: block;
+}
+
+.not {
+  display: none;
+  background-color: rgba(44, 62, 80, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.not .box {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 140px;
+  width: 260px;
+  margin: -70px 0 0 -130px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid #f29f97;
+  border-radius: 3px;
+  background: #e74c3c;
+  color: #f8c9c4;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 0 2px #eb695c, 0 5px 20px #233140;
+}
+.not h1 {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 7px;
+}
+.not p {
+  color: #f5b4ae;
+}
+.not a {
+  font-size: 11px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fbdedb;
+}
+.not a:hover {
+  color: #fdf3f2;
+}

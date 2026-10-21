@@ -1,0 +1,37 @@
+[
+  {
+    "part": "scene",
+    "description": "En la pacífica Comarca, Frodo Bolsón hereda un anillo misterioso de su tío Bilbo. Gandalf revela que es el Anillo Único de Sauron.",
+    "image_filename": "scene.png",
+    "text_filename": "scene.txt",
+    "suggested_alt_text": "Frodo Bolsón hereda un misterioso anillo de Bilbo en La Comarca; Gandalf revela que es el Anillo Único de Sauron."
+  },
+  {
+    "part": "ruin",
+    "description": "Frodo y sus amigos hobbits se embarcan en un peligroso viaje para destruir el Anillo. Enfrentan Nazgûl, orcos y la creciente oscuridad de Mordor.",
+    "image_filename": "ruin.png",
+    "text_filename": "ruin.txt",
+    "suggested_alt_text": "Frodo y hobbits inician viaje para destruir el Anillo, enfrentando Nazgûl, orcos y la oscuridad de Mordor."
+  },
+  {
+    "part": "breakingPoint",
+    "description": "Frodo, tentado por el Anillo en el Monte del Destino, finalmente lo destruye. Sauron es derrotado y su poder se desvanece para siempre.",
+    "image_filename": "breakingPoint.png",
+    "text_filename": "breakingPoint.txt",
+    "suggested_alt_text": "Frodo destruye el Anillo en el Monte del Destino, derrotando a Sauron."
+  },
+  {
+    "part": "cleanup",
+    "description": "Aragorn es coronado Rey de Gondor. Los ejércitos del mal se retiran. Los hobbits regresan a la Comarca, victoriosos pero cambiados por sus experiencias.",
+    "image_filename": "cleanup.png",
+    "text_filename": "cleanup.txt",
+    "suggested_alt_text": "Aragorn crowned King of Gondor, evil retreats, hobbits return changed."
+  },
+  {
+    "part": "wrap",
+    "description": "Frodo, marcado por el Anillo, parte hacia las Tierras Imperecederas con Gandalf y Bilbo. La Comarca comienza a sanar, asegurando una paz duradera.",
+    "image_filename": "wrap.png",
+    "text_filename": "wrap.txt",
+    "suggested_alt_text": "Frodo, Gandalf, and Bilbo depart the Shire for the Undying Lands as it heals."
+  }
+]

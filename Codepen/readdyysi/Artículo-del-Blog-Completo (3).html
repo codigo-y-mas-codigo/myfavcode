@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artículo - El futuro de la IA generativa</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#2962FF',secondary:'#6B46C1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #121212;
+color: #FFFFFF;
+}
+.sidebar {
+background-color: #1E1E1E;
+width: 250px;
+height: 100vh;
+position: fixed;
+left: 0;
+top: 0;
+z-index: 40;
+transition: transform 0.3s ease;
+}
+.main-content {
+margin-left: 250px;
+margin-top: 60px;
+min-height: calc(100vh - 60px);
+padding: 20px;
+}
+.header {
+background-color: #1E1E1E;
+height: 60px;
+position: fixed;
+top: 0;
+right: 0;
+left: 250px;
+z-index: 30;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.nav-item {
+transition: background-color 0.3s ease;
+}
+.nav-item:hover {
+background-color: rgba(255,255,255,0.05);
+}
+.nav-item.active {
+background-color: rgba(41,98,255,0.1);
+border-left: 3px solid #2962FF;
+}
+.article-content p {
+margin-bottom: 1.5rem;
+line-height: 1.8;
+}
+.article-content h2 {
+font-size: 1.5rem;
+font-weight: 600;
+margin-top: 2rem;
+margin-bottom: 1rem;
+}
+.article-content h3 {
+font-size: 1.25rem;
+font-weight: 600;
+margin-top: 1.5rem;
+margin-bottom: 0.75rem;
+}
+.article-content ul, .article-content ol {
+margin-bottom: 1.5rem;
+padding-left: 1.5rem;
+}
+.article-content li {
+margin-bottom: 0.5rem;
+}
+.article-content blockquote {
+border-left: 4px solid #2962FF;
+padding-left: 1rem;
+margin-left: 0;
+margin-right: 0;
+margin-bottom: 1.5rem;
+font-style: italic;
+color: #B0B0B0;
+}
+.article-content pre {
+background-color: #2A2A2A;
+padding: 1rem;
+border-radius: 8px;
+overflow-x: auto;
+margin-bottom: 1.5rem;
+}
+.article-content code {
+font-family: monospace;
+background-color: #2A2A2A;
+padding: 0.2rem 0.4rem;
+border-radius: 4px;
+}
+.social-share-vertical {
+position: fixed;
+left: calc(250px + 20px);
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+}
+.notification-badge {
+position: absolute;
+top: -2px;
+right: -2px;
+background-color: #FF4081;
+color: white;
+border-radius: 50%;
+width: 16px;
+height: 16px;
+font-size: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.comment-form textarea {
+resize: none;
+min-height: 100px;
+}
+@media (max-width: 768px) {
+.sidebar {
+transform: translateX(-100%);
+}
+.sidebar.open {
+transform: translateX(0);
+}
+.header {
+left: 0;
+}
+.main-content {
+margin-left: 0;
+}
+.social-share-vertical {
+display: none;
+}
+}
+</style>
+</head>
+<body class="bg-[#121212] text-white">
+<!-- Sidebar Navigation -->
+<aside class="sidebar">
+<div class="p-4 flex items-center justify-center border-b border-gray-700">
+<span class="font-['Pacifico'] text-2xl text-primary">logo</span>
+</div>
+<nav class="mt-6">
+<ul>
+<li class="nav-item">
+<a href="#dashboard" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-home-line ri-lg"></i>
+</div>
+<span>Inicio</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#account" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<span>Cuenta</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#settings" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-settings-line ri-lg"></i>
+</div>
+<span>Configuración</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#tasks" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-task-line ri-lg"></i>
+</div>
+<span>Tareas</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#feed" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-twitter-line ri-lg"></i>
+</div>
+<span>Feed</span>
+</a>
+</li>
+<li class="nav-item active">
+<a href="#blog" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-article-line ri-lg"></i>
+</div>
+<span>Blog</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#knowledge" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-book-open-line ri-lg"></i>
+</div>
+<span>Conocimiento</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="absolute bottom-0 w-full p-4 border-t border-gray-700">
+<a href="#logout" class="flex items-center text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-logout-box-line ri-lg"></i>
+</div>
+<span>Cerrar sesión</span>
+</a>
+</div>
+</aside>
+<!-- Top Header -->
+<header class="header flex items-center justify-between px-4">
+<div class="flex items-center">
+<button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="flex items-center text-gray-300 hover:text-white ml-2">
+<div class="w-6 h-6 flex items-center justify-center mr-1">
+<i class="ri-arrow-left-line"></i>
+</div>
+<span>Volver</span>
+</a>
+<span class="mx-4 text-gray-500">|</span>
+<span class="font-medium">Blog</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative cursor-pointer" id="notification-container">
+<div class="w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white" id="notification-button">
+<i class="ri-notification-3-line ri-lg"></i>
+</div>
+<span class="notification-badge">3</span>
+<div id="notification-dropdown" class="absolute right-0 top-full mt-2 w-80 bg-[#1E1E1E] rounded-lg shadow-lg border border-gray-700 hidden">
+<div class="p-4 border-b border-gray-700">
+<h3 class="font-medium">Notificaciones</h3>
+</div>
+<div class="max-h-96 overflow-y-auto">
+<div class="notification-item p-4 border-b border-gray-700 hover:bg-[#2A2A2A] transition-colors duration-300">
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-primary/20 text-primary rounded-full mr-3">
+<i class="ri-article-line"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-start justify-between mb-1">
+<p class="text-sm font-medium">Nuevo artículo publicado</p>
+<div class="flex items-center">
+<span class="text-xs text-gray-400">2h</span>
+<button class="ml-2 text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+</div>
+<p class="text-xs text-gray-400 mb-2">Se ha publicado un nuevo artículo sobre IA que podría interesarte</p>
+<div class="flex items-center text-xs">
+<button class="text-primary hover:text-primary/80">Marcar como leída</button>
+</div>
+</div>
+</div>
+</div>
+<div class="notification-item p-4 border-b border-gray-700 hover:bg-[#2A2A2A] transition-colors duration-300">
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-green-500/20 text-green-500 rounded-full mr-3">
+<i class="ri-chat-1-line"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-start justify-between mb-1">
+<p class="text-sm font-medium">Nuevo comentario</p>
+<div class="flex items-center">
+<span class="text-xs text-gray-400">5h</span>
+<button class="ml-2 text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+</div>
+<p class="text-xs text-gray-400 mb-2">Laura Rodríguez comentó en tu artículo sobre IA generativa</p>
+<div class="flex items-center text-xs">
+<button class="text-primary hover:text-primary/80">Marcar como leída</button>
+</div>
+</div>
+</div>
+</div>
+<div class="notification-item p-4 border-b border-gray-700 hover:bg-[#2A2A2A] transition-colors duration-300">
+<div class="flex items-start">
+<div class="w-8 h-8 flex items-center justify-center bg-purple-500/20 text-purple-500 rounded-full mr-3">
+<i class="ri-heart-line"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-start justify-between mb-1">
+<p class="text-sm font-medium">Nueva interacción</p>
+<div class="flex items-center">
+<span class="text-xs text-gray-400">1d</span>
+<button class="ml-2 text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+</div>
+<p class="text-xs text-gray-400 mb-2">A 5 personas les gustó tu artículo sobre tendencias tecnológicas</p>
+<div class="flex items-center text-xs">
+<button class="text-primary hover:text-primary/80">Marcar como leída</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a href="#" class="block p-4 text-center text-sm text-primary hover:text-primary/80 hover:bg-[#2A2A2A] rounded-b-lg transition-colors duration-300">
+Ver todas las notificaciones
+</a>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520person%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=avatar1&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+Compartir
+</button>
+</div>
+</header>
+<!-- Social Share Vertical -->
+<div class="social-share-vertical">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-primary hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-heart-line ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-primary hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-bookmark-line ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#1DA1F2] hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-twitter-fill ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#0A66C2] hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-linkedin-fill ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#4267B2] hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-facebook-fill ri-lg"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#25D366] hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-whatsapp-fill ri-lg"></i>
+</button>
+</div>
+<!-- Main Content -->
+<main class="main-content">
+<!-- Article Content -->
+<article class="max-w-3xl mx-auto">
+<!-- Featured Image -->
+<div class="rounded-lg overflow-hidden mb-6">
+<img src="https://readdy.ai/api/search-image?query=futuristic%2520AI%2520generative%2520technology%252C%2520digital%2520art%252C%2520neural%2520networks%2520visualization%252C%2520high%2520quality%252C%2520professional%252C%2520detailed%252C%2520vibrant%2520colors%252C%2520cinematic%2520lighting&width=800&height=400&seq=featured&orientation=landscape" alt="El futuro de la IA generativa" class="w-full h-auto object-cover">
+</div>
+<!-- Article Meta -->
+<div class="mb-6">
+<div class="flex flex-wrap items-center gap-2 mb-2">
+<span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-medium">Tecnología</span>
+<span class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs text-gray-300">Inteligencia Artificial</span>
+<span class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs text-gray-300">Innovación</span>
+</div>
+<h1 class="text-3xl font-bold mb-3">El futuro de la IA generativa: Tendencias para 2026</h1>
+<div class="flex items-center text-sm text-gray-400 mb-4">
+<span>15 de junio, 2025</span>
+<span class="mx-2">•</span>
+<span>8 min de lectura</span>
+<span class="mx-2">•</span>
+<span>2.4K vistas</span>
+</div>
+<!-- Author Info -->
+<div class="flex items-center space-x-4 p-4 bg-[#1E1E1E] rounded-lg">
+<div class="w-12 h-12 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520a%2520male%2520tech%2520expert%252C%2520high%2520quality%252C%2520neutral%2520expression%252C%2520studio%2520lighting&width=100&height=100&seq=author&orientation=squarish" alt="Carlos Mendoza" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Carlos Mendoza</h3>
+<p class="text-sm text-gray-400">Director de Innovación Tecnológica</p>
+</div>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-1 rounded-full text-xs transition-colors duration-300 cursor-pointer">
+Seguir
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Article Content -->
+<div class="article-content text-gray-200 mb-8">
+<p>La inteligencia artificial generativa está transformando industrias enteras, desde el desarrollo de software hasta la creación de contenido. En este artículo, exploramos las tendencias emergentes que definirán el panorama tecnológico en el próximo año y cómo estas innovaciones están cambiando la forma en que interactuamos con la tecnología.</p>
+<h2>El auge de los modelos multimodales</h2>
+<p>Los modelos de IA generativa están evolucionando rápidamente hacia capacidades multimodales más sofisticadas. Para 2026, esperamos ver sistemas que puedan procesar y generar contenido en múltiples formatos (texto, imagen, audio y video) de manera simultánea y coherente, creando experiencias más integradas y naturales.</p>
+<p>Las aplicaciones prácticas de estos modelos multimodales incluyen:</p>
+<ul>
+<li>Asistentes virtuales capaces de entender contextos complejos a través de múltiples sentidos</li>
+<li>Herramientas de diseño que convierten descripciones textuales en prototipos visuales y funcionales</li>
+<li>Sistemas de traducción que preservan matices culturales y emocionales</li>
+<li>Experiencias de realidad aumentada personalizadas basadas en preferencias individuales</li>
+</ul>
+<blockquote>
+"La verdadera revolución no está en los modelos individuales, sino en la convergencia de capacidades que antes estaban separadas. La IA multimodal nos acerca a una comprensión más humana de la información." — Dra. Elena Martínez, Investigadora Principal en IA
+</blockquote>
+<h2>Eficiencia computacional y modelos ligeros</h2>
+<p>A medida que la IA generativa se vuelve omnipresente, la eficiencia computacional se ha convertido en una prioridad. Los avances en técnicas de destilación de modelos, cuantización y arquitecturas optimizadas están permitiendo ejecutar modelos potentes en dispositivos con recursos limitados.</p>
+<p>Para 2026, veremos una proliferación de "modelos de bolsillo" que ofrecen capacidades sorprendentes en dispositivos móviles y de IoT, sin necesidad de conexión a la nube. Esto democratizará el acceso a la IA generativa y abrirá nuevas posibilidades para aplicaciones en entornos con conectividad limitada.</p>
+<h2>IA generativa especializada por industria</h2>
+<p>Si bien los modelos fundacionales de propósito general seguirán siendo importantes, estamos presenciando una tendencia hacia modelos especializados por dominio que incorporan conocimiento experto en campos específicos:</p>
+<ul>
+<li><strong>Salud:</strong> Modelos entrenados en literatura médica, imágenes diagnósticas y registros clínicos para asistir en diagnósticos y planes de tratamiento personalizados.</li>
+<li><strong>Finanzas:</strong> Sistemas que comprenden regulaciones financieras complejas y pueden generar análisis de riesgo e informes de cumplimiento.</li>
+<li><strong>Arquitectura y diseño:</strong> Herramientas que transforman bocetos conceptuales en diseños detallados que cumplen con códigos de construcción y consideraciones de sostenibilidad.</li>
+<li><strong>Ciencias legales:</strong> Asistentes que pueden redactar y revisar documentos legales, identificando posibles problemas y sugiriendo mejoras.</li>
+</ul>
+<h2>Colaboración humano-IA más fluida</h2>
+<p>Los sistemas de IA generativa están evolucionando hacia interfaces más intuitivas que permiten una colaboración fluida entre humanos y máquinas. Las nuevas interfaces de usuario adaptativas aprenderán de las preferencias y estilos de trabajo individuales, ajustándose dinámicamente para maximizar la productividad.</p>
+<p>Las herramientas de edición interactiva permitirán a los usuarios refinar las salidas de IA con mayor precisión, manteniendo el control creativo mientras aprovechan la potencia de la generación automática. Esta evolución marca un cambio desde la IA como una "caja negra" hacia un asistente transparente y colaborativo.</p>
+<h3>Casos de uso emergentes</h3>
+<p>Algunas aplicaciones innovadoras que están ganando tracción incluyen:</p>
+<ul>
+<li>Sistemas de prototipado rápido que generan código funcional a partir de descripciones de alto nivel</li>
+<li>Asistentes de investigación científica que sugieren hipótesis basadas en la literatura existente</li>
+<li>Herramientas educativas personalizadas que adaptan el contenido al estilo de aprendizaje individual</li>
+<li>Plataformas de diseño generativo para arquitectura sostenible y eficiente energéticamente</li>
+</ul>
+<h2>Consideraciones éticas y desafíos</h2>
+<p>A medida que la IA generativa se vuelve más potente y omnipresente, surgen importantes consideraciones éticas que la industria debe abordar:</p>
+<ul>
+<li>Transparencia sobre el contenido generado por IA versus el creado por humanos</li>
+<li>Mitigación de sesgos en los datos de entrenamiento y en los resultados generados</li>
+<li>Protección de la propiedad intelectual y atribución adecuada</li>
+<li>Impacto en los mercados laborales y necesidad de recapacitación</li>
+<li>Consumo energético y huella de carbono de los modelos de gran escala</li>
+</ul>
+<p>La industria está respondiendo con iniciativas de autorregulación, pero también es probable que veamos un aumento en los marcos regulatorios formales en diferentes jurisdicciones durante los próximos años.</p>
+<h2>Conclusión</h2>
+<p>El futuro de la IA generativa promete transformar fundamentalmente cómo creamos, trabajamos e interactuamos con la tecnología. Las organizaciones que adopten estas tecnologías de manera estratégica, considerando tanto las oportunidades como los desafíos éticos, estarán mejor posicionadas para prosperar en esta nueva era de innovación impulsada por la IA.</p>
+<p>A medida que avanzamos hacia 2026, la verdadera diferenciación no vendrá simplemente de tener acceso a modelos avanzados, sino de cómo se integran estas capacidades en flujos de trabajo significativos que potencian la creatividad humana y resuelven problemas complejos.</p>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="text-sm text-gray-400 mr-2">Etiquetas:</span>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs hover:bg-[#333333] transition-colors duration-300">IA Generativa</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs hover:bg-[#333333] transition-colors duration-300">Tendencias Tecnológicas</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs hover:bg-[#333333] transition-colors duration-300">Innovación</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs hover:bg-[#333333] transition-colors duration-300">Futuro</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-xs hover:bg-[#333333] transition-colors duration-300">Machine Learning</a>
+</div>
+<!-- Share and Reactions (Mobile) -->
+<div class="flex md:hidden justify-between items-center mb-8 p-4 bg-[#1E1E1E] rounded-lg">
+<div class="flex space-x-4">
+<button class="flex items-center text-gray-300 hover:text-primary cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>128</span>
+</button>
+<button class="flex items-center text-gray-300 hover:text-primary cursor-pointer">
+<i class="ri-chat-1-line mr-1"></i>
+<span>24</span>
+</button>
+<button class="flex items-center text-gray-300 hover:text-primary cursor-pointer">
+<i class="ri-bookmark-line mr-1"></i>
+</button>
+</div>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#1DA1F2] cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#0A66C2] cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-300 hover:text-[#4267B2] cursor-pointer">
+<i class="ri-facebook-fill"></i>
+</button>
+</div>
+</div>
+<!-- Comments Section -->
+<div class="mb-8">
+<h2 class="text-xl font-semibold mb-4">Comentarios (24)</h2>
+<!-- Comment Form -->
+<div class="bg-[#1E1E1E] rounded-lg p-4 mb-6">
+<div class="flex space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520person%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=avatar1&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<textarea placeholder="Escribe un comentario..." class="w-full bg-[#2A2A2A] border-none rounded p-3 text-white focus:outline-none focus:ring-1 focus:ring-primary comment-form"></textarea>
+<div class="flex justify-end mt-3">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+Comentar
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Comments List -->
+<div class="space-y-4">
+<!-- Comment 1 -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520woman%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=comment1&orientation=squarish" alt="Commenter" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<div>
+<h4 class="font-medium">Laura Rodríguez</h4>
+<span class="text-xs text-gray-400">Hace 2 horas</span>
+</div>
+<button class="text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+<p class="text-gray-300 mb-3">Excelente artículo. Me parece especialmente interesante el punto sobre la eficiencia computacional. Estamos viendo avances significativos en la optimización de modelos que permiten ejecutar IA avanzada en dispositivos con recursos limitados. ¿Crees que esto podría democratizar el acceso a estas tecnologías en regiones con infraestructura limitada?</p>
+<div class="flex items-center text-sm">
+<button class="flex items-center text-gray-400 hover:text-primary mr-4 cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>12</span>
+</button>
+<button class="flex items-center text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-reply-line mr-1"></i>
+<span>Responder</span>
+</button>
+</div>
+<!-- Reply -->
+<div class="mt-4 ml-6 p-3 bg-[#2A2A2A] rounded-lg">
+<div class="flex space-x-3">
+<div class="w-8 h-8 rounded-full bg-[#333333] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520a%2520male%2520tech%2520expert%252C%2520high%2520quality%252C%2520neutral%2520expression%252C%2520studio%2520lighting&width=80&height=80&seq=author&orientation=squarish" alt="Author" class="w-full h-full object-cover">
+</div>
+<div>
+<div class="flex items-center mb-1">
+<h4 class="font-medium text-sm">Carlos Mendoza</h4>
+<span class="text-xs text-primary ml-2">Autor</span>
+</div>
+<span class="text-xs text-gray-400">Hace 45 minutos</span>
+<p class="text-gray-300 mt-1">¡Gracias por tu comentario, Laura! Absolutamente, la democratización es uno de los efectos más prometedores. Los modelos ligeros no solo reducen la barrera de entrada en términos de hardware, sino que también disminuyen los costos operativos y la huella de carbono. Estamos viendo casos de uso fascinantes en áreas rurales donde la conectividad es intermitente.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520man%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=comment2&orientation=squarish" alt="Commenter" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<div>
+<h4 class="font-medium">Miguel Ángel Fernández</h4>
+<span class="text-xs text-gray-400">Hace 5 horas</span>
+</div>
+<button class="text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+<p class="text-gray-300 mb-3">Me preocupa el tema ético que mencionas. Con modelos cada vez más capaces de generar contenido indistinguible del humano, ¿qué mecanismos crees que serán efectivos para garantizar la transparencia y combatir la desinformación? Las marcas de agua y metadatos son fácilmente eliminables.</p>
+<div class="flex items-center text-sm">
+<button class="flex items-center text-gray-400 hover:text-primary mr-4 cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>8</span>
+</button>
+<button class="flex items-center text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-reply-line mr-1"></i>
+<span>Responder</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment 3 -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520woman%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=comment3&orientation=squarish" alt="Commenter" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<div>
+<h4 class="font-medium">Ana García Martínez</h4>
+<span class="text-xs text-gray-400">Hace 1 día</span>
+</div>
+<button class="text-gray-400 hover:text-white">
+<i class="ri-more-2-fill"></i>
+</button>
+</div>
+<p class="text-gray-300 mb-3">En el sector salud estamos implementando algunos de estos modelos especializados que mencionas. Los resultados preliminares son prometedores, especialmente en la interpretación de imágenes diagnósticas y la generación de informes. Sin embargo, la integración con los sistemas existentes sigue siendo un desafío importante. ¿Has visto soluciones efectivas para este problema de interoperabilidad?</p>
+<div class="flex items-center text-sm">
+<button class="flex items-center text-gray-400 hover:text-primary mr-4 cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>15</span>
+</button>
+<button class="flex items-center text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-reply-line mr-1"></i>
+<span>Responder</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- More Comments Button -->
+<button class="w-full py-3 bg-[#1E1E1E] hover:bg-[#2A2A2A] rounded-lg text-sm font-medium transition-colors duration-300 cursor-pointer">
+Cargar más comentarios
+</button>
+</div>
+</div>
+<!-- Related Articles -->
+<div class="mb-8">
+<h2 class="text-xl font-semibold mb-4">Artículos relacionados</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Related Article 1 -->
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=machine%2520learning%2520algorithms%2520visualization%252C%2520data%2520science%252C%2520neural%2520networks%252C%2520high%2520quality%252C%2520professional&width=400&height=200&seq=related1&orientation=landscape" alt="Related Article" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Machine Learning</span>
+<span class="mx-2">•</span>
+<span>5 min de lectura</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Optimización de modelos de ML para dispositivos móviles</h3>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+<!-- Related Article 2 -->
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=cybersecurity%2520concept%252C%2520digital%2520protection%252C%2520network%2520security%252C%2520high%2520quality%252C%2520professional&width=400&height=200&seq=related2&orientation=landscape" alt="Related Article" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Seguridad</span>
+<span class="mx-2">•</span>
+<span>7 min de lectura</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Ciberseguridad en la era de la IA: Desafíos y soluciones</h3>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+<!-- Related Article 3 -->
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=AI%2520ethics%2520concept%252C%2520technology%2520ethics%252C%2520responsible%2520AI%252C%2520high%2520quality%252C%2520professional&width=400&height=200&seq=related3&orientation=landscape" alt="Related Article" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Ética</span>
+<span class="mx-2">•</span>
+<span>6 min de lectura</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Ética en la IA: Responsabilidad y transparencia</h3>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-6 mb-8">
+<div class="flex flex-col md:flex-row items-center justify-between">
+<div class="mb-4 md:mb-0 md:mr-6">
+<h3 class="text-xl font-semibold mb-2">Suscríbete a nuestro newsletter</h3>
+<p class="text-gray-300">Recibe los últimos artículos y actualizaciones directamente en tu bandeja de entrada.</p>
+</div>
+<div class="w-full md:w-auto">
+<div class="flex">
+<input type="email" id="newsletter-email" placeholder="Tu correo electrónico" class="flex-1 bg-[#2A2A2A] border-none rounded-l-lg py-2 px-4 text-white focus:outline-none focus:ring-1 focus:ring-primary">
+<button id="newsletter-submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg text-sm font-medium transition-colors duration-300 cursor-pointer">
+Suscribirse
+</button>
+</div>
+<p id="newsletter-error" class="text-xs text-red-500 mt-2 hidden"></p>
+<p class="text-xs text-gray-400 mt-2">Nunca compartiremos tu correo electrónico. Puedes darte de baja en cualquier momento.</p>
+</div>
+</div>
+</div>
+<!-- Article Navigation -->
+<div class="flex justify-between items-center border-t border-gray-700 pt-6">
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="flex items-center text-gray-300 hover:text-white">
+<i class="ri-arrow-left-line mr-2"></i>
+<div>
+<div class="text-xs text-gray-400">Artículo anterior</div>
+<div class="text-sm">Arquitecturas cloud-native para aplicaciones de IA</div>
+</div>
+</a>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/8d79e21f-17ea-47ff-90a8-5ee6f39568ee" data-readdy="true" class="flex items-center text-right text-gray-300 hover:text-white">
+<div>
+<div class="text-xs text-gray-400">Siguiente artículo</div>
+<div class="text-sm">Avances en procesamiento de lenguaje natural multilingüe</div>
+</div>
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</article>
+</main>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 cursor-pointer">
+<i class="ri-arrow-up-line ri-lg"></i>
+</button>
+<!-- Scripts -->
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+if (menuToggle) {
+menuToggle.addEventListener('click', function() {
+sidebar.classList.toggle('open');
+});
+}
+
+// Notification dropdown toggle
+const notificationButton = document.getElementById('notification-button');
+const notificationDropdown = document.getElementById('notification-dropdown');
+const notificationContainer = document.getElementById('notification-container');
+
+if (notificationButton && notificationDropdown) {
+notificationButton.addEventListener('click', function(e) {
+e.stopPropagation();
+notificationDropdown.classList.toggle('hidden');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+if (!notificationContainer.contains(e.target)) {
+notificationDropdown.classList.add('hidden');
+}
+});
+
+// Prevent dropdown from closing when clicking inside
+notificationDropdown.addEventListener('click', function(e) {
+e.stopPropagation();
+});
+
+// Handle "Mark as read" buttons
+const markAsReadButtons = notificationDropdown.querySelectorAll('.text-primary');
+markAsReadButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.preventDefault();
+const notificationItem = this.closest('.notification-item');
+notificationItem.style.opacity = '0.5';
+this.textContent = 'Leída';
+this.disabled = true;
+});
+});
+
+// Handle more options buttons
+const moreButtons = notificationDropdown.querySelectorAll('.ri-more-2-fill');
+moreButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.preventDefault();
+const notificationItem = this.closest('.notification-item');
+const currentOptions = notificationItem.querySelector('.notification-options');
+
+
+if (currentOptions) {
+currentOptions.remove();
+} else {
+const optionsMenu = document.createElement('div');
+optionsMenu.className = 'notification-options absolute right-0 mt-1 bg-[#2A2A2A] rounded-lg shadow-lg border border-gray-700 py-1 z-10';
+optionsMenu.innerHTML = `
+<button class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#333333] transition-colors duration-300">Eliminar notificación</button>
+<button class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-[#333333] transition-colors duration-300">Silenciar</button>
+`;
+this.parentElement.appendChild(optionsMenu);
+
+// Close options menu when clicking outside
+document.addEventListener('click', function closeOptions(e) {
+if (!optionsMenu.contains(e.target) && e.target !== button) {
+optionsMenu.remove();
+document.removeEventListener('click', closeOptions);
+}
+});
+}
+});
+});
+}
+// Back to top button
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+</script>
+<script id="comment-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Comment form functionality
+const commentForm = document.querySelector('.comment-form');
+const commentButton = commentForm ? commentForm.nextElementSibling.querySelector('button') : null;
+if (commentForm && commentButton) {
+commentButton.addEventListener('click', function() {
+const commentText = commentForm.value.trim();
+if (commentText) {
+// In a real app, this would send the comment to a server
+// For now, we'll just clear the form
+commentForm.value = '';
+// Show a success message
+const successMessage = document.createElement('div');
+successMessage.className = 'text-sm text-green-500 mt-2';
+successMessage.textContent = 'Comentario enviado con éxito';
+commentForm.parentNode.appendChild(successMessage);
+// Remove the success message after 3 seconds
+setTimeout(() => {
+successMessage.remove();
+}, 3000);
+}
+});
+}
+// Like functionality
+const likeButtons = document.querySelectorAll('.ri-heart-line');
+likeButtons.forEach(button => {
+button.addEventListener('click', function() {
+const countElement = this.nextElementSibling;
+let count = parseInt(countElement.textContent);
+if (this.classList.contains('ri-heart-fill')) {
+// Unlike
+this.classList.remove('ri-heart-fill');
+this.classList.add('ri-heart-line');
+this.parentElement.classList.remove('text-primary');
+this.parentElement.classList.add('text-gray-400');
+count--;
+} else {
+// Like
+this.classList.remove('ri-heart-line');
+this.classList.add('ri-heart-fill');
+this.parentElement.classList.remove('text-gray-400');
+this.parentElement.classList.add('text-primary');
+count++;
+}
+countElement.textContent = count;
+});
+});
+// Bookmark functionality
+const bookmarkButtons = document.querySelectorAll('.ri-bookmark-line');
+bookmarkButtons.forEach(button => {
+button.addEventListener('click', function() {
+if (this.classList.contains('ri-bookmark-fill')) {
+// Remove bookmark
+this.classList.remove('ri-bookmark-fill');
+this.classList.add('ri-bookmark-line');
+this.parentElement.classList.remove('text-primary');
+this.parentElement.classList.add('text-gray-400');
+} else {
+// Add bookmark
+this.classList.remove('ri-bookmark-line');
+this.classList.add('ri-bookmark-fill');
+this.parentElement.classList.remove('text-gray-400');
+this.parentElement.classList.add('text-primary');
+}
+});
+});
+// Reply functionality
+const replyButtons = document.querySelectorAll('.ri-reply-line');
+replyButtons.forEach(button => {
+button.addEventListener('click', function() {
+const commentContainer = this.closest('.flex-1');
+// Check if reply form already exists
+if (commentContainer.querySelector('.reply-form')) {
+return;
+}
+// Create reply form
+const replyForm = document.createElement('div');
+replyForm.className = 'mt-4 ml-6 p-3 bg-[#2A2A2A] rounded-lg reply-form';
+replyForm.innerHTML = `
+<div class="flex space-x-3">
+<div class="w-8 h-8 rounded-full bg-[#333333] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%2520profile%2520photo%2520of%2520a%2520person%252C%2520minimalist%252C%2520high%2520quality%252C%2520neutral%2520expression&width=80&height=80&seq=avatar1&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<textarea placeholder="Escribe una respuesta..." class="w-full bg-[#333333] border-none rounded p-3 text-white focus:outline-none focus:ring-1 focus:ring-primary resize-none min-h-[80px]"></textarea>
+<div class="flex justify-end mt-3">
+<button class="bg-[#444444] hover:bg-[#555555] text-white px-3 py-1 rounded-button text-sm transition-colors duration-300 cursor-pointer mr-2 cancel-reply">
+Cancelar
+</button>
+<button class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-sm transition-colors duration-300 cursor-pointer submit-reply">
+Responder
+</button>
+</div>
+</div>
+</div>
+`;
+// Add reply form after the comment actions
+const commentActions = this.closest('.flex.items-center.text-sm');
+commentActions.after(replyForm);
+// Focus the textarea
+replyForm.querySelector('textarea').focus();
+// Add event listeners for the new buttons
+replyForm.querySelector('.cancel-reply').addEventListener('click', function() {
+replyForm.remove();
+});
+replyForm.querySelector('.submit-reply').addEventListener('click', function() {
+const replyText = replyForm.querySelector('textarea').value.trim();
+if (replyText) {
+// In a real app, this would send the reply to a server
+// For now, we'll just remove the form and show a success message
+replyForm.remove();
+const successMessage = document.createElement('div');
+successMessage.className = 'mt-4 ml-6 text-sm text-green-500';
+successMessage.textContent = 'Respuesta enviada con éxito';
+commentActions.after(successMessage);
+// Remove the success message after 3 seconds
+setTimeout(() => {
+successMessage.remove();
+}, 3000);
+}
+});
+});
+});
+});
+</script>
+<script id="newsletter-script">
+document.addEventListener('DOMContentLoaded', function() {
+const emailInput = document.getElementById('newsletter-email');
+const submitButton = document.getElementById('newsletter-submit');
+const errorText = document.getElementById('newsletter-error');
+function validateEmail(email) {
+const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return re.test(email);
+}
+function showModal(type, message) {
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+modal.innerHTML = `
+<div class="bg-[#1E1E1E] rounded-lg p-6 max-w-md w-full mx-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-semibold">${type === 'success' ? 'Suscripción Exitosa' : 'Error'}</h3>
+<button class="text-gray-400 hover:text-white close-modal">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="mb-6">
+<p class="text-gray-300">${message}</p>
+${type === 'success' ? `
+<ul class="mt-4 text-sm text-gray-300">
+<li class="flex items-center mb-2">
+<i class="ri-check-line text-green-500 mr-2"></i>
+Recibirás nuestro newsletter cada semana
+</li>
+<li class="flex items-center mb-2">
+<i class="ri-check-line text-green-500 mr-2"></i>
+Contenido exclusivo y actualizaciones
+</li>
+<li class="flex items-center">
+<i class="ri-check-line text-green-500 mr-2"></i>
+Puedes cancelar tu suscripción en cualquier momento
+</li>
+</ul>
+` : ''}
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer close-modal">
+${type === 'success' ? 'Entendido' : 'Intentar de nuevo'}
+</button>
+</div>
+`;
+document.body.appendChild(modal);
+const closeButtons = modal.querySelectorAll('.close-modal');
+closeButtons.forEach(button => {
+button.addEventListener('click', () => {
+modal.remove();
+if (type === 'success') {
+emailInput.value = '';
+}
+});
+});
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.remove();
+if (type === 'success') {
+emailInput.value = '';
+}
+}
+});
+}
+submitButton.addEventListener('click', () => {
+const email = emailInput.value.trim();
+errorText.classList.add('hidden');
+if (!email) {
+errorText.textContent = 'Por favor, ingresa tu correo electrónico';
+errorText.classList.remove('hidden');
+return;
+}
+if (!validateEmail(email)) {
+errorText.textContent = 'Por favor, ingresa un correo electrónico válido';
+errorText.classList.remove('hidden');
+return;
+}
+showModal('success', '¡Gracias por suscribirte a nuestro newsletter! Te hemos enviado un correo de confirmación.');
+});
+emailInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter') {
+submitButton.click();
+}
+});
+emailInput.addEventListener('input', () => {
+errorText.classList.add('hidden');
+});
+});
+</script>
+<script id="share-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Share functionality
+const shareButtons = document.querySelectorAll('.social-share-vertical button, .header button.bg-primary');
+shareButtons.forEach(button => {
+button.addEventListener('click', function() {
+// Get the article URL
+const articleUrl = window.location.href;
+const articleTitle = document.querySelector('h1').textContent;
+// Determine which social network to share to based on icon
+const iconElement = this.querySelector('i');
+if (iconElement) {
+if (iconElement.classList.contains('ri-twitter-fill')) {
+window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleTitle)}&url=${encodeURIComponent(articleUrl)}`, '_blank');
+} else if (iconElement.classList.contains('ri-facebook-fill')) {
+window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`, '_blank');
+} else if (iconElement.classList.contains('ri-linkedin-fill')) {
+window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`, '_blank');
+} else if (iconElement.classList.contains('ri-whatsapp-fill')) {
+window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(articleTitle + ' ' + articleUrl)}`, '_blank');
+}
+} else {
+// This is the main share button in the header
+// Create a share dialog
+const shareDialog = document.createElement('div');
+shareDialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+shareDialog.innerHTML = `
+<div class="bg-[#1E1E1E] rounded-lg p-6 max-w-md w-full mx-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-semibold">Compartir artículo</h3>
+<button class="text-gray-400 hover:text-white close-dialog">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="mb-4">
+<p class="text-gray-300 mb-2">Enlace del artículo:</p>
+<div class="flex">
+<input type="text" value="${articleUrl}" class="flex-1 bg-[#2A2A2A] border-none rounded-l py-2 px-3 text-white focus:outline-none" readonly>
+<button class="bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-r text-sm font-medium transition-colors duration-300 cursor-pointer copy-link">
+Copiar
+</button>
+</div>
+</div>
+<p class="text-gray-300 mb-3">Compartir en redes sociales:</p>
+<div class="grid grid-cols-4 gap-3">
+<button class="flex flex-col items-center justify-center p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-twitter-fill ri-lg text-[#1DA1F2]"></i>
+<span class="text-xs mt-1">Twitter</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-facebook-fill ri-lg text-[#4267B2]"></i>
+<span class="text-xs mt-1">Facebook</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-linkedin-fill ri-lg text-[#0A66C2]"></i>
+<span class="text-xs mt-1">LinkedIn</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#333333] transition-colors duration-300 cursor-pointer">
+<i class="ri-whatsapp-fill ri-lg text-[#25D366]"></i>
+<span class="text-xs mt-1">WhatsApp</span>
+</button>
+</div>
+</div>
+`;
+document.body.appendChild(shareDialog);
+// Add event listeners for the dialog
+shareDialog.querySelector('.close-dialog').addEventListener('click', function() {
+shareDialog.remove();
+});
+shareDialog.querySelector('.copy-link').addEventListener('click', function() {
+const linkInput = shareDialog.querySelector('input');
+linkInput.select();
+document.execCommand('copy');
+// Show copied message
+this.textContent = 'Copiado';
+setTimeout(() => {
+this.textContent = 'Copiar';
+}, 2000);
+});
+// Close dialog when clicking outside
+shareDialog.addEventListener('click', function(e) {
+if (e.target === shareDialog) {
+shareDialog.remove();
+}
+});
+// Add event listeners for social share buttons in the dialog
+const dialogShareButtons = shareDialog.querySelectorAll('.grid button');
+dialogShareButtons.forEach((btn, index) => {
+btn.addEventListener('click', function() {
+const networks = [
+`https://twitter.com/intent/tweet?text=${encodeURIComponent(articleTitle)}&url=${encodeURIComponent(articleUrl)}`,
+`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`,
+`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`,
+`https://api.whatsapp.com/send?text=${encodeURIComponent(articleTitle + ' ' + articleUrl)}`
+];
+window.open(networks[index], '_blank');
+});
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Jai.me 404</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>404 - Página no encontrada</title>
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js'></script>
+ <style>
+  #alarmModal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  #alarmModal .modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+   max-width: 500px;
+   text-align: center;
+  }
+
+  #alarmModal .close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+  }
+
+  #alarmModal .close:hover,
+  #alarmModal .close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+  }
+ </style>
+</head>
+
+<body>
+ <nav class="bg-white shadow-lg" aria-label="Main Navigation">
+  <div class="max-w-6xl mx-auto px-4">
+   <div class="flex justify-between">
+    <div class="flex space-x-7">
+     <div>
+      <a href="https://luisangelmaciel.vercel.app/ia/" class="flex items-center py-4 px-2">
+       <span class="font-semibold text-gray-500 text-lg">jai.me</span>
+      </a>
+     </div>
+     <div class="hidden md:flex items-center space-x-1">
+      <a href="https://luisangelmaciel.vercel.app/ia/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Inicio</a>
+      <a href="https://luisangelmaciel.vercel.app/ia/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">About</a>
+      <a href="https://luisangelmaciel.vercel.app/ia/blog" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Blog</a>
+      <a href="https://luisangelmaciel.vercel.app/ia/" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Recursos</a>
+     </div>
+    </div>
+    <div class="hidden md:flex items-center space-x-3 ">
+     <a href="https://luisangelmaciel.vercel.app/ia/iniciar-sesion" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300">Iniciar sesión</a>
+     <a href="https://luisangelmaciel.vercel.app/ia/registrarse" class="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 transition duration-300">Registrarse</a>
+    </div>
+   </div>
+  </div>
+ </nav>
+ <div class="bg-gray-100 h-screen flex items-center justify-center">
+  <div class="text-center p-8 bg-white rounded-lg shadow-md max-w-2xl">
+   <h1 class="text-6xl font-bold text-blue-600 mb-4">404</h1>
+   <h2 class="text-3xl font-semibold mb-4">Oops! Página no encontrada</h2>
+   <p class="text-xl mb-8">La página que estás buscando no existe o ha sido movida.</p>
+
+   <!-- Ilustración del error 404 -->
+   <div class="mb-8">
+    <svg class="mx-auto" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <circle cx="100" cy="100" r="90" stroke="#3B82F6" stroke-width="10" />
+     <path d="M65 80C65 71.7157 71.7157 65 80 65H120C128.284 65 135 71.7157 135 80V120C135 128.284 128.284 135 120 135H80C71.7157 135 65 128.284 65 120V80Z" fill="#3B82F6" />
+     <rect x="85" y="85" width="30" height="30" rx="5" fill="white" />
+     <path d="M50 150L150 50" stroke="#3B82F6" stroke-width="10" stroke-linecap="round" />
+    </svg>
+   </div>
+
+   <p class="text-lg mb-4">Pídele a jai.me que te ayude:</p>
+   <button id="toggleVoice" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 mb-4">Activar/Desactivar jai.me</button>
+   <p id="voiceOutput" class="text-lg font-semibold mb-4"></p>
+
+   <div class="space-x-4">
+    <a href="https://luisangelmaciel.vercel.app/ia/" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Volver al inicio</a>
+    <a href="https://luisangelmaciel.vercel.app/ia/blog" class="bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">Leer artículo del blog</a>
+   </div>
+  </div>
+ </div>
+
+ <h1 id="msg"></h1>
+
+ <p><b>Prueba también:</b></p>
+
+ <ul>
+  <li>Jaime abrir Facebook</li>
+  <li>Jaime abrir YouTube</li>
+  <li>Jaime abrir Twitter</li>
+  <li>Jaime abrir GitHub</li>
+  <li>Jaime abrir LinkedIn</li>
+  <li>Jaime abrir alerta https://codepen.io/luisangelmaciel/pen/dyQjvoo</li>
+  <li>Jaime cambiar color de fondo</li>
+  <li>Jaime mostrar fecha y hora</li>
+  <li>Jaime reproducir sonido</li>
+  <li>Jaime saludar</li>
+  <li>Jaime contar un chiste</li>
+  <li>Jaime contar otro chiste</li>
+  <li>Jaime programar alarma</li>
+  <li>Jaime mostrar foto</li>
+  <li>Jaime hacer llamada</li>
+ </ul>
+
+ <!-- Modal de alarma -->
+ <div id="alarmModal" class="modal">
+  <div class="modal-content">
+   <span class="close">&times;</span>
+   <img src="https://via.placeholder.com/150" alt="Alarma" class="mx-auto mb-4">
+   <p class="text-lg font-semibold mb-4">Tiempo acabado</p>
+   <button id="repeatAlarm" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 mb-4">Repetir</button>
+   <button id="endAlarm" class="bg-red-600 text-white font-bold py-2 px-4 rounded hover:bg-red-700 transition duration-300">Terminar</button>
+  </div>
+ </div>
+
+ <script>
+  const voiceOutput = document.getElementById('voiceOutput');
+  const msg = document.querySelector('#msg');
+  let voices = [];
+  let isVoiceActive = false;
+
+  function setVoice(speech) {
+   const voice = voices.find(v => v.lang.startsWith('es') && v.name.includes('male'));
+   if (voice) {
+    speech.voice = voice;
+   }
+  }
+
+  function speak(txt) {
+   if ('speechSynthesis' in window) {
+    const s = new SpeechSynthesisUtterance();
+    s.volume = 1;
+    s.lang = 'es-ES';
+    s.text = txt;
+    setVoice(s);
+    voiceOutput.textContent = txt;
+    msg.textContent = txt;
+    window.speechSynthesis.speak(s);
+   } else {
+    voiceOutput.textContent = txt;
+    msg.textContent = txt;
+   }
+  }
+  if ('speechSynthesis' in window) {
+   window.speechSynthesis.onvoiceschanged = () => {
+    voices = window.speechSynthesis.getVoices();
+   };
+  }
+  const commands = {
+   'vuelve al inicio': function() {
+    speak('Volviendo a la página de inicio');
+    setTimeout(() => window.location.href = 'https://luisangelmaciel.vercel.app/ia/', 2000);
+   },
+   'volver a inicio': function() {
+    speak('Volviendo a la página de inicio');
+    setTimeout(() => window.location.href = 'https://luisangelmaciel.vercel.app/ia/', 2000);
+   },
+   'regresa al inicio': function() {
+    speak('Volviendo a la página de inicio');
+    setTimeout(() => window.location.href = 'https://luisangelmaciel.vercel.app/ia/', 2000);
+   },
+   'leer artículo': function() {
+    speak('Abriendo el artículo del blog');
+    setTimeout(() => window.location.href = 'https://luisangelmaciel.vercel.app/ia/blog', 2000);
+   },
+   'Jaime abrir Facebook': function() {
+    window.open('https://facebook.com');
+    speak('Abriendo Facebook');
+    annyang.resume();
+   },
+   'Jaime abrir YouTube': function() {
+    window.open('https://youtube.com');
+    speak('Abriendo Youtube');
+    annyang.resume();
+   },
+   'Jaime abrir Twitter': function() {
+    window.open('https://twitter.com');
+    speak('Abriendo Twitter');
+    annyang.resume();
+   },
+   'Jaime abrir GitHub': function() {
+    window.open('https://github.com');
+    speak('Abriendo GitHub');
+    annyang.resume();
+   },
+   'Jaime abrir LinkedIn': function() {
+    window.open('https://linkedin.com');
+    speak('Abriendo LinkedIn');
+    annyang.resume();
+   },
+   'Jaime abrir alerta': function() {
+    alert('La alerta funciona bien');
+    speak('Abriendo una alerta');
+    annyang.resume();
+   },
+   'Jaime cambiar color de fondo': function() {
+    document.body.style.backgroundColor = getRandomColor();
+    speak('Cambiando color de fondo');
+    annyang.resume();
+   },
+   'Jaime mostrar fecha y hora': function() {
+    const now = new Date();
+    const dateTime = now.toLocaleString();
+    speak(`La fecha y hora actual es ${dateTime}`);
+    annyang.resume();
+   },
+   'Jaime reproducir sonido': function() {
+    const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+    audio.play();
+    speak('Reproduciendo sonido');
+    annyang.resume();
+   },
+   'Jaime saludar': function() {
+    speak('Hola, ¿cómo estás?');
+    annyang.resume();
+   },
+   'Jaime contar un chiste': function() {
+    speak('¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.');
+    annyang.resume();
+   },
+   'Jaime contar otro chiste': function() {
+    speak('¿Por qué el libro de matemáticas está triste? Porque tiene demasiados problemas.');
+    annyang.resume();
+   },
+   'Jaime programar alarma': function() {
+    setTimeout(() => {
+     const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+     audio.play();
+     document.getElementById('alarmModal').style.display = 'block';
+     speak('¡Alarma! Han pasado 2 minutos.');
+    }, 120000); // 2 minutos en milisegundos
+    speak('Alarma programada para 2 minutos.');
+    annyang.resume();
+   },
+   'Jaime mostrar foto': function() {
+    // Simulación de mostrar una foto
+    const img = document.createElement('img');
+    img.src = 'https://via.placeholder.com/150'; // URL de ejemplo
+    img.alt = 'Última foto guardada';
+    document.body.appendChild(img);
+    speak('Mostrando la última foto guardada.');
+    annyang.resume();
+   },
+   'Jaime hacer llamada': function() {
+    // Simulación de hacer una llamada
+    speak('Haciendo una llamada simulada.');
+    annyang.resume();
+   },
+   'Jaime *term': function(term) {
+    speak(`Has dicho ${term}`);
+    console.log(`Abriendo ${term}`);
+    annyang.resume();
+   }
+  };
+
+  function getRandomColor() {
+   const letters = '0123456789ABCDEF';
+   let color = '#';
+   for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+   }
+   return color;
+  }
+
+  function toggleVoice() {
+   if (isVoiceActive) {
+    annyang.abort();
+    isVoiceActive = false;
+    speak('jai.me desactivado');
+   } else {
+    annyang.setLanguage('es-MX');
+    annyang.addCommands(commands);
+    annyang.start({
+     continuous: true
+    });
+    isVoiceActive = true;
+    speak('jai.me activado. ¿En qué puedo ayudarte? Puedes pedirme "vuelve al inicio", "volver a inicio", "regresa al inicio", "leer artículo", "Jaime abrir Facebook", "Jaime abrir YouTube", "Jaime abrir Twitter", "Jaime abrir GitHub", "Jaime abrir LinkedIn", "Jaime abrir alerta", "Jaime cambiar color de fondo", "Jaime mostrar fecha y hora", "Jaime reproducir sonido", "Jaime saludar", "Jaime contar un chiste", "Jaime contar otro chiste", "Jaime programar alarma", "Jaime mostrar foto", "Jaime hacer llamada".');
+   }
+  }
+  document.getElementById('toggleVoice').addEventListener('click', toggleVoice);
+  // Inicializar jai.me activado
+  toggleVoice();
+  // Manejar el modal de alarma
+  document.getElementById('repeatAlarm').addEventListener('click', function() {
+   document.getElementById('alarmModal').style.display = 'none';
+   annyang.trigger('Jaime programar alarma');
+  });
+  document.getElementById('endAlarm').addEventListener('click', function() {
+   document.getElementById('alarmModal').style.display = 'none';
+  });
+  document.querySelector('#alarmModal .close').addEventListener('click', function() {
+   document.getElementById('alarmModal').style.display = 'none';
+  });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

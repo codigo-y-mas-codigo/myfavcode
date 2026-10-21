@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <link href="css/style.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <title>Character Generator Pure Css</title>
+</head>
+<body >
+
+<div id="content">
+	<div class="bodypart_title">Body color</div>
+	<input type="radio" id="bleu" name="couleur" checked />
+	<label for="bleu" class="label_couleur"></label>
+	<input type="radio" id="vert" name="couleur" />
+	<label for="vert"  class="label_couleur"></label>	
+	<input type="radio" id="rouge" name="couleur" />
+	<label for="rouge"  class="label_couleur"></label>	
+	<input type="radio" id="gris" name="couleur" />
+	<label for="gris"  class="label_couleur"></label>	
+	<input type="radio" id="violet" name="couleur" />
+	<label for="violet"  class="label_couleur"></label>	
+	
+
+	<div class="bodypart_title">Body</div>
+	<input type="radio" id="rond" name="formecorps" checked />
+	<label for="rond" class="label_corps"></label>
+	<input type="radio" id="carre" name="formecorps" />
+	<label for="carre"  class="label_corps"></label>	
+	<input type="radio" id="carre_arrondi_haut" name="formecorps" />
+	<label for="carre_arrondi_haut"  class="label_corps"></label>	
+	<input type="radio" id="carre_arrondi_bas" name="formecorps" />
+	<label for="carre_arrondi_bas"  class="label_corps"></label>
+	<input type="radio" id="carre_arrondi" name="formecorps" />
+	<label for="carre_arrondi"  class="label_corps"></label>	
+	
+	
+	<div class="bodypart_title">Eyes color</div>
+	<input type="radio" id="eyes_noir" name="eyes_couleur"  checked />
+	<label for="eyes_noir"  class="label_eyes_couleur"></label>	
+	<input type="radio" id="eyes_bleu" name="eyes_couleur"  />
+	<label for="eyes_bleu" class="label_eyes_couleur"></label>
+	<input type="radio" id="eyes_vert" name="eyes_couleur" />
+	<label for="eyes_vert"  class="label_eyes_couleur"></label>	
+	<input type="radio" id="eyes_rouge" name="eyes_couleur" />
+	<label for="eyes_rouge"  class="label_eyes_couleur"></label>		
+	<input type="radio" id="eyes_violet" name="eyes_couleur" />
+	<label for="eyes_violet"  class="label_eyes_couleur"></label>	
+	
+	<div class="bodypart_title">Eyes</div>
+	<input type="radio" id="basic" name="formeyeux" checked />
+	<label for="basic"  class="label_yeux"></label>
+	<input type="radio" id="clindoeil_droit" name="formeyeux" />
+	<label for="clindoeil_droit" class="label_yeux"></label>
+	<input type="radio" id="clindoeil_gauche" name="formeyeux" />
+	<label for="clindoeil_gauche" class="label_yeux"></label>
+	<input type="radio" id="clindoeil_deux" name="formeyeux" />
+	<label for="clindoeil_deux" class="label_yeux"></label>
+	<input type="radio" id="ecartes" name="formeyeux" />
+	<label for="ecartes" class="label_yeux"></label>
+	
+	
+	<div class="bodypart_title">Teeth</div>
+	<input type="radio" id="sourire" name="formedents" checked />
+	<label for="sourire"  class="label_dents"></label>
+	<input type="radio" id="dents" name="formedents" />
+	<label for="dents" class="label_dents"></label>
+	<input type="radio" id="triste" name="formedents" />
+	<label for="triste" class="label_dents"></label>
+	<input type="radio" id="langue" name="formedents" />
+	<label for="langue" class="label_dents"></label>
+	<input type="radio" id="dents_haut" name="formedents" />
+	<label for="dents_haut" class="label_dents"></label>
+	
+	<div id="wrapper">	
+	
+	<div id="corps">
+		<div class="corps">			
+			<div class="formecorps rond"></div>
+		</div>
+		<div class="corps">		
+			<div class="formecorps carre"></div>
+		</div>
+		<div class="corps">		
+			<div class="formecorps carre_arrondi_haut"></div>
+		</div>
+		<div class="corps">		
+			<div class="formecorps carre_arrondi_bas"></div>
+		</div>
+		<div class="corps">		
+			<div class="formecorps carre_arrondi"></div>
+		</div>
+	</div>	
+	
+	<div id="yeux">
+		<div class="yeux">			
+			<div class="formeyeux basic">
+				<div class="oeilgauche"></div>
+				<div class="oeildroit"></div>
+			</div>
+		</div>
+		<div class="yeux">			
+			<div class="formeyeux clindoeil_droit">
+				<div class="oeilgauche"></div>
+				<div class="oeildroit"></div>
+			</div>
+		</div>
+		<div class="yeux">			
+			<div class="formeyeux clindoeil_gauche">
+				<div class="oeilgauche"></div>
+				<div class="oeildroit"></div>
+			</div>
+		</div>
+		<div class="yeux">			
+			<div class="formeyeux clindoeil_deux">
+				<div class="oeilgauche"></div>
+				<div class="oeildroit"></div>
+			</div>
+		</div>
+		<div class="yeux">			
+			<div class="formeyeux ecartes">
+				<div class="oeilgauche"></div>
+				<div class="oeildroit"></div>
+			</div>
+		</div>
+	</div>	
+	
+	<div id="bouches">
+		<div class="bouche">
+			<div class="formebouche dents">
+			</div>
+		</div>
+		<div class="bouche">
+			<div class="formebouche sourire">
+			</div>
+		</div>
+		<div class="bouche">
+			<div class="formebouche triste">
+			</div>
+		</div>
+		<div class="bouche">
+			<div class="formebouche langue">
+			</div>
+		</div>
+		<div class="bouche">
+			<div class="formebouche dents_haut">
+			</div>
+		</div>
+	</div>
+	
+	
+	</div>
+</div>	
+	
+	
+</body>
+</html>

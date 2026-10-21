@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Section Separator Inspiration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="./style.css">
+<script src="https://public.codepenassets.com/js/prefixfree-1.0.7.min.js"></script>
+
+  </head>
+    
+  <body>
+  <body>
+	<div class="container">
+		<section class="col-2 ss-style-triangles no">
+			<div class="column text">
+				<h2>Flat Section Separator Inspiration</h2>
+				<p>Change $color1 to change entire color scheme</p>
+				<pre>.ss-style-triangles::before,
+.ss-style-triangles::after {
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	-webkit-transform: translateX(-50%) rotate(45deg);
+	transform: translateX(-50%) rotate(45deg);
+}
+
+.ss-style-triangles::before {
+	top: -50px;
+	background: $color1;
+}
+
+.ss-style-triangles::after {
+	bottom: -50px;
+	z-index: 10;
+	background: inherit;
+}</pre>
+			</div>
+		</section>
+
+		<section class="color no"><br><br>
+			<h2>triangle</h2>
+			<pre>
+.ss-style-doublediagonal {
+	z-index: 1;
+	padding-top: 6em;
+	background: darken($color1, 11%);
+}
+
+.ss-style-doublediagonal::before,
+.ss-style-doublediagonal::after {
+	top: 0;
+	left: -25%;
+	z-index: -1;
+	width: 150%;
+	height: 75%;
+	background: inherit;
+	-webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.ss-style-doublediagonal::before {
+	height: 50%;
+	background: darken($color1, 15%);
+	-webkit-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+	-webkit-transform-origin: 3% 0;
+	transform-origin: 3% 0;
+}
+
+			</pre>
+		</section>
+
+		<section class="col-3 ss-style-doublediagonal no">
+			<div class="column">
+				<h2>slanted</h2>
+				<pre>.ss-style-doublediagonal {
+	z-index: 1;
+	padding-top: 6em;
+	background: darken($color1, 11%);
+}</pre><br><br><br>
+			</div>
+		</section>
+
+		<section class="col-2 ss-style-halfcircle no">
+			<div class="column text">
+				<h3>halfcircle</h3>
+				<pre>.ss-style-halfcircle::before,
+.ss-style-halfcircle::after {
+	left: 50%;
+	z-index: 10;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: inherit;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.ss-style-halfcircle::before {
+	top: -50px;
+}
+
+.ss-style-halfcircle::after {
+	bottom: -50px;
+}</pre>
+			</div>
+		</section>
+
+		<section class="color ss-style-bigtriangle no">
+			<h3>bigtriangle</h3>
+			<pre>svg#bigTriangleColor {
+	pointer-events: none;
+}
+
+#bigTriangleColor path {
+	fill: darken($color1, 7%);
+	stroke: darken($color1, 7%);
+	stroke-width: 2;
+}</pre>
+		</section>
+
+		<svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">
+			<path d="M0 0 L50 100 L100 0 Z" />
+		</svg>
+
+		<section class="col-3"></section>
+
+		<svg id="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M0 100 C 20 0 50 0 100 100 Z" />
+		</svg>
+
+		<section class="col-2 color ss-style-curvedown no">
+			<div class="column text">
+				<h3>Curvedown</h3>
+				<pre>
+
+/* Curves */
+#curveUpColor path,
+#curveDownColor path {
+	fill: darken($color1, 7%);
+	stroke: darken($color1, 7%);
+}
+&#60;svg id="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			&#60;path d="M0 100 C 20 0 50 0 100 100 Z" />
+		&#60;/svg>
+		
+&#60;svg id="curveDownColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			&#60;path d="M0 0 C 50 100 80 100 100 0 Z" />
+		&#60;/svg>
+</pre>
+			</div>
+		</section>
+
+		<svg id="curveDownColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M0 0 C 50 100 80 100 100 0 Z" />
+		</svg>
+
+		<section class="col-2 no">
+			<p>Curve Up</p>
+			<pre>
+#curveUpColor path {
+	fill: darken($color1, 7%);
+	stroke: darken($color1, 7%);
+}</pre>
+
+		</section>
+
+		<section class="col-2 color ss-style-multitriangles no">
+			<div class="column text">
+				<h2>Spikey</h2>
+				<pre>
+				/* Multiple Triangles */
+.ss-style-multitriangles::before,
+.ss-style-multitriangles::after {
+	left: 50%;
+	width: 50px;
+	height: 50px;
+	-webkit-transform: translateX(-50%) rotate(45deg);
+	transform: translateX(-50%) rotate(45deg);
+}
+</pre>
+			</div>
+		</section>
+
+		<section class="col-2"></section>
+
+		<section class="col-2 color ss-style-roundedsplit">
+			<div class="column text">
+				<p>rounded split</p>
+				<pre>.ss-style-roundedsplit {
+	padding-top: 7em;
+	border-radius: 0 0 80px 80px;
+}
+
+.ss-style-roundedsplit::before,
+.ss-style-roundedsplit::after {
+	top: -70px;
+	left: 0;
+	z-index: 10;
+	width: 50%;
+	height: 70px;
+	background: inherit;
+}
+
+.ss-style-roundedsplit::before {
+	border-radius: 0 80px 0 0;
+}
+
+.ss-style-roundedsplit::after {
+	left: 50%;
+	border-radius: 80px 0 0 0;
+}</pre>
+			</div>
+		</section>
+
+		<section class="col-3 ss-style-invertedrounded">
+			<div class="column">
+				<p>Inverted Round</p>
+			</div>
+		</section>
+
+		<section class="col-2 color ss-style-boxes">
+			<div class="column text"></div>
+		</section>
+
+		<section>
+			<p>boxes</p>
+		</section>
+
+		<section class="col-3 color ss-style-zigzag">
+			<div class="column">
+				<p>zigzag</p>
+			</div>
+		</section>
+
+		<section class="col-2">
+			<div class="column text"></div>
+		</section>
+
+		<section class="color ss-style-roundedges">
+			<p>round corners</p>
+		</section>
+
+		<section class="col-3 ss-style-slit">
+			<div class="column">
+				<p>Slit</p>
+			</div>
+		</section>
+
+		<svg id="bigHalfCircle" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M0 100 C40 0 60 0 100 100 Z" />
+		</svg>
+
+		<section class="col-2 color">
+			<div class="column text">
+				<p>big half circle</p>
+			</div>
+		</section>
+
+		<svg id="bigTriangleShadow" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path id="trianglePath1" d="M0 0 L50 100 L100 0 Z" />
+			<path id="trianglePath2" d="M50 100 L100 40 L100 0 Z" />
+		</svg>
+
+		<section>
+			<p>big triangle shadow</p>
+		</section>
+
+		<section class="color col-3 ss-style-inczigzag">
+			<div class="column">
+				<p>saw</p>
+			</div>
+		</section>
+
+		<section>
+			<div class="column">
+				<p>clouds</p>
+			</div>
+		</section>
+
+		<svg id="clouds" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+			<path d="M-5 100 Q 0 20 5 100 Z
+         M0 100 Q 5 0 10 100
+         M5 100 Q 10 30 15 100
+         M10 100 Q 15 10 20 100
+         M15 100 Q 20 30 25 100
+         M20 100 Q 25 -10 30 100
+         M25 100 Q 30 10 35 100
+         M30 100 Q 35 30 40 100
+         M35 100 Q 40 10 45 100
+         M40 100 Q 45 50 50 100
+         M45 100 Q 50 20 55 100
+         M50 100 Q 55 40 60 100
+         M55 100 Q 60 60 65 100
+         M60 100 Q 65 50 70 100
+         M65 100 Q 70 20 75 100
+         M70 100 Q 75 45 80 100
+         M75 100 Q 80 30 85 100
+         M80 100 Q 85 20 90 100
+         M85 100 Q 90 50 95 100
+         M90 100 Q 95 25 100 100
+         M95 100 Q 100 15 105 100 Z"></path>
+		</svg>
+
+		<section class="clouds">
+			<p>Thanks to <a href="https://tympanus.net/codrops/author/crnacura/">Mary Lou</a> and Codrops for this code. Visit the tutorial here: <a href="https://tympanus.net/codrops/2013/10/03/a-collection-of-separator-styles/">https://tympanus.net/codrops/2013/10/03/a-collection-of-separator-styles/</a>
+			</p>
+
+		</section>
+
+	</div>
+</body>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  </body>
+  
+</html>

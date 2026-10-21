@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Synthesis</title>
+  <style>
+    .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    
+    input {
+      height: 35px;
+      width: 250px;
+    }
+    
+    button {
+      height: 40px;
+      width: 100%;
+    }
+    
+    select {
+      height: 35px;
+      width: 410px;
+    }
+    
+    .options_container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="options_container">
+      <label for="voices" style="display:none">Voices</label>
+      <select class="list" id="voices" style="display:none">
+      </select>
+    </div>
+    <div class="input_container">
+      <input type="text" class="utterance" value"" placeholder=""style="display:none">
+      <button type="button" class="speak">Speak</button>
+    </div>
+
+    <div id="JaimeDice">
+      Este es el texto que quiero que se lea cuando el usuario haga clic en el botón "Speak".
+    </div>
+  </div>
+
+  <script>
+    let speech;
+    let textField;
+    let button;
+    let list;
+    let utterance;
+    let voices;
+
+    window.onload = function () {
+      button = document.querySelector(".speak");
+      textField = document.querySelector(".utterance");
+      list = document.querySelector(".list");
+      utterance = new window.SpeechSynthesisUtterance();
+
+      speech = window.speechSynthesis;
+
+      setTimeout(function () {
+        voices = window.speechSynthesis.getVoices();
+        createList([...voices], list);
+      }, 100);
+
+      button.addEventListener("click", function () {
+        utterance.text = document.getElementById("JaimeDice").innerText;
+        speech.speak(utterance);
+      });
+
+      list.addEventListener("change", function () {
+        voices.forEach(e => {
+          if (e.voiceURI == list.value) {
+            utterance.voice = e;
+          }
+        });
+      });
+    }
+
+    function createList(list, parent) {
+      list.forEach(e => {
+        let option = document.createElement("option");
+        option.setAttribute("value", e.voiceURI);
+        option.innerText = e.voiceURI;
+        parent.appendChild(option);
+      })
+    }
+  </script>
+
+</body>
+
+</html>

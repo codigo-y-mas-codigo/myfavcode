@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>myRedbubble - Diseños de Luis Angel Maciel</title>
+<meta name="description" content="Portafolio de Luis Angel Maciel, artista gráfico especializado en diseños de cultura pop, anime y humor. Compra directa o a través de Redbubble.">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#f43f5e'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Poppins', sans-serif;
+scroll-behavior: smooth;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Montserrat', sans-serif;
+}
+.logo {
+font-family: 'Pacifico', serif;
+}
+.product-card:hover .product-actions {
+opacity: 1;
+}
+.product-actions {
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+outline: none;
+transition: all 0.2s;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #6366f1;
+border-color: #6366f1;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+left: 6px;
+top: 2px;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 44px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #6366f1;
+}
+input:checked + .slider:before {
+transform: translateX(20px);
+}
+.currency-selector {
+position: relative;
+}
+.currency-options {
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+background: white;
+border-radius: 8px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+z-index: 50;
+min-width: 120px;
+}
+.currency-selector:hover .currency-options {
+display: block;
+}
+.search-container {
+position: relative;
+}
+.search-results {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background: white;
+border-radius: 0 0 8px 8px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+z-index: 40;
+}
+.search-input:focus + .search-results {
+display: block;
+}
+.hero-slider {
+position: relative;
+overflow: hidden;
+}
+.slide {
+opacity: 0;
+transition: opacity 0.5s ease-in-out;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+.slide.active {
+opacity: 1;
+position: relative;
+}
+.tab-content {
+display: none;
+}
+.tab-content.active {
+display: block;
+}
+.faq-answer {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+}
+.faq-item.active .faq-answer {
+max-height: 500px;
+}
+.faq-item.active .faq-icon {
+transform: rotate(180deg);
+}
+.faq-icon {
+transition: transform 0.3s ease;
+}
+.back-to-top {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 99;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+.back-to-top.visible {
+opacity: 1;
+visibility: visible;
+}
+.product-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 100;
+align-items: center;
+justify-content: center;
+}
+.modal-content {
+background-color: white;
+border-radius: 8px;
+max-width: 800px;
+width: 90%;
+max-height: 90vh;
+overflow-y: auto;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.feed-item {
+border-bottom: 1px solid #e5e7eb;
+padding: 1rem 0;
+}
+.feed-item:last-child {
+border-bottom: none;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="bg-white shadow-sm fixed w-full top-0 z-50">
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center space-x-10">
+<a href="#" class="logo text-primary text-2xl">myRedbubble</a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex space-x-6">
+<a href="#galeria" class="text-gray-700 hover:text-primary font-medium transition">Galería</a>
+<a href="#blog" class="text-gray-700 hover:text-primary font-medium transition">Blog</a>
+<a href="#feed" class="text-gray-700 hover:text-primary font-medium transition">Novedades</a>
+<a href="#contacto" class="text-gray-700 hover:text-primary font-medium transition">Contacto</a>
+<a href="#faq" class="text-gray-700 hover:text-primary font-medium transition">FAQ</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<!-- Search -->
+<div class="search-container hidden md:block w-64">
+<div class="relative">
+<input type="text" class="search-input w-full py-2 pl-10 pr-4 border-none rounded-full bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none text-sm" placeholder="Buscar diseños...">
+<div class="absolute left-3 top-2.5 text-gray-400">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<div class="search-results p-2">
+<div class="p-2 hover:bg-gray-100 rounded">
+<p class="text-sm font-medium">Goku Minimalista</p>
+<p class="text-xs text-gray-500">Diseño de anime</p>
+</div>
+<div class="p-2 hover:bg-gray-100 rounded">
+<p class="text-sm font-medium">Tarot de Luna</p>
+<p class="text-xs text-gray-500">Colección Tarot</p>
+</div>
+<div class="p-2 hover:bg-gray-100 rounded">
+<p class="text-sm font-medium">Schnauzer Pixel Art</p>
+<p class="text-xs text-gray-500">Mascotas</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Currency Selector -->
+<div class="currency-selector">
+<button class="flex items-center space-x-1 text-gray-700 hover:text-primary">
+<span id="current-currency">USD</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="currency-options">
+<div class="py-1">
+<button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="USD">USD</button>
+<button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="EUR">EUR</button>
+<button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="MXN">MXN</button>
+</div>
+</div>
+</div>
+<!-- Favorites -->
+<button class="relative text-gray-700 hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+<span class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+</button>
+<!-- Cart -->
+<button class="relative text-gray-700 hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-shopping-cart-line"></i>
+</div>
+<span class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+</button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-gray-700 hover:text-primary" id="mobile-menu-button">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line"></i>
+</div>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation -->
+<div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+<div class="container mx-auto px-4 py-2">
+<div class="search-container mb-4">
+<div class="relative">
+<input type="text" class="search-input w-full py-2 pl-10 pr-4 border-none rounded-full bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none text-sm" placeholder="Buscar diseños...">
+<div class="absolute left-3 top-2.5 text-gray-400">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+</div>
+<nav class="flex flex-col space-y-3">
+<a href="#galeria" class="text-gray-700 hover:text-primary font-medium transition py-2">Galería</a>
+<a href="#blog" class="text-gray-700 hover:text-primary font-medium transition py-2">Blog</a>
+<a href="#feed" class="text-gray-700 hover:text-primary font-medium transition py-2">Novedades</a>
+<a href="#contacto" class="text-gray-700 hover:text-primary font-medium transition py-2">Contacto</a>
+<a href="#faq" class="text-gray-700 hover:text-primary font-medium transition py-2">FAQ</a>
+</nav>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="pt-20 bg-gradient-to-r from-indigo-50 to-purple-50">
+<div class="container mx-auto px-4 py-16">
+<div class="hero-slider h-[500px] rounded-xl overflow-hidden shadow-xl">
+<div class="slide active">
+<div class="w-full h-full bg-cover bg-center relative" style="background-image: url('https://readdy.ai/api/search-image?query=vibrant%20colorful%20anime%20art%20style%20illustration%20with%20pop%20culture%20elements%2C%20featuring%20minimalist%20anime%20characters%20and%20bright%20colors%2C%20perfect%20for%20merchandise%2C%20professional%20quality%2C%20digital%20art%20style%2C%20clean%20background%2C%20high%20contrast&width=1200&height=500&seq=1&orientation=landscape')">
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+<div class="absolute inset-0 flex items-center">
+<div class="container mx-auto px-8 md:px-16">
+<div class="max-w-lg">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Arte que refleja tu pasión</h1>
+<p class="text-lg text-white/90 mb-8">Diseños únicos inspirados en la cultura pop, anime y humor para expresar tu personalidad.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#galeria" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Ver Galería</a>
+<a href="#contacto" class="bg-white hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Diseño Personalizado</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide">
+<div class="w-full h-full bg-cover bg-center relative" style="background-image: url('https://readdy.ai/api/search-image?query=tarot%20card%20designs%20with%20mystical%20elements%2C%20vibrant%20colors%2C%20professional%20digital%20art%20style%20for%20merchandise%2C%20clean%20composition%20with%20spiritual%20symbols%2C%20perfect%20for%20printing%20on%20products%2C%20high%20quality%20illustration&width=1200&height=500&seq=2&orientation=landscape')">
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+<div class="absolute inset-0 flex items-center">
+<div class="container mx-auto px-8 md:px-16">
+<div class="max-w-lg">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Colección Tarot Místico</h1>
+<p class="text-lg text-white/90 mb-8">Descubre nuestra nueva línea de diseños inspirados en el tarot con un toque moderno y vibrante.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#galeria" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Explorar Colección</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="slide">
+<div class="w-full h-full bg-cover bg-center relative" style="background-image: url('https://readdy.ai/api/search-image?query=cute%20schnauzer%20dog%20illustrations%20in%20various%20styles%2C%20cartoon%20and%20minimalist%20designs%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers&width=1200&height=500&seq=3&orientation=landscape')">
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+<div class="absolute inset-0 flex items-center">
+<div class="container mx-auto px-8 md:px-16">
+<div class="max-w-lg">
+<h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Amantes de los Schnauzer</h1>
+<p class="text-lg text-white/90 mb-8">Diseños exclusivos para quienes aman a esta raza tan especial. ¡Lleva a tu peludo favorito contigo!</p>
+<div class="flex flex-wrap gap-4">
+<a href="#galeria" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Ver Diseños</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="flex justify-center mt-8">
+<div class="animate-bounce">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-arrow-down-line ri-xl"></i>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Artist -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="md:w-1/3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20creative%20latino%20male%20graphic%20designer%20in%20his%20studio%2C%20surrounded%20by%20artwork%2C%20digital%20illustration%20tools%2C%20warm%20lighting%2C%20casual%20professional%20attire%2C%20friendly%20expression&width=400&height=400&seq=4&orientation=squarish" alt="Luis Angel Maciel" class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg">
+</div>
+<div class="md:w-2/3">
+<h2 class="text-3xl font-bold text-gray-800 mb-4">Sobre Luis Angel Maciel</h2>
+<p class="text-gray-600 mb-6">Soy un artista gráfico apasionado por la cultura pop, el anime y el humor. Mi misión es crear diseños que conecten con las personas a través de referencias culturales que todos amamos.</p>
+<p class="text-gray-600 mb-6">Cada diseño que creo está pensado para expresar personalidad y pasión. Ya sea que busques algo minimalista, colorido o con un toque de humor, mi objetivo es ofrecerte piezas únicas que puedas llevar con orgullo.</p>
+<div class="flex gap-4">
+<a href="#" class="text-primary hover:text-primary/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-primary hover:text-primary/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-primary hover:text-primary/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-behance-line ri-xl"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section id="galeria" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Galería de Diseños</h2>
+<p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">Explora mi colección de diseños únicos disponibles en diferentes productos. Desde camisetas hasta tazas, encuentra el artículo perfecto para expresar tu personalidad.</p>
+<!-- Category Tabs -->
+<div class="flex justify-center mb-8">
+<div class="bg-white rounded-full p-1 shadow-sm inline-flex">
+<button class="category-tab active px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="all">Todos</button>
+<button class="category-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="anime">Anime</button>
+<button class="category-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="tarot">Tarot</button>
+<button class="category-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="humor">Humor</button>
+<button class="category-tab px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap" data-category="mascotas">Mascotas</button>
+</div>
+</div>
+<!-- Products Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="anime">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=minimalist%20goku%20design%2C%20simple%20lines%2C%20clean%20aesthetic%2C%20perfect%20for%20t-shirts%20and%20merchandise%2C%20professional%20digital%20illustration%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=5&orientation=squarish" alt="Goku Minimalista" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="1">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Goku Minimalista</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño minimalista inspirado en el legendario Goku</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="24.99" data-eur="22.99" data-mxn="449.99">$24.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="tarot">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=moon%20tarot%20card%20design%2C%20mystical%20and%20ethereal%2C%20professional%20digital%20illustration%20with%20celestial%20elements%2C%20perfect%20for%20merchandise%2C%20clean%20composition%20with%20spiritual%20symbols%2C%20suitable%20for%20printing&width=400&height=400&seq=6&orientation=squarish" alt="Tarot Luna" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="2">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Tarot Luna</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño místico inspirado en la carta de La Luna</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="22.99" data-eur="19.99" data-mxn="399.99">$22.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="humor">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=funny%20bathroom%20quote%20design%20with%20humorous%20typography%2C%20clean%20minimalist%20style%2C%20perfect%20for%20bathroom%20decor%20and%20merchandise%2C%20professional%20digital%20design%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=7&orientation=squarish" alt="Frases para el Baño" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="3">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Frases para el Baño</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño humorístico para decorar tu baño con estilo</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="19.99" data-eur="17.99" data-mxn="349.99">$19.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="mascotas">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=cute%20schnauzer%20dog%20cartoon%20design%2C%20adorable%20pet%20illustration%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers&width=400&height=400&seq=8&orientation=squarish" alt="Schnauzer Cartoon" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="4">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Schnauzer Cartoon</h3>
+<p class="text-gray-600 text-sm mb-3">Adorable diseño de Schnauzer para amantes de esta raza</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="21.99" data-eur="19.99" data-mxn="389.99">$21.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="anime">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=minimalist%20naruto%20design%2C%20simple%20lines%2C%20clean%20aesthetic%2C%20perfect%20for%20t-shirts%20and%20merchandise%2C%20professional%20digital%20illustration%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=9&orientation=squarish" alt="Naruto Minimalista" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="5">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Naruto Minimalista</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño minimalista inspirado en el ninja favorito de todos</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="24.99" data-eur="22.99" data-mxn="449.99">$24.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="tarot">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=sun%20tarot%20card%20design%2C%20mystical%20and%20vibrant%2C%20professional%20digital%20illustration%20with%20celestial%20elements%2C%20perfect%20for%20merchandise%2C%20clean%20composition%20with%20spiritual%20symbols%2C%20suitable%20for%20printing&width=400&height=400&seq=10&orientation=squarish" alt="Tarot Sol" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="6">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Tarot Sol</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño místico inspirado en la carta del Sol</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="22.99" data-eur="19.99" data-mxn="399.99">$22.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="humor">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=funny%20coffee%20quote%20design%20with%20humorous%20typography%2C%20clean%20minimalist%20style%2C%20perfect%20for%20mugs%20and%20merchandise%2C%20professional%20digital%20design%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=11&orientation=squarish" alt="Frases de Café" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="7">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Frases de Café</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño humorístico para los amantes del café</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="19.99" data-eur="17.99" data-mxn="349.99">$19.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="product-card bg-white rounded-lg shadow-md overflow-hidden group" data-category="mascotas">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=pixel%20art%20schnauzer%20dog%20design%2C%20retro%20gaming%20style%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers%20and%20gamers&width=400&height=400&seq=12&orientation=squarish" alt="Schnauzer Pixel Art" class="w-full h-64 object-cover object-top">
+<div class="product-actions absolute inset-0 bg-black/40 flex items-center justify-center gap-2 transition-opacity">
+<button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100" data-product-id="8">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-eye-line"></i>
+</div>
+</button>
+<button class="add-to-favorites bg-white text-gray-800 p-2 rounded-full hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-gray-800">Schnauzer Pixel Art</h3>
+<p class="text-gray-600 text-sm mb-3">Diseño retro de Schnauzer en estilo pixel art</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold price" data-usd="21.99" data-eur="19.99" data-mxn="389.99">$21.99 USD</span>
+<div class="flex gap-2">
+<a href="https://www.redbubble.com" target="_blank" class="bg-primary hover:bg-primary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-button text-xs font-medium transition whitespace-nowrap">Directo</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More Button -->
+<div class="flex justify-center mt-12">
+<button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-button font-medium transition shadow hover:shadow-md whitespace-nowrap">
+Cargar Más Diseños
+<div class="w-5 h-5 inline-flex items-center justify-center ml-2">
+<i class="ri-arrow-down-line"></i>
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- Dynamic Feed & Blog Section -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex flex-col lg:flex-row gap-10">
+<!-- Blog Section -->
+<div id="blog" class="lg:w-2/3">
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Blog</h2>
+<p class="text-gray-600 mb-8">Artículos sobre diseño, cultura pop y novedades</p>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Blog Post 1 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=goku%20day%20celebration%2C%20dragon%20ball%20merchandise%20and%20collectibles%2C%20professional%20photography%20style%2C%20bright%20and%20clean%20composition%2C%20perfect%20for%20blog%20post%20about%20anime%20culture&width=400&height=250&seq=13&orientation=landscape" alt="Día de Goku" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Anime</span>
+<h3 class="text-lg font-semibold text-gray-800 mt-2">Celebrando el Día de Goku: Historia y Curiosidades</h3>
+<p class="text-gray-600 text-sm mt-2 line-clamp-3">El 9 de mayo se celebra el Día de Goku. Descubre por qué esta fecha es tan especial y cómo los fans lo celebran alrededor del mundo.</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-gray-500 text-xs">6 Mayo, 2025</span>
+<a href="#" class="text-primary hover:text-primary/80 text-sm font-medium">Leer más</a>
+</div>
+</div>
+</div>
+<!-- Blog Post 2 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=tarot%20cards%20collection%20displayed%20artistically%2C%20mystical%20and%20spiritual%20merchandise%2C%20professional%20photography%20style%2C%20clean%20composition%20with%20tarot%20cards%20and%20spiritual%20elements%2C%20perfect%20for%20blog%20post&width=400&height=250&seq=14&orientation=landscape" alt="Guía de Tarot" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Tarot</span>
+<h3 class="text-lg font-semibold text-gray-800 mt-2">Guía Básica del Tarot para Principiantes</h3>
+<p class="text-gray-600 text-sm mt-2 line-clamp-3">Si te intriga el mundo del tarot pero no sabes por dónde empezar, esta guía te ayudará a entender los conceptos básicos y el significado de las cartas.</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-gray-500 text-xs">28 Mayo, 2025</span>
+<a href="#" class="text-primary hover:text-primary/80 text-sm font-medium">Leer más</a>
+</div>
+</div>
+</div>
+<!-- Blog Post 3 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=t-shirt%20day%20celebration%2C%20people%20wearing%20custom%20t-shirts%20with%20designs%2C%20professional%20photography%20style%2C%20bright%20and%20clean%20composition%2C%20perfect%20for%20blog%20post%20about%20t-shirt%20culture&width=400&height=250&seq=15&orientation=landscape" alt="Día de la Playera" class="w-full h-48 object-cover object-top">
+<div class="p-4">
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Cultura Pop</span>
+<h3 class="text-lg font-semibold text-gray-800 mt-2">Día Internacional de la Playera: Origen y Celebración</h3>
+<p class="text-gray-600 text-sm mt-2 line-clamp-3">El 21 de junio se celebra el Día Internacional de la Playera. Conoce la historia detrás de esta prenda icónica y cómo ha evolucionado a lo largo del tiempo.</p>
+<div class="flex justify-between items-center mt-4">
+<span class="text-gray-500 text-xs">15 Junio, 2025</span>
+<a href="#" class="text-primary hover:text-primary/80 text-sm font-medium">Leer más</a>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-8">
+<a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+Ver todos los artículos
+<div class="w-5 h-5 inline-flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+<!-- Feed Section -->
+<div id="feed" class="lg:w-1/3">
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Novedades</h2>
+<p class="text-gray-600 mb-8">Actualizaciones y anuncios rápidos</p>
+<div class="bg-white rounded-lg shadow-md p-4 max-h-[600px] overflow-y-auto">
+<!-- Feed Item 1 -->
+<div class="feed-item">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-star-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">¡Nueva colección de Tarot!</h4>
+<p class="text-gray-600 text-sm mt-1">Acabo de lanzar mi nueva colección completa de diseños inspirados en el Tarot. ¡Ya disponible en Redbubble!</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-gray-500 text-xs">Hoy, 10:30</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="feed-item">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+<div class="w-5 h-5 flex items-center justify-center text-secondary">
+<i class="ri-price-tag-3-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Oferta especial de fin de semana</h4>
+<p class="text-gray-600 text-sm mt-1">15% de descuento en todos los diseños de anime este fin de semana. ¡Usa el código ANIME15!</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-gray-500 text-xs">Ayer, 18:45</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="feed-item">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+<div class="w-5 h-5 flex items-center justify-center text-green-600">
+<i class="ri-brush-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Diseño del día: Schnauzer Pixel Art</h4>
+<p class="text-gray-600 text-sm mt-1">Hoy destacamos nuestro diseño de Schnauzer en estilo pixel art. ¡Perfecto para los amantes de los perros y los videojuegos!</p>
+<img src="https://readdy.ai/api/search-image?query=pixel%20art%20schnauzer%20dog%20design%2C%20retro%20gaming%20style%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers%20and%20gamers&width=300&height=200&seq=16&orientation=landscape" alt="Schnauzer Pixel Art" class="w-full h-32 object-cover rounded-lg mt-2">
+<div class="flex justify-between items-center mt-2">
+<span class="text-gray-500 text-xs">04 Junio, 2025</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 4 -->
+<div class="feed-item">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+<div class="w-5 h-5 flex items-center justify-center text-blue-600">
+<i class="ri-calendar-event-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Próximamente: Colección de Verano</h4>
+<p class="text-gray-600 text-sm mt-1">Estoy trabajando en una nueva colección de diseños para el verano. ¡Estén atentos para más novedades!</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-gray-500 text-xs">02 Junio, 2025</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 5 -->
+<div class="feed-item">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+<div class="w-5 h-5 flex items-center justify-center text-purple-600">
+<i class="ri-customer-service-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">¡Nuevos productos disponibles!</h4>
+<p class="text-gray-600 text-sm mt-1">Ahora mis diseños están disponibles en fundas para AirPods y botellas de agua. ¡Personaliza tus accesorios diarios!</p>
+<div class="flex justify-between items-center mt-2">
+<span class="text-gray-500 text-xs">30 Mayo, 2025</span>
+<div class="flex items-center gap-3">
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contacto" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Contacto</h2>
+<p class="text-gray-600 text-center mb-8">¿Tienes alguna pregunta o necesitas un diseño personalizado? ¡Contáctame!</p>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="md:w-1/3 bg-primary p-8 text-white">
+<h3 class="text-xl font-bold mb-4">Información de Contacto</h3>
+<p class="mb-6">Estoy disponible para consultas, pedidos personalizados y colaboraciones.</p>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center mt-0.5">
+<i class="ri-mail-line"></i>
+</div>
+<span>contacto@myredbubble.com</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center mt-0.5">
+<i class="ri-instagram-line"></i>
+</div>
+<span>@luisangelmaciel</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center mt-0.5">
+<i class="ri-time-line"></i>
+</div>
+<span>Respuesta en 24-48 horas</span>
+</div>
+</div>
+<div class="mt-12">
+<h4 class="font-medium mb-2">Sígueme en:</h4>
+<div class="flex gap-4">
+<a href="#" class="text-white hover:text-white/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-white hover:text-white/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-white hover:text-white/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-behance-line ri-xl"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 p-8">
+<form id="contact-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none" required>
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none" required>
+</div>
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
+<input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none" required>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+<textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none" required></textarea>
+</div>
+<div class="mb-6">
+<label for="file" class="block text-sm font-medium text-gray-700 mb-1">Adjuntar referencia (opcional)</label>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<div class="w-10 h-10 flex items-center justify-center text-gray-400 mb-1">
+<i class="ri-upload-2-line ri-2x"></i>
+</div>
+<p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Haz clic para subir</span> o arrastra y suelta</p>
+<p class="text-xs text-gray-500">PNG, JPG o PDF (Max. 10MB)</p>
+</div>
+<input id="file" type="file" class="hidden" />
+</label>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-start">
+<div class="flex items-center h-5">
+<input id="custom-design" type="checkbox" class="custom-checkbox">
+</div>
+<label for="custom-design" class="ml-3 text-sm font-medium text-gray-700">
+Estoy interesado en un diseño personalizado
+</label>
+</div>
+</div>
+<div>
+<button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl whitespace-nowrap">
+Enviar Mensaje
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section id="faq" class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Preguntas Frecuentes</h2>
+<p class="text-gray-600 text-center mb-8">Respuestas a las dudas más comunes</p>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Cómo puedo comprar tus diseños?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">Puedes comprar mis diseños de dos formas: a través de mi tienda en Redbubble, donde encontrarás todos mis diseños disponibles en diferentes productos, o contactándome directamente para pedidos personalizados o compras directas.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Puedo solicitar un diseño personalizado?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">¡Claro que sí! Estoy disponible para crear diseños personalizados según tus necesidades. Puedes contactarme a través del formulario de contacto, especificando los detalles de lo que buscas, y te responderé con información sobre el proceso, tiempos y costos.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Cuáles son los tiempos de entrega?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">Los tiempos de entrega varían según el método de compra. Para compras a través de Redbubble, los tiempos de producción y envío dependen de su política (generalmente entre 3-10 días hábiles). Para compras directas, los tiempos pueden variar entre 5-15 días hábiles dependiendo de tu ubicación.</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Qué métodos de pago aceptas?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">Para compras directas, acepto transferencias bancarias, PayPal, y pagos con tarjeta de crédito/débito. Para compras a través de Redbubble, puedes utilizar los métodos de pago que ellos ofrecen, que incluyen tarjetas de crédito/débito, PayPal, y Apple Pay.</p>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Realizas envíos internacionales?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">Sí, realizo envíos internacionales tanto para compras directas como a través de Redbubble. Los costos y tiempos de envío varían según el país de destino. Para compras directas, te proporcionaré información detallada sobre los costos de envío antes de finalizar tu pedido.</p>
+</div>
+</div>
+<!-- FAQ Item 6 -->
+<div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+<button class="faq-question w-full flex justify-between items-center p-4 text-left">
+<span class="font-medium text-gray-800">¿Puedo usar tus diseños para proyectos comerciales?</span>
+<div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="faq-answer px-4 pb-4">
+<p class="text-gray-600">Los diseños adquiridos a través de Redbubble o compras directas son para uso personal y no incluyen derechos comerciales. Si estás interesado en utilizar mis diseños para proyectos comerciales, contáctame directamente para discutir licencias comerciales y acuerdos específicos.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Legal Section -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Información Legal</h2>
+<p class="text-gray-600 text-center mb-8">Términos y condiciones de uso del sitio y servicios</p>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="p-6">
+<div class="mb-8">
+<h3 class="text-xl font-bold text-gray-800 mb-4">Resumen Simple</h3>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center text-primary mt-0.5">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-600">Todos los diseños están protegidos por derechos de autor y son propiedad intelectual de Luis Angel Maciel.</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center text-primary mt-0.5">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-600">La información personal que proporcionas se utiliza únicamente para procesar pedidos y mejorar tu experiencia.</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center text-primary mt-0.5">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-600">Las compras directas tienen una política de devolución de 14 días si el producto presenta defectos.</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 flex items-center justify-center text-primary mt-0.5">
+<i class="ri-check-line"></i>
+</div>
+<p class="text-gray-600">Para compras a través de Redbubble, aplican sus propios términos y condiciones.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="md:w-1/2">
+<h3 class="text-lg font-semibold text-gray-800 mb-3">Términos y Condiciones</h3>
+<p class="text-gray-600 text-sm mb-4">Nuestros términos y condiciones describen los derechos y responsabilidades al utilizar nuestro sitio y servicios.</p>
+<a href="#" class="text-primary hover:text-primary/80 font-medium text-sm">Leer términos completos</a>
+</div>
+<div class="md:w-1/2">
+<h3 class="text-lg font-semibold text-gray-800 mb-3">Política de Privacidad</h3>
+<p class="text-gray-600 text-sm mb-4">Nuestra política de privacidad describe cómo recopilamos, utilizamos y protegemos tu información personal.</p>
+<a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/decc46b9-c729-47a8-813e-4cadc8a35eef" data-readdy="true" class="text-primary hover:text-primary/80 font-medium text-sm">Leer política completa</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-16 bg-primary">
+<div class="container mx-auto px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-3xl font-bold text-white mb-3">¡Suscríbete a mi newsletter!</h2>
+<p class="text-white/90 mb-8">Recibe novedades sobre nuevos diseños, ofertas exclusivas y contenido especial directamente en tu correo.</p>
+<form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+<input type="email" placeholder="Tu correo electrónico" class="flex-grow px-4 py-3 rounded-button border-none focus:ring-2 focus:ring-white/30 focus:outline-none">
+<button type="submit" class="bg-white text-primary hover:bg-white/90 px-6 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl whitespace-nowrap">Suscribirme</button>
+</form>
+<p class="text-white/70 text-sm mt-4">Al suscribirte, aceptas recibir correos electrónicos de marketing. Puedes darte de baja en cualquier momento.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="logo text-white text-2xl">myRedbubble</a>
+<p class="mt-4 text-gray-400">Diseños únicos inspirados en la cultura pop, anime y humor para expresar tu personalidad.</p>
+<div class="flex gap-4 mt-6">
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-behance-line ri-xl"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-pinterest-line ri-xl"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
+<ul class="space-y-2">
+<li><a href="#galeria" class="text-gray-400 hover:text-white">Galería</a></li>
+<li><a href="#blog" class="text-gray-400 hover:text-white">Blog</a></li>
+<li><a href="#feed" class="text-gray-400 hover:text-white">Novedades</a></li>
+<li><a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a></li>
+<li><a href="#faq" class="text-gray-400 hover:text-white">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Categorías</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">Anime</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Tarot</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Humor</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Mascotas</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Minimalista</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Información</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Política de Devoluciones</a></li>
+<li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/d9522840-6650-445c-b839-b07d23e1f962" data-readdy="true" class="text-gray-400 hover:text-white">Métodos de Pago</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Envíos</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 myRedbubble. Todos los derechos reservados.</p>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-visa-fill ri-xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-mastercard-fill ri-xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-paypal-fill ri-xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-apple-fill ri-xl"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button class="back-to-top bg-primary hover:bg-primary/90 text-white p-3 rounded-full shadow-lg">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-up-line"></i>
+</div>
+</button>
+<!-- Product Quick View Modal -->
+<div class="product-modal" id="product-modal">
+<div class="modal-content p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-bold text-gray-800">Vista Rápida del Producto</h3>
+<button class="close-modal text-gray-500 hover:text-gray-700">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-close-line"></i>
+</div>
+</button>
+</div>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="md:w-1/2">
+<img id="modal-product-image" src="" alt="Producto" class="w-full h-auto rounded-lg">
+</div>
+<div class="md:w-1/2">
+<h4 id="modal-product-title" class="text-2xl font-bold text-gray-800 mb-2"></h4>
+<p id="modal-product-description" class="text-gray-600 mb-4"></p>
+<div class="mb-6">
+<h5 class="font-medium text-gray-800 mb-2">Seleccionar Producto</h5>
+<div class="flex flex-wrap gap-2">
+<button class="product-type-btn bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm font-medium active">Camiseta</button>
+<button class="product-type-btn bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm font-medium">Sudadera</button>
+<button class="product-type-btn bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm font-medium">Taza</button>
+<button class="product-type-btn bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm font-medium">Póster</button>
+<button class="product-type-btn bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm font-medium">Sticker</button>
+</div>
+</div>
+<div class="mb-6">
+<h5 class="font-medium text-gray-800 mb-2">Seleccionar Talla</h5>
+<div class="flex flex-wrap gap-2">
+<button class="size-btn bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full text-sm font-medium flex items-center justify-center">S</button>
+<button class="size-btn bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full text-sm font-medium flex items-center justify-center active">M</button>
+<button class="size-btn bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full text-sm font-medium flex items-center justify-center">L</button>
+<button class="size-btn bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full text-sm font-medium flex items-center justify-center">XL</button>
+</div>
+</div>
+<div class="mb-6">
+<h5 class="font-medium text-gray-800 mb-2">Cantidad</h5>
+<div class="flex items-center">
+<button class="quantity-btn bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" data-action="decrease">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-subtract-line"></i>
+</div>
+</button>
+<input type="number" value="1" min="1" class="w-12 text-center border-none mx-2">
+<button class="quantity-btn bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" data-action="increase">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-add-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="mb-6">
+<span id="modal-product-price" class="text-2xl font-bold text-primary"></span>
+</div>
+<div class="flex gap-3">
+<a href="https://www.redbubble.com" target="_blank" class="flex-1 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition text-center whitespace-nowrap">Comprar en Redbubble</a>
+<button class="bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-button font-medium transition whitespace-nowrap">Compra Directa</button>
+<button class="add-to-favorites-modal bg-gray-100 hover:bg-gray-200 p-3 rounded-full">
+<div class="w-6 h-6 flex items-center justify-center text-gray-700">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scripts -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+});
+</script>
+<script id="currency-selector-script">
+document.addEventListener('DOMContentLoaded', function() {
+const currencyOptions = document.querySelectorAll('.currency-option');
+const currentCurrency = document.getElementById('current-currency');
+const priceElements = document.querySelectorAll('.price');
+currencyOptions.forEach(option => {
+option.addEventListener('click', function() {
+const currency = this.getAttribute('data-currency');
+currentCurrency.textContent = currency;
+// Update all prices
+priceElements.forEach(price => {
+const usdPrice = price.getAttribute('data-usd');
+const eurPrice = price.getAttribute('data-eur');
+const mxnPrice = price.getAttribute('data-mxn');
+if (currency === 'USD') {
+price.textContent = `$${usdPrice} USD`;
+} else if (currency === 'EUR') {
+price.textContent = `€${eurPrice} EUR`;
+} else if (currency === 'MXN') {
+price.textContent = `$${mxnPrice} MXN`;
+}
+});
+});
+});
+});
+</script>
+<script id="hero-slider-script">
+document.addEventListener('DOMContentLoaded', function() {
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+function showSlide(index) {
+slides.forEach(slide => slide.classList.remove('active'));
+slides[index].classList.add('active');
+}
+function nextSlide() {
+currentSlide = (currentSlide + 1) % slides.length;
+showSlide(currentSlide);
+}
+// Change slide every 5 seconds
+setInterval(nextSlide, 5000);
+});
+</script>
+<script id="product-filtering-script">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryTabs = document.querySelectorAll('.category-tab');
+const productCards = document.querySelectorAll('.product-card');
+categoryTabs.forEach(tab => {
+tab.addEventListener('click', function() {
+// Remove active class from all tabs
+categoryTabs.forEach(t => t.classList.remove('active', 'bg-primary', 'text-white'));
+// Add active class to clicked tab
+this.classList.add('active', 'bg-primary', 'text-white');
+const category = this.getAttribute('data-category');
+// Show/hide products based on category
+productCards.forEach(card => {
+if (category === 'all' || card.getAttribute('data-category') === category) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+});
+</script>
+<script id="faq-accordion-script">
+document.addEventListener('DOMContentLoaded', function() {
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+const question = item.querySelector('.faq-question');
+question.addEventListener('click', function() {
+// Toggle active class on clicked item
+item.classList.toggle('active');
+// Close other items
+faqItems.forEach(otherItem => {
+if (otherItem !== item) {
+otherItem.classList.remove('active');
+}
+});
+});
+});
+});
+</script>
+<script id="back-to-top-script">
+document.addEventListener('DOMContentLoaded', function() {
+const backToTopButton = document.querySelector('.back-to-top');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.add('visible');
+} else {
+backToTopButton.classList.remove('visible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+</script>
+<script id="product-modal-script">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('product-modal');
+const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+const closeModalButton = document.querySelector('.close-modal');
+const productTypeButtons = document.querySelectorAll('.product-type-btn');
+const sizeButtons = document.querySelectorAll('.size-btn');
+const quantityButtons = document.querySelectorAll('.quantity-btn');
+const quantityInput = document.querySelector('.modal-content input[type="number"]');
+// Product data
+const products = {
+1: {
+title: 'Goku Minimalista',
+description: 'Diseño minimalista inspirado en el legendario Goku, perfecto para los fans de Dragon Ball. Disponible en varios productos y colores.',
+price: {
+USD: '24.99',
+EUR: '22.99',
+MXN: '449.99'
+},
+image: 'https://readdy.ai/api/search-image?query=minimalist%20goku%20design%2C%20simple%20lines%2C%20clean%20aesthetic%2C%20perfect%20for%20t-shirts%20and%20merchandise%2C%20professional%20digital%20illustration%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=5&orientation=squarish'
+},
+2: {
+title: 'Tarot Luna',
+description: 'Diseño místico inspirado en la carta de La Luna del Tarot. Perfecto para los amantes de lo esotérico y lo místico.',
+price: {
+USD: '22.99',
+EUR: '19.99',
+MXN: '399.99'
+},
+image: 'https://readdy.ai/api/search-image?query=moon%20tarot%20card%20design%2C%20mystical%20and%20ethereal%2C%20professional%20digital%20illustration%20with%20celestial%20elements%2C%20perfect%20for%20merchandise%2C%20clean%20composition%20with%20spiritual%20symbols%2C%20suitable%20for%20printing&width=400&height=400&seq=6&orientation=squarish'
+},
+3: {
+title: 'Frases para el Baño',
+description: 'Diseño humorístico con frases divertidas para decorar tu baño con estilo y personalidad.',
+price: {
+USD: '19.99',
+EUR: '17.99',
+MXN: '349.99'
+},
+image: 'https://readdy.ai/api/search-image?query=funny%20bathroom%20quote%20design%20with%20humorous%20typography%2C%20clean%20minimalist%20style%2C%20perfect%20for%20bathroom%20decor%20and%20merchandise%2C%20professional%20digital%20design%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=7&orientation=squarish'
+},
+4: {
+title: 'Schnauzer Cartoon',
+description: 'Adorable diseño de Schnauzer en estilo cartoon, perfecto para los amantes de esta raza de perros.',
+price: {
+USD: '21.99',
+EUR: '19.99',
+MXN: '389.99'
+},
+image: 'https://readdy.ai/api/search-image?query=cute%20schnauzer%20dog%20cartoon%20design%2C%20adorable%20pet%20illustration%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers&width=400&height=400&seq=8&orientation=squarish'
+},
+5: {
+title: 'Naruto Minimalista',
+description: 'Diseño minimalista inspirado en Naruto, perfecto para los fans del anime y manga.',
+price: {
+USD: '24.99',
+EUR: '22.99',
+MXN: '449.99'
+},
+image: 'https://readdy.ai/api/search-image?query=minimalist%20naruto%20design%2C%20simple%20lines%2C%20clean%20aesthetic%2C%20perfect%20for%20t-shirts%20and%20merchandise%2C%20professional%20digital%20illustration%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=9&orientation=squarish'
+},
+6: {
+title: 'Tarot Sol',
+description: 'Diseño místico inspirado en la carta del Sol del Tarot, con elementos celestiales y simbología espiritual.',
+price: {
+USD: '22.99',
+EUR: '19.99',
+MXN: '399.99'
+},
+image: 'https://readdy.ai/api/search-image?query=sun%20tarot%20card%20design%2C%20mystical%20and%20vibrant%2C%20professional%20digital%20illustration%20with%20celestial%20elements%2C%20perfect%20for%20merchandise%2C%20clean%20composition%20with%20spiritual%20symbols%2C%20suitable%20for%20printing&width=400&height=400&seq=10&orientation=squarish'
+},
+7: {
+title: 'Frases de Café',
+description: 'Diseño humorístico con frases sobre café, perfecto para tazas y regalos para los amantes de esta bebida.',
+price: {
+USD: '19.99',
+EUR: '17.99',
+MXN: '349.99'
+},
+image: 'https://readdy.ai/api/search-image?query=funny%20coffee%20quote%20design%20with%20humorous%20typography%2C%20clean%20minimalist%20style%2C%20perfect%20for%20mugs%20and%20merchandise%2C%20professional%20digital%20design%2C%20white%20background%2C%20suitable%20for%20printing&width=400&height=400&seq=11&orientation=squarish'
+},
+8: {
+title: 'Schnauzer Pixel Art',
+description: 'Diseño retro de Schnauzer en estilo pixel art, perfecto para los amantes de los perros y los videojuegos.',
+price: {
+USD: '21.99',
+EUR: '19.99',
+MXN: '389.99'
+},
+image: 'https://readdy.ai/api/search-image?query=pixel%20art%20schnauzer%20dog%20design%2C%20retro%20gaming%20style%2C%20perfect%20for%20merchandise%20and%20products%2C%20professional%20digital%20art%2C%20clean%20background%2C%20appealing%20to%20dog%20lovers%20and%20gamers&width=400&height=400&seq=12&orientation=squarish'
+}
+};
+// Open modal
+quickViewButtons.forEach(button => {
+button.addEventListener('click', function() {
+const productId = this.getAttribute('data-product-id');
+const product = products[productId];
+// Update modal content
+document.getElementById('modal-product-title').textContent = product.title;
+document.getElementById('modal-product-description').textContent = product.description;
+document.getElementById('modal-product-image').src = product.image;
+document.getElementById('modal-product-image').alt = product.title;
+// Update price based on current currency
+const currentCurrency = document.getElementById('current-currency').textContent;
+let priceText = '';
+if (currentCurrency === 'USD') {
+priceText = `$${product.price.USD} USD`;
+} else if (currentCurrency === 'EUR') {
+priceText = `€${product.price.EUR} EUR`;
+} else if (currentCurrency === 'MXN') {
+priceText = `$${product.price.MXN} MXN`;
+}
+document.getElementById('modal-product-price').textContent = priceText;
+// Show modal
+modal.style.display = 'flex';
+document.body.style.overflow = 'hidden'; // Prevent scrolling
+});
+});
+// Close modal
+closeModalButton.addEventListener('click', function() {
+modal.style.display = 'none';
+document.body.style.overflow = ''; // Restore scrolling
+});
+// Close modal when clicking outside
+modal.addEventListener('click', function(event) {
+if (event.target === modal) {
+modal.style.display = 'none';
+document.body.style.overflow = ''; // Restore scrolling
+}
+});
+// Product type buttons
+productTypeButtons.forEach(button => {
+button.addEventListener('click', function() {
+productTypeButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+this.classList.add('active', 'bg-primary', 'text-white');
+});
+});
+// Size buttons
+sizeButtons.forEach(button => {
+button.addEventListener('click', function() {
+sizeButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+this.classList.add('active', 'bg-primary', 'text-white');
+});
+});
+// Quantity buttons
+quantityButtons.forEach(button => {
+button.addEventListener('click', function() {
+const action = this.getAttribute('data-action');
+let value = parseInt(quantityInput.value);
+if (action === 'increase') {
+value++;
+} else if (action === 'decrease' && value > 1) {
+value--;
+}
+quantityInput.value = value;
+});
+});
+});
+</script>
+<script id="favorites-script">
+document.addEventListener('DOMContentLoaded', function() {
+const favButtons = document.querySelectorAll('.add-to-favorites, .add-to-favorites-modal');
+const favCounter = document.querySelector('.ri-heart-line + span');
+let favCount = 0;
+favButtons.forEach(button => {
+button.addEventListener('click', function() {
+const icon = this.querySelector('i');
+if (icon.classList.contains('ri-heart-line')) {
+icon.classList.remove('ri-heart-line');
+icon.classList.add('ri-heart-fill');
+icon.classList.add('text-secondary');
+favCount++;
+} else {
+icon.classList.remove('ri-heart-fill');
+icon.classList.remove('text-secondary');
+icon.classList.add('ri-heart-line');
+favCount--;
+}
+favCounter.textContent = favCount;
+});
+});
+});
+</script>
+<script id="contact-form-script">
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+// Simple form validation
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const subject = document.getElementById('subject').value;
+const message = document.getElementById('message').value;
+if (name && email && subject && message) {
+// Simulate form submission
+alert('¡Gracias por tu mensaje! Te responderé lo antes posible.');
+contactForm.reset();
+} else {
+alert('Por favor, completa todos los campos requeridos.');
+}
+});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de Macronutrientes Holísticos</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary-color: #8BC34A;
+            --accent-color: #FF6B35;
+            --bg-color: #f4f7f6;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --text-secondary: #666;
+            --border-color: #e0e0e0;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --card-bg: rgba(26, 32, 44, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #cbd5e0;
+            --border-color: #4a5568;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --gradient-bg: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: var(--gradient-bg);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .focus-mode {
+            background: var(--bg-color);
+        }
+
+        .focus-mode .container {
+            max-width: 700px;
+            background: var(--card-bg);
+        }
+
+        .focus-mode .controls-bar,
+        .focus-mode .progress-container,
+        .focus-mode .navigation .nav-button:not(.nav-button-prev):not(.nav-button-next):not(.completion-button) { /* Excluir navegación para que siempre esté visible */
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .focus-mode .controls-bar:hover,
+        .focus-mode .progress-container:hover,
+        .focus-mode .navigation .nav-button:not(.nav-button-prev):not(.nav-button-next):not(.completion-button):hover {
+            opacity: 1;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 950px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), #CDDC39);
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Controls Bar */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle, .focus-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .theme-toggle:hover, .focus-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .time-estimate {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #1565c0;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .time-estimate {
+            background: linear-gradient(135deg, #263238, #37474f);
+            color: #81c784;
+        }
+        
+        h1 {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Enhanced Progress Bar */
+        .progress-container {
+            margin-bottom: 30px;
+            background: var(--bg-color);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 8px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .step-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Step Content */
+        .step-container {
+            display: none;
+            animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .step-container.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            padding: 20px 25px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
+            position: relative;
+        }
+
+        [data-theme="dark"] .step-header {
+            background: linear-gradient(135deg, #2d5a3d, #3d6b4d);
+        }
+
+        .step-timer {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .step-timer {
+            background: rgba(0, 0, 0, 0.3);
+            color: #cbd5e0;
+        }
+        
+        .step-icon {
+            font-size: 2.5em;
+            margin-right: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .step-header h2 {
+            margin: 0;
+            color: #2e7d32;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .step-header h2 {
+            color: #81c784;
+        }
+        
+        .step-content p {
+            margin-bottom: 20px;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        
+        .step-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .step-content ul li {
+            background: #f8fffe;
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: clamp(0.9rem, 2.2vw, 1rem);
+        }
+
+        [data-theme="dark"] .step-content ul li {
+            background: #2d3748;
+            color: var(--text-color);
+        }
+        
+        .step-content ul li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-content ul li::before {
+            content: '🌿';
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        /* Personal Notes */
+        .notes-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--bg-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .notes-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .notes-count {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+            justify-content: center;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .nav-button:hover::before {
+            left: 100%;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+        
+        .nav-button:active {
+            transform: translateY(0);
+        }
+        
+        .nav-button:disabled {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        
+        .nav-button:disabled::before {
+            display: none;
+        }
+        
+        .nav-button:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .completion-button {
+            background: linear-gradient(135deg, var(--accent-color), #F7931E);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .completion-button:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        .step-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        
+        .dot.completed {
+            background: var(--primary-dark);
+        }
+
+        .dot.has-notes::after {
+            content: '📝';
+            position: absolute;
+            top: -20px;
+            left: -8px;
+            font-size: 0.7rem;
+        }
+
+        /* Summary Modal */
+        .summary-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .summary-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .summary-modal.show .summary-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border-radius: 12px;
+        }
+
+        [data-theme="dark"] .stat-card {
+            background: linear-gradient(135deg, #2d5a3d, #3d6b4d);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-notes {
+            margin-top: 20px;
+        }
+
+        .summary-notes h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .note-item {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .note-step {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .close-summary, .export-notes-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .export-notes-button {
+            background: #2196F3; /* A different color for export */
+        }
+        .close-summary:hover {
+            background: var(--primary-dark);
+        }
+        .export-notes-button:hover {
+            background: #1976D2;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px 0;
+            }
+
+            .controls-bar {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+
+            .control-group {
+                justify-content: center;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .step-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .step-timer {
+                position: static;
+                margin-top: 10px;
+                align-self: center;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .step-dots {
+                order: -1;
+            }
+
+            .summary-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .summary-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            .step-content ul li {
+                padding: 12px 15px;
+            }
+            
+            .nav-button {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .summary-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .step-container {
+                animation: none;
+            }
+            
+            .progress-bar::after {
+                animation: none;
+            }
+            
+            .nav-button::before {
+                display: none;
+            }
+            .summary-modal .summary-content {
+                transition: none;
+            }
+            .toast {
+                transition: none;
+            }
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #4CAF50;
+        }
+
+        .toast.info {
+            background: #2196F3;
+        }
+        .toast.error {
+            background: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="control-group">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeText">Modo Oscuro</span>
+                </button>
+                <button class="focus-toggle" id="focusToggle" aria-label="Alternar modo enfoque">
+                    <span>🎯</span>
+                    <span>Modo Enfoque</span>
+                </button>
+            </div>
+            <div class="control-group">
+                <div class="time-estimate" id="timeEstimate">
+                    ⏱️ 3 min restantes
+                </div>
+            </div>
+        </div>
+
+        <h1>🌟 Entendiendo los Macronutrientes para el Bienestar Holístico</h1>
+        
+        <!-- Enhanced Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-details">
+                <span id="progressText">Paso 1 de 5</span>
+                <div class="step-time">
+                    <span>⏱️</span>
+                    <span id="stepTimeSpent">0:00</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="step1" class="step-container active">
+            <div class="step-header">
+                <span class="step-icon" role="img" aria-label="Bombilla de idea">💡</span>
+                <h2>Paso 1: ¿Qué son los Macronutrientes en Nutrición Holística?</h2>
+                <div class="step-timer" id="stepTimer1">⏱️ 2-3 min</div>
+            </div>
+            <div class="step-content">
+                <p>Los **macronutrientes** son los componentes de los alimentos que nuestro cuerpo necesita en grandes cantidades para obtener energía y realizar funciones vitales. Son los carbohidratos, las proteínas y las grasas.</p>
+                <p>Desde una perspectiva holística, no solo importa la cantidad, sino la **calidad** y la **fuente** de estos macronutrientes, y cómo interactúan para nutrir cuerpo, mente y espíritu. Buscamos fuentes integrales y sin procesar que brinden vitalidad.</p>
+            </div>
+            <div class="notes-section">
+                <div class="notes-header">
+                    <span>📝</span>
+                    <span>Mis notas personales</span>
+                </div>
+                <textarea class="notes-textarea" id="notes1" placeholder="Escribe aquí tus reflexiones, dudas o ideas sobre este paso..." aria-label="Notas personales para el paso 1"></textarea>
+                <div class="notes-count" id="notesCount1">0 caracteres</div>
+            </div>
+        </div>
+
+        <div id="step2" class="step-container">
+            <div class="step-header">
+                <span class="step-icon" role="img" aria-label="Rebanada de pan">🍞</span>
+                <h2>Paso 2: Carbohidratos Complejos: Energía Sostenida</h2>
+                <div class="step-timer" id="stepTimer2">⏱️ 3-4 min</div>
+            </div>
+            <div class="step-content">
+                <p>Los **carbohidratos complejos** son la principal fuente de energía de nuestro cuerpo y se liberan lentamente, proporcionando energía constante y evitando picos de azúcar.</p>
+                <p><strong>Fuentes holísticas y sus beneficios:</strong></p>
+                <ul>
+                    <li>**Granos enteros:** Avena, quinoa, arroz integral, cebada, pan integral. Ricos en fibra, vitaminas B y minerales, apoyan la digestión y el estado de ánimo.</li>
+                    <li>**Vegetales con almidón:** Batatas, calabaza, maíz, guisantes. Ofrecen nutrientes y fibra, esenciales para una digestión saludable.</li>
+                    <li>**Legumbres:** Lentejas, frijoles, garbanzos. Combinan carbohidratos con proteínas y fibra, ideales para la saciedad y la salud intestinal.</li>
+                </ul>
+            </div>
+            <div class="notes-section">
+                <div class="notes-header">
+                    <span>📝</span>
+                    <span>Mis notas personales</span>
+                </div>
+                <textarea class="notes-textarea" id="notes2" placeholder="¿Qué carbohidratos complejos consumes actualmente? ¿Cuáles te gustaría incorporar?" aria-label="Notas personales para el paso 2"></textarea>
+                <div class="notes-count" id="notesCount2">0 caracteres</div>
+            </div>
+        </div>
+
+        <div id="step3" class="step-container">
+            <div class="step-header">
+                <span class="step-icon" role="img" aria-label="Músculo">💪</span>
+                <h2>Paso 3: Proteínas de Calidad: Construcción y Reparación</h2>
+                <div class="step-timer" id="stepTimer3">⏱️ 3-4 min</div>
+            </div>
+            <div class="step-content">
+                <p>Las **proteínas** son esenciales para la construcción y reparación de tejidos, la producción de enzimas y hormonas, y el soporte del sistema inmunológico. Priorizar proteínas de alta calidad es clave.</p>
+                <p><strong>Fuentes holísticas y su impacto:</strong></p>
+                <ul>
+                    <li>**Proteínas vegetales:** Tofu, tempeh, lentejas, frijoles, quinoa, frutos secos, semillas. Ofrecen fibra adicional y menos grasas saturadas.</li>
+                    <li>**Pescados grasos:** Salmón, sardinas, caballa (salvajes). Ricos en Omega-3, beneficiosos para el cerebro y el corazón.</li>
+                    <li>**Huevos orgánicos/pastoreo:** Fuente completa de aminoácidos y colina para la salud cerebral.</li>
+                    <li>**Carnes magras (pastoreo/orgánicas):** Pollo, pavo, carne de res. Si se consumen, buscar fuentes éticas y de calidad.</li>
+                </ul>
+            </div>
+            <div class="notes-section">
+                <div class="notes-header">
+                    <span>📝</span>
+                    <span>Mis notas personales</span>
+                </div>
+                <textarea class="notes-textarea" id="notes3" placeholder="¿Cuáles son tus fuentes de proteína favoritas? ¿Hay alguna que te gustaría probar?" aria-label="Notas personales para el paso 3"></textarea>
+                <div class="notes-count" id="notesCount3">0 caracteres</div>
+            </div>
+        </div>
+
+        <div id="step4" class="step-container">
+            <div class="step-header">
+                <span class="step-icon" role="img" aria-label="Aguacate">🥑</span>
+                <h2>Paso 4: Grasas Saludables: Nutrición Cerebral y Celular</h2>
+                <div class="step-timer" id="stepTimer4">⏱️ 3-4 min</div>
+            </div>
+            <div class="step-content">
+                <p>Las **grasas saludables** son vitales para la absorción de vitaminas, la producción hormonal, la salud cerebral y la reducción de la inflamación. No todas las grasas son iguales.</p>
+                <p><strong>Fuentes holísticas y sus beneficios:</strong></p>
+                <ul>
+                    <li>**Aguacate:** Rico en grasas monoinsaturadas, fibra y potasio.</li>
+                    <li>**Aceite de oliva extra virgen:** Antinflamatorio y protector cardiovascular.</li>
+                    <li>**Nueces y semillas:** Almendras, nueces, chía, lino, cáñamo. Aportan Omega-3, fibra y antioxidantes.</li>
+                    <li>**Pescados grasos:** (Ver Paso 3) excelente fuente de Omega-3.</li>
+                    <li>**Coco y aceite de coco:** MCTs que ofrecen energía rápida.</li>
+                </ul>
+            </div>
+            <div class="notes-section">
+                <div class="notes-header">
+                    <span>📝</span>
+                    <span>Mis notas personales</span>
+                </div>
+                <textarea class="notes-textarea" id="notes4" placeholder="¿Qué grasas saludables incluyes en tu dieta? ¿Cuáles evitas y por qué?" aria-label="Notas personales para el paso 4"></textarea>
+                <div class="notes-count" id="notesCount4">0 caracteres</div>
+            </div>
+        </div>
+
+        <div id="step5" class="step-container">
+            <div class="step-header">
+                <span class="step-icon" role="img" aria-label="Balanza en equilibrio">⚖️</span>
+                <h2>Paso 5: Equilibrando Macronutrientes para el Bienestar Integral</h2>
+                <div class="step-timer" id="stepTimer5">⏱️ 4-5 min</div>
+            </div>
+            <div class="step-content">
+                <p>La clave de la nutrición holística es encontrar el **equilibrio adecuado** de macronutrientes para tu cuerpo, estilo de vida y objetivos individuales. No existe una fórmula única, pero la base siempre es la calidad y la diversidad.</p>
+                <p><strong>Consideraciones para un equilibrio holístico:</strong></p>
+                <ul>
+                    <li>**Escucha a tu cuerpo:** Presta atención a cómo te sientes después de comer diferentes combinaciones de alimentos. Tu energía, digestión y estado de ánimo son indicadores clave.</li>
+                    <li>**Prioriza la calidad:** Opta siempre por alimentos integrales, sin procesar, orgánicos y de origen sostenible cuando sea posible.</li>
+                    <li>**Variedad es clave:** Consume una amplia gama de fuentes de carbohidratos, proteínas y grasas para asegurar un espectro completo de micronutrientes y fitoquímicos.</li>
+                    <li>**Hidratación:** El agua es un macronutriente olvidado, fundamental para todas las funciones corporales y la absorción de nutrientes.</li>
+                    <li>**Contexto personal:** Tu edad, nivel de actividad, salud actual y objetivos (ej. ganancia muscular, pérdida de peso, etc.) influirán en tus necesidades específicas. Un nutricionista holístico puede guiarte.</li>
+                </ul>
+                <p>¡Felicidades por completar este tutorial! Esperamos que esta información te sirva para nutrirte de una manera más consciente e integral.</p>
+            </div>
+            <div class="notes-section">
+                <div class="notes-header">
+                    <span>📝</span>
+                    <span>Mis notas personales</span>
+                </div>
+                <textarea class="notes-textarea" id="notes5" placeholder="¿Cómo aplicarás estos conocimientos en tu vida diaria? ¿Qué acciones tomarás?" aria-label="Notas personales para el paso 5"></textarea>
+                <div class="notes-count" id="notesCount5">0 caracteres</div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation">
+            <button id="prevBtn" class="nav-button nav-button-prev" disabled aria-label="Paso anterior">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <div class="step-dots" id="stepDots">
+                <!-- Dots will be generated here by JS -->
+            </div>
+            <button id="nextBtn" class="nav-button nav-button-next" aria-label="Paso siguiente">
+                Siguiente <i class="fas fa-arrow-right"></i>
+            </button>
+            <button id="completeBtn" class="nav-button completion-button" style="display: none;" aria-label="Completar tutorial">
+                Completar Tutorial 🎉
+            </button>
+        </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div class="summary-modal" id="summaryModal">
+        <div class="summary-content" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle">
+            <h2 id="summaryModalTitle" class="summary-header">¡Tutorial Completado!</h2>
+            <p style="text-align: center; color: var(--text-secondary);">Aquí tienes un resumen de tu progreso y notas.</p>
+            
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTimeStat">0:00</div>
+                    <div class="stat-label">Tiempo total de estudio</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedStepsStat">0/0</div>
+                    <div class="stat-label">Pasos completados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalNotesStat">0</div>
+                    <div class="stat-label">Notas guardadas</div>
+                </div>
+            </div>
+
+            <div class="summary-notes">
+                <h4>📝 Tus Notas Personales:</h4>
+                <div id="summaryNotesList">
+                    <!-- Notes will be loaded here -->
+                    <p style="color: var(--text-secondary); text-align: center;">No has tomado notas en este tutorial.</p>
+                </div>
+            </div>
+
+            <button class="export-notes-button" id="exportNotesBtn">Exportar Notas (.txt)</button>
+            <button class="close-summary" id="closeSummaryBtn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer"></div>
+
+    <script>
+        // --- DOM Elements ---
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        const focusToggle = document.getElementById('focusToggle');
+        const body = document.body;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const timeEstimateElement = document.getElementById('timeEstimate');
+        const stepTimeSpentElement = document.getElementById('stepTimeSpent');
+        const stepContainers = document.querySelectorAll('.step-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const completeBtn = document.getElementById('completeBtn');
+        const stepDotsContainer = document.getElementById('stepDots');
+        const summaryModal = document.getElementById('summaryModal');
+        const closeSummaryBtn = document.getElementById('closeSummaryBtn');
+        const exportNotesBtn = document.getElementById('exportNotesBtn');
+        const toastContainer = document.getElementById('toastContainer');
+
+        // --- Tutorial State Variables ---
+        let currentStep = 0;
+        const totalSteps = stepContainers.length;
+        // Estimated time for each step in minutes (from the HTML description)
+        const stepTimeEstimates = [3, 4, 4, 4, 5]; // Using upper bound for total estimate
+
+        // Default tutorial data structure
+        let tutorialData = {
+            currentStep: 0,
+            notes: {}, // Stores notes by textarea ID, e.g., { 'notes1': 'My notes...' }
+            stepTimes: {}, // Stores time spent on each step in seconds, e.g., { 'step1': 120 }
+            completedSteps: [], // Stores indices of completed steps
+            theme: 'light', // 'light' or 'dark'
+            focusMode: false,
+            totalTimeSpent: 0 // Total time spent across all steps
+        };
+
+        let stepInterval = null; // To hold the setInterval ID for the current step timer
+        let autoSaveInterval = null; // To hold the setInterval ID for auto-save
+
+        // --- Helper Functions ---
+
+        /**
+         * Formats seconds into MM:SS format.
+         * @param {number} totalSeconds
+         * @returns {string}
+         */
+        function formatTime(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        /**
+         * Shows a temporary toast notification.
+         * @param {string} message - The message to display.
+         * @param {string} type - 'success', 'info', or 'error'.
+         */
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.classList.add('toast', type);
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+
+            // Trigger reflow to ensure animation plays
+            void toast.offsetWidth; 
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // --- Persistence (LocalStorage) ---
+
+        /**
+         * Saves the current tutorial state to localStorage.
+         */
+        function saveState() {
+            // Update current step's time before saving
+            if (stepInterval && currentStep !== -1) { // Only if a step timer is active
+                const stepId = `step${currentStep + 1}`;
+                if (!tutorialData.stepTimes[stepId]) {
+                    tutorialData.stepTimes[stepId] = 0;
+                }
+                // Calculate time spent since last save or step start
+                const now = Math.floor(Date.now() / 1000);
+                const lastTick = tutorialData.lastTick || now;
+                const timeElapsed = now - lastTick;
+
+                tutorialData.stepTimes[stepId] += timeElapsed;
+                tutorialData.totalTimeSpent += timeElapsed;
+                tutorialData.lastTick = now; // Update last tick for next calculation
+            }
+
+            // Save notes from current textarea
+            const currentNotesId = `notes${currentStep + 1}`;
+            const currentNotesTextarea = document.getElementById(currentNotesId);
+            if (currentNotesTextarea) {
+                tutorialData.notes[currentNotesId] = currentNotesTextarea.value;
+            }
+            
+            localStorage.setItem('holisticMacronutrientsTutorial', JSON.stringify(tutorialData));
+            showToast('Progreso guardado automáticamente', 'success');
+        }
+
+        /**
+         * Loads the tutorial state from localStorage.
+         */
+        function loadState() {
+            const savedData = localStorage.getItem('holisticMacronutrientsTutorial');
+            if (savedData) {
+                try {
+                    const parsedData = JSON.parse(savedData);
+                    // Merge with default data to ensure all keys exist
+                    tutorialData = { ...tutorialData, ...parsedData };
+                    
+                    // Ensure stepTimes are numbers
+                    for (const key in tutorialData.stepTimes) {
+                        if (typeof tutorialData.stepTimes[key] !== 'number') {
+                            tutorialData.stepTimes[key] = 0;
+                        }
+                    }
+
+                    // Reset lastTick to current time on load to prevent huge jumps in time if tab was closed long
+                    tutorialData.lastTick = Math.floor(Date.now() / 1000); 
+
+                    // Apply theme preference
+                    applyTheme(tutorialData.theme);
+                    // Apply focus mode preference
+                    if (tutorialData.focusMode) {
+                        body.classList.add('focus-mode');
+                        focusToggle.querySelector('span:last-child').textContent = 'Modo Normal';
+                    }
+
+                    // Restore notes to textareas
+                    Object.keys(tutorialData.notes).forEach(notesId => {
+                        const textarea = document.getElementById(notesId);
+                        if (textarea) {
+                            textarea.value = tutorialData.notes[notesId];
+                            updateNotesCount(textarea); // Update character count for loaded notes
+                        }
+                    });
+
+                    // Restore current step and update UI
+                    currentStep = tutorialData.currentStep;
+                    showStep(currentStep, false); // Don't save state immediately on load
+                    showToast('Progreso cargado', 'info');
+
+                } catch (e) {
+                    console.error("Error loading state from localStorage:", e);
+                    showToast('Error cargando progreso. Iniciando desde cero.', 'error');
+                    // Reset to default if data is corrupted
+                    localStorage.removeItem('holisticMacronutrientsTutorial');
+                    // Ensure we still load step 0
+                    showStep(currentStep, false);
+                }
+            } else {
+                showStep(currentStep, false); // Show first step if no saved data
+            }
+        }
+
+        // --- Theme Toggle ---
+
+        /**
+         * Applies the selected theme.
+         * @param {string} theme - 'light' or 'dark'.
+         */
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            themeText.textContent = theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro';
+            tutorialData.theme = theme; // Update state
+            localStorage.setItem('theme', theme); // Store theme preference separately for quick load
+        }
+
+        /**
+         * Toggles between dark and light themes.
+         */
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            showToast(`Modo ${newTheme === 'dark' ? 'Oscuro' : 'Claro'} activado`, 'info');
+        }
+
+        // --- Focus Mode Toggle ---
+
+        /**
+         * Toggles focus mode.
+         */
+        function toggleFocusMode() {
+            body.classList.toggle('focus-mode');
+            const isInFocusMode = body.classList.contains('focus-mode');
+            focusToggle.querySelector('span:last-child').textContent = isInFocusMode ? 'Modo Normal' : 'Modo Enfoque';
+            tutorialData.focusMode = isInFocusMode;
+            localStorage.setItem('focusMode', isInFocusMode); // Store focus mode preference
+            showToast(`Modo Enfoque ${isInFocusMode ? 'activado' : 'desactivado'}`, 'info');
+        }
+
+
+        // --- Progress Bar & Navigation ---
+
+        /**
+         * Updates the progress bar width and text.
+         */
+        function updateProgressBar() {
+            const progress = ((currentStep + 1) / totalSteps) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `Paso ${currentStep + 1} de ${totalSteps}`;
+        }
+
+        /**
+         * Updates the state of navigation buttons (Prev, Next, Complete).
+         */
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentStep === 0;
+            nextBtn.disabled = currentStep === totalSteps - 1;
+
+            if (currentStep === totalSteps - 1) {
+                nextBtn.style.display = 'none';
+                completeBtn.style.display = 'flex'; // Show completion button
+            } else {
+                nextBtn.style.display = 'flex';
+                completeBtn.style.display = 'none';
+            }
+        }
+
+        /**
+         * Updates the visual state of step dots.
+         */
+        function updateDots() {
+            stepDotsContainer.innerHTML = ''; // Clear existing dots
+            for (let i = 0; i < totalSteps; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.setAttribute('data-step', i);
+                dot.setAttribute('role', 'button');
+                dot.setAttribute('aria-label', `Ir al paso ${i + 1}`);
+                dot.setAttribute('tabindex', '0');
+
+                if (i === currentStep) {
+                    dot.classList.add('active');
+                }
+                if (tutorialData.completedSteps.includes(i)) {
+                    dot.classList.add('completed');
+                }
+                if (tutorialData.notes[`notes${i + 1}`] && tutorialData.notes[`notes${i + 1}`].trim().length > 0) {
+                    dot.classList.add('has-notes');
+                }
+
+                dot.addEventListener('click', () => showStep(i));
+                dot.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showStep(i);
+                    }
+                });
+                stepDotsContainer.appendChild(dot);
+            }
+        }
+
+        /**
+         * Shows the specified step and updates UI.
+         * @param {number} stepIndex - The index of the step to show (0-indexed).
+         * @param {boolean} shouldSave - Whether to trigger an immediate save after changing step.
+         */
+        function showStep(stepIndex, shouldSave = true) {
+            if (stepIndex < 0 || stepIndex >= totalSteps) return;
+
+            // Mark previous step as completed if moving forward
+            if (stepIndex > currentStep && !tutorialData.completedSteps.includes(currentStep)) {
+                tutorialData.completedSteps.push(currentStep);
+                tutorialData.completedSteps = [...new Set(tutorialData.completedSteps)].sort((a,b)=>a-b); // Ensure unique and sorted
+            }
+
+            // Stop previous step's timer
+            if (stepInterval) {
+                clearInterval(stepInterval);
+                const prevStepId = `step${currentStep + 1}`;
+                // Save accumulated time for the previous step right before switching
+                if (!tutorialData.stepTimes[prevStepId]) {
+                    tutorialData.stepTimes[prevStepId] = 0;
+                }
+                const now = Math.floor(Date.now() / 1000);
+                const lastTick = tutorialData.lastTick || now;
+                const timeElapsed = now - lastTick;
+
+                tutorialData.stepTimes[prevStepId] += timeElapsed;
+                tutorialData.totalTimeSpent += timeElapsed;
+                tutorialData.lastTick = now;
+            }
+
+            stepContainers[currentStep].classList.remove('active'); // Hide current step
+            currentStep = stepIndex; // Update current step index
+            stepContainers[currentStep].classList.add('active'); // Show new step
+
+            // Start timer for the new step
+            startStepTimer(currentStep);
+
+            // Load notes for the new step
+            const currentNotesId = `notes${currentStep + 1}`;
+            const currentNotesTextarea = document.getElementById(currentNotesId);
+            if (currentNotesTextarea) {
+                currentNotesTextarea.value = tutorialData.notes[currentNotesId] || '';
+                updateNotesCount(currentNotesTextarea);
+            }
+
+            updateProgressBar();
+            updateNavigationButtons();
+            updateDots(); // Re-render dots to reflect new active/completed state
+            updateTimeEstimate();
+
+            if (shouldSave) {
+                saveState(); // Save state after changing step
+            }
+        }
+
+        /**
+         * Navigates to the previous step.
+         */
+        function prevStep() {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        /**
+         * Navigates to the next step.
+         */
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        // --- Timing System ---
+
+        /**
+         * Starts the timer for the current step.
+         * Stores `lastTick` in tutorialData to resume timing accurately.
+         */
+        function startStepTimer(stepIndex) {
+            const stepId = `step${stepIndex + 1}`;
+            if (!tutorialData.stepTimes[stepId]) {
+                tutorialData.stepTimes[stepId] = 0; // Initialize if not set
+            }
+            tutorialData.lastTick = Math.floor(Date.now() / 1000); // Set last tick for current step
+
+            // Clear any existing interval to prevent multiple timers
+            if (stepInterval) clearInterval(stepInterval);
+
+            // Update every second
+            stepInterval = setInterval(() => {
+                const now = Math.floor(Date.now() / 1000);
+                const timeElapsed = now - tutorialData.lastTick;
+
+                // Accumulate time for the current step and total time
+                tutorialData.stepTimes[stepId] += timeElapsed;
+                tutorialData.totalTimeSpent += timeElapsed;
+                tutorialData.lastTick = now; // Update last tick for next second
+
+                updateStepTimeDisplay(stepIndex, tutorialData.stepTimes[stepId]);
+                updateTimeEstimate(); // Re-calculate total estimate with updated time
+            }, 1000);
+        }
+
+        /**
+         * Updates the display for the time spent on the current step.
+         * @param {number} stepIndex - The current step index.
+         * @param {number} timeInSeconds - The time spent on the current step.
+         */
+        function updateStepTimeDisplay(stepIndex, timeInSeconds) {
+            stepTimeSpentElement.textContent = formatTime(timeInSeconds);
+        }
+
+        /**
+         * Calculates and displays the estimated remaining time for the tutorial.
+         */
+        function updateTimeEstimate() {
+            let totalEstimatedTime = 0;
+            // Sum up estimated times for all steps
+            for (let i = 0; i < totalSteps; i++) {
+                totalEstimatedTime += stepTimeEstimates[i];
+            }
+            const totalEstimatedSeconds = totalEstimatedTime * 60; // Convert to seconds
+
+            // Calculate actual time spent
+            let actualTimeSpent = 0;
+            for (let i = 0; i < totalSteps; i++) {
+                const stepId = `step${i + 1}`;
+                actualTimeSpent += tutorialData.stepTimes[stepId] || 0;
+            }
+
+            const remainingSeconds = Math.max(0, totalEstimatedSeconds - actualTimeSpent);
+            timeEstimateElement.textContent = `⏱️ ${formatTime(remainingSeconds)} restantes`;
+        }
+
+        // --- Personal Notes ---
+
+        /**
+         * Updates the character count for a given textarea.
+         * @param {HTMLTextAreaElement} textarea - The textarea element.
+         */
+        function updateNotesCount(textarea) {
+            const countElement = textarea.nextElementSibling; // Assuming count is directly after textarea
+            if (countElement && countElement.classList.contains('notes-count')) {
+                const charCount = textarea.value.length;
+                countElement.textContent = `${charCount} caracteres`;
+            }
+        }
+
+        /**
+         * Handles input events on notes textareas to save data and update count.
+         * @param {Event} event - The input event.
+         */
+        function handleNotesInput(event) {
+            const textarea = event.target;
+            const notesId = textarea.id;
+            tutorialData.notes[notesId] = textarea.value;
+            updateNotesCount(textarea);
+            updateDots(); // Update dots to show if notes exist
+            // Auto-save will pick this up soon, no need for immediate saveState() here.
+        }
+
+        // Add event listeners to all notes textareas
+        document.querySelectorAll('.notes-textarea').forEach(textarea => {
+            textarea.addEventListener('input', handleNotesInput);
+            updateNotesCount(textarea); // Initial count update
+        });
+
+        // --- Summary Modal ---
+
+        /**
+         * Shows the summary modal with tutorial statistics.
+         */
+        function showSummaryModal() {
+            // Ensure all steps are marked as completed for accurate stats
+            for (let i = 0; i < totalSteps; i++) {
+                if (!tutorialData.completedSteps.includes(i)) {
+                    tutorialData.completedSteps.push(i);
+                }
+            }
+            tutorialData.completedSteps = [...new Set(tutorialData.completedSteps)].sort((a,b)=>a-b); // Final clean up
+
+            // Calculate total time spent
+            let totalTime = 0;
+            Object.values(tutorialData.stepTimes).forEach(time => {
+                totalTime += time;
+            });
+            tutorialData.totalTimeSpent = totalTime; // Ensure consistency
+
+            // Populate stats
+            document.getElementById('totalTimeStat').textContent = formatTime(tutorialData.totalTimeSpent);
+            document.getElementById('completedStepsStat').textContent = `${tutorialData.completedSteps.length}/${totalSteps}`;
+            
+            let totalNotesCharCount = 0;
+            Object.values(tutorialData.notes).forEach(note => {
+                totalNotesCharCount += note.trim().length;
+            });
+            document.getElementById('totalNotesStat').textContent = totalNotesCharCount;
+
+            // Populate notes list
+            const summaryNotesList = document.getElementById('summaryNotesList');
+            summaryNotesList.innerHTML = ''; // Clear previous notes
+
+            let hasNotes = false;
+            for (let i = 0; i < totalSteps; i++) {
+                const notesId = `notes${i + 1}`;
+                const notesContent = tutorialData.notes[notesId];
+                if (notesContent && notesContent.trim().length > 0) {
+                    hasNotes = true;
+                    const noteItem = document.createElement('div');
+                    noteItem.classList.add('note-item');
+                    noteItem.innerHTML = `<p class="note-step">Paso ${i + 1}:</p><p>${notesContent.trim()}</p>`;
+                    summaryNotesList.appendChild(noteItem);
+                }
+            }
+
+            if (!hasNotes) {
+                summaryNotesList.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No has tomado notas en este tutorial.</p>';
+            }
+
+            summaryModal.style.display = 'flex'; // Show modal
+            // Trigger reflow to apply transition
+            void summaryModal.offsetWidth; 
+            summaryModal.classList.add('show');
+            // Stop current step timer when modal is open
+            if (stepInterval) clearInterval(stepInterval);
+            // Stop auto-save while modal is open to avoid conflicts
+            if (autoSaveInterval) clearInterval(autoSaveInterval);
+            showToast('¡Tutorial finalizado!', 'success');
+        }
+
+        /**
+         * Hides the summary modal.
+         */
+        function closeSummaryModal() {
+            summaryModal.classList.remove('show');
+            summaryModal.addEventListener('transitionend', () => {
+                summaryModal.style.display = 'none';
+            }, { once: true });
+            // Re-start auto-save when modal is closed
+            autoSaveInterval = setInterval(saveState, 5000); // Auto-save every 5 seconds
+        }
+
+        /**
+         * Exports all personal notes to a text file.
+         */
+        function exportNotes() {
+            let notesToExport = "Mis Notas del Tutorial de Macronutrientes Holísticos\n\n";
+            let anyNotes = false;
+
+            for (let i = 0; i < totalSteps; i++) {
+                const notesId = `notes${i + 1}`;
+                const notesContent = tutorialData.notes[notesId];
+                if (notesContent && notesContent.trim().length > 0) {
+                    anyNotes = true;
+                    notesToExport += `--- Paso ${i + 1} ---\n`;
+                    notesToExport += notesContent.trim() + "\n\n";
+                }
+            }
+
+            if (!anyNotes) {
+                notesToExport += "No has tomado ninguna nota en este tutorial.\n";
+            }
+
+            const blob = new Blob([notesToExport], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'notas_tutorial_macronutrientes.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+            showToast('Notas exportadas correctamente', 'success');
+        }
+
+        // --- Initialization ---
+
+        /**
+         * Initializes the tutorial on page load.
+         */
+        function initializeTutorial() {
+            // Set initial theme based on system preference or saved preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+
+            // Load focus mode preference
+            const savedFocusMode = localStorage.getItem('focusMode');
+            if (savedFocusMode === 'true') {
+                body.classList.add('focus-mode');
+                focusToggle.querySelector('span:last-child').textContent = 'Modo Normal';
+            }
+
+            loadState(); // Load saved progress and data
+
+            // Start auto-save
+            autoSaveInterval = setInterval(saveState, 5000); // Auto-save every 5 seconds
+        }
+
+        // --- Event Listeners ---
+        themeToggle.addEventListener('click', toggleTheme);
+        focusToggle.addEventListener('click', toggleFocusMode);
+        prevBtn.addEventListener('click', prevStep);
+        nextBtn.addEventListener('click', nextStep);
+        completeBtn.addEventListener('click', showSummaryModal);
+        closeSummaryBtn.addEventListener('click', closeSummaryModal);
+        exportNotesBtn.addEventListener('click', exportNotes);
+
+        // Save state before unloading the page
+        window.addEventListener('beforeunload', () => {
+            saveState();
+            if (stepInterval) clearInterval(stepInterval); // Clear current step timer
+            if (autoSaveInterval) clearInterval(autoSaveInterval); // Clear auto-save
+        });
+
+        // Initialize tutorial when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeTutorial);
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Formulario de Contacto y Tienda de Productos a Granel</title>
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+ <style>
+  table {
+   width: 100%;
+   border-collapse: collapse;
+  }
+
+  th,
+  td {
+   border: 1px solid #ddd;
+   padding: 8px;
+  }
+
+  th {
+   background-color: #f2f2f2;
+  }
+ </style>
+</head>
+
+<body class="bg-gray-100">
+ <main class="w-full max-w-4xl mx-auto p-6">
+  <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+   <div class="p-4 sm:p-7">
+    <div class="text-center">
+     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Formulario de contacto y Productos a Granel</h1>
+    </div>
+
+    <div class="mt-5">
+     <form id="contactForm" class="gform pure-form pure-form-stacked" method="POST" data-email="luisemojix@gmail.com" action="https://script.google.com/macros/s/AKfycbzRBI2hNAeACw3AoNXDNBeipjFkvm4xGnga7kBAAiUdJKQeN5kIVu8-KgV4dCvJaPwtyQ/exec">
+      <div class="form-elements">
+       <input type="hidden" id="EmailTitle" name="EmailTitle" value="Probando desde Codepen">
+       <input type="hidden" id="Origen" name="Origen" value="https://codepen.io/Android07/pen/LYomwBZ">
+       <div class="mb-4">
+        <label for="nombre" class="block text-sm mb-2 dark:text-white">Nombre:</label>
+        <input type="text" id="nombre" name="Nombre" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="whatsapp" class="block text-sm mb-2 dark:text-white">WhatsApp:</label>
+        <input type="tel" id="whatsapp" name="WhatsApp" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+       <div class="mb-4">
+        <label for="email" class="block text-sm mb-2 dark:text-white">Email:</label>
+        <input type="email" id="email" name="Email" required class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+       </div>
+      </div>
+
+      <div class="mt-8">
+       <h2 class="text-xl font-bold mb-4 dark:text-white">Productos a Granel para la Limpieza</h2>
+       <table id="productTable" class="mb-4">
+        <thead>
+         <tr>
+          <th>Seleccionar</th>
+          <th>Producto</th>
+          <th>Precio Público de 1 a 9 litros (por litro)</th>
+          <th>Precio Especial después de 10 litros (por litro)</th>
+          <th>Cantidad (litros)</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Más Color</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Zote c/Bicarbonato</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+         <tr>
+          <td><input type="checkbox" class="product-checkbox"></td>
+          <td>Jabón Líquido para Ropa Ariel</td>
+          <td data-public="19.00" data-special="17.00">$19.00</td>
+          <td>$17.00</td>
+          <td><input type="number" class="quantity-input" min="0" disabled></td>
+         </tr>
+        </tbody>
+       </table>
+       <button type="button" onclick="calculateTotal()" class="mb-4 py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Calcular Total</button>
+       <p class="mb-4 dark:text-white">Total: $<span id="totalPrice">0.00</span></p>
+      </div>
+
+      <div class="mb-6">
+       <label class="flex items-center space-x-2">
+        <input type="checkbox" id="Terminos_y_condiciones" name="Terminos_y_condiciones" required class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+        <span class="text-sm text-gray-600 dark:text-gray-400">Aceptar términos y condiciones</span>
+       </label>
+      </div>
+
+      <div class="flex justify-center mb-4">
+       <button type="button" onclick="showPreview()" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Previsualizar</button>
+      </div>
+
+      <div id="preview" class="hidden bg-gray-200 p-4 rounded-lg mb-4">
+       <h3 class="text-lg font-bold mb-2">Previsualización del Pedido</h3>
+       <div id="previewContent"></div>
+       <button type="button" onclick="hidePreview()" class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Editar</button>
+       <button type="submit" id="js-comm_btn" class="w-full py-3 px-4 mt-2 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Confirmar y Enviar</button>
+      </div>
+
+      <div class="thankyou_message hidden">
+       <h4 class="block text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">¡Gracias por tu mensaje!</h4>
+      </div>
+     </form>
+     <div id="wait-message" class="hidden mt-2 text-gray-600 text-center">Espere un momento, por favor...</div>
+    </div>
+   </div>
+  </div>
+ </main>
+
+ <script>
+  function validEmail(email) {
+   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+   return re.test(email);
+  }
+
+  function handleFormSubmit(event) {
+   event.preventDefault();
+   var form = event.target;
+   var data = new FormData(form);
+   if (document.getElementById('whatsapp').value.length < 10) {
+    alert("Por favor, ingrese un número de WhatsApp válido.");
+    return;
+   }
+   if (!validEmail(document.getElementById('email').value)) {
+    alert("Por favor, ingrese un correo electrónico válido.");
+    return;
+   }
+   document.getElementById('wait-message').classList.remove('hidden');
+   fetch(form.action, {
+    method: 'POST',
+    body: data
+   }).then(response => response.json()).then(() => {
+    document.querySelector('.thankyou_message').classList.remove('hidden');
+    document.getElementById('contactForm').classList.add('hidden');
+    document.getElementById('wait-message').classList.add('hidden');
+   });
+  }
+  document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
+  document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+   checkbox.addEventListener('change', function() {
+    const quantityInput = this.closest('tr').querySelector('.quantity-input');
+    quantityInput.disabled = !this.checked;
+    if (!this.checked) {
+     quantityInput.value = 0;
+    }
+   });
+  });
+
+  function calculateTotal() {
+   let total = 0;
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const publicPrice = parseFloat(row.querySelector('[data-public]').dataset.public);
+    const specialPrice = parseFloat(row.querySelector('[data-special]').dataset.special);
+    const quantity = parseFloat(row.querySelector('.quantity-input').value);
+    if (quantity >= 10) {
+     total += specialPrice * quantity;
+    } else {
+     total += publicPrice * quantity;
+    }
+   });
+   document.getElementById('totalPrice').textContent = total.toFixed(2);
+  }
+
+  function showPreview() {
+   const nombre = document.getElementById('nombre').value;
+   const whatsapp = document.getElementById('whatsapp').value;
+   const email = document.getElementById('email').value;
+   const total = document.getElementById('totalPrice').textContent;
+   let productDetails = '';
+   document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+    const row = checkbox.closest('tr');
+    const productName = row.cells[1].textContent;
+    const quantity = row.querySelector('.quantity-input').value;
+    productDetails += `<p>${productName}: ${quantity} litros</p>`;
+   });
+   const previewContent = `
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Productos:</strong></p>
+                ${productDetails}
+                <p><strong>Total:</strong> $${total}</p>
+            `;
+   document.getElementById('previewContent').innerHTML = previewContent;
+   document.getElementById('preview').classList.remove('hidden');
+  }
+
+  function hidePreview() {
+   document.getElementById('preview').classList.add('hidden');
+  }
+ </script>
+</body>
+
+</html>

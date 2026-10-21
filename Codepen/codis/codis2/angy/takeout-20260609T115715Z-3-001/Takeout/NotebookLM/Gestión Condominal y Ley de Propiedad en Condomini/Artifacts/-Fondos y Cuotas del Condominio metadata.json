@@ -1,0 +1,19 @@
+{
+  "title": "-Fondos y Cuotas del Condominio",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "\n\n\n#### **INFOGRAFÍA 3: Finanzas Condominales: Cuotas y Fondos**\n\nEsta infografía debe centrarse en la gestión económica.\n\n*   **Título sugerido:** La Economía del Condominio: Fondos y Cuotas.\n*   **Contenido Clave:**\n    *   **Fondo de Administración y Mantenimiento:** Destinado a cubrir el gasto corriente, la operación y los servicios no individualizados.\n    *   **Fondo de Reserva:** Destinado a cubrir gastos de adquisición de herramientas, materiales, maquinaria, obras y mantenimiento.\n    *   **Cálculo de Cuotas:** Explicar que las cuotas se establecen generalmente en proporción al porcentaje de indiviso que representa cada UPP. Sin embargo, en condominios de interés social y/o popular, las cuotas serán a partes iguales.\n    *   **Morosidad:** Indicar que las cuotas no están sujetas a compensación y que la Asamblea fija el interés moratorio (el interés legal es del nueve por ciento anual).\n    *   **Gastos Extraordinarios:** Definición y cuándo proceden (cuando los fondos de administración o reserva no son suficientes).\n    *   **Inversiones:** Mencionar que los fondos pueden invertirse en valores de inversión a la vista de mínimo riesgo, con autorización del Comité de Vigilancia.",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_PORTRAIT",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD"
+    },
+    "title": "Fondos y Cuotas del Condominio"
+  }
+}

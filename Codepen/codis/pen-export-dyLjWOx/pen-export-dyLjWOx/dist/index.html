@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <style>
+ /* Variables */
+ --transition-timing: 0.2s ease;
+ --white: #ffffff;
+ --cultured: #f5f5f5;
+ --border-radius-md: 10px;
+ --border-radius-sm: 5px;
+ --salmon-pink: #ff91a4;
+ --eerie-black: #1c1c1c;
+ --sonic-silver: #757575;
+ --weight-500: 500;
+ --weight-600: 600;
+ --fs-1: 1.875rem;
+ --fs-2: 1rem;
+ --fs-7: 1rem;
+ --fs-11: 0.75rem;
+
+ /* Reset */
+ *,
+ *::before,
+ *::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+ }
+
+ a {
+  text-decoration: none;
+ }
+
+ img,
+ a {
+  display: block;
+ }
+
+ html {
+  font-family: "corbel";
+  -ms-scroll-chaining: none;
+  overscroll-behavior: contain;
+ }
+
+ body {
+  background: var(--white);
+ }
+
+ /* Scrollbar Style */
+ body::-webkit-scrollbar {
+  width: 15px;
+ }
+
+ body::-webkit-scrollbar-track {
+  background: var(--white);
+  border-left: 1px solid var(--cultured);
+ }
+
+ body::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 80%);
+  border: 3px solid var(--white);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+ }
+
+ body::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 70%);
+ }
+
+ /* Reused Style */
+ .container {
+  padding: 0 15px;
+ }
+
+ .has-scrollbar {
+  padding-bottom: 5px;
+ }
+
+ .has-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+ }
+
+ .has-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 3px solid var(--white);
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+ }
+
+ .has-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 90%);
+ }
+
+ .has-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 80%);
+ }
+
+ /* Main */
+ .banner {
+  margin: 30px 0;
+ }
+
+ .slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--border-radius-md);
+  overflow: auto hidden;
+  scroll-snap-type: inline mandatory;
+  overscroll-behavior-inline: contain;
+ }
+
+ .slider-item {
+  position: relative;
+  min-width: 100%;
+  max-height: 450px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  scroll-snap-align: start;
+ }
+
+ .slider-item .banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+ }
+
+ .banner-content {
+  background: hsla(0, 0%, 100%, 0.8);
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  right: 25px;
+  padding: 20px 25px;
+  border-radius: var(--border-radius-md);
+ }
+
+ .banner-subtitle {
+  color: var(--salmon-pink);
+  font-size: var(--fs-7);
+  font-weight: var(--weight-500);
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+ }
+
+ .banner-title {
+  color: var(--eerie-black);
+  font-size: var(--fs-1);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 10px;
+ }
+
+ .banner-text {
+  display: none;
+ }
+
+ .banner-btn {
+  background: var(--salmon-pink);
+  color: var(--white);
+  width: max-content;
+  font-size: var(--fs-11);
+  font-weight: var(--weight-600);
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-timing);
+ }
+
+ .banner-btn:hover {
+  background: var(--eerie-black);
+ }
+
+ /* Responsive Styles */
+ @media (min-width: 480px) {
+  :root {
+   --fs-1: 1.875rem;
+  }
+
+  .slider-item {
+   aspect-ratio: 5 / 3;
+  }
+
+  .banner-content {
+   top: 50%;
+   right: auto;
+   bottom: auto;
+   transform: translateY(-50%);
+   max-width: 320px;
+  }
+
+  .banner-subtitle {
+   --fs-7: 1rem;
+  }
+
+  .banner-text {
+   display: block;
+   color: var(--sonic-silver);
+   font-size: var(--fs-7);
+   font-weight: var(--weight-500);
+   margin-bottom: 10px;
+  }
+
+  .banner-text b {
+   font-size: var(--fs-2);
+  }
+
+  .banner-btn {
+   padding: 7px 20px;
+  }
+ }
+
+ @media (min-width: 570px) {
+  .slider-item {
+   aspect-ratio: 4 / 2;
+  }
+
+  .banner-content {
+   background: none;
+  }
+ }
+
+ @media (min-width: 768px) {
+  :root {
+   --fs-1: 2.375rem;
+  }
+
+  html {
+   font-size: 17px;
+  }
+
+  .container {
+   max-width: 750px;
+   margin: auto;
+  }
+
+  .slider-item {
+   aspect-ratio: auto;
+   height: 350px;
+  }
+
+  .banner-content {
+   max-width: 380px;
+  }
+
+  .banner-subtitle {
+   --fs-7: 1.25rem;
+  }
+
+  .banner-text {
+   --fs-7: 1.125rem;
+  }
+
+  .banner-text b {
+   --fs-2: 1.875rem;
+  }
+
+  .banner-btn {
+   --fs-11: 0.75rem;
+  }
+ }
+
+ @media (min-width: 1024px) {
+  :root {
+   --fs-1: 2.625rem;
+   --fs-2: 1.125rem;
+  }
+
+  .container {
+   max-width: 980px;
+  }
+
+  .slider-item {
+   height: 380px;
+  }
+
+  .banner-content {
+   left: 75px;
+   max-width: 400px;
+  }
+
+  .banner-subtitle {
+   --fs-7: 1.625rem;
+  }
+
+  .banner-text {
+   --fs-7: 1.375rem;
+  }
+
+  .banner-btn {
+   --fs-11: 0.875rem;
+  }
+ }
+
+ @media (min-width: 1200px) {
+  .container {
+   max-width: 1200px;
+  }
+
+  .slider-item:last-child .banner-img {
+   object-position: top;
+  }
+ }
+
+ @media (min-width: 1400px) {
+  html {
+   font-size: 18px;
+  }
+
+  .container {
+   max-width: 1350px;
+  }
+
+  .slider-item {
+   height: 450px;
+  }
+
+  .banner-content {
+   left: 110px;
+   max-width: 460px;
+  }
+ }
+
+ /* Additional Link Styles */
+ a {
+  background-color: transparent;
+ }
+
+ a:active,
+ a:hover {
+  outline-width: 0;
+ }
+
+ a:link,
+ a:visited {
+  color: inherit;
+ }
+
+ a:hover,
+ a:active {
+  text-decoration: underline;
+ }
+</style>
+<div class="banner">
+ <div class="container">
+  <div class="slider-container has-scrollbar">
+
+   <!-- Banner 1 -->
+   <div class="slider-item containerimg ">
+    <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/banner-1.jpg" alt="REBAJAS DE ÚLTIMA MODA PARA MUJER." class="banner-img containerimg">
+    <div class="overlayimg">
+     <img src="https://www.w3schools.com/howto/pineapple.jpg" alt="Avatar" class="imageimg" style="opacity: 0;">
+    </div>
+    <div class="banner-content">
+     <p class="banner-subtitle">Artículo De Tendencia</p>
+     <h2 class="banner-title">REBAJAS DE ÚLTIMA MODA PARA MUJER.</h2>
+     <p class="banner-text">desde &dollar; <b>100</b>.00</p>
+     <a href="#" class="banner-btn">Ver rebajas</a>
+    </div>
+   </div>
+    
+  </body>
+  
+</html>

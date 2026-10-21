@@ -1,0 +1,113 @@
+*
+  margin 0
+  padding 0
+  box-sizing border-box
+:root
+  font-family: 'Montserrat', sans-serif;
+  font-size 18px
+  // -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+$red = #FF473A
+
+body
+  background #3c4858
+  display flex
+  height 100vh
+
+#app
+  margin auto
+  padding .7em 1em 1.4em
+  width 375px
+  background #FFF
+.flex
+  display flex
+.x_sb
+  justify-content space-between
+.y_center
+  align-items center
+
+.red
+  color $red
+.fs
+  &_24
+    font-size 24px
+  &_12
+    font-size 12px 
+  &_10
+    font-size 10px 
+.groupItem
+  height 3em
+  align-items flex-start
+.subTitle
+  font-size 80%
+  color #CCC
+
+.input_num
+  width 1.2em
+  height 1.2em
+  border 1px solid #CCC
+  cursor pointer
+  &:hover:not('.disabled')
+    border-color $red
+  &Result
+    width 2em
+    text-align center
+.Minus
+  background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='11'><line x1='0' y1='5' x2='10' y2='5' stroke='grey'></line></svg>") center no-repeat
+.Plus
+  background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='10'><g stroke='grey'><line x1='0' y1='5' x2='10' y2='5'></line><line x1='5' y1='0' x2='5' y2='10'></line></g></svg>") center no-repeat
+
+.disabled
+  cursor not-allowed
+  background #EEE
+
+// HERE_tabs
+//================
+.tab-enter-active
+  transition all .4s ease
+.tab-enter
+  opacity 0
+  transform translateY(10px)
+.tab-enter-to
+  opacity 1
+.tab-leave-active
+  display none
+.PERIOD
+  text-align center
+  margin-bottom 1em
+.tabLabels
+  display flex
+  justify-content space-between
+  cursor pointer
+  margin 1em 0 .5em
+  &_Item
+    flex 1
+    border-bottom 2px solid #CCC
+    text-align center
+    padding-bottom .5em
+    position relative
+    &.curr
+      &:before
+        content ''
+        position absolute
+        width 100%
+        left 0
+        bottom -3px
+        border-bottom 4px solid  $red
+
+//===============
+.HERE_NavBar
+  margin-bottom 1em
+.Total
+  border-top: 2px solid $red;
+  margin 1.4em 0
+  padding .5em
+.btn
+  cursor pointer
+  display inline-block
+  font-size: 12px;
+  padding 15px 2em
+  color: #FFF
+  background: $red;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+

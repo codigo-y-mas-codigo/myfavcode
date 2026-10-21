@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sección de Confianza y Certificaciones</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600&family=Manrope:wght@400;500;800&display=swap" rel="stylesheet">
+ <style>
+  /* --- Reset y Estilos Base --- */
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+  }
+
+  body {
+   font-family: 'Epilogue', sans-serif;
+   background-color: #010101;
+   color: #fff;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+  }
+
+  img {
+   max-width: 100%;
+   height: auto;
+   display: block;
+  }
+
+  a {
+   text-decoration: none;
+   color: inherit;
+  }
+
+  /* --- Contenedor Principal --- */
+  .container {
+   width: 100%;
+   max-width: 1486px;
+   margin-left: auto;
+   margin-right: auto;
+   padding-left: 24px;
+   padding-right: 24px;
+  }
+
+  /* --- Sección "Trusted" --- */
+  .trusted {
+   padding: 80px 0 120px;
+   background-color: #010101;
+  }
+
+  /* --- Lista de tarjetas (Security, Compliance, Privacy) --- */
+  .trusted__list {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 24px;
+   margin-bottom: 80px;
+  }
+
+  .trusted__list__item {
+   position: relative;
+   padding: 130px 45px 70px;
+   border-radius: 16px;
+   border: 1px solid #55555f;
+   background-color: #010101;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   z-index: 2;
+   overflow: hidden;
+   /* Asegura que la imagen de fondo no se salga */
+  }
+
+  .trusted__list__bg {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center;
+   z-index: -1;
+   border-radius: 16px;
+  }
+
+  /* Ocultamos las imágenes específicas de móvil/desktop y usamos una para ambos para simplificar */
+  .for-mobile {
+   display: none;
+  }
+
+  .trusted__list__item h2 {
+   color: #010101 !important;
+   font-size: 18px !important;
+   font-weight: 600 !important;
+   line-height: 24px !important;
+   display: inline-block !important;
+   padding: 4px 8px !important;
+   border-radius: 8px;
+   background-color: #e1fadc;
+   margin: 0 !important;
+  }
+
+  .trusted__list__item p {
+   font-family: 'Manrope', sans-serif;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 32px;
+   color: #fff;
+   margin: 16px 0 32px;
+  }
+
+  /* --- Título central --- */
+  .trusted>h2 {
+   position: relative;
+   font-size: 48px;
+   font-weight: 400;
+   line-height: 56px;
+   margin: 0 0 40px;
+   color: #fff;
+   text-align: center;
+  }
+
+  /* --- Estándares y Certificaciones --- */
+  .trusted__standards {
+   padding: 56px 64px;
+   border-radius: 16px;
+   background-color: #202020;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 20px;
+   margin: 48px 0 50px;
+  }
+
+  .trusted__standards__item img {
+   max-width: 80px;
+   filter: grayscale(100%);
+   transition: filter 0.3s ease-in-out;
+  }
+
+  .trusted__standards__item img:hover {
+   filter: none;
+  }
+
+  /* --- Grupo de Botones --- */
+  .btn-group {
+   text-align: center;
+  }
+
+  .btn {
+   border-radius: 50px;
+   border: 1px solid transparent;
+   text-decoration: none;
+   display: inline-block;
+   padding: 12px 20px;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 16px;
+   letter-spacing: .5px;
+   transition: all .3s ease-in-out;
+   cursor: pointer;
+  }
+
+  .btn-arrow {
+   padding: 12px 52px 12px 20px;
+   background-image: url("data:image/svg+xml,%3Csvg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.3536 8.35356C16.5488 8.15829 16.5488 7.84171 16.3536 7.64645L13.1716 4.46447C12.9763 4.26921 12.6597 4.26921 12.4645 4.46447C12.2692 4.65973 12.2692 4.97631 12.4645 5.17158L15.2929 8L12.4645 10.8284C12.2692 11.0237 12.2692 11.3403 12.4645 11.5355C12.6597 11.7308 12.9763 11.7308 13.1716 11.5355L16.3536 8.35356ZM-8.74228e-08 8.5L16 8.5L16 7.5L8.74228e-08 7.5L-8.74228e-08 8.5Z' fill='white'/%3E%3C/svg%3E%0A");
+   background-position: calc(100% - 20px) 50%;
+   background-repeat: no-repeat;
+  }
+
+  .trusted__list__item .btn {
+   margin-top: auto;
+  }
+
+  .btn-arrow:hover {
+   background-position: calc(100% - 16px) 50%;
+  }
+
+  .btn-primary {
+   color: #fff;
+   background-color: #003ae4;
+   border-color: #003ae4;
+  }
+
+  .btn-primary:hover {
+   background-color: #204ff3;
+   border-color: #204ff3;
+  }
+
+  /* --- Diseño Responsivo (Media Queries) --- */
+  /* Tablets y pantallas pequeñas */
+  @media (max-width: 1024px) {
+   .trusted__list {
+    grid-template-columns: 1fr;
+   }
+
+   .trusted__list__item {
+    padding: 72px 40px;
+    min-height: 360px;
+   }
+
+   .trusted>h2 {
+    font-size: 38px;
+    line-height: 46px;
+   }
+
+   .trusted__standards {
+    padding: 40px;
+   }
+  }
+
+  /* Móviles */
+  @media (max-width: 768px) {
+   .trusted {
+    padding: 40px 0;
+   }
+
+   .trusted__list__item {
+    padding: 56px 24px 50px;
+    min-height: auto;
+   }
+
+   .trusted__list__item p {
+    font-size: 16px;
+    line-height: 28px;
+   }
+
+   .trusted>h2 {
+    font-size: 28px;
+    line-height: 36px;
+    text-align: left;
+   }
+
+   .trusted__standards {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    gap: 30px;
+   }
+
+   .trusted__standards__item {
+    display: flex;
+    justify-content: center;
+   }
+
+   .trusted__standards__item img {
+    max-width: 64px;
+   }
+
+   .btn-group {
+    text-align: left;
+   }
+  }
+ </style>
+</head>
+
+<body>
+
+ <section class="trusted">
+  <div class="container">
+   <div class="trusted__list">
+    <!-- Tarjeta de Seguridad -->
+    <div class="trusted__list__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/Security_BG.svg" class="trusted__list__bg" alt="Fondo decorativo de seguridad">
+     <h2>Security</h2>
+     <p>We’re committed to keep our customers data secure and confidential. Frontegg is working under the highest security measures and most superior enterprise-grade security standards.</p>
+     <a href="#" class="btn btn-primary btn-arrow">Read more</a>
+    </div>
+    <!-- Tarjeta de Cumplimiento -->
+    <div class="trusted__list__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/Compliance_BG.svg" class="trusted__list__bg" alt="Fondo decorativo de cumplimiento">
+     <h2>Compliance</h2>
+     <p>Frontegg complies with world-class compliance and security standards, including SOC 2 Type II and ISO 27001.</p>
+     <a href="#" class="btn btn-primary btn-arrow">Read more</a>
+    </div>
+    <!-- Tarjeta de Privacidad -->
+    <div class="trusted__list__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/Privacy_BG.svg" class="trusted__list__bg" alt="Fondo decorativo de privacidad">
+     <h2>Privacy</h2>
+     <p>Frontegg is committed to protect individuals’ right to data protection and privacy.</p>
+     <a href="#" class="btn btn-primary btn-arrow">Read more</a>
+    </div>
+   </div>
+
+   <h2>Trusted and certified<br> by international standards</h2>
+
+   <div class="trusted__standards">
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/GDPR.png.webp" alt="Logo GDPR">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/CCPA-1.png.webp" alt="Logo CCPA">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/Fido.png.webp" alt="Logo Fido Alliance">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/AICPA.png.webp" alt="Logo AICPA SOC">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/uploads/2023/10/STAR.png.webp" alt="Logo CSA Star">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/webp-express/webp-images/uploads/2024/12/ISO-Badges-27001-blue-1.png.webp" alt="Logo ISO 27001">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/webp-express/webp-images/uploads/2024/12/ISO-Badges-27017-blue-1.png.webp" alt="Logo ISO 27017">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/webp-express/webp-images/uploads/2024/12/ISO-Badges-27018-blue-1.png.webp" alt="Logo ISO 27018">
+    </div>
+    <div class="trusted__standards__item">
+     <img src="https://frontegg.com/wp-content/webp-express/webp-images/uploads/2024/12/ISO-Badges-27701-blue-2.png.webp" alt="Logo ISO 27701">
+    </div>
+   </div>
+
+   <div class="btn-group">
+    <a href="#" class="btn btn-primary btn-arrow">Explore compliance page</a>
+   </div>
+  </div>
+ </section>
+
+</body>
+
+</html>

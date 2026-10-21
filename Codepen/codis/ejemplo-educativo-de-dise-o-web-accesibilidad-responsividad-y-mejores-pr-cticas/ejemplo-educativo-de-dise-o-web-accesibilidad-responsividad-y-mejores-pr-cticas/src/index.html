@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Ejemplo práctico de desarrollo web accesible y responsivo con teoría, ejemplos y mejores prácticas en HTML, CSS y JavaScript. Ideal para aprender y aplicar en proyectos modernos.">
+ <meta name="keywords" content="desarrollo web, accesibilidad web, diseño responsivo, HTML, CSS, JavaScript, mejores prácticas, ejemplos educativos, SEO, diseño moderno">
+ <meta name="author" content="Tu Nombre">
+ <title>Ejemplo Educativo de Diseño Web: Accesibilidad, Responsividad y Mejores Prácticas</title>
+ <style>
+  /* Variables CSS */
+  :root {
+   --primary-color: #333;
+   --secondary-color: #666;
+   --background-color: #fff;
+   --font-family: sans-serif;
+   --font-size-base: 16px;
+   --margin-small: 10px;
+   --margin-medium: 20px;
+   --margin-large: 30px;
+  }
+
+  /* Reset */
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+  }
+
+  /* General Styles */
+  body {
+   font-family: var(--font-family);
+   background-color: var(--background-color);
+   color: var(--primary-color);
+   text-align: center;
+  }
+
+  main {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: var(--margin-large);
+  }
+
+  section {
+   text-align: left;
+   margin-bottom: var(--margin-large);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+   color: var(--primary-color);
+   margin-bottom: var(--margin-medium);
+  }
+
+  p {
+   margin-bottom: var(--margin-medium);
+   font-size: var(--font-size-base);
+   line-height: 1.5;
+  }
+
+  ul,
+  ol {
+   margin-left: var(--margin-medium);
+   list-style-position: inside;
+  }
+
+  li {
+   margin-bottom: var(--margin-small);
+  }
+
+  code {
+   font-family: 'Courier New', Courier, monospace;
+   background-color: #f4f4f4;
+   color: #c7254e;
+   padding: 0.2em 0.4em;
+   border-radius: 4px;
+  }
+
+  strong {
+   font-weight: bold;
+   color: var(--primary-color);
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 666.67px) {
+   section {
+    padding: var(--margin-medium);
+   }
+
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   p {
+    margin-bottom: var(--margin-small);
+   }
+  }
+
+  @media screen and (min-width: 1000px) {
+   section {
+    padding: var(--margin-large);
+   }
+  }
+
+  @media (prefers-color-scheme: dark) {
+   body {
+    background-color: #121212;
+    color: #ffffff;
+   }
+
+   code {
+    background-color: #333;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <main>
+  <section>
+   <header>
+    <h1>Introducción</h1>
+    <h2>Teoría, Ejemplos y Uso</h2>
+   </header>
+   <p>Este proyecto aplica prácticas modernas de desarrollo web para crear páginas accesibles, responsivas y fáciles de mantener. Aquí exploramos los conceptos con ejemplos específicos.</p>
+  </section>
+
+  <section>
+   <h1>Teoría</h1>
+   <article>
+    <h3>Semántica HTML</h3>
+    <p>El uso de etiquetas como <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> y <code>&lt;section&gt;</code> ayuda a estructurar el contenido de manera lógica y comprensible.</p>
+    <p><strong>Ejemplo:</strong></p>
+    <code>
+     &lt;section&gt; <br>
+     &nbsp;&nbsp;&lt;h1&gt;Título&lt;/h1&gt; <br>
+     &nbsp;&nbsp;&lt;p&gt;Contenido aquí&lt;/p&gt; <br>
+     &lt;/section&gt;
+    </code>
+   </article>
+
+   <article>
+    <h3>Diseño Responsivo</h3>
+    <p>El diseño responsivo utiliza <code>@media</code> queries para ajustar la presentación a diferentes dispositivos.</p>
+    <p><strong>Ejemplo:</strong></p>
+    <code>
+     @media screen and (max-width: 600px) { <br>
+     &nbsp;&nbsp;body { font-size: 14px; } <br>
+     }
+    </code>
+   </article>
+  </section>
+
+  <section>
+   <h1>Ejemplos</h1>
+   <article>
+    <h3>Listas y Estilos en Texto</h3>
+    <p>Ejemplo de lista no ordenada:</p>
+    <ul>
+     <li>Elemento 1</li>
+     <li>Elemento 2</li>
+     <li>Elemento 3</li>
+    </ul>
+    <p>Ejemplo de lista ordenada:</p>
+    <ol>
+     <li>Paso 1</li>
+     <li>Paso 2</li>
+     <li>Paso 3</li>
+    </ol>
+    <p>Texto en <strong>negrita</strong> y un ejemplo de <code>código en línea</code>.</p>
+   </article>
+  </section>
+
+  <section>
+   <h1>Conclusión</h1>
+   <p>Este proyecto combina teoría y práctica para que aprendas a desarrollar páginas web modernas y accesibles. Puedes expandir el ejemplo añadiendo más funcionalidades o personalizando los estilos.</p>
+  </section>
+ </main>
+ <script>
+  // Ejemplo de funcionalidad JavaScript
+  document.addEventListener("DOMContentLoaded", () => {
+   console.log("La página se ha cargado correctamente.");
+  });
+ </script>
+</body>
+
+</html>

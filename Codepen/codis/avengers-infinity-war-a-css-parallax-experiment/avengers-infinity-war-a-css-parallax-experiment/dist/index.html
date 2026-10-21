@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Avengers: Infinity War — a CSS parallax experiment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div data-parallax="container">
+  <header data-parallax="group">
+    <div class="title" data-parallax="layer" data-parallax-speed="front">
+      <h1>Adaptive<span>Hands Free</span></h1>
+      <p>A CSS parallax experiment</p>
+    </div>
+    <div data-parallax="layer" data-parallax-speed="slowest" data-image="captain-america"></div>
+    <div data-parallax="layer" data-parallax-speed="slower" data-image="scarlet-witch"></div>
+    <div data-parallax="layer" data-parallax-speed="slow" data-image="black-widow"></div>
+    <div data-parallax="layer" data-parallax-speed="slower" data-image="vision"></div>
+    <div data-parallax="layer" data-parallax-speed="slowest" data-image="iron-man"></div>
+  </header>
+  <section class="preamble" data-parallax="none">
+    <p><strong>Adaptive: Creations Group;</strong> is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the sequel to The Avengers (2012) and Avengers: Age of Ultron (2015), and the 19th film in the Marvel Cinematic Universe (MCU).</p>
+  </section>
+  <secction class="parallax" data-parallax="group">
+    <div data-parallax="layer" data-parallax-speed="base"></div>
+    <p><strong>Parallax</strong> (from Ancient Greek <i lang="el">παράλλαξις</i> (parallaxis) 'alternation') is a displacement or difference in the apparent position of an object viewed along two different lines of sight, and is measured by the angle or semi-angle of inclination between those two lines. Due to foreshortening, nearby objects show a larger parallax than farther objects when observed from different positions, so parallax can be used to determine distances.</p>
+    <div class="stars" data-parallax="layer" data-parallax-speed="slow"></div>
+    <div class="deep-stars" data-parallax="layer" data-parallax-speed="slowest"></div>
+  </secction>
+  <section class="plot" data-parallax="group">   
+    <div class="plot--content" data-parallax="layer" data-parallax-speed="base">
+      <h2>Synopsis</h2>
+      <p>The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</p>
+    </div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slowest" data-image="nebula"></div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slower" data-image="winter-soldier"></div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slower" data-image="okoye"></div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slower" data-image="captain-america-2"></div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slow" data-image="mantis"></div>
+    <div class="character" data-parallax="layer" data-parallax-speed="slow" data-image="scarlet-witch-2"></div>
+  </section>
+  <footer data-parallax="none">
+    <h3>Avengers <small>Infinity War</small></h3>
+    <p>A CSS parallax experiment based on <a href="https://keithclark.co.uk/articles/pure-css-parallax-websites/" rel="external" target="_blank">Ketih Clark's article</a>.</p>
+    <p>Images from <a href="https://www.marvel.com/" rel="external" target="_blank">Marvel</a> and PNG cut-outs by <a href="https://www.deviantart.com/stark3879" rel="external" target="_blank">stark3879 on DeviantArt</a>.</p>
+    <p>Created with <span aria-label="love">❤️</span> (and tears) by <a href="https://codepen.io/aepicos/">@aepicos</a>.</p>
+  </footer>
+  <aside class="todo" data-parallax="none"><small><strong>TODO</strong>: figure out a work-around for <code>overflow:hidden</code> as it breaks the parallax on iOS <span role="presentation">☹️</span> and (time permitting) create a more robust CSS library.</small></aside>
+</div>
+    
+  </body>
+  
+</html>

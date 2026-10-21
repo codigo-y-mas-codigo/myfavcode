@@ -1,0 +1,66 @@
+<title>Pen Export Bgppxxv</title>
+<style>
+ body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+ }
+
+ #chiste {
+  font-size: 24px;
+  color: #333;
+ }
+</style>
+
+<h1>Chistes para Niños</h1>
+<p id="chiste">¡Esperando el próximo chiste!</p>
+
+<script>
+ // Array de chistes
+ const chistes = [
+  "¿Qué hace un ratón en una biblioteca? ¡Lee libros de queso!",
+  "¿Qué hace un libro en el gimnasio? ¡Se pone en forma!",
+  "¿Cómo se llama un perro que lee mucho? ¡Un perro literario!",
+  "¿Qué le dice una abeja a otra abeja cuando está en la biblioteca? ¡Haciendo zumbidos en silencio!",
+  "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.",
+  "¿Cuál es el libro favorito de los gatos? ¡El libro de las arañitas!",
+  "¿Cómo se llama un libro que te hace reír? ¡Un libro chistoso!",
+  "¿Por qué el libro de matemáticas se deprimió? Porque tenía demasiados problemas.",
+  "¿Qué le dice un libro a otro libro en la biblioteca? ¡Nos vemos en la siguiente página!",
+  "¿Cómo se llama un oso que le gusta leer? ¡Un oso lector!",
+  "¿Qué hace un libro en la playa? ¡Toma el sol y se pone a leer!",
+  "¿Cómo se llama el libro que cuenta historias de monstruos? ¡El libro de los cuentos terroríficos!",
+  "¿Qué hace un elefante con un libro? ¡Lo lee con mucho interés!",
+  "¿Cuál es el colmo de un libro de cuentos? ¡Tener un final feliz!",
+  "¿Qué hace una vaca en una biblioteca? ¡Lee libros sobre pasto!",
+  "¿Por qué los libros de cocina son los más felices? Porque siempre tienen recetas para sonreír.",
+  "¿Cómo se llama el libro que le gusta a los pájaros? ¡El libro de los trinos!",
+  "¿Qué le dice un ratón a un libro de aventuras? ¡Déjame leer tus secretos!",
+  "¿Por qué el libro de ciencia ficción fue al médico? Porque tenía un malestar en el capítulo.",
+  "¿Cómo se llama un libro que cuenta chistes? ¡Un libro de risa!",
+  "¿Qué le dice Bob Esponja a un libro de matemáticas? ¡Eres un libro muy cuadrado!",
+  "¿Por qué Dora la Exploradora no le gusta prestar sus libros? Porque siempre los pierde en el mapa.",
+  "¿Cómo se llama el libro favorito de Scooby-Doo? ¡Un libro de misterios y huesos!",
+  "¿Qué hace Peppa Pig con un libro de recetas? ¡Lo usa para hacer un delicioso pastel de cerdo!",
+  "¿Por qué el libro de las aventuras de Mickey Mouse está siempre en movimiento? ¡Porque Mickey siempre está corriendo!",
+  "¿Cuál es el libro favorito de los Looney Tunes? ¡El libro de bromas y payasadas!",
+  "¿Qué hace el libro de Pato Donald en la playa? ¡Lee sobre cómo ser un pato feliz bajo el sol!",
+  "¿Cómo se llama el libro que le gusta a Thomas el Tren? ¡Un libro sobre aventuras en las vías!",
+  "¿Qué le dice el libro de Winnie the Pooh a un libro de cuentos? ¡Eres miel para mis páginas!",
+  "¿Cómo se llama el libro de cuentos favorito de los Power Rangers? ¡El libro de héroes y aventuras!"
+ ];
+
+ function mostrarChiste() {
+  // Generar un índice aleatorio
+  const indiceAleatorio = Math.floor(Math.random() * chistes.length);
+  // Mostrar el chiste en el elemento con id "chiste"
+  document.getElementById('chiste').innerText = chistes[indiceAleatorio];
+ }
+ // Mostrar un chiste al cargar la página
+ mostrarChiste();
+ // Cambiar el chiste cada 5 segundos (5000 milisegundos)
+ setInterval(mostrarChiste, 5000);
+</script>
+</body>
+
+</html>

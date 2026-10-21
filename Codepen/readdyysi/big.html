@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musicfy</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#1DB954',secondary:'#282828'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #121212;
+color: #FFFFFF;
+}
+.scrollbar-hide::-webkit-scrollbar {
+display: none;
+}
+.scrollbar-hide {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+input[type="range"] {
+-webkit-appearance: none;
+width: 100%;
+height: 4px;
+background: #535353;
+border-radius: 5px;
+outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 12px;
+height: 12px;
+background: #FFFFFF;
+border-radius: 50%;
+cursor: pointer;
+}
+.toggle-switch {
+position: relative;
+display: inline-block;
+width: 40px;
+height: 20px;
+}
+.toggle-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.toggle-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #535353;
+transition: .4s;
+border-radius: 34px;
+}
+.toggle-slider:before {
+position: absolute;
+content: "";
+height: 16px;
+width: 16px;
+left: 2px;
+bottom: 2px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .toggle-slider {
+background-color: #1DB954;
+}
+input:checked + .toggle-slider:before {
+transform: translateX(20px);
+}
+.search-input {
+background-color: #282828;
+border: none;
+color: #FFFFFF;
+padding: 10px 40px 10px 40px;
+border-radius: 20px;
+width: 100%;
+}
+.search-input:focus {
+outline: none;
+background-color: #333333;
+}
+.search-icon {
+position: absolute;
+left: 12px;
+top: 50%;
+transform: translateY(-50%);
+color: #B3B3B3;
+}
+.custom-checkbox {
+display: none;
+}
+.custom-checkbox-label {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox-label::before {
+content: "";
+width: 18px;
+height: 18px;
+border-radius: 4px;
+margin-right: 8px;
+background-color: #282828;
+border: 1px solid #535353;
+display: inline-block;
+}
+.custom-checkbox:checked + .custom-checkbox-label::before {
+background-color: #1DB954;
+border-color: #1DB954;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+background-position: center;
+background-repeat: no-repeat;
+background-size: 12px;
+}
+.progress-bar {
+height: 4px;
+background: #535353;
+border-radius: 2px;
+position: relative;
+}
+.progress-bar-fill {
+height: 100%;
+background: #1DB954;
+border-radius: 2px;
+position: absolute;
+top: 0;
+left: 0;
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- Sidebar Navigation -->
+<div class="flex h-screen">
+<aside class="w-64 bg-black p-5 flex flex-col h-full">
+<div class="mb-8">
+<h1 class="text-2xl font-['Pacifico'] text-white">logo</h1>
+</div>
+<nav class="flex-1">
+<ul class="space-y-3">
+<li>
+<a href="#" class="flex items-center text-white hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-home-5-line ri-lg"></i>
+</div>
+<span>Inicio</span>
+</a>
+</li>
+<li>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-search-line ri-lg"></i>
+</div>
+<span>Buscar</span>
+</a>
+</li>
+<li>
+<a href="https://readdy.ai/home/4f7e93f3-e720-4075-b433-680a128bd9e8/6f526a63-41bd-4e91-a4e7-d8c020c35f5a" data-readdy="true" class="flex items-center text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-stack-line ri-lg"></i>
+</div>
+<span>Tu Biblioteca</span>
+</a>
+</li>
+<li>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-article-line ri-lg"></i>
+</div>
+<span>Blog</span>
+</a>
+</li>
+<li>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-heart-line ri-lg"></i>
+</div>
+<span>Favoritos</span>
+</a>
+</li>
+</ul>
+<div class="mt-8">
+<h3 class="text-xs uppercase text-gray-500 font-semibold mb-4">Tus Playlists</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Canciones Favoritas</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Éxitos 2025</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Música para concentrarse</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Fiesta de verano</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Clásicos del rock</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white text-sm">Música electrónica</a></li>
+</ul>
+</div>
+</nav>
+<div class="mt-auto pt-4 border-t border-gray-800">
+<a href="#" class="flex items-center text-gray-400 hover:text-white text-sm">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-download-line"></i>
+</div>
+<span>Instalar aplicación</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto scrollbar-hide pb-24">
+<!-- Header -->
+<header class="bg-secondary bg-opacity-95 sticky top-0 z-10 p-4 flex justify-between items-center">
+<div class="relative w-1/3">
+<div class="search-icon">
+<i class="ri-search-line ri-lg"></i>
+</div>
+<input type="text" placeholder="¿Qué quieres escuchar?" class="search-input text-sm">
+</div>
+<div class="flex items-center space-x-4">
+<label class="toggle-switch">
+<input type="checkbox" checked>
+<span class="toggle-slider"></span>
+</label>
+<span class="text-sm">Modo oscuro</span>
+<div class="flex items-center ml-4">
+<div class="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=profile%20picture%20of%20a%20young%20person%20with%20headphones%2C%20minimalist%20style%2C%20dark%20background%2C%20high%20quality%2C%20professional&width=100&height=100&seq=1&orientation=squarish" alt="Perfil" class="w-full h-full object-cover">
+</div>
+<span class="ml-2 text-sm font-medium">Carlos Rodríguez</span>
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Tabs -->
+<div class="px-6 pt-6">
+<div class="flex space-x-2 mb-6">
+<button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium !rounded-button whitespace-nowrap">Para ti</button>
+<button class="bg-secondary text-gray-300 px-4 py-2 rounded-full text-sm font-medium !rounded-button whitespace-nowrap">Feed</button>
+<button class="bg-secondary text-gray-300 px-4 py-2 rounded-full text-sm font-medium !rounded-button whitespace-nowrap">Perfil</button>
+<button class="bg-secondary text-gray-300 px-4 py-2 rounded-full text-sm font-medium !rounded-button whitespace-nowrap">Blog</button>
+<button class="bg-secondary text-gray-300 px-4 py-2 rounded-full text-sm font-medium !rounded-button whitespace-nowrap">Descubrir</button>
+</div>
+<!-- Artist Profile Section -->
+<section class="mb-8">
+<div class="bg-secondary rounded-lg overflow-hidden">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=concert%20stage%20with%20dramatic%20lighting%20and%20crowd%2C%20professional%20photo%2C%20cinematic%2C%20dark%20atmosphere&width=1200&height=400&seq=20&orientation=landscape" alt="Cover" class="w-full h-full object-cover">
+<div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-secondary to-transparent"></div>
+</div>
+<div class="px-6 pb-6">
+<div class="flex items-start -mt-16 mb-4">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20musician%20with%20guitar%2C%20artistic%20portrait%2C%20high%20quality%2C%20dark%20background&width=200&height=200&seq=21&orientation=squarish" alt="Profile" class="w-32 h-32 rounded-full border-4 border-secondary object-cover">
+<div class="absolute bottom-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-verified-badge-fill text-white"></i>
+</div>
+</div>
+<div class="ml-6 mt-16">
+<div class="flex items-center gap-4">
+<button class="bg-primary text-white px-6 py-2 rounded-full font-medium !rounded-button whitespace-nowrap">Seguir</button>
+<button class="bg-secondary border border-gray-600 text-white px-6 py-2 rounded-full font-medium !rounded-button whitespace-nowrap">Mensaje</button>
+<button class="bg-secondary border border-gray-600 text-white p-2 rounded-full !rounded-button whitespace-nowrap">
+<i class="ri-share-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<h1 class="text-2xl font-bold">Laura Martínez</h1>
+<span class="text-primary">@lauramartinez</span>
+</div>
+<div class="flex items-center gap-6 mb-4 text-sm">
+<div>
+<span class="font-semibold">128K</span>
+<span class="text-gray-400 ml-1">seguidores</span>
+</div>
+<div>
+<span class="font-semibold">245</span>
+<span class="text-gray-400 ml-1">siguiendo</span>
+</div>
+<div>
+<span class="font-semibold">52</span>
+<span class="text-gray-400 ml-1">canciones</span>
+</div>
+</div>
+<p class="text-gray-300 mb-4">🎸 Cantautora | Productora Musical<br>🎵 Nuevo single "Luces de Neón" disponible ahora<br>🏆 Premio Artista Revelación 2024<br>📍 Madrid, España</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Pop Alternativo</span>
+<span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Indie</span>
+<span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Rock Español</span>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-gray-800 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold mb-1">3</div>
+<div class="text-sm text-gray-400">Álbumes</div>
+</div>
+<div class="bg-gray-800 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold mb-1">1.2M</div>
+<div class="text-sm text-gray-400">Reproducciones</div>
+</div>
+<div class="bg-gray-800 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold mb-1">15</div>
+<div class="text-sm text-gray-400">Conciertos</div>
+</div>
+<div class="bg-gray-800 rounded-lg p-4 text-center">
+<div class="text-2xl font-bold mb-1">4.8</div>
+<div class="text-sm text-gray-400">Valoración</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recommendations Section -->
+<section class="mb-8">
+<h2 class="text-2xl font-bold mb-4">Recomendado para ti</h2>
+<div class="grid grid-cols-5 gap-4">
+<div class="bg-secondary rounded-lg p-4 hover:bg-opacity-80 transition-all cursor-pointer">
+<div class="relative mb-4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20electronic%20music%2C%20vibrant%20colors%2C%20abstract%20design%2C%20professional%20quality%2C%20dark%20background&width=200&height=200&seq=2&orientation=squarish" alt="Playlist" class="w-full h-40 object-cover rounded-md">
+<button class="absolute right-2 bottom-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg opacity-0 hover:opacity-100 transition-opacity !rounded-button whitespace-nowrap">
+<i class="ri-play-fill ri-lg"></i>
+</button>
+</div>
+<h3 class="font-semibold">Electrónica 2025</h3>
+<p class="text-sm text-gray-400">Los mejores beats del momento</p>
+</div>
+<div class="bg-secondary rounded-lg p-4 hover:bg-opacity-80 transition-all cursor-pointer">
+<div class="relative mb-4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20pop%20music%2C%20colorful%2C%20modern%20design%2C%20professional%20quality%2C%20dark%20theme&width=200&height=200&seq=3&orientation=squarish" alt="Playlist" class="w-full h-40 object-cover rounded-md">
+<button class="absolute right-2 bottom-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg opacity-0 hover:opacity-100 transition-opacity !rounded-button whitespace-nowrap">
+<i class="ri-play-fill ri-lg"></i>
+</button>
+</div>
+<h3 class="font-semibold">Pop Latino</h3>
+<p class="text-sm text-gray-400">Los éxitos más populares</p>
+</div>
+<div class="bg-secondary rounded-lg p-4 hover:bg-opacity-80 transition-all cursor-pointer">
+<div class="relative mb-4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20rock%20music%2C%20grungy%2C%20dark%20aesthetic%2C%20professional%20quality%2C%20moody&width=200&height=200&seq=4&orientation=squarish" alt="Playlist" class="w-full h-40 object-cover rounded-md">
+<button class="absolute right-2 bottom-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg opacity-0 hover:opacity-100 transition-opacity !rounded-button whitespace-nowrap">
+<i class="ri-play-fill ri-lg"></i>
+</button>
+</div>
+<h3 class="font-semibold">Rock Clásico</h3>
+<p class="text-sm text-gray-400">Grandes clásicos del rock</p>
+</div>
+<div class="bg-secondary rounded-lg p-4 hover:bg-opacity-80 transition-all cursor-pointer">
+<div class="relative mb-4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20jazz%20music%2C%20sophisticated%2C%20elegant%2C%20professional%20quality%2C%20dark%20mood&width=200&height=200&seq=5&orientation=squarish" alt="Playlist" class="w-full h-40 object-cover rounded-md">
+<button class="absolute right-2 bottom-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg opacity-0 hover:opacity-100 transition-opacity !rounded-button whitespace-nowrap">
+<i class="ri-play-fill ri-lg"></i>
+</button>
+</div>
+<h3 class="font-semibold">Jazz Lounge</h3>
+<p class="text-sm text-gray-400">Relájate con el mejor jazz</p>
+</div>
+<div class="bg-secondary rounded-lg p-4 hover:bg-opacity-80 transition-all cursor-pointer">
+<div class="relative mb-4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20indie%20music%2C%20artistic%2C%20hipster%20aesthetic%2C%20professional%20quality%2C%20dark%20theme&width=200&height=200&seq=6&orientation=squarish" alt="Playlist" class="w-full h-40 object-cover rounded-md">
+<button class="absolute right-2 bottom-2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg opacity-0 hover:opacity-100 transition-opacity !rounded-button whitespace-nowrap">
+<i class="ri-play-fill ri-lg"></i>
+</button>
+</div>
+<h3 class="font-semibold">Indie Alternativo</h3>
+<p class="text-sm text-gray-400">Descubre nuevos artistas</p>
+</div>
+</div>
+</section>
+<!-- Feed Section (Instagram Style) -->
+<section class="mb-8">
+<h2 class="text-2xl font-bold mb-4">Tu Feed</h2>
+<div class="space-y-6">
+<!-- Feed Item 1 -->
+<div class="bg-secondary rounded-lg overflow-hidden">
+<div class="p-4 flex items-center">
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20female%20musician%20with%20dark%20hair%2C%20professional%20photo%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=7&orientation=squarish" alt="Artista" class="w-full h-full object-cover">
+</div>
+<div>
+<p class="font-medium">Laura Martínez</p>
+<p class="text-xs text-gray-400">Cantante • Hace 2 horas</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-white !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-more-2-fill"></i>
+</div>
+</button>
+</div>
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=music%20artist%20performing%20on%20stage%2C%20dramatic%20lighting%2C%20concert%20atmosphere%2C%20professional%20photo%2C%20dark%20background&width=800&height=500&seq=8&orientation=landscape" alt="Post" class="w-full object-cover h-80">
+<div class="absolute bottom-4 left-4 bg-black bg-opacity-70 px-3 py-1 rounded-full text-xs">
+Nueva canción
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center mb-3">
+<button class="text-gray-400 hover:text-primary mr-4 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line ri-lg"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mr-4 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-chat-1-line ri-lg"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-share-line ri-lg"></i>
+</div>
+</button>
+<button class="ml-auto text-gray-400 hover:text-primary !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line ri-lg"></i>
+</div>
+</button>
+</div>
+<p class="text-sm mb-1"><span class="font-medium">1,245 me gusta</span></p>
+<p class="text-sm"><span class="font-medium">Laura Martínez</span> ¡Mi nueva canción "Luces de Neón" ya está disponible! Escúchala ahora y déjame saber qué te parece 💫🎵 #NuevaMúsica #LucesDeNeón</p>
+<p class="text-xs text-gray-400 mt-2">Ver los 87 comentarios</p>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="bg-secondary rounded-lg overflow-hidden">
+<div class="p-4 flex items-center">
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20male%20DJ%20with%20headphones%2C%20professional%20photo%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=9&orientation=squarish" alt="Artista" class="w-full h-full object-cover">
+</div>
+<div>
+<p class="font-medium">DJ Marcos</p>
+<p class="text-xs text-gray-400">Productor • Hace 5 horas</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-white !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-more-2-fill"></i>
+</div>
+</button>
+</div>
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=DJ%20performing%20at%20a%20nightclub%2C%20electronic%20music%2C%20vibrant%20lights%2C%20crowd%20dancing%2C%20professional%20photo%2C%20dark%20atmosphere&width=800&height=500&seq=10&orientation=landscape" alt="Post" class="w-full object-cover h-80">
+<div class="absolute bottom-4 left-4 bg-black bg-opacity-70 px-3 py-1 rounded-full text-xs">
+Nuevo álbum
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center mb-3">
+<button class="text-gray-400 hover:text-primary mr-4 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line ri-lg"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mr-4 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-chat-1-line ri-lg"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-share-line ri-lg"></i>
+</div>
+</button>
+<button class="ml-auto text-gray-400 hover:text-primary !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line ri-lg"></i>
+</div>
+</button>
+</div>
+<p class="text-sm mb-1"><span class="font-medium">2,789 me gusta</span></p>
+<p class="text-sm"><span class="font-medium">DJ Marcos</span> ¡Mi nuevo álbum "Ritmos Nocturnos" ya está disponible en todas las plataformas! 10 tracks de pura energía electrónica. ¡No te lo pierdas! 🎧🔥 #NuevoÁlbum #Electrónica</p>
+<p class="text-xs text-gray-400 mt-2">Ver los 156 comentarios</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section class="mb-8">
+<h2 class="text-2xl font-bold mb-4">Blog de Música</h2>
+<div class="grid grid-cols-2 gap-6">
+<article class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=music%20festival%20crowd%20at%20night%2C%20concert%20atmosphere%2C%20vibrant%20lights%2C%20professional%20photo%2C%20dark%20background&width=600&height=300&seq=11&orientation=landscape" alt="Blog" class="w-full h-48 object-cover">
+<div class="p-4">
+<div class="flex mb-2">
+<span class="text-xs bg-primary bg-opacity-20 text-primary px-2 py-1 rounded-full mr-2">Festivales</span>
+<span class="text-xs text-gray-400">5 min de lectura</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Los 10 festivales de música que no te puedes perder este verano</h3>
+<p class="text-sm text-gray-400 mb-3">Descubre los mejores festivales de música que se celebrarán este verano en todo el país, desde electrónica hasta rock alternativo.</p>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20young%20music%20journalist%2C%20professional%20headshot%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=12&orientation=squarish" alt="Autor" class="w-full h-full object-cover">
+</div>
+<span class="text-xs">Por Alejandro Gómez • 26 Jun 2025</span>
+</div>
+</div>
+</article>
+<article class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=music%20studio%20with%20equipment%2C%20professional%20recording%20setup%2C%20moody%20lighting%2C%20high%20quality%2C%20dark%20atmosphere&width=600&height=300&seq=13&orientation=landscape" alt="Blog" class="w-full h-48 object-cover">
+<div class="p-4">
+<div class="flex mb-2">
+<span class="text-xs bg-blue-500 bg-opacity-20 text-blue-400 px-2 py-1 rounded-full mr-2">Producción</span>
+<span class="text-xs text-gray-400">8 min de lectura</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Guía completa para montar tu estudio de grabación casero</h3>
+<p class="text-sm text-gray-400 mb-3">Todo lo que necesitas saber para crear tu propio estudio de grabación en casa con un presupuesto ajustado pero con resultados profesionales.</p>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20music%20producer%2C%20professional%20headshot%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=14&orientation=squarish" alt="Autor" class="w-full h-full object-cover">
+</div>
+<span class="text-xs">Por María Sánchez • 24 Jun 2025</span>
+</div>
+</div>
+</article>
+<article class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=vinyl%20records%20collection%2C%20vintage%20music%2C%20record%20store%2C%20professional%20photo%2C%20moody%20lighting%2C%20dark%20background&width=600&height=300&seq=15&orientation=landscape" alt="Blog" class="w-full h-48 object-cover">
+<div class="p-4">
+<div class="flex mb-2">
+<span class="text-xs bg-purple-500 bg-opacity-20 text-purple-400 px-2 py-1 rounded-full mr-2">Coleccionismo</span>
+<span class="text-xs text-gray-400">6 min de lectura</span>
+</div>
+<h3 class="font-bold text-lg mb-2">El resurgimiento del vinilo: por qué los jóvenes vuelven al formato analógico</h3>
+<p class="text-sm text-gray-400 mb-3">Analizamos el fenómeno del regreso del vinilo y por qué cada vez más jóvenes prefieren este formato frente a las plataformas digitales.</p>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20music%20critic%2C%20professional%20headshot%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=16&orientation=squarish" alt="Autor" class="w-full h-full object-cover">
+</div>
+<span class="text-xs">Por Roberto Núñez • 22 Jun 2025</span>
+</div>
+</div>
+</article>
+<article class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=musician%20performing%20with%20guitar%20on%20stage%2C%20intimate%20venue%2C%20moody%20lighting%2C%20professional%20photo%2C%20dark%20atmosphere&width=600&height=300&seq=17&orientation=landscape" alt="Blog" class="w-full h-48 object-cover">
+<div class="p-4">
+<div class="flex mb-2">
+<span class="text-xs bg-red-500 bg-opacity-20 text-red-400 px-2 py-1 rounded-full mr-2">Entrevistas</span>
+<span class="text-xs text-gray-400">10 min de lectura</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Entrevista exclusiva con Carlos Vives: "La música es mi forma de conectar con mis raíces"</h3>
+<p class="text-sm text-gray-400 mb-3">Conversamos con el reconocido cantante sobre su nuevo álbum, su proceso creativo y cómo la música latina está conquistando el mundo.</p>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full overflow-hidden mr-2">
+<img src="https://readdy.ai/api/search-image?query=portrait%20of%20a%20female%20journalist%2C%20professional%20headshot%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=18&orientation=squarish" alt="Autor" class="w-full h-full object-cover">
+</div>
+<span class="text-xs">Por Lucía Fernández • 20 Jun 2025</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Courses Section -->
+<section class="mb-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold">Cursos y Talleres</h2>
+<button class="text-primary hover:text-white text-sm font-medium flex items-center !rounded-button whitespace-nowrap">
+Ver todos
+<i class="ri-arrow-right-line ml-1"></i>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<!-- Course 1 -->
+<div class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20music%20production%20studio%20setup%20with%20modern%20equipment%2C%20moody%20lighting%2C%20cinematic%20quality%2C%20dark%20atmosphere&width=600&height=300&seq=30&orientation=landscape" alt="Curso" class="w-full h-48 object-cover">
+<span class="absolute top-3 right-3 bg-primary text-white text-xs px-2 py-1 rounded-full">Más popular</span>
+</div>
+<div class="p-4">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20music%20producer%20instructor%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=31&orientation=squarish" alt="Instructor" class="w-full h-full object-cover">
+</div>
+<div>
+<p class="font-medium text-sm">Carlos Ruiz</p>
+<p class="text-xs text-gray-400">Productor Musical</p>
+</div>
+</div>
+<h3 class="font-bold mb-2">Producción Musical Profesional</h3>
+<p class="text-sm text-gray-400 mb-4">Aprende a producir música desde cero hasta un nivel profesional con las últimas técnicas y herramientas.</p>
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">8 semanas</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Certificado</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Principiante</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-lg font-bold">149€</p>
+<p class="text-xs text-gray-400">Antes: 199€</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 !rounded-button whitespace-nowrap">Inscribirse</button>
+</div>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=person%20singing%20in%20professional%20recording%20booth%2C%20vocal%20training%2C%20high%20quality%20equipment%2C%20dark%20moody%20atmosphere&width=600&height=300&seq=32&orientation=landscape" alt="Curso" class="w-full h-48 object-cover">
+</div>
+<div class="p-4">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20vocal%20coach%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=33&orientation=squarish" alt="Instructor" class="w-full h-full object-cover">
+</div>
+<div>
+<p class="font-medium text-sm">Ana Belén</p>
+<p class="text-xs text-gray-400">Vocal Coach</p>
+</div>
+</div>
+<h3 class="font-bold mb-2">Técnica Vocal Avanzada</h3>
+<p class="text-sm text-gray-400 mb-4">Desarrolla tu voz y aprende técnicas profesionales de canto con ejercicios prácticos y personalizados.</p>
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">6 semanas</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Certificado</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Intermedio</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-lg font-bold">129€</p>
+<p class="text-xs text-gray-400">Antes: 179€</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 !rounded-button whitespace-nowrap">Inscribirse</button>
+</div>
+</div>
+</div>
+<!-- Course 3 -->
+<div class="bg-secondary rounded-lg overflow-hidden hover:bg-opacity-80 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=professional%20DJ%20equipment%20setup%20with%20turntables%20and%20mixer%2C%20club%20atmosphere%2C%20moody%20lighting%2C%20dark%20background&width=600&height=300&seq=34&orientation=landscape" alt="Curso" class="w-full h-48 object-cover">
+</div>
+<div class="p-4">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20DJ%20instructor%2C%20high%20quality%2C%20dark%20background&width=100&height=100&seq=35&orientation=squarish" alt="Instructor" class="w-full h-full object-cover">
+</div>
+<div>
+<p class="font-medium text-sm">DJ Marco</p>
+<p class="text-xs text-gray-400">DJ Profesional</p>
+</div>
+</div>
+<h3 class="font-bold mb-2">Masterclass de DJ</h3>
+<p class="text-sm text-gray-400 mb-4">Domina el arte del DJ con técnicas profesionales de mezcla, beatmatching y performance en vivo.</p>
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">4 semanas</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Certificado</span>
+<span class="text-xs bg-gray-700 px-2 py-1 rounded-full">Todos los niveles</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-lg font-bold">99€</p>
+<p class="text-xs text-gray-400">Antes: 149€</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 !rounded-button whitespace-nowrap">Inscribirse</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Player Bar (Fixed at bottom) -->
+<div class="fixed bottom-0 left-0 right-0 bg-black bg-opacity-95 border-t border-gray-800 py-3 px-4 z-20">
+<div class="flex items-center justify-between">
+<!-- Currently Playing -->
+<div class="flex items-center w-1/4">
+<img src="https://readdy.ai/api/search-image?query=album%20cover%20art%20for%20pop%20music%2C%20vibrant%2C%20professional%20quality%2C%20dark%20theme&width=100&height=100&seq=19&orientation=squarish" alt="Portada" class="w-14 h-14 rounded object-cover mr-3">
+<div>
+<h4 class="font-medium text-sm">Luces de Neón</h4>
+<p class="text-xs text-gray-400">Laura Martínez</p>
+</div>
+<button class="ml-4 text-gray-400 hover:text-primary !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line"></i>
+</div>
+</button>
+</div>
+<!-- Player Controls -->
+<div class="flex flex-col items-center w-2/4">
+<div class="flex items-center mb-2">
+<button class="text-gray-400 hover:text-white mx-2 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-shuffle-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mx-2 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-skip-back-fill"></i>
+</div>
+</button>
+<button class="bg-white text-black rounded-full w-10 h-10 flex items-center justify-center mx-3 hover:scale-105 transition-transform !rounded-button whitespace-nowrap">
+<i class="ri-pause-fill ri-lg"></i>
+</button>
+<button class="text-gray-400 hover:text-white mx-2 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-skip-forward-fill"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mx-2 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-repeat-line"></i>
+</div>
+</button>
+</div>
+<div class="flex items-center w-full">
+<span class="text-xs text-gray-400 mr-2">2:15</span>
+<div class="flex-1 relative">
+<div class="progress-bar">
+<div class="progress-bar-fill" style="width: 35%;"></div>
+</div>
+</div>
+<span class="text-xs text-gray-400 ml-2">3:45</span>
+</div>
+</div>
+<!-- Additional Controls -->
+<div class="flex items-center justify-end w-1/4">
+<button class="text-gray-400 hover:text-white mx-1 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-mic-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mx-1 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-list-check"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-white mx-1 !rounded-button whitespace-nowrap">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-computer-line"></i>
+</div>
+</button>
+<div class="flex items-center ml-2">
+<div class="w-5 h-5 flex items-center justify-center mr-1 text-gray-400">
+<i class="ri-volume-up-line"></i>
+</div>
+<div class="w-24">
+<input type="range" min="0" max="100" value="70" class="w-full">
+</div>
+</div>
+</div>
+</div>
+</div>
+<script id="searchFunctionality">
+document.addEventListener('DOMContentLoaded', function() {
+const searchInput = document.querySelector('.search-input');
+searchInput.addEventListener('focus', function() {
+this.style.backgroundColor = '#333333';
+});
+searchInput.addEventListener('blur', function() {
+if (this.value === '') {
+this.style.backgroundColor = '#282828';
+}
+});
+});
+</script>
+<script id="playerControls">
+document.addEventListener('DOMContentLoaded', function() {
+const playButton = document.querySelector('.ri-pause-fill').parentElement;
+const progressBar = document.querySelector('.progress-bar');
+const progressBarFill = document.querySelector('.progress-bar-fill');
+const volumeSlider = document.querySelector('input[type="range"]');
+const heartIcon = document.querySelector('.ri-heart-line');
+let isPlaying = true;
+playButton.addEventListener('click', function() {
+isPlaying = !isPlaying;
+if (isPlaying) {
+this.innerHTML = '<i class="ri-pause-fill ri-lg"></i>';
+} else {
+this.innerHTML = '<i class="ri-play-fill ri-lg"></i>';
+}
+});
+progressBar.addEventListener('click', function(e) {
+const rect = this.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const width = rect.width;
+const percentage = (x / width) * 100;
+progressBarFill.style.width = `${percentage}%`;
+});
+volumeSlider.addEventListener('input', function() {
+// Volume control functionality would go here
+});
+heartIcon.addEventListener('click', function() {
+this.classList.toggle('ri-heart-line');
+this.classList.toggle('ri-heart-fill');
+if (this.classList.contains('ri-heart-fill')) {
+this.style.color = '#1DB954';
+} else {
+this.style.color = '';
+}
+});
+});
+</script>
+<script id="tabSwitcher">
+document.addEventListener('DOMContentLoaded', function() {
+const tabButtons = document.querySelectorAll('.px-4.py-2.rounded-full');
+const sections = {
+'Para ti': document.querySelector('section:nth-of-type(1)'),
+'Feed': document.querySelector('section:nth-of-type(2)'),
+'Perfil': document.querySelector('section:nth-of-type(3)'),
+'Blog': document.querySelector('section:nth-of-type(4)'),
+'Cursos': document.querySelector('section:nth-of-type(5)')
+};
+function showSection(sectionName) {
+Object.values(sections).forEach(section => {
+if (section) section.style.display = 'none';
+});
+if (sections[sectionName]) sections[sectionName].style.display = 'block';
+}
+showSection('Para ti');
+tabButtons.forEach(button => {
+button.addEventListener('click', function() {
+tabButtons.forEach(btn => {
+btn.classList.remove('bg-primary');
+btn.classList.add('bg-secondary');
+btn.classList.remove('text-white');
+btn.classList.add('text-gray-300');
+});
+this.classList.remove('bg-secondary');
+this.classList.add('bg-primary');
+this.classList.remove('text-gray-300');
+this.classList.add('text-white');
+showSection(this.textContent.trim());
+});
+});
+});
+</script>
+<script id="darkModeToggle">
+document.addEventListener('DOMContentLoaded', function() {
+const darkModeToggle = document.querySelector('.toggle-switch input');
+// Since we're starting in dark mode, the toggle is checked by default
+darkModeToggle.addEventListener('change', function() {
+// This would normally toggle between light/dark mode
+// For this demo, we'll just log the change
+if (this.checked) {
+console.log('Dark mode enabled');
+} else {
+console.log('Light mode enabled');
+}
+});
+});
+</script>
+<script id="feedInteractions">
+document.addEventListener('DOMContentLoaded', function() {
+const heartButtons = document.querySelectorAll('.ri-heart-line.ri-lg');
+const bookmarkButtons = document.querySelectorAll('.ri-bookmark-line.ri-lg');
+heartButtons.forEach(button => {
+button.addEventListener('click', function() {
+const parentElement = this.closest('div.w-8.h-8');
+this.classList.toggle('ri-heart-line');
+this.classList.toggle('ri-heart-fill');
+if (this.classList.contains('ri-heart-fill')) {
+parentElement.style.color = '#1DB954';
+} else {
+parentElement.style.color = '';
+}
+});
+});
+bookmarkButtons.forEach(button => {
+button.addEventListener('click', function() {
+const parentElement = this.closest('div.w-8.h-8');
+this.classList.toggle('ri-bookmark-line');
+this.classList.toggle('ri-bookmark-fill');
+if (this.classList.contains('ri-bookmark-fill')) {
+parentElement.style.color = '#1DB954';
+} else {
+parentElement.style.color = '';
+}
+});
+});
+});
+</script>
+</body>
+</html>

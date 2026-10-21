@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Snapshots in the Console</title>
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
+<script src="https://public.codepenassets.com/js/prefixfree-1.0.7.min.js"></script>
+
+  </head>
+    
+  <body>
+  <div class='content'>
+  <h1>Snapshots in the Console</h1>
+  <h4>(Chrome only)</h4>
+  <svg viewBox='0 0 256 256'>
+    <defs>
+      <g id='chrome-logo'>
+        <circle class='bg' cx='128' cy='128' r='110'></circle>
+        <circle class='center' cx='50%' cy='50%' r='41'></circle>
+        <path class='top' d='M 228 78 A 112 112 0 0 0 35 65 L 80 143 A 50 50 0 0 1 127 78'></path>
+        <path class='left' d='M 35 65 A 112 112 0 0 0 119 239 L 166 159 A 50 50 0 0 1 80 143'></path>
+        <path class='right' d='M 119 239 A 112 112 0 0 0 228 78 L 127 78 A 50 50 0 0 1 166 159'></path>
+      </g>
+      <g id='canary-logo'>
+        <circle class='bg' cx='128' cy='128' r='110'></circle>
+        <circle class='center' cx='50%' cy='50%' r='41'></circle>
+        <path class='top' d='M 228 78 A 112 112 0 0 0 35 65 L 80 143 A 50 50 0 0 1 127 78'></path>
+        <path class='left' d='M 35 65 A 112 112 0 0 0 119 239 L 166 159 A 50 50 0 0 1 80 143'></path>
+        <path class='right' d='M 119 239 A 112 112 0 0 0 228 78 L 127 78 A 50 50 0 0 1 166 159'></path>
+      </g>
+    </defs>
+    <use x='-150' xlink:href='#chrome-logo' y='0'></use>
+    <use x='150' xlink:href='#canary-logo' y='0'></use>
+  </svg>
+  <ul>
+    <li>1. Open this page on Google Chrome or Canary</li></li>
+    <li>2. Open the Chrome DevTools and Focus to the Console <code>Cmd</code>+<code>Opt</code>+<code>J</code></li>
+    <li>3. Click the "Take Shot" button below</li>
+    <li>4. Allow access to your camera</li>
+    <li>5. Voilà!</li>
+  </ul>
+  <button class='cta'>Take Shot</button>
+</div>
+<div class='not'>
+  <div class='box'>
+    <h1>No Stream API</h1>
+    <p>Sorry, this experiment requires the Stream API.</p>
+    <a href='http://caniuse.com/#feat=stream' target='_blank'>See browser support</a>
+  </div>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

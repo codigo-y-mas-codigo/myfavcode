@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Proyecto - Nutrición Holística Nuho</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-leaf"></i> Gestor de Proyecto - Nutrición Holística Nuho</h1>
+            <div class="header-actions">
+                <button id="exportBtn" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> Exportar Datos
+                </button>
+                <button id="importBtn" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> Importar Datos
+                </button>
+                <input type="file" id="importFile" accept=".json" style="display: none;">
+            </div>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Total de Tareas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Completadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Pendientes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="progressPercentage">0%</div>
+                <div class="stat-label">Progreso</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="task-form-container">
+                <h2>Agregar Nueva Tarea</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Título de la Tarea</label>
+                        <input type="text" id="taskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Descripción</label>
+                        <textarea id="taskDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskCategory">Categoría</label>
+                            <select id="taskCategory">
+                                <option value="investigacion">Investigación</option>
+                                <option value="contenido">Contenido</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="desarrollo">Desarrollo</option>
+                                <option value="productos">Productos Adicionales</option>
+                                <option value="ia">Integración IA</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskPriority">Prioridad</label>
+                            <select id="taskPriority">
+                                <option value="baja">Baja</option>
+                                <option value="media">Media</option>
+                                <option value="alta">Alta</option>
+                                <option value="urgente">Urgente</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDate">Fecha</label>
+                            <input type="date" id="taskDate">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Tarea
+                    </button>
+                </form>
+            </div>
+
+            <div class="tasks-container">
+                <div class="tasks-header">
+                    <h2>Lista de Tareas</h2>
+                    <div class="filter-controls">
+                        <select id="filterCategory">
+                            <option value="">Todas las categorías</option>
+                            <option value="investigacion">Investigación</option>
+                            <option value="contenido">Contenido</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="desarrollo">Desarrollo</option>
+                            <option value="productos">Productos Adicionales</option>
+                            <option value="ia">Integración IA</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                        <select id="filterStatus">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendientes</option>
+                            <option value="completada">Completadas</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="tasksList" class="tasks-list">
+                    <!-- Las tareas se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <h2>Línea de Tiempo del Proyecto</h2>
+            <div id="timeline" class="timeline">
+                <!-- La línea de tiempo se cargará aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar tareas -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Tarea</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="editTaskForm">
+                <div class="form-group">
+                    <label for="editTaskTitle">Título de la Tarea</label>
+                    <input type="text" id="editTaskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskDescription">Descripción</label>
+                    <textarea id="editTaskDescription" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editTaskCategory">Categoría</label>
+                        <select id="editTaskCategory">
+                            <option value="investigacion">Investigación</option>
+                            <option value="contenido">Contenido</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="desarrollo">Desarrollo</option>
+                            <option value="productos">Productos Adicionales</option>
+                            <option value="ia">Integración IA</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskPriority">Prioridad</label>
+                        <select id="editTaskPriority">
+                            <option value="baja">Baja</option>
+                            <option value="media">Media</option>
+                            <option value="alta">Alta</option>
+                            <option value="urgente">Urgente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskDate">Fecha</label>
+                        <input type="date" id="editTaskDate">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

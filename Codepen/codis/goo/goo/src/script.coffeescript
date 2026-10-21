@@ -1,0 +1,143 @@
+class App
+  
+  prefs:
+    gravity: 900
+    colors: [ "#74C2A9" ]
+    particle:
+      count: 50
+      scaleMin: 10
+      scaleMax: 20
+      mass: 1
+  
+  constructor: ->
+    @.getElements()
+    @.addListeners()
+    @.makeWorld()
+    @.makeParticles()
+    @.onResize()
+    @.update()
+    
+  getElements: ->
+    @.width = window.innerWidth
+    @.height = window.innerHeight
+    @.canvas = document.querySelector "canvas"
+    @.c = @.canvas.getContext "2d"
+    
+  addListeners: ->
+    window.addEventListener "resize", @.onResize
+    window.addEventListener "mousemove", @.onMove
+    window.addEventListener "touchmove", @.onMove
+    
+  makeWorld: ->
+    @.world = new p2.World
+      gravity: [ 0, @.prefs.gravity ]
+    @.bounds =
+      bottom: new p2.Body
+        mass: 0
+      right: new p2.Body
+        mass: 0
+      left: new p2.Body
+        mass: 0
+      top: new p2.Body
+        mass: 0
+    
+    left = new p2.Box
+      width: 1000
+      height: @.height + 1000
+    right = new p2.Box
+      width: 1000
+      height: @.height + 1000
+    bottom = new p2.Box
+      width: @.width + 1000
+      height: 1000
+    top = new p2.Box
+      width: @.width + 1000
+      height: 1000
+    
+    @.bounds.bottom.addShape bottom
+    @.bounds.right.addShape right
+    @.bounds.left.addShape left
+    @.bounds.top.addShape top
+    
+    @.world.addBody @.bounds.bottom
+    @.world.addBody @.bounds.right
+    @.world.addBody @.bounds.left
+    @.world.addBody @.bounds.top
+    
+    @.material = new p2.Material()
+    contact = new p2.ContactMaterial @.material, @.material,
+      friction: 0
+      restitution: 1.5
+      stiffness: 200
+      relaxation: 1
+    @.world.addContactMaterial contact
+      
+  makeParticles: ->
+    @.particles = []
+    while @.particles.length < @.prefs.particle.count
+      
+      color = @.prefs.colors[ Math.floor( Math.random() * @.prefs.colors.length )]
+      scale = Math.round @.prefs.particle.scaleMin + Math.random() * ( @.prefs.particle.scaleMax - @.prefs.particle.scaleMin )
+      x = @.width / 2 - scale / 2
+      y = @.height / 2 - scale / 2
+
+      particle =
+        body: new p2.Body
+          mass: @.prefs.particle.mass
+          position: [ x, y ]
+        color: color
+        radius: scale
+        
+      shape = new p2.Circle
+        radius: scale
+      shape.material = @.material
+      particle.body.addShape shape
+      
+      @.world.addBody particle.body
+      @.particles.push particle
+    
+  update: ( now ) =>
+    requestAnimationFrame @.update
+    delta = if @.past then ( now - @.past ) / 1000 else 0
+    @.world.step 1/120, delta, 10
+    @.past = now
+    @.draw()
+    
+  onResize: =>
+    @.width = window.innerWidth
+    @.height = window.innerHeight
+    @.canvas.setAttribute "style", "width: #{@.width}px; height: #{@.height}px"
+    @.canvas.setAttribute "height", @.height
+    @.canvas.setAttribute "width", @.width
+    @.bounds.bottom.position = [ @.width / 2, @.height + 500 ]
+    @.bounds.right.position = [ @.width + 500 , @.height / 2 ]
+    @.bounds.left.position = [ -500, @.height / 2 ]
+    @.bounds.top.position = [ @.width / 2, -500 ]
+    
+  onMove: ( e ) =>
+    
+    if e.touches?
+      ex = e.touches[0].clientX
+      ey = e.touches[0].clientY
+    else
+      ex = e.clientX
+      ey = e.clientY
+      
+    angle = Math.atan2( ey - @.height / 2 , ex - @.width / 2 )
+    distance = Math.sqrt( Math.pow(( ex - @.width / 2 ), 2) + Math.pow(( ey - @.height / 2 ), 2) )
+    max = Math.max( @.width / 2, @.height / 2 )
+    force = @.prefs.gravity * ( distance / max )
+    x = force * Math.cos angle
+    y = force * Math.sin angle
+    @.world.gravity = [ x, y ]
+    
+  draw: =>
+    @.c.clearRect 0, 0, @.width, @.height
+    for particle in @.particles
+      @.c.beginPath()
+      @.c.fillStyle = particle.color
+      @.c.arc particle.body.position[0], particle.body.position[1], particle.radius, 0, 2 * Math.PI, false
+      @.c.fill()
+      @.c.closePath()
+    
+new App()

@@ -1,0 +1,64 @@
+
+**Instrucciones Detalladas para cada Archivo:**
+
+**1. `package.json`**
+*   Define el nombre del proyecto como `podcast-app`.
+*   Incluye un script `start` que ejecute `eleventy --serve`.
+*   Añade `@11ty/eleventy` como una dependencia de desarrollo (`devDependency`).
+
+**2. `.eleventy.js` (Archivo de Configuración)**
+*   Configura Eleventy para que use `src` como el directorio de entrada (input) y `_site` (o `public`) como el directorio de salida (output).
+*   Especifica que los directorios `_includes` y `_data` están dentro de `src`.
+
+**3. `src/_data/podcasts.js` (Datos Centralizados)**
+*   Exporta un módulo de JavaScript que contenga los datos de los podcasts.
+*   Crea diferentes arrays para las distintas secciones de la app: `saved`, `popular`, `searchResults`, etc.
+*   Cada objeto de podcast debe tener: `id`, `title`, `author`, `duration`, y `imageSrc`. Usa las URLs de las imágenes de los archivos originales.
+
+**4. `src/_includes/layout.njk` (Layout Principal)**
+*   Esta será la plantilla base para todas las páginas.
+*   Debe contener la estructura `<!DOCTYPE>`, `<html>`, y `<body>`.
+*   El `<head>` debe incluir:
+    *   El `charset`, `viewport` y el `title` (usando una variable de Nunjucks como `{{ title }}`).
+    *   El script de **Tailwind CSS CDN**.
+    *   El enlace al **CSS de Remixicon**.
+    *   La configuración de `tailwind.config` en un tag `<script>`.
+    *   Los estilos CSS base (como `.nav-height`, `.content-area`, etc.).
+*   El `<body>` debe incluir:
+    *   La variable `{{ content | safe }}` para inyectar el contenido específico de cada página.
+    *   Un `include` para el footer: `{% include "footer.njk" %}`.
+
+**5. `src/_includes/footer.njk` (Footer Reutilizable)**
+*   Contiene el HTML para la barra de navegación inferior con los 4 iconos (Inicio, Buscar, Guardados, Perfil).
+*   Usa lógica de Nunjucks para aplicar las clases de "activo" (`text-primary` y el ícono `fill`). Por ejemplo: `<a href="/" class="... {% if page.url == '/' %}text-primary{% else %}text-gray-400{% endif %}">`.
+*   Los enlaces (`href`) deben apuntar a las rutas raíz de las páginas: `/`, `/buscar/`, `/guardados/`, `/perfil/`.
+
+**6. `src/index.njk` (Página de Inicio)**
+*   Utiliza el layout principal con `layout: layout.njk` y un `title` en el front matter.
+*   Contiene el HTML específico de la página de inicio (`Bienestar-y-Tarot-Interactivo.html`), incluyendo la barra de navegación superior con el logo y el área de "Episodios Populares".
+*   Renderiza la lista de "Episodios Populares" iterando sobre los datos de `podcasts.popular` desde el archivo `_data` usando un bucle `{% for podcast in podcasts.popular %}`.
+
+**7. `src/guardados.njk` (Página de Guardados)**
+*   Utiliza el layout principal con `layout: layout.njk` y `title: 'Guardados'`.
+*   Contiene el HTML de la página `Podcasts-Guardados.html`.
+*   La barra de navegación superior debe tener el título "Guardados".
+*   Renderiza la lista de podcasts guardados iterando sobre `podcasts.saved` con un bucle de Nunjucks.
+
+**8. `src/buscar.njk` (Página de Búsqueda)**
+*   Utiliza el layout principal con `layout: layout.njk` y `title: 'Buscar'`.
+*   Contiene el HTML de la página `Página-de-Búsqueda-de-Podcasts.html`.
+*   La barra de navegación superior debe tener el título "Buscar" y un botón de retroceso.
+*   Incluye el campo de búsqueda, los filtros de categoría y la sección "Búsquedas recientes".
+
+**9. `src/perfil.njk` (Página de Perfil)**
+*   Utiliza el layout principal con `layout: layout.njk` y `title: 'Perfil'`.
+*   Implementa el diseño de la página de perfil que se describió anteriormente:
+    *   Foto de perfil, nombre, botón "Editar Perfil".
+    *   Estadísticas de escucha (Tiempo total, Episodios, Seguidos).
+    *   Secciones de Historial, Preferencias, Configuración y Notificaciones.
+    *   Botón de "Cerrar sesión".
+
+**Formato de Salida:**
+Por favor, proporciona el contenido para cada archivo por separado. Usa un encabezado claro para cada bloque de código, como `--- FILE: package.json ---`, para que sea fácil de copiar y pegar.
+
+---

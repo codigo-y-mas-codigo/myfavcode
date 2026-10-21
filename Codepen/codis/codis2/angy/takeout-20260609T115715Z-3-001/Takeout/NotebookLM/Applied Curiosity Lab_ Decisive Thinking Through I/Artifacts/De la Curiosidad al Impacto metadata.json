@@ -1,0 +1,60 @@
+{
+  "title": "De la Curiosidad al Impacto",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "96cdaf28-6a10-48ca-ab06-353adb6ade25"
+    }
+  }, {
+    "sourceId": {
+      "id": "3c5f7bd5-b3c8-4164-87c6-0f35b9ad0c46"
+    }
+  }, {
+    "sourceId": {
+      "id": "0500f908-bf90-47e2-8eba-adc68f288efb"
+    }
+  }, {
+    "sourceId": {
+      "id": "c0d74f55-16f7-4182-a9ba-951514576c7c"
+    }
+  }, {
+    "sourceId": {
+      "id": "e89d72d7-f8b8-4d50-847c-d8057d239183"
+    }
+  }, {
+    "sourceId": {
+      "id": "ecea74da-7379-4c36-8713-75de50b40694"
+    }
+  }, {
+    "sourceId": {
+      "id": "35481024-51e0-4a7b-9b68-fa33ce470b57"
+    }
+  }, {
+    "sourceId": {
+      "id": "0d4d89b1-4e87-44dd-9047-9d231827a40c"
+    }
+  }, {
+    "sourceId": {
+      "id": "02f41aae-c44b-4133-acea-17cd3a7f512e"
+    }
+  }, {
+    "sourceId": {
+      "id": "7ced1a96-b911-4dab-beb5-de123fd58e30"
+    }
+  }, {
+    "sourceId": {
+      "id": "d83ce1a4-a1a1-4b1b-a718-bc9e96f25aa6"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "Plan Estratégico\nUna propuesta para integrar una cultura de curiosidad aplicada y pensamiento crítico en organizaciones. Diseñar una hoja de ruta integral para líderes que buscan transformar la toma de decisiones institucional, utilizando los principios de \u0027Good Thinking\u0027 y la higiene de decisiones. El documento debe enfocarse en cómo pasar de la curiosidad innata a la curiosidad como herramienta práctica para la innovación y la resolución de conflictos, basándose en los marcos de trabajo de Applied Curiosity Lab.",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_LANDSCAPE",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD",
+      "style": "STYLE_AUTO"
+    },
+    "title": "De la Curiosidad al Impacto"
+  }
+}

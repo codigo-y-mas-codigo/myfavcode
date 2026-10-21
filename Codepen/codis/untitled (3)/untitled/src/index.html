@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Interactivo de Desarrollo Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .filter-btn.active {
+            background-color: #0d6efd;
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .checklist-item {
+            transition: background-color 0.3s ease, opacity 0.3s ease, border-left-width 0.3s ease;
+            border-left: 0px solid transparent;
+        }
+        .checklist-item.essential { border-left-width: 4px; border-left-color: #dc3545; background-color: #f8d7da; }
+        .checklist-item.recommended { border-left-width: 4px; border-left-color: #ffc107; background-color: #fff3cd; }
+        .checklist-item.optional { border-left-width: 4px; border-left-color: #0dcaf0; background-color: #cff4fc; }
+        .checklist-item.dimmed { opacity: 0.5; }
+        .progress-bar-inner {
+            transition: width 0.5s ease-in-out;
+        }
+        .accordion-toggle svg {
+            transition: transform 0.3s ease;
+        }
+        .accordion-toggle[aria-expanded="true"] svg {
+            transform: rotate(180deg);
+        }
+        .chart-container {
+            position: relative;
+            height: 50vh;
+            max-height: 450px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">El Plan Maestro para Proyectos Web</h1>
+            <p class="text-lg text-gray-600">Una checklist interactiva para diseño, lanzamiento y optimización.</p>
+        </header>
+
+        <div class="sticky top-0 bg-[#f8f9fa]/90 backdrop-blur-sm py-4 z-10 mb-8">
+            <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200">
+                <h2 class="text-lg font-semibold mb-3 text-center sm:text-left text-gray-700">Filtrar por Tipo de Página:</h2>
+                <div id="filter-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+                    <button data-filter="all" class="filter-btn active w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Todos</button>
+                    <button data-filter="Homepage" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Homepage</button>
+                    <button data-filter="PDP" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Producto (PDP)</button>
+                    <button data-filter="Blog" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Blog</button>
+                    <button data-filter="Landing" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Landing Page</button>
+                    <button data-filter="Contacto" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Contacto</button>
+                    <button data-filter="Precios" class="filter-btn w-full text-sm font-medium py-2 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">Precios</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-8">
+            <h3 class="font-semibold text-gray-700">Progreso Total:</h3>
+            <div class="w-full bg-gray-200 rounded-full h-4 mt-2">
+                <div id="progress-bar" class="bg-green-500 h-4 rounded-full progress-bar-inner" style="width: 0%"></div>
+            </div>
+            <p id="progress-text" class="text-right text-sm mt-1 text-gray-600">0 / 0 completado</p>
+        </div>
+
+
+        <main id="checklist-main" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Parte I: Fundamentos Universales -->
+                <div id="part1-container">
+                    <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4">Parte I: Fundamentos Universales</h2>
+                    <div class="space-y-4" id="part1-accordions"></div>
+                </div>
+
+                <!-- Parte II: Planos Específicos de Página -->
+                <div id="part2-container">
+                    <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4 mt-8">Parte II: Planos Específicos</h2>
+                    <div class="space-y-4" id="part2-accordions"></div>
+                </div>
+
+                <!-- Parte III: Protocolo de Lanzamiento -->
+                <div id="part3-container">
+                    <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-4 mt-8">Parte III: Protocolo de Lanzamiento</h2>
+                    <div class="space-y-4" id="part3-accordions"></div>
+                </div>
+            </div>
+            
+            <aside class="lg:col-span-1">
+                 <div class="sticky top-28 bg-white p-4 sm:p-6 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-center mb-4 text-gray-700">Matriz de Requisitos</h3>
+                    <div class="chart-container">
+                        <canvas id="requirementsChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-gray-500 space-y-1">
+                        <p><span class="inline-block w-3 h-3 bg-[#dc3545] rounded-full mr-2"></span><span class="font-semibold">Esencial:</span> Crítico para la función principal de la página.</p>
+                        <p><span class="inline-block w-3 h-3 bg-[#ffc107] rounded-full mr-2"></span><span class="font-semibold">Recomendado:</span> Mejora significativamente la UX o conversión.</p>
+                        <p><span class="inline-block w-3 h-3 bg-[#0dcaf0] rounded-full mr-2"></span><span class="font-semibold">Opcional:</span> Beneficioso, pero no fundamental.</p>
+                    </div>
+                </div>
+            </aside>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">Creado a partir del documento "El Plan Maestro para Proyectos Web".</p>
+        </footer>
+
+    </div>
+
+<script>
+const checklistData = {
+    part1: [
+        {
+            title: "Planificación Estratégica y de Proyecto",
+            items: [
+                { text: "Definir Objetivos de Negocio y KPIs (SMART)"},
+                { text: "Desarrollar Personas de Usuario y Viaje del Cliente"},
+                { text: "Realizar Análisis Competitivo y de Tendencias"},
+                { text: "Crear Arquitectura de la Información (Sitemap, Wireframes)"},
+                { text: "Seleccionar Pila Tecnológica (CMS, Hosting, Dominio)"},
+            ]
+        },
+        {
+            title: "Estrategia y Gobernanza de Contenidos",
+            items: [
+                { text: "Definir Voz de Marca y Marco de Mensajes"},
+                { text: "Realizar Auditoría de Contenidos y Análisis de Brechas"},
+                { text: "Establecer Planificación Editorial y Flujo de Trabajo"},
+                { text: "Redactar Política de Privacidad y Términos de Servicio"},
+                { text: "Implementar Banner de Consentimiento de Cookies (GDPR)"},
+                { text: "Verificar Licencias de Medios (imágenes, fuentes)"},
+            ]
+        },
+        {
+            title: "Diseño de Experiencia (UX) e Interfaz (UI)",
+            items: [
+                { text: "Crear Wireframes y Prototipos Interactivos"},
+                { text: "Realizar Pruebas de Usabilidad con Prototipos"},
+                { text: "Definir Identidad Visual (Colores, Tipografía, Iconos)"},
+                { text: "Diseñar Sistemas de Navegación Claros y Consistentes"},
+                { text: "Implementar Migas de Pan (Breadcrumbs) si es necesario"},
+                { text: "Diseñar Componentes Clave (Formularios, Botones, Modales)"},
+                { text: "Crear y Subir Favicon"},
+            ]
+        },
+        {
+            title: "SEO Técnico y Visibilidad",
+            items: [
+                { text: "Realizar Investigación de Palabras Clave Fundacional"},
+                { text: "Optimizar Títulos de Página y Meta Descripciones"},
+                { text: "Usar Estructura de Encabezados Jerárquica (H1, H2, H3)"},
+                { text: "Optimizar Imágenes (nombres de archivo, texto alt)"},
+                { text: "Crear URLs Limpias y Descriptivas"},
+                { text: "Configurar archivo robots.txt"},
+                { text: "Generar y Enviar Sitemap XML"},
+                { text: "Usar Etiquetas Canónicas para contenido duplicado"},
+                { text: "Implementar Redirecciones 301 para rediseños"},
+                { text: "Implementar Datos Estructurados (Schema.org)"},
+            ]
+        },
+        {
+            title: "Rendimiento y Core Web Vitals",
+            items: [
+                { text: "Optimizar para LCP (< 2.5s)"},
+                { text: "Optimizar para INP (< 200ms)"},
+                { text: "Optimizar para CLS (< 0.1)"},
+                { text: "Comprimir Imágenes y usar formatos modernos (WebP)"},
+                { text: "Implementar Carga Diferida (Lazy Loading)"},
+                { text: "Minificar HTML, CSS y JavaScript"},
+                { text: "Habilitar Compresión Gzip/Brotli y Caché de Navegador"},
+                { text: "Utilizar una Red de Entrega de Contenidos (CDN)"},
+            ]
+        },
+        {
+            title: "Seguridad e Integridad de Datos",
+            items: [
+                { text: "Instalar y Configurar Certificado SSL (HTTPS)"},
+                { text: "Prevenir vulnerabilidades comunes (OWASP Top 10)"},
+                { text: "Implementar Políticas de Contraseña Segura y MFA"},
+                { text: "Configurar Copias de Seguridad Automáticas y Regulares"},
+                { text: "Mantener todo el software y plugins actualizados"},
+            ]
+        },
+        {
+            title: "Accesibilidad Web (WCAG 2.2 AA)",
+            items: [
+                { text: "Proporcionar alternativas de texto para imágenes (alt text)"},
+                { text: "Asegurar Contraste de Color Suficiente (4.5:1)"},
+                { text: "Garantizar Funcionalidad Completa con Teclado"},
+                { text: "Asegurar que los Indicadores de Foco sean Visibles"},
+                { text: "Proporcionar Subtítulos para contenido de video"},
+                { text: "Usar HTML Semántico y Válido"},
+                { text: "Asegurar que los Formularios tengan Etiquetas Claras"},
+            ]
+        }
+    ],
+    part2: [
+         {
+            title: "Página de Inicio (Homepage)",
+            items: [
+                { text: "CTA Primario y Claro", filters: { Homepage: 'essential' }},
+                { text: "Múltiples CTAs", filters: { Homepage: 'recommended' }},
+                { text: "Prueba Social (Testimonios)", filters: { Homepage: 'essential' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { Homepage: 'essential' }},
+                { text: "Imagen/Video Principal (Hero)", filters: { Homepage: 'essential' }},
+                { text: "Elementos Interactivos", filters: { Homepage: 'optional' }},
+                { text: "Formulario de Captura de Leads", filters: { Homepage: 'recommended' }},
+            ]
+        },
+        {
+            title: "Página de Producto (PDP)",
+            items: [
+                { text: "CTA Primario y Claro", filters: { PDP: 'essential' }},
+                { text: "Prueba Social (Testimonios)", filters: { PDP: 'essential' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { PDP: 'essential' }},
+                { text: "Imagen/Video Principal (Hero)", filters: { PDP: 'essential' }},
+                { text: "Elementos Interactivos", filters: { PDP: 'recommended' }},
+                { text: "Esquema de Producto", filters: { PDP: 'essential' }},
+            ]
+        },
+        {
+            title: "Artículo de Blog",
+            items: [
+                { text: "CTA Primario y Claro", filters: { Blog: 'recommended' }},
+                { text: "Múltiples CTAs", filters: { Blog: 'recommended' }},
+                { text: "Prueba Social (Testimonios)", filters: { Blog: 'optional' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { Blog: 'essential' }},
+                { text: "Imagen/Video Principal (Hero)", filters: { Blog: 'recommended' }},
+                { text: "Formulario de Captura de Leads", filters: { Blog: 'recommended' }},
+                { text: "Esquema de Artículo", filters: { Blog: 'essential' }},
+            ]
+        },
+        {
+            title: "Página de Aterrizaje (Landing)",
+            items: [
+                { text: "CTA Primario y Claro", filters: { Landing: 'essential' }},
+                { text: "Prueba Social (Testimonios)", filters: { Landing: 'essential' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { Landing: 'essential' }},
+                { text: "Imagen/Video Principal (Hero)", filters: { Landing: 'essential' }},
+                { text: "Formulario de Captura de Leads", filters: { Landing: 'essential' }},
+                { text: "Navegación Mínima", filters: { Landing: 'essential' }},
+            ]
+        },
+        {
+            title: "Página de Contacto",
+            items: [
+                { text: "CTA Primario y Claro", filters: { Contacto: 'essential' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { Contacto: 'recommended' }},
+                { text: "Formulario de Captura de Leads", filters: { Contacto: 'essential' }},
+            ]
+        },
+        {
+            title: "Página de Precios",
+            items: [
+                { text: "CTA Primario y Claro", filters: { Precios: 'essential' }},
+                { text: "Múltiples CTAs", filters: { Precios: 'recommended' }},
+                { text: "Prueba Social (Testimonios)", filters: { Precios: 'essential' }},
+                { text: "SEO Detallado por Palabras Clave", filters: { Precios: 'recommended' }},
+                { text: "Elementos Interactivos", filters: { Precios: 'recommended' }},
+                { text: "Esquema de FAQPage", filters: { Precios: 'essential' }},
+            ]
+        }
+    ],
+    part3: [
+        {
+            title: "Aseguramiento de Calidad Pre-Lanzamiento",
+            items: [
+                { text: "Eliminar todo el contenido de marcador de posición"},
+                { text: "Realizar corrección de pruebas final (typos, gramática)"},
+                { text: "Probar en los principales navegadores (Chrome, Firefox, Safari)"},
+                { text: "Probar en múltiples dispositivos (móvil, tablet, escritorio)"},
+                { text: "Verificar que todos los enlaces internos y externos funcionen"},
+                { text: "Enviar todos los formularios y verificar la recepción"},
+                { text: "Realizar una transacción de prueba completa (eCommerce)"},
+                { text: "Ejecutar escaneo final de rendimiento (PageSpeed Insights)"},
+                { text: "Realizar una copia de seguridad completa del sitio"},
+            ]
+        },
+        {
+            title: "Monitoreo e Iteración Post-Lanzamiento",
+            items: [
+                { text: "Verificar que la analítica (Google Analytics) esté recopilando datos"},
+                { text: "Confirmar que el seguimiento de conversiones/objetivos funcione"},
+                { text: "Enviar Sitemap a Google Search Console / Bing Webmaster Tools"},
+                { text: "Monitorear errores de rastreo en Search Console"},
+                { text: "Establecer un calendario de mantenimiento (actualizaciones, backups)"},
+                { text: "Planificar y comunicar el lanzamiento (redes sociales, email)"},
+            ]
+        }
+    ]
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const part1Container = document.getElementById('part1-accordions');
+    const part2Container = document.getElementById('part2-accordions');
+    const part3Container = document.getElementById('part3-accordions');
+    const filterContainer = document.getElementById('filter-container');
+
+    const createAccordionItem = (section, index, part) => {
+        const contentId = `${part}-content-${index}`;
+
+        const itemsHtml = section.items.map((item) => {
+            const filters = item.filters ? JSON.stringify(item.filters) : '{}';
+            return `
+                <div class="checklist-item p-4 rounded-lg bg-white border border-gray-200" data-filters='${filters}'>
+                    <label class="flex items-center space-x-3 cursor-pointer">
+                        <input type="checkbox" class="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                        <span class="text-gray-700 flex-1">${item.text}</span>
+                    </label>
+                </div>
+            `;
+        }).join('');
+
+        return `
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <button class="accordion-toggle w-full flex justify-between items-center p-5 text-left font-semibold text-lg text-gray-800" aria-expanded="false" aria-controls="${contentId}">
+                    <span>${section.title}</span>
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="${contentId}" class="accordion-content">
+                    <div class="p-5 pt-0 space-y-3">
+                        ${itemsHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    part1Container.innerHTML = checklistData.part1.map((s, i) => createAccordionItem(s, i, 'part1')).join('');
+    part2Container.innerHTML = checklistData.part2.map((s, i) => createAccordionItem(s, i, 'part2')).join('');
+    part3Container.innerHTML = checklistData.part3.map((s, i) => createAccordionItem(s, i, 'part3')).join('');
+
+    const allAccordions = document.querySelectorAll('.accordion-toggle');
+    allAccordions.forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', !isExpanded);
+            if (!isExpanded) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = '0px';
+            }
+        });
+    });
+    
+    const filterButtons = filterContainer.querySelectorAll('.filter-btn');
+    const allChecklistItems = document.querySelectorAll('.checklist-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            updateChart(filter);
+
+            allChecklistItems.forEach(item => {
+                const filters = JSON.parse(item.dataset.filters);
+                item.classList.remove('essential', 'recommended', 'optional', 'dimmed');
+                if (filter !== 'all' && Object.keys(filters).length > 0) {
+                    if (filters[filter]) {
+                        item.classList.add(filters[filter].toLowerCase());
+                    } else {
+                        item.classList.add('dimmed');
+                    }
+                }
+            });
+        });
+    });
+
+    const chartData = {
+        labels: ['CTA Primario', 'Prueba Social', 'SEO Detallado', 'Hero Visual', 'Formulario', 'Esquema Específico', 'Navegación Mínima'],
+        datasets: [
+            { label: 'Homepage', data: [3, 3, 3, 3, 2, 1, 1], borderColor: 'rgba(255, 99, 132, 1)', backgroundColor: 'rgba(255, 99, 132, 0.2)' },
+            { label: 'PDP', data: [3, 3, 3, 3, 0, 3, 0], borderColor: 'rgba(54, 162, 235, 1)', backgroundColor: 'rgba(54, 162, 235, 0.2)' },
+            { label: 'Blog', data: [2, 1, 3, 2, 2, 3, 0], borderColor: 'rgba(75, 192, 192, 1)', backgroundColor: 'rgba(75, 192, 192, 0.2)' },
+            { label: 'Landing', data: [3, 3, 3, 3, 3, 1, 3], borderColor: 'rgba(153, 102, 255, 1)', backgroundColor: 'rgba(153, 102, 255, 0.2)' },
+            { label: 'Contacto', data: [3, 0, 2, 0, 3, 1, 0], borderColor: 'rgba(255, 159, 64, 1)', backgroundColor: 'rgba(255, 159, 64, 0.2)' },
+            { label: 'Precios', data: [3, 3, 2, 1, 0, 3, 0], borderColor: 'rgba(255, 205, 86, 1)', backgroundColor: 'rgba(255, 205, 86, 0.2)' }
+        ]
+    };
+    
+    const ctx = document.getElementById('requirementsChart').getContext('2d');
+    const requirementsChart = new Chart(ctx, {
+        type: 'radar',
+        data: chartData,
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: { font: { size: 10 }, color: '#6b7280' },
+                    suggestedMin: 0,
+                    suggestedMax: 3,
+                    ticks: {
+                        stepSize: 1,
+                        display: false,
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = context.raw;
+                            let priority = '';
+                            if (value === 3) priority = 'Esencial';
+                            else if (value === 2) priority = 'Recomendado';
+                            else if (value === 1) priority = 'Opcional';
+                            else return null;
+                            return `${context.dataset.label}: ${priority}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    function updateChart(filter) {
+        const targetLabel = filter === 'all' ? null : filter;
+        requirementsChart.data.datasets.forEach(dataset => {
+            dataset.hidden = (targetLabel && dataset.label !== targetLabel);
+        });
+        requirementsChart.update();
+    }
+    
+    updateChart('all');
+
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const totalTasks = allCheckboxes.length;
+
+    function updateProgress() {
+        const checkedTasks = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const percentage = totalTasks > 0 ? (checkedTasks / totalTasks) * 100 : 0;
+        progressBar.style.width = `${percentage}%`;
+        progressText.textContent = `${checkedTasks} / ${totalTasks} completado`;
+    }
+
+    allCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateProgress);
+    });
+
+    updateProgress();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="h-full">
+
+<head>
+ <!-- Required Meta Tags Always Come First -->
+ <meta charset="utf-8">
+ <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+ <link rel="canonical" href="https://vercelapp-go.vercel.app/">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+
+ <meta name="twitter:site" content="@luisangelmaciel">
+ <meta name="twitter:creator" content="@luisangelmaciel">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Verceapp Go">
+ <meta name="twitter:description" content="">
+ <meta name="twitter:image" content="https://vercelapp-go.vercel.app/img/ogimage.png">
+
+ <meta property="og:url" content="https://preline.co/">
+ <meta property="og:locale" content="es_MX">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="Vercelapp Go!">
+ <meta property="og:title" content="Verceapp Go">
+ <meta property="og:description" content="">
+ <meta property="og:image" content="https://vercelapp-go.vercel.app/img/ogimage.png">
+
+ <!-- Title -->
+ <title>Verceapp Go</title>
+
+ <!-- Favicon -->
+ <link rel="shortcut icon" href="https://preline.co//favicon.ico">
+
+ <!-- Font -->
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+  const html = document.querySelector('html');
+  const isLightOrAuto = localStorage.getItem('hs_theme') === 'light' || (localStorage.getItem('hs_theme') === 'auto' && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDarkOrAuto = localStorage.getItem('hs_theme') === 'dark' || (localStorage.getItem('hs_theme') === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isLightOrAuto && html.classList.contains('dark')) html.classList.remove('dark');
+  else if (isDarkOrAuto && html.classList.contains('light')) html.classList.remove('light');
+  else if (isDarkOrAuto && !html.classList.contains('dark')) html.classList.add('dark');
+  else if (isLightOrAuto && !html.classList.contains('light')) html.classList.add('light');
+ </script>
+
+ <!-- CSS HS -->
+ <link rel="stylesheet" href="https://preline.co/assets/css/main.min.css?v=2.3.0">
+ <style>
+  .label {
+   display: block;
+   margin-bottom: .25rem;
+  }
+
+  label {
+   /*font-size: .85rem;*/
+   font-weight: bold;
+  }
+
+  select[data-ss-uuid] {
+   display: none;
+   pointer-events: none;
+  }
+
+  .style-select {
+   display: block;
+   position: relative;
+   width: 140px;
+  }
+
+  .style-select,
+  .style-select * {
+   padding: 0;
+   margin: 0;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   text-align: left;
+   line-height: 19px;
+   color: black;
+   font-weight: 300;
+   cursor: pointer;
+  }
+
+  .style-select .ss-selected-option {
+   width: 100%;
+   background-image: -webkit-linear-gradient(top, #fefefe, #f2f2f2);
+   background-image: linear-gradient(to bottom, #fefefe, #f2f2f2);
+   border-radius: 2px;
+   padding: 6px;
+   border: 1px solid #d0d0d0;
+  }
+
+  .style-select .ss-selected-option::after {
+   content: "â–¾";
+   position: absolute;
+   top: 6px;
+   right: 12px;
+   display: block;
+  }
+
+  .style-select .ss-dropdown {
+   top: 32px;
+   left: 0;
+   position: absolute;
+   float: left;
+   width: 100%;
+   display: none;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+   border: 1px solid #d0d0d0;
+   border-top: 0 none;
+  }
+
+  .style-select .ss-dropdown .ss-option {
+   width: 100%;
+   padding: 6px;
+   background-color: white;
+  }
+
+  .style-select .ss-dropdown .ss-option.highlighted {
+   background-color: #f2f4f8;
+  }
+
+  .style-select .ss-dropdown .ss-option.disabled {
+   color: #d0d0d0;
+  }
+
+  .style-select .ss-dropdown .ss-option.ticked::before {
+   content: "âœ“";
+   padding-right: 3px;
+  }
+
+  .style-select.open .ss-dropdown {
+   display: block;
+  }
+
+  .style-select.open .ss-selected-option::after {
+   content: "â–´";
+  }
+
+  .input {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   box-sizing: border-box;
+   width: 100%;
+   margin: 0 0 .9rem;
+   padding: .6rem;
+   background: #fff;
+   border: 1px solid #bbb;
+   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+   border-radius: 0;
+   outline: none;
+   resize: vertical;
+   transition: border-color .3s ease;
+   color: #000;
+   font-family: inherit;
+   font-size: 100%;
+   line-height: 1.15
+  }
+
+  .input[disabled] {
+   border-color: #c8c8c8;
+   background-color: #f2f2f2;
+   box-shadow: none;
+   cursor: not-allowed;
+   color: #0d0d0d
+  }
+
+  .input:focus {
+   border-color: #17f
+  }
+
+  .input::-webkit-input-placeholder {
+   color: #999;
+   opacity: 1
+  }
+
+  .input:-ms-input-placeholder {
+   opacity: 1
+  }
+
+  .input::-ms-input-placeholder {
+   opacity: 1
+  }
+
+  .input::placeholder {
+   color: #999;
+   opacity: 1
+  }
+
+  .input:-ms-input-placeholder {
+   color: #999
+  }
+
+  .input::-ms-input-placeholder {
+   color: #999
+  }
+
+  .control {
+   margin: 0 0 .9rem;
+   box-sizing: border-box
+  }
+
+  .control__input {
+   position: absolute;
+   opacity: 0;
+   pointer-events: none
+  }
+
+  .control__label {
+   display: flex;
+   align-items: center;
+   position: relative;
+   color: #000
+  }
+
+  .control__label:after,
+  .control__label:before {
+   content: "";
+   display: block;
+   width: 20px;
+   height: 20px;
+   border: 1px solid transparent
+  }
+
+  .control__label:before {
+   flex-shrink: 0;
+   margin-right: .6rem;
+   border-color: #bbb;
+   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+   background: #fff
+  }
+
+  .control__label:after {
+   position: absolute;
+   top: calc(48% - 10px);
+   left: 0;
+   background-size: 60%;
+   background-repeat: no-repeat;
+   background-position: 50%;
+   -webkit-transform: scale(0);
+   transform: scale(0);
+   transition: -webkit-transform .3s ease;
+   transition: transform .3s ease;
+   transition: transform .3s ease, -webkit-transform .3s ease
+  }
+
+  .control__input[type=radio]+.control__label:before {
+   border-radius: 100%
+  }
+
+  .control__input[type=radio]+.control__label:after {
+   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M256 464c114.9 0 208-93.1 208-208S370.9 48 256 48 48 141.1 48 256s93.1 208 208 208z'/%3E%3C/svg%3E")
+  }
+
+  .control__input[type=checkbox]+.control__label:after {
+   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M461.6 109.6l-54.9-43.3c-1.7-1.4-3.8-2.4-6.2-2.4-2.4 0-4.6 1-6.3 2.5L194.5 323s-78.5-75.5-80.7-77.7c-2.2-2.2-5.1-5.9-9.5-5.9s-6.4 3.1-8.7 5.4c-1.7 1.8-29.7 31.2-43.5 45.8-.8.9-1.3 1.4-2 2.1-1.2 1.7-2 3.6-2 5.7 0 2.2.8 4 2 5.7l2.8 2.6s139.3 133.8 141.6 136.1c2.3 2.3 5.1 5.2 9.2 5.2 4 0 7.3-4.3 9.2-6.2l249.1-320c1.2-1.7 2-3.6 2-5.8 0-2.5-1-4.6-2.4-6.4z'/%3E%3C/svg%3E")
+  }
+
+  .control__input[type=checkbox][disabled]+.control__label,
+  .control__input[type=radio][disabled]+.control__label {
+   cursor: not-allowed;
+   color: #0d0d0d
+  }
+
+  .control__input[type=checkbox][disabled]+.control__label:before,
+  .control__input[type=radio][disabled]+.control__label:before {
+   border-color: #c8c8c8;
+   background-color: #f2f2f2;
+   box-shadow: none
+  }
+
+  .control__input:focus+.control__label:before {
+   border-color: #17f
+  }
+
+  .control__input:checked+.control__label:after {
+   -webkit-transform: scale(1);
+   transform: scale(1)
+  }
+
+  .select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   box-sizing: border-box;
+   margin: 0 0 .9rem;
+   padding: .6rem calc(.9rem + 12px) .6rem .6rem;
+   width: 100%;
+   background: #fff;
+   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M256 298.3l174.2-167.2c4.3-4.2 11.4-4.1 15.8.2l30.6 29.9c4.4 4.3 4.5 11.3.2 15.5L264.1 380.9c-2.2 2.2-5.2 3.2-8.1 3-3 .1-5.9-.9-8.1-3L35.2 176.7c-4.3-4.2-4.2-11.2.2-15.5L66 131.3c4.4-4.3 11.5-4.4 15.8-.2L256 298.3z'/%3E%3C/svg%3E");
+   background-size: 12px;
+   background-repeat: no-repeat;
+   background-position: calc(100% - .6rem) 50%;
+   border: 1px solid #bbb;
+   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+   border-radius: 0;
+   outline: 0;
+   color: #000;
+   font-family: inherit;
+   font-size: 100%;
+   line-height: 1.15
+  }
+
+  .select[disabled] {
+   border-color: #c8c8c8;
+   background-color: #f2f2f2;
+   box-shadow: none;
+   cursor: not-allowed;
+   color: #0d0d0d
+  }
+
+  .select:focus {
+   border-color: #17f
+  }
+
+  .select::-ms-expand {
+   display: none
+  }
+
+  input[type="range"] {
+   width: 100%;
+  }
+
+  input[type="color"] {
+   width: 100%;
+  }
+ </style>
+ <style>
+  .ag-comm_btn {
+   line-height: 39px;
+   min-width: 150px;
+   margin: 0;
+   border: 0px solid transparent;
+   background-color: transparent;
+   cursor: pointer;
+   vertical-align: middle;
+   text-decoration: none;
+   text-align: center;
+   font-weight: bold;
+   color: #FFF;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   -webkit-box-shadow: 0 3px 5px transparent;
+   -moz-box-shadow: 0 3px 5px transparent);
+   -o-box-shadow: 0 3px 5px transparent;
+   box-shadow: 0 3px 5px transparent;
+   -webkit-transition: background-color 0.2s ease;
+   -moz-transition: background-color 0.2s ease;
+   -o-transition: background-color 0.2s ease;
+   transition: background-color 0.2s ease;
+  }
+
+  .ag-comm_btn:focus {
+   outline: none;
+  }
+
+  .ag-comm_btn:not(:disabled):hover {
+   border: 0px solid transparent;
+   background-color: transparent;
+  }
+
+  .ag-comm_btn:disabled {
+   border: 0px solid transparent;
+   background: transparent;
+   cursor: default;
+   color: #525c69;
+  }
+
+  .ag-comm_btn {
+   border: 0px solid transparent;
+   background-color: transparent;
+   cursor: pointer;
+   vertical-align: middle;
+   text-decoration: none;
+   text-align: center;
+   font-weight: bold;
+   font-size: 18px;
+   color: #FFF;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   -webkit-box-shadow: 0 3px 5px transparent;
+   -moz-box-shadow: 0 3px 5px transparent;
+   -o-box-shadow: 0 3px 5px transparent;
+   box-shadow: 0 3px 5px transparent;
+   -webkit-transition: background-color 0.2s ease;
+   -moz-transition: background-color 0.2s ease;
+   -o-transition: background-color 0.2s ease;
+   transition: background-color 0.2s ease;
+  }
+
+  .ag-comm_btn:focus {
+   outline: none;
+  }
+
+  .ag-comm_btn:not(:disabled):hover {
+   border: 0px solid transparent;
+   background-color: transparent;
+  }
+
+  .ag-comm_btn:disabled {
+   border: 0px solid transparent;
+   background: transparent;
+   cursor: default;
+   color: #525c69;
+  }
+
+  .ag-comm_btn-blink {
+   animation: blink 0.05s linear infinite;
+  }
+
+  .wait {
+   /*animation: blink 0.05s linear infinite;*/
+   text-shadow: 0 0 2px #333;
+   color: white;
+   animation: pulsate 1s ease-out infinite;
+  }
+
+  @keyframes blink {
+   0% {
+    background-color: red;
+   }
+
+   50% {
+    background-color: pink;
+   }
+
+   100% {
+    background-color: yellow;
+   }
+  }
+
+  @keyframes pulsate {
+   0% {
+    text-shadow: 0 0 2px #333;
+   }
+
+   50% {
+    text-shadow: 0 0 10px #ccc;
+   }
+
+   100% {
+    text-shadow: 0 0 2px #333;
+   }
+  }
+
+  .ag-comm_btn {
+   /* ...otras propiedades... */
+  }
+
+  .contenedor {}
+
+  .cerrar {
+   cursor: pointer;
+   padding: 10px;
+  }
+ </style>
+</head>
+
+<body class="bg-black pb-[60px] ">
+ <!-- ========== MAIN CONTENT ========== -->
+ <main id="content">
+  <!-- Features -->
+  <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+   <!-- Title -->
+   <div class="mx-auto max-w-2xl mb-8 lg:mb-14 text-center">
+    <h2 class="text-3xl lg:text-4xl text-gray-800 font-bold dark:text-neutral-200">
+     Explore tools
+    </h2>
+    <p class="mt-3 text-gray-800 dark:text-neutral-200">
+     The powerful and flexible theme for all kinds of businesses.
+    </p>
+   </div>
+   <!-- End Title -->
+
+   <!-- Grid -->
+   <div class="mx-auto max-w-3xl grid grid-cols-12 gap-6 lg:gap-8">
+    <!-- Icon Block -->
+    <div class="col-span-6 sm:col-span-4 text-center">
+     <svg class="mx-auto h-auto w-7 md:w-9 text-gray-800 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="10" height="14" x="3" y="8" rx="2" />
+      <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
+      <path d="M8 18h.01" />
+     </svg>
+     <div class="mt-2 sm:mt-6">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">
+       Responsive
+      </h3>
+     </div>
+    </div>
+    <!-- End Icon Block -->
+
+    <!-- Icon Block -->
+    <div class="col-span-6 sm:col-span-4 text-center">
+     <svg class="mx-auto h-auto w-7 md:w-9 text-gray-800 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 7h-9" />
+      <path d="M14 17H5" />
+      <circle cx="17" cy="17" r="3" />
+      <circle cx="7" cy="7" r="3" />
+     </svg>
+     <div class="mt-2 sm:mt-6">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">
+       Customizable
+      </h3>
+     </div>
+    </div>
+    <!-- End Icon Block -->
+
+    <!-- Icon Block -->
+    <div class="col-span-6 col-start-4 sm:col-span-4 text-center">
+     <svg class="mx-auto h-auto w-7 md:w-9 text-gray-800 dark:text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
+      <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
+     </svg>
+     <div class="mt-2 sm:mt-6">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">
+       24/7 Support
+      </h3>
+     </div>
+    </div>
+    <!-- End Icon Block -->
+   </div>
+   <!-- End Grid -->
+
+   <!-- Grid -->
+   <div class="mt-20 grid grid-cols-12 items-center gap-x-2 sm:gap-x-6 lg:gap-x-8">
+    <div class="hidden md:block col-span-4 md:col-span-3">
+     <img class="rounded-xl" src="https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80" alt="Image Description">
+    </div>
+    <!-- End Col -->
+
+    <div class="col-span-4 md:col-span-3">
+     <img class="rounded-xl" src="https://images.unsplash.com/photo-1587613991119-fbbe8e90531d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1003&q=80" alt="Image Description">
+    </div>
+    <!-- End Col -->
+
+    <div class="col-span-4 md:col-span-3">
+     <img class="rounded-xl" src="https://images.unsplash.com/photo-1554295405-abb8fd54f153?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=652&q=80" alt="Image Description">
+    </div>
+    <!-- End Col -->
+
+    <div class="col-span-4 md:col-span-3">
+     <img class="rounded-xl" src="https://images.unsplash.com/photo-1640622300473-977435c38c04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" alt="Image Description">
+    </div>
+    <!-- End Col -->
+   </div>
+   <!-- End Grid -->
+  </div>
+  <!-- End Features -->
+ </main>
+
+ <main id="content" class="contenedor relative max-w-3xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center sm:items-center mx-auto size-full before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples-dark/squared-bg-element.svg')] before:bg-no-repeat before:bg-top before:size-full before:-z-[1] before:transform before:-translate-x-1/2">
+  <div class=" text-center py-8 px-4 sm:px-6 lg:px-8">
+   <h2 class="mt-1 sm:mt-3 text-4xl font-bold text-white sm:text-6xl">
+    <span class="bg-clip-text bg-gradient-to-tr from-blue-600 to-purple-400 text-transparent thankyou_message " style="display:none;"> ¡Gracias! </span> <span id="wait-message" class="wait text-2xl text-white sm:text-4xl" style="display: none;">Espere un momento, por favor...</span>
+   </h2>
+  </div>
+  <div class="text-center py-8 px-4 sm:px-6 lg:px-8">
+   <h1 class="h-auto mx-auto mb-4 sm:mb-8" style="color:white" width="116" height="41">Vercelapp Go</h1>
+   <h1 class="text-2xl text-white sm:text-4xl">
+    Recibe una notificación cuando lancemos
+   </h1>
+   <h2 class="mt-1 sm:mt-3 text-4xl font-bold text-white sm:text-6xl">
+    <span class="bg-clip-text bg-gradient-to-tr from-blue-600 to-purple-400 text-transparent">Vercelapp Go</span><br> <span class="bg-clip-text bg-gradient-to-tr from-blue-600 to-purple-400 text-transparent thankyou_message " style="display:none;"> ¡Gracias! </span> <span id="wait-message" class="wait text-2xl text-white sm:text-4xl" style="display: none;">Espere un momento, por favor...</span>
+   </h2>
+
+   <form class="gform pure-form pure-form-stacked" method="POST" data-email="luis.el.de.las.tarjetas@gmail.com" action="https://script.google.com/macros/s/AKfycbwOBg05h-H3-7sbFFr-aoVsgewy4ZGv-mfv-QJjqWbZpQigYd3AslrbLVe_aRRmxuR9zw/exec">
+    <div class="form-elements">
+     <div class="mt-8 space-y-4">
+      <div>
+       <label for="Nombre" class="sr-only">¿Cuál es tu nombre?</label>
+       <div class="relative">
+        <input type="text" id="Nombre" name="Nombre" class="py-3 ps-11 pe-4 block w-full bg-white/10 border-white/20 text-white placeholder:text-white rounded-lg text-sm focus:border-white/30 focus:ring-white/30 sm:p-4 sm:ps-11" placeholder="¿Cuál es tu nombre?">
+        <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
+         <svg class="flex-shrink-0 size-4 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+         </svg>
+        </div>
+       </div>
+
+       <div id="js-comm_alert" style="display:none">
+
+        <script>
+         document.addEventListener('DOMContentLoaded', function() {
+          const MIX_LENGTH = 1;
+          const textarea = document.getElementById('js-comm_textarea');
+          const button = document.getElementById('js-comm_btn');
+
+          function insertAfter(referenceNode, newNode) {
+           referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+          }
+          const div = document.createElement('div');
+          div.className = 'js-comm_alert';
+          div.id = 'js-comm_alert';
+          div.innerHTML = '<div id="js-comm_count" class="js-ag-comm_count" hidden><span>0</span> / ' + MIX_LENGTH + '</div>';
+          insertAfter(textarea, div);
+          const count = document.getElementById('js-comm_count');
+          const countSpan = count.querySelector('span');
+          textarea.onkeyup = function() {
+           countSpan.textContent = this.value.length;
+           count.classList.remove('js-ag-comm_count__success');
+           button.disabled = 'disabled';
+           if (this.value.length >= MIX_LENGTH) {
+            count.classList.add('js-ag-comm_count__success');
+            button.disabled = "";
+           }
+          };
+         });
+        </script>
+       </div>
+
+      </div>
+
+      <div>
+       <label for="Email" class="sr-only">Email</label>
+       <div class="relative">
+        <input type="email" id="Email" class="py-3 ps-11 pe-4 block w-full bg-white/10 border-white/20 text-white placeholder:text-white rounded-lg text-sm focus:border-white/30 focus:ring-white/30 sm:p-4 sm:ps-11" placeholder="¿A qué email quieres sea enviada la invitación?" name="Email">
+        <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
+         <svg class="flex-shrink-0 size-4 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+         </svg>
+        </div>
+       </div>
+      </div>
+
+      <div class="grid">
+       <button type="submit" class="sm:p-4 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white/10 text-white hover:bg-white/20 disabled:opacity-50 disabled:pointer-events-none">
+        <input id="js-comm_btn" class="ag-comm_btn cerrar" value="Únete a la lista de espera" disabled />
+        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+         <path d="m9 18 6-6-6-6" />
+        </svg>
+       </button>
+      </div>
+     </div>
+     <a href="https://docs.google.com/spreadsheets/d/1vBMsHX8RfJeUC-9K2ShArTr9uPftLbj6nyeHtwVUGl8/edit#gid=0">
+      <!--function-->
+     </a>
+     <script data-cfasync="false" type="text/javascript">
+      // Función para validar el correo electrónico
+      function validEmail(email) {
+       var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+       return re.test(email);
+      }
+      // Función para manejar el envío del formulario
+      function handleFormSubmit(event) {
+       event.preventDefault(); // Prevenir el envío del formulario
+       var form = event.target;
+       var data = getFormData(form);
+       // Guardar los datos del formulario en localStorage
+       localStorage.setItem('formData', JSON.stringify(data));
+       // Mostrar la leyenda de "espera"
+       var waitMessage = document.getElementById('wait-message');
+       waitMessage.style.display = 'block';
+       if (data.email && !validEmail(data.email)) {
+        var invalidEmail = form.querySelector(".email-invalid");
+        if (invalidEmail) {
+         invalidEmail.style.display = "block";
+         return false;
+        }
+       } else {
+        disableAllButtons(form);
+        var url = form.action;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+         console.log(xhr.status, xhr.statusText);
+         console.log(xhr.responseText);
+         var formElements = form.querySelector(".form-elements");
+         if (formElements) {
+          formElements.style.display = "none"; // ocultar formulario
+         }
+         var thankYouMessage = form.querySelector(".thankyou_message");
+         if (thankYouMessage) {
+          thankYouMessage.style.display = "block"; // mostrar mensaje de agradecimiento
+         }
+         waitMessage.style.display = 'none'; // ocultar leyenda de "espera"
+         return;
+        };
+        var encoded = Object.keys(data).map(function(k) {
+         return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+        }).join('&');
+        xhr.send(encoded);
+       }
+      }
+      // Función para deshabilitar todos los botones del formulario
+      function disableAllButtons(form) {
+       var buttons = form.querySelectorAll("button");
+       for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+       }
+      }
+      // Función para obtener los datos del formulario
+      function getFormData(form) {
+       var elements = form.elements;
+       var fields = Object.keys(elements).filter(function(k) {
+        return (elements[k].name !== "honeypot");
+       }).map(function(k) {
+        if (elements[k].name !== undefined) {
+         return elements[k].name;
+        } else if (elements[k].length > 0) {
+         return elements[k].item(0).name;
+        }
+       }).filter(function(item, pos, self) {
+        return self.indexOf(item) == pos && item;
+       });
+       var formData = {};
+       fields.forEach(function(name) {
+        var element = elements[name];
+        formData[name] = element.value;
+        if (element.length) {
+         var data = [];
+         for (var i = 0; i < element.length; i++) {
+          var item = element.item(i);
+          if (item.checked || item.selected) {
+           data.push(item.value);
+          }
+         }
+         formData[name] = data.join(', ');
+        }
+       });
+       formData.formDataNameOrder = JSON.stringify(fields);
+       formData.formGoogleSheetName = form.dataset.sheet || "Hoja 1"; // default sheet name
+       formData.formGoogleSendEmail = form.dataset.email || "";
+       console.log(formData);
+       return formData;
+      }
+      // Agregar el event listener al formulario para manejar el envío
+      document.addEventListener("DOMContentLoaded", function() {
+       var form = document.querySelector("form.gform");
+       form.addEventListener("submit", handleFormSubmit, false);
+      });
+      // tiem
+      // Obtener el elemento que contiene la leyenda de "espera"
+      const waitMessage = document.getElementById('wait-message');
+      // Mostrar la leyenda de "espera" cuando se envía el formulario
+      form.addEventListener('submit', function() {
+       waitMessage.style.display = 'block';
+       waitMessage.textContent = 'Espere un momento, por favor...';
+       // Cambiar el texto después de 1.5 segundos
+       setTimeout(function() {
+        waitMessage.textContent = 'Ya casi estamos...';
+       }, 250);
+       // Cambiar el texto después de 3 segundos más (4.5 segundos en total)
+       setTimeout(function() {
+        waitMessage.textContent = 'Gracias por tu paciencia...';
+       }, 500);
+      });
+      // Obtener el elemento del botón de enviar
+      const submitButton = document.getElementById('js-comm_btn');
+      // Agregar el efecto de parpadeo cuando se envía el formulario
+      form.addEventListener('submit', function() {
+       submitButton.classList.add('ag-comm_btn-blink');
+       // Quitar la clase de parpadeo después de un tiempo
+       setTimeout(function() {
+        submitButton.classList.remove('ag-comm_btn-blink');
+       }, 500); // 2 segundos, por ejemplo
+      });
+     </script>
+     <div class="text">
+      <input class="input" type="text" inputmode="text" value="https://vercelapp-go.vercel.app" style="display:none" id="origen" name="origen">
+     </div>
+    </div>
+  </div>
+  </form>
+  </div>
+  </div>
+ </main>
+
+ <footer class="absolute bottom-0 inset-x-0 text-center py-5">
+  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+   <p class="text-sm text-white/50">© 2024 Vercelapp Go. A product of <a class="text-white font-medium hover:text-white/80" href="https://www.xbr.pw">xiiber power</a></p>
+  </div>
+ </footer>
+
+ <!-- JS Implementing Plugins -->
+
+ <!-- JS PLUGINS -->
+ <!-- Required plugins -->
+ <script src="https://preline.co//assets/vendor/preline/dist/index.js?v=2.3.0"></script>
+
+ <script>
+  document.querySelector('.cerrar').addEventListener('click', function() {
+   document.querySelector('.contenedor').style.display = 'none';
+  });
+ </script>
+</body>
+
+</html>

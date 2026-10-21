@@ -1,0 +1,38 @@
+[
+  {
+    "part": "hook",
+    "description": "¡Hey! ¡Ho! ¡Hey! ¡VIVE! ¿Sientes que el mundo gira demasiado rápido y los días se escapan sin más?",
+    "image_filename": "hook.png",
+    "text_filename": "hook.txt",
+    "suggested_alt_text": "Energetic text: \"¡Hey! ¡Ho! ¡Hey! ¡VIVE! ¿El mundo gira rápido? ¡Disfruta el momento!"
+  },
+  {
+    "part": "problem",
+    "description": "A menudo nos quedamos atrapados en el pasado o preocupados por el futuro, perdiendo la magia del presente.",
+    "image_filename": "problem.png",
+    "text_filename": "problem.txt",
+    "suggested_alt_text": "Persona atrapada en el pasado y futuro, perdiendo la magia del presente."
+  },
+  {
+    "part": "solution",
+    "description": "¡Vive el momento! Aprende a disfrutar de tu espacio, a no aferrarte al ayer y a construir tus sueños hoy.",
+    "image_filename": "solution.png",
+    "text_filename": "solution.txt",
+    "suggested_alt_text": "Disfruta el momento, abraza el presente y construye tus sueños."
+  },
+  {
+    "part": "example",
+    "description": "Respira, baila, grita, alucina. Habla con el viento, deja que tus ideas fluyan y se hagan notar.",
+    "image_filename": "example.png",
+    "text_filename": "example.txt",
+    "suggested_alt_text": "Woman shouting, dancing, breathing deeply, and letting ideas flow.",
+    "image_caption": ""
+  },
+  {
+    "part": "callToAction",
+    "description": "¡Vive, grita, baila, canta! Guarda este video y sígueme para más inspiración diaria.",
+    "image_filename": "callToAction.png",
+    "text_filename": "callToAction.txt",
+    "suggested_alt_text": "¡Vive, grita, baila, canta! Inspírate."
+  }
+]

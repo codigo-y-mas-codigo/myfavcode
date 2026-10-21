@@ -1,0 +1,18 @@
+{
+  "title": "2026 Creator Scale Protocol",
+  "type": "ARTIFACT_TYPE_SLIDES",
+  "sources": [{
+    "sourceId": {
+      "id": "d48071af-60c8-415b-9fd3-1bdd0dd0e509"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "slides": {
+    "generationOptions": {
+      "languageCode": "es_419",
+      "deckType": "DECK_TYPE_READING",
+      "length": "SLIDE_DECK_LENGTH_MEDIUM"
+    },
+    "title": "2026 Creator Scale Protocol"
+  }
+}

@@ -1,0 +1,195 @@
+// !Varialbe
+$media-lg: 992px
+
+\:root
+	--primary: #1b1818
+	--accent: #7ab87a
+	--white: #fff
+
+	--sans-serif: -apple-system,BlinkMacSystemFont,"Microsoft JhengHei UI","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" 
+	
+// !Reset
+// Using Normalize
+html
+	box-sizing: border-box
+	font-family: var(--sans-serif)
+
+*, *:before, *:after
+	box-sizing: inherit
+
+body
+	display: flex
+	justify-content: center
+	align-items: flex-start
+	background-color: var(--primary)
+	background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png")
+
+body, html
+	height: 100%
+
+img
+	max-width: 100%
+	max-width: 100%
+	object-fit: cover
+	display: block
+
+svg
+	display: block
+
+a
+	text-decoration: none
+	color: var(--primary)
+	transition: opacity .3s
+	opacity: .7
+	&:hover
+		opacity: 1		
+
+address
+	font-style: normal
+
+// Moduel
+.container
+	max-width: 960px
+	margin: 0 auto
+	padding: 0 1rem
+
+.card
+	position: relative
+	min-width: 250px
+	max-width: 500px
+	width: 100%
+	color: var(--primary)
+	// Bussiness card size is 90 x 54, so the ratio is 23:14 	
+	aspect-ratio: 23/14
+	border-radius: .5rem
+	overflow: hidden
+	transform-style: preserve-3d
+	background-position: top center
+
+	// Border 	
+	&::before
+		content: ""
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		border-radius: .5rem
+		padding: 1px
+		background: linear-gradient(45deg, var(--white), transparent)
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)
+		-webkit-mask-composite: xor
+		mask-composite: exclude
+		z-index: -1
+
+	// Translucent BG
+	&::after
+		content: ''
+		display: block
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: var(--white)
+		overflow: hidden
+		border-radius: .5rem
+		z-index: -1
+		opacity: .7
+	
+.card__content
+	padding: 1rem
+	height: 100%
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+
+.card__texture
+	width: 100%
+	height: 100%
+	position: absolute
+	top: 0
+	left: 0
+	opacity: .9
+	background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png")
+	z-index: -1
+
+.card__logoLink
+	position: absolute
+	bottom: 0
+	right: 0
+	width: 45%
+
+.card__logo
+	width: 100%
+	height: 100%
+	margin-bottom: -1px
+	transition: color .3s
+	
+	&:hover
+		color: var(--accent)
+
+.card__imgLink
+	max-width: 100px
+	
+.card__job
+	font-size: clamp(0.75rem, 1vw + 0.5rem, 1rem)
+	margin: 0
+	opacity: .6
+	line-height: 1.7
+
+.card__name
+	margin: 0
+	font-size: clamp(0.75rem, 5vw + 0.5rem, 3rem)
+
+.card__info
+	font-size: clamp(0.3rem, 1vw + 0.5rem, 1rem)
+	line-height: 1.5
+
+// Main
+.cardSection
+	color: var(--white)
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	height: 100%
+	width: 100%
+
+.cardWrapper
+	width: 100%
+	display: flex
+	justify-content: center
+
+.info
+	text-align: center
+	display: flex
+	flex-direction: column-reverse
+	margin-bottom: 6rem
+
+.info__heading
+	margin: 0
+	font-size: 2.5rem
+	font-weight: bold
+	
+.info__subHeading
+	margin: 0
+	font-size: 2rem
+	
+@media (min-width: $media-lg)
+	.container
+		padding: 0
+	
+	.cardSection
+		flex-direction: row
+	
+	.info
+		text-align: left
+		flex-direction: column
+		writing-mode: vertical-rl
+		margin: 0
+	
+	.info__heading
+	
+	.info__subHeading
+		font-size: 4rem

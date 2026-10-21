@@ -1,0 +1,37 @@
+[
+  {
+    "part": "hook",
+    "description": "¿Sientes que el dinero se te escapa de las manos? ¿No sabes a dónde va tu sueldo cada mes?",
+    "image_filename": "hook.png",
+    "text_filename": "hook.txt",
+    "suggested_alt_text": "Man holding empty wallet, looking concerned about finances."
+  },
+  {
+    "part": "problem",
+    "description": "Muchas personas luchan por controlar sus gastos, ahorrar o planificar su futuro financiero, generando estrés e incertidumbre.",
+    "image_filename": "problem.png",
+    "text_filename": "problem.txt",
+    "suggested_alt_text": "**Opción 1 (Enfoque en el problema):**\n\n> People struggling with finances, causing stress and uncertainty.\n\n**Opción 2 (Enfoque en el sentimiento):**\n\n> Financial worries create stress and uncertainty for many."
+  },
+  {
+    "part": "solution",
+    "description": "Empieza hoy mismo con un presupuesto simple. Anota tus ingresos y gastos para entender tus hábitos y tomar el control.",
+    "image_filename": "solution.png",
+    "text_filename": "solution.txt",
+    "suggested_alt_text": "Presupuesto simple: registra ingresos y gastos para controlar hábitos."
+  },
+  {
+    "part": "example",
+    "description": "Registra tus gastos diarios en una app o libreta. Verás fácilmente en qué se va el dinero y dónde puedes recortar.",
+    "image_filename": "example.png",
+    "text_filename": "example.txt",
+    "suggested_alt_text": "Registra gastos diarios en app o libreta para ver dónde recortar."
+  },
+  {
+    "part": "callToAction",
+    "description": "¡Guarda este post para tu plan y sígueme para más consejos financieros!",
+    "image_filename": "callToAction.png",
+    "text_filename": "callToAction.txt",
+    "suggested_alt_text": "Save this post for your financial plan and follow for more tips!"
+  }
+]

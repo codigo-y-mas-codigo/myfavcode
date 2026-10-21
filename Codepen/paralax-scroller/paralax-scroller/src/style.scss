@@ -1,0 +1,71 @@
+// Font element variables
+
+$huge: 8em;
+$lrg: 3rem;
+$med: 1.5rem;
+$reg: 1.2rem;
+$sml: 1rem;
+
+// Colour swatches
+
+$red: #ff0000;
+$blue: #158fef;
+$green: #00c;
+$white: #fff;
+$dark: #333;
+$gray: #bbb;
+
+/* GLOBAL STYLING */
+
+* {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: "Arial";
+  font-size: 1em;
+  color: #fff;
+}
+
+/* STYLING FOR CONTENT */
+.jumbotron {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 45rem;
+  background-color: transparent;
+  color: $white;
+  text-transform: uppercase;
+
+  h1 {
+    font-size: $huge;
+    font-weight: 900;
+  }
+
+  p {
+    font-size: $lrg;
+    line-height: 3.5rem;
+  }
+  
+}
+/* STYLING FOR SECTION TAGS */
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: 0;
+
+  &:nth-child(1) {
+    background-image: url('https://farm5.staticflickr.com/4455/36951023603_0ff1352d5e_o.jpg');
+  }
+  &:nth-child(2) {
+    background-image: url('https://farm3.staticflickr.com/2928/33379215510_6bcd350615_o.jpg');
+  }
+  &:nth-child(3) {
+    background-image: url('https://farm9.staticflickr.com/8637/28314649160_bc75685c25_o.jpg');
+  }
+}

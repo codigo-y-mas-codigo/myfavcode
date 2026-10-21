@@ -1,0 +1,152 @@
+$letters: ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+
+html {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	overflow-x:hidden;
+	height:100vh;
+	body {
+		flex-grow:1;
+		display:flex;
+		flex-wrap:wrap;
+		justify-content:center;
+		max-width:100%;
+		width:45rem;
+		padding:1rem;
+		font-family: 'Permanent Marker', cursive;
+		.break {
+			width:100%;
+		}
+		.wincondition {
+			.letter {
+				display:none;
+			}
+		}
+		.hangman {
+			.lose {
+				display:none;
+				div {
+					display:flex;
+					flex-direction:column;
+					text-align:center;
+					.bottom {
+						font-size: 5vmin;
+					}
+				}
+			}
+		}
+		.win, .lose {
+			display:grid;
+			place-items:center;
+			z-index:1;
+			position: fixed;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			background:rgba(255,255,255,0.5);
+			color:white;
+			font-size: 10vmin;
+			&.win {
+				color:#2ECC71;
+			}
+			&.lose {
+				color:#D8334A;
+			}
+		}
+		input {
+			outline:none;
+			appearance:none;
+			background:#F5F7FA;
+			border-radius:.5rem;
+			opacity:.75;
+			width:3rem;
+			height:3rem;
+			padding:0 .5rem;
+			margin:.2rem;
+			transform:scale(1) rotate(-4deg);
+			transition:.25s -.1s;
+			text-align:center;
+			font-size:2rem;
+			font-family: 'Permanent Marker', cursive;
+			line-height:3rem;
+			&:not(:checked) {
+				cursor: pointer;
+				&:hover {
+					transform:scale(1.25) rotate(0deg);
+					opacity:1;
+				}
+			}
+			&:before {
+				content: attr(letter);
+			}
+			&:checked {
+				color:#D8334A;
+				background:transparent;
+				opacity:1;
+			}
+			&[correct]:checked {
+				background:#2ECC71;
+				color:#F5F7FA;
+				transform:rotate(0deg);
+			}
+			@each $l in $letters {
+				&[letter="#{$l}"]:checked~.hint .letter[value="#{$l}"] {
+					border-bottom:transparent;
+					&:before {
+						opacity:1;
+					}
+				}
+				&[letter="#{$l}"]:checked~.wincondition .letter[value="#{$l}"] {
+					display:block;
+				}
+			}
+		}
+		svg {
+			width:30rem;
+			*{
+				fill:none;
+				stroke:#EEEEEE;
+				stroke-width:2;
+				stroke-linecap:round;
+				stroke-miterlimit:10;
+				transition:.25s;
+			}
+		}
+		input:not([correct]):checked ~.hangman .stage1, 
+		input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage2,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage3,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage4,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage5,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage6,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage7,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage8,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage9,
+		input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~input:not([correct]):checked ~.hangman .stage10 {
+			stroke:black;
+			display:grid;
+		}
+		.hint {
+			display:flex;
+			flex-direction:row;
+			justify-content:center;
+			width:100%;
+			.letter {
+				width:3rem;
+				height:3rem;
+				margin:0.25rem;
+				border-bottom:0.125rem solid black;
+				font-size:3rem;
+				text-align:center;
+				&, &:before {
+					transition:.25s;
+				}
+				&:before {
+					opacity:0;
+					content: attr(value);
+				}
+			}
+		}
+	}
+}

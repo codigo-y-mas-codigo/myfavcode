@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>🎨 Componentes de Input Circulares</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Componentes Circulares - Demo Completa</title>
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+ <style>
+  * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+  }
+
+  body {
+   font-family: "Open Sans", sans-serif;
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   min-height: 100vh;
+   padding: 40px 20px;
+  }
+
+  .container {
+   max-width: 1200px;
+   margin: 0 auto;
+  }
+
+  .header {
+   text-align: center;
+   color: white;
+   margin-bottom: 40px;
+  }
+
+  .header h1 {
+   font-size: 32px;
+   font-weight: 600;
+   margin-bottom: 10px;
+  }
+
+  .header p {
+   font-size: 16px;
+   opacity: 0.9;
+  }
+
+  .grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+   gap: 30px;
+  }
+
+  .card {
+   background: white;
+   padding: 30px;
+   border-radius: 16px;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-header {
+   margin-bottom: 25px;
+   padding-bottom: 15px;
+   border-bottom: 2px solid #f0f2f5;
+  }
+
+  .card-title {
+   color: #223254;
+   font-size: 20px;
+   font-weight: 600;
+   margin-bottom: 8px;
+  }
+
+  .card-description {
+   color: #9098A9;
+   font-size: 14px;
+   line-height: 1.5;
+  }
+
+  /* === RADIO BUTTONS === */
+  .radio-item {
+   margin-bottom: 12px;
+  }
+
+  .inp-radio {
+   display: none;
+  }
+
+  .radio-label {
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   padding: 12px;
+   border-radius: 8px;
+   transition: background 0.2s ease;
+   user-select: none;
+  }
+
+  .radio-label:hover {
+   background: #f8f9fb;
+  }
+
+  .radio-circle {
+   position: relative;
+   width: 22px;
+   height: 22px;
+   min-width: 22px;
+   border-radius: 50%;
+   border: 2px solid #9098A9;
+   transition: all 0.2s ease;
+   margin-right: 12px;
+  }
+
+  .radio-circle:before {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: #506EEC;
+   transition: transform 0.3s ease;
+  }
+
+  .radio-circle:after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   background: #506EEC;
+   opacity: 0;
+  }
+
+  .radio-text {
+   color: #223254;
+   font-size: 15px;
+   line-height: 1.4;
+  }
+
+  .inp-radio:checked+.radio-label .radio-circle {
+   border-color: #506EEC;
+   animation: wave-radio 0.4s ease;
+  }
+
+  .inp-radio:checked+.radio-label .radio-circle:before {
+   transform: translate(-50%, -50%) scale(1);
+  }
+
+  .inp-radio:checked+.radio-label .radio-circle:after {
+   animation: ripple-radio 0.6s ease;
+  }
+
+  @keyframes wave-radio {
+   50% {
+    transform: scale(0.9);
+   }
+  }
+
+  @keyframes ripple-radio {
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+   }
+
+   100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+   }
+  }
+
+  /* === TOGGLE SWITCHES === */
+  .toggle-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 15px 0;
+   border-bottom: 1px solid #e8ecf1;
+  }
+
+  .toggle-item:last-child {
+   border-bottom: none;
+  }
+
+  .toggle-info {
+   flex: 1;
+   margin-right: 15px;
+  }
+
+  .toggle-title {
+   color: #223254;
+   font-size: 15px;
+   font-weight: 600;
+   margin-bottom: 4px;
+  }
+
+  .toggle-description {
+   color: #9098A9;
+   font-size: 13px;
+   line-height: 1.4;
+  }
+
+  .inp-toggle {
+   display: none;
+  }
+
+  .toggle-switch {
+   position: relative;
+   width: 48px;
+   height: 26px;
+   background: #dde1e7;
+   border-radius: 13px;
+   cursor: pointer;
+   transition: background 0.3s ease;
+   flex-shrink: 0;
+  }
+
+  .toggle-circle {
+   position: absolute;
+   top: 3px;
+   left: 3px;
+   width: 20px;
+   height: 20px;
+   background: white;
+   border-radius: 50%;
+   transition: transform 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .toggle-switch:after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 13px;
+   transform: translate(-50%, -50%);
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: #506EEC;
+   opacity: 0;
+   transition: all 0.6s ease;
+  }
+
+  .inp-toggle:checked+.toggle-switch {
+   background: #506EEC;
+  }
+
+  .inp-toggle:checked+.toggle-switch .toggle-circle {
+   transform: translateX(22px);
+  }
+
+  .inp-toggle:checked+.toggle-switch:after {
+   animation: ripple-toggle 0.6s ease;
+  }
+
+  @keyframes ripple-toggle {
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+   }
+
+   100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+   }
+  }
+
+  /* === CHECKBOXES === */
+  .checkbox-item {
+   margin-bottom: 12px;
+  }
+
+  .inp-cbx-circular {
+   display: none;
+  }
+
+  .cbx-circular {
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   padding: 12px;
+   border-radius: 8px;
+   transition: background 0.2s ease;
+   user-select: none;
+  }
+
+  .cbx-circular:hover {
+   background: #f8f9fb;
+  }
+
+  .cbx-circle {
+   position: relative;
+   width: 22px;
+   height: 22px;
+   min-width: 22px;
+   border-radius: 50%;
+   border: 2px solid #9098A9;
+   transition: all 0.2s ease;
+   margin-right: 12px;
+  }
+
+  .cbx-circle svg {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   fill: none;
+   stroke: #FFFFFF;
+   stroke-width: 2.5;
+   stroke-linecap: round;
+   stroke-linejoin: round;
+   stroke-dasharray: 16px;
+   stroke-dashoffset: 16px;
+   transition: all 0.3s ease;
+   transition-delay: 0.1s;
+  }
+
+  .cbx-circle:before {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   background: #506EEC;
+   opacity: 0;
+  }
+
+  .cbx-text {
+   color: #223254;
+   font-size: 15px;
+  }
+
+  .cbx-circular:hover .cbx-circle {
+   border-color: #506EEC;
+  }
+
+  .inp-cbx-circular:checked+.cbx-circular .cbx-circle {
+   background: #506EEC;
+   border-color: #506EEC;
+   animation: wave-cbx 0.4s ease;
+  }
+
+  .inp-cbx-circular:checked+.cbx-circular .cbx-circle svg {
+   stroke-dashoffset: 0;
+  }
+
+  .inp-cbx-circular:checked+.cbx-circular .cbx-circle:before {
+   animation: ripple-cbx 0.6s ease;
+  }
+
+  @keyframes wave-cbx {
+   50% {
+    transform: scale(0.9);
+   }
+  }
+
+  @keyframes ripple-cbx {
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+   }
+
+   100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+   }
+  }
+
+  /* === BUTTONS === */
+  .button-group {
+   display: flex;
+   gap: 12px;
+   margin-top: 20px;
+  }
+
+  .btn {
+   flex: 1;
+   padding: 12px 24px;
+   border: none;
+   border-radius: 8px;
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+   background: #506EEC;
+   color: white;
+  }
+
+  .btn-primary:hover {
+   background: #3d5dd8;
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(80, 110, 236, 0.4);
+  }
+
+  .btn-secondary {
+   background: #f0f2f5;
+   color: #223254;
+  }
+
+  .btn-secondary:hover {
+   background: #e8ecf1;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+   .header h1 {
+    font-size: 24px;
+   }
+
+   .grid {
+    grid-template-columns: 1fr;
+   }
+
+   .card {
+    padding: 20px;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <!-- Header -->
+  <div class="header">
+   <h1>🎨 Componentes de Input Circulares</h1>
+   <p>Radio Buttons, Toggle Switches y Checkboxes con efecto de onda</p>
+  </div>
+
+  <!-- Grid de Componentes -->
+  <div class="grid">
+
+   <!-- CARD 1: RADIO BUTTONS -->
+   <div class="card">
+    <div class="card-header">
+     <div class="card-title">1️⃣ Radio Buttons</div>
+     <div class="card-description">Selección única entre opciones</div>
+    </div>
+
+    <div class="radio-item">
+     <input class="inp-radio" id="radio1" type="radio" name="contacto" checked>
+     <label class="radio-label" for="radio1">
+      <span class="radio-circle"></span>
+      <span class="radio-text">Email</span>
+     </label>
+    </div>
+
+    <div class="radio-item">
+     <input class="inp-radio" id="radio2" type="radio" name="contacto">
+     <label class="radio-label" for="radio2">
+      <span class="radio-circle"></span>
+      <span class="radio-text">WhatsApp</span>
+     </label>
+    </div>
+
+    <div class="radio-item">
+     <input class="inp-radio" id="radio3" type="radio" name="contacto">
+     <label class="radio-label" for="radio3">
+      <span class="radio-circle"></span>
+      <span class="radio-text">Llamada Telefónica</span>
+     </label>
+    </div>
+
+    <div class="radio-item">
+     <input class="inp-radio" id="radio4" type="radio" name="contacto">
+     <label class="radio-label" for="radio4">
+      <span class="radio-circle"></span>
+      <span class="radio-text">SMS</span>
+     </label>
+    </div>
+   </div>
+
+   <!-- CARD 2: TOGGLE SWITCHES -->
+   <div class="card">
+    <div class="card-header">
+     <div class="card-title">2️⃣ Toggle Switches</div>
+     <div class="card-description">Estados binarios (on/off)</div>
+    </div>
+
+    <div class="toggle-item">
+     <div class="toggle-info">
+      <div class="toggle-title">Notificaciones Email</div>
+      <div class="toggle-description">Recibe actualizaciones por correo</div>
+     </div>
+     <input class="inp-toggle" id="toggle1" type="checkbox" checked>
+     <label class="toggle-switch" for="toggle1">
+      <span class="toggle-circle"></span>
+     </label>
+    </div>
+
+    <div class="toggle-item">
+     <div class="toggle-info">
+      <div class="toggle-title">Notificaciones Push</div>
+      <div class="toggle-description">Alertas en tiempo real</div>
+     </div>
+     <input class="inp-toggle" id="toggle2" type="checkbox">
+     <label class="toggle-switch" for="toggle2">
+      <span class="toggle-circle"></span>
+     </label>
+    </div>
+
+    <div class="toggle-item">
+     <div class="toggle-info">
+      <div class="toggle-title">Newsletter Semanal</div>
+      <div class="toggle-description">Resumen de contenidos</div>
+     </div>
+     <input class="inp-toggle" id="toggle3" type="checkbox" checked>
+     <label class="toggle-switch" for="toggle3">
+      <span class="toggle-circle"></span>
+     </label>
+    </div>
+
+    <div class="toggle-item">
+     <div class="toggle-info">
+      <div class="toggle-title">Modo Oscuro</div>
+      <div class="toggle-description">Tema oscuro</div>
+     </div>
+     <input class="inp-toggle" id="toggle4" type="checkbox">
+     <label class="toggle-switch" for="toggle4">
+      <span class="toggle-circle"></span>
+     </label>
+    </div>
+   </div>
+
+   <!-- CARD 3: CHECKBOXES -->
+   <div class="card">
+    <div class="card-header">
+     <div class="card-title">3️⃣ Checkboxes Circulares</div>
+     <div class="card-description">Selección múltiple</div>
+    </div>
+
+    <div class="checkbox-item">
+     <input class="inp-cbx-circular" id="cbx1" type="checkbox" checked>
+     <label class="cbx-circular" for="cbx1">
+      <span class="cbx-circle">
+       <svg width="12px" height="10px" viewBox="0 0 12 10">
+        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+       </svg>
+      </span>
+      <span class="cbx-text">Desarrollo Web</span>
+     </label>
+    </div>
+
+    <div class="checkbox-item">
+     <input class="inp-cbx-circular" id="cbx2" type="checkbox">
+     <label class="cbx-circular" for="cbx2">
+      <span class="cbx-circle">
+       <svg width="12px" height="10px" viewBox="0 0 12 10">
+        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+       </svg>
+      </span>
+      <span class="cbx-text">Diseño UX/UI</span>
+     </label>
+    </div>
+
+    <div class="checkbox-item">
+     <input class="inp-cbx-circular" id="cbx3" type="checkbox" checked>
+     <label class="cbx-circular" for="cbx3">
+      <span class="cbx-circle">
+       <svg width="12px" height="10px" viewBox="0 0 12 10">
+        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+       </svg>
+      </span>
+      <span class="cbx-text">Marketing Digital</span>
+     </label>
+    </div>
+
+    <div class="checkbox-item">
+     <input class="inp-cbx-circular" id="cbx4" type="checkbox">
+     <label class="cbx-circular" for="cbx4">
+      <span class="cbx-circle">
+       <svg width="12px" height="10px" viewBox="0 0 12 10">
+        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+       </svg>
+      </span>
+      <span class="cbx-text">Inteligencia Artificial</span>
+     </label>
+    </div>
+
+    <div class="checkbox-item">
+     <input class="inp-cbx-circular" id="cbx5" type="checkbox">
+     <label class="cbx-circular" for="cbx5">
+      <span class="cbx-circle">
+       <svg width="12px" height="10px" viewBox="0 0 12 10">
+        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+       </svg>
+      </span>
+      <span class="cbx-text">Monetización</span>
+     </label>
+    </div>
+   </div>
+
+  </div>
+
+  <!-- FORMULARIO COMPLETO DE EJEMPLO -->
+  <div class="card" style="margin-top: 30px; max-width: 100%;">
+   <div class="card-header">
+    <div class="card-title">📝 Formulario Completo de Ejemplo</div>
+    <div class="card-description">Integración de todos los componentes en un formulario real</div>
+   </div>
+
+   <form id="demoForm">
+    <!-- Método de Contacto -->
+    <div style="margin-bottom: 30px;">
+     <h4 style="color: #223254; font-size: 16px; margin-bottom: 15px;">Método de Contacto Preferido</h4>
+
+     <div class="radio-item">
+      <input class="inp-radio" id="form-radio1" type="radio" name="form-contacto" value="email" checked>
+      <label class="radio-label" for="form-radio1">
+       <span class="radio-circle"></span>
+       <span class="radio-text">Email</span>
+      </label>
+     </div>
+
+     <div class="radio-item">
+      <input class="inp-radio" id="form-radio2" type="radio" name="form-contacto" value="whatsapp">
+      <label class="radio-label" for="form-radio2">
+       <span class="radio-circle"></span>
+       <span class="radio-text">WhatsApp</span>
+      </label>
+     </div>
+    </div>
+
+    <!-- Configuraciones -->
+    <div style="margin-bottom: 30px;">
+     <h4 style="color: #223254; font-size: 16px; margin-bottom: 15px;">Preferencias de Notificación</h4>
+
+     <div class="toggle-item">
+      <div class="toggle-info">
+       <div class="toggle-title">Recibir Newsletter</div>
+      </div>
+      <input class="inp-toggle" id="form-toggle1" type="checkbox" name="newsletter" checked>
+      <label class="toggle-switch" for="form-toggle1">
+       <span class="toggle-circle"></span>
+      </label>
+     </div>
+
+     <div class="toggle-item">
+      <div class="toggle-info">
+       <div class="toggle-title">Notificaciones Push</div>
+      </div>
+      <input class="inp-toggle" id="form-toggle2" type="checkbox" name="push">
+      <label class="toggle-switch" for="form-toggle2">
+       <span class="toggle-circle"></span>
+      </label>
+     </div>
+    </div>
+
+    <!-- Intereses -->
+    <div style="margin-bottom: 30px;">
+     <h4 style="color: #223254; font-size: 16px; margin-bottom: 15px;">Áreas de Interés</h4>
+
+     <div class="checkbox-item">
+      <input class="inp-cbx-circular" id="form-cbx1" type="checkbox" name="interes" value="web" checked>
+      <label class="cbx-circular" for="form-cbx1">
+       <span class="cbx-circle">
+        <svg width="12px" height="10px" viewBox="0 0 12 10">
+         <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+        </svg>
+       </span>
+       <span class="cbx-text">Desarrollo Web</span>
+      </label>
+     </div>
+
+     <div class="checkbox-item">
+      <input class="inp-cbx-circular" id="form-cbx2" type="checkbox" name="interes" value="design">
+      <label class="cbx-circular" for="form-cbx2">
+       <span class="cbx-circle">
+        <svg width="12px" height="10px" viewBox="0 0 12 10">
+         <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+        </svg>
+       </span>
+       <span class="cbx-text">Diseño UX/UI</span>
+      </label>
+     </div>
+
+     <div class="checkbox-item">
+      <input class="inp-cbx-circular" id="form-cbx3" type="checkbox" name="interes" value="ai">
+      <label class="cbx-circular" for="form-cbx3">
+       <span class="cbx-circle">
+        <svg width="12px" height="10px" viewBox="0 0 12 10">
+         <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+        </svg>
+       </span>
+       <span class="cbx-text">Inteligencia Artificial</span>
+      </label>
+     </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="button-group">
+     <button type="submit" class="btn btn-primary">Guardar Preferencias</button>
+     <button type="reset" class="btn btn-secondary">Cancelar</button>
+    </div>
+   </form>
+  </div>
+
+ </div>
+
+ <!-- JavaScript Opcional -->
+ <script>
+  // Manejo del formulario de ejemplo
+  document.getElementById('demoForm').addEventListener('submit', function(e) {
+   e.preventDefault();
+   // Obtener datos del formulario
+   const formData = new FormData(this);
+   const data = {
+    metodoContacto: formData.get('form-contacto'),
+    newsletter: formData.get('newsletter') ? true : false,
+    push: formData.get('push') ? true : false,
+    intereses: formData.getAll('interes')
+   };
+   // Mostrar en consola
+   console.log('Datos del formulario:', data);
+   // Mostrar alerta (puedes reemplazar con tu lógica)
+   alert('Preferencias guardadas!\nRevisa la consola para ver los datos.');
+  });
+  // Reset handler
+  document.getElementById('demoForm').addEventListener('reset', function() {
+   console.log('Formulario reseteado');
+  });
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

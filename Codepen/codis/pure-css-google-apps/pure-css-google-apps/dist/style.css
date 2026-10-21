@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
+	margin: 0;
+	padding: 0;
+  box-sizing: border-box;
+}
+#cardContainer{
+	min-height:100vh;
+	width: 100vw;
+	background-color:#E7E6E6;
+ 	display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#card{
+	margin:30px;
+	height:400px;
+	width:300px;
+	background-color:#fff;
+	border-radius: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
+}
+#card::after{
+	content:'';
+	height:60%;
+	width:80%;
+	background-color:rgba(var(--theme),0.5);
+	position: absolute;
+	bottom: 0;
+	right:0;
+	clip-path: ellipse(87% 64% at 97% 98%);
+}
+.logo-box {
+  position: relative;
+  height: 90px;
+  width: 90px;
+}
+.logo-box div{
+  position: absolute;
+  height: var(--h);
+  width: var(--w);
+  background-color: var(--bg);
+}
+#card>div:nth-of-type(1){
+	height: 90px;
+}
+#card>div:nth-of-type(1),#card>div:nth-of-type(3){
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  position:relative;
+  z-index:3;
+}
+#card>div:nth-of-type(4){
+	height:40px;
+	width: 40px;
+	border-radius:50%;
+	background-color:rgb(var(--theme)); 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+#card>div:nth-of-type(4) span{
+	font-size:1.5rem;
+	font-weight: bold;
+	color: #fff;
+}
+#card>div:nth-of-type(1) span{
+	background-color:rgba(var(--theme),0.25);
+	color:rgb(var(--theme));
+	padding:5px 35px;
+	border-radius: 50rem;
+}
+#card p{
+	text-align: center;
+	font-weight: bold;
+	font-size:smaller;
+}
+
+
+/*LOGOS!!!*/
+
+/* Google Calender */
+#calender {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#calender div:nth-of-type(1) {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#calender div:nth-of-type(2) {
+  left: 0;
+  top: 0;
+  border-top-left-radius: 10px;
+}
+#calender div:nth-of-type(3) {
+  right: 0;
+  top: 0;
+  border-top-right-radius: 10px;
+}
+#calender div:nth-of-type(4) {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#calender div:nth-of-type(5) {
+  left: 0;
+  bottom: 0;
+  border-bottom-left-radius: 10px;
+}
+#calender div:nth-of-type(6) {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+#calender div:nth-of-type(7) {
+  right: 0;
+  bottom: 0;
+  clip-path: polygon(100% 0, 0 0, 0 100%);
+}
+#calender p {
+  font-size: 2rem;
+  color: #469ffe;
+  font-weight: 700;
+}
+/* Google Meet */
+#meet {
+  margin-right: 50px;
+}
+#meet div:nth-of-type(1) {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#meet div:nth-of-type(2) {
+  left: 0;
+  bottom: 0;
+  border-bottom-left-radius: 10px;
+}
+#meet div:nth-of-type(3) {
+  left: 20%;
+  bottom: 0;
+  border-bottom-right-radius: 10px;
+}
+#meet div:nth-of-type(4) {
+  bottom: 20%;
+  right: 0;
+}
+#meet div:nth-of-type(5) {
+  right: 0;
+  z-index: 6 !important;
+}
+#meet div:nth-of-type(6) {
+  right: -20%;
+}
+#meet div:nth-of-type(5),
+#meet div:nth-of-type(6) {
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  z-index: 5;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#meet div:nth-of-type(7) {
+  top: 20%;
+  right: 0;
+}
+#meet div:nth-of-type(8) {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 10px;
+}
+#meet div:nth-of-type(9) {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+/* Youtube */
+#youtube {
+  height: 48px;
+  width: 90px;
+  border-radius: 15px;
+  background-color: #f00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#youtube::after {
+  content: "";
+  margin-left: 10px;
+  height: 45%;
+  width: 20%;
+  background-color: #fff;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+/* Docs Editor */
+#docsEditor {
+  height: 90px;
+  width: 54px;
+}
+#docsEditor div:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  border-top-left-radius: 10px;
+}
+#docsEditor div:nth-of-type(2) {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 10px;
+}
+#docsEditor div:nth-of-type(3) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#docsEditor div:nth-of-type(4) {
+  bottom: 0;
+  right: 0;
+  border-bottom-right-radius: 10px;
+}
+#docsEditor div:nth-of-type(5) {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+#docsEditor div:nth-of-type(6) {
+  top: 0;
+  right: 0;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+#docsEditor div:nth-of-type(7) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Google Fit */
+#fit {
+  height: 90px;
+  width: 97px;
+  position: relative;
+	margin-left: 10px;
+}
+#fit div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+#fit > div:nth-of-type(1) {
+  height: 100%;
+  width: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  left: 20%;
+  z-index: 100;
+}
+#fit > div:nth-of-type(1) div:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  height: 46%;
+  width: 100%;
+  border: 10px solid #ff3532;
+  border-bottom: none;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+#fit > div:nth-of-type(1) div:nth-of-type(2) {
+  left: 0;
+  top: 46%;
+  height: 12%;
+  width: 100%;
+	z-index: 101;
+  background-color: #ffd42d;
+}
+#fit > div:nth-of-type(1) div:nth-of-type(3) {
+  height: 46%;
+  width: 20%;
+  background-color: #3fc45d;
+  left: 0;
+  top: 54%;
+}
+#fit > div:nth-of-type(1) div:nth-of-type(4) {
+  height: 11%;
+  width: 100%;
+  background-color: #3fc45d;
+  left: 0;
+  top: 89%;
+}
+#fit > div:nth-of-type(2) {
+  right: 0;
+  height: 100%;
+  width: 50%;
+  border: 10px solid #469ffe;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+/* Gmail */
+#gmail {
+  height: 90px;
+  width: 122px;
+  position: relative;
+}
+#gmail div {
+  position: absolute;
+}
+#gmail div:nth-of-type(1),
+#gmail div:nth-of-type(4) {
+  border-top-left-radius: 50rem;
+  border-top-right-radius: 50rem;
+  height: 100%;
+  width: 20%;
+  background-color: #e30112;
+	z-index: 2;
+}
+#gmail div:nth-of-type(1)::after,
+#gmail div:nth-of-type(4)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: calc(100% - 20px);
+  clip-path: polygon(0 0, 100% 36%, 100% 100%, 0% 100%);
+  background-color: #469ffe;
+}
+#gmail div:nth-of-type(2) {
+  transform: rotate(45deg);
+  height: 30%;
+  width: 58%;
+  background-color: #ff3532;
+  top: 27%;
+  left: 0;
+	z-index: 1;
+}
+#gmail div:nth-of-type(3) {
+ 	transform: rotate(-45deg);
+    height: 30%;
+    width: 62%;
+    background-color: #ff3532;
+    top: 28%;
+    right: 14px;
+}
+#gmail div:nth-of-type(4) {
+  right: 15px;
+  transform: rotateY(180deg);
+  background-color: #ffd42d;
+}
+#gmail div:nth-of-type(4)::after {
+  background-color: #3fc45d;
+}
+/* YT Music */
+#music {
+  position: relative;
+  height: 90px;
+  width: 90px;
+  background-color: #fff;
+  border: 18px solid #f00;
+  border-radius: 50%;
+}
+#music::before,
+#music::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#music::before {
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+  background-color: #f00;
+}
+#music::after {
+  margin-left: 3px;
+  height: 40%;
+  width: 40%;
+  background-color: #fff;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+}
+/* Google Photos */
+#photos {
+  position: relative;
+  height: 90px;
+  width: 90px;
+}
+#photos div {
+  background-color: var(--bg);
+  height: 30%;
+  width: 30%;
+  position: absolute;
+}
+#photos div:nth-of-type(1) {
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  width: 50%;
+  top: 20%;
+  left: 0;
+}
+#photos div:nth-of-type(2) {
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  height: 50%;
+  top: 0;
+  right: 20%;
+}
+#photos div:nth-of-type(3) {
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  height: 50%;
+  bottom: 0;
+  left: 20%;
+}
+#photos div:nth-of-type(4) {
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  width: 50%;
+  bottom: 20%;
+  right: 0;
+}

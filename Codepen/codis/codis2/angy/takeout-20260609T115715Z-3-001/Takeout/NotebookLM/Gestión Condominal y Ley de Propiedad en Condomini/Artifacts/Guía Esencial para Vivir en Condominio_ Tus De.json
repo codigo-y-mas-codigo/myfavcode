@@ -1,0 +1,23 @@
+{
+  "title": "Guía Esencial para Vivir en Condominio: Tus Derechos y Obligaciones",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Guía introductoria",
+      "description": "Una guía para entender los derechos y obligaciones al vivir en un condominio.",
+      "sourceIds": [{
+        "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Elaborar una guía introductoria y accesible que explique los derechos y las prohibiciones más importantes para los residentes de un condominio. El objetivo es que una persona sin conocimientos previos pueda comprender rápidamente cómo participar en la comunidad y qué acciones debe evitar para mantener una convivencia armónica, utilizando un lenguaje simple y directo.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_BEGINNER",
+      "enableU18Classifier": true
+    }
+  }
+}

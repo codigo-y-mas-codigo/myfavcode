@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comparte contenido en todas las redes sociales">
+  <title>Compartir en Redes Sociales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+
+<style>
+:root {
+  --primary-color: #FF4A4A;
+  --bg-color: #FFFFFF;
+  --text-color: #333333;
+  --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1A1A1A;
+  --text-color: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Noto Sans', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background var(--transition-speed);
+  padding: 20px;
+}
+
+.share-container {
+  max-width: 800px;
+  width: 100%;
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.social-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  color: white;
+  transition: all var(--transition-speed);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn i {
+  font-size: 1.5rem;
+  transition: transform var(--transition-speed);
+}
+
+.social-btn:hover i {
+  transform: scale(1.2);
+}
+
+.social-btn::after {
+  content: attr(aria-label);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: all var(--transition-speed);
+}
+
+.social-btn:hover::after {
+  opacity: 1;
+  bottom: -40px;
+}
+
+.url-box {
+  position: relative;
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.url-input {
+  width: 100%;
+  padding: 12px 120px 12px 20px;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--text-color);
+  transition: border-color var(--transition-speed);
+}
+
+.url-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.copy-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.copy-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .share-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Colores específicos para cada red social */
+.facebook { background: #1877F2 !important; }
+.twitter { background: #1DA1F2 !important; }
+.whatsapp { background: #25D366 !important; }
+.instagram { background: #E4405F !important; }
+.tiktok { background: #000000 !important; }
+.pinterest { background: #BD081C !important; }
+.linkedin { background: #0A66C2 !important; }
+.reddit { background: #FF4500 !important; }
+.telegram { background: #0088CC !important; }
+.email { background: #EA4335 !important; }
+.messenger { background: #006AFF !important; }
+.snapchat { background: #FFFC00 !important; color: black !important; }
+</style>
+</head>
+
+<body>
+  <button class="theme-toggle" aria-label="Cambiar tema">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="share-container">
+    <h2 class="social-title">Compartir en redes sociales</h2>
+    
+    <div class="social-grid">
+      <a class="social-btn facebook" aria-label="Facebook" data-social="facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a class="social-btn twitter" aria-label="Twitter" data-social="twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a class="social-btn whatsapp" aria-label="WhatsApp" data-social="whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a class="social-btn instagram" aria-label="Instagram" data-social="instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a class="social-btn tiktok" aria-label="TikTok" data-social="tiktok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a class="social-btn pinterest" aria-label="Pinterest" data-social="pinterest">
+        <i class="fab fa-pinterest-p"></i>
+      </a>
+      <a class="social-btn linkedin" aria-label="LinkedIn" data-social="linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a class="social-btn reddit" aria-label="Reddit" data-social="reddit">
+        <i class="fab fa-reddit-alien"></i>
+      </a>
+      <a class="social-btn telegram" aria-label="Telegram" data-social="telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+      <a class="social-btn email" aria-label="Email" data-social="email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+
+    <div class="url-box">
+      <input type="text" class="url-input" id="urlInput" readonly 
+             value="Cargando URL..." aria-label="URL para compartir">
+      <button class="copy-btn" id="copyButton">
+        <i class="fas fa-copy"></i> Copiar
+      </button>
+    </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title);
+  const themeToggle = document.querySelector('.theme-toggle');
+  const urlInput = document.getElementById('urlInput');
+  
+  // Actualizar URL actual
+  urlInput.value = window.location.href;
+
+  // Configuración de redes sociales
+  const socialUrls = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`,
+    twitter: `https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`,
+    whatsapp: `https://wa.me/?text=${pageTitle}%0A${currentUrl}`,
+    instagram: `https://www.instagram.com/share?url=${currentUrl}`,
+    tiktok: `https://www.tiktok.com/upload?referer=${currentUrl}`,
+    pinterest: `https://pinterest.com/pin/create/button/?url=${currentUrl}&description=${pageTitle}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`,
+    reddit: `https://www.reddit.com/submit?url=${currentUrl}&title=${pageTitle}`,
+    telegram: `https://t.me/share/url?url=${currentUrl}&text=${pageTitle}`,
+    email: `mailto:?subject=${pageTitle}&body=${currentUrl}`
+  };
+
+  // Manejar clic en redes sociales
+  document.querySelectorAll('.social-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const platform = btn.dataset.social;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        window.open(
+          socialUrls[platform],
+          '_blank',
+          'width=600,height=500,noopener,noreferrer'
+        );
+      }
+    });
+  });
+
+  // Cambiar tema
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    themeToggle.innerHTML = isDark 
+      ? '<i class="fas fa-moon"></i>' 
+      : '<i class="fas fa-sun"></i>';
+  });
+
+  // Copiar URL
+  document.getElementById('copyButton').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(urlInput.value);
+      const originalText = copyButton.innerHTML;
+      copyButton.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+      setTimeout(() => {
+        copyButton.innerHTML = originalText;
+      }, 2000);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
+  });
+
+  // Detectar preferencia de tema del sistema
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (prefersDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+});
+</script>
+</body>
+</html>

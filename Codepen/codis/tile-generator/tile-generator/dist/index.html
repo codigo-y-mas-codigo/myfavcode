@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Tile Generator</title>
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  </header>
+<div class="container">
+	<div class="main-content">
+		<div class="sidebar">
+			<div class="instructions">
+				<h2>How to use:</h2>
+				<ol>
+					<li>Click "Generate New Tiles" to create a set of unique tile designs.</li>
+					<li>Click on any tile to select it. The selected tile will appear here.</li>
+					<li>Click "Save Wallpaper" to create a wallpaper using the selected tile, or "Save Grid" to save the entire set of tiles.</li>
+				</ol>
+			</div>
+			<div class="selected-tile">
+				<h2>Selected Tile</h2>
+				<div id="selectedTile"></div>
+			</div>
+			<div class="buttons">
+				<button id="generateBtn">Generate New Tiles</button>
+				<button id="saveBtn">Save Grid</button>
+			</div>
+		</div>
+		<div class="tile-display">
+			<div class="grid" id="tileGrid"></div>
+		</div>
+	</div>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Nutrición Holística</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slide-duration-percentage: 25%; /* 4 slides, 100% / 4 = 25% per slide of total cycle */
+            --animation-cycle-duration: 30s; /* Duración total del ciclo completo */
+
+            /* Colores */
+            --color-green-organic-dark: #3A6B35;
+            --color-green-organic-medium: #5F8D4E;
+            --color-green-organic-light: #A3B18A; /*E8F5E9;*/
+            --color-blue-soft: #A0C4FF; /*B3E5FC*/
+            --color-coral: #FF7F50;
+            --color-mustard-yellow: #FFD700; /*#FFCA28;*/
+            --color-text-light: #f8f9fa;
+            --color-text-dark: #343a40;
+            --color-line-connection: var(--color-green-organic-light);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        #rt-showcase {
+            height: 100%;
+            min-height: 568px; /* Similar al ejemplo */
+        }
+
+        #rt-showcase .rt-grid-12,
+        #rt-showcase .rt-grid-12 .rt-block,
+        #rt-showcase .rt-grid-12 .rt-block .module-surround,
+        #rt-showcase .rt-grid-12 .rt-block .module-surround .module-content,
+        #rt-showcase .rt-grid-12 .rt-block .module-surround .module-content .custom {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #content-slider {
+            height: 100%;
+            position: relative;
+        }
+
+        #slider {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Mask is #slider itself now */
+            position: relative;
+        }
+
+        #slider > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        #slider > ul > li { /* Cada slide */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: var(--color-text-dark); /* Default text color */
+        }
+        
+        /* Fondos específicos */
+        #slide-1 { background: linear-gradient(135deg, var(--color-green-organic-medium), var(--color-green-organic-dark)); color: var(--color-text-light); }
+        #slide-2 { background: linear-gradient(135deg, var(--color-blue-soft), #7C94C0 ); color: var(--color-text-dark); }
+        #slide-3 { background: linear-gradient(135deg, var(--color-coral), #E85A4F ); color: var(--color-text-light); }
+        #slide-4 { background: linear-gradient(135deg, var(--color-mustard-yellow), #D4AC0D ); color: var(--color-text-dark); }
+
+
+        .ssTextWrapper {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 40%; /* Ajusta según sea necesario */
+            z-index: 10;
+            opacity: 0; /* Se anima con JS o CSS específico del slide */
+        }
+
+        .ssTextWrapper h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: calc(1.2em + 3vmin); /* Reducido para más texto */
+            line-height: 1.3;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .ssTextWrapper p {
+            font-size: calc(0.7em + 1vmin); /* Reducido */
+            line-height: 1.6;
+        }
+         .ssTextWrapper small {
+            display: block;
+            font-size: calc(0.5em + 0.5vmin);
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+
+        .ssGraphicWrapper {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+        
+        .ssGraphicWrapper svg {
+            width: auto;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: visible; /* Para que las animaciones no se corten */
+        }
+
+        /* ---- SLIDE 1 Animaciones ---- */
+        #slide-1 .ssTextWrapper { animation: fadeInText-s1 var(--animation-cycle-duration) ease-out infinite; }
+
+        @keyframes fadeInText-s1 {
+            0% { opacity: 0; transform: translateY(20px); }
+            2% { opacity: 1; transform: translateY(0); } /* Aparece rápido al inicio del slide */
+            calc(var(--slide-duration-percentage) - 2%) { opacity: 1; transform: translateY(0); } /* Permanece visible */
+            var(--slide-duration-percentage) { opacity: 0; transform: translateY(-20px); } /* Desaparece */
+            100% { opacity: 0; }
+        }
+        
+        #svg-plato { animation: growPlato var(--animation-cycle-duration) ease-out infinite; transform-origin: center; }
+        @keyframes growPlato {
+            0% { opacity: 0; transform: scale(0.5) translate(300px, 250px); }
+            1% { opacity: 1; transform: scale(1) translate(300px, 250px); }
+            calc(var(--slide-duration-percentage) - 1%) { opacity: 1; transform: scale(1) translate(300px, 250px); }
+            var(--slide-duration-percentage) { opacity: 0; transform: scale(0.5) translate(300px, 250px); }
+            100% { opacity: 0; }
+        }
+
+        .icon-slide1 {
+            opacity: 0;
+            transform-origin: center;
+            animation-fill-mode: forwards; /* Mantiene el estado final */
+        }
+        /* Posicionamiento de iconos alrededor del plato (ejemplo) */
+        /* Estos valores tendrían que ajustarse mucho con JS o CSS más complejo para orbitar */
+        #icon-s1-cuerpo    { animation: appearIcon-s1 var(--animation-cycle-duration) ease-out infinite 0.5s; transform: translate(150px, 200px) scale(0.8);}
+        #icon-s1-mente     { animation: appearIcon-s1 var(--animation-cycle-duration) ease-out infinite 1.0s; transform: translate(250px, 150px) scale(0.8);}
+        #icon-s1-emociones { animation: appearIcon-s1 var(--animation-cycle-duration) ease-out infinite 1.5s; transform: translate(450px, 150px) scale(0.8);}
+        #icon-s1-entorno   { animation: appearIcon-s1 var(--animation-cycle-duration) ease-out infinite 2.0s; transform: translate(550px, 200px) scale(0.8);}
+        #icon-s1-cultura   { animation: appearIcon-s1 var(--animation-cycle-duration) ease-out infinite 2.5s; transform: translate(350px, 350px) scale(0.8);}
+
+        @keyframes appearIcon-s1 {
+            /* La animación se define por el delay individual y dura hasta el final del slide */
+            0% { opacity: 0; transform: translateY(20px) scale(0.5); } /* Mantiene el translate base del g */
+            /* El delay maneja cuándo empieza. Calculamos el punto de inicio del slide */
+            /* Si el slide 1 dura 25% del ciclo total: */
+            /* Inicio de aparición: (delay / ciclo_total_segundos) * 100% */
+            /* Fin de aparición (ej. 1% después del inicio del delay): */
+            /* Ejemplo para delay de 0.5s: (0.5s / 30s) * 100% = 1.66% */
+            /* Necesitamos que la opacidad y transformación ocurran DENTRO del tiempo del slide actual */
+
+            /* Simplificado: la animación se dispara con delay y dura un corto tiempo */
+             /* Este enfoque es problemático con 'infinite' en el padre. Se controla mejor con JS */
+            /* Para CSS puro con ciclo 'infinite' en el padre: */
+            /* El icono aparece en su tiempo (delay) y desaparece cuando el slide padre desaparece */
+            /* Delay está en la asignación de la animación */
+            0% {opacity:0; transform: scale(0.5) rotate(-30deg);}
+            2% {opacity:1; transform: scale(1) rotate(0deg);} /* Ajustar % para que ocurra después del delay */
+            calc(var(--slide-duration-percentage) - 3%) {opacity:1; transform: scale(1) rotate(0deg);}
+            var(--slide-duration-percentage) {opacity:0; transform: scale(0.5) rotate(30deg);}
+            100% {opacity:0;}
+        }
+        
+        .connection-line {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        #line-cuerpo    { animation: drawLine-s1 var(--animation-cycle-duration) ease-out infinite 2.8s; }
+        #line-mente     { animation: drawLine-s1 var(--animation-cycle-duration) ease-out infinite 3.0s; }
+        #line-emociones { animation: drawLine-s1 var(--animation-cycle-duration) ease-out infinite 3.2s; }
+        #line-entorno   { animation: drawLine-s1 var(--animation-cycle-duration) ease-out infinite 3.4s; }
+        #line-cultura   { animation: drawLine-s1 var(--animation-cycle-duration) ease-out infinite 3.6s; }
+
+        @keyframes drawLine-s1 {
+            /* Similar a appearIcon-s1, la animación se dispara con delay */
+            0% { stroke-dashoffset: 200; opacity: 0;}
+            2% { stroke-dashoffset: 0; opacity: 1;} /* Ajustar % */
+            calc(var(--slide-duration-percentage) - 4%) { stroke-dashoffset: 0; opacity: 1;}
+            var(--slide-duration-percentage) { stroke-dashoffset: 200; opacity: 0;}
+            100% { opacity: 0;}
+        }
+
+
+        /* ---- SLIDE 2, 3, 4 - Animaciones Placeholder ---- */
+        #slide-2 .ssTextWrapper, #slide-2 .ssGraphicWrapper,
+        #slide-3 .ssTextWrapper, #slide-3 .ssGraphicWrapper,
+        #slide-4 .ssTextWrapper, #slide-4 .ssGraphicWrapper {
+            opacity: 0; /* Se controlará por JS */
+        }
+        /* Placeholder para que los SVGs no se vean mal inicialmente */
+        #slide-2 svg, #slide-3 svg, #slide-4 svg {
+            opacity: 0;
+        }
+
+
+        /* Control del ciclo de slides */
+        #slider > ul > li {
+            animation-name: cycleGeneric;
+            animation-duration: var(--animation-cycle-duration);
+            animation-timing-function: linear; /* Importante para la sincronización de % */
+            animation-iteration-count: infinite;
+        }
+
+        /* Cada slide tiene un delay para secuenciarse */
+        #slide-1 { animation-delay: 0s; }
+        #slide-2 { animation-delay: calc(var(--animation-cycle-duration) * (-0.75)); } /* -75% para empezar en el 25% */
+        #slide-3 { animation-delay: calc(var(--animation-cycle-duration) * (-0.50)); } /* -50% para empezar en el 50% */
+        #slide-4 { animation-delay: calc(var(--animation-cycle-duration) * (-0.25)); } /* -25% para empezar en el 75% */
+        
+
+        @keyframes cycleGeneric {
+            0%                                      { opacity: 1; z-index: 2; transform: translateX(0%); } /* Slide actual visible */
+            /* (var(--slide-duration-percentage) - 1%)  { opacity: 1; z-index: 2; transform: translateX(0%); } */
+            calc(var(--slide-duration-percentage) - 0.5%) { opacity: 1; z-index: 2; transform: translateX(0%); }
+            var(--slide-duration-percentage)        { opacity: 0; z-index: 1; transform: translateX(100%); } /* Slide actual se va */
+            /* El resto del tiempo, la slide está oculta y fuera de la pantalla */
+            calc(var(--slide-duration-percentage) + 0.1%) { opacity: 0; z-index: 1; transform: translateX(-100%); } /* Se resetea a la izquierda */
+            99.9%                                   { opacity: 0; z-index: 1; transform: translateX(-100%); }
+            100%                                    { opacity: 1; z-index: 2; transform: translateX(0%); } /* Vuelve a empezar lista */
+        }
+
+
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--color-mustard-yellow);
+            animation: fullexpand var(--animation-cycle-duration) linear infinite;
+        }
+
+        @keyframes fullexpand {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Controles (Placeholder) */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 101;
+        }
+        .controls button {
+            padding: 8px 12px;
+            margin-left: 5px;
+            background-color: var(--color-green-organic-dark);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .controls button:hover {
+            background-color: var(--color-green-organic-medium);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="rt-showcase">
+        <div class="rt-grid-12 rt-alpha rt-omega">
+            <div class="rt-block">
+                <div class="module-surround">
+                    <div class="module-content">
+                        <div class="custom">
+                            <div id="content-slider">
+                                <div class="controls">
+                                    <button id="pauseBtn">Pause</button>
+                                    <button id="playBtn" style="display:none;">Play</button>
+                                </div>
+                                <div id="slider">
+                                    <ul>
+                                        <li id="slide-1">
+                                            <div class="ssTextWrapper">
+                                                <h3>¿Qué es la Nutrición Holística?</h3>
+                                                <p>Es un enfoque integral que ve al individuo como un todo: cuerpo, mente, emociones, entorno y cultura. Va más allá de los nutrientes, buscando equilibrio global y prevención.</p>
+                                                <small>Revisión exhaustiva 2019-2024.</small>
+                                            </div>
+                                            <div class="ssGraphicWrapper">
+                                                <svg viewBox="0 0 600 400" id="svg-slide1">
+                                                    <!-- Plato Centrado -->
+                                                    <g id="svg-plato" transform="translate(300, 200)"> <!-- Ajustado para centrar más -->
+                                                        <ellipse cx="0" cy="0" rx="65" ry="12" stroke="var(--color-text-light)" stroke-width="3" fill="rgba(255,255,255,0.1)"/>
+                                                        <path d="M-60 0 Q-60 -20 -30 -25 Q0 -30 30 -25 Q60 -20 60 0" stroke="var(--color-text-light)" stroke-width="3" fill="rgba(255,255,255,0.1)"/>
+                                                    </g>
+                                                    
+                                                    <!-- Iconos alrededor del plato y líneas de conexión -->
+                                                    <!-- Cuerpo -->
+                                                    <g id="icon-s1-cuerpo" class="icon-slide1" transform="translate(180, 120) scale(0.7)">
+                                                        <circle cx="50" cy="20" r="12" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <line x1="50" y1="32" x2="50" y2="70" stroke="var(--color-text-light)" stroke-width="3"/>
+                                                        <line x1="30" y1="45" x2="70" y2="45" stroke="var(--color-text-light)" stroke-width="3"/>
+                                                        <line x1="50" y1="70" x2="35" y2="100" stroke="var(--color-text-light)" stroke-width="3"/>
+                                                        <line x1="50" y1="70" x2="65" y2="100" stroke="var(--color-text-light)" stroke-width="3"/>
+                                                    </g>
+                                                    <line id="line-cuerpo" class="connection-line" x1="215" y1="155" x2="290" y2="190" stroke="var(--color-line-connection)" stroke-width="2"/>
+
+                                                    <!-- Mente (Cerebro) -->
+                                                    <g id="icon-s1-mente" class="icon-slide1" transform="translate(280, 80) scale(0.6)">
+                                                        <path d="M20 25 Q15 15 25 10 Q35 5 45 10 Q55 5 65 10 Q75 5 85 15 Q90 25 85 35 Q80 45 75 50 Q70 55 65 50 Q60 55 55 50 Q50 55 45 50 Q40 55 35 50 Q30 55 25 50 Q20 45 15 35 Q10 25 20 25 Z" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <path d="M25 35 Q30 40 35 35 Q40 40 45 35 Q50 40 55 35 Q60 40 65 35" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                    </g>
+                                                    <line id="line-mente" class="connection-line" x1="310" y1="110" x2="300" y2="180" stroke="var(--color-line-connection)" stroke-width="2"/>
+
+                                                    <!-- Emociones (Corazón) -->
+                                                    <g id="icon-s1-emociones" class="icon-slide1" transform="translate(420, 80) scale(0.6)">
+                                                        <path d="M50 25 Q50 15 40 15 Q30 15 30 25 Q30 35 50 55 Q70 35 70 25 Q70 15 60 15 Q50 15 50 25 Z" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                    </g>
+                                                    <line id="line-emociones" class="connection-line" x1="450" y1="110" x2="320" y2="185" stroke="var(--color-line-connection)" stroke-width="2"/>
+
+                                                    <!-- Entorno (Árbol/hoja) -->
+                                                    <g id="icon-s1-entorno" class="icon-slide1" transform="translate(520, 120) scale(0.7)">
+                                                        <path d="M50 20 Q35 30 40 50 Q30 65 50 70 Q70 65 60 50 Q65 30 50 20 Z" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <line x1="50" y1="70" x2="50" y2="90" stroke="var(--color-text-light)" stroke-width="3"/>
+                                                        <path d="M40 35 Q50 40 60 35" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <path d="M35 50 Q50 55 65 50" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                    </g>
+                                                    <line id="line-entorno" class="connection-line" x1="550" y1="155" x2="340" y2="195" stroke="var(--color-line-connection)" stroke-width="2"/>
+
+                                                    <!-- Cultura/Social -->
+                                                    <g id="icon-s1-cultura" class="icon-slide1" transform="translate(350, 280) scale(0.7)">
+                                                        <circle cx="35" cy="25" r="8" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <circle cx="65" cy="25" r="8" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <circle cx="50" cy="50" r="8" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <line x1="35" y1="33" x2="50" y2="42" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <line x1="65" y1="33" x2="50" y2="42" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <line x1="43" y1="25" x2="57" y2="25" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <path d="M35 25 Q50 10 65 25" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                    </g>
+                                                    <line id="line-cultura" class="connection-line" x1="375" y1="300" x2="310" y2="215" stroke="var(--color-line-connection)" stroke-width="2"/>
+                                                </svg>
+                                            </div>
+                                        </li>
+                                        <li id="slide-2">
+                                            <div class="ssTextWrapper">
+                                                <h3>Ciencia y Tradición: El Espectro de la Evidencia</h3>
+                                                <p>La nutrición holística integra hallazgos sólidos, evidencia emergente, conocimientos tradicionales y conceptos teóricos recientes.</p>
+                                                <small>Dieta mediterránea (sólida), dietas tradicionales (emergente), ayurveda (limitada), matriz alimentaria (desarrollo).</small>
+                                            </div>
+                                            <div class="ssGraphicWrapper">
+                                                 <svg viewBox="0 0 500 300" id="svg-slide2">
+                                                    <!-- Aquí irían los SVGs de la balanza, lupa, pergamino, bombilla y sus animaciones -->
+                                                     <g id="icon-s2-balanza" transform="translate(50,50) scale(1.2)">
+                                                        <line x1="50" y1="15" x2="50" y2="55" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <circle cx="50" cy="15" r="4" stroke="var(--color-text-dark)" stroke-width="3" fill="none"/>
+                                                        <line x1="25" y1="25" x2="75" y2="25" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <rect x="15" y="25" width="20" height="8" rx="2" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                        <rect x="65" y="25" width="20" height="8" rx="2" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                        <line x1="25" y1="25" x2="25" y2="35" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                        <line x1="75" y1="25" x2="75" y2="35" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                      </g>
+                                                      <text x="70" y="120" font-family="Montserrat" font-size="12" fill="var(--color-text-dark)">Ev. Sólida</text>
+
+                                                      <g id="icon-s2-lupa" transform="translate(180,50) scale(1.2)">
+                                                        <circle cx="40" cy="35" r="18" stroke="var(--color-text-dark)" stroke-width="3" fill="none"/>
+                                                        <line x1="54" y1="49" x2="70" y2="65" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <circle cx="40" cy="35" r="3" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                        <path d="M40 32 Q42 28 44 32 L44 38" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                      </g>
+                                                      <text x="200" y="120" font-family="Montserrat" font-size="12" fill="var(--color-text-dark)">Ev. Emergente</text>
+
+                                                      <g id="icon-s2-pergamino" transform="translate(310,50) scale(1.2)">
+                                                        <path d="M25 20 Q20 20 20 25 L20 70 Q20 75 25 75 L75 75 Q80 75 80 70 L80 25 Q80 20 75 20 Z" stroke="var(--color-text-dark)" stroke-width="3" fill="none"/>
+                                                        <path d="M20 20 Q25 15 30 20" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                        <path d="M80 20 Q75 15 70 20" stroke="var(--color-text-dark)" stroke-width="2" fill="none"/>
+                                                        <line x1="30" y1="35" x2="70" y2="35" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                        <line x1="30" y1="45" x2="70" y2="45" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                        <line x1="30" y1="55" x2="60" y2="55" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                      </g>
+                                                      <text x="330" y="120" font-family="Montserrat" font-size="12" fill="var(--color-text-dark)">Tradicional</text>
+                                                </svg>
+                                            </div>
+                                        </li>
+                                        <li id="slide-3">
+                                            <div class="ssTextWrapper">
+                                                <h3>De la Consulta al Futuro Digital</h3>
+                                                <p>Se aplican planes personalizados, enfoque psicosocial y herramientas digitales. El futuro integra la salud digital para un bienestar accesible.</p>
+                                                <small>Apps móviles, nutrigenómica, telemedicina.</small>
+                                            </div>
+                                            <div class="ssGraphicWrapper">
+                                                <svg viewBox="0 0 500 200" id="svg-slide3">
+                                                    <!-- Aquí irían los SVGs de consulta, estrés, smartphone, ADN, telemedicina y sus animaciones -->
+                                                     <g id="icon-s3-consulta" transform="translate(30,50) scale(1.2)">
+                                                        <circle cx="35" cy="25" r="8" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <circle cx="65" cy="25" r="8" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <line x1="35" y1="33" x2="35" y2="55" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <line x1="65" y1="33" x2="65" y2="55" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <line x1="25" y1="42" x2="45" y2="42" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <line x1="55" y1="42" x2="75" y2="42" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                        <path d="M45 20 Q50 15 55 20" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                      </g>
+                                                      <g id="icon-s3-smartphone" transform="translate(150,50) scale(1.2)">
+                                                        <rect x="35" y="15" width="30" height="50" rx="5" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <rect x="38" y="20" width="24" height="30" rx="2" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                        <circle cx="50" cy="60" r="2" stroke="var(--color-text-light)" stroke-width="2" fill="none"/>
+                                                      </g>
+                                                      <g id="icon-s3-adn" transform="translate(270,40) scale(1)">
+                                                        <path d="M30 15 Q40 25 30 35 Q20 45 30 55 Q40 65 30 75" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <path d="M50 15 Q40 25 50 35 Q60 45 50 55 Q40 65 50 75" stroke="var(--color-text-light)" stroke-width="3" fill="none"/>
+                                                        <line x1="35" y1="20" x2="45" y2="20" stroke="var(--color-text-light)" stroke-width="2"/><line x1="35" y1="30" x2="45" y2="30" stroke="var(--color-text-light)" stroke-width="2"/><line x1="35" y1="40" x2="45" y2="40" stroke="var(--color-text-light)" stroke-width="2"/><line x1="35" y1="50" x2="45" y2="50" stroke="var(--color-text-light)" stroke-width="2"/><line x1="35" y1="60" x2="45" y2="60" stroke="var(--color-text-light)" stroke-width="2"/><line x1="35" y1="70" x2="45" y2="70" stroke="var(--color-text-light)" stroke-width="2"/>
+                                                      </g>
+                                                </svg>
+                                            </div>
+                                        </li>
+                                        <li id="slide-4">
+                                            <div class="ssTextWrapper">
+                                                <h3>El Camino Integral hacia el Bienestar</h3>
+                                                <p>La nutrición holística es más que comida; es armonizar alimentación, actividad, estrés y ambiente, construyendo un bienestar duradero.</p>
+                                                <small>Descubre tu equilibrio.</small>
+                                            </div>
+                                            <div class="ssGraphicWrapper">
+                                                <svg viewBox="0 0 400 200" id="svg-slide4">
+                                                    <!-- Aquí irían los SVGs de figura emanando luz / ciclo integrado -->
+                                                    <g id="icon-s4-figura-luz" transform="translate(100, 50) scale(1)">
+                                                        <circle cx="50" cy="25" r="12" stroke="var(--color-text-dark)" stroke-width="3" fill="none"/>
+                                                        <line x1="50" y1="37" x2="50" y2="75" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <line x1="30" y1="50" x2="70" y2="50" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <line x1="50" y1="75" x2="35" y2="105" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <line x1="50" y1="75" x2="65" y2="105" stroke="var(--color-text-dark)" stroke-width="3"/>
+                                                        <path d="M50 10 L50 5 M35 15 L30 10 M65 15 L70 10 M25 35 L20 35 M75 35 L80 35 M35 60 L30 65 M65 60 L70 65" stroke="var(--color-text-dark)" stroke-width="2"/>
+                                                        <circle cx="50" cy="50" r="35" stroke="var(--color-text-dark)" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity="0.5"/>
+                                                      </g>
+                                                </svg>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('#slider > ul > li');
+        const progressBar = document.querySelector('.progress-bar');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const playBtn = document.getElementById('playBtn');
+        
+        let currentSlideIndex = 0;
+        let isPaused = false;
+        const animationCycleDuration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--animation-cycle-duration').replace('s', '')) * 1000;
+        const slideDuration = animationCycleDuration / slides.length;
+
+        function applySlideAnimations(slideElement, action = 'play') {
+            const textWrapper = slideElement.querySelector('.ssTextWrapper');
+            const graphicWrapper = slideElement.querySelector('.ssGraphicWrapper'); // Puede que no se use directamente
+            const svgs = slideElement.querySelectorAll('svg, svg g, svg path, svg line, svg circle, svg rect, svg ellipse, svg text');
+
+            if (action === 'play') {
+                if (textWrapper) textWrapper.style.animationPlayState = 'running';
+                svgs.forEach(el => el.style.animationPlayState = 'running');
+
+            } else if (action === 'pause') {
+                if (textWrapper) textWrapper.style.animationPlayState = 'paused';
+                svgs.forEach(el => el.style.animationPlayState = 'paused');
+            }
+        }
+        
+        function animateSlideContent(slideIndex, state = 'running') {
+            const slide = slides[slideIndex];
+            if (!slide) return;
+
+            const textWrapper = slide.querySelector('.ssTextWrapper');
+            const graphicContent = slide.querySelectorAll('.ssGraphicWrapper svg, .ssGraphicWrapper svg [id]'); // Elementos con ID para animaciones específicas
+
+            if (textWrapper) textWrapper.style.animationPlayState = state;
+            graphicContent.forEach(el => el.style.animationPlayState = state);
+
+            // Para slides 2, 3, 4 (que usan opacidad general por ahora)
+            if (slideIndex > 0) { // No aplicar a slide 1 que tiene animaciones más detalladas
+                const svgElement = slide.querySelector('.ssGraphicWrapper svg');
+                if (svgElement) {
+                    if (state === 'running') {
+                         svgElement.style.animation = 'fadeInGraphicGeneric 1s ease-out forwards 0.5s';
+                         svgElement.style.opacity = '1'; // Asegurar visibilidad si la animación lo maneja
+                    } else {
+                         svgElement.style.animationPlayState = 'paused';
+                    }
+                }
+                 if (textWrapper) {
+                     if (state === 'running') {
+                        textWrapper.style.animation = `fadeInTextGeneric 1s ease-out forwards`;
+                        textWrapper.style.opacity = '1';
+                     } else {
+                        textWrapper.style.animationPlayState = 'paused';
+                     }
+                 }
+            }
+        }
+
+
+        // CSS Keyframes para contenido genérico de slides 2,3,4
+        const styleSheet = document.styleSheets[0];
+        try {
+            styleSheet.insertRule(`
+                @keyframes fadeInTextGeneric {
+                    0% { opacity: 0; transform: translateY(20px); }
+                    100% { opacity: 1; transform: translateY(0); }
+                }`, styleSheet.cssRules.length);
+            styleSheet.insertRule(`
+                @keyframes fadeInGraphicGeneric {
+                    0% { opacity: 0; transform: scale(0.9); }
+                    100% { opacity: 1; transform: scale(1); }
+                }`, styleSheet.cssRules.length);
+        } catch (e) {
+            console.error("Error inserting CSS rules: ", e);
+        }
+
+
+        function updateActiveSlideVisuals(newIndex) {
+            slides.forEach((s, i) => {
+                const textWrapper = s.querySelector('.ssTextWrapper');
+                const graphicSvg = s.querySelector('.ssGraphicWrapper svg');
+                
+                if (i === newIndex) {
+                    // Para la diapositiva 1, las animaciones ya están configuradas para ciclar con el padre.
+                    // Para las diapositivas 2, 3, 4, aplicamos animaciones de entrada genéricas.
+                    if (i > 0) { // No para slide-1
+                        if (textWrapper) {
+                            textWrapper.style.opacity = '0'; // Reset opacity
+                            textWrapper.style.animation = 'none'; // Remove previous animation
+                            void textWrapper.offsetWidth; // Trigger reflow
+                            textWrapper.style.animation = `fadeInTextGeneric 1s ease-out forwards 0.2s`;
+                        }
+                        if (graphicSvg) {
+                            graphicSvg.style.opacity = '0';
+                            graphicSvg.style.animation = 'none';
+                            void graphicSvg.offsetWidth;
+                            graphicSvg.style.animation = `fadeInGraphicGeneric 1s ease-out forwards 0.5s`;
+                        }
+                    }
+                } else {
+                     // Ocultar contenido de slides no activas para evitar solapamientos de animaciones
+                     if (i > 0) {
+                        if (textWrapper) textWrapper.style.opacity = '0';
+                        if (graphicSvg) graphicSvg.style.opacity = '0';
+                     }
+                }
+            });
+        }
+
+
+        // Control de Pausa/Play
+        pauseBtn.addEventListener('click', () => {
+            isPaused = true;
+            document.documentElement.style.setProperty('--animation-play-state', 'paused');
+            slides.forEach(slide => applySlideAnimations(slide, 'pause'));
+            progressBar.style.animationPlayState = 'paused';
+            pauseBtn.style.display = 'none';
+            playBtn.style.display = 'inline-block';
+        });
+
+        playBtn.addEventListener('click', () => {
+            isPaused = false;
+            document.documentElement.style.setProperty('--animation-play-state', 'running');
+            slides.forEach(slide => applySlideAnimations(slide, 'play'));
+            progressBar.style.animationPlayState = 'running';
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-block';
+        });
+        
+        // Inicializar estado de animación
+        document.documentElement.style.setProperty('--animation-play-state', 'running');
+
+        // Las animaciones CSS de ciclo (`cycleGeneric` y las de la slide 1)
+        // se encargarán de la secuencia.
+        // El JS aquí es principalmente para los controles de pausa/play.
+        // Y para asegurar que las animaciones de contenido de las slides 2,3,4 se disparen.
+
+        // Para forzar la re-ejecución de animaciones en slides 2,3,4 cuando entran en ciclo:
+        // Esto es complejo con animaciones CSS puras que son 'infinite' en el padre.
+        // La forma más sencilla es que las animaciones de contenido (fadeInTextGeneric, etc.)
+        // se definan para ejecutarse una vez. Y se activan/resetean con el cambio de slide.
+        
+        // El `animation-delay` en `cycleGeneric` debería manejar la aparición secuencial de las slides.
+        // Las animaciones internas de cada slide (como las de la slide 1) están sincronizadas
+        // con la duración total del ciclo.
+
+        // Aseguramos que las animaciones de contenido para slides 2,3,4 se ejecuten
+        // cuando su slide padre se vuelve visible por la animación `cycleGeneric`.
+        // Esto puede ser un poco complicado de sincronizar perfectamente solo con CSS `infinite`
+        // en el contenedor principal.
+        // Las animaciones de la slide 1 ya están hechas para ciclar con `infinite`.
+
+        // HACK: Para que el contenido de las slides 2,3,4 aparezca cuando su slide se vuelve visible
+        // debido a la animación 'cycleGeneric'
+        slides.forEach((slide, index) => {
+            if (index > 0) { // Solo para slides 2, 3, 4
+                const textWrapper = slide.querySelector('.ssTextWrapper');
+                const graphicSvg = slide.querySelector('.ssGraphicWrapper svg');
+                const startPercentage = index * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--slide-duration-percentage'));
+                const endPercentage = (index + 1) * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--slide-duration-percentage'));
+
+                if(textWrapper) {
+                    textWrapper.style.animationName = 'fadeInTextGenericForCycle';
+                    textWrapper.style.animationDuration = 'var(--animation-cycle-duration)';
+                    textWrapper.style.animationTimingFunction = 'ease-out';
+                    textWrapper.style.animationIterationCount = 'infinite';
+                }
+                 if(graphicSvg) {
+                    graphicSvg.style.animationName = 'fadeInGraphicGenericForCycle';
+                    graphicSvg.style.animationDuration = 'var(--animation-cycle-duration)';
+                    graphicSvg.style.animationTimingFunction = 'ease-out';
+                    graphicSvg.style.animationIterationCount = 'infinite';
+                }
+
+                try {
+                    styleSheet.insertRule(`
+                        @keyframes fadeInTextGenericForCycle {
+                            0% { opacity: 0; }
+                            ${startPercentage}% { opacity: 0; transform: translateY(20px); }
+                            ${startPercentage + 2}% { opacity: 1; transform: translateY(0); }
+                            ${endPercentage - 1}% { opacity: 1; transform: translateY(0); }
+                            ${endPercentage}% { opacity: 0; transform: translateY(-20px); }
+                            100% { opacity: 0; }
+                        }`, styleSheet.cssRules.length);
+                     styleSheet.insertRule(`
+                        @keyframes fadeInGraphicGenericForCycle {
+                            0% { opacity: 0; }
+                            ${startPercentage}% { opacity: 0; transform: scale(0.9); }
+                            ${startPercentage + 3}% { opacity: 1; transform: scale(1); }
+                            ${endPercentage - 1}% { opacity: 1; transform: scale(1); }
+                            ${endPercentage}% { opacity: 0; transform: scale(0.9); }
+                            100% { opacity: 0; }
+                        }`, styleSheet.cssRules.length);
+                } catch (e) { console.error("Error inserting cycle keyframes: ", e); }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

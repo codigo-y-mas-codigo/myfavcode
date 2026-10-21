@@ -1,0 +1,5 @@
+{
+  "name": "Generador de Prompts para Portadas",
+  "description": "Una aplicación que crea prompts ultra detallados para diseñar portadas de libros con una estética futurista, cyberpunk y cultural, listos para ser usados en generadores de imágenes por IA.",
+  "requestFramePermissions": []
+}

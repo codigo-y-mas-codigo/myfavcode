@@ -1,0 +1,43 @@
+div(data-parallax='container')
+  header(data-parallax='group')
+    .title(data-parallax='layer' data-parallax-speed='front')
+      h1 Adaptive
+        span Hands Free
+      p A CSS parallax experiment
+    div(data-parallax='layer' data-parallax-speed='slowest' data-image='captain-america')
+    div(data-parallax='layer' data-parallax-speed='slower' data-image='scarlet-witch')
+    div(data-parallax='layer' data-parallax-speed='slow' data-image='black-widow')
+    div(data-parallax='layer' data-parallax-speed='slower' data-image='vision')
+    div(data-parallax='layer' data-parallax-speed='slowest' data-image='iron-man')
+      
+  section.preamble(data-parallax='none')
+    p #[strong Adaptive: Creations Group;] is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the sequel to The Avengers (2012) and Avengers: Age of Ultron (2015), and the 19th film in the Marvel Cinematic Universe (MCU).
+    
+  secction.parallax(data-parallax='group')
+    div(data-parallax='layer' data-parallax-speed='base')
+    p #[strong Parallax] (from Ancient Greek #[i(lang='el') παράλλαξις] (parallaxis) 'alternation') is a displacement or difference in the apparent position of an object viewed along two different lines of sight, and is measured by the angle or semi-angle of inclination between those two lines. Due to foreshortening, nearby objects show a larger parallax than farther objects when observed from different positions, so parallax can be used to determine distances.
+    
+    .stars(data-parallax='layer' data-parallax-speed='slow')
+    .deep-stars(data-parallax='layer' data-parallax-speed='slowest')
+      
+      
+  section.plot(data-parallax='group')    
+    div.plot--content(data-parallax='layer' data-parallax-speed='base')
+      h2 Synopsis
+      p The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.
+    
+    div.character(data-parallax='layer' data-parallax-speed='slowest' data-image='nebula')
+    div.character(data-parallax='layer' data-parallax-speed='slower' data-image='winter-soldier')
+    div.character(data-parallax='layer' data-parallax-speed='slower' data-image='okoye')
+    div.character(data-parallax='layer' data-parallax-speed='slower' data-image='captain-america-2')
+    div.character(data-parallax='layer' data-parallax-speed='slow' data-image='mantis')
+    div.character(data-parallax='layer' data-parallax-speed='slow' data-image='scarlet-witch-2')
+    
+  footer(data-parallax='none')
+    h3 Avengers #[small Infinity War]
+    p A CSS parallax experiment based on #[a(href='https://keithclark.co.uk/articles/pure-css-parallax-websites/' rel='external' target='_blank') Ketih Clark's article].
+    p Images from #[a(href='https://www.marvel.com/' rel='external' target='_blank') Marvel] and PNG cut-outs by #[a(href='https://www.deviantart.com/stark3879' rel='external' target='_blank') stark3879 on DeviantArt].
+    p Created with #[span(aria-label='love') ❤️] (and tears) by #[a(href='https://codepen.io/aepicos/') @aepicos].
+    
+  aside.todo(data-parallax='none')
+    small #[strong TODO]: figure out a work-around for #[code overflow:hidden] as it breaks the parallax on iOS #[span(role='presentation') ☹️] and (time permitting) create a more robust CSS library.

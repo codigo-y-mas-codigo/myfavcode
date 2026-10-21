@@ -1,0 +1,18 @@
+{
+  "title": "-Estructura de Condominio: Guía Rápida CDMX",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_LANDSCAPE",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD"
+    },
+    "title": "Estructura de Condominio: Guía Rápida CDMX"
+  }
+}

@@ -1,0 +1,314 @@
+body {
+  background: #f7f7f7;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+div.nav {
+  background: #fff;
+  min-height: 80vh;
+  padding: 10vh 100px;
+  width: 100px;
+}
+div.dot {
+  height: 100px;
+  margin-bottom: 50px;
+  width: 100px;
+}
+div.dot.seaGreen div.btm div.flap div.flapFront {
+  background: #699ca4;
+}
+div.dot.seaGreen div.btm div.flap div.flapFront svg {
+  fill: #8fd8e3;
+}
+div.dot.seaGreen.dropFlap div.top {
+  background: #699ca4;
+}
+div.dot.seaGreen.dropFlap div.top svg {
+  fill: #8fd8e3;
+}
+div.dot.green div.btm div.flap div.flapFront {
+  background: #69a478;
+}
+div.dot.green div.btm div.flap div.flapFront svg {
+  fill: #98edad;
+}
+div.dot.green.dropFlap div.top {
+  background: #69a478;
+}
+div.dot.green.dropFlap div.top svg {
+  fill: #98edad;
+}
+div.dot.gold div.btm div.flap div.flapFront {
+  background: #a1a469;
+}
+div.dot.gold div.btm div.flap div.flapFront svg {
+  fill: #e8ed8c;
+}
+div.dot.gold.dropFlap div.top {
+  background: #a1a469;
+}
+div.dot.gold.dropFlap div.top svg {
+  fill: #e8ed8c;
+}
+div.dot.rust div.btm div.flap div.flapFront {
+  background: #a47769;
+}
+div.dot.rust div.btm div.flap div.flapFront svg {
+  fill: #e5a591;
+}
+div.dot.rust.dropFlap div.top {
+  background: #a47769;
+}
+div.dot.rust.dropFlap div.top svg {
+  fill: #e5a591;
+}
+div.top div.pushDown svg {
+  top: 25px !important;
+}
+div.btm div.pushDown svg {
+  bottom: 25px !important;
+}
+div.top {
+  background: #d6d6d6;
+  border-radius: 100px 100px 0 0;
+  height: 50%;
+  width: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+div.top svg {
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 20px;
+  height: 50px;
+  transform: translateX(-50%);
+}
+div.top::before {
+  background: rgba(0, 0, 0, 0.05);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+}
+div.btm {
+  background: #efefef;
+  border-radius: 0 0 100px 100px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  height: 50%;
+  width: 100%;
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+div.btm::before {
+  background: rgba(255, 255, 255, 0.05);
+  top: 0;
+  content: "";
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+}
+div.btm div.flap {
+  bottom: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+div.btm div.flap svg {
+  display: block;
+  left: 50%;
+  position: absolute;
+  bottom: 60%;
+  height: 100%;
+  transform: translateX(-50%);
+}
+div.btm div.flap div.flapFront {
+  background: #6883a4;
+  bottom: 0;
+  transform: rotateX(180deg);
+}
+div.btm div.flap div.flapFront svg {
+  bottom: 30px;
+  height: 50px;
+}
+div.flap {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+div.flap div.flapFront {
+  background: #efefef;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-radius: 100px;
+  overflow: hidden;
+}
+div.flap div.flapFront::before {
+  background: rgba(0, 0, 0, 0);
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+div.flapFront {
+  height: 100px;
+  position: absolute;
+  width: 100px;
+  transition: all 0.5s ease-in;
+}
+div.dot.dropFlap div.top {
+  background: #6883a4;
+}
+div.dot.dropFlap div.top div.flapFront {
+  -webkit-animation: dropTop 0.5s forwards ease-in;
+          animation: dropTop 0.5s forwards ease-in;
+}
+div.dot.dropFlap div.top div.flapFront::before {
+  -webkit-animation: flapDarken 0.5s forwards ease-in;
+          animation: flapDarken 0.5s forwards ease-in;
+}
+div.dot.dropFlap div.btm div.flapFront {
+  -webkit-animation: dropBtm 0.5s forwards ease-in;
+          animation: dropBtm 0.5s forwards ease-in;
+}
+div.dot.dropFlap div.btm div.flapFront::before {
+  -webkit-animation: flapLighten 0.5s forwards ease-in;
+          animation: flapLighten 0.5s forwards ease-in;
+}
+@-webkit-keyframes dropTop {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+@keyframes dropTop {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+@-webkit-keyframes dropBtm {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@keyframes dropBtm {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@-webkit-keyframes flapDarken {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.15);
+  }
+}
+@keyframes flapDarken {
+  0% {
+    background: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.15);
+  }
+}
+@-webkit-keyframes flapLighten {
+  0%,
+  50% {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+@keyframes flapLighten {
+  0%,
+  50% {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0);
+  }
+}
+div.content {
+  padding-top: 10vh;
+  position: absolute;
+  left: 400px;
+  right: 0;
+  top: 0;
+}
+div.content h1 {
+  color: #333;
+  letter-spacing: -0.05em;
+  margin-top: 0;
+  font-size: 60px;
+}
+div.content p {
+  color: #999;
+  font-size: 24px;
+  font-weight: 300;
+  padding-right: 100px;
+  margin-bottom: 4em;
+  max-width: 30em;
+}
+div.content div.toggleButton {
+  border-radius: 8px;
+  background: #69a478;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  height: 68px;
+  overflow: hidden;
+  transition: all 0.2s ease-in;
+}
+div.content div.toggleButton a {
+  color: #fff;
+  display: block;
+  font-family: arial;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 18px 34px 21px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 140px;
+  transition: all 0.2s ease-in;
+}
+div.content div.toggleButton a svg {
+  fill: #98edad;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+  width: 24px;
+}
+div.content div.toggleButton a.reset {
+  opacity: 0;
+}
+div.content div.toggleButton a.reset svg {
+  fill: #e5a591;
+}
+div.content div.toggleButton.showReset {
+  background: #a47769;
+}
+div.content div.toggleButton.showReset a.flapit {
+  margin-top: -68px;
+  opacity: 0;
+}
+div.content div.toggleButton.showReset a.reset {
+  opacity: 1;
+}

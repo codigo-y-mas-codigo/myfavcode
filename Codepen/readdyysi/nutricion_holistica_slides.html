@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrición Holística - Presentación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .presentation-container {
+            width: 300vw;
+            height: 100vh;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 5vh 5vw;
+            position: relative;
+            background: linear-gradient(135deg, #F4F1DE 0%, #E8F5E5 100%);
+            flex-shrink: 0;
+            gap: 4rem;
+        }
+
+        .slide-content {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            padding-right: 2rem;
+        }
+
+        .slide-image {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #3D405B;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .slide h2 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            color: #2A324B;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .content p, .content li {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            color: #2A324B;
+            font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content li {
+            background: rgba(168, 218, 220, 0.2);
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem 0;
+            border-radius: 25px;
+            border-left: 4px solid #A8DADC;
+            transition: all 0.3s ease;
+        }
+
+        .content li:hover {
+            background: rgba(168, 218, 220, 0.3);
+            transform: translateX(10px);
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 70vh;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .slide img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            color: #2A324B;
+            font-size: clamp(0.9rem, 1vw, 1.1rem);
+            opacity: 0.7;
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Navegación */
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(61, 64, 91, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #3D405B;
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            background: #A8DADC;
+            transform: scale(1.2);
+        }
+
+        /* Botones de navegación */
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(168, 218, 220, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            color: #3D405B;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            background: #A8DADC;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button.prev {
+            left: 2rem;
+        }
+
+        .nav-button.next {
+            right: 2rem;
+        }
+
+        /* Estilos específicos por diapositiva */
+        #slide1 {
+            background: linear-gradient(135deg, #F4F1DE 0%, #E8F5E5 100%);
+        }
+
+        #slide2 {
+            background: linear-gradient(135deg, #E8F5E5 0%, #D4E6F1 100%);
+        }
+
+        #slide3 {
+            background: linear-gradient(135deg, #D4E6F1 0%, #F8E8D8 100%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .slide-content, .slide-image {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .slide-content {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 3vh 3vw;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .slide-content, .slide-image {
+                max-width: 100%;
+            }
+            
+            .slide img {
+                max-height: 50vh;
+            }
+            
+            .nav-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1rem;
+            }
+            
+            .content p, .content li {
+                font-size: 0.9rem;
+            }
+            
+            .nav-button.prev {
+                left: 1rem;
+            }
+            
+            .nav-button.next {
+                right: 1rem;
+            }
+        }
+
+        /* Animaciones de entrada */
+        .slide h1, .slide h2, .slide .content, .slide img {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        .slide h2 {
+            animation-delay: 0.2s;
+        }
+
+        .slide .content {
+            animation-delay: 0.4s;
+        }
+
+        .slide img {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container" id="presentationContainer">
+        <!-- Diapositiva 1 -->
+        <section id="slide1" class="slide">
+            <div class="slide-content">
+                <h1>La Nutrición es Más Que Calorías: El Lenguaje de tu Cuerpo</h1>
+                <h2>La Nutrición es Más Que Calorías. El Lenguaje de tu Cuerpo</h2>
+                <div class="content">
+                    <ul>
+                        <li>La nutrición va más allá de la ingesta calórica</li>
+                        <li>Tu cuerpo es un sistema complejo que constantemente procesa información</li>
+                        <li>Los alimentos son portadores de mensajes para tus células</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-image">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23A8DADC;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23F2CC8F;stop-opacity:0.1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23bg)'/%3E%3Ccircle cx='150' cy='200' r='40' fill='%2381B29A' opacity='0.8'/%3E%3Ccircle cx='450' cy='200' r='30' fill='%23F2CC8F' opacity='0.8'/%3E%3Cpath d='M190 200 Q300 150 420 200' stroke='%233D405B' stroke-width='3' fill='none' opacity='0.6'/%3E%3Cpath d='M190 200 Q300 250 420 200' stroke='%233D405B' stroke-width='2' fill='none' opacity='0.4'/%3E%3Ctext x='300' y='100' text-anchor='middle' fill='%233D405B' font-size='20' font-family='Open Sans, sans-serif'%3EAlimentos → Células%3C/text%3E%3Ctext x='300' y='320' text-anchor='middle' fill='%232A324B' font-size='14' font-family='Open Sans, sans-serif'%3EInformación Nutricional%3C/text%3E%3C/svg%3E" alt="Ilustración abstracta que representa la comunicación de información de los alimentos a las células del cuerpo">
+                <p class="image-caption">Diapositiva de apertura que establece la premisa de la nutrición como un sistema de información y comunicación celular.</p>
+            </div>
+        </section>
+
+        <!-- Diapositiva 2 -->
+        <section id="slide2" class="slide">
+            <div class="slide-content">
+                <h1>El Alimento como Mensaje: Calidad de la Información Nutricional</h1>
+                <h2>Tu cuerpo es un sistema biológico extraordinario, capaz de leer y procesar mensajes complejos de forma constante. Lo que comes no es solo una fuente de energía cuantificable en calorías, sino un caudal de información que tus células decodifican y utilizan.</h2>
+                <div class="content">
+                    <p>Cada alimento es un "mensaje" único para tu organismo:</p>
+                    <ul>
+                        <li><strong>Alimentos ultraprocesados:</strong> Mensajes confusos y distorsionados (ej. azúcares refinados, aditivos)</li>
+                        <li><strong>Alimentos frescos e integrales:</strong> Mensajes claros y fáciles de asimilar (ej. manzana, lentejas)</li>
+                    </ul>
+                    <p>La calidad de esta "información" impacta tu bienestar y vitalidad.</p>
+                </div>
+            </div>
+            <div class="slide-image">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='bg2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23A8DADC;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23E0BBE4;stop-opacity:0.1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23bg2)'/%3E%3Crect x='50' y='80' width='200' height='240' rx='15' fill='%2381B29A' opacity='0.2'/%3E%3Crect x='350' y='80' width='200' height='240' rx='15' fill='%23E07A5F' opacity='0.2'/%3E%3Ctext x='150' y='60' text-anchor='middle' fill='%2381B29A' font-size='18' font-weight='bold' font-family='Lato, sans-serif'%3EMensaje Claro%3C/text%3E%3Ctext x='450' y='60' text-anchor='middle' fill='%23E07A5F' font-size='18' font-weight='bold' font-family='Lato, sans-serif'%3EMensaje Confuso%3C/text%3E%3Ccircle cx='150' cy='140' r='25' fill='%23F2CC8F'/%3E%3Ccircle cx='150' cy='200' r='20' fill='%2381B29A'/%3E%3Ccircle cx='150' cy='260' r='22' fill='%23A8DADC'/%3E%3Crect x='420' y='120' width='60' height='40' rx='5' fill='%23E07A5F'/%3E%3Ccircle cx='450' cy='200' r='25' fill='%23F4A261' opacity='0.7'/%3E%3Cpath d='M430 250 Q450 260 470 250' stroke='%23E07A5F' stroke-width='8' fill='none'/%3E%3Ctext x='150' y='300' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Open Sans, sans-serif'%3EFácil digestión%3C/text%3E%3Ctext x='450' y='300' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Open Sans, sans-serif'%3EConfusión celular%3C/text%3E%3C/svg%3E" alt="Infografía comparando alimentos de alta calidad informativa (frutas, verduras) con alimentos de baja calidad (procesados, fritos)">
+                <p class="image-caption">Diagrama visual que explica cómo diferentes alimentos transmiten distintos tipos de información biológica al cuerpo.</p>
+            </div>
+        </section>
+
+        <!-- Diapositiva 3 -->
+        <section id="slide3" class="slide">
+            <div class="slide-content">
+                <h1>Biodisponibilidad: La Capacidad de "Leer" los Nutrientes</h1>
+                <h2>La biodisponibilidad no es solo la cantidad de nutrientes presentes en un alimento, sino la fracción de esos nutrientes que tu cuerpo es realmente capaz de absorber, digerir y utilizar para sus funciones vitales.</h2>
+                <div class="content">
+                    <ul>
+                        <li><strong>Biodisponibilidad:</strong> La fracción de nutrientes que tu cuerpo realmente puede absorber y utilizar</li>
+                        <li>No solo importa la cantidad de nutrientes, sino cuántos son accesibles para tu organismo</li>
+                        <li>Es como tener un libro lleno de conocimiento y ser capaz de leerlo y aplicarlo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-image">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='bg3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F2CC8F;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23A8DADC;stop-opacity:0.1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23bg3)'/%3E%3Cellipse cx='150' cy='200' rx='60' ry='80' fill='%2381B29A' opacity='0.3'/%3E%3Cellipse cx='200' cy='200' rx='30' ry='40' fill='%23F2CC8F' opacity='0.8'/%3E%3Cpath d='M230 200 Q350 150 420 200' stroke='%233D405B' stroke-width='4' fill='none' marker-end='url(%23arrowhead)'/%3E%3Cdefs%3E%3Cmarker id='arrowhead' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'%3E%3Cpolygon points='0 0, 10 3.5, 0 7' fill='%233D405B'/%3E%3C/marker%3E%3C/defs%3E%3Cpath d='M420 180 Q480 170 520 180 Q520 220 480 230 Q420 220 420 180' fill='%23A8DADC' opacity='0.6'/%3E%3Ccircle cx='470' cy='200' r='15' fill='%23F2CC8F'/%3E%3Ctext x='150' y='120' text-anchor='middle' fill='%233D405B' font-size='14' font-family='Lato, sans-serif'%3EAlimento Total%3C/text%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Lato, sans-serif'%3EParte Biodisponible%3C/text%3E%3Ctext x='470' y='260' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Lato, sans-serif'%3EAbsorción Efectiva%3C/text%3E%3C/svg%3E" alt="Infografía conceptual de la biodisponibilidad, mostrando la absorción efectiva de nutrientes">
+                <p class="image-caption">Ilustración que aclara el concepto de biodisponibilidad como la clave para el aprovechamiento real de los nutrientes.</p>
+            </div>
+        </section>' fill='%2381B29A' opacity='0.3'/%3E%3Cellipse cx='200' cy='200' rx='30' ry='40' fill='%23F2CC8F' opacity='0.8'/%3E%3Cpath d='M230 200 Q350 150 420 200' stroke='%233D405B' stroke-width='4' fill='none' marker-end='url(%23arrowhead)'/%3E%3Cdefs%3E%3Cmarker id='arrowhead' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'%3E%3Cpolygon points='0 0, 10 3.5, 0 7' fill='%233D405B'/%3E%3C/marker%3E%3C/defs%3E%3Cpath d='M420 180 Q480 170 520 180 Q520 220 480 230 Q420 220 420 180' fill='%23A8DADC' opacity='0.6'/%3E%3Ccircle cx='470' cy='200' r='15' fill='%23F2CC8F'/%3E%3Ctext x='150' y='120' text-anchor='middle' fill='%233D405B' font-size='14' font-family='Lato, sans-serif'%3EAlimento Total%3C/text%3E%3Ctext x='200' y='280' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Lato, sans-serif'%3EParte Biodisponible%3C/text%3E%3Ctext x='470' y='260' text-anchor='middle' fill='%233D405B' font-size='12' font-family='Lato, sans-serif'%3EAbsorción Efectiva%3C/text%3E%3C/svg%3E" alt="Infografía conceptual de la biodisponibilidad, mostrando la absorción efectiva de nutrientes">
+            <p class="image-caption">Ilustración que aclara el concepto de biodisponibilidad como la clave para el aprovechamiento real de los nutrientes.</p>
+        </section>
+    </div>
+
+    <!-- Navegación -->
+    <div class="navigation">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+    </div>
+
+    <button class="nav-button prev" onclick="previousSlide()">‹</button>
+    <button class="nav-button next" onclick="nextSlide()">›</button>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const container = document.getElementById('presentationContainer');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateSlide() {
+            const offset = currentSlide * -100;
+            container.style.transform = `translateX(${offset}vw)`;
+            
+            // Actualizar puntos de navegación
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlide();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Navegación táctil básica
+        let startX = 0;
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

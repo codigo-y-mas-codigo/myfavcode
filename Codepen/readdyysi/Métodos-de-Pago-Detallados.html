@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Métodos de Pago - Diseños de Luis Angel Maciel</title>
+<meta name="description" content="Información detallada sobre los métodos de pago disponibles para comprar los diseños de Luis Angel Maciel, incluyendo tarjetas, PayPal, transferencias y más.">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#f43f5e'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+.logo {
+    font-family: 'Pacifico', serif;
+}
+.custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.2s;
+    position: relative;
+}
+.custom-checkbox:checked {
+    background-color: #6366f1;
+    border-color: #6366f1;
+}
+.custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header -->
+<header class="bg-white shadow-sm fixed w-full top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-10">
+            <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87" data-readdy="true" class="logo text-primary text-2xl">myRedbubble</a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition">Galería</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#blog" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition">Blog</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#feed" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition">Novedades</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#contacto" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition">Contacto</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#faq" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition">FAQ</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <!-- Search -->
+            <div class="search-container hidden md:block w-64">
+                <div class="relative">
+                    <input type="text" class="search-input w-full py-2 pl-10 pr-4 border-none rounded-full bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none text-sm" placeholder="Buscar diseños...">
+                    <div class="absolute left-3 top-2.5 text-gray-400">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-search-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Currency Selector -->
+            <div class="relative group">
+                <button class="flex items-center space-x-1 text-gray-700 hover:text-primary">
+                    <span id="current-currency">USD</span>
+                    <div class="w-4 h-4 flex items-center justify-center">
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                </button>
+                <div class="absolute right-0 mt-2 w-24 bg-white rounded-lg shadow-lg overflow-hidden z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="USD">USD</button>
+                    <button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="EUR">EUR</button>
+                    <button class="currency-option block w-full text-left px-4 py-2 text-sm hover:bg-gray-100" data-currency="MXN">MXN</button>
+                </div>
+            </div>
+            <!-- Favorites -->
+            <button class="relative text-gray-700 hover:text-primary">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-heart-line"></i>
+                </div>
+                <span class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </button>
+            <!-- Cart -->
+            <button class="relative text-gray-700 hover:text-primary">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-shopping-cart-line"></i>
+                </div>
+                <span class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </button>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-700 hover:text-primary" id="mobile-menu-button">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div class="container mx-auto px-4 py-2">
+            <div class="search-container mb-4">
+                <div class="relative">
+                    <input type="text" class="search-input w-full py-2 pl-10 pr-4 border-none rounded-full bg-gray-100 focus:ring-2 focus:ring-primary focus:outline-none text-sm" placeholder="Buscar diseños...">
+                    <div class="absolute left-3 top-2.5 text-gray-400">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-search-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="flex flex-col space-y-3">
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition py-2">Galería</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#blog" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition py-2">Blog</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#feed" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition py-2">Novedades</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#contacto" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition py-2">Contacto</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#faq" data-readdy="true" class="text-gray-700 hover:text-primary font-medium transition py-2">FAQ</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Page Header -->
+<section class="pt-28 pb-10 bg-gradient-to-r from-indigo-50 to-purple-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center mb-6">
+            <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87" data-readdy="true" class="flex items-center text-primary hover:text-primary/80 mr-4">
+                <div class="w-5 h-5 flex items-center justify-center mr-1">
+                    <i class="ri-arrow-left-line"></i>
+                </div>
+                <span>Volver</span>
+            </a>
+            <nav class="text-sm">
+                <ol class="flex items-center">
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87" data-readdy="true" class="text-gray-500 hover:text-primary">Inicio</a></li>
+                    <li class="mx-2 text-gray-400">/</li>
+                    <li class="text-gray-800 font-medium">Métodos de Pago</li>
+                </ol>
+            </nav>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Métodos de Pago</h1>
+        <p class="text-lg text-gray-600 max-w-3xl">Información detallada sobre las opciones disponibles para realizar tus compras de manera segura y conveniente.</p>
+    </div>
+</section>
+
+<!-- Payment Methods Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Opciones de Pago Disponibles</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">Ofrecemos diversas formas de pago para que puedas elegir la que mejor se adapte a tus necesidades y preferencias.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Credit/Debit Cards -->
+                <div class="method-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary">
+                                <i class="ri-bank-card-line ri-2x"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Tarjetas de Crédito/Débito</h3>
+                        <div class="flex justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center text-gray-600">
+                                <i class="ri-visa-fill ri-2x"></i>
+                            </div>
+                            <div class="w-10 h-10 flex items-center justify-center text-gray-600">
+                                <i class="ri-mastercard-fill ri-2x"></i>
+                            </div>
+                            <div class="w-10 h-10 flex items-center justify-center text-gray-600">
+                                <i class="ri-american-express-fill ri-2x"></i>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Aceptamos Visa, Mastercard y American Express</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Procesamiento inmediato de pagos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Transacciones seguras con protección 3D Secure</span>
+                            </li>
+                        </ul>
+                        <a href="#proceso-tarjetas" class="block text-center text-primary hover:text-primary/80 text-sm font-medium">Ver proceso detallado</a>
+                    </div>
+                </div>
+
+                <!-- PayPal -->
+                <div class="method-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="h-3 bg-blue-500"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6 mx-auto">
+                            <div class="w-8 h-8 flex items-center justify-center text-blue-500">
+                                <i class="ri-paypal-fill ri-2x"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 text-center mb-4">PayPal</h3>
+                        <div class="flex justify-center mb-4">
+                            <div class="w-20 h-10 flex items-center justify-center text-blue-500">
+                                <i class="ri-paypal-fill ri-3x"></i>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Pago rápido sin compartir datos financieros</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Protección al comprador incluida</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Disponible para compras directas y en Redbubble</span>
+                            </li>
+                        </ul>
+                        <a href="#proceso-paypal" class="block text-center text-primary hover:text-primary/80 text-sm font-medium">Ver proceso detallado</a>
+                    </div>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div class="method-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="h-3 bg-green-500"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6 mx-auto">
+                            <div class="w-8 h-8 flex items-center justify-center text-green-500">
+                                <i class="ri-bank-line ri-2x"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Transferencia Bancaria</h3>
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-green-50 rounded-lg p-2 text-center">
+                                <p class="text-sm font-medium text-green-600">Solo para compras directas</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Sin comisiones adicionales por nuestra parte</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Ideal para compras de mayor valor</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Procesamiento en 1-2 días hábiles tras confirmación</span>
+                            </li>
+                        </ul>
+                        <a href="#proceso-transferencia" class="block text-center text-primary hover:text-primary/80 text-sm font-medium">Ver proceso detallado</a>
+                    </div>
+                </div>
+
+                <!-- Apple Pay -->
+                <div class="method-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                    <div class="h-3 bg-gray-800"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6 mx-auto">
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-800">
+                                <i class="ri-apple-fill ri-2x"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Apple Pay</h3>
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-gray-100 rounded-lg p-2 text-center">
+                                <p class="text-sm font-medium text-gray-700">Disponible en Redbubble</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Pago rápido con un solo toque</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Compatible con dispositivos Apple</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-600 text-sm">Máxima seguridad con autenticación biométrica</span>
+                            </li>
+                        </ul>
+                        <a href="#proceso-applepay" class="block text-center text-primary hover:text-primary/80 text-sm font-medium">Ver proceso detallado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Process Section -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Proceso de Pago</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">Conoce el proceso detallado para realizar tus compras tanto de forma directa como a través de Redbubble.</p>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-12">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Compras Directas</h3>
+                        </div>
+                        <div class="space-y-6 pl-14">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Selección de productos</h4>
+                                <p class="text-gray-600 text-sm">Elige los diseños que deseas comprar directamente y haz clic en el botón "Directo" para añadirlos a tu carrito.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Proceso de compra</h4>
+                                <p class="text-gray-600 text-sm">Completa el formulario con tus datos personales y de envío. Selecciona tu método de pago preferido entre las opciones disponibles.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Confirmación y pago</h4>
+                                <p class="text-gray-600 text-sm">Revisa tu pedido y procede al pago. Recibirás un correo electrónico con la confirmación de tu compra y los detalles de seguimiento.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Tiempos de entrega</h4>
+                                <p class="text-gray-600 text-sm">Los pedidos directos se procesan en 1-3 días hábiles y se envían en 5-15 días dependiendo de tu ubicación.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 bg-gray-50 p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Compras en Redbubble</h3>
+                        </div>
+                        <div class="space-y-6 pl-14">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Redirección a Redbubble</h4>
+                                <p class="text-gray-600 text-sm">Al hacer clic en el botón "Redbubble", serás redirigido a mi tienda en la plataforma donde podrás ver todos los productos disponibles con ese diseño.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Proceso de compra en Redbubble</h4>
+                                <p class="text-gray-600 text-sm">Sigue el proceso de compra estándar de Redbubble, seleccionando tus preferencias de producto, talla, color, etc.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Métodos de pago en Redbubble</h4>
+                                <p class="text-gray-600 text-sm">Redbubble acepta tarjetas de crédito/débito, PayPal y Apple Pay. Todo el proceso de pago se realiza en su plataforma segura.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">Tiempos de entrega</h4>
+                                <p class="text-gray-600 text-sm">Los pedidos de Redbubble suelen procesarse en 2-3 días hábiles y entregarse en 7-20 días dependiendo de tu ubicación y el método de envío seleccionado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comparison Table -->
+            <div class="overflow-hidden rounded-lg shadow-md">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="px-6 py-4 text-left">Característica</th>
+                            <th class="px-6 py-4 text-center">Compra Directa</th>
+                            <th class="px-6 py-4 text-center">Compra en Redbubble</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Métodos de pago</td>
+                            <td class="px-6 py-4 text-center">Tarjetas, PayPal, Transferencia</td>
+                            <td class="px-6 py-4 text-center">Tarjetas, PayPal, Apple Pay</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="px-6 py-4 font-medium">Tiempo de procesamiento</td>
+                            <td class="px-6 py-4 text-center">1-3 días hábiles</td>
+                            <td class="px-6 py-4 text-center">2-3 días hábiles</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Tiempo de entrega</td>
+                            <td class="px-6 py-4 text-center">5-15 días</td>
+                            <td class="px-6 py-4 text-center">7-20 días</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="px-6 py-4 font-medium">Personalización</td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="w-6 h-6 mx-auto flex items-center justify-center text-green-500">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="w-6 h-6 mx-auto flex items-center justify-center text-gray-400">
+                                    <i class="ri-close-line"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="px-6 py-4 font-medium">Variedad de productos</td>
+                            <td class="px-6 py-4 text-center">Limitada</td>
+                            <td class="px-6 py-4 text-center">Extensa</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 font-medium">Atención personalizada</td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="w-6 h-6 mx-auto flex items-center justify-center text-green-500">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="w-6 h-6 mx-auto flex items-center justify-center text-gray-400">
+                                    <i class="ri-close-line"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detailed Process Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Proceso Detallado por Método de Pago</h2>
+            
+            <!-- Credit/Debit Cards Process -->
+            <div id="proceso-tarjetas" class="mb-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-primary">
+                            <i class="ri-bank-card-line"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Tarjetas de Crédito/Débito</h3>
+                </div>
+                
+                <div class="pl-16">
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Compras Directas</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Selecciona los productos que deseas comprar y haz clic en "Directo" para añadirlos al carrito.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">En el proceso de pago, selecciona "Tarjeta de Crédito/Débito" como método de pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Ingresa los datos de tu tarjeta: número, nombre del titular, fecha de vencimiento y código de seguridad (CVV).</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">Es posible que debas completar una verificación adicional (3D Secure) dependiendo de tu banco.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Una vez aprobado el pago, recibirás una confirmación por correo electrónico con los detalles de tu pedido.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Compras en Redbubble</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Haz clic en "Redbubble" para ser redirigido a la plataforma y selecciona los productos que deseas.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">Durante el proceso de pago en Redbubble, selecciona "Tarjeta de Crédito/Débito" como método de pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Ingresa los datos de tu tarjeta en el formulario seguro de Redbubble.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">Completa la verificación 3D Secure si es requerida por tu banco.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Recibirás una confirmación de pedido por parte de Redbubble con los detalles de tu compra y seguimiento.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PayPal Process -->
+            <div id="proceso-paypal" class="mb-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mr-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-blue-500">
+                            <i class="ri-paypal-fill"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">PayPal</h3>
+                </div>
+                
+                <div class="pl-16">
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Compras Directas</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Selecciona los productos que deseas comprar y haz clic en "Directo" para añadirlos al carrito.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">En el proceso de pago, selecciona "PayPal" como método de pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Serás redirigido a la página de PayPal para iniciar sesión con tu cuenta.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">Confirma la información de envío y el método de pago dentro de tu cuenta de PayPal.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Autoriza el pago y serás redirigido de vuelta a nuestra página con la confirmación de tu pedido.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Compras en Redbubble</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Haz clic en "Redbubble" para ser redirigido a la plataforma y selecciona los productos que deseas.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">Durante el proceso de pago en Redbubble, selecciona "PayPal" como método de pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Serás redirigido a PayPal para iniciar sesión y autorizar el pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">Confirma los detalles de tu compra en PayPal.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Tras la autorización, serás redirigido a Redbubble donde recibirás la confirmación de tu pedido.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bank Transfer Process -->
+            <div id="proceso-transferencia" class="mb-16">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mr-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-green-500">
+                            <i class="ri-bank-line"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Transferencia Bancaria</h3>
+                </div>
+                
+                <div class="pl-16">
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Solo para Compras Directas</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Selecciona los productos que deseas comprar y haz clic en "Directo" para añadirlos al carrito.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">En el proceso de pago, selecciona "Transferencia Bancaria" como método de pago.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Recibirás un correo electrónico con los datos bancarios para realizar la transferencia, incluyendo el importe exacto y una referencia única para tu pedido.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">Realiza la transferencia desde tu banco y envía el comprobante de pago al correo electrónico indicado.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Una vez verificado el pago (1-2 días hábiles), recibirás una confirmación y tu pedido comenzará a procesarse.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Información Importante</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-information-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Tu pedido se mantendrá reservado durante 3 días hábiles mientras esperamos la confirmación de tu transferencia.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-information-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Es fundamental incluir la referencia de pedido en el concepto de la transferencia para poder identificarla correctamente.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-information-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Las transferencias internacionales pueden tener comisiones bancarias adicionales que corren por cuenta del cliente.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-information-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Si la transferencia no se recibe en el plazo establecido, el pedido será cancelado automáticamente.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apple Pay Process -->
+            <div id="proceso-applepay">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-gray-800">
+                            <i class="ri-apple-fill"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Apple Pay</h3>
+                </div>
+                
+                <div class="pl-16">
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Solo para Compras en Redbubble</h4>
+                        <ol class="space-y-4">
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-600">Haz clic en "Redbubble" para ser redirigido a la plataforma y selecciona los productos que deseas.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-600">Durante el proceso de pago en Redbubble, selecciona "Apple Pay" como método de pago (disponible solo en dispositivos Apple compatibles).</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-600">Confirma tu pago utilizando Face ID, Touch ID o tu contraseña de Apple ID según tu dispositivo.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                                <p class="text-gray-600">La transacción se procesará automáticamente utilizando la tarjeta configurada en tu Apple Wallet.</p>
+                            </li>
+                            <li class="flex">
+                                <span class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                                <p class="text-gray-600">Recibirás una confirmación de pedido por parte de Redbubble con los detalles de tu compra.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-medium text-gray-800 mb-4">Dispositivos Compatibles</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-smartphone-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">iPhone con Face ID o Touch ID</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-tablet-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">iPad con Touch ID o Face ID</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-macbook-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Mac con Touch ID o conectado a un iPhone o Apple Watch con Apple Pay</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                    <i class="ri-watch-line"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm">Apple Watch emparejado con un iPhone compatible</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Security Section -->
+<section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Seguridad en las Transacciones</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">Tu seguridad es nuestra prioridad. Conoce las medidas que implementamos para proteger tus datos y transacciones.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+                        <div class="w-8 h-8 flex items-center justify-center text-primary">
+                            <i class="ri-shield-check-line ri-2x"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Protección de Datos</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Utilizamos cifrado SSL de 256 bits para proteger toda la información transmitida en nuestra web.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">No almacenamos datos completos de tarjetas de crédito en nuestros servidores.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Cumplimos con la normativa GDPR y LOPD para la protección de datos personales.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Realizamos auditorías de seguridad periódicas para garantizar la protección de tu información.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+                        <div class="w-8 h-8 flex items-center justify-center text-primary">
+                            <i class="ri-lock-line ri-2x"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 text-center mb-4">Seguridad en Pagos</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Implementamos el sistema 3D Secure para verificación adicional en pagos con tarjeta.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Trabajamos con pasarelas de pago certificadas que cumplen con los estándares PCI DSS.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Monitorizamos constantemente las transacciones para detectar actividades sospechosas.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2 flex-shrink-0">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm">Ofrecemos métodos de pago seguros como PayPal que añaden una capa extra de protección.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white rounded-lg shadow-md p-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-green-600">
+                            <i class="ri-verified-badge-line"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Garantías y Certificaciones</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-12 h-12 mx-auto flex items-center justify-center text-primary mb-3">
+                            <i class="ri-secure-payment-line ri-2x"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-800 mb-2">Pagos Seguros</h4>
+                        <p class="text-gray-600 text-sm">Todas nuestras transacciones están protegidas con los más altos estándares de seguridad.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-12 h-12 mx-auto flex items-center justify-center text-primary mb-3">
+                            <i class="ri-refund-2-line ri-2x"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-800 mb-2">Garantía de Devolución</h4>
+                        <p class="text-gray-600 text-sm">Ofrecemos 14 días de garantía para devoluciones en caso de productos defectuosos.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-12 h-12 mx-auto flex items-center justify-center text-primary mb-3">
+                            <i class="ri-customer-service-2-line ri-2x"></i>
+                        </div>
+                        <h4 class="font-medium text-gray-800 mb-2">Soporte Personalizado</h4>
+                        <p class="text-gray-600 text-sm">Asistencia directa para resolver cualquier incidencia con tus pagos o pedidos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Preguntas Frecuentes sobre Pagos</h2>
+            <p class="text-gray-600 text-center mb-8">Respuestas a las dudas más comunes sobre métodos de pago y transacciones</p>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Cuál es la diferencia entre comprar directo o a través de Redbubble?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Al comprar directamente, tienes la posibilidad de solicitar personalizaciones y recibes atención personalizada. Los pedidos se procesan más rápido y tienes acceso a métodos de pago como transferencia bancaria. En Redbubble, encuentras una mayor variedad de productos con mis diseños, pero sin opciones de personalización. Cada plataforma tiene sus propios tiempos de procesamiento y políticas de envío.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Mis datos de pago están seguros?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Absolutamente. Utilizamos cifrado SSL de 256 bits para proteger toda la información transmitida en nuestra web. Para pagos con tarjeta, implementamos el sistema 3D Secure y trabajamos con pasarelas de pago certificadas que cumplen con los estándares PCI DSS. No almacenamos datos completos de tarjetas en nuestros servidores. Con PayPal y Apple Pay, tus datos financieros nunca se comparten con nosotros.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Qué hago si mi pago es rechazado?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Si tu pago es rechazado, primero verifica que los datos de tu tarjeta sean correctos. Asegúrate de que tu tarjeta tenga fondos suficientes y esté habilitada para compras online. Algunas tarjetas tienen restricciones para compras internacionales, consulta con tu banco. También puedes intentar con un método de pago alternativo como PayPal. Si el problema persiste, contáctanos a través del formulario de contacto y te ayudaremos a resolver la situación.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Cómo puedo solicitar un reembolso?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Para solicitar un reembolso en compras directas, debes contactarnos a través del formulario de contacto dentro de los 14 días posteriores a la recepción del producto, explicando el motivo de la devolución y adjuntando fotos si se trata de un producto defectuoso. Para compras realizadas en Redbubble, debes seguir su política de devoluciones y contactar directamente con su servicio de atención al cliente. El reembolso se procesará utilizando el mismo método de pago que usaste para la compra original.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Puedo pagar en una moneda diferente a la que se muestra?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Sí, puedes cambiar la moneda de visualización en nuestra web seleccionando entre USD, EUR o MXN en el selector de moneda ubicado en la parte superior de la página. Sin embargo, es posible que tu banco o entidad financiera realice la conversión según sus propias tasas si pagas con una tarjeta emitida en una moneda diferente. Para evitar tasas de conversión adicionales, te recomendamos utilizar PayPal, que ofrece tasas de cambio más favorables.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Cuánto tiempo tarda en procesarse mi pago?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Los pagos con tarjeta de crédito/débito y PayPal se procesan inmediatamente. Para transferencias bancarias, el tiempo de procesamiento es de 1-2 días hábiles una vez recibido el comprobante de pago. En el caso de compras a través de Redbubble, el procesamiento del pago es inmediato con cualquiera de sus métodos aceptados. Una vez confirmado el pago, recibirás un correo electrónico con la confirmación de tu pedido y los detalles de seguimiento.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 7 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Se aplican impuestos adicionales a mi compra?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Los precios mostrados en nuestra web incluyen los impuestos aplicables según la normativa local. Sin embargo, para envíos internacionales, es posible que se apliquen impuestos de importación, aranceles o IVA adicionales según las leyes de tu país. Estos cargos son responsabilidad del comprador y se cobran en el momento de la entrega o despacho aduanero. Para compras en Redbubble, consulta su política de impuestos específica para cada país.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 8 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-100">
+                    <button class="faq-question w-full flex justify-between items-center p-4 text-left">
+                        <span class="font-medium text-gray-800">¿Ofrecen opciones de pago a plazos?</span>
+                        <div class="faq-icon w-5 h-5 flex items-center justify-center text-gray-500">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-4 pb-4">
+                        <p class="text-gray-600">Actualmente no ofrecemos opciones de pago a plazos directamente en nuestra plataforma. Sin embargo, puedes utilizar servicios de financiación ofrecidos por tu banco o tarjeta de crédito. Algunas tarjetas permiten dividir el pago en cuotas después de realizar la compra. Para pedidos de mayor valor, puedes contactarnos directamente para discutir posibles arreglos de pago personalizados. En Redbubble, las opciones de financiación dependen de las pasarelas de pago disponibles en tu región.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-primary to-indigo-600 text-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">¿Listo para comprar tus diseños favoritos?</h2>
+            <p class="text-white/90 mb-8">Explora nuestra galería y encuentra el diseño perfecto para expresar tu personalidad.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Ver Galería</a>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#contacto" data-readdy="true" class="bg-transparent hover:bg-white/10 text-white border-2 border-white px-8 py-3 rounded-button font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 whitespace-nowrap">Contactar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+                <a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87" data-readdy="true" class="logo text-white text-2xl">myRedbubble</a>
+                <p class="mt-4 text-gray-400">Diseños únicos inspirados en la cultura pop, anime y humor para expresar tu personalidad.</p>
+                <div class="flex gap-4 mt-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-instagram-line ri-xl"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-twitter-x-line ri-xl"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-behance-line ri-xl"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                            <i class="ri-pinterest-line ri-xl"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Galería</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#blog" data-readdy="true" class="text-gray-400 hover:text-white">Blog</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#feed" data-readdy="true" class="text-gray-400 hover:text-white">Novedades</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#contacto" data-readdy="true" class="text-gray-400 hover:text-white">Contacto</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#faq" data-readdy="true" class="text-gray-400 hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Categorías</h3>
+                <ul class="space-y-2">
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Anime</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Tarot</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Humor</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Mascotas</a></li>
+                    <li><a href="https://readdy.ai/home/790c8c02-dc15-4947-b034-5ccc97548292/867e08b4-7343-4591-b003-75ff35739b87#galeria" data-readdy="true" class="text-gray-400 hover:text-white">Minimalista</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Información</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Política de Privacidad</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Política de Devoluciones</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white font-medium">Métodos de Pago</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white">Envíos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 myRedbubble. Todos los derechos reservados.</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 flex items-center justify-center text-gray-400">
+                        <i class="ri-visa-fill ri-xl"></i>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center text-gray-400">
+                        <i class="ri-mastercard-fill ri-xl"></i>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center text-gray-400">
+                        <i class="ri-paypal-fill ri-xl"></i>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center text-gray-400">
+                        <i class="ri-apple-fill ri-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top bg-primary hover:bg-primary/90 text-white p-3 rounded-full shadow-lg">
+    <div class="w-5 h-5 flex items-center justify-center">
+        <i class="ri-arrow-up-line"></i>
+    </div>
+</button>
+
+<!-- Scripts -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+});
+</script>
+
+<script id="currency-selector-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const currencyOptions = document.querySelectorAll('.currency-option');
+    const currentCurrency = document.getElementById('current-currency');
+    
+    currencyOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const currency = this.getAttribute('data-currency');
+            currentCurrency.textContent = currency;
+        });
+    });
+});
+</script>
+
+<script id="faq-accordion-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', function() {
+            // Toggle active class on clicked item
+            item.classList.toggle('active');
+            
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+</script>
+
+<script id="back-to-top-script">
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+</body>
+</html>

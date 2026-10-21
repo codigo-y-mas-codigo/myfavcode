@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>URL Cleaner - Help Me SOS Code</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@toast-me/core/toastme.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/@toast-me/core/toastme.min.js"></script>
+</head>
+
+<body class="bg-gray-100 dark:bg-neutral-900">
+ <!-- Hero Section -->
+ <div class="relative overflow-hidden">
+  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24">
+   <div class="text-center">
+    <h1 class="text-4xl sm:text-6xl font-bold text-gray-800 dark:text-neutral-200">
+     URL Cleaner
+    </h1>
+
+    <p class="mt-3 text-gray-600 dark:text-neutral-400">
+     Simplifica tus URLs y mejora tu flujo de trabajo
+    </p>
+
+    <div class="mt-7 sm:mt-12 mx-auto max-w-xl relative">
+     <!-- Convertidor Form -->
+     <form>
+      <div class="relative z-10 flex flex-col sm:flex-row gap-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
+       <div class="w-full">
+        <label for="textoEntrada" class="sr-only">Ingrese su texto aquí</label>
+        <input type="text" id="textoEntrada" name="textoEntrada" class="py-3 px-4 block w-full border-transparent rounded-md focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-800 dark:border-transparent dark:text-neutral-400" placeholder="Ingrese su texto aquí" oninput="convertirTexto()" maxlength="2048">
+       </div>
+      </div>
+     </form>
+     <!-- End Convertidor Form -->
+
+     <!-- Resultado -->
+     <div class="mt-4 p-4 bg-white border rounded-lg shadow-md dark:bg-neutral-800 dark:border-neutral-700">
+      <p id="resultadoTexto" class="font-medium text-gray-800 dark:text-neutral-200">Resultado</p>
+      <p id="textoResultado" class="mt-2 text-gray-600 dark:text-neutral-400 break-all cursor-pointer" onclick="copiarTexto()"></p>
+     </div>
+     <!-- End Resultado -->
+    </div>
+    <span style="height:25vh"></span>
+   </div>
+  </div>
+ </div>
+ <!-- End Hero Section -->
+
+ <!-- Blog Article -->
+ <div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+  <div class="max-w-2xl">
+   <!-- Avatar Media -->
+   <div class="flex justify-between items-center mb-6">
+    <div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+     <div class="shrink-0">
+      <img class="size-12 rounded-full" src="/api/placeholder/100/100" alt="Avatar">
+     </div>
+
+     <div class="grow">
+      <div class="flex justify-between items-center gap-x-2">
+       <div>
+        <div class="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
+         <div class="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+          <span class="font-semibold text-gray-800 dark:text-neutral-200">
+           Tu Nombre
+          </span>
+         </div>
+        </div>
+
+        <ul class="text-xs text-gray-500 dark:text-neutral-500">
+         <li class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600">
+          Jul 24, 2024
+         </li>
+         <li class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600">
+          8 min read
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- End Avatar Media -->
+
+   <!-- Content -->
+   <div class="space-y-5 md:space-y-8">
+    <div class="space-y-3">
+     <h2 class="text-2xl font-bold md:text-3xl dark:text-white">Simplifica tus URLs con nuestro URL Cleaner</h2>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">En el mundo digital actual, la claridad y la eficiencia son esenciales. URL Cleaner es una herramienta diseñada para simplificar tus URLs y mejorar tu flujo de trabajo, especialmente útil para diseñadores, mercadólogos y creadores de contenido.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold dark:text-white">¿Cómo funciona?</h3>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">
+     Nuestro convertidor realiza las siguientes transformaciones:
+    </p>
+
+    <ul class="list-disc list-inside space-y-2 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+     <li>Convierte todo el texto a minúsculas</li>
+     <li>Elimina acentos y caracteres especiales</li>
+     <li>Reemplaza espacios con guiones</li>
+     <li>Elimina signos de puntuación innecesarios</li>
+    </ul>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">
+     El resultado es una URL limpia, legible y optimizada para SEO.
+    </p>
+
+    <h3 class="text-xl font-semibold dark:text-white">Ventajas de usar URL Cleaner</h3>
+
+    <ul class="list-disc list-outside space-y-2 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+     <li><strong>Mejora la legibilidad:</strong> URLs limpias y fáciles de leer.</li>
+     <li><strong>Optimización SEO:</strong> URLs amigables para motores de búsqueda.</li>
+     <li><strong>Consistencia:</strong> Mantén un formato uniforme en todos tus enlaces.</li>
+     <li><strong>Ahorro de tiempo:</strong> Evita editar manualmente cada URL.</li>
+    </ul>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">
+     ¿Necesitas personalizar la herramienta para tus necesidades específicas? ¡No dudes en contactarnos! Estamos listos para crear herramientas que optimicen tu presencia en línea y mejoren tu productividad.
+    </p>
+   </div>
+   <!-- End Content -->
+  </div>
+ </div>
+ <!-- End Blog Article -->
+
+ <script>
+  function convertirTexto() {
+   var textoEntrada = document.getElementById("textoEntrada").value.toLowerCase();
+   textoEntrada = textoEntrada.replace(/[áäâà]/g, 'a');
+   textoEntrada = textoEntrada.replace(/[éëêè]/g, 'e');
+   textoEntrada = textoEntrada.replace(/[íïîì]/g, 'i');
+   textoEntrada = textoEntrada.replace(/[óöôò]/g, 'o');
+   textoEntrada = textoEntrada.replace(/[úüûù]/g, 'u');
+   textoEntrada = textoEntrada.replace(/[ñ]/g, 'n');
+   textoEntrada = textoEntrada.replace(/[{,:;.¨'+/\!?|´\{\[\]\(\)\}\*]/g, '');
+   textoEntrada = textoEntrada.replace(/\s+/g, '-');
+   document.getElementById("textoResultado").textContent = textoEntrada;
+   document.getElementById("resultadoTexto").textContent = "Resultado";
+  }
+
+  function copiarTexto() {
+   var resultado = document.getElementById("textoResultado");
+   var seleccion = window.getSelection();
+   var rango = document.createRange();
+   rango.selectNodeContents(resultado);
+   seleccion.removeAllRanges();
+   seleccion.addRange(rango);
+   document.execCommand("copy");
+   seleccion.removeAllRanges();
+   // Cambiar texto a "Copiado"
+   document.getElementById("resultadoTexto").textContent = "Copiado";
+   // Restaurar texto a "Resultado" después de 3 segundos
+   setTimeout(function() {
+    document.getElementById("resultadoTexto").textContent = "Resultado";
+   }, 3000);
+  }
+ </script>
+</body>
+
+</html>

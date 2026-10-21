@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Copiar y Pegar Datos</title>
+</head>
+
+<body>
+ <h1>Copiar y Pegar</h1>
+
+ <p>Explicación:</p>
+
+ <p>El código HTML define dos campos de texto: uno para el dato a copiar y otro para el dato pegado.</p>
+ <p>Los botones "Copiar" y "Pegar" llaman a las funciones copiarDato y pegarDato respectivamente.</p>
+ <p>La función copiarDato usa la API de Clipboard para copiar el valor del campo "dato_copiar" al portapapeles. Luego, muestra un tooltip con un mensaje de confirmación.</p>
+ <p>La función pegarDato usa la API de Clipboard para obtener el valor del portapapeles y lo pega en el campo "dato_pegar".</p>
+
+ <form onsubmit="return false;">
+  <label for="dato_copiar">Dato a copiar:</label>
+  <input type="text" id="dato_copiar" name="dato_copiar" required>
+  <button type="button" onclick="copiarDato()">Copiar</button>
+  <br>
+  <br>
+  <label for="dato_pegar">Dato pegado:</label>
+  <input type="text" id="dato_pegar" name="dato_pegar" disabled>
+  <button type="button" onclick="pegarDato()">Pegar</button>
+ </form>
+
+ <script>
+  function copiarDato() {
+   let dato = document.getElementById("dato_copiar").value;
+   navigator.clipboard.writeText(dato).then(() => {
+    mostrarTooltip("Dato copiado!");
+   });
+  }
+
+  function pegarDato() {
+   navigator.clipboard.readText().then((dato) => {
+    document.getElementById("dato_pegar").value = dato;
+   });
+  }
+
+  function mostrarTooltip(mensaje) {
+   let tooltip = document.createElement("div");
+   tooltip.classList.add("tooltip");
+   tooltip.innerText = mensaje;
+   document.body.appendChild(tooltip);
+   setTimeout(() => {
+    tooltip.remove();
+   }, 2000);
+  }
+ </script>
+</body>
+
+</html>

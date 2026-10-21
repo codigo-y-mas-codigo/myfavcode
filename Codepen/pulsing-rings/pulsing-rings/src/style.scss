@@ -1,0 +1,53 @@
+@import "bourbon";
+$circlesize : 100px;
+#circles{
+  width:$circlesize;
+  height:$circlesize;
+  display:inline-block;
+  position:relative;
+}
+
+@mixin pulseDelay($children) {
+  @for $i from 1 through $children {
+    #circles div:nth-child(#{$i}){ 
+      $delay: ($i - 1)*0.1;
+      @include animation-delay( $delay + s );
+    }
+  }
+}
+
+#circles div{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid #269911;
+  width:0;
+  height:0;
+  opacity:0;
+  @include animation-name(growCircles);
+  @include animation-duration(2s);
+  @include transition-timing-function(linear);
+  @include animation-iteration-count(infinite);
+}  
+
+@include pulseDelay(5);
+
+@include keyframes(growCircles) {
+  0% {
+    top:$circlesize/2;
+    left:$circlesize/2;
+  }
+  20%{
+    opacity:1;
+  }
+  80%{
+    opacity:0;
+    top:0;
+    left:0;
+    width:$circlesize;
+    height:$circlesize;
+  }
+
+  100% {
+    opacity:0;
+  }
+}

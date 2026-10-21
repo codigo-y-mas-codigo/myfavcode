@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Typography on the Web — Week 3</title>
+
+    <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/dPPYOgN">
+  <script src="https://assets.codepen.io/467/typetura.2.0.0.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+html {
+  --font: "Plex", monospace;
+  --heading: "Job Clarendon Variable";
+  --background: #fff;
+  --foreground: #000;
+  --accent: #f00;
+  font-family: "Roboto", system-ui;
+}
+
+@media (min-width: 40em) {
+  .footer {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--heading);
+  line-height: 1.1;
+  margin: 0;
+}
+
+article {
+  line-height: min(1.2em + 0.5vw, 1.7em);
+}
+
+article hgroup > * {
+  display: inline;
+}
+
+article h1,
+article h2 {
+  --tt-key: heading;
+  --tt-max: 1000;
+  --tt-ease: ease-in;
+  text-transform: uppercase;
+  line-height: 0.9;
+  background-image: url("https://images.unsplash.com/photo-1586801217656-f2e69dc90bfb?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDc4NjY4NTB8&ixlib=rb-4.0.3&q=85");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+article h2 {
+  opacity: 0.5;
+}
+
+@-webkit-keyframes heading {
+  0% {
+    font-size: 1rem;
+  }
+  100% {
+    font-size: 5rem;
+  }
+}
+
+@keyframes heading {
+  0% {
+    font-size: 1rem;
+  }
+  100% {
+    font-size: 5rem;
+  }
+}
+.highlight {
+  color: red;
+  font-weight: bold;
+  background: yellow;
+}
+
+.footer-author {
+  display: block;
+}
+
+.footer-dateline {
+  display: block;
+}
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <header>
+	<h1>Alphabettes</h1>
+</header>
+
+<main>
+	<article>
+		<h1 class="typetura">Facing Our Fears</h1>
+		<h2>Teaching Type on the Web</h2>
+		<cite>This text is from the article <a href="https://www.alphabettes.org/facing-our-fears/">Facing Our Fears</a> by Amy Papaelias</cite>
+		<p>This is not a technical article about the “rules” of good typesetting on the web, or webfont loading issues, or where to find and test great typefaces for the web. There are so many existing, wonderful, rad, resources out there already. What I do want to think about is pedagogy, and what it means to teach typography on the web today. And I promise we will slay some dragons along the way.</p>
+		<p>Educators love to talk about teaching—amongst ourselves. It’s rare to discuss teaching with a more general audience of professionals and enthusiasts. This past April, I participated in a panel presentation at the Type Directors Club in New York in April, Teaching Type: A Panel Conversation, organized by Design Incubation. The event recording is online and also I wrote a recap of the event here on Alphabettes. In writing that summary, I realized there was a lot to expand upon, especially when it came to teaching typography for the web and screen-based environments.</p>
+		<p>Why do I teach? There’s a preconceived (and false!) notion that being a teacher means you couldn’t make it in industry. If you walk away with anything, I hope it’s an appreciation that teaching is a very different set of skills from professional practice. Sometimes they overlap and sometimes they diverge. I didn’t expect to become a full-time educator but I had the opportunity to do so while I was a grad student and fell in love with it. For me, teaching is this perfect balance between stand-up comedy and dog training. How do you deliver instruction and impart knowledge in a way that truly engages people? How do you facilitate mutual respect, individual growth, and make whatever eye-rollingly boring subject you’re teaching seem fun to those who may have yet to drink the Kool-Aid? As a design educator, there are several important challenges I try to keep in the back of my mind:</p>
+		<h3>The Curse of Knowledge</h3>
+		<p>The curse of knowledge describes the cognitive bias that once you know something, it’s hard to remember what it’s like not to know that thing. Teachers are expected to be both an expert and empathetic to a student’s awareness of a subject. Do you remember what it’s like to not understand basic typographic hierarchy? Or to look at a wall of HTML and feel totally bewildered? I need to remind myself: even though I find a concept or task very straightforward, it may not be so obvious to my students.</p>
+		<h3>Skills to Pay the Bills</h3>
+		<p>Am I helping my students foster critical thinking alongside their formal and technical development? I feel a responsibility; many of my students are the first in their family to go to college, or are taking out jaw-dropping student loans. In my own undergraduate education, I picked one of the least practical majors: English. It has ended up helping me in many ways, but here I am teaching in a program where students have specific career goals in mind. I want whatever we are doing in the classroom to benefit their lives beyond a list of software (which will likely be obsolete / outdated in a few years) and an expensive piece of paper.</p>
+		<h3>The False Dichotomy</h3>
+		<p>For the past hundred years or longer, design education has wrestled between two identities: is it professional training or a creative / humanistic practice? The Bauhaus foundation year, which much of American art and design education is based upon, was originally conceived of and taught as vocational training for the crafts and applied arts. As its faculty and former students moved to the US, the Bauhaus began to signify the reductionist, modernist studio art foundation course that we might think of today.</p>
+		<p>We still see this dichotomy evident in the contemporary marketing of design education programs.</p>
+	</article>
+</main>
+
+<footer class="footer">
+	<article class="footer-article">
+		<h1 class="footer-headline">Thai Type Tourist</h1>
+		<p class="footer-author">Maria Montes</p>
+		<time footer="footer-dateline">September 22, 2022</time>
+	</article>
+	<article class="footer-article">
+		<h1 class="footer-headline">Ismar David’s visitors’ book design for The Jewish Palestine Pavilion at the 1939 New York World’s Fair</h1>
+		<p class="footer-author">Maria Montes</p>
+		<time footer="footer-dateline">September 22, 2022</time>
+	</article>
+	<article class="footer-article">
+		<h1 class="footer-headline">Overly Ambitious Summer Reading List 2022</h1>
+		<p class="footer-author">Maria Montes</p>
+		<time footer="footer-dateline">September 22, 2022</time>
+	</article>
+</footer>
+  
+  
+  
+</body>
+
+</html>

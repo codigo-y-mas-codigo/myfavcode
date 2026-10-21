@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#2962FF',secondary:'#6B46C1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #121212;
+color: #FFFFFF;
+}
+.sidebar {
+background-color: #1E1E1E;
+width: 250px;
+height: 100vh;
+position: fixed;
+left: 0;
+top: 0;
+z-index: 40;
+transition: transform 0.3s ease;
+}
+.main-content {
+margin-left: 250px;
+margin-top: 60px;
+min-height: calc(100vh - 60px);
+padding: 20px;
+}
+.header {
+background-color: #1E1E1E;
+height: 60px;
+position: fixed;
+top: 0;
+right: 0;
+left: 250px;
+z-index: 30;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.nav-item {
+transition: background-color 0.3s ease;
+}
+.nav-item:hover {
+background-color: rgba(255,255,255,0.05);
+}
+.nav-item.active {
+background-color: rgba(41,98,255,0.1);
+border-left: 3px solid #2962FF;
+}
+.task-card {
+background-color: #1E1E1E;
+border-radius: 8px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.task-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.section {
+display: none;
+}
+.section.active {
+display: block;
+}
+.notification-badge {
+position: absolute;
+top: -2px;
+right: -2px;
+background-color: #FF4081;
+color: white;
+border-radius: 50%;
+width: 16px;
+height: 16px;
+font-size: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+@media (max-width: 768px) {
+.sidebar {
+transform: translateX(-100%);
+}
+.sidebar.open {
+transform: translateX(0);
+}
+.header {
+left: 0;
+}
+.main-content {
+margin-left: 0;
+}
+}
+</style>
+</head>
+<body class="bg-[#121212] text-white">
+<!-- Sidebar Navigation -->
+<aside class="sidebar">
+<div class="p-4 flex items-center justify-center border-b border-gray-700">
+<span class="font-['Pacifico'] text-2xl text-primary">logo</span>
+</div>
+<nav class="mt-6">
+<ul>
+<li class="nav-item active">
+<a href="#dashboard" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-home-line ri-lg"></i>
+</div>
+<span>Inicio</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#account" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<span>Cuenta</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#settings" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-settings-line ri-lg"></i>
+</div>
+<span>Configuración</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#tasks" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-task-line ri-lg"></i>
+</div>
+<span>Tareas</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#feed" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-twitter-line ri-lg"></i>
+</div>
+<span>Feed</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#blog" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-article-line ri-lg"></i>
+</div>
+<span>Blog</span>
+</a>
+</li>
+<li class="nav-item">
+<a href="#knowledge" class="flex items-center px-4 py-3 text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-book-open-line ri-lg"></i>
+</div>
+<span>Conocimiento</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="absolute bottom-0 w-full p-4 border-t border-gray-700">
+<a href="#logout" class="flex items-center text-gray-300 hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-logout-box-line ri-lg"></i>
+</div>
+<span>Cerrar sesión</span>
+</a>
+</div>
+</aside>
+<!-- Top Header -->
+<header class="header flex items-center justify-between px-4">
+<button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+<div class="flex-1 mx-4">
+<div class="relative max-w-md mx-auto">
+<input type="text" placeholder="Buscar..." class="w-full bg-[#2A2A2A] border-none rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white">
+<i class="ri-notification-3-line ri-lg"></i>
+</div>
+<span class="notification-badge">3</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20person%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar1&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+Nuevo Post
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="main-content">
+<!-- Dashboard Section -->
+<section id="dashboard-section" class="section active">
+<div class="mb-6">
+<h1 class="text-2xl font-semibold">Buen día, Carlos</h1>
+<p class="text-gray-400">21 de junio, 2025 | Sábado</p>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6 mb-8">
+<h2 class="text-xl font-medium mb-4">Asignar nueva tarea</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+<div class="bg-[#2A2A2A] rounded p-3 cursor-pointer hover:bg-[#333333] transition-colors">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 text-primary mr-3">
+<i class="ri-image-line ri-lg"></i>
+</div>
+<span>Generación de imagen</span>
+</div>
+</div>
+<div class="bg-[#2A2A2A] rounded p-3 cursor-pointer hover:bg-[#333333] transition-colors">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-secondary/20 text-secondary mr-3">
+<i class="ri-code-line ri-lg"></i>
+</div>
+<span>Generación de código</span>
+</div>
+</div>
+<div class="bg-[#2A2A2A] rounded p-3 cursor-pointer hover:bg-[#333333] transition-colors">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-500 mr-3">
+<i class="ri-file-text-line ri-lg"></i>
+</div>
+<span>Generación de texto</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<textarea placeholder="Describe tu tarea aquí..." class="w-full bg-[#2A2A2A] border-none rounded p-4 min-h-[120px] text-white focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
+<div class="flex justify-between items-center mt-3">
+<div class="text-sm text-gray-400">
+<span class="text-primary font-medium">120</span> créditos disponibles
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+Enviar tarea
+</button>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-medium">Tareas recientes</h2>
+<a href="#" class="text-primary text-sm hover:underline">Ver todas</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="task-card p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary mr-2">
+<i class="ri-image-line"></i>
+</div>
+<span class="font-medium">Imagen</span>
+</div>
+<span class="text-xs text-gray-400">Hace 2 horas</span>
+</div>
+<p class="text-sm text-gray-300 mb-3">Paisaje futurista de una ciudad con edificios altos y vehículos voladores</p>
+<div class="rounded overflow-hidden h-32 bg-[#2A2A2A]">
+<img src="https://readdy.ai/api/search-image?query=futuristic%20cityscape%20with%20tall%20buildings%20and%20flying%20vehicles%2C%20sci-fi%2C%20digital%20art%2C%20high%20quality%2C%20detailed%2C%20vibrant%20colors&width=300&height=150&seq=img1&orientation=landscape" alt="Tarea" class="w-full h-full object-cover">
+</div>
+<div class="flex justify-end mt-3">
+<button class="text-sm text-gray-400 hover:text-white mr-3 cursor-pointer">
+<i class="ri-download-line mr-1"></i> Descargar
+</button>
+<button class="text-sm text-gray-400 hover:text-white cursor-pointer">
+<i class="ri-share-line mr-1"></i> Compartir
+</button>
+</div>
+</div>
+<div class="task-card p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-secondary/20 text-secondary mr-2">
+<i class="ri-code-line"></i>
+</div>
+<span class="font-medium">Código</span>
+</div>
+<span class="text-xs text-gray-400">Ayer</span>
+</div>
+<p class="text-sm text-gray-300 mb-3">Función para calcular el promedio de un array de números en JavaScript</p>
+<div class="rounded overflow-hidden h-32 bg-[#2A2A2A] p-3">
+<pre class="text-xs text-gray-300 overflow-auto h-full"><code>function calcularPromedio(numeros) {
+if (numeros.length === 0) return 0;
+const suma = numeros.reduce(
+(acumulador, numero) => acumulador + numero,
+0
+);
+return suma / numeros.length;
+}</code></pre>
+</div>
+<div class="flex justify-end mt-3">
+<button class="text-sm text-gray-400 hover:text-white mr-3 cursor-pointer">
+<i class="ri-clipboard-line mr-1"></i> Copiar
+</button>
+<button class="text-sm text-gray-400 hover:text-white cursor-pointer">
+<i class="ri-share-line mr-1"></i> Compartir
+</button>
+</div>
+</div>
+<div class="task-card p-4">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-green-500/20 text-green-500 mr-2">
+<i class="ri-file-text-line"></i>
+</div>
+<span class="font-medium">Texto</span>
+</div>
+<span class="text-xs text-gray-400">Hace 3 días</span>
+</div>
+<p class="text-sm text-gray-300 mb-3">Resumen ejecutivo para presentación de proyecto</p>
+<div class="rounded overflow-hidden h-32 bg-[#2A2A2A] p-3">
+<div class="text-xs text-gray-300 overflow-auto h-full">
+El presente proyecto busca implementar una solución integral de automatización para los procesos de gestión de inventario y logística, con el objetivo de reducir costos operativos en un 30% y mejorar la eficiencia en los tiempos de entrega en un 25% durante el primer año de implementación...
+</div>
+</div>
+<div class="flex justify-end mt-3">
+<button class="text-sm text-gray-400 hover:text-white mr-3 cursor-pointer">
+<i class="ri-clipboard-line mr-1"></i> Copiar
+</button>
+<button class="text-sm text-gray-400 hover:text-white cursor-pointer">
+<i class="ri-share-line mr-1"></i> Compartir
+</button>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xl font-medium">Estadísticas de uso</h2>
+<select class="bg-[#2A2A2A] border-none rounded text-sm p-2 focus:outline-none focus:ring-1 focus:ring-primary">
+<option>Últimos 7 días</option>
+<option>Últimos 30 días</option>
+<option>Este año</option>
+</select>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-4 h-64">
+<div id="stats-chart" class="w-full h-full"></div>
+</div>
+</div>
+</section>
+<!-- Settings Section -->
+<section id="settings-section" class="section">
+<div class="mb-6">
+<h1 class="text-2xl font-semibold">Configuración</h1>
+<p class="text-gray-400">Personaliza tu experiencia</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Apariencia</h2>
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-400 mb-2">Tema</label>
+<div class="flex space-x-3">
+<div class="flex items-center">
+<input type="radio" id="theme-dark" name="theme" class="hidden" checked>
+<label for="theme-dark" class="flex items-center cursor-pointer">
+<span class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center mr-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</span>
+<span>Oscuro</span>
+</label>
+</div>
+<div class="flex items-center">
+<input type="radio" id="theme-light" name="theme" class="hidden">
+<label for="theme-light" class="flex items-center cursor-pointer">
+<span class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center mr-2">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+</span>
+<span>Claro</span>
+</label>
+</div>
+<div class="flex items-center">
+<input type="radio" id="theme-system" name="theme" class="hidden">
+<label for="theme-system" class="flex items-center cursor-pointer">
+<span class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center mr-2">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+</span>
+<span>Sistema</span>
+</label>
+</div>
+</div>
+</div>
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-400 mb-2">Color principal</label>
+<div class="flex space-x-2">
+<div class="w-8 h-8 rounded-full bg-primary ring-2 ring-white cursor-pointer"></div>
+<div class="w-8 h-8 rounded-full bg-purple-500 cursor-pointer"></div>
+<div class="w-8 h-8 rounded-full bg-green-500 cursor-pointer"></div>
+<div class="w-8 h-8 rounded-full bg-yellow-500 cursor-pointer"></div>
+<div class="w-8 h-8 rounded-full bg-red-500 cursor-pointer"></div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Tamaño de fuente</label>
+<div class="flex items-center">
+<span class="text-sm mr-2">A</span>
+<input type="range" min="1" max="3" value="2" class="w-full h-2 bg-[#2A2A2A] rounded-full appearance-none cursor-pointer">
+<span class="text-lg ml-2">A</span>
+</div>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Idioma y región</h2>
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-400 mb-2">Idioma de la aplicación</label>
+<div class="relative">
+<select class="w-full bg-[#2A2A2A] border-none rounded p-2 appearance-none focus:outline-none focus:ring-1 focus:ring-primary pr-8">
+<option>Español</option>
+<option>English</option>
+<option>Français</option>
+<option>Deutsch</option>
+<option>Italiano</option>
+</select>
+<div class="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-400 mb-2">Formato de fecha</label>
+<div class="relative">
+<select class="w-full bg-[#2A2A2A] border-none rounded p-2 appearance-none focus:outline-none focus:ring-1 focus:ring-primary pr-8">
+<option>DD/MM/AAAA</option>
+<option>MM/DD/AAAA</option>
+<option>AAAA/MM/DD</option>
+</select>
+<div class="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Zona horaria</label>
+<div class="relative">
+<select class="w-full bg-[#2A2A2A] border-none rounded p-2 appearance-none focus:outline-none focus:ring-1 focus:ring-primary pr-8">
+<option>(GMT+01:00) Madrid, Barcelona</option>
+<option>(GMT+00:00) Londres, Lisboa</option>
+<option>(GMT-05:00) Nueva York, Toronto</option>
+<option>(GMT-08:00) Los Ángeles, Vancouver</option>
+</select>
+<div class="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Notificaciones</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Notificaciones por correo</h3>
+<p class="text-sm text-gray-400">Recibe actualizaciones por email</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer" checked>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Notificaciones push</h3>
+<p class="text-sm text-gray-400">Recibe alertas en el navegador</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer" checked>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Sonidos</h3>
+<p class="text-sm text-gray-400">Reproduce sonidos para alertas</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer">
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Privacidad y seguridad</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Autenticación de dos factores</h3>
+<p class="text-sm text-gray-400">Añade una capa extra de seguridad</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer">
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h3 class="font-medium mb-2">Sesiones activas</h3>
+<div class="bg-[#2A2A2A] rounded p-3 mb-2">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-medium">Chrome - Windows</p>
+<p class="text-xs text-gray-400">Madrid, España (Actual)</p>
+</div>
+<button class="text-sm text-primary hover:underline">Este dispositivo</button>
+</div>
+</div>
+<div class="bg-[#2A2A2A] rounded p-3">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-medium">Safari - MacOS</p>
+<p class="text-xs text-gray-400">Barcelona, España (Hace 2 días)</p>
+</div>
+<button class="text-sm text-red-500 hover:underline">Cerrar sesión</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Knowledge Section -->
+<section id="knowledge-section" class="section">
+<div class="mb-6 flex justify-between items-center">
+<div>
+<h1 class="text-2xl font-semibold">Base de conocimiento</h1>
+<p class="text-gray-400">Gestiona tus fuentes de información</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+<i class="ri-add-line mr-1"></i> Añadir fuente
+</button>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6 mb-6">
+<div class="flex justify-between items-center mb-4">
+<div class="relative max-w-md">
+<input type="text" placeholder="Buscar fuentes..." class="w-full bg-[#2A2A2A] border-none rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-2 rounded text-sm transition-colors duration-300 cursor-pointer">
+<i class="ri-filter-line mr-1"></i> Filtrar
+</button>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-2 rounded text-sm transition-colors duration-300 cursor-pointer">
+<i class="ri-download-line mr-1"></i> Exportar
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full">
+<thead>
+<tr class="border-b border-gray-700">
+<th class="py-3 px-4 text-left text-sm font-medium text-gray-400">Nombre</th>
+<th class="py-3 px-4 text-left text-sm font-medium text-gray-400">Tipo</th>
+<th class="py-3 px-4 text-left text-sm font-medium text-gray-400">Tamaño</th>
+<th class="py-3 px-4 text-left text-sm font-medium text-gray-400">Fecha</th>
+<th class="py-3 px-4 text-left text-sm font-medium text-gray-400">Estado</th>
+<th class="py-3 px-4 text-right text-sm font-medium text-gray-400">Acciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-gray-700 hover:bg-[#2A2A2A]">
+<td class="py-3 px-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-500 mr-3">
+<i class="ri-file-text-line"></i>
+</div>
+<span>Manual de usuario v2.1</span>
+</div>
+</td>
+<td class="py-3 px-4 text-gray-300">PDF</td>
+<td class="py-3 px-4 text-gray-300">2.4 MB</td>
+<td class="py-3 px-4 text-gray-300">15/06/2025</td>
+<td class="py-3 px-4">
+<span class="px-2 py-1 bg-green-500/20 text-green-500 rounded-full text-xs">Activo</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-gray-400 hover:text-white mr-2 cursor-pointer">
+<i class="ri-edit-line"></i>
+</button>
+<button class="text-gray-400 hover:text-red-500 cursor-pointer">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+<tr class="border-b border-gray-700 hover:bg-[#2A2A2A]">
+<td class="py-3 px-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-500 mr-3">
+<i class="ri-link"></i>
+</div>
+<span>Documentación API</span>
+</div>
+</td>
+<td class="py-3 px-4 text-gray-300">URL</td>
+<td class="py-3 px-4 text-gray-300">-</td>
+<td class="py-3 px-4 text-gray-300">10/06/2025</td>
+<td class="py-3 px-4">
+<span class="px-2 py-1 bg-green-500/20 text-green-500 rounded-full text-xs">Activo</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-gray-400 hover:text-white mr-2 cursor-pointer">
+<i class="ri-edit-line"></i>
+</button>
+<button class="text-gray-400 hover:text-red-500 cursor-pointer">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+<tr class="border-b border-gray-700 hover:bg-[#2A2A2A]">
+<td class="py-3 px-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-green-500/20 text-green-500 mr-3">
+<i class="ri-file-excel-line"></i>
+</div>
+<span>Datos analíticos Q2</span>
+</div>
+</td>
+<td class="py-3 px-4 text-gray-300">CSV</td>
+<td class="py-3 px-4 text-gray-300">1.8 MB</td>
+<td class="py-3 px-4 text-gray-300">05/06/2025</td>
+<td class="py-3 px-4">
+<span class="px-2 py-1 bg-green-500/20 text-green-500 rounded-full text-xs">Activo</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-gray-400 hover:text-white mr-2 cursor-pointer">
+<i class="ri-edit-line"></i>
+</button>
+<button class="text-gray-400 hover:text-red-500 cursor-pointer">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+<tr class="border-b border-gray-700 hover:bg-[#2A2A2A]">
+<td class="py-3 px-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-yellow-500/20 text-yellow-500 mr-3">
+<i class="ri-folder-line"></i>
+</div>
+<span>Recursos de marketing</span>
+</div>
+</td>
+<td class="py-3 px-4 text-gray-300">Carpeta</td>
+<td class="py-3 px-4 text-gray-300">45 MB</td>
+<td class="py-3 px-4 text-gray-300">01/06/2025</td>
+<td class="py-3 px-4">
+<span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 rounded-full text-xs">Procesando</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-gray-400 hover:text-white mr-2 cursor-pointer">
+<i class="ri-edit-line"></i>
+</button>
+<button class="text-gray-400 hover:text-red-500 cursor-pointer">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-[#2A2A2A]">
+<td class="py-3 px-4">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center rounded-full bg-red-500/20 text-red-500 mr-3">
+<i class="ri-file-word-line"></i>
+</div>
+<span>Informe trimestral</span>
+</div>
+</td>
+<td class="py-3 px-4 text-gray-300">DOCX</td>
+<td class="py-3 px-4 text-gray-300">3.2 MB</td>
+<td class="py-3 px-4 text-gray-300">25/05/2025</td>
+<td class="py-3 px-4">
+<span class="px-2 py-1 bg-red-500/20 text-red-500 rounded-full text-xs">Error</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-gray-400 hover:text-white mr-2 cursor-pointer">
+<i class="ri-refresh-line"></i>
+</button>
+<button class="text-gray-400 hover:text-red-500 cursor-pointer">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div class="text-sm text-gray-400">
+Mostrando 1-5 de 12 elementos
+</div>
+<div class="flex space-x-1">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-[#2A2A2A] text-gray-400 hover:bg-[#333333] hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white cursor-pointer">
+1
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-[#2A2A2A] text-gray-400 hover:bg-[#333333] hover:text-white cursor-pointer">
+2
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-[#2A2A2A] text-gray-400 hover:bg-[#333333] hover:text-white cursor-pointer">
+3
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-[#2A2A2A] text-gray-400 hover:bg-[#333333] hover:text-white cursor-pointer">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Uso del conocimiento</h2>
+<div id="knowledge-usage-chart" class="w-full h-64"></div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-6">
+<h2 class="text-xl font-medium mb-4">Rendimiento</h2>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm text-gray-400">Precisión</span>
+<span class="text-sm font-medium">92%</span>
+</div>
+<div class="w-full bg-[#2A2A2A] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm text-gray-400">Relevancia</span>
+<span class="text-sm font-medium">87%</span>
+</div>
+<div class="w-full bg-[#2A2A2A] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 87%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm text-gray-400">Tiempo de respuesta</span>
+<span class="text-sm font-medium">95%</span>
+</div>
+<div class="w-full bg-[#2A2A2A] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm text-gray-400">Cobertura</span>
+<span class="text-sm font-medium">78%</span>
+</div>
+<div class="w-full bg-[#2A2A2A] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feed Section -->
+<section id="feed-section" class="section">
+<div class="mb-6 flex justify-between items-center">
+<div>
+<h1 class="text-2xl font-semibold">Feed</h1>
+<p class="text-gray-400">Actualizaciones y noticias</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+<i class="ri-add-line mr-1"></i> Nuevo post
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-4">
+<!-- New Post Form -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex items-start space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20person%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar1&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div class="flex-1">
+<textarea placeholder="¿Qué estás pensando?" class="w-full bg-[#2A2A2A] border-none rounded p-3 min-h-[80px] text-white focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
+<div class="flex justify-between items-center mt-3">
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-image-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-link"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A2A] text-gray-400 hover:text-primary cursor-pointer">
+<i class="ri-emotion-line"></i>
+</button>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+Publicar
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Posts -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex items-start space-x-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20woman%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar2&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<div class="flex items-center">
+<h3 class="font-medium">Laura Martínez</h3>
+<span class="text-gray-400 text-sm ml-2">@lauramart</span>
+</div>
+<span class="text-xs text-gray-400">Hace 35 minutos</span>
+</div>
+</div>
+<p class="mb-3">Acabo de finalizar la implementación del nuevo sistema de análisis predictivo. Los resultados iniciales son muy prometedores, con una mejora del 28% en la precisión de las predicciones. ¿Alguien más ha experimentado con estos modelos?</p>
+<div class="flex justify-between items-center text-sm text-gray-400">
+<div class="flex space-x-4">
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>24</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-chat-1-line mr-1"></i>
+<span>8</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-share-forward-line mr-1"></i>
+<span>3</span>
+</button>
+</div>
+<button class="hover:text-primary cursor-pointer">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex items-start space-x-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20man%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar3&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<div class="flex items-center">
+<h3 class="font-medium">Miguel Ángel Rodríguez</h3>
+<span class="text-gray-400 text-sm ml-2">@miguelrod</span>
+</div>
+<span class="text-xs text-gray-400">Hace 2 horas</span>
+</div>
+</div>
+<p class="mb-3">Compartiendo los resultados de nuestro último proyecto de IA generativa. Hemos logrado optimizar el rendimiento en un 40% con menos recursos computacionales. 🚀</p>
+<div class="rounded-lg overflow-hidden mb-3">
+<img src="https://readdy.ai/api/search-image?query=AI%20visualization%2C%20data%20charts%2C%20futuristic%20dashboard%20with%20analytics%2C%20high%20quality%2C%20digital%20art&width=500&height=300&seq=post1&orientation=landscape" alt="AI Project" class="w-full h-auto">
+</div>
+<div class="flex justify-between items-center text-sm text-gray-400">
+<div class="flex space-x-4">
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>56</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-chat-1-line mr-1"></i>
+<span>12</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-share-forward-line mr-1"></i>
+<span>7</span>
+</button>
+</div>
+<button class="hover:text-primary cursor-pointer">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<div class="flex items-start space-x-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20woman%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar4&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<div class="flex items-center">
+<h3 class="font-medium">Ana García</h3>
+<span class="text-gray-400 text-sm ml-2">@anagarcia</span>
+</div>
+<span class="text-xs text-gray-400">Hace 5 horas</span>
+</div>
+</div>
+<p class="mb-3">¿Alguien ha probado la nueva API de procesamiento de lenguaje natural? Estoy buscando opiniones antes de implementarla en nuestro sistema de atención al cliente.</p>
+<div class="flex justify-between items-center text-sm text-gray-400">
+<div class="flex space-x-4">
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-heart-line mr-1"></i>
+<span>18</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-chat-1-line mr-1"></i>
+<span>23</span>
+</button>
+<button class="flex items-center hover:text-primary cursor-pointer">
+<i class="ri-share-forward-line mr-1"></i>
+<span>2</span>
+</button>
+</div>
+<button class="hover:text-primary cursor-pointer">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Trending Topics -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<h2 class="text-lg font-medium mb-4">Tendencias</h2>
+<div class="space-y-3">
+<div>
+<span class="text-xs text-gray-400">Tecnología</span>
+<h3 class="font-medium">#InteligenciaArtificial</h3>
+<span class="text-xs text-gray-400">2.5K posts</span>
+</div>
+<div>
+<span class="text-xs text-gray-400">Desarrollo</span>
+<h3 class="font-medium">#MachineLearning</h3>
+<span class="text-xs text-gray-400">1.8K posts</span>
+</div>
+<div>
+<span class="text-xs text-gray-400">Datos</span>
+<h3 class="font-medium">#BigData</h3>
+<span class="text-xs text-gray-400">1.2K posts</span>
+</div>
+<div>
+<span class="text-xs text-gray-400">Programación</span>
+<h3 class="font-medium">#Python</h3>
+<span class="text-xs text-gray-400">950 posts</span>
+</div>
+<div>
+<span class="text-xs text-gray-400">Diseño</span>
+<h3 class="font-medium">#UXDesign</h3>
+<span class="text-xs text-gray-400">720 posts</span>
+</div>
+</div>
+</div>
+<!-- Who to Follow -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<h2 class="text-lg font-medium mb-4">Sugerencias para seguir</h2>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20man%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar5&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium">David López</h3>
+<span class="text-xs text-gray-400">@davidlopez</span>
+</div>
+</div>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-1 rounded-full text-xs transition-colors duration-300 cursor-pointer">
+Seguir
+</button>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20woman%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar6&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium">Elena Sánchez</h3>
+<span class="text-xs text-gray-400">@elenasanchez</span>
+</div>
+</div>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-1 rounded-full text-xs transition-colors duration-300 cursor-pointer">
+Seguir
+</button>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20man%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar7&orientation=squarish" alt="Profile" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium">Javier Ruiz</h3>
+<span class="text-xs text-gray-400">@javierruiz</span>
+</div>
+</div>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] text-white px-3 py-1 rounded-full text-xs transition-colors duration-300 cursor-pointer">
+Seguir
+</button>
+</div>
+</div>
+<a href="#" class="block text-primary text-sm hover:underline mt-4">Mostrar más</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section id="blog-section" class="section">
+<div class="mb-6 flex justify-between items-center">
+<div>
+<h1 class="text-2xl font-semibold">Blog</h1>
+<p class="text-gray-400">Artículos y publicaciones</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm font-medium transition-colors duration-300 cursor-pointer">
+<i class="ri-add-line mr-1"></i> Nuevo artículo
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2">
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden mb-6">
+<img src="https://readdy.ai/api/search-image?query=AI%20technology%20concept%2C%20futuristic%20visualization%2C%20digital%20transformation%2C%20high%20quality%2C%20professional&width=800&height=400&seq=blog1&orientation=landscape" alt="Featured Post" class="w-full h-64 object-cover">
+<div class="p-6">
+<div class="flex items-center text-sm text-gray-400 mb-2">
+<span>Tecnología</span>
+<span class="mx-2">•</span>
+<span>15 de junio, 2025</span>
+<span class="mx-2">•</span>
+<span>8 min de lectura</span>
+</div>
+<h2 class="text-2xl font-semibold mb-2">El futuro de la IA generativa: Tendencias para 2026</h2>
+<p class="text-gray-300 mb-4">La inteligencia artificial generativa está transformando industrias enteras, desde el desarrollo de software hasta la creación de contenido. En este artículo, exploramos las tendencias emergentes que definirán el panorama tecnológico en el próximo año.</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-[#2A2A2A] overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20profile%20photo%20of%20a%20man%2C%20minimalist%2C%20high%20quality%2C%20neutral%20expression&width=80&height=80&seq=avatar8&orientation=squarish" alt="Author" class="w-full h-full object-cover">
+</div>
+<span class="text-sm">Por Carlos Mendoza</span>
+</div>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/0077b1eb-6b6d-4bd9-b806-5c2f51577d2e" data-readdy="true" class="text-primary hover:underline">Leer más</a>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=machine%20learning%20algorithms%20visualization%2C%20data%20science%2C%20neural%20networks%2C%20high%20quality%2C%20professional&width=400&height=200&seq=blog2&orientation=landscape" alt="Blog Post" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Machine Learning</span>
+<span class="mx-2">•</span>
+<span>10 de junio, 2025</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Optimización de modelos de ML para dispositivos móviles</h3>
+<p class="text-sm text-gray-300 mb-3 line-clamp-2">Técnicas avanzadas para implementar modelos de machine learning eficientes en dispositivos con recursos limitados.</p>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/0077b1eb-6b6d-4bd9-b806-5c2f51577d2e" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=cybersecurity%20concept%2C%20digital%20protection%2C%20network%20security%2C%20high%20quality%2C%20professional&width=400&height=200&seq=blog3&orientation=landscape" alt="Blog Post" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Seguridad</span>
+<span class="mx-2">•</span>
+<span>5 de junio, 2025</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Ciberseguridad en la era de la IA: Desafíos y soluciones</h3>
+<p class="text-sm text-gray-300 mb-3 line-clamp-2">Análisis de las vulnerabilidades emergentes y estrategias de protección en sistemas basados en inteligencia artificial.</p>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/0077b1eb-6b6d-4bd9-b806-5c2f51577d2e" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=cloud%20computing%20infrastructure%2C%20data%20center%2C%20server%20technology%2C%20high%20quality%2C%20professional&width=400&height=200&seq=blog4&orientation=landscape" alt="Blog Post" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>Infraestructura</span>
+<span class="mx-2">•</span>
+<span>1 de junio, 2025</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Arquitecturas cloud-native para aplicaciones de IA</h3>
+<p class="text-sm text-gray-300 mb-3 line-clamp-2">Guía práctica para diseñar e implementar infraestructuras escalables para aplicaciones intensivas en procesamiento de IA.</p>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/0077b1eb-6b6d-4bd9-b806-5c2f51577d2e" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+<div class="bg-[#1E1E1E] rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=natural%20language%20processing%2C%20text%20analysis%2C%20semantic%20understanding%2C%20high%20quality%2C%20professional&width=400&height=200&seq=blog5&orientation=landscape" alt="Blog Post" class="w-full h-40 object-cover">
+<div class="p-4">
+<div class="flex items-center text-xs text-gray-400 mb-2">
+<span>NLP</span>
+<span class="mx-2">•</span>
+<span>28 de mayo, 2025</span>
+</div>
+<h3 class="text-lg font-medium mb-2">Avances en procesamiento de lenguaje natural multilingüe</h3>
+<p class="text-sm text-gray-300 mb-3 line-clamp-2">Exploración de las últimas técnicas para mejorar la comprensión contextual en múltiples idiomas.</p>
+<a href="https://readdy.ai/home/fa945627-d209-4825-976d-1114c04f5908/0077b1eb-6b6d-4bd9-b806-5c2f51577d2e" data-readdy="true" class="text-primary text-sm hover:underline">Leer más</a>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Categories -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<h2 class="text-lg font-medium mb-4">Categorías</h2>
+<div class="space-y-2">
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Inteligencia Artificial</span>
+<span class="text-sm text-gray-400">24</span>
+</a>
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Machine Learning</span>
+<span class="text-sm text-gray-400">18</span>
+</a>
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Desarrollo Web</span>
+<span class="text-sm text-gray-400">15</span>
+</a>
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Ciberseguridad</span>
+<span class="text-sm text-gray-400">12</span>
+</a>
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Cloud Computing</span>
+<span class="text-sm text-gray-400">9</span>
+</a>
+<a href="#" class="flex justify-between items-center p-2 rounded hover:bg-[#2A2A2A] transition-colors duration-300">
+<span>Análisis de Datos</span>
+<span class="text-sm text-gray-400">7</span>
+</a>
+</div>
+</div>
+<!-- Popular Posts -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<h2 class="text-lg font-medium mb-4">Artículos populares</h2>
+<div class="space-y-4">
+<div class="flex space-x-3">
+<div class="w-16 h-16 rounded bg-[#2A2A2A] overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=AI%20ethics%20concept%2C%20technology%20ethics%2C%20responsible%20AI%2C%20high%20quality%2C%20professional&width=100&height=100&seq=blog6&orientation=squarish" alt="Popular Post" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium text-sm">Ética en la IA: Responsabilidad y transparencia</h3>
+<p class="text-xs text-gray-400 mt-1">12.5K lecturas</p>
+</div>
+</div>
+<div class="flex space-x-3">
+<div class="w-16 h-16 rounded bg-[#2A2A2A] overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=data%20visualization%20dashboard%2C%20analytics%2C%20business%20intelligence%2C%20high%20quality%2C%20professional&width=100&height=100&seq=blog7&orientation=squarish" alt="Popular Post" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium text-sm">Visualización de datos para toma de decisiones</h3>
+<p class="text-xs text-gray-400 mt-1">9.8K lecturas</p>
+</div>
+</div>
+<div class="flex space-x-3">
+<div class="w-16 h-16 rounded bg-[#2A2A2A] overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=blockchain%20technology%2C%20distributed%20ledger%2C%20cryptocurrency%2C%20high%20quality%2C%20professional&width=100&height=100&seq=blog8&orientation=squarish" alt="Popular Post" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium text-sm">Blockchain y su impacto en la seguridad de datos</h3>
+<p class="text-xs text-gray-400 mt-1">8.3K lecturas</p>
+</div>
+</div>
+<div class="flex space-x-3">
+<div class="w-16 h-16 rounded bg-[#2A2A2A] overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=quantum%20computing%20concept%2C%20quantum%20processor%2C%20future%20technology%2C%20high%20quality%2C%20professional&width=100&height=100&seq=blog9&orientation=squarish" alt="Popular Post" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="font-medium text-sm">Computación cuántica: El próximo horizonte</h3>
+<p class="text-xs text-gray-400 mt-1">7.6K lecturas</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="bg-[#1E1E1E] rounded-lg p-4">
+<h2 class="text-lg font-medium mb-4">Etiquetas</h2>
+<div class="flex flex-wrap gap-2">
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">IA</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Machine Learning</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Python</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Cloud</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Seguridad</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">DevOps</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Frontend</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Backend</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Datos</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">API</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">NLP</a>
+<a href="#" class="px-3 py-1 bg-[#2A2A2A] rounded-full text-sm hover:bg-[#333333] transition-colors duration-300">Visión</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Scripts -->
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+if (menuToggle) {
+menuToggle.addEventListener('click', function() {
+sidebar.classList.toggle('open');
+});
+}
+// Navigation links
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.section');
+navItems.forEach(item => {
+item.addEventListener('click', function(e) {
+const targetId = this.querySelector('a').getAttribute('href').substring(1);
+// Update active nav item
+navItems.forEach(nav => nav.classList.remove('active'));
+this.classList.add('active');
+// Show target section
+sections.forEach(section => section.classList.remove('active'));
+document.getElementById(targetId + '-section')?.classList.add('active');
+// Close mobile menu after navigation
+if (window.innerWidth < 768) {
+sidebar.classList.remove('open');
+}
+e.preventDefault();
+});
+});
+});
+</script>
+<script id="charts-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Usage Stats Chart
+const statsChart = document.getElementById('stats-chart');
+if (statsChart) {
+const chart = echarts.init(statsChart);
+const option = {
+backgroundColor: 'transparent',
+tooltip: {
+trigger: 'axis',
+backgroundColor: '#2A2A2A',
+borderColor: '#2A2A2A',
+textStyle: {
+color: '#fff'
+}
+},
+legend: {
+data: ['Imágenes', 'Código', 'Texto'],
+textStyle: {
+color: '#B0B0B0'
+},
+right: 0,
+top: 0
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+axisLine: {
+lineStyle: {
+color: '#555'
+}
+},
+axisLabel: {
+color: '#B0B0B0'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#555'
+}
+},
+splitLine: {
+lineStyle: {
+color: '#333'
+}
+},
+axisLabel: {
+color: '#B0B0B0'
+}
+},
+series: [
+{
+name: 'Imágenes',
+type: 'line',
+smooth: true,
+data: [12, 25, 18, 30, 22, 15, 28],
+lineStyle: {
+color: '#2962FF'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(41, 98, 255, 0.3)' },
+{ offset: 1, color: 'rgba(41, 98, 255, 0.1)' }
+])
+}
+},
+{
+name: 'Código',
+type: 'line',
+smooth: true,
+data: [8, 15, 10, 18, 12, 9, 14],
+lineStyle: {
+color: '#6B46C1'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(107, 70, 193, 0.3)' },
+{ offset: 1, color: 'rgba(107, 70, 193, 0.1)' }
+])
+}
+},
+{
+name: 'Texto',
+type: 'line',
+smooth: true,
+data: [20, 32, 25, 38, 30, 22, 35],
+lineStyle: {
+color: '#10B981'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(16, 185, 129, 0.3)' },
+{ offset: 1, color: 'rgba(16, 185, 129, 0.1)' }
+])
+}
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+// Knowledge Usage Chart
+const knowledgeChart = document.getElementById('knowledge-usage-chart');
+if (knowledgeChart) {
+const chart = echarts.init(knowledgeChart);
+const option = {
+backgroundColor: 'transparent',
+tooltip: {
+trigger: 'item',
+backgroundColor: '#2A2A2A',
+borderColor: '#2A2A2A',
+textStyle: {
+color: '#fff'
+}
+},
+legend: {
+orient: 'vertical',
+right: 10,
+top: 'center',
+textStyle: {
+color: '#B0B0B0'
+}
+},
+series: [
+{
+name: 'Uso de conocimiento',
+type: 'pie',
+radius: ['40%', '70%'],
+avoidLabelOverlap: false,
+itemStyle: {
+borderRadius: 10,
+borderColor: '#1E1E1E',
+borderWidth: 2
+},
+label: {
+show: false
+},
+emphasis: {
+label: {
+show: true,
+fontSize: '14',
+fontWeight: 'bold',
+color: '#fff'
+}
+},
+labelLine: {
+show: false
+},
+data: [
+{ value: 35, name: 'Documentos PDF' },
+{ value: 25, name: 'URLs' },
+{ value: 20, name: 'Archivos CSV' },
+{ value: 15, name: 'Carpetas' },
+{ value: 5, name: 'Otros' }
+],
+color: ['#2962FF', '#6B46C1', '#10B981', '#F59E0B', '#EF4444']
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+});
+</script>
+<script id="local-storage-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Initialize local storage for prompts, tweets and blogs
+const initLocalStorage = () => {
+if (!localStorage.getItem('prompts')) {
+localStorage.setItem('prompts', JSON.stringify([]));
+}
+if (!localStorage.getItem('tweets')) {
+localStorage.setItem('tweets', JSON.stringify([]));
+}
+if (!localStorage.getItem('blogs')) {
+localStorage.setItem('blogs', JSON.stringify([]));
+}
+};
+initLocalStorage();
+// Add event listeners for form submissions
+const tweetForm = document.querySelector('#feed-section textarea');
+const tweetSubmit = document.querySelector('#feed-section button.bg-primary');
+if (tweetForm && tweetSubmit) {
+tweetSubmit.addEventListener('click', function() {
+const content = tweetForm.value.trim();
+if (content) {
+const tweets = JSON.parse(localStorage.getItem('tweets')) || [];
+tweets.unshift({
+id: Date.now(),
+content: content,
+author: 'Carlos Mendoza',
+username: '@carlosmendoza',
+timestamp: new Date().toISOString(),
+likes: 0,
+comments: 0,
+shares: 0
+});
+localStorage.setItem('tweets', JSON.stringify(tweets));
+tweetForm.value = '';
+// In a real app, we would refresh the feed here
+}
+});
+}
+});
+</script>
+</body>
+</html>

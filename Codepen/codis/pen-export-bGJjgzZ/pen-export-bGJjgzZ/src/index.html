@@ -1,0 +1,72 @@
+<title>Pen Export Bgjjgzz</title>
+<script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slider-item');
+  const showSlide = (index) => {
+   slides.forEach((slide) => {
+    slide.style.display = 'none';
+   });
+   slides[index].style.display = 'block';
+  };
+  const nextSlide = () => {
+   currentSlide = (currentSlide + 1) % slides.length;
+   showSlide(currentSlide);
+  };
+  // Mostrar el primer slide al cargar la página
+  showSlide(currentSlide);
+  // Cambiar el slide cada 3 segundos
+  setInterval(() => {
+   nextSlide();
+  }, 3000);
+ });
+</script>
+<div class="banner">
+ <div class="container">
+  <div class="slider-container has-scrollbar">
+
+   <!-- Banner 1 -->
+   <div class="slider-item containerimg ">
+    <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/banner-1.jpg" alt="REBAJAS DE ÚLTIMA MODA PARA MUJER." class="banner-img containerimg">
+    <div class="overlayimg">
+     <img src="https://www.w3schools.com/howto/pineapple.jpg" alt="Avatar" class="imageimg" style="opacity: 0;">
+    </div>
+    <div class="banner-content">
+     <p class="banner-subtitle">Artículo De Tendencia</p>
+     <h2 class="banner-title">REBAJAS DE ÚLTIMA MODA PARA MUJER.</h2>
+     <p class="banner-text">desde &dollar; <b>100</b>.00</p>
+     <a href="#" class="banner-btn">Ver rebajas</a>
+    </div>
+   </div>
+
+   <!-- Banner 2 -->
+   <div class="slider-item containerimg">
+    <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/banner-2.jpg" alt="modern sunglasses" class="banner-img containerimg">
+    <div class="overlayimg">
+     <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/image.jpg" alt="Image" class="imageimg" style="opacity: 0;">
+    </div>
+    <div class="banner-content">
+     <p class="banner-subtitle">Pokemon</p>
+     <h2 class="banner-title">Nuevos y divertidos</h2>
+     <p class="banner-text">modelos desde &dollar; <b>300</b>.00</p>
+     <a href="#" class="banner-btn">Pide la tuya</a>
+    </div>
+   </div>
+
+   <!-- Banner 3 -->
+   <div class="slider-item containerimg">
+    <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/banner-3.jpg" alt="new fashion summer sale" class="banner-img containerimg">
+    <div class="overlayimg">
+     <img src="./assets/images/image.jpg" alt="Image" class="imageimg" style="opacity: 0;">
+    </div>
+    <div class="banner-content">
+     <p class="banner-subtitle">Oferta especial</p>
+     <h2 class="banner-title">Quema mucho el sol, mejor</h2>
+     <p class="banner-text">ponte una gorra de &dollar; <b>150</b>.00</p>
+     <a href="#" class="banner-btn">Llevele, llevele</a>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</div>

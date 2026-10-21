@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario Inicial de Tarot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- https://docs.google.com/spreadsheets/d/1vBMsHX8RfJeUC-9K2ShArTr9uPftLbj6nyeHtwVUGl8/edit?gid=0#gid=0 -->
+    <style>
+        .hidden {
+            display: none !important;
+        }
+        select[multiple] {
+            height: auto;
+            min-height: 120px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #5f6368; /* Darker border for dark theme */
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #e8eaed; /* Light text for dark theme */
+        }
+        .option-label:hover {
+            background-color: #3c4043; /* Darker hover */
+        }
+        .option-label.selected {
+            background-color: rgba(138, 180, 248, 0.2); /* Light blue accent, semi-transparent */
+            border-color: #8ab4f8; /* Blue accent border */
+        }
+        .option-label input {
+            margin-right: 0.75rem;
+        }
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        textarea::placeholder, input::placeholder {
+             white-space: pre-line;
+             color: #969ba1; /* Lighter placeholder for dark inputs */
+        }
+
+        /* Modern Dark Theme (inspired by provided image) */
+        body {
+            background-color: #202124; /* Very Dark Gray/Black */
+            color: #e8eaed; /* Light Gray Text */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Modern sans-serif */
+        }
+        .themed-title { /* For main titles like Welcome Screen */
+            color: #8ab4f8; /* Accent Blue */
+            text-shadow: 0 0 6px rgba(138, 180, 248, 0.4);
+        }
+        .themed-text-main { /* For primary paragraph text */
+            color: #e8eaed;
+        }
+        .themed-text-secondary { /* For subtitles, less important text */
+            color: #bdc1c6;
+        }
+        .themed-accent-text { /* For special highlights, e.g. thank you header */
+             color: #8ab4f8; /* Accent Blue */
+        }
+        .themed-button-primary {
+            background-color: #8ab4f8; /* Accent Blue */
+            color: #202124; /* Dark text for contrast */
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 8px rgba(138, 180, 248, 0.5);
+        }
+        .themed-button-primary:hover {
+            background-color: #99c0fa; /* Lighter Blue */
+            transform: translateY(-1px);
+        }
+        .themed-button-secondary {
+            background-color: #3c4043; /* Dark Gray */
+            color: #e8eaed;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .themed-button-secondary:hover {
+            background-color: #5f6368; /* Lighter Gray */
+            transform: translateY(-1px);
+        }
+        .themed-button-submit {
+            background-color: #34a853; /* Green (like progress bar) */
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 8px rgba(52, 168, 83, 0.5);
+        }
+        .themed-button-submit:hover {
+            background-color: #43b567; /* Lighter Green */
+            transform: translateY(-1px);
+        }
+        .survey-card {
+            background-color: #2d3035; /* Slightly lighter dark */
+            border: 1px solid #3c4043;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 15px rgba(138, 180, 248, 0.2);
+        }
+
+        /* Animated Progress Bar */
+        .progress-bar-bg { /* The track */
+            background-color: #3c4043; /* Dark gray, matching new theme */
+        }
+        .progress-bar-fill { /* The green moving part */
+            background-color: #34a853; /* The green base */
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, .15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, .15) 50%,
+                rgba(255, 255, 255, .15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 30px 30px; /* Size of stripes */
+            animation: progress-bar-stripes 1s linear infinite;
+            transition: width .6s ease; /* Smooth width transition */
+        }
+        @keyframes progress-bar-stripes {
+            from { background-position: 30px 0; }
+            to { background-position: 0 0; }
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            background-color: #3c4043; /* Darker input background */
+            border-color: #5f6368;
+            color: #e8eaed;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            ring-color: #8ab4f8; /* Blue accent ring */
+            border-color: #8ab4f8;
+            box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.3);
+        }
+        .question-title-text {
+            color: #8ab4f8; /* Blue accent for question titles */
+        }
+        .required-star {
+            color: #e57373; /* Softer Red for emphasis */
+        }
+        .themed-link {
+            color: #8ab4f8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .themed-link:hover {
+            text-decoration: underline;
+            color: #99c0fa;
+        }
+        .thankyou-divider {
+            border-color: #5f6368;
+        }
+
+    </style>
+</head>
+<body class="font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+
+        <div id="welcome-screen" class="text-center">
+            <header class="mb-10">
+                <h1 class="text-4xl font-bold themed-title mb-4">Descubre los Secretos del Tarot</h1>
+                <p class="text-xl themed-text-secondary mb-8">Este cuestionario inicial nos ayudará a personalizar tu viaje de aprendizaje. Responde con sinceridad para que podamos adaptar el curso a tus energías y aspiraciones.</p>
+            </header>
+            <button type="button" id="startBtn" class="px-8 py-3 text-lg font-semibold rounded-lg themed-button-primary">
+                Iniciar Cuestionario
+            </button>
+        </div>
+
+        <div id="survey-content" class="hidden">
+            <div class="mb-6">
+                <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium themed-text-secondary" id="progress-text">0% completado</span>
+                    <span class="text-sm font-medium themed-text-secondary" id="questions-counter">0/10 preguntas</span>
+                </div>
+                <div class="w-full progress-bar-bg rounded-full h-2.5">
+                    <div class="progress-bar-fill h-2.5 rounded-full progress-bar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <form id="initialSurvey" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec" class="survey-card rounded-lg shadow-lg p-6 md:p-8">
+                <div id="questions-container" class="space-y-8">
+                    <!-- Dynamic questions -->
+                </div>
+
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button type="button" id="prevBtn" class="w-full sm:w-auto px-6 py-3 font-semibold rounded-lg themed-button-secondary transition hidden" disabled>Anterior</button>
+                    <button type="button" id="nextBtn" class="w-full sm:w-auto px-6 py-3 font-semibold rounded-lg themed-button-primary transition">Siguiente</button>
+                    <button type="submit" id="submitBtn" class="w-full sm:w-auto px-6 py-3 font-semibold rounded-lg themed-button-submit transition hidden" disabled>
+                        <span id="button-text">Enviar Respuestas</span>
+                        <span id="wait-message" class="hidden">Revelando tu camino...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="thankyou-message" class="hidden mt-8 survey-card rounded-lg shadow-lg p-6 md:p-8 text-center">
+            <h2 class="text-3xl font-bold themed-accent-text mb-4">¡Gracias por compartir tu esencia! ✨</h2>
+            <p class="text-xl themed-text-secondary mb-6">Tus respuestas iluminan el sendero. Nos ayudarán a tejer un curso de tarot único para ti.</p>
+            <p class="text-lg themed-text-main">Pronto recibirás noticias nuestras con los próximos pasos en tu viaje arcano.</p>
+
+            <div class="mt-8 border-t thankyou-divider pt-6">
+                <p class="text-lg themed-text-main mb-4">
+                    Mientras tanto, te invitamos a profundizar tu conocimiento:
+                </p>
+                <ul class="list-none space-y-3 max-w-lg mx-auto sm:text-left">
+                    <li class="flex items-start space-x-2 justify-center sm:justify-start">
+                        <span class="text-xl">🔮</span>
+                        <a href="https://www.google.com/search?q=Tarot+de+Marsella+version+actualizada" target="_blank" rel="noopener noreferrer" class="themed-link hover:underline">
+                             Descubre el Tarot de Marsella (versión actualizada)
+                        </a>
+                    </li>
+                    <li class="flex items-start space-x-2 justify-center sm:justify-start">
+                         <span class="text-xl">📜</span>
+                        <a href="https://www.google.com/search?q=historia+origen+Tarot+Rider-Waite-Smith" target="_blank" rel="noopener noreferrer" class="themed-link hover:underline">
+                            Explora la historia y el origen del Tarot Rider-Waite-Smith
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confetti-canvas" class="hidden"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const questionsData = [
+             {
+                "id": 1,
+                "question": "¿Cuál es tu nombre?",
+                "type": "text",
+                "placeholder": "Ingresa tu nombre",
+                "required": true,
+                "fieldName": "Nombre"
+            },
+            {
+                "id": 2,
+                "question": "¿Cuál es tu correo electrónico?",
+                "type": "email",
+                "placeholder": "Ingresa tu correo electrónico",
+                "required": true,
+                "fieldName": "Email"
+            },
+            {
+                "id": 3,
+                "question": "¿Qué te motivó a aprender tarot?",
+                "type": "radio",
+                "options": [
+                    { "value": "personal_development", "label": "Desarrollo personal" },
+                    { "value": "professional_development", "label": "Desarrollo profesional" },
+                    { "value": "general_curiosity", "label": "Curiosidad general" },
+                    { "value": "other", "label": "Otro (por favor especifica)" }
+                ],
+                "otherField": true,
+                "fieldName": "Motivacion",
+                "required": true
+            },
+            {
+                "id": 4,
+                "question": "¿Cuáles son tus principales objetivos al aprender tarot? (Puedes seleccionar más de una opción)",
+                "type": "checkbox",
+                "options": [
+                    { "value": "self_reading", "label": "Realizar lecturas de tarot para mí mismo/a" },
+                    { "value": "reading_for_others", "label": "Ofrecer lecturas de tarot a otros" },
+                    { "value": "professional_integration", "label": "Integrar el tarot en mi práctica profesional (coaching, terapia, etc.)" },
+                    { "value": "meditation_tool", "label": "Explorar el tarot como herramienta de meditación y autoconocimiento" },
+                    { "value": "other_objective", "label": "Otro (por favor especifica)" }
+                ],
+                "otherField": true,
+                "fieldName": "Objetivos",
+                "required": true
+            },
+            {
+                "id": 5,
+                "question": "¿Tienes alguna experiencia previa con el tarot?",
+                "type": "radio",
+                "options": [
+                    { "value": "none", "label": "Ninguna" },
+                    { "value": "basic", "label": "Básica" },
+                    { "value": "intermediate", "label": "Intermedia" },
+                    { "value": "advanced", "label": "Avanzada" }
+                ],
+                "fieldName": "Experiencia_Previa",
+                "required": true
+            },
+            {
+                "id": 6,
+                "question": "¿Con qué frecuencia usas el tarot actualmente?",
+                "type": "radio",
+                "options": [
+                    { "value": "never", "label": "Nunca" },
+                    { "value": "rarely", "label": "Rara vez" },
+                    { "value": "sometimes", "label": "A veces" },
+                    { "value": "frequently", "label": "Frecuentemente" }
+                ],
+                "fieldName": "Frecuencia_Uso",
+                "required": true
+            },
+            {
+                "id": 7,
+                "question": "¿Cómo prefieres aprender? (Puedes seleccionar más de una opción)",
+                "type": "checkbox",
+                "options": [
+                    { "value": "reading", "label": "Leyendo textos y artículos" },
+                    { "value": "videos", "label": "Viendo videos y gráficos" },
+                    { "value": "audio", "label": "Escuchando explicaciones (audios, podcasts)" },
+                    { "value": "practical", "label": "A través de actividades prácticas y ejercicios" }
+                ],
+                "fieldName": "Preferencia_Aprendizaje",
+                "required": true
+            },
+            {
+                "id": 8,
+                "question": "¿Te gusta participar en actividades en grupo o prefieres trabajar de manera individual?",
+                "type": "radio",
+                "options": [
+                    { "value": "group", "label": "Prefiero actividades en grupo" },
+                    { "value": "individual", "label": "Prefiero trabajar de manera individual" },
+                    { "value": "both", "label": "Me gustan ambas opciones" }
+                ],
+                "fieldName": "Preferencia_Grupo_Individual",
+                "required": true
+            },
+            {
+                "id": 9,
+                "question": "¿Hay algún tema o aspecto del tarot que te interese especialmente?",
+                "type": "textarea",
+                "placeholder": "Escribe aquí tus intereses específicos (opcional).\n\nEjemplos:\n- Simbolismo arquetípico\n- Historia y evolución del tarot\n- Tarot para autoconocimiento\n- Los cuatro elementos\n- Métodos de tirada\n- Tarot y psicología junguiana\n- Tarot y meditación\n- Sincronicidad\n- Relación con astrología/numerología\n- Arcanos menores\n- Tarot y ciclos de vida\n- Tarot intuitivo\n- Diferentes mazos\n- Aplicaciones profesionales\n- Técnicas avanzadas",
+                "fieldName": "Intereses_Especificos",
+                "required": false
+            },
+            {
+                "id": 10,
+                "question": "¿Qué esperas obtener de este curso de tarot?",
+                "type": "textarea",
+                "placeholder": "Describe tus expectativas aquí.\n\nEjemplos:\n- Aprender el significado de los Arcanos Mayores y Menores.\n- Dominar diferentes tipos de tiradas (ej. Cruz Celta, 3 cartas).\n- Desarrollar mi intuición para interpretar las cartas.\n- Poder realizar lecturas precisas para mí mismo/a.\n- Ganar confianza para leer para otras personas.\n- Entender la ética de la lectura de tarot.\n- Utilizar el tarot como herramienta de autoconocimiento y guía.\n- Conectar profundamente con mi mazo de tarot.",
+                "fieldName": "Expectativas",
+                "required": true
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedAnswers = {};
+        const maxQuestions = questionsData.length;
+
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('startBtn');
+        const surveyContent = document.getElementById('survey-content');
+        const questionsContainer = document.getElementById('questions-container');
+        const progressBar = document.querySelector('.progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const questionsCounter = document.getElementById('questions-counter');
+        const submitBtnEl = document.getElementById('submitBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const form = document.getElementById('initialSurvey');
+        const thankYouMessage = document.getElementById('thankyou-message');
+        const buttonText = document.getElementById('button-text');
+        const waitMessage = document.getElementById('wait-message');
+        const confettiCanvas = document.getElementById('confetti-canvas');
+
+        function loadSavedAnswers() {
+            const savedAnswers = localStorage.getItem('tarotSurveyAnswers');
+            if (savedAnswers) {
+                try {
+                    const parsedAnswers = JSON.parse(savedAnswers);
+                    if (typeof parsedAnswers === 'object' && parsedAnswers !== null) {
+                        return parsedAnswers;
+                    }
+                } catch (e) {
+                    console.error("Error parsing saved answers from localStorage", e);
+                    localStorage.removeItem('tarotSurveyAnswers');
+                }
+            }
+            return {};
+        }
+
+        function saveAnswersToLocalStorage() {
+            localStorage.setItem('tarotSurveyAnswers', JSON.stringify(selectedAnswers));
+        }
+
+        function initSurvey() {
+            welcomeScreen.classList.add('hidden');
+            surveyContent.classList.remove('hidden');
+            selectedAnswers = loadSavedAnswers();
+            questionsData.forEach(q => {
+                if (!(q.id in selectedAnswers)) {
+                    selectedAnswers[q.id] = q.type === 'checkbox' ? [] : '';
+                }
+                if (q.otherField && typeof selectedAnswers[`other_${q.id}`] === 'undefined') {
+                     selectedAnswers[`other_${q.id}`] = '';
+                }
+            });
+            showQuestion(currentQuestionIndex);
+        }
+
+        function validateCurrentQuestion() {
+            const question = questionsData[currentQuestionIndex];
+            const value = selectedAnswers[question.id];
+            const otherValue = selectedAnswers[`other_${question.id}`];
+            if (!question.required) return true;
+            let isValid = true;
+            let errorMessage = '';
+            switch (question.type) {
+                case 'text': case 'email': case 'textarea':
+                    if (!value || String(value).trim() === '') {
+                        isValid = false;
+                        errorMessage = `Por favor, responde la pregunta: "${question.question}"`;
+                    } else if (question.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                         isValid = false;
+                         errorMessage = 'Por favor, ingresa un correo electrónico válido.';
+                    }
+                    break;
+                case 'radio':
+                    if (!value || value === '') {
+                        isValid = false;
+                        errorMessage = `Por favor, selecciona una opción para: "${question.question}"`;
+                    } else if (value === 'other' && (!otherValue || String(otherValue).trim() === '')) {
+                         isValid = false;
+                         errorMessage = `Por favor, especifica tu respuesta en el campo "Otro" para: "${question.question}"`;
+                    }
+                    break;
+                case 'checkbox':
+                    if (!Array.isArray(value) || value.length === 0) {
+                        isValid = false;
+                        errorMessage = `Por favor, selecciona al menos una opción para: "${question.question}"`;
+                    } else if (value.includes('other_objective') && (!otherValue || String(otherValue).trim() === '')) {
+                         isValid = false;
+                         errorMessage = `Por favor, especifica tu respuesta en el campo "Otro" para: "${question.question}"`;
+                    }
+                    break;
+            }
+            if (!isValid) {
+                alert(errorMessage);
+                const field = document.getElementById(`question_${question.id}`) || document.querySelector(`input[name="question_${question.id}"]`) || document.getElementById(`other_${question.id}`);
+                if (field) field.focus();
+            }
+            return isValid;
+        }
+
+        function showQuestion(index) {
+            if (index >= maxQuestions || index < 0) return;
+            currentQuestionIndex = index;
+            const question = questionsData[index];
+            questionsContainer.innerHTML = '';
+            let questionWrapper = document.createElement('div');
+            questionWrapper.id = `question-wrapper-${question.id}`;
+            questionWrapper.setAttribute('role', 'group');
+            questionWrapper.setAttribute('aria-labelledby', `question-title-${question.id}`);
+            let questionTitle = document.createElement('h2');
+            questionTitle.id = `question-title-${question.id}`;
+            questionTitle.className = "text-xl font-semibold question-title-text mb-4";
+            questionTitle.innerHTML = `${index + 1}. ${question.question}${question.required ? ' <span class="required-star">*</span>' : ''}`;
+            questionWrapper.appendChild(questionTitle);
+            const inputContainer = document.createElement('div');
+            if (question.type === 'text' || question.type === 'email') {
+                const input = document.createElement('input');
+                Object.assign(input, { type: question.type, id: `question_${question.id}`, name: `question_${question.id}`, className: "w-full p-3 border rounded focus:outline-none focus:ring-2", placeholder: question.placeholder || '', value: selectedAnswers[question.id] || '', required: question.required });
+                input.addEventListener('input', e => { selectedAnswers[question.id] = e.target.value; saveAnswersToLocalStorage(); });
+                inputContainer.appendChild(input);
+            } else if (question.type === 'textarea') {
+                const textarea = document.createElement('textarea');
+                Object.assign(textarea, { id: `question_${question.id}`, name: `question_${question.id}`, rows: "8", className: "w-full p-3 border rounded focus:outline-none focus:ring-2", placeholder: question.placeholder || '', required: question.required });
+                textarea.textContent = selectedAnswers[question.id] || '';
+                textarea.addEventListener('input', e => { selectedAnswers[question.id] = e.target.value; saveAnswersToLocalStorage(); });
+                inputContainer.appendChild(textarea);
+            } else if (question.type === 'radio' || question.type === 'checkbox') {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = "space-y-2";
+                groupDiv.setAttribute('role', question.type === 'radio' ? 'radiogroup' : 'group');
+                groupDiv.setAttribute('aria-labelledby', `question-title-${question.id}`);
+                question.options.forEach(option => {
+                    const isSelected = question.type === 'radio' ? selectedAnswers[question.id] === option.value : (Array.isArray(selectedAnswers[question.id]) && selectedAnswers[question.id].includes(option.value));
+                    const label = document.createElement('label');
+                    label.className = `option-label ${isSelected ? 'selected' : ''}`;
+                    const input = document.createElement('input');
+                    Object.assign(input, { type: question.type, name: `question_${question.id}`, value: option.value, className: `focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-400 ${question.type === 'checkbox' ? 'rounded' : ''}`, checked: isSelected, required: question.required && question.type === 'radio' });
+                    input.addEventListener('change', () => {
+                        if (question.type === 'radio') {
+                            document.querySelectorAll(`input[name="question_${question.id}"]`).forEach(radio => radio.closest('.option-label').classList.remove('selected'));
+                            label.classList.add('selected');
+                            selectedAnswers[question.id] = input.value;
+                        } else {
+                            label.classList.toggle('selected', input.checked);
+                            const currentValues = selectedAnswers[question.id] || [];
+                            selectedAnswers[question.id] = input.checked ? [...new Set([...currentValues, input.value])] : currentValues.filter(v => v !== input.value);
+                        }
+                        renderOtherField(question, inputContainer);
+                        saveAnswersToLocalStorage();
+                    });
+                    label.append(input, ` ${option.label}`);
+                    groupDiv.appendChild(label);
+                });
+                inputContainer.appendChild(groupDiv);
+                renderOtherField(question, inputContainer);
+            }
+            questionWrapper.appendChild(inputContainer);
+            questionsContainer.appendChild(questionWrapper);
+            const firstInput = questionWrapper.querySelector('input, textarea');
+            if (firstInput) setTimeout(() => firstInput.focus(), 100);
+            updateProgress();
+            updateNavigationButtons();
+        }
+
+        function renderOtherField(question, container) {
+            const otherInputId = `other_${question.id}`;
+            const existingOtherFieldWrapper = container.querySelector(`#other-wrapper-${question.id}`);
+            let shouldShowOther = (question.type === 'radio' && question.otherField && selectedAnswers[question.id] === 'other') ||
+                                  (question.type === 'checkbox' && question.otherField && Array.isArray(selectedAnswers[question.id]) && selectedAnswers[question.id].includes('other_objective'));
+            if (shouldShowOther) {
+                if (!existingOtherFieldWrapper) {
+                    const otherDiv = document.createElement('div');
+                    otherDiv.id = `other-wrapper-${question.id}`;
+                    otherDiv.className = 'mt-3';
+                    const otherInput = document.createElement('input');
+                    Object.assign(otherInput, { type: 'text', id: otherInputId, name: otherInputId, className: 'w-full p-3 border rounded focus:outline-none focus:ring-2', placeholder: 'Por favor especifica...', value: selectedAnswers[otherInputId] || '', required: true });
+                    otherInput.addEventListener('input', e => { selectedAnswers[otherInputId] = e.target.value; saveAnswersToLocalStorage(); });
+                    otherDiv.appendChild(otherInput);
+                    container.appendChild(otherDiv);
+                    setTimeout(() => otherInput.focus(), 50);
+                }
+            } else if (existingOtherFieldWrapper) {
+                existingOtherFieldWrapper.remove();
+                if (selectedAnswers[otherInputId]) {
+                    selectedAnswers[otherInputId] = '';
+                    saveAnswersToLocalStorage();
+                }
+            }
+        }
+
+        function updateProgress() {
+            const currentIdx = Math.max(0, Math.min(currentQuestionIndex, maxQuestions - 1));
+            const displayProgress = Math.min(Math.round(((currentIdx + 1) / maxQuestions) * 100), 100);
+            if (progressBar && progressText && questionsCounter) {
+                 Object.assign(progressBar.style, { width: `${displayProgress}%` });
+                 progressBar.setAttribute('aria-valuenow', displayProgress);
+                 progressText.textContent = `${displayProgress}% completado`;
+                 questionsCounter.textContent = `${currentIdx + 1}/${maxQuestions} preguntas`;
+             }
+        }
+
+        function updateNavigationButtons() {
+             if (!prevBtn || !nextBtn || !submitBtnEl) return;
+            const isFirst = currentQuestionIndex <= 0;
+            const isLast = currentQuestionIndex >= maxQuestions - 1;
+            prevBtn.classList.toggle('hidden', isFirst); prevBtn.disabled = isFirst;
+            nextBtn.classList.toggle('hidden', isLast);
+            submitBtnEl.classList.toggle('hidden', !isLast);
+        }
+
+        function nextQuestion() {
+            if (!validateCurrentQuestion()) return;
+            if (currentQuestionIndex < maxQuestions - 1) {
+                showQuestion(currentQuestionIndex + 1);
+                window.scrollTo(0, 0);
+            }
+            if (currentQuestionIndex === maxQuestions - 1) submitBtnEl.disabled = false;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+                window.scrollTo(0, 0);
+            }
+            submitBtnEl.disabled = true;
+        }
+
+        function prepareFormData() {
+            const dataToSend = { formGoogleSheetName: 'Tarot', formGoogleSendEmail: 'luis.el.de.las.tarjetas@gmail.com', emailSubject: 'Nueva Respuesta Cuestionario Tarot', originUrl: window.location.href };
+            const dataOrder = [];
+            questionsData.forEach(q => {
+                 const key = q.fieldName || `Pregunta_${q.id}`;
+                 let ans = selectedAnswers[q.id];
+                 const otherAns = selectedAnswers[`other_${q.id}`];
+                 if (q.type === 'checkbox') ans = Array.isArray(ans) ? ans.join(', ') : '';
+                 dataToSend[key] = ans ?? '';
+                 dataOrder.push(key);
+                 if (q.otherField) {
+                    const otherKey = `${key}_Otro`;
+                    let includeOther = (q.type === 'radio' && ans === 'other' && otherAns) || (q.type === 'checkbox' && Array.isArray(selectedAnswers[q.id]) && selectedAnswers[q.id].includes('other_objective') && otherAns);
+                    if(includeOther) { dataToSend[otherKey] = otherAns; dataOrder.push(otherKey); }
+                }
+            });
+            dataToSend.formDataNameOrder = JSON.stringify(dataOrder);
+            return dataToSend;
+        }
+
+        function setSubmitting(isSubmitting) {
+            if (!submitBtnEl || !buttonText || !waitMessage || !prevBtn || !nextBtn) return;
+            submitBtnEl.disabled = isSubmitting;
+            buttonText.classList.toggle('hidden', isSubmitting);
+            waitMessage.classList.toggle('hidden', !isSubmitting);
+            prevBtn.disabled = isSubmitting; nextBtn.disabled = isSubmitting;
+        }
+
+        function showThankYouMessage() {
+            if (!surveyContent || !thankYouMessage) return;
+            surveyContent.classList.add('hidden');
+            thankYouMessage.classList.remove('hidden');
+            launchThemedConfetti();
+            window.scrollTo(0, 0);
+        }
+
+        function launchThemedConfetti() {
+            if (!confettiCanvas || typeof confetti !== 'function') return;
+            confettiCanvas.classList.remove('hidden');
+            const duration = 5 * 1000;
+            const animationEnd = Date.now() + duration;
+            // Theme colors: Blues, Grays, and a touch of Green from progress/submit
+            const themeColors = ['#8ab4f8', '#5e97f6', '#a1c6fa', '#e8eaed', '#bdc1c6', '#34a853', '#5f6368'];
+            const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 1001, particleCount: 50 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            const interval = setInterval(() => {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    confettiCanvas.classList.add('hidden');
+                    return;
+                }
+                const particleCount = 40 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 }, colors: themeColors, shapes: ['star', 'circle'] }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 }, colors: themeColors, shapes: ['star', 'circle'] }));
+            }, 250);
+        }
+
+        function submitSurvey(event) {
+            event.preventDefault();
+            if (!validateCurrentQuestion()) return;
+            const dataToSend = prepareFormData();
+            setSubmitting(true);
+            console.log("Submitting data:", dataToSend);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', form.action, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    setSubmitting(false);
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        showThankYouMessage();
+                        localStorage.removeItem('tarotSurveyAnswers');
+                    } else {
+                        alert(`Error al enviar el formulario (Código: ${xhr.status}). Por favor, inténtalo de nuevo.`);
+                    }
+                }
+            };
+            xhr.onerror = () => { setSubmitting(false); alert("Error de red. Comprueba tu conexión."); };
+            const encodedData = Object.keys(dataToSend).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(dataToSend[k])}`).join('&');
+            try { xhr.send(encodedData); }
+            catch (error) { setSubmitting(false); alert("Ocurrió un error inesperado."); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!form || !welcomeScreen || !startBtn || !surveyContent) {
+                console.error("Core survey elements not found!"); return;
+            }
+            startBtn.addEventListener('click', initSurvey);
+            if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+            if (prevBtn) prevBtn.addEventListener('click', prevQuestion);
+            form.addEventListener('submit', submitSurvey);
+            if(submitBtnEl) submitBtnEl.disabled = true;
+        });
+    </script>
+</body>
+</html>

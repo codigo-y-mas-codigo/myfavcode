@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html {
+	--font: "Plex", monospace;
+	--heading: "Job Clarendon Variable";
+	--background: #fff;
+	--foreground: #000;
+	--accent: #f00;
+	
+	font-family: 'Roboto', system-ui;
+}
+
+@media (min-width: 40em) {
+	.footer {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: var(--heading);
+	line-height: 1.1;
+	margin: 0;
+}
+
+article {
+	line-height: min(1.2em + 0.5vw, 1.7em);
+}
+
+article hgroup > * {
+	display: inline;
+}
+
+article h1,
+article h2 {
+	// font-size: calc(6cqi + 2rem);
+	--tt-key: heading;
+	--tt-max: 1000;
+	--tt-ease: ease-in;
+	text-transform: uppercase;
+	line-height: 0.9;
+	background-image: url('https://images.unsplash.com/photo-1586801217656-f2e69dc90bfb?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDc4NjY4NTB8&ixlib=rb-4.0.3&q=85');
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+article h2 {
+	opacity: 0.5;
+}
+@keyframes heading {
+	0% {
+		font-size: 1rem;
+	}
+	100% {
+		font-size: 5rem;
+	}
+}
+
+.highlight {
+	color: red;
+	font-weight: bold;
+	background: yellow;
+}
+.footer-author {
+	display: block;
+}
+.footer-dateline {
+	display: block;
+}

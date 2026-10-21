@@ -1,0 +1,1060 @@
+<title>Para Contacto Class</title>
+<div class="body-contact">
+	<style>
+		* {
+			box-sizing: inherit;
+		}
+
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
+
+		.body-contact {
+			font-family: "Inter", Arial;
+			justify-content: center;
+			align-items: center;
+			padding: 0.9rem;
+		}
+
+		.label {
+			display: block;
+			margin-bottom: 0.25rem;
+			font-size: 0.85rem;
+		}
+
+		select[data-ss-uuid] {
+			display: none;
+			pointer-events: none;
+		}
+
+		.style-select {
+			display: block;
+			position: relative;
+			width: 140px;
+		}
+
+		.style-select,
+		.style-select * {
+			padding: 0;
+			margin: 0;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			text-align: left;
+			line-height: 19px;
+			color: black;
+			font-weight: 300;
+			cursor: pointer;
+		}
+
+		.style-select .ss-selected-option {
+			width: 100%;
+			background-image: -webkit-linear-gradient(top, #fefefe, #f2f2f2);
+			background-image: linear-gradient(to bottom, #fefefe, #f2f2f2);
+			border-radius: 2px;
+			padding: 6px;
+			border: 1px solid #d0d0d0;
+		}
+
+		.style-select .ss-selected-option::after {
+			content: "â–¾";
+			position: absolute;
+			top: 6px;
+			right: 12px;
+			display: block;
+		}
+
+		.style-select .ss-dropdown {
+			top: 32px;
+			left: 0;
+			position: absolute;
+			float: left;
+			width: 100%;
+			display: none;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			border: 1px solid #d0d0d0;
+			border-top: 0 none;
+		}
+
+		.style-select .ss-dropdown .ss-option {
+			width: 100%;
+			padding: 6px;
+			background-color: white;
+		}
+
+		.style-select .ss-dropdown .ss-option.highlighted {
+			background-color: #f2f4f8;
+		}
+
+		.style-select .ss-dropdown .ss-option.disabled {
+			color: #d0d0d0;
+		}
+
+		.style-select .ss-dropdown .ss-option.ticked::before {
+			content: "âœ“";
+			padding-right: 3px;
+		}
+
+		.style-select.open .ss-dropdown {
+			display: block;
+		}
+
+		.style-select.open .ss-selected-option::after {
+			content: "â–´";
+		}
+
+		.input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			box-sizing: border-box;
+			width: 100%;
+			margin: 0 0 0.9rem;
+			padding: 0.6rem;
+			background: #fff;
+			border: 1px solid #bbb;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+			border-radius: 0;
+			outline: none;
+			resize: vertical;
+			transition: border-color 0.3s ease;
+			color: #000;
+			font-family: inherit;
+			font-size: 100%;
+			line-height: 1.15;
+		}
+
+		.input[disabled] {
+			border-color: #c8c8c8;
+			background-color: #f2f2f2;
+			box-shadow: none;
+			cursor: not-allowed;
+			color: #0d0d0d;
+		}
+
+		.input:focus {
+			border-color: #17f;
+		}
+
+		.input::-webkit-input-placeholder {
+			color: #999;
+			opacity: 1;
+		}
+
+		.input:-ms-input-placeholder {
+			opacity: 1;
+		}
+
+		.input::-ms-input-placeholder {
+			opacity: 1;
+		}
+
+		.input::placeholder {
+			color: #999;
+			opacity: 1;
+		}
+
+		.input:-ms-input-placeholder {
+			color: #999;
+		}
+
+		.input::-ms-input-placeholder {
+			color: #999;
+		}
+
+		.control {
+			margin: 0 0 0.9rem;
+			box-sizing: border-box;
+		}
+
+		.control__input {
+			position: absolute;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.control__label {
+			display: flex;
+			align-items: center;
+			position: relative;
+			color: #000;
+		}
+
+		.control__label:after,
+		.control__label:before {
+			content: "";
+			display: block;
+			width: 20px;
+			height: 20px;
+			border: 1px solid transparent;
+		}
+
+		.control__label:before {
+			flex-shrink: 0;
+			margin-right: 0.6rem;
+			border-color: #bbb;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+			background: #fff;
+		}
+
+		.control__label:after {
+			position: absolute;
+			top: calc(48% - 10px);
+			left: 0;
+			background-size: 60%;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			-webkit-transform: scale(0);
+			transform: scale(0);
+			transition: -webkit-transform 0.3s ease;
+			transition: transform 0.3s ease;
+			transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+		}
+
+		.control__input[type="radio"]+.control__label:before {
+			border-radius: 100%;
+		}
+
+		.control__input[type="radio"]+.control__label:after {
+			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M256 464c114.9 0 208-93.1 208-208S370.9 48 256 48 48 141.1 48 256s93.1 208 208 208z'/%3E%3C/svg%3E");
+		}
+
+		.control__input[type="checkbox"]+.control__label:after {
+			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M461.6 109.6l-54.9-43.3c-1.7-1.4-3.8-2.4-6.2-2.4-2.4 0-4.6 1-6.3 2.5L194.5 323s-78.5-75.5-80.7-77.7c-2.2-2.2-5.1-5.9-9.5-5.9s-6.4 3.1-8.7 5.4c-1.7 1.8-29.7 31.2-43.5 45.8-.8.9-1.3 1.4-2 2.1-1.2 1.7-2 3.6-2 5.7 0 2.2.8 4 2 5.7l2.8 2.6s139.3 133.8 141.6 136.1c2.3 2.3 5.1 5.2 9.2 5.2 4 0 7.3-4.3 9.2-6.2l249.1-320c1.2-1.7 2-3.6 2-5.8 0-2.5-1-4.6-2.4-6.4z'/%3E%3C/svg%3E");
+		}
+
+		.control__input[type="checkbox"][disabled]+.control__label,
+		.control__input[type="radio"][disabled]+.control__label {
+			cursor: not-allowed;
+			color: #0d0d0d;
+		}
+
+		.control__input[type="checkbox"][disabled]+.control__label:before,
+		.control__input[type="radio"][disabled]+.control__label:before {
+			border-color: #c8c8c8;
+			background-color: #f2f2f2;
+			box-shadow: none;
+		}
+
+		.control__input:focus+.control__label:before {
+			border-color: #17f;
+		}
+
+		.control__input:checked+.control__label:after {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+		}
+
+		.select {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			box-sizing: border-box;
+			margin: 0 0 0.9rem;
+			padding: 0.6rem calc(0.9rem + 12px) 0.6rem 0.6rem;
+			width: 100%;
+			background: #fff;
+			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cpath d='M256 298.3l174.2-167.2c4.3-4.2 11.4-4.1 15.8.2l30.6 29.9c4.4 4.3 4.5 11.3.2 15.5L264.1 380.9c-2.2 2.2-5.2 3.2-8.1 3-3 .1-5.9-.9-8.1-3L35.2 176.7c-4.3-4.2-4.2-11.2.2-15.5L66 131.3c4.4-4.3 11.5-4.4 15.8-.2L256 298.3z'/%3E%3C/svg%3E");
+			background-size: 12px;
+			background-repeat: no-repeat;
+			background-position: calc(100% - 0.6rem) 50%;
+			border: 1px solid #bbb;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+			border-radius: 0;
+			outline: 0;
+			color: #000;
+			font-family: inherit;
+			font-size: 100%;
+			line-height: 1.15;
+		}
+
+		.select[disabled] {
+			border-color: #c8c8c8;
+			background-color: #f2f2f2;
+			box-shadow: none;
+			cursor: not-allowed;
+			color: #0d0d0d;
+		}
+
+		.select:focus {
+			border-color: #17f;
+		}
+
+		.select::-ms-expand {
+			display: none;
+		}
+
+		input[type="range"] {
+			width: 100%;
+		}
+
+		input[type="color"] {
+			width: 100%;
+		}
+
+		.is-hidden {
+			display: none !important;
+		}
+
+		@keyframes rotate {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes dash {
+			0% {
+				stroke-dasharray: 1, 200;
+				stroke-dashoffset: 0;
+			}
+
+			50% {
+				stroke-dasharray: 89, 200;
+				stroke-dashoffset: -35;
+			}
+
+			100% {
+				stroke-dasharray: 89, 200;
+				stroke-dashoffset: -124;
+			}
+		}
+
+		.loading {
+			position: relative;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 1;
+		}
+
+		.loading-spinner {
+			/*width: 50px;
+      height: 50px;*/
+		}
+
+		.loading-spinner svg {
+			position: relative;
+			animation: rotate 2s linear infinite;
+			height: 50px;
+			width: 50px;
+		}
+
+		.loading-spinner circle {
+			stroke: var(--accent);
+			stroke-dasharray: 1, 200;
+			stroke-dashoffset: 0;
+			stroke-linecap: round;
+			animation: dash 1.5s ease-in-out infinite;
+		}
+
+		[class*="loader"]:before {
+			content: "Enviando...";
+		}
+
+		.loader {
+			font-weight: bold;
+			font-family: sans-serif;
+			font-size: 30px;
+			padding-bottom: 8px;
+			background: linear-gradient(currentColor 0 0) bottom left/0% 3px no-repeat;
+			animation: c2 2s linear infinite;
+			margin-bottom: 8px;
+		}
+
+		@keyframes c2 {
+			to {
+				background-size: 100% 3px;
+			}
+		}
+
+		.loaderc {
+			border: 5px solid #015c8b;
+			border-radius: 50%;
+			border-top: 5px solid #f27a23;
+			width: 35px;
+			height: 35px;
+			-webkit-animation: spin 2s linear infinite;
+			/* Safari */
+			animation: spin 1s linear infinite;
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		div.code {
+			width: 100%;
+			padding: 1em auto;
+		}
+
+		div.code-toolbar {
+			height: 2em;
+			background: #222;
+			border-radius: 10px 10px 0 0;
+			line-height: 2;
+			padding: 0 0.5em;
+			text-align: right;
+			color: white;
+		}
+
+		div.code pre {
+			font: 1em Monaco, "Courier New", monospace;
+			margin: 0 0 1em 0;
+			line-height: 1.4;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			background: #eee;
+			padding: 1em;
+			border-radius: 0 0 10px 10px;
+		}
+
+		div.resultado {
+			margin: 0 0 1em 0;
+			line-height: 1.4;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+			background: #eee;
+			padding: 1em;
+			border-radius: 0 0 10px 10px;
+		}
+
+		div.content {
+			margin: 0 0 0em 0;
+			line-height: 1.4;
+			word-wrap: break-word;
+			background: #eee;
+			/*padding: 0.5em;*/
+			border-radius: 10px 10px 10px 10px;
+		}
+
+		.newsletter-form {
+			--primary: #275efe;
+			--primary-dark: #2055ee;
+			--primary-darkest: #133fc0;
+			--input-placeholder: #a6accd;
+			--input-text: #646b8c;
+			--border-default: #e1e6f9;
+			--border-active: #275efe;
+			--background: #fff;
+			--button-text: #ffffff;
+			--success: #275efe;
+			--trails: rgba(39, 94, 254, 0.15);
+			display: flex;
+			align-items: center;
+			/*max-width: 300px;*/
+			max-width: 100%;
+			width: 100%;
+			background: var(--background);
+			box-shadow: inset 0 0 0 var(--border-width, 1px) var(--border, var(--border-default));
+			border-radius: 9px;
+			padding-right: 4px;
+			transition: box-shadow 0.25s;
+		}
+
+		.newsletter-form:focus-within {
+			--border-width: 1.5px;
+			--border: var(--border-active);
+		}
+
+		.newsletter-form input,
+		.newsletter-form button {
+			-webkit-appearance: none;
+			background: none;
+			outline: none;
+			display: block;
+			border: none;
+			font-family: inherit;
+			font-size: 14px;
+			line-height: 24px;
+			margin: 0;
+		}
+
+		.newsletter-form input {
+			width: 100%;
+			flex-grow: 1;
+			padding: 12px 12px 12px 16px;
+			color: var(--input-text);
+			font-weight: 400;
+		}
+
+		.newsletter-form input::-moz-placeholder {
+			color: var(--input-placeholder);
+		}
+
+		.newsletter-form input:-ms-input-placeholder {
+			color: var(--input-placeholder);
+		}
+
+		.newsletter-form input::placeholder {
+			color: var(--input-placeholder);
+		}
+
+		.newsletter-form button {
+			--text-opacity: 1;
+			--success-x: -12px;
+			--success-stroke: 14px;
+			--success-opacity: 0;
+			--border-radius: 7px;
+			--overflow: hidden;
+			--x: 0px;
+			--y: 0px;
+			--rotate: 0deg;
+			--plane-x: 0px;
+			--plane-y: 0px;
+			--plane-opacity: 1;
+			--trails-stroke: 57px;
+			--left-wing-background: var(--primary);
+			--left-wing-first-x: 0%;
+			--left-wing-first-y: 0%;
+			--left-wing-second-x: 50%;
+			--left-wing-second-y: 0%;
+			--left-wing-third-x: 0%;
+			--left-wing-third-y: 100%;
+			--left-body-background: var(--primary);
+			--left-body-first-x: 50%;
+			--left-body-first-y: 0%;
+			--left-body-second-x: 50%;
+			--left-body-second-y: 100%;
+			--left-body-third-x: 0%;
+			--left-body-third-y: 100%;
+			--right-wing-background: var(--primary);
+			--right-wing-first-x: 50%;
+			--right-wing-first-y: 0%;
+			--right-wing-second-x: 100%;
+			--right-wing-second-y: 0%;
+			--right-wing-third-x: 100%;
+			--right-wing-third-y: 100%;
+			--right-body-background: var(--primary);
+			--right-body-first-x: 50%;
+			--right-body-first-y: 0%;
+			--right-body-second-x: 50%;
+			--right-body-second-y: 100%;
+			--right-body-third-x: 100%;
+			--right-body-third-y: 100%;
+			position: relative;
+			padding: 8px 0;
+			min-width: 100px;
+			text-align: center;
+			font-weight: 600;
+			opacity: var(--button-opacity, 0.5);
+			cursor: var(--button-cursor, not-allowed);
+			filter: var(--button-filter, grayscale(65%));
+			color: var(--button-text);
+			border-radius: var(--border-radius);
+			transform: translateZ(0);
+			transition: opacity 0.25s, filter 0.25s;
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.newsletter-form button:not(.active) {
+			background: var(--primary);
+		}
+
+		.newsletter-form button .plane,
+		.newsletter-form button .trails {
+			pointer-events: none;
+			position: absolute;
+		}
+
+		.newsletter-form button .plane {
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			transform: translate(var(--x), var(--y)) rotate(var(--rotate)) translateZ(0);
+		}
+
+		.newsletter-form button .plane .left,
+		.newsletter-form button .plane .right {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			opacity: var(--plane-opacity);
+			transform: translate(var(--plane-x), var(--plane-y)) translateZ(0);
+		}
+
+		.newsletter-form button .plane .left:before,
+		.newsletter-form button .plane .left:after,
+		.newsletter-form button .plane .right:before,
+		.newsletter-form button .plane .right:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: var(--border-radius);
+			transform: translate(var(--part-x, 0.25%), var(--part-y, 0)) translateZ(0);
+			z-index: var(--z-index, 2);
+			background: var(--b, var(--left-wing-background));
+			-webkit-clip-path: polygon(var(--first-x, var(--left-wing-first-x)) var(--first-y, var(--left-wing-first-y)),
+					var(--second-x, var(--left-wing-second-x)) var(--second-y, var(--left-wing-second-y)),
+					var(--third-x, var(--left-wing-third-x)) var(--third-y, var(--left-wing-third-y)));
+			clip-path: polygon(var(--first-x, var(--left-wing-first-x)) var(--first-y, var(--left-wing-first-y)),
+					var(--second-x, var(--left-wing-second-x)) var(--second-y, var(--left-wing-second-y)),
+					var(--third-x, var(--left-wing-third-x)) var(--third-y, var(--left-wing-third-y)));
+		}
+
+		.newsletter-form button .plane .left:after {
+			--part-x: 0;
+			--z-index: 1;
+			--b: var(--left-body-background);
+			--first-x: var(--left-body-first-x);
+			--first-y: var(--left-body-first-y);
+			--second-x: var(--left-body-second-x);
+			--second-y: var(--left-body-second-y);
+			--third-x: var(--left-body-third-x);
+			--third-y: var(--left-body-third-y);
+		}
+
+		.newsletter-form button .plane .right:before {
+			--part-x: -0.25%;
+			--z-index: 2;
+			--b: var(--right-wing-background);
+			--first-x: var(--right-wing-first-x);
+			--first-y: var(--right-wing-first-y);
+			--second-x: var(--right-wing-second-x);
+			--second-y: var(--right-wing-second-y);
+			--third-x: var(--right-wing-third-x);
+			--third-y: var(--right-wing-third-y);
+		}
+
+		.newsletter-form button .plane .right:after {
+			--part-x: 0;
+			--z-index: 1;
+			--b: var(--right-body-background);
+			--first-x: var(--right-body-first-x);
+			--first-y: var(--right-body-first-y);
+			--second-x: var(--right-body-second-x);
+			--second-y: var(--right-body-second-y);
+			--third-x: var(--right-body-third-x);
+			--third-y: var(--right-body-third-y);
+		}
+
+		.newsletter-form button .trails {
+			display: block;
+			width: 33px;
+			height: 64px;
+			top: -4px;
+			left: 16px;
+			fill: none;
+			stroke: var(--trails);
+			stroke-linecap: round;
+			stroke-width: 2;
+			stroke-dasharray: 57px;
+			stroke-dashoffset: var(--trails-stroke);
+			transform: rotate(68deg) translateZ(0);
+		}
+
+		.newsletter-form button span {
+			display: block;
+			position: relative;
+			z-index: 4;
+			opacity: var(--text-opacity);
+		}
+
+		.newsletter-form button span.success {
+			z-index: 0;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 8px;
+			transform: translateX(var(--success-x)) translateZ(0);
+			opacity: var(--success-opacity);
+			color: var(--success);
+		}
+
+		.newsletter-form button span.success svg {
+			display: inline-block;
+			vertical-align: top;
+			width: 16px;
+			height: 16px;
+			margin: 4px 8px 0 0;
+			fill: none;
+			stroke-width: 2;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke-dasharray: 14px;
+			stroke: var(--success);
+			stroke-dashoffset: var(--success-stroke);
+		}
+
+		.newsletter-form.valid {
+			--button-opacity: 1;
+			--button-cursor: pointer;
+			--button-filter: grayscale(0%);
+		}
+	</style>
+	<div class="contentxxx">
+		<p>
+			<!-- fin -->
+		</p>
+		<div id="complete-fomr">
+			<div>
+				<div class="loading js-loading is-hidden">
+					<div class="loading-spinnerc">
+						<div class="loader"></div>
+					</div>
+				</div>
+				<form name="submit-to-google-sheet">
+					<b>Contacto</b><br> <br>
+
+					<label class="label" for="name">Nombre</label>
+					<input class="input" id="name" name="name" type="text" autocorrect="off" autocomplete="given-name" placeholder="Nombre y Apellido">
+
+					<label class="label" for="elWhatsapp">Número telefonico</label>
+					<input class="input" id="elWhatsapp" name="elWhatsapp" type="number" autocorrect="off" autocomplete="false" placeholder="5512345678" pattern="\d">
+					<script>
+						document.querySelector("#numberonly").addEventListener("keypress", function(evt) {
+							if (evt.which < 444444444 || evt.which > 999999999) {
+								evt.preventDefault();
+							}
+						});
+						var phone = document.getElementById('numberonly'),
+							cleanPhoneNumber;
+						cleanPhoneNumber = function(e) {
+							e.preventDefault();
+							var pastedText = '';
+							if (window.clipboardData && window.clipboardData.getData) { // IE
+								pastedText = window.clipboardData.getData('Text');
+							} else if (e.clipboardData && e.clipboardData.getData) {
+								pastedText = e.clipboardData.getData('text/plain');
+							}
+							this.value = pastedText.replace(/\D/g, '');
+						};
+						phone.onpaste = cleanPhoneNumber;
+					</script>
+					<label class="label" for="elEmail">E-Mail</label>
+					<input class="input" id="elEmail" name="elEmail" type="email" autocapitalize="off" autocorrect="off" autocomplete="email" placeholder="micorreo@email.com">
+
+					<label class="label" for="form-contact-from">Comentarios</label>
+					<textarea class="input" id="form-contact-from" name="form-contact-from" rows="8" cols="40"></textarea>
+
+					<input name="Site" type="text" value="DINO Game" style="display:none">
+					<br><br>
+					<div class="btn-xbr">
+						<button>
+							<span class="default" type="submit">Enviar</span>
+						</button>
+					</div><br>
+					<style>
+						.btn-xbr {
+							--primary: #275EFE;
+							--primary-dark: #2055EE;
+							--primary-darkest: #133FC0;
+							--input-placeholder: #A6ACCD;
+							--input-text: #646B8C;
+							--border-default: #E1E6F9;
+							--border-active: #275EFE;
+							--background: #fff;
+							--button-text: #FFFFFF;
+							--success: #275EFE;
+							--trails: rgba(39, 94, 254, 0.15);
+							display: flex;
+							align-items: center;
+							/*max-width: 300px;*/
+							max-width: 100%;
+							width: 100%;
+							/*background: var(--background);*/
+							/*box-shadow: inset 0 0 0 var(--border-width, 1px) var(--border, var(--border-default));*/
+							border-radius: 9px;
+							padding-right: 4px;
+							transition: box-shadow 0.25s;
+						}
+
+						.btn-xbr button {
+							/*-webkit-appearance: none;*/
+							background: none;
+							outline: none;
+							display: block;
+							border: none;
+							font-family: inherit;
+							font-size: 14px;
+							line-height: 24px;
+							margin: 0;
+						}
+
+						.btn-xbr button {
+							--text-opacity: 1;
+							--success-x: -12px;
+							--success-stroke: 14px;
+							--success-opacity: 0;
+							--border-radius: 7px;
+							--overflow: hidden;
+							--x: 0px;
+							--y: 0px;
+							--rotate: 0deg;
+							--plane-x: 0px;
+							--plane-y: 0px;
+							--plane-opacity: 1;
+							--trails-stroke: 57px;
+							--left-wing-background: var(--primary);
+							--left-wing-first-x: 0%;
+							--left-wing-first-y: 0%;
+							--left-wing-second-x: 50%;
+							--left-wing-second-y: 0%;
+							--left-wing-third-x: 0%;
+							--left-wing-third-y: 100%;
+							--left-body-background: var(--primary);
+							--left-body-first-x: 50%;
+							--left-body-first-y: 0%;
+							--left-body-second-x: 50%;
+							--left-body-second-y: 100%;
+							--left-body-third-x: 0%;
+							--left-body-third-y: 100%;
+							--right-wing-background: var(--primary);
+							--right-wing-first-x: 50%;
+							--right-wing-first-y: 0%;
+							--right-wing-second-x: 100%;
+							--right-wing-second-y: 0%;
+							--right-wing-third-x: 100%;
+							--right-wing-third-y: 100%;
+							--right-body-background: var(--primary);
+							--right-body-first-x: 50%;
+							--right-body-first-y: 0%;
+							--right-body-second-x: 50%;
+							--right-body-second-y: 100%;
+							--right-body-third-x: 100%;
+							--right-body-third-y: 100%;
+							position: relative;
+							padding: 8px 0;
+							min-width: 100px;
+							text-align: center;
+							font-weight: 600;
+							opacity: var(--button-opacity, 0.5);
+							/*cursor: var(--button-cursor, not-allowed);*/
+							filter: var(--button-filter, grayscale(65%));
+							color: var(--button-text);
+							border-radius: var(--border-radius);
+							transform: translateZ(0);
+							transition: opacity 0.25s, filter 0.25s;
+							-webkit-tap-highlight-color: transparent;
+						}
+
+						.btn-xbr button:not(.active) {
+							background: var(--primary);
+						}
+
+						body {
+							font-family: "Inter", Arial;
+							justify-content: center;
+							align-items: center;
+						}
+					</style>
+				</form>
+
+				<p class="js-success-message is-hidden">Mensaje enviado, muchas gracias.</p>
+				<p class="js-error-message is-hidden">Ups, habemus un error al registrar, intentalo en otro momento, perdon, que pena!</p>
+			</div>
+		</div>
+		<a href="https://docs.google.com/spreadsheets/d/1dlDx4VjGWiMkFU92M5q5z56RvjGu1IKy9QPzIoIJZo8/edit#gid=0">
+			<!-- form-->
+		</a>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script>
+			const scriptURL = 'https://script.google.com/macros/s/AKfycbzqv2DT6UZJVg63vkHdiCtY7XSGa3H3S-0K4SsEACR_7XkICwVIhuQmoY5eGQn8niAX/exec'
+			const form = document.forms['submit-to-google-sheet']
+			const loading = document.querySelector('.js-loading')
+			const successMessage = document.querySelector('.js-success-message')
+			const errorMessage = document.querySelector('.js-error-message')
+			form.addEventListener('submit', e => {
+				e.preventDefault()
+				showLoadingIndicator()
+				fetch(scriptURL, {
+						method: 'POST',
+						body: new FormData(form)
+					})
+					.then(response => showSuccessMessage(response))
+					.catch(error => showErrorMessage(error))
+			})
+
+			function showLoadingIndicator() {
+				form.classList.add('is-hidden')
+				loading.classList.remove('is-hidden')
+			}
+
+			function showSuccessMessage(response) {
+				console.log('Success!', response)
+				setTimeout(() => {
+					successMessage.classList.remove('is-hidden')
+					loading.classList.add('is-hidden')
+				}, 100)
+			}
+
+			function showErrorMessage(error) {
+				console.error('Error!', error.message)
+				setTimeout(() => {
+					errorMessage.classList.remove('is-hidden')
+					loading.classList.add('is-hidden')
+				}, 100)
+			}
+		</script>
+		<script>
+			/*
+  Paste this script into the 'Code.gs' tab in the Script Editor
+  For a detailed explanation of this file, view 'form-script-commented.js'
+  */
+			var sheetName = 'Sheet1'
+			var scriptProp = PropertiesService.getScriptProperties()
+
+			function intialSetup() {
+				var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+				scriptProp.setProperty('key', activeSpreadsheet.getId())
+			}
+
+			function doPost(e) {
+				var lock = LockService.getScriptLock()
+				lock.tryLock(10000)
+				try {
+					var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+					var sheet = doc.getSheetByName(sheetName)
+					var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+					var nextRow = sheet.getLastRow() + 1
+					var newRow = headers.map(function(header) {
+						return header === 'timestamp' ? new Date() : e.parameter[header]
+					})
+					sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+					return ContentService
+						.createTextOutput(JSON.stringify({
+							'result': 'success',
+							'row': nextRow
+						}))
+						.setMimeType(ContentService.MimeType.JSON)
+				} catch (e) {
+					return ContentService
+						.createTextOutput(JSON.stringify({
+							'result': 'error',
+							'error': e
+						}))
+						.setMimeType(ContentService.MimeType.JSON)
+				} finally {
+					lock.releaseLock()
+				}
+			}
+			// The default sheet name is 'Sheet1'. To target a different sheet, update this variable.
+			var sheetName = 'Sheet1'
+			/*
+			Gets a property store that all users can access, but only within this script.
+			https://developers.google.com/apps-script/reference/properties/properties-service#getScriptProperties()
+			*/
+			var scriptProp = PropertiesService.getScriptProperties()
+			/*
+			This is the initial setup function. It gets the active SpreadsheetApp ID and adds it to our PropertiesService.
+			https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app#getactivespreadsheet
+			*/
+			function setup() {
+				var doc = SpreadsheetApp.getActiveSpreadsheet()
+				scriptProp.setProperty('key', doc.getId())
+			}
+
+			function doPost(e) {
+				/*
+				Gets a lock that prevents any user from concurrently running a section of code. A code section
+				guarded by a script lock cannot be executed simultaneously regardless of the identity of the user.
+				https://developers.google.com/apps-script/reference/lock/lock-service#getScriptLock()
+				*/
+				var lock = LockService.getScriptLock()
+				/*
+				Attempts to acquire the lock, timing out with an exception after the provided number of milliseconds.
+				This method is the same as tryLock(timeoutInMillis) except that it throws an exception when the lock
+				could not be acquired instead of returning false.
+				https://developers.google.com/apps-script/reference/lock/lock#waitLock(Integer)
+				*/
+				lock.waitLock(10000)
+				try {
+					/*
+					Opens the spreadsheet with the given ID. A spreadsheet ID can be extracted from its URL. For example,
+					the spreadsheet ID in the URL https://docs.google.com/spreadsheets/d/abc1234567/edit#gid=0 is "abc1234567".
+					https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app#openbyidid
+					*/
+					var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+					/*
+					Returns a sheet with the given name. If multiple sheets have the same name,
+					the leftmost one is returned. Returns null if there is no sheet with the given name.
+					https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#getSheetByName(String)
+					*/
+					var sheet = doc.getSheetByName(sheetName)
+					/*
+					Returns the range with the top left cell at the given coordinates, and with the given number of rows.
+					https://developers.google.com/apps-script/reference/spreadsheet/sheet#getRange(Integer,Integer)
+
+					Then returns the position of the last column that has content.
+					https://developers.google.com/apps-script/reference/spreadsheet/sheet#getlastcolumn
+
+					Then returns the rectangular grid of values for this range (a two-dimensional array of values, indexed by row, then by column.)
+					https://developers.google.com/apps-script/reference/spreadsheet/range#getValues()
+					*/
+					var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+					// Gets the last row and then adds one
+					var nextRow = sheet.getLastRow() + 1
+					/*
+					Maps the headers array to a new array. If a header's value is 'timestamp' then it
+					returns a new Date() object, otherwise it returns the value of the matching URL parameter
+					https://developers.google.com/apps-script/guides/web
+					*/
+					var newRow = headers.map(function(header) {
+						return header === 'timestamp' ? new Date() : e.parameter[header]
+					})
+					/*
+					Gets a range from the next row to the end row based on how many items are in newRow
+					then sets the new values of the whole array at once.
+					https://developers.google.com/apps-script/reference/spreadsheet/range#setValues(Object)
+					*/
+					sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+					/*
+					Return success results as JSON
+					https://developers.google.com/apps-script/reference/content/content-service
+					*/
+					return ContentService
+						.createTextOutput(JSON.stringify({
+							'result': 'success',
+							'row': nextRow
+						}))
+						.setMimeType(ContentService.MimeType.JSON)
+				}
+				/*
+				Return error results as JSON
+				https://developers.google.com/apps-script/reference/content/content-service
+				*/
+				catch (e) {
+					return ContentService
+						.createTextOutput(JSON.stringify({
+							'result': 'error',
+							'error': e
+						}))
+						.setMimeType(ContentService.MimeType.JSON)
+				} finally {
+					/*
+					Releases the lock, allowing other processes waiting on the lock to continue.
+					https://developers.google.com/apps-script/reference/lock/lock#releaseLock()
+					*/
+					lock.releaseLock()
+				}
+			}
+		</script>
+	</div>
+</div>

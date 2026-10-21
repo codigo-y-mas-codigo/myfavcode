@@ -1,0 +1,361 @@
+Sí, puedes cambiar la voz de mujer a hombre utilizando la propiedad `voice` de `SpeechSynthesisUtterance`. Además, la lentitud puede ser debida a varios factores, como la carga de recursos externos o el retardo en la inicialización del sistema de síntesis de voz. 
+
+Aquí te muestro cómo seleccionar una voz masculina y mejorar el rendimiento para que la voz se inicie más rápido:
+
+1. **Cambiar la voz de mujer a hombre**.
+
+2. **Optimizar la velocidad de respuesta**.
+
+### Código actualizado:
+
+```html
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Llamar funciones con voz (español)</title>
+
+  <link rel="canonical" href="https://codepen.io/Android07/pen/oNRYmoQ">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="description" content="Ejemplo de uso de reconocimiento de voz en español para llamar funciones.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+</head>
+
+<body>
+
+  <h1 id="msg"></h1>
+
+  <p><b>Prueba también:</b></p>
+
+  <ul>
+
+    <li>Jaime abrir Facebook</li>
+
+    <li>Jaime abrir YouTube</li>
+
+    <li>Jaime abrir Twitter</li>
+
+    <li>Jaime abrir GitHub</li>
+
+    <li>Jaime abrir LinkedIn</li>
+
+    <li>Jaime abrir alerta https://codepen.io/luisangelmaciel/pen/dyQjvoo</li>
+
+    <li>Jaime cambiar color de fondo</li>
+
+    <li>Jaime mostrar fecha y hora</li>
+
+    <li>Jaime reproducir sonido</li>
+
+    <li>Jaime saludar</li>
+
+    <li>Jaime contar un chiste</li>
+
+    <li>Jaime contar otro chiste</li>
+
+    <li>Jaime programar alarma</li>
+
+    <li>Jaime mostrar foto</li>
+
+    <li>Jaime hacer llamada</li>
+
+  </ul>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js'></script>
+
+  <script id="rendered-js">
+
+    const msg = document.querySelector('#msg');
+
+    let voices = [];
+
+    function setVoice(speech) {
+
+      const voice = voices.find(v => v.lang.startsWith('es') && v.name.includes('male'));
+
+      if (voice) {
+
+        speech.voice = voice;
+
+      }
+
+    }
+
+    function speak(txt) {
+
+      if ('speechSynthesis' in window) {
+
+        const s = new SpeechSynthesisUtterance();
+
+        s.volume = 1;
+
+        s.lang = 'es-ES';
+
+        s.text = txt;
+
+        setVoice(s);
+
+        msg.textContent = txt;
+
+        window.speechSynthesis.speak(s);
+
+      } else {
+
+        msg.textContent = txt;
+
+      }
+
+    }
+
+    if ('speechSynthesis' in window) {
+
+      window.speechSynthesis.onvoiceschanged = () => {
+
+        voices = window.speechSynthesis.getVoices();
+
+      };
+
+    }
+
+    if (annyang) {
+
+      const commands = {
+
+        'Jaime abrir Facebook'() {
+
+          window.open('https://facebook.com');
+
+          speak('Abriendo Facebook');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir YouTube'() {
+
+          window.open('https://youtube.com');
+
+          speak('Abriendo Youtube');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir Twitter'() {
+
+          window.open('https://twitter.com');
+
+          speak('Abriendo Twitter');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir GitHub'() {
+
+          window.open('https://github.com');
+
+          speak('Abriendo GitHub');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir LinkedIn'() {
+
+          window.open('https://linkedin.com');
+
+          speak('Abriendo LinkedIn');
+
+          annyang.resume();
+
+        },
+
+        'Jaime abrir alerta'() {
+
+          alert('La alerta funciona bien');
+
+          speak('Abriendo una alerta');
+
+          annyang.resume();
+
+        },
+
+        'Jaime cambiar color de fondo'() {
+
+          document.body.style.backgroundColor = getRandomColor();
+
+          speak('Cambiando color de fondo');
+
+          annyang.resume();
+
+        },
+
+        'Jaime mostrar fecha y hora'() {
+
+          const now = new Date();
+
+          const dateTime = now.toLocaleString();
+
+          speak(`La fecha y hora actual es ${dateTime}`);
+
+          annyang.resume();
+
+        },
+
+        'Jaime reproducir sonido'() {
+
+          const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+
+          audio.play();
+
+          speak('Reproduciendo sonido');
+
+          annyang.resume();
+
+        },
+
+        'Jaime saludar'() {
+
+          speak('Hola, ¿cómo estás?');
+
+          annyang.resume();
+
+        },
+
+        'Jaime contar un chiste'() {
+
+          speak('¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime contar otro chiste'() {
+
+          speak('¿Por qué el libro de matemáticas está triste? Porque tiene demasiados problemas.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime programar alarma'() {
+
+          setTimeout(() => {
+
+            alert('¡Alarma! Han pasado 1 minuto.');
+
+            speak('¡Alarma! Han pasado 1 minuto.');
+
+          }, 60000); // 1 minuto en milisegundos
+
+          speak('Alarma programada para 1 minuto.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime mostrar foto'() {
+
+          // Simulación de mostrar una foto
+
+          const img = document.createElement('img');
+
+          img.src = 'https://via.placeholder.com/150'; // URL de ejemplo
+
+          img.alt = 'Última foto guardada';
+
+          document.body.appendChild(img);
+
+          speak('Mostrando la última foto guardada.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime hacer llamada'() {
+
+          // Simulación de hacer una llamada
+
+          speak('Haciendo una llamada simulada.');
+
+          annyang.resume();
+
+        },
+
+        'Jaime *term'(term) {
+
+          speak(`Has dicho ${term}`);
+
+          console.log(`Abriendo ${term}`);
+
+          annyang.resume();
+
+        }
+
+      };
+
+      function getRandomColor() {
+
+        const letters = '0123456789ABCDEF';
+
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+
+          color += letters[Math.floor(Math.random() * 16)];
+
+        }
+
+        return color;
+
+      }
+
+      speak('Di algo acompañado de: Jaime');
+
+      annyang.setLanguage('es-MX');
+
+      annyang.addCommands(commands);
+
+      annyang.start({ continuous: true });
+
+    } else {
+
+      speak('Tu navegador no soporta la función de voz');
+
+    }
+
+  </script>
+
+</body>
+
+</html>
+
+```
+
+### Cambios y explicaciones:
+
+1. **Cambiar la voz de mujer a hombre**:
+
+   - **Voces**: Se utiliza `window.speechSynthesis.getVoices()` para obtener una lista de voces disponibles.
+
+   - **Filtrado de voz**: La función `setVoice()` selecciona una voz masculina en español (puedes ajustar los criterios de filtrado según las voces disponibles en tu navegador).
+
+2. **Optimización de velocidad**:
+
+   - **Pre-carga de voces**: `window.speechSynthesis.onvoiceschanged` asegura que las voces se cargan antes de que se necesiten.
+
+   - **Mensaje inicial**: Se asegura que el mensaje inicial ("Di algo acompañado de: Jaime") se pronuncia inmediatamente después de cargar las voces y configurar los comandos.
+
+Con estos cambios, deberías notar una mejora en la rapidez de la respuesta y una voz masculina seleccionada para las respuestas de Jaime.

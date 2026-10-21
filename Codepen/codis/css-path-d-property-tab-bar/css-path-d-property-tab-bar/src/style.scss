@@ -1,0 +1,99 @@
+body {
+	display: grid;
+	place-items: center;
+	background: #323133;
+	min-height: 100vh;
+	#phone {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		background: #a0cecb;
+		font-size: 0;
+		border-radius: 1rem;
+		overflow: hidden;
+		.tab {
+			position: relative;
+			.icons {
+				display:grid;
+				grid-template-columns:1fr 1fr 3rem 1fr 1fr;
+				place-items:center;
+				z-index:1;
+				position: absolute;
+				bottom:0;
+				left:1rem;
+				right:1rem;
+				height: (7%/.56);
+				font-size:1.5rem;
+				a {
+					color:inherit;
+					text-decoration:none;
+					
+				}
+			}
+			.circle {
+				z-index:2;
+				position: absolute;
+				bottom: (5%/.56);
+				right: (11%/.26);
+				left: (11%/.26);
+				height: (4%/.56);
+				background: linear-gradient(to top, #4F91E2, #65A4F2);
+				border-radius: 1.5rem;
+				transition:0.25s cubic-bezier(0.25, 0, 0, 1), bottom 0.25s cubic-bezier(.5, 0, .25, 1); //Bottom is slower to go down
+				i {
+					position: absolute;
+					top:.5rem;
+					right:.5rem;
+					display:grid;
+					place-items:center;
+					font-size: 1.5rem;
+					height:2rem;
+					width:2rem;
+					border-radius:100%;
+					color:white;
+					transform:rotate(45deg);
+					transition: 0.25s ease;
+					cursor: pointer;
+				}
+			}
+			svg {
+				width: 312px;
+				//max-width: calc(100vw - 8rem);
+				path {
+					transition: 0.25s cubic-bezier(0.25, 0, 0, 1);
+					fill: white;
+				}
+			}
+			&:not(.open) {
+				.circle {
+					cursor: pointer;
+				}
+				svg {
+					path {
+						transition-delay: 0.025s;
+					}
+				}
+			}
+			&.open {
+				.circle {
+					bottom: (9%/.56);
+					right: (2%/.26);
+					left: (2%/.26);
+					height: (30%/.56);
+					transition:0.25s cubic-bezier(0.25, 0, 0, 1), bottom 0.25s cubic-bezier(.1, .1, 0, 1); //Bottom is faster to go up
+					transition-delay: 0.015s;
+					i {
+						transform:rotate(0deg);
+					}
+				}
+				svg {
+					path {
+						d: path( //The thing you come to see is last, typical
+							"M287.1 784c-18.4 0-37.1 0-53.1 0 -12.4 0-12.6 0-26 0s-13.6 0-26 0c-18 0-34.8 0-53.1 0H0v112h416V784H287.1z"
+						);
+					}
+				}
+			}
+		}
+	}
+}

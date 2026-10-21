@@ -1,0 +1,18 @@
+#calendar
+  h1 Print yourself a calendar
+  p.
+    Mark it every time you do that thing you promised yourself.
+    <br><a href="http://lifehacker.com/281626/jerry-seinfelds-productivity-secret">Build a habit, like Seinfeld did</a>.
+  form
+    p
+      label
+        span Year
+        input(type="number" min="999" max="9999" required autofocus v-model="year")
+    p
+      button(type="button" v-on:click="year = year - 1") −
+      button(type="button" v-on:click="year = 1 + year") +
+      button(type="button" v-on:click="year = currentYear") {{ currentYear }}
+    p
+      button(type="button" v-on:click="getPDF()").is-wide Get calendar
+  p <a href="http://luminarious.net">a luminarious design</a>
+

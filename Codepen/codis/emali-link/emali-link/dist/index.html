@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Emali link</title>
+    
+<script src="https://public.codepenassets.com/js/prefixfree-1.0.7.min.js"></script>
+
+  </head>
+    
+  <body>
+  <a target="_blank">xbr.pw@my.com</a>
+<script>
+const email = 'xbr.pw@my.com'
+const subject = 'Unsubscribe';
+const body = 'Unsubscribe';
+let href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+document.querySelector('a').setAttribute('href', href)
+</script>
+
+    <h6>Enviar correo con CC</h6>
+</head>
+<body>
+    <a id="emailLink" target="_blank">xbr.pw@my.com</a>
+    <script>
+        const email = 'luis.el.de.las.tarjetas@gmail.com';
+        const ccEmail = 'copia@gmail.com'; // Añade aquí el correo al que quieres enviar la copia
+        const subject = 'Comparto mi receta favorita';
+        const body = 'Hola, \n\nquisiera compartir una de mis recetas favoritas con hierbas medicinales a toda la comunidad\n\nMi nombre es...\n\nMig';
+        let href = `mailto:${email}?cc=${encodeURIComponent(ccEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        document.getElementById('emailLink').setAttribute('href', href);
+    </script>
+
+    <h6>Enviar correo con BCC</h6>
+
+	
+    <a id="emailLink" target="_blank">xbr.pw@my.com</a>
+    <script>
+        const email = 'luis.el.de.las.tarjetas@gmail.com';
+        const bccEmail = 'oculto@gmail.com'; // Añade aquí el correo al que quieres enviar la copia oculta
+        const subject = 'Comparto mi receta favorita';
+        const body = 'Hola, \n\nquisiera compartir una de mis recetas favoritas con hierbas medicinales a toda la comunidad\n\nMi nombre es...\n\nMig';
+        let href = `mailto:${email}?bcc=${encodeURIComponent(bccEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        document.getElementById('emailLink').setAttribute('href', href);
+    </script>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

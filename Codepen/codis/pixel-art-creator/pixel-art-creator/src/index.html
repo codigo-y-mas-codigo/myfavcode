@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Pixel Art Creator</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+  }
+
+  #canvas {
+   display: grid;
+   grid-template-columns: repeat(16, 20px);
+   grid-template-rows: repeat(16, 20px);
+   margin: 20px auto;
+   border: 2px solid #000;
+  }
+
+  .pixel {
+   width: 20px;
+   height: 20px;
+   border: 1px solid #ddd;
+   background-color: white;
+  }
+
+  .button {
+   margin: 5px;
+   padding: 10px;
+   cursor: pointer;
+  }
+ </style>
+</head>
+
+<body>
+ <h1>Pixel Art Creator</h1>
+ <div id="canvas"></div>
+ <button class="button" onclick="clearGrid()">Clear Grid</button>
+ <select id="backgroundSelect" class="button" onchange="changeBackground()">
+  <option value="">Select Background</option>
+  <option value="smiley">Smiley</option>
+  <option value="pyramid">Pyramid</option>
+  <option value="heart">Heart</option>
+  <option value="bomb">Atomic Bomb</option>
+  <option value="random">Random Colors</option>
+ </select>
+ <input type="file" accept="image/*" onchange="uploadImage(event)" class="button">
+
+ <script>
+  const canvas = document.getElementById('canvas');
+  const color = '#FF5733';
+  for (let i = 0; i < 256; i++) {
+   const pixel = document.createElement('div');
+   pixel.className = 'pixel';
+   pixel.addEventListener('click', () => {
+    pixel.style.backgroundColor = color;
+   });
+   canvas.appendChild(pixel);
+  }
+
+  function clearGrid() {
+   const pixels = document.querySelectorAll('.pixel');
+   pixels.forEach(pixel => {
+    pixel.style.backgroundColor = 'white';
+   });
+  }
+
+  function changeBackground() {
+   const selectedBackground = document.getElementById('backgroundSelect').value;
+   const pixels = document.querySelectorAll('.pixel');
+   const patterns = {
+    smiley: ['#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#000000', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00', '#FFFF00'],
+    pyramid: ['#8B4513', '#8B4513', '#8B4513', '#8B4513', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+    heart: ['#FF69B4', '#FF69B4', '#FF69B4', '#FF69B4', '#FF69B4', '#FFFFFF', '#FF69B4', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+    bomb: ['#000000', '#000000', '#000000', '#000000', '#000000', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+   };
+   const pattern = patterns[selectedBackground];
+   if (pattern) {
+    pixels.forEach((pixel, index) => {
+     pixel.style.backgroundColor = pattern[index] || 'white';
+    });
+   } else if (selectedBackground === 'random') {
+    pixels.forEach(pixel => {
+     pixel.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    });
+   }
+  }
+
+  function uploadImage(event) {
+   const file = event.target.files[0];
+   const reader = new FileReader();
+   reader.onload = function(e) {
+    const img = new Image();
+    img.src = e.target.result;
+    img.onload = function() {
+     const canvasElement = document.createElement('canvas');
+     canvasElement.width = 16;
+     canvasElement.height = 16;
+     const ctx = canvasElement.getContext('2d');
+     ctx.drawImage(img, 0, 0, 16, 16);
+     const imageData = ctx.getImageData(0, 0, 16, 16).data;
+     const pixels = document.querySelectorAll('.pixel');
+     pixels.forEach((pixel, index) => {
+      const r = imageData[index * 4];
+      const g = imageData[index * 4 + 1];
+      const b = imageData[index * 4 + 2];
+      const alpha = imageData[index * 4 + 3];
+      if (alpha > 0) {
+       pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      } else {
+       pixel.style.backgroundColor = 'white';
+      }
+     });
+    };
+   };
+   reader.readAsDataURL(file);
+  }
+ </script>
+</body>
+
+</html>

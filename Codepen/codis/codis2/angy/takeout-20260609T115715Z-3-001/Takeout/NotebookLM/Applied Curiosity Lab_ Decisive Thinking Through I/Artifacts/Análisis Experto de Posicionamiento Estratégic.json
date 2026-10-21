@@ -1,0 +1,23 @@
+{
+  "title": "Análisis Experto de Posicionamiento Estratégico: Arise® (Revisión de Materiales y Oportunidades de Mejora)",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "a3c13cd5-af9f-4631-833e-549d5b947857"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Crea tu propio informe",
+      "description": "Crea informes a tu manera especificando la estructura, el estilo, el tono y más",
+      "sourceIds": [{
+        "id": "a3c13cd5-af9f-4631-833e-549d5b947857"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Opinión\nUna revisión experta de tus fuentes en la que se ofrecen comentarios constructivos para ayudarte a mejorar tu material. Las sugerencias que me des serán aprobadas. Para que entonces puedas crear la versión mejorada con una instrucción clara y así pueda solicitar otro informe ya con las mejoras incluidas ",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_PROFESSIONAL",
+      "enableU18Classifier": true
+    }
+  }
+}

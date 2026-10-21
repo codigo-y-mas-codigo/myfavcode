@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrición Holística Interactiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --slide-duration: 8s; /* Duración de cada slide */
+            --num-slides: 4;
+            --total-duration: calc(var(--slide-duration) * var(--num-slides));
+            --color-primary: #4CAF50; /* Verde Salud */
+            --color-secondary: #FFC107; /* Amarillo Energía */
+            --color-text: #333;
+            --color-text-light: #f9f9f9;
+            --color-bg-slide1: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            --color-bg-slide2: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+            --color-bg-slide3: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            --color-bg-slide4: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            overflow: hidden; /* Evita barras de scroll por elementos animados fuera de vista */
+            background-color: #f0f0f0;
+        }
+
+        #infographic-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Fondos específicos para cada slide */
+        #slide1 { background: var(--color-bg-slide1); color: var(--color-text-light); }
+        #slide2 { background: var(--color-bg-slide2); color: var(--color-text); }
+        #slide3 { background: var(--color-bg-slide3); color: var(--color-text-light); }
+        #slide4 { background: var(--color-bg-slide4); color: var(--color-text-light); }
+
+        .slide-content {
+            max-width: 800px;
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        .slide h2 {
+            font-family: 'Roboto', sans-serif;
+            font-size: calc(1.5em + 2vmin);
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: slideInFromTop 0.7s 0.2s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide p, .slide ul {
+            font-size: calc(0.8em + 1vmin);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            animation: slideInFromBottom 0.7s 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+        }
+        .slide ul li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            animation: popIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Animaciones escalonadas para los items de la lista */
+        #slide2 ul li:nth-child(1) { animation-delay: 0.5s; }
+        #slide2 ul li:nth-child(2) { animation-delay: 0.7s; }
+        #slide2 ul li:nth-child(3) { animation-delay: 0.9s; }
+        #slide2 ul li:nth-child(4) { animation-delay: 1.1s; }
+
+        #slide3 .evidence-sections {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            width: 100%;
+        }
+        #slide3 .evidence-section {
+            flex: 1;
+            padding: 15px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 8px;
+            animation: popIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        #slide3 .evidence-section h3 { font-size: calc(1em + 0.5vmin); margin-bottom: 10px; }
+        #slide3 .evidence-section:nth-child(1) { animation-delay: 0.5s; }
+        #slide3 .evidence-section:nth-child(2) { animation-delay: 0.7s; }
+        #slide3 .evidence-section:nth-child(3) { animation-delay: 0.9s; } /* Para la advertencia */
+
+
+        .slide .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .slide .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: popIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        .slide .icon-item span { font-size: 3em; } /* Tamaño del "ícono" (emoji) */
+        .slide .icon-item p { font-size: 0.8em; margin-top: 5px; }
+
+        #slide1 .icon-item:nth-child(1) { animation-delay: 0.6s; }
+        #slide1 .icon-item:nth-child(2) { animation-delay: 0.8s; }
+        #slide1 .icon-item:nth-child(3) { animation-delay: 1.0s; }
+        #slide1 .icon-item:nth-child(4) { animation-delay: 1.2s; }
+        
+        #slide4 .icon-item:nth-child(1) { animation-delay: 0.6s; }
+        #slide4 .icon-item:nth-child(2) { animation-delay: 0.8s; }
+        #slide4 .icon-item:nth-child(3) { animation-delay: 1.0s; }
+        #slide4 .icon-item:nth-child(4) { animation-delay: 1.2s; }
+
+
+        .progress-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--color-secondary);
+            animation: fillProgress var(--total-duration) linear infinite;
+        }
+        
+        .slide small {
+            font-size: 0.7em;
+            opacity: 0.8;
+            margin-top: 15px;
+            display: block;
+            animation: fadeIn 1s 1.2s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Animaciones Keyframes */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInFromBottom {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Para iconos, usaré emojis por simplicidad, podrías usar FontAwesome o SVGs */
+    </style>
+</head>
+<body>
+    <div id="infographic-container">
+        <div id="slide1" class="slide">
+            <div class="slide-content">
+                <h2>Más Allá del Plato: Descubre la Nutrición Holística</h2>
+                <p>Es un enfoque integral que te ve como un TODO: cuerpo, mente, emociones, entorno y cultura. No se trata solo de contar calorías, sino de buscar el equilibrio global y la prevención de enfermedades a través de la armonía.</p>
+                <p><strong>Diferencia Clave:</strong> Mientras la nutrición convencional se enfoca en nutrientes específicos, la holística personaliza tu plan, considerando tu estilo de vida, estrés y bienestar emocional.</p>
+                <div class="icon-container">
+                    <div class="icon-item"><span>🧠</span><p>Mente</p></div>
+                    <div class="icon-item"><span>❤️</span><p>Emociones</p></div>
+                    <div class="icon-item"><span>🍏</span><p>Cuerpo</p></div>
+                    <div class="icon-item"><span>🌳</span><p>Entorno</p></div>
+                </div>
+                <small>Fuentes: xiahepublishing.com, es.integrativenutrition.com</small>
+            </div>
+        </div>
+
+        <div id="slide2" class="slide">
+            <div class="slide-content">
+                <h2>Los 4 Pilares de Tu Transformación Holística</h2>
+                <ul>
+                    <li><strong>Alimentos Reales e Integrales:</strong> Prioriza vegetales, frutas, granos enteros. ¡Menos procesados, más vitalidad! <br><em>Dato: Dietas basadas en plantas pueden reducir mortalidad 19-32%. (frontiersin.org)</em></li>
+                    <li><strong>Prevención Activa:</strong> Usa la dieta como tu aliada para evitar enfermedades y fortalecer defensas.</li>
+                    <li><strong>Conexión Mente-Cuerpo:</strong> Practica <em>mindful eating</em>: come despacio, saborea, reconoce tus señales. <br><em>Beneficio: Ayuda a manejar el comer emocional. (nutritionsource.hsph.harvard.edu)</em></li>
+                    <li><strong>Participación y Empoderamiento:</strong> Aprende, reflexiona y toma el control activo de tu bienestar.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="slide3" class="slide">
+            <div class="slide-content">
+                <h2>Ciencia y Tradición: Lo que Realmente Funciona</h2>
+                <div class="evidence-sections">
+                    <div class="evidence-section">
+                        <h3>Evidencia Sólida ✅</h3>
+                        <p><strong>Dietas Mediterránea y DASH:</strong> Reducción comprobada de riesgos cardiovasculares.</p>
+                        <p><strong>Dietas Basadas en Plantas:</strong> Fuerte respaldo para menor riesgo de enfermedades crónicas. (frontiersin.org)</p>
+                    </div>
+                    <div class="evidence-section">
+                        <h3>Evidencia Moderada 👍</h3>
+                        <p><strong>Mindful Eating:</strong> Mejora conducta ante atracones.</p>
+                        <p><strong>Coaching y Apps Holísticas:</strong> Pueden mejorar motivación y reducir estrés. (link.springer.com, pmc.ncbi.nlm.nih.gov)</p>
+                    </div>
+                </div>
+                 <div class="evidence-sections" style="margin-top:20px;">
+                     <div class="evidence-section" style="background-color: rgba(255,0,0,0.2);">
+                        <h3>¡Precaución! ⚠️</h3>
+                        <p>Muchas prácticas populares (detox extremos, dietas "milagrosas") carecen de respaldo científico. ¡Infórmate y sé crítico!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="slide4" class="slide">
+            <div class="slide-content">
+                <h2>Hacia el Futuro: Nutrición Consciente, Personalizada y Sostenible</h2>
+                <p>El futuro es integrador, combinando tecnología, personalización y una visión más amplia de la salud.</p>
+                 <div class="icon-container">
+                    <div class="icon-item"><span>📱</span><p>Tecnología Aliada</p></div>
+                    <div class="icon-item"><span>🧬</span><p>Nutrición de Precisión</p></div>
+                    <div class="icon-item"><span>🌍</span><p>Conciencia Planetaria</p></div>
+                    <div class="icon-item"><span>🤝</span><p>Colaboración Clave</p></div>
+                </div>
+                <p><strong>¡Tu aprendizaje es el primer paso!</strong> Cuestiona, investiga y aplica los principios holísticos con base en la evidencia para una vida más plena y saludable.</p>
+                <small>Fuente: mdpi.com</small>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 8000; // 8 segundos (igual a --slide-duration en CSS)
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                // Reset animations by removing and re-adding content or class
+                // This is a bit of a hack for pure CSS animations on re-entry
+                const content = slide.querySelector('.slide-content');
+                if (content) {
+                    content.style.animation = 'none'; // Remove animation
+                    void content.offsetWidth; // Trigger reflow
+                }
+
+                if (i === index) {
+                    slide.classList.add('active');
+                    if (content) {
+                       content.style.animation = ''; // Re-apply animation from CSS
+                    }
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Para que las animaciones CSS se reinicien cada vez que una slide se vuelve activa,
+        // necesitamos un truco o manejarlo más con JS.
+        // Una forma simple es que las animaciones se ejecuten una vez cuando la clase 'active' se añade.
+        // Lo más robusto sería clonar y reemplazar elementos, o re-añadir clases de animación,
+        // pero para simplificar, confiaremos en que las animaciones principales (fadeInScale) se vean bien
+        // en la transición de opacidad. Las animaciones internas de elementos sí necesitan reiniciarse.
+
+        // La lógica para reiniciar animaciones CSS al mostrar un slide:
+        // Cuando un slide se vuelve activo, re-aplicamos las clases de animación a sus hijos.
+        // Esto es más complejo y depende de cómo estén estructuradas las animaciones.
+        // Por ahora, el `fadeInScale` general en `.slide-content` y las de entrada
+        // para `h2`, `p`, `ul li` deberían re-ejecutarse cuando se activa la slide
+        // gracias a la transición de opacidad y cómo el navegador maneja animaciones
+        // en elementos que aparecen.
+
+        showSlide(currentSlide); // Mostrar la primera slide inicialmente
+        setInterval(nextSlide, slideInterval);
+
+        // Reiniciar la animación de la barra de progreso si el loop de slides es más corto que la animación
+        // Esto no es estrictamente necesario con 'infinite' en la animación CSS, pero es un ejemplo.
+        const progressBar = document.querySelector('.progress-bar');
+        // Si quieres sincronizar la barra con el cambio de slides (que cada slide tenga su barra):
+        // Esto requeriría que la animación de la barra de progreso dure `var(--slide-duration)`
+        // y se reinicie con cada `nextSlide()`.
+        // Ejemplo (cambiar CSS de .progress-bar animation: fillProgress var(--slide-duration) linear;):
+        /*
+        function restartProgressBar() {
+            progressBar.style.animation = 'none';
+            void progressBar.offsetWidth; // Trigger reflow
+            progressBar.style.animation = `fillProgress ${slideInterval / 1000}s linear`;
+        }
+        // Llamar a restartProgressBar() dentro de nextSlide() después de showSlide().
+        // Y en la animación CSS de .progress-bar, quitar 'infinite'.
+        // Pero para la demo, la barra continua es más simple como en el ejemplo original.
+        */
+
+    </script>
+</body>
+</html>

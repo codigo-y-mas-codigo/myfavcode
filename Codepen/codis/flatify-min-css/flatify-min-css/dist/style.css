@@ -1,0 +1,125 @@
+@media (prefers-color-scheme: dark) {
+
+  :root {
+
+    // Increase brightness
+
+    --flatify__hover-brightness: 110%;
+
+    // Background color
+
+    --flatify__bg-color: #10191c !important;
+
+    --flatify__bg-color-dark: #141f23 !important;
+
+    --flatify__bg-color-darker: #263b43 !important;
+
+    --flatify__bg-color-darkest: #385661 !important;
+
+    --flatify__color-light-light: #141f23 !important;
+
+    --flatify__color-light-primary: #10191c !important;
+
+    --flatify__color-light-dark: #263b43 !important;
+
+    // Text color
+
+    --flatify__txt-color: #f1f4f7;
+
+    --flatify__txt-color-dark: #ced9e3;
+
+    --flatify__txt-color-darker: #809cb6;
+
+    --flatify__txt-color-inverted: #141f23;
+
+    --flatify__color-dark-light: #f1f4f7;
+
+    --flatify__color-dark-primary: #ced9e3;
+
+    --flatify__color-dark-dark: #809cb6;
+
+  }
+
+}
+
+
+
+html.dark {
+
+  @extend %dark-mode;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+
+    @extend %dark-mode;
+
+  }
+
+}
+
+.container {
+   flex-wrap: nowrap | wrap | wrap-reverse;
+  margin: 20px; 
+  padding: 20px
+}
+
+.my-img-fx {
+  overflow: hidden;
+  width: 300px;
+  height: 150px;
+  margin: 0.5em;
+  border-radius: 1em;
+}
+.my-img-fx img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fx-1 {
+  --flatify__overlay-layer-bg-color: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  --flatify__overlay-layer-blending-mode: overlay;
+}
+
+.fx-2 {
+  --flatify__overlay-layer-bg-color: linear-gradient(to right, #8e2de2, #4a00e0);
+  --flatify__overlay-layer-blending-mode: hard-light;
+}
+
+.fx-3 {
+  --flatify__overlay-layer-bg-color: linear-gradient(to right, #f12711, #f5af19);
+  --flatify__overlay-layer-blending-mode: multiply;
+  --flatify__overlay-layer-opacity: 0.75;
+}
+
+.fx-4 {
+  --flatify__overlay-layer-bg-color: rgba(255, 255, 255, 0.5);
+  --flatify__overlay-layer-backdrop-filter: blur(3px) contrast(120%);
+}
+
+.fx-5 {
+  --flatify__overlay-layer-bg-color: trasparent;
+  --flatify__overlay-layer-backdrop-filter: contrast(400%) saturate(400%) grayscale(50%) sepia(50%) hue-rotate(10deg);
+}
+
+.fx-6 {
+  --flatify__overlay-layer-bg-color: trasparent;
+  --flatify__overlay-layer-backdrop-filter: sepia(75%) hue-rotate(-25deg);
+}
+
+.fx-7 {
+  --flatify__overlay-layer-bg-color: trasparent;
+  --flatify__overlay-layer-backdrop-filter: grayscale(100%) contrast(140%) brightness(85%);
+}
+
+$RESPONSIVE_BREAKPOINTS: (
+  xs: 575.98px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;

@@ -1,0 +1,45 @@
+html,
+body {
+ background-color: white;
+ color: black;
+}
+
+body.dark-mode {
+ background-color: #333;
+ color: #fff;
+}
+
+.card {
+ background-color: transparent;
+ color: black;
+}
+
+.navbar {
+ position: fixed;
+ top: 0;
+ width: 100%;
+ z-index: 1000;
+}
+
+.content {
+ margin-top: 80px;
+}
+
+#search,
+.form-control,
+select.form-control {
+ background-color: #333;
+ color: #fff;
+ border-color: #666;
+}
+
+#search::placeholder,
+.form-control::placeholder,
+select.form-control::placeholder {
+ color: #bbb;
+}
+
+.modal {
+ height: 100vh;
+ overflow-y: hidden;
+}

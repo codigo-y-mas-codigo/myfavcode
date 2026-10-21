@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Dividir texto en bloques de 4096 tokens</title>
+ <script>
+  function dividirTexto() {
+   const textoEntrada = document.getElementById('textoEntrada').value;
+   const maxTokens = 4096;
+   if (textoEntrada.length <= maxTokens) {
+    document.getElementById('resultado').innerText = textoEntrada;
+   } else {
+    const primerBloque = textoEntrada.substring(0, maxTokens);
+    const segundoBloque = textoEntrada.substring(maxTokens);
+    document.getElementById('resultado').innerText = primerBloque;
+    document.getElementById('resultado2').innerText = segundoBloque;
+    document.getElementById('resultado3').innerText = tercerBloque;
+   }
+  }
+ </script>
+</head>
+
+<body>
+ <h1>Dividir texto en bloques de 4096 tokens</h1>
+
+ <textarea id="textoEntrada" rows="10" cols="50" placeholder="Ingresa tu texto aquí"></textarea>
+ <br>
+ <button onclick="dividirTexto()">Dividir</button>
+
+ <h2 id="B">a</h2>
+ <a href="#A">a</a> <a href="#B">b</a> <a href="#C">c</a>
+ <div id="resultado"></div>
+ <hr>
+ <h2 id="B">b</h2>
+ <a href="#A">a</a> <a href="#B">b</a> <a href="#C">c</a>
+ <div id="resultado2"></div>
+ <hr>
+ <h2 id="C">C</h2>
+ <a href="#A">a</a> <a href="#B">b</a> <a href="#C">c</a>
+ <div id="resultado3"></div>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

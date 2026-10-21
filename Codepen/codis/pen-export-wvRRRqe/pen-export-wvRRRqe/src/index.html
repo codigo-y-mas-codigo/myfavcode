@@ -1,0 +1,407 @@
+<title>Pen Export Wvrrrqe</title>
+<style>
+	@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+	body {
+		background: #e6f5ff;
+	}
+
+	.intro {
+		background: #f2f2f2;
+		color: #0d0d0d;
+	}
+
+	a.btn {
+		color: #000000;
+		border: 0px solid #666;
+		background: #bfbfbf;
+	}
+
+	a.btn:hover {
+		background: #b3b3b3;
+		color: #1a1a1a;
+		transition: .3s;
+		-webkit-transition: .3s;
+	}
+
+	.btn:before {
+		font-family: FontAwesome;
+		font-weight: normal;
+		margin-right: 10px;
+	}
+
+	.down:before {
+		content: "\f019"
+	}
+
+	.back:before {
+		content: "\f112"
+	}
+
+	.credit {
+		background: #fff;
+	}
+
+	.credit span:before {
+		font-family: FontAwesome;
+		content: "\f004";
+	}
+
+	.credit a {
+		color: #333;
+		text-decoration: none;
+	}
+
+	.credit a:hover {
+		color: #4d4dff;
+	}
+
+	.credit a:hover:after {
+		font-family: FontAwesome;
+		content: "\f08e";
+		position: absolute;
+		margin: 3px;
+	}
+
+	main {
+		background: #f2f2f2;
+	}
+
+	@media only screen and (min-width: 720px) {
+		main {}
+	}
+
+	.to-active:after {
+		content: "\f205";
+		color: #008080;
+		transition: .6s;
+	}
+
+	.set-overlayer,
+	.set-glass,
+	.set-sticky,
+	.source,
+	.theme-tray {
+		background: #e6e6e6;
+		border: 0px solid #f1f1f1;
+		box-sizing: border-box;
+	}
+
+	/* Syntax Highlighter*/
+	pre.prettyprint {
+		background: #f2f2f2;
+	}
+
+	/* if dark-mode class is not added set this background */
+	body {
+		background: white;
+		color: black;
+		transition: 0.5s;
+	}
+
+	.container {
+		text-align: center;
+		padding: 70px;
+	}
+
+	#ChangeTheme {
+		width: 0;
+		height: 0;
+		opacity: 0.5;
+	}
+
+	span.slide {
+		position: absolute;
+		background: red;
+		border-radius: 30px;
+	}
+
+	span.slide:before {
+		position: absolute;
+		content: "";
+		height: 20px;
+		width: 20px;
+		background: #fff;
+		border-radius: 50%;
+		top: -2px;
+		left: 0px;
+		transition: 0.5s;
+		box-shadow: rgba(0, 0, 0, 0.21) 0px 0px 7px 1px;
+	}
+
+	.txt {
+		position: relative;
+	}
+
+	.txt p:nth-child(1) {
+		color: #e6e6e6;
+		transition: 0.5s;
+	}
+
+	#ChangeTheme:checked+span.slide:before {
+		transform: translatex(40px);
+	}
+
+	/* if dark-mode class is added set this background */
+	body.dark-mode {
+		background-color: #000000;
+		box-shadow: rgba(0, 0, 0, 0.21) 0px 0px 7px 1px;
+	}
+
+	.dark-mode .txt p:nth-child(1) {
+		color: #e6e6e6;
+		font-weight: normal;
+	}
+
+	.dark-mode .txt p:nth-child(2) {
+		color: #f2f2f2;
+		font-weight: bold;
+	}
+
+	body.dark-mode header,
+	body.dark-mode main,
+	body.dark-mode footer {
+		background: #0d0d0d !important;
+		box-shadow: #003087 0px 0px 7px 1px;
+		box-sizing: border-box;
+		color: white;
+	}
+
+	body.light-mode header,
+	body.light-mode main,
+	body.light-mode footer {
+		background: #0d0d0d !important;
+		box-shadow: black 0px 0px 7px 1px;
+		box-sizing: border-box;
+		color: #ffffff;
+	}
+
+	body.dark-mode a.btn {
+		background: #00091a !important;
+		color: white !important;
+		border: none;
+	}
+
+	body.dark-mode p {
+		color: white !important;
+	}
+
+	.azulfuerte {
+		background-color: #003087
+	}
+
+	.verde {
+		color: #00CF92
+	}
+
+	.azulclaro {
+		background: #026CFF
+	}
+
+	.blanco {
+		color: #FFFFFF
+	}
+</style>
+
+<body class="intro" class="container">
+	<meta name="format-detection" content="telephone=no" />
+
+	<link rel="stylesheet" href="https://luisangelmaciel.vercel.app/fonts/Inter/inter-x.css">
+
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			"dateModified": "2022-03-16T00:00:00+00:00",
+			"datePublished": "2022-03-16T00:00:00+00:00",
+			"description": "There’s a new element in town and it’s the &lt;dialog&gt;. Support for it just landed in Safari with their newest update (v15.4) across all Apple’s devices. With that update, the &lt;dialog&gt; element is now supported in every evergreen browser. It’s a great step forward for frameworks and libraries looking to make better use of native behaviors, but it’s also not without its limits.",
+			"headline": "Fun with the dialog element",
+			"mainEntityOfPage": {
+				"@type": "WebPage",
+				"@id": "https://markdotto.com/2022/03/16/dialog-element/"
+			},
+			"url": "https://markdotto.com/2022/03/16/dialog-element/"
+		}
+	</script>
+	</head>
+
+	<body>
+		<div class="container">
+			<header class="masthead" class="credit">
+				<h3>
+					<a href="/" title="Home"><span class="fw-400">@</span>mdo</a>
+				</h3>
+				<ul class="nav">
+					<li><a href="/" class="Inter-Regular">Writing</a></li>
+					<li><a href="/work" class="Inter-Italic-64">Work</a></li>
+					<li><a href="/talks" class="Inter-Italic">Talks</a></li>
+					<li><a href="/stuff" class="Inter-SemiBold-64">Stuff</a></li>
+					<li><a href="/about" class="Inter-SemiBold">About</a></li>
+					<li>
+						<div class="container">
+							<p style="margin-left: 50px; margin-bottom: 20px"> Dark Mode</p>
+							<label for="ChangeTheme">
+								<input type="checkbox" id="ChangeTheme" /> <span class="slide"></span>
+							</label>
+						</div>
+					</li>
+				</ul>
+			</header>
+
+			<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+				<symbol id="arrow-left-short" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+				</symbol>
+				<symbol id="link-45deg" viewBox="0 0 16 16">
+					<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+					<path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z" />
+				</symbol>
+			</svg>
+
+			<div class="body">
+				<div class="post">
+					<h1 class="mb-0 color" style="color: #931010">Fun with the dialog element 147, 16, 16</h1>
+					<p class="fs-3 mb-2 muted">March 16, 2022</p>
+					<div class="post-body">
+						<p>There’s a new element in town and it’s the <code class="language-plaintext highlighter-rouge">&lt;dialog color: #931010;&gt;</code>. Support for it <a href="https://webkit.org/blog/12209/introducing-the-dialog-element/">just landed in Safari</a> with their newest update (v15.4) across all Apple’s devices. With that update, the <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> element is now <a href="https://caniuse.com/?search=dialog">supported in every evergreen browser</a>. It’s a great step forward for frameworks and libraries looking to make better use of native behaviors, but it’s also not without its limits.</p>
+
+						<button class="btn back">class="btn back"</button>
+
+						<style>
+							/* Default CSS Values */
+							blockquote {
+								display: block;
+								margin-top: 1em;
+								margin-bottom: 1em;
+								margin-left: 40px;
+								margin-right: 40px;
+							}
+
+							/* Zero  CSS Values */
+							blockquote {
+								display: block;
+								margin-top: 0em;
+								margin-bottom: 0em;
+								margin-left: 00px;
+								margin-right: 00px;
+							}
+						</style>
+
+						<blockquote cite="http://www.worldwildlife.org/who/index.html">
+							For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+						</blockquote><br>
+
+						<dl>
+							<dt>Name</dt>
+							<dd>Godzilla</dd><br>
+							<dt>Born</dt>
+							<dd>1952</dd><br>
+							<dt>Birthplace</dt>
+							<dd>Japan</dd><br>
+							<dt>Color</dt>
+							<dd>Green</dd>
+						</dl><br><br>
+
+						<h2 id="default-styles" class="anchorjs-link">Default styles</h2>
+
+						<p>Chrome, Safari, and Firefox all render dialogs similarly—black border, black text, white background. They’re all positioned absolutely without a predefined <code class="language-plaintext highlighter-rouge">z-index</code>. There’s also no default <code class="language-plaintext highlighter-rouge">::backdrop</code> styling. <a href="https://codepen.io/emdeoh/pen/jOYPKPN">Check out the CodePen demo.</a></p>
+
+						<p>
+							<picture><img src="https://markdotto.com/uploads/2022/03/dialog-chrome.png" alt="Dialog element in Chrome" width="1600" width="400" /></picture>
+						</p>
+
+						<p>Only minor differences in the <code class="language-plaintext highlighter-rouge">border-width</code> it seems.</p>
+
+						<p>When there’s too much content, all dialogs will have an inner scroll. This makes adding a modal header a little annoying as you’ll have to ether add <code class="language-plaintext highlighter-rouge">position: sticky</code>, or create some custom components within to handle the scroll.</p>
+
+						<h2 id="functionality">Functionality</h2>
+
+						<p>By default, there’s no HTML magic you can use to toggle <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> elements—you have to write some JavaScript to open and close them programmatically. However, you can force a <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> open with the <code class="language-plaintext highlighter-rouge">open</code> attribute, which you can see in action in my <a href="https://codepen.io/emdeoh/pen/jOYPKPN">previously linked CodePen</a>.</p>
+
+						<p>Here’s what else you can do with a <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code>:</p>
+
+						<ul>
+							<li>Open regular, absolutely positioned dialogs with <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show">the <code class="language-plaintext highlighter-rouge">show()</code> method</a> if you don’t want a modal or backdrop</li>
+							<li>Open modal dialogs with <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal">the <code class="language-plaintext highlighter-rouge">showModal()</code> method</a> to open fixed position dialogs that block other page interactions</li>
+							<li>Close dialogs with <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close">the <code class="language-plaintext highlighter-rouge">close()</code> method</a></li>
+							<li>Use <code class="language-plaintext highlighter-rouge">Esc</code> to close the dialog without any additional code</li>
+							<li>Style and animate the <code class="language-plaintext highlighter-rouge">::backdrop</code> pseudo-element</li>
+							<li>Add a specific <code class="language-plaintext highlighter-rouge">autofocus</code> attribute inside the <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> to automatically focus on it (otherwise, the first focusable element will be focused)</li>
+						</ul>
+
+						<p>Unfortunately, because the modal <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> backdrop is a pseudo-element, you cannot trigger JavaScript events off it. This makes it impossible to click the backdrop to dismiss the dialog. There’s likely a solution here with non-modal <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code>s, but I haven’t implemented a smooth solution to this yet.</p>
+
+						<p>Regarding dialogs <code class="language-plaintext highlighter-rouge">autofocus</code>-ing on the first focusable element, I suggest including a dismiss button near the top. When dialogs are too long and they scroll, it will automatically jump to that focused element. That means if you only have a dismiss button or single action at the bottom of the dialog, your visitors will miss the top portion.</p>
+
+						<h2 id="suggested-styling">Suggested styling</h2>
+
+						<p>Dialogs leave a lot to be desired with that default styling, but they are just as style-able as any other element. I put together a <a href="https://codepen.io/emdeoh/pen/NWXPJOy">CodePen demo</a> that shows some suggested styles and implements easy toggling and closing via JavaScript.</p>
+
+						<p class="codepen" data-height="400" data-default-tab="result" data-slug-hash="wvRRRqe" data-user="luisangelmaciel" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+							<span>See the Pen <a href="https://codepen.io/emdeoh/pen/NWXPJOy">
+									Using the &lt;dialog&gt; element</a> by Mark Otto (<a href="https://codepen.io/emdeoh">@emdeoh</a>)
+								on <a href="https://codepen.io">CodePen</a>.</span>
+						</p>
+						<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+						<p>Most dialogs include an inner header element with title and dismiss button, so I’ve implemented the same into <a href="https://codepen.io/emdeoh/pen/NWXPJOy?editors=0100">my CodePen demo</a>. I’ve also the <code class="language-plaintext highlighter-rouge">position: sticky</code> style I mentioned earlier to the dialog header so that when the dialog has an inner scroll, the dialog title and dismiss button are always visible. The dismiss button here also traps that default autofocus. Lastly, the backdrop is styled with a translucent <code class="language-plaintext highlighter-rouge">background-color</code> and a quick little fade-in animation.</p>
+
+						<p>Lastly, I made it all dark mode friendly with the help of some CSS variables and the <a href="/2018/11/05/css-dark-mode/">prefers-color-scheme media query</a>.</p>
+
+						<h2 id="show-and-hide">Show and hide</h2>
+
+						<p>On the JS side, showing and hiding the dialog is easy enough. In my demo, this is accomplished with data attributes:</p>
+
+						<ul>
+							<li><code class="language-plaintext highlighter-rouge">data-toggle</code> is added to any triggering element and it’s value is the specified target <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code></li>
+							<li><code class="language-plaintext highlighter-rouge">data-close</code> is a boolean attribute that finds the nearest <code class="language-plaintext highlighter-rouge">&lt;dialog&gt;</code> to hide</li>
+						</ul>
+
+						<p>Here’s the complete JS in action.</p>
+
+						<div class="language-js highlighter-rouge">
+							<div class="highlight">
+								<pre class="highlight"><code><span class="kd">let</span> <span class="nx">toggler</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-toggle]</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">closers</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-close]</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">toggler</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">toggler</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">data-toggle</span><span class="dl">"</span><span class="p">)</span>
+    <span class="kd">let</span> <span class="nx">targets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span>
+
+    <span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">targets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">showModal</span><span class="p">()</span>
+      <span class="p">})</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+
+  <span class="nx">closers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">dialog</span><span class="dl">'</span><span class="p">)</span>
+      <span class="nx">dialog</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre>
+							</div>
+						</div>
+
+						<h2 id="resources">Resources</h2>
+
+						<ul>
+							<li><a href="https://webkit.org/blog/12209/introducing-the-dialog-element/">Introducing the dialog element</a> (in Safari/Webkit)</li>
+						</ul>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="footer">
+				<3 </div>
+			</div>
+
+	</body>
+
+	</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>🆙 Police Line Tessellated Pattern con movimiento</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Título, descripción y palabras clave -->
+  <title>Police Line</title>
+  <meta name="description" content="Descripción breve y concisa de Police Line">
+  <meta name="keywords" content="Police Line, señalización, precaución, tráfico">
+
+  <!-- Open Graph (OG) -->
+  <meta property="og:locale" content="es-MX">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Police Line">
+  <meta property="og:url" content="https://www.tu-dominio.com/">
+  <meta property="og:site_name" content="Police Line">
+  <meta property="og:image" content="img/ogImage.webp">
+  <meta property="og:image:width" content="1024px">
+  <meta property="og:image:height" content="683px">
+  <meta property="og:image:alt" content="Police Line">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="">
+  <meta property="article:modified_time" content="">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@luisangelmaciel">
+  <meta name="twitter:title" content="Police Line">
+  <meta name="twitter:image" content="https://www.yarticulospromocionales.com/img/404.webp">
+  <meta name="twitter:label1" content="Tiempo de lectura">
+  <meta name="twitter:data1" content="1 minuto">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://www.yarticulospromocionales.com/favicon.ico" type="image/x-icon">
+
+<style>
+	.responsive-pre {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;	height: 100vh;
+}
+
+.code-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+}
+.small-screen-container {
+  display: none; /* Oculta el contenedor por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; /* Asegura que el contenedor esté por encima de otros elementos */
+  background-color: rgba(000, 000, 000, 0.50); /* Fondo semitransparente */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.small-screen-text {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+  .small-screen-container {
+    display: flex; /* Muestra el contenedor en pantallas pequeñas (menores a 600px) */
+  }
+}
+
+	</style>
+	<style>
+html, body  {margin: 0;
+	padding: 0;}
+
+.policeline {
+	--sz: 21px;
+	--c1: #181818;
+	--c2: #ffda07;
+	--c3: #FFC107;
+	--c4: #0006;
+	--ts: 50%/ calc(var(--sz) * 5) calc(var(--sz) * 10);
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 1;
+	background:
+		linear-gradient(180deg, var(--c4) 0 14%, #fff0 0 100%) var(--ts),
+		conic-gradient(from 0deg at 0% 14%, var(--c1) 0 20deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 20deg at 74% 50%, var(--c3) 0 70deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 90deg at 50% 50%, var(--c1) 0 70deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 90deg at 0% 50%, var(--c2) 0 70deg, var(--c1) 0 90deg, #fff0 0 100%) var(--ts),
+		linear-gradient(110deg, var(--c3) 0 33%, var(--c1) 0 66%, var(--c2) 0 90%, black 0 100%) var(--ts);
+	animation: moveBackground 70s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%;
+  }
+}
+
+</style>
+	</head>
+<body>
+<div class="policeline"></div>
+	<div class="responsive-pre">
+	¿Y si le añadimos un efecto de movimiento de izquierda a derecha en el background? ¿Qué dice el publico? (el publico dice que si!) 
+
+Podemos utilizar la propiedad `background-position` junto con `transition` o `animation`.
+
+En este caso, ya que tienes múltiples gradientes en el background, debemos asegurarnos de animar todas las posiciones de background correctamente. Aquí un ejemplo utilizando la propiedad `animation`:
+<pre class="code-content">
+html, body  {margin: 0;
+	padding: 0;}
+
+.policeline {
+	--sz: 21px;
+	--c1: #181818;
+	--c2: #ffda07;
+	--c3: #FFC107;
+	--c4: #0006;
+	--ts: 50%/ calc(var(--sz) * 5) calc(var(--sz) * 10);
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+	background:
+		linear-gradient(180deg, var(--c4) 0 14%, #fff0 0 100%) var(--ts),
+		conic-gradient(from 0deg at 0% 14%, var(--c1) 0 20deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 20deg at 74% 50%, var(--c3) 0 70deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 90deg at 50% 50%, var(--c1) 0 70deg, #fff0 0 100%) var(--ts),
+		conic-gradient(from 90deg at 0% 50%, var(--c2) 0 70deg, var(--c1) 0 90deg, #fff0 0 100%) var(--ts),
+		linear-gradient(110deg, var(--c3) 0 33%, var(--c1) 0 66%, var(--c2) 0 90%, black 0 100%) var(--ts);
+	animation: moveBackground 5s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%, 100% 50%;
+  }
+}
+</pre>
+	
+	
+En este ejemplo, se crea una animación llamada `moveBackground` que dura 5 segundos con una transición lineal y se repite infinitamente. La animación cambia la posición de background de cada gradiente desde el 0% hasta el 100% en el eje horizontal, lo que da la ilusión de movimiento de izquierda a derecha. Puedes ajustar la duración de la animación según tus necesidades.
+</div>
+	<div class="small-screen-container">
+  <p class="small-screen-text">🆙<img src="https://www.redbubble.com/explore/client/f01e676e8ca41e6eddea4c637522b16a.svg" style="width:150px" hidden></p>
+</div>
+
+
+</body>
+</html>
+    
+  </body>
+  
+</html>

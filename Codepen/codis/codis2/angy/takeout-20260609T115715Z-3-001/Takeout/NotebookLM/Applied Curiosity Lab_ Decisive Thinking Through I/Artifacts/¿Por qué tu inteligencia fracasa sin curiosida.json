@@ -1,0 +1,82 @@
+{
+  "title": "¿Por qué tu inteligencia fracasa sin curiosidad? El manual de Applied Curiosity Lab para decisiones de alto nivel",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "96cdaf28-6a10-48ca-ab06-353adb6ade25"
+    }
+  }, {
+    "sourceId": {
+      "id": "3c5f7bd5-b3c8-4164-87c6-0f35b9ad0c46"
+    }
+  }, {
+    "sourceId": {
+      "id": "0500f908-bf90-47e2-8eba-adc68f288efb"
+    }
+  }, {
+    "sourceId": {
+      "id": "c0d74f55-16f7-4182-a9ba-951514576c7c"
+    }
+  }, {
+    "sourceId": {
+      "id": "e89d72d7-f8b8-4d50-847c-d8057d239183"
+    }
+  }, {
+    "sourceId": {
+      "id": "ecea74da-7379-4c36-8713-75de50b40694"
+    }
+  }, {
+    "sourceId": {
+      "id": "35481024-51e0-4a7b-9b68-fa33ce470b57"
+    }
+  }, {
+    "sourceId": {
+      "id": "0d4d89b1-4e87-44dd-9047-9d231827a40c"
+    }
+  }, {
+    "sourceId": {
+      "id": "02f41aae-c44b-4133-acea-17cd3a7f512e"
+    }
+  }, {
+    "sourceId": {
+      "id": "7ced1a96-b911-4dab-beb5-de123fd58e30"
+    }
+  }, {
+    "sourceId": {
+      "id": "d83ce1a4-a1a1-4b1b-a718-bc9e96f25aa6"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Blog Post",
+      "description": "Informational article in the style of a blog post",
+      "sourceIds": [{
+        "id": "96cdaf28-6a10-48ca-ab06-353adb6ade25"
+      }, {
+        "id": "3c5f7bd5-b3c8-4164-87c6-0f35b9ad0c46"
+      }, {
+        "id": "0500f908-bf90-47e2-8eba-adc68f288efb"
+      }, {
+        "id": "c0d74f55-16f7-4182-a9ba-951514576c7c"
+      }, {
+        "id": "e89d72d7-f8b8-4d50-847c-d8057d239183"
+      }, {
+        "id": "ecea74da-7379-4c36-8713-75de50b40694"
+      }, {
+        "id": "35481024-51e0-4a7b-9b68-fa33ce470b57"
+      }, {
+        "id": "0d4d89b1-4e87-44dd-9047-9d231827a40c"
+      }, {
+        "id": "02f41aae-c44b-4133-acea-17cd3a7f512e"
+      }, {
+        "id": "7ced1a96-b911-4dab-beb5-de123fd58e30"
+      }, {
+        "id": "d83ce1a4-a1a1-4b1b-a718-bc9e96f25aa6"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Act as a thoughtful writer and synthesizer of ideas, tasked with creating an engaging and readable blog post for a popular online publishing platform known for its clean aesthetic and insightful content. Your goal is to distill the top most surprising, counter-intuitive, or impactful takeaways from the provided source materials into a compelling listicle. The writing style should be clean, accessible, and highly scannable, employing a conversational yet intelligent tone. Craft a compelling, click-worthy headline. Begin the article with a short introduction that hooks the reader by establishing a relatable problem or curiosity, then present each of the takeaway points as a distinct section with a clear, bolded subheading. Within each section, use short paragraphs to explain the concept clearly, and don\u0027t just summarize; offer a brief analysis or a reflection on why this point is so interesting or important, and if a powerful quote exists in the sources, feature it in a blockquote for emphasis. Conclude the post with a brief, forward-looking summary that leaves the reader with a final thought-provoking question or a powerful takeaway to ponder.",
+      "enableU18Classifier": true
+    }
+  }
+}

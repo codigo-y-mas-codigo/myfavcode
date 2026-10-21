@@ -1,0 +1,90 @@
+.w3-container {padding:0.01em 16px}
+.w3-container:after,.w3-container:before{content:"";display:table;clear:both}
+
+.w3-auto{margin-left:auto;margin-right:auto}
+.w3-auto{max-width:940px}
+@media (max-width:1205px){.w3-auto{max-width:95%}}
+@media (max-width:600px){.w3-auto{max-width:100%}}
+.w3-topbar{border-top:6px solid #ccc!important}.w3-bottombar{border-bottom:6px solid #ccc!important}
+
+.w3-top,.w3-bottom{position:fixed;width:100%;z-index:1}.w3-top{top:0}.w3-bottom{bottom:0}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+*
+{
+	padding: 0;
+	margin: 0; 
+	font-family: 'Lexend', sans-serif;
+}
+:root {
+    --card_width: 200px;
+    --row_increment: 10px;
+    --card_border_radius: 20px;
+    --card_small: 26;
+    --card_large: 45;
+
+	--carte_width: 118px;
+	--carte_border_radius: 10px;
+	--row_increment: 11px;
+	--carte_small: 14;
+}
+
+
+.background-tries-1
+{
+	width: 100%;
+	padding-bottom: 0%;
+	text-align: center;
+}
+
+.container-apps
+{
+	margin:0;
+	padding: 0;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, var(--carte_width));
+	grid-auto-rows: var(--row_increment);
+	justify-content: center;
+}
+}
+@media (max-width: 520px) {
+	.container
+	{grid-template-columns: 1px 1px 1px;}
+}
+@media (min-width: 360px) {
+	.container
+	{grid-template-columns: 0px 0px 0px;
+   grid-template-columns: repeat(auto-fill, 80);
+     grid-auto-rows: 0}
+}
+.carte
+{
+	padding-bottom: 0px;
+	margin: 25px 5px;
+  text-align:center;
+	background-color: white;
+	border-radius: var(--carte_border_radius);
+  box-shadow:var(--clay-shadow-outset,8px 8px 16px 0 rgba(0,0,0,.25)),inset var(--clay-shadow-inset-primary,-8px -8px 16px 0 rgba(0,0,0,.25)),inset var(--clay-shadow-inset-secondary,8px 8px 16px 0 hsla(0,0%,100%,.2))
+}
+.carte_small
+{
+	grid-row-end: span var(--carte_small);
+}
+.carte_small p
+{
+	position: relative;
+  text-align:center;
+bottom: -140px;
+  user-select: none;
+}
+.carte_small a
+{
+	position: relative;
+bottom: -116px;
+  user-select: none;
+}
+
+a {text-decoration:none; color:initial}
+

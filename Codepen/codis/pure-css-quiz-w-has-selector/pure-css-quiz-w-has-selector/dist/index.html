@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Pure CSS Quiz w/ :has selector</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   <div class="device">
+    <div class="status">
+      <h1 class="title">Pure CSS Qui</h1>
+      <div class="status-bar">
+        <span />
+      </div>
+    </div>
+    
+    <!--  Card gradient backgrounds  -->
+    <div class="bg-card bg-card--01"></div>
+    <div class="bg-card bg-card--02"></div>
+    <div class="bg-card bg-card--03"></div>
+    <div class="bg-card bg-card--04"></div>
+    <div class="bg-card bg-card--05"></div>
+    
+    <!-- Background decorations  -->
+    <div class="bg-wrapper">
+      <div class="bg bg--alt-01"></div>
+      <div class="bg bg--alt-02"></div>
+      <div class="bg bg--alt-03"></div>
+    </div>
+    
+    <!-- Intro  -->
+    <div class="intro">
+      <div class="intro-panel">
+       <div class="intro-panel-images">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        <div class="intro-panel-text">
+          <h2>Ready to play?</h2>
+          <p>Answer five questions to test your 
+            knowledge on a range of topics.</p>
+          <input type="checkbox" class="intro-done"/>
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    <!--  Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-image">
+            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd4e4866d-3c8b-41c5-888a-a780056ee49a_1536x1536.jpeg" alt="¿Cuál es el principal componente activo del eucalipto responsable de su efecto descongestionante en el té?"/ width="100%" height="auto">
+          </div>
+          <div class="card-details">
+            <div class="card-question-number">1</div>
+            <h3>¿Cuál es el principal componente activo del eucalipto responsable de su efecto descongestionante en el té?</h3>
+            <div class="options">
+              <label>
+                <input type="radio" name="question-01" class="option answer"/> Eucaliptol
+              </label>
+              <label>
+                <input type="radio" name="question-01" class="option"/> Mentol
+              </label>
+              <label>
+                <input type="radio" name="question-01" class="option"/> Timol
+              </label>
+            </div>
+            <br/>
+            <input type="checkbox" class="submit"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-image">
+            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F25211e63-a582-4445-a50c-ba4b124cea6a_1536x1536.jpeg" alt="Infusión de manzanilla para el sistema digestivo"/  width="100%" height="auto">
+          </div>
+          <div class="card-details">
+            <div class="card-question-number">2</div>
+            <h3> ¿Cuál es el principal beneficio de la infusión de manzanilla para el sistema digestivo?
+</h3>
+            <div class="options">
+              <label>
+                <input type="radio" name="question-02" class="option"/> Aumentar la acidez estomacal.
+              </label>
+              <label>
+                <input type="radio" name="question-02" class="option answer"/> Aliviar los cólicos y el dolor abdominal.
+              </label>
+              <label>
+                <input type="radio" name="question-02" class="option"/> Estimular el apetito
+              </label>
+            </div>
+            <br/>
+            <input type="checkbox" class="submit"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-image">
+            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48041974-8d4a-49e1-ae04-301a9e78509f_1536x1536.jpeg" alt=" infusión de albahaca sagrada para la salud hormonal" width="100%" height="auto"/>
+          </div>
+          <div class="card-details">
+            <div class="card-question-number">3</div>
+            <h3>¿Cuál es uno de los principales beneficios de la infusión de albahaca sagrada para la salud hormonal?</h3>
+            <div class="options">
+              <label>
+                <input type="radio" name="question-03" class="option answer"/> Ayuda a regular los niveles hormonales, especialmente en mujeres con síndrome premenstrual o menopausia.
+              </label>
+              <label>
+                <input type="radio" name="question-03" class="option"/> Aumenta la producción de cortisol, la hormona del estrés.
+              </label>
+              <label>
+                <input type="radio" name="question-03" class="option"/> Estimula la producción excesiva de estrógeno.
+              </label>
+            </div>
+            <br/>
+            <input type="checkbox" class="submit"/>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-image">
+            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48041974-8d4a-49e1-ae04-301a9e78509f_1536x1536.jpeg" alt="¿Qué compuestos activos de la albahaca sagrada actúan como adaptógenos, ayudando al cuerpo a manejar el estrés?"/  width="100%" height="auto>
+          </div>
+          <div class="card-details">
+            <div class="card-question-number">4</div>
+            <h3>¿Qué compuestos activos de la albahaca sagrada actúan como adaptógenos, ayudando al cuerpo a manejar el estrés?</h3>
+            <div class="options">
+              <label>
+                <input type="radio" name="question-04" class="option answer"/> Eugenol y ácido rosmarínico
+
+              </label>
+              <label>
+                <input type="radio" name="question-04" class="option"/> Mentol y eucaliptol
+              </label>
+              <label>
+                <input type="radio" name="question-04" class="option"/>  Timol y carvacrol
+              </label>
+            </div>
+            <br/>
+            <input type="checkbox" class="submit"/>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-image">
+            <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F570512e5-3c48-4aa2-8b03-68e3632702c2_1536x1536.jpeg" alt="Pure CSS Quiz Image 5"/  width="100%" height="auto">
+          </div>
+          <div class="card-details">
+            <div class="card-question-number">5</div>
+            <h3>¿Qué compuesto presente en el diente de león actúa como prebiótico, mejorando la salud intestinal?
+</h3>
+            <div class="options">
+              <label>
+                <input type="radio" name="question-05" class="option answer"/>Inulina
+              </label>
+              <label>
+                <input type="radio" name="question-05" class="option"/> Taraxasterol
+              </label>
+              <label>
+                <input type="radio" name="question-05" class="option"/>  Ácido clorogénico
+              </label>
+            </div>
+            <br/>
+            <input type="checkbox" class="submit"/>
+          </div>
+        </div>
+         
+      </div>
+      
+      <!-- Summary -->
+      <div class="summary">
+        <div class="summary-panel">
+          <h2>Congrats 🥳</h2>
+          <p>You finished Pure CSS Quiz with a score of <span class="points-inline"></span> / 5</p>
+          <div class="points-show"></div>
+          <p> El artículo menciona que el <a href="https://lamagiadelaherbolaria.substack.com/p/te-de-eucalipto-alivio-natural-para" title="Eucaliptol">eucaliptol </a>es el compuesto principal del eucalipto y actúa como expectorante natural, ayudando a descongestionar las vías respiratorias.</p>
+          <p> El artículo menciona que<a href="https://lamagiadelaherbolaria.substack.com/p/infusion-de-manzanilla-el-remedio" title="la manzanilla tiene propiedades antiespasmódicas que ayudan a relajar los músculos del tracto digestivo, lo que alivia los cólicos y el dolor abdominal."> la manzanilla </a> tiene propiedades antiespasmódicas que ayudan a relajar los músculos del tracto digestivo, lo que alivia los cólicos y el dolor abdominal.</p>
+
+
+
+<p> El artículo menciona que la albahaca sagrada tiene la capacidad de ayudar a regular los niveles hormonales, siendo especialmente beneficiosa para mujeres que experimentan desequilibrios hormonales relacionados con el síndrome premenstrual o la menopausia.</p>
+    <label for="restart-quiz" class="restart-button">Restart Quiz</label>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+document.querySelector('.restart-button').addEventListener('click', function() {
+  location.reload();
+});
+</script>
+    
+  </body>
+  
+</html>

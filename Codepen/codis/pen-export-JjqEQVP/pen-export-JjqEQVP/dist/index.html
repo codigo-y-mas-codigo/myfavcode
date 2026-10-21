@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formulario de Contacto</title>
+
+<!-- Importar Tailwind CSS -->
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-white">
+
+<!-- Contenedor Principal -->
+
+<div class="container mx-auto p-4">
+
+  <!-- Banner de Oferta Limitada -->
+
+  <div class="bg-green-500 text-white text-center p-2">
+
+    <!-- OFERTA LIMITADA DE TIEMPO -->
+
+    <button class="float-right">Cerrar X</button>
+
+  </div>
+
+  <!-- Encabezado del Chat de Ayuda -->
+
+  <div class="text-center my-4">
+
+    <h1 class="text-2xl font-bold">¿Cómo podemos ayudarte?</h1>
+
+    <p>Normalmente respondemos en unas pocas horas</p>
+
+  </div>
+
+  <!-- Formulario de Contacto -->
+
+  <form id="contactForm" class="bg-gray-100 p-4 rounded">
+
+    <div class="mb-4">
+
+      <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+
+      <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+
+    </div>
+
+    <div class="mb-4">
+
+      <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Asunto</label>
+
+      <input type="text" id="subject" name="subject" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+
+    </div>
+
+    <div class="mb-4">
+
+      <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+
+      <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+
+    </div>
+
+    <div class="mb-4">
+
+      <label for="message" class="block text-gray-700 text-sm font-bold mb-2">¿Cómo podemos ayudarte?</label>
+
+      <textarea id="message" name="message" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+
+    </div>
+
+    <div class="flex items-center justify-between">
+
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+
+        Enviar Mensaje
+
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+<!-- Importar Tailwind JS (opcional) -->
+
+<script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.js"></script>
+
+<!-- Script para manejar el envío del formulario -->
+
+<script>
+
+document.getElementById('contactForm').addEventListener('submit', function(event){
+
+  event.preventDefault();
+
+  // Aquí puedes agregar el código para manejar el envío del formulario
+
+  // Por ejemplo, validar los campos y enviar los datos a un servidor
+
+  alert('¡Formulario enviado con éxito!');
+
+});
+
+</script>
+
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

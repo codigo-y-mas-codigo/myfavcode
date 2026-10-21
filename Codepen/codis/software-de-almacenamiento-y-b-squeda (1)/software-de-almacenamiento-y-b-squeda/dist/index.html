@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Software de Almacenamiento y Búsqueda</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html>
+
+<head>
+ <title>Software de Almacenamiento y Búsqueda</title>
+</head>
+
+<body>
+ <h1>Software de Almacenamiento y Búsqueda</h1>
+
+ <h2>Misión</h2>
+ <input type="text" id="mision" placeholder="Introduce la Misión...">
+
+ <h2>Slogan</h2>
+ <input type="text" id="slogan" placeholder="Introduce el Slogan...">
+
+ <h2>Perfil del cliente</h2>
+ <input type="text" id="perfilCliente" placeholder="Introduce el Perfil del cliente...">
+
+ <h2>Tono y estilo de escritura</h2>
+ <p>Sugiere el tono y estilo de escritura con la siguiente información:</p>
+ <ul>
+  <li>Misión: <span id="misionTexto"></span></li>
+  <li>Slogan: <span id="sloganTexto"></span></li>
+  <li>Perfil del cliente: <span id="perfilClienteTexto"></span></li>
+ </ul>
+ <textarea id="tonoEstilo" rows="4" cols="50"></textarea>
+
+ <h2>Objetivos de contenido</h2>
+ <p>Selecciona uno o más objetivos:</p>
+ <label><input type="checkbox" id="aumentarConocimiento"> Aumentar el conocimiento de la marca.</label><br>
+ <label><input type="checkbox" id="generarLeads"> Generar leads.</label><br>
+ <label><input type="checkbox" id="fomentarInteraccion"> Fomentar la interacción con la marca.</label><br>
+ <label><input type="checkbox" id="mejorarReputacion"> Mejorar la reputación online.</label><br>
+ <label><input type="checkbox" id="otros"> Otros (especificar): <input type="text" id="otrosText"></label><br>
+
+ <h2>Contenido</h2>
+ <p>Para la creación de contenido, realizarlo bajo estas premisas:</p>
+ <p id="premisas"></p>
+ <textarea id="contenido" rows="4" cols="50"></textarea>
+
+ <script>
+  function actualizarPremisas() {
+   var tonoEstilo = document.getElementById("tonoEstilo").value;
+   var objetivos = [];
+   if (document.getElementById("aumentarConocimiento").checked) {
+    objetivos.push("Aumentar el conocimiento de la marca.");
+   }
+   if (document.getElementById("generarLeads").checked) {
+    objetivos.push("Generar leads.");
+   }
+   if (document.getElementById("fomentarInteraccion").checked) {
+    objetivos.push("Fomentar la interacción con la marca.");
+   }
+   if (document.getElementById("mejorarReputacion").checked) {
+    objetivos.push("Mejorar la reputación online.");
+   }
+   if (document.getElementById("otros").checked) {
+    var otrosText = document.getElementById("otrosText").value;
+    objetivos.push("Otros: " + otrosText);
+   }
+   var premisas = "Tono y estilo de escritura sugeridos:\n" + tonoEstilo + "\n\n" +
+    "Objetivos de contenido seleccionados:\n" + objetivos.join("\n");
+   document.getElementById("premisas").textContent = premisas;
+  }
+
+  function guardarInformacion() {
+   localStorage.setItem("mision", document.getElementById("mision").value);
+   localStorage.setItem("slogan", document.getElementById("slogan").value);
+   localStorage.setItem("perfilCliente", document.getElementById("perfilCliente").value);
+  }
+
+  function cargarInformacion() {
+   document.getElementById("misionTexto").textContent = localStorage.getItem("mision") || "";
+   document.getElementById("sloganTexto").textContent = localStorage.getItem("slogan") || "";
+   document.getElementById("perfilClienteTexto").textContent = localStorage.getItem("perfilCliente") || "";
+  }
+  cargarInformacion(); // Cargar información guardada al cargar la página
+  // Agregar eventos de cambio a los elementos de entrada
+  document.getElementById("tonoEstilo").addEventListener("input", actualizarPremisas);
+  document.getElementById("aumentarConocimiento").addEventListener("change", actualizarPremisas);
+  document.getElementById("generarLeads").addEventListener("change", actualizarPremisas);
+  document.getElementById("fomentarInteraccion").addEventListener("change", actualizarPremisas);
+  document.getElementById("mejorarReputacion").addEventListener("change", actualizarPremisas);
+  document.getElementById("otros").addEventListener("change", actualizarPremisas);
+  document.getElementById("otrosText").addEventListener("input", actualizarPremisas);
+  // Agregar eventos de cambio a los campos de Misión, Slogan y Perfil del cliente para guardar la información
+  document.getElementById("mision").addEventListener("input", guardarInformacion);
+  document.getElementById("slogan").addEventListener("input", guardarInformacion);
+  document.getElementById("perfilCliente").addEventListener("input", guardarInformacion);
+ </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

@@ -1,0 +1,25 @@
+body {
+  background-color: pink;
+}
+
+svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.food-path {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    animation: dash 5000ms alternate linear infinite;
+}
+
+@keyframes dash {
+    from {
+        stroke-dashoffset: 200;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

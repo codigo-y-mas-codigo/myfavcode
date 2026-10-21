@@ -1,0 +1,53 @@
+/* Estilos generales */
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+ background-color: white;
+ color: black;
+}
+
+.hi-container {
+ text-align: center;
+ padding: 20px;
+ max-width: 800px;
+ width: 100%;
+ margin: auto;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hi-title {
+ margin-bottom: 20px;
+}
+
+.hi-btn {
+ padding: 10px 20px;
+ margin: 5px;
+ border: none;
+ cursor: pointer;
+ transition: background-color 0.3s, color 0.3s;
+}
+
+.hi-btn:hover {
+ opacity: 0.8;
+}
+
+/* Estilos para responsividad */
+@media (max-width: 600px) {
+ .hi-container {
+  padding: 10px;
+ }
+
+ .hi-btn {
+  width: 100%;
+  margin: 5px 0;
+ }
+}
+button {
+ background-color: transparent;
+}

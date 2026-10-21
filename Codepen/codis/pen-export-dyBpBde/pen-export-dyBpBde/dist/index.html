@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <style>
+ .tooltip💡 {
+  width: max-content;
+  font-family: Roboto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #222;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 90%;
+ }
+</style>
+
+<body>
+ <div class="tooltip💡" role="tooltip">💡 lamp</div>
+
+ <script id="rendered-js" type="module">
+  import {
+   computePosition,
+   flip,
+   shift,
+   offset
+  } from "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.4/+esm";
+  const tooltip = document.querySelector(".tooltip");
+  computePosition(button, tooltip, {
+   placement: "top",
+   middleware: [flip(), shift({
+    padding: 5
+   }), offset(6)]
+  }).then(({
+   x,
+   y
+  }) => {
+   Object.assign(tooltip.style, {
+    left: `${x}px`,
+    top: `${y}px`
+   });
+  });
+ </script>
+    
+  </body>
+  
+</html>

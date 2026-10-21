@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Artículos WeUI</title>
+ <link rel="stylesheet" href="https://weui.io/style/weui.css">
+ <style>
+  .center {
+   text-align: center;
+  }
+
+  .intro,
+  .article-content {
+   text-align: ;
+   padding: 20px;
+  }
+
+  .menu {
+   margin-top: 20px;
+  }
+
+  .article-content {
+   display: none;
+  }
+ </style>
+</head>
+
+<body>
+ <div class="intro weui-msg" id="intro">
+  <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+  <div class="weui-msg__text-area">
+   <h2 class="weui-msg__title">Bienvenido a la Biblioteca de Artículos</h2>
+   <p class="weui-msg__desc">Explora nuestros artículos más recientes y destacados.</p>
+  </div>
+ </div>
+
+ <div class="menu" id="menu">
+  <div class="weui-cells__title">Artículos Recientes</div>
+  <div class="weui-cells">
+   <div class="weui-cell weui-cell_access" onclick="openArticle(1)">
+    <div class="weui-cell__bd">
+     <p>Artículo 1: Introducción a WeUI</p>
+    </div>
+    <div class="weui-cell__ft"></div>
+   </div>
+   <div class="weui-cell weui-cell_access" onclick="openArticle(2)">
+    <div class="weui-cell__bd">
+     <p>Artículo 2: Componentes de WeUI</p>
+    </div>
+    <div class="weui-cell__ft"></div>
+   </div>
+   <div class="weui-cell weui-cell_access" onclick="openArticle(3)">
+    <div class="weui-cell__bd">
+     <p>Artículo 3: WEUI: El Framework de UI para la Era Móvil</p>
+    </div>
+    <div class="weui-cell__ft"></div>
+   </div>
+   <div class="weui-cell weui-cell_access" onclick="openArticle(4)">
+    <div class="weui-cell__bd">
+     <p>Artículo 4: Promtps</p>
+    </div>
+    <div class="weui-cell__ft"></div>
+   </div>
+  </div>
+  <div class="weui-cell weui-cell_access" onclick="openArticle(5)">
+   <div class="weui-cell__bd">
+    <p>About</p>
+   </div>
+   <div class="weui-cell__ft"></div>
+  </div>
+ </div>
+ </div>
+
+ <div class="article-content weui-article" id="article1">
+  <h2>Artículo 1: WeUI: Biblioteca de Interfaz de Usuario de WeChat</h2>
+  <section>
+   <p>La biblioteca de interfaz de usuario que mencionas es <strong>WeUI</strong>, diseñada oficialmente por el equipo de diseño de WeChat. Es un marco de UI que imita la experiencia de usuario de WeChat y está hecho a medida para el desarrollo web de WeChat, con el objetivo de mejorar y estandarizar la experiencia de los usuarios de WeChat.</p>
+   <p>Incluye componentes como <strong>botones</strong>, <strong>celdas</strong>, <strong>diálogos</strong>, <strong>barras de progreso</strong>, <strong>notificaciones toast</strong>, <strong>artículos</strong>, <strong>hojas de acción</strong> e <strong>iconos</strong>. Está diseñada para ser responsiva y adaptable a diferentes dispositivos móviles, lo que la hace ideal para aplicaciones web móviles.</p>
+   <p>Además, WeUI está disponible en GitHub, lo que significa que puedes contribuir al proyecto o utilizarlo en tus propios proyectos de diseño web. La licencia es MIT, así que es libre de usar y modificar.</p>
+   <p>Como diseñador web con un enfoque en líneas limpias y estilos vintage, creo que encontrarás que WeUI se adapta bien a tus preferencias y puede ayudarte a crear interfaces de usuario consistentes y atractivas para tus proyectos.</p>
+  </section>
+  <button class="weui-btn weui-btn_primary" onclick="goBack()">Volver</button>
+ </div>
+
+ <div class="article-content weui-article" id="article2">
+  <h2>Artículo 2: Componentes de WeUI</h2>
+  <section>
+   <p>Por supuesto, aquí tienes más detalles sobre los componentes específicos de WeUI:</p>
+   <ul>
+    <li><strong>Botón (Button):</strong> Los botones en WeUI están diseñados para ser intuitivos y fáciles de usar. Pueden ser primarios, por defecto o de advertencia, y también admiten estados como desactivado.</li>
+    <li><strong>Celda (Cell):</strong> Las celdas son componentes versátiles que se utilizan para mostrar información y pueden incluir títulos, descripciones y acceso a páginas detalladas.</li>
+    <li><strong>Diálogo (Dialog):</strong> Los diálogos son ventanas emergentes que pueden contener alertas, confirmaciones y más, proporcionando interacción con el usuario.</li>
+    <li><strong>Progreso (Progress):</strong> Los indicadores de progreso muestran el avance de una tarea y pueden ser lineales o circulares.</li>
+    <li><strong>Toast:</strong> Es una notificación ligera que puede mostrar un mensaje de carga o éxito, y desaparece automáticamente después de un tiempo determinado.</li>
+    <li><strong>Artículo (Article):</strong> Este componente se utiliza para mostrar texto e imágenes en un formato que es fácil de leer en dispositivos móviles.</li>
+    <li><strong>Hoja de Acción (ActionSheet):</strong> Las hojas de acción son paneles que se deslizan desde la parte inferior de la pantalla y ofrecen una serie de opciones entre las que el usuario puede elegir.</li>
+    <li><strong>Icono (Icon):</strong> WeUI proporciona una serie de iconos optimizados para interfaces móviles, que pueden ser utilizados para mejorar la comprensión visual de las funciones.</li>
+   </ul>
+   <p>Estos componentes están diseñados para ser coherentes con la experiencia visual de WeChat y son fáciles de integrar en tus proyectos de Mini Programas o aplicaciones web móviles. Además, la biblioteca WeUI es de código abierto y está disponible en GitHub, lo que te permite contribuir y adaptar los componentes a tus necesidades específicas.</p>
+  </section>
+  <button class="weui-btn weui-btn_primary" onclick="goBack()">Volver</button>
+ </div>
+
+ <div class="article-content weui-article" id="article3">
+  <h2>Artículo 3: WEUI: El Framework de UI para la Era Móvil</h2>
+  <section>
+
+   <section>
+    <p>En el mundo del desarrollo web, la interfaz de usuario (UI) es el puente entre la tecnología y la experiencia del usuario. Con el auge de las aplicaciones móviles, los desarrolladores buscan constantemente frameworks que les permitan crear interfaces atractivas y funcionales de manera eficiente. Aquí es donde WEUI, el framework de UI diseñado por el equipo de diseño oficial de WeChat, brilla con luz propia.</p>
+   </section>
+   <section>
+    <h2>Introducción a WEUI</h2>
+    <p>WEUI es un framework de UI que ha sido diseñado específicamente para mejorar y estandarizar la experiencia de los usuarios de WeChat. Sin embargo, su utilidad trasciende esta aplicación, ya que ofrece una serie de widgets y módulos que son esenciales para el desarrollo web móvil moderno.</p>
+   </section>
+   <section>
+    <h2>Componentes de WEUI</h2>
+    <p>Entre los componentes que ofrece WEUI, encontramos botones, celdas, diálogos, barras de progreso, notificaciones tipo toast, artículos, hojas de acción e iconos. Cada uno de estos elementos ha sido cuidadosamente diseñado para proporcionar una experiencia coherente y familiar para los usuarios de WeChat, aunque su adaptabilidad los hace ideales para cualquier aplicación web móvil.</p>
+   </section>
+   <section>
+    <h2>El CSS de WEUI</h2>
+    <p>El corazón de WEUI es su archivo CSS, que proporciona los estilos necesarios para que los componentes del framework se vean y funcionen como se espera. Este archivo CSS se puede integrar fácilmente en cualquier proyecto, y es lo que permite a los desarrolladores utilizar los componentes de WEUI sin tener que preocuparse por los detalles de implementación.</p>
+   </section>
+   <section>
+    <h2>Usando WEUI en tu Proyecto</h2>
+    <p>Para comenzar a usar WEUI, los desarrolladores solo necesitan descargar el archivo weui.css desde el repositorio de GitHub y referenciarlo en el elemento &lt;head&gt; de su documento HTML. Esto desbloquea instantáneamente el potencial de WEUI para crear interfaces móviles que no solo son hermosas sino también altamente funcionales.</p>
+   </section>
+   <section>
+    <h2>Conclusión</h2>
+    <p>WEUI representa una solución elegante y eficiente para el desarrollo de interfaces de usuario en aplicaciones web móviles. Con su diseño limpio y su enfoque en la experiencia del usuario, WEUI se posiciona como una herramienta indispensable para los desarrolladores que buscan crear productos digitales que destaquen en la era móvil.</p>
+    <p>Para aquellos interesados en explorar más sobre WEUI, su documentación y ejemplos de implementación están disponibles en su página de GitHub. Con WEUI, el futuro del diseño de UI móvil es accesible, intuitivo y listo para ser implementado en tus proyectos más innovadores.</p>
+   </section>
+  </section>
+  <button class="weui-btn weui-btn_primary" onclick="goBack()">Volver</button>
+ </div>
+ <div class="article-content weui-article" id="article4">
+  <h2>Artículo 4: Ejemplos de Solicitudes para WeUI</h2>
+  <article>
+   <p>Estos son algunos ejemplos de cómo puedes utilizar WeUI en tus proyectos:</p>
+   <section>
+    <h2>Estructura de la Interfaz</h2>
+    <p>“Quiero crear una interfaz de usuario para una aplicación de mensajería utilizando WeUI. ¿Puedes mostrarme un esquema básico de los componentes que debería usar?”</p>
+   </section>
+   <section>
+    <h2>Personalización de Componentes</h2>
+    <p>“Me gustaría personalizar los botones de WeUI para que coincidan con el estilo de mi marca. ¿Puedes ayudarme con algunas sugerencias de CSS?”</p>
+   </section>
+   <section>
+    <h2>Optimización para Móviles</h2>
+    <p>“Necesito consejos para asegurarme de que mi sitio web con WeUI sea completamente responsivo en dispositivos móviles. ¿Qué prácticas de diseño debo seguir?”</p>
+   </section>
+   <section>
+    <h2>Integración con WeChat</h2>
+    <p>“Estoy desarrollando un Mini Programa para WeChat y quiero usar WeUI. ¿Puedes guiarme a través de la integración de los componentes de WeUI en mi proyecto?”</p>
+   </section>
+   <section>
+    <h2>Navegación y Layouts</h2>
+    <p>“¿Cómo puedo implementar una barra de navegación efectiva y un layout de página utilizando WeUI para una mejor experiencia de usuario?”</p>
+   </section>
+   <section>
+    <h2>Mejoras de UX/UI</h2>
+    <p>“Tengo un prototipo de aplicación web y me gustaría mejorar la UX/UI con WeUI. ¿Puedes revisar mi diseño y ofrecer mejoras?”</p>
+   </section>
+   <section>
+    <h2>Creación de Temas</h2>
+    <p>“Quiero crear un tema personalizado para WeUI que refleje un ambiente vintage. ¿Qué elementos debo considerar para lograrlo?”</p>
+   </section>
+   <section>
+    <h2>Desarrollo de Formularios</h2>
+    <p>“¿Me puedes mostrar cómo diseñar un formulario de contacto elegante y funcional con WeUI?”</p>
+   </section>
+   <section>
+    <h2>Animaciones y Transiciones</h2>
+    <p>“Estoy interesado en agregar animaciones sutiles a mi sitio web WeUI. ¿Puedes proporcionarme ejemplos de cómo implementarlas?”</p>
+   </section>
+   <section>
+    <h2>Solución de Problemas</h2>
+    <p>“Estoy teniendo problemas con la compatibilidad de WeUI en diferentes navegadores. ¿Puedes ayudarme a identificar y solucionar estos problemas?”</p>
+   </section>
+   <button class="weui-btn weui-btn_primary" onclick="goBack()">Volver</button>
+ </div>
+ <div class="article-content weui-article" id="article5">
+  <h2>Sobre Luis Angel Maciel</h2>
+  <section>
+   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam. Duis ut nisi nec eros egestas scelerisque.</p>
+   <div class="weui-cells__title">Enlaces</div>
+   <div class="weui-cells">
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="template-1.html">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Template 1 </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl2_tips js_cell_tl2_link" class="weui-cell  weui-cell_access" href="template-2.html">
+     <span class="weui-cell__bd" aria-hidden="true" id="js_cell_tl2_tips">
+      <span>Template 2</span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl2_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="https://luisangelmaciel.github.io/">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Contacto </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="https://weui.io/">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>WeUI </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="http://www.yarticulospromocionales.com/">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Shop </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="https://luisangelmaciel.vercel.app">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Blog </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href="https://articulos-promocionales-cdmx.vercel.app/">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Articulos promocionales </span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+    <a aria-labelledby="js_cell_tl1_tips js_cell_tl1_link" class="weui-cell weui-cell_access" href=" https://wizard-dun.vercel.app">
+     <span class="weui-cell__bd" id="js_cell_tl1_tips" aria-hidden="true">
+      <span>Site</span>
+     </span>
+     <span class="weui-cell__ft" aria-hidden="true" id="js_cell_tl1_link">Ver</span>
+    </a>
+   </div>
+
+  </section>
+  <button class="weui-btn weui-btn_primary button_bottom_fixed" onclick="goBack()">Volver</button>
+ </div>
+ <script>
+  function openArticle(id) {
+   // Ocultar intro y menú
+   document.getElementById('intro').style.display = 'none';
+   document.getElementById('menu').style.display = 'none';
+   // Mostrar el artículo seleccionado
+   document.getElementById('article' + id).style.display = 'block';
+  }
+
+  function goBack() {
+   // Ocultar todos los artículos
+   document.querySelectorAll('.article-content').forEach(function(article) {
+    article.style.display = 'none';
+   });
+   // Mostrar intro y menú
+   document.getElementById('intro').style.display = 'block';
+   document.getElementById('menu').style.display = 'block';
+  }
+ </script>
+</body>
+
+</html>

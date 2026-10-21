@@ -1,0 +1,83 @@
+{
+  "title": "Guía Maestra: El Arte del Pensamiento Crítico y la Curiosidad Aplicada",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "96cdaf28-6a10-48ca-ab06-353adb6ade25"
+    }
+  }, {
+    "sourceId": {
+      "id": "3c5f7bd5-b3c8-4164-87c6-0f35b9ad0c46"
+    }
+  }, {
+    "sourceId": {
+      "id": "0500f908-bf90-47e2-8eba-adc68f288efb"
+    }
+  }, {
+    "sourceId": {
+      "id": "c0d74f55-16f7-4182-a9ba-951514576c7c"
+    }
+  }, {
+    "sourceId": {
+      "id": "e89d72d7-f8b8-4d50-847c-d8057d239183"
+    }
+  }, {
+    "sourceId": {
+      "id": "ecea74da-7379-4c36-8713-75de50b40694"
+    }
+  }, {
+    "sourceId": {
+      "id": "35481024-51e0-4a7b-9b68-fa33ce470b57"
+    }
+  }, {
+    "sourceId": {
+      "id": "0d4d89b1-4e87-44dd-9047-9d231827a40c"
+    }
+  }, {
+    "sourceId": {
+      "id": "02f41aae-c44b-4133-acea-17cd3a7f512e"
+    }
+  }, {
+    "sourceId": {
+      "id": "7ced1a96-b911-4dab-beb5-de123fd58e30"
+    }
+  }, {
+    "sourceId": {
+      "id": "d83ce1a4-a1a1-4b1b-a718-bc9e96f25aa6"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Guía de Conceptos",
+      "description": "Un desglose simplificado de los marcos de trabajo esenciales para el pensamiento crítico.",
+      "sourceIds": [{
+        "id": "96cdaf28-6a10-48ca-ab06-353adb6ade25"
+      }, {
+        "id": "3c5f7bd5-b3c8-4164-87c6-0f35b9ad0c46"
+      }, {
+        "id": "0500f908-bf90-47e2-8eba-adc68f288efb"
+      }, {
+        "id": "c0d74f55-16f7-4182-a9ba-951514576c7c"
+      }, {
+        "id": "e89d72d7-f8b8-4d50-847c-d8057d239183"
+      }, {
+        "id": "ecea74da-7379-4c36-8713-75de50b40694"
+      }, {
+        "id": "35481024-51e0-4a7b-9b68-fa33ce470b57"
+      }, {
+        "id": "0d4d89b1-4e87-44dd-9047-9d231827a40c"
+      }, {
+        "id": "02f41aae-c44b-4133-acea-17cd3a7f512e"
+      }, {
+        "id": "7ced1a96-b911-4dab-beb5-de123fd58e30"
+      }, {
+        "id": "d83ce1a4-a1a1-4b1b-a718-bc9e96f25aa6"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Explicar de forma amigable y clara los pilares fundamentales del pensamiento crítico mencionados en el contexto, específicamente el marco PIQPACC y los criterios RRV (confiabilidad, relevancia, validez). El objetivo es que un estudiante o principiante comprenda cómo evaluar la calidad de la información y formular preguntas valiosas (MVQ) para evitar errores de juicio comunes.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_BEGINNER",
+      "enableU18Classifier": true
+    }
+  }
+}

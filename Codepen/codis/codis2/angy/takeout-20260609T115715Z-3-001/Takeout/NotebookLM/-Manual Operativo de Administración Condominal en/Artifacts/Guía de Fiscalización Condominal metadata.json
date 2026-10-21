@@ -1,0 +1,20 @@
+{
+  "title": "Guía de Fiscalización Condominal",
+  "type": "ARTIFACT_TYPE_INFOGRAPHIC",
+  "sources": [{
+    "sourceId": {
+      "id": "3e49191f-d66b-4a09-8663-49ef4a0ebaa5"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "infographic": {
+    "generationOptions": {
+      "userSteeringPrompt": "Dictamen de Gestión\nInforme técnico para evaluar la transparencia financiera y el cumplimiento normativo de la administración actual.\nEstructurar un dictamen detallado que permita al Comité de Vigilancia fiscalizar la correcta asignación de fondos de reserva y mantenimiento, verificando que los estados de cuenta mensuales cumplan con los cinco elementos obligatorios de transparencia exigidos por la ley. Estilo Ley  Comité de Vigilancia",
+      "languageCode": "es_419",
+      "aspectRatio": "ASPECT_RATIO_PORTRAIT",
+      "informationDensity": "INFORMATION_DENSITY_STANDARD",
+      "style": "STYLE_AUTO"
+    },
+    "title": "Guía de Fiscalización Condominal"
+  }
+}

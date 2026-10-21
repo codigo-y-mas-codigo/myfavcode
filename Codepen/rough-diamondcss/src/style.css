@@ -1,0 +1,198 @@
+@property --scale {
+	syntax: '<integer>';
+	inherits: false;
+	initial-value: 1;
+}
+@property --border {
+	syntax: '<color>';
+	inherits: false;
+	initial-value: #ffffff90;
+}
+
+:root {	
+	--scale: 1;
+	--border: #ffffff90;
+}
+
+* {
+	transform-style: preserve-3d;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 1000vmin;
+	background: radial-gradient(circle at 50% 150%, #3b8dff, #021320 70%, #000);
+	cursor: zoom-in;
+	transition: --scale 0.5s ease 0s;
+}
+
+body:active {
+	--scale: 2;
+	transition: --scale 0.5s ease 0s;
+}
+
+body:active .scene {
+	transform: scale3d(1.35, 1.35, 1.35);
+	transition: all 1s ease 0s;
+}
+
+.scene {
+	width: 40vmin;
+	height: 40vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 1s ease 0s;
+}
+
+.scene:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotateX(75deg) translateZ(-8vmin) rotateZ(320deg);
+	transform-origin: center center;
+	border-radius: 100%;
+	box-shadow: 0 0 10vmin 10vmin #ffffff15;
+	background: radial-gradient(#fff 5%, #fff2 55%);
+	filter: blur(5vmin);
+	animation: shadow 5s ease-in-out 0s infinite;
+	border: 5vmin dotted #fff2;
+}
+
+@keyframes shadow {
+	  0% { transform: rotateX(75deg) translateZ(-47vmin) rotateZ(0deg); }
+	 50% { transform: rotateX(75deg) translateZ(-45vmin) rotateZ(180deg); filter: blur(5vmin) brightness(1.5); }
+	100% { transform: rotateX(75deg) translateZ(-47vmin) rotateZ(360deg);}
+}
+
+.content {
+	width: 40vmin;
+	height: 40vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: rotateX(-27.5deg) rotateY(-45deg) rotateZ(0deg) scale3d(var(--scale),var(--scale),var(--scale));
+	transition: all 1s ease 0s;
+	animation: spin-scene 20s linear 0s infinite;
+}
+
+.scene:hover:before,
+.content:hover,
+.content:hover .diamond .cuboid .side {
+	animation-play-state: paused;
+}
+
+@keyframes spin-scene {
+	  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(var(--scale), var(--scale), var(--scale)); }
+	100% { transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg) scale3d(var(--scale),var(--scale),var(--scale)); }
+}
+
+.diamond {
+	position: absolute;
+	width: 40vmin;
+	height: 40vmin;
+}
+
+.cuboid {
+	--height: 41;
+	--width: 43;
+	--depth: 45;
+	--hue: 200;
+	--sat: 90%;
+	height: calc(var(--height) * 1vmin);
+	width: calc(var(--width) * 1vmin);
+	position: absolute;
+	animation: cube1 0.6s linear 0s infinite;
+	transform: translate3d(0vmin, 0vmin, -5vmin);
+}
+
+.cuboid .side {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	border-radius: 2px;
+	background: hsl(var(--hue), var(--sat), 30%);
+	opacity: 0.5;
+	animation: shine 10s ease -5s infinite;
+	border: 0.25vmin solid #fff8;
+	border-image-slice: 1;
+	border-image-source: linear-gradient( 90deg, #fff0 0%, var(--border) 40% 60%, #fff0 100% );
+}
+
+@keyframes shine {
+	50% { background: hsl(var(--hue), var(--sat), 80%); opacity: 0.35; --border: #6aeeff; }
+}
+
+.cuboid .side:nth-of-type(1) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * 0.5vmin));
+	filter: brightness(0.75);
+	animation-delay: -3s;
+}
+.cuboid .side:nth-of-type(2) {
+	transform: translate3d(-50%, -50%, calc(var(--depth) * -0.5vmin)) rotateY(180deg);
+	animation-delay: -6s;
+}
+.cuboid .side:nth-of-type(3) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(90deg)	translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	filter: brightness(1.5);
+	animation-delay: -9s;
+}
+.cuboid .side:nth-of-type(4) {
+	width: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateY(-90deg) translate3d(0, 0, calc(var(--width) * 0.5vmin));
+	filter: brightness(0.6);
+	animation-delay: -12s;
+}
+.cuboid .side:nth-of-type(5) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(90deg)	translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	filter: brightness(2);
+	animation-delay: -15s;
+}
+.cuboid .side:nth-of-type(6) {
+	height: calc(var(--depth) * 1vmin);
+	transform: translate(-50%, -50%) rotateX(-90deg) translate3d(0, 0, calc(var(--height) * 0.5vmin));
+	filter: brightness(1.25);
+	animation-delay: -18s;
+}
+
+
+.diamond .cuboid:nth-child(1) {
+	transform: rotateY(0deg);
+}
+.diamond .cuboid:nth-child(2) {
+	transform: rotateY(-45deg);
+}
+.diamond .cuboid:nth-child(3) {
+	transform: rotateY(-45deg) rotateX(45deg);
+}
+.diamond .cuboid:nth-child(4) {
+	transform: rotateY(45deg) rotateX(135deg);
+}
+.diamond .cuboid:nth-child(5) {
+	transform: rotateY(45deg) rotateX(200deg) rotateZ(65deg);
+}
+.diamond .cuboid:nth-child(6) {
+	transform: rotateY(45deg) rotateX(135deg) rotateZ(245deg);
+}
+.diamond .cuboid:nth-child(7) {
+	transform: rotateY(45deg) rotateX(-135deg) rotateZ(325deg);
+}
+.diamond .cuboid:nth-child(8) {
+	transform: rotateY(-60deg) rotateX(115deg) rotateZ(30deg);
+}
+.diamond .cuboid:nth-child(9) {
+	transform: rotateY(45deg) rotateX(135deg) rotate3d(1, 1, 1, 45deg);
+}

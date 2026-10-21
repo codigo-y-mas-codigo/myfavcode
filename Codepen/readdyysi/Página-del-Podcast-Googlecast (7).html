@@ -1,0 +1,3056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Googlecast - Podcast Bilingüe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#8B5CF6',
+secondary: '#10B981',
+dark: '#121212',
+darkSecondary: '#1E1E1E',
+neonPink: '#FF00FF',
+neonBlue: '#00BFFF',
+neonGreen: '#39FF14'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+},
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--primary: #8B5CF6;
+--secondary: #10B981;
+--dark: #121212;
+--dark-secondary: #1E1E1E;
+--neon-pink: #FF00FF;
+--neon-blue: #00BFFF;
+--neon-green: #39FF14;
+--text-light: #F9FAFB;
+--text-dark: #1F2937;
+}
+body {
+font-family: 'Inter', sans-serif;
+transition: background-color 0.3s, color 0.3s;
+}
+.dark {
+background-color: var(--dark);
+color: var(--text-light);
+}
+.light {
+background-color: #FFFFFF;
+color: var(--text-dark);
+}
+.audio-progress {
+-webkit-appearance: none;
+appearance: none;
+height: 4px;
+border-radius: 4px;
+background: rgba(255, 255, 255, 0.2);
+outline: none;
+cursor: pointer;
+}
+.audio-progress::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: var(--primary);
+cursor: pointer;
+}
+.audio-progress::-moz-range-thumb {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: var(--primary);
+cursor: pointer;
+border: none;
+}
+.custom-checkbox {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+cursor: pointer;
+}
+.custom-checkbox input {
+opacity: 0;
+position: absolute;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: transparent;
+border: 2px solid var(--primary);
+border-radius: 4px;
+transition: all 0.2s;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: var(--primary);
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(156, 163, 175, 0.5);
+transition: .4s;
+border-radius: 34px;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: var(--primary);
+}
+input:checked + .switch-slider:before {
+transform: translateX(24px);
+}
+.language-selector {
+position: relative;
+}
+.language-dropdown {
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+min-width: 120px;
+z-index: 50;
+}
+.language-selector:hover .language-dropdown {
+display: block;
+}
+.wallpaper-mode {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: -1;
+opacity: 0;
+transition: opacity 0.5s;
+background: radial-gradient(circle at center, var(--neon-blue), var(--dark));
+}
+.wallpaper-mode.active {
+opacity: 0.3;
+z-index: 0;
+}
+.audio-visualizer {
+display: flex;
+align-items: flex-end;
+height: 40px;
+gap: 3px;
+}
+.audio-bar {
+width: 3px;
+background-color: var(--primary);
+border-radius: 3px;
+transition: height 0.1s ease;
+}
+.custom-radio {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+cursor: pointer;
+}
+.custom-radio input {
+opacity: 0;
+position: absolute;
+}
+.radio-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: transparent;
+border: 2px solid var(--primary);
+border-radius: 50%;
+transition: all 0.2s;
+}
+.custom-radio input:checked ~ .radio-mark {
+background-color: transparent;
+}
+.radio-mark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-radio input:checked ~ .radio-mark:after {
+display: block;
+}
+.custom-radio .radio-mark:after {
+left: 4px;
+top: 4px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: var(--primary);
+}
+/* Animaciones para el modo wallpaper */
+@keyframes pulse {
+0% {
+transform: scale(1);
+opacity: 0.7;
+}
+50% {
+transform: scale(1.1);
+opacity: 0.9;
+}
+100% {
+transform: scale(1);
+opacity: 0.7;
+}
+}
+.wallpaper-mode.active .pulse {
+position: absolute;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background: var(--neon-pink);
+filter: blur(80px);
+animation: pulse 4s infinite;
+}
+.wallpaper-mode.active .pulse:nth-child(2) {
+background: var(--neon-blue);
+animation-delay: 1s;
+left: 60%;
+top: 30%;
+}
+.wallpaper-mode.active .pulse:nth-child(3) {
+background: var(--neon-green);
+animation-delay: 2s;
+left: 30%;
+top: 60%;
+}
+</style>
+</head>
+<body class="dark min-h-screen">
+<!-- Nutrition Program Page -->
+<div class="min-h-screen bg-dark">
+<!-- Header -->
+<header class="bg-darkSecondary py-6">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<a href="/" class="text-3xl font-['Pacifico'] text-primary">Googlecast</a>
+<span class="ml-4 text-white text-lg">Nutrición Holística</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Comprar Programa
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-opacity-80 transition">
+<i class="ri-user-line"></i>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=healthy%20food%20lifestyle%2C%20fresh%20organic%20ingredients%2C%20vibrant%20fruits%20and%20vegetables%2C%20modern%20kitchen%20setting%2C%20professional%20food%20photography%2C%20clean%20eating%20concept%2C%20bright%20and%20airy%20atmosphere&width=1920&height=600&seq=nutrition-hero&orientation=landscape" alt="Nutrición Holística" class="w-full h-[400px] object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8">
+<div class="container mx-auto">
+<div class="max-w-3xl">
+<h1 class="text-4xl font-bold text-white mb-4">Programa Completo de Nutrición Holística</h1>
+<p class="text-xl text-gray-300">Transforma tu relación con la alimentación y descubre el poder de una nutrición consciente y equilibrada.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Overview -->
+<div class="container mx-auto px-4 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-mic-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">12</h3>
+<p class="text-gray-400">Episodios</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-book-open-line text-neonBlue text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">12</h3>
+<p class="text-gray-400">Ebooks</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-questionnaire-line text-neonGreen text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">5</h3>
+<p class="text-gray-400">Cuestionarios</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-gallery-line text-neonPink text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">5</h3>
+<p class="text-gray-400">Infografías</p>
+</div>
+</div>
+<!-- Episodes Section -->
+<div class="mb-16">
+<h2 class="text-2xl font-bold text-white mb-6">Episodios del Programa</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Episode 1 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=healthy%20breakfast%20spread%2C%20colorful%20fruits%2C%20whole%20grains%2C%20nuts%2C%20yogurt%2C%20morning%20light%2C%20food%20styling&width=400&height=200&seq=ep1&orientation=landscape" alt="Fundamentos de la Nutrición" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-primary text-sm font-semibold">MÓDULO 1</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Fundamentos de la Nutrición Holística</h3>
+<p class="text-gray-400 text-sm mb-4">Introducción a los principios básicos y la importancia de una alimentación consciente.</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">45 minutos</span>
+<button class="flex items-center text-white hover:text-primary transition">
+<i class="ri-play-circle-line mr-2"></i>
+Reproducir
+</button>
+</div>
+</div>
+</div>
+<!-- Episode 2 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=fresh%20vegetables%20and%20fruits%2C%20rainbow%20colors%2C%20organic%20produce%2C%20farmers%20market%20display%2C%20vibrant%20healthy%20food&width=400&height=200&seq=ep2&orientation=landscape" alt="Macronutrientes" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-primary text-sm font-semibold">MÓDULO 2</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Macronutrientes Esenciales</h3>
+<p class="text-gray-400 text-sm mb-4">Proteínas, carbohidratos y grasas: su rol en una dieta equilibrada.</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">50 minutos</span>
+<button class="flex items-center text-white hover:text-primary transition">
+<i class="ri-play-circle-line mr-2"></i>
+Reproducir
+</button>
+</div>
+</div>
+</div>
+<!-- Episode 3 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=superfood%20ingredients%2C%20berries%2C%20seeds%2C%20nuts%2C%20green%20powder%20supplements%2C%20healthy%20lifestyle&width=400&height=200&seq=ep3&orientation=landscape" alt="Superalimentos" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-primary text-sm font-semibold">MÓDULO 3</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Superalimentos y Suplementación</h3>
+<p class="text-gray-400 text-sm mb-4">Descubre los alimentos más nutritivos y cuándo suplementar.</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-gray-400">55 minutos</span>
+<button class="flex items-center text-white hover:text-primary transition">
+<i class="ri-play-circle-line mr-2"></i>
+Reproducir
+</button>
+</div>
+</div>
+</div>
+<!-- More episodes... -->
+<div class="col-span-1 md:col-span-2 lg:col-span-3 text-center">
+<button class="px-6 py-3 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+Ver todos los episodios
+</button>
+</div>
+</div>
+</div>
+<!-- Resources Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+<!-- Ebooks Section -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-2xl font-bold text-white mb-6">Ebooks Complementarios</h2>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-16 h-16 flex-shrink-0 bg-primary bg-opacity-20 rounded-lg mr-4">
+<img src="https://readdy.ai/api/search-image?query=nutrition%20ebook%20cover%20design%2C%20professional%20layout%2C%20healthy%20food%20illustration%2C%20modern%20minimal%20style&width=100&height=100&seq=ebook1&orientation=squarish" alt="Guía Básica" class="w-full h-full object-cover rounded-lg">
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium mb-1">Guía Básica de Nutrición Holística</h3>
+<p class="text-sm text-gray-400 mb-2">PDF • 45 páginas</p>
+<button class="text-primary text-sm hover:underline">Descargar</button>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-16 h-16 flex-shrink-0 bg-neonBlue bg-opacity-20 rounded-lg mr-4">
+<img src="https://readdy.ai/api/search-image?query=meal%20planning%20book%20cover%2C%20weekly%20menu%20template%2C%20food%20preparation%20guide%2C%20clean%20design&width=100&height=100&seq=ebook2&orientation=squarish" alt="Plan Semanal" class="w-full h-full object-cover rounded-lg">
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium mb-1">Plan Semanal de Comidas</h3>
+<p class="text-sm text-gray-400 mb-2">PDF • 32 páginas</p>
+<button class="text-primary text-sm hover:underline">Descargar</button>
+</div>
+</div>
+<div class="mt-4 text-center">
+<button class="px-6 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+Ver todos los ebooks
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Content -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-2xl font-bold text-white mb-6">Contenido Interactivo</h2>
+<div class="space-y-4">
+<!-- Questionnaire -->
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-questionnaire-line text-neonGreen"></i>
+</div>
+<h3 class="text-white font-medium">Evaluación Nutricional</h3>
+</div>
+<p class="text-sm text-gray-400 mb-3">Descubre tus hábitos alimenticios actuales y áreas de mejora.</p>
+<button class="text-neonGreen text-sm hover:underline">Comenzar evaluación</button>
+</div>
+<!-- Infographic -->
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mr-3">
+<i class="ri-gallery-line text-neonPink"></i>
+</div>
+<h3 class="text-white font-medium">Infografía: Alimentos Antiinflamatorios</h3>
+</div>
+<p class="text-sm text-gray-400 mb-3">Explora los beneficios de los alimentos que combaten la inflamación.</p>
+<button class="text-neonPink text-sm hover:underline">Ver infografía</button>
+</div>
+<div class="mt-4 text-center">
+<button class="px-6 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+Ver todo el contenido
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Tracking -->
+<div class="bg-darkSecondary rounded-lg p-6 mb-16">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-white">Tu Progreso</h2>
+<div class="flex items-center space-x-2">
+<span class="text-gray-400">4/12 completados</span>
+<div class="w-32 h-2 bg-dark rounded-full">
+<div class="w-1/3 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-dark p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white font-medium">Módulo 1</span>
+<i class="ri-checkbox-circle-fill text-primary"></i>
+</div>
+<div class="flex items-center text-sm text-gray-400">
+<i class="ri-time-line mr-1"></i>
+<span>Completado</span>
+</div>
+</div>
+<div class="bg-dark p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white font-medium">Módulo 2</span>
+<i class="ri-checkbox-circle-fill text-primary"></i>
+</div>
+<div class="flex items-center text-sm text-gray-400">
+<i class="ri-time-line mr-1"></i>
+<span>Completado</span>
+</div>
+</div>
+<div class="bg-dark p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white font-medium">Módulo 3</span>
+<i class="ri-checkbox-circle-fill text-primary"></i>
+</div>
+<div class="flex items-center text-sm text-gray-400">
+<i class="ri-time-line mr-1"></i>
+<span>Completado</span>
+</div>
+</div>
+<div class="bg-dark p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="text-white font-medium">Módulo 4</span>
+<i class="ri-checkbox-circle-fill text-primary"></i>
+</div>
+<div class="flex items-center text-sm text-gray-400">
+<i class="ri-time-line mr-1"></i>
+<span>En progreso</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Community Section -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden mb-16">
+<div class="p-8 md:p-12 flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 mb-6 md:mb-0 md:pr-8">
+<h2 class="text-2xl font-bold text-white mb-4">Únete a Nuestra Comunidad</h2>
+<p class="text-gray-300 mb-6">Conecta con otros estudiantes, comparte tus experiencias y recibe apoyo en tu viaje hacia una alimentación más saludable.</p>
+<button class="px-6 py-3 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+Unirse al grupo privado
+</button>
+</div>
+<div class="w-full md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=diverse%20group%20of%20people%20cooking%20together%2C%20healthy%20cooking%20class%2C%20community%20kitchen%2C%20sharing%20healthy%20meal&width=600&height=400&seq=community&orientation=landscape" alt="Comunidad" class="rounded-lg w-full">
+</div>
+</div>
+</div>
+<!-- FAQ Section -->
+<div class="mb-16">
+<h2 class="text-2xl font-bold text-white mb-6">Preguntas Frecuentes</h2>
+<div class="space-y-4">
+<div class="bg-darkSecondary rounded-lg p-6">
+<h3 class="text-white font-medium mb-2">¿Cuánto tiempo tengo acceso al contenido?</h3>
+<p class="text-gray-400">Tienes acceso ilimitado a todo el contenido del programa, incluyendo futuras actualizaciones.</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6">
+<h3 class="text-white font-medium mb-2">¿El programa incluye asesoramiento personalizado?</h3>
+<p class="text-gray-400">Sí, tienes acceso a sesiones grupales semanales y soporte por chat con nuestros expertos en nutrición.</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6">
+<h3 class="text-white font-medium mb-2">¿Puedo seguir el programa a mi propio ritmo?</h3>
+<p class="text-gray-400">Absolutamente. El contenido está diseñado para que avances a tu propio ritmo y puedas revisarlo cuando lo necesites.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modo Wallpaper -->
+<div class="wallpaper-mode" id="wallpaperMode">
+<div class="pulse"></div>
+<div class="pulse"></div>
+<div class="pulse"></div>
+</div>
+<!-- Modal de selección de idioma (mostrado al inicio) -->
+<div id="languageModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80">
+<div class="bg-darkSecondary dark:bg-darkSecondary light:bg-white p-8 rounded-lg max-w-md w-full text-center">
+<h2 class="text-2xl font-bold mb-6 text-white">Selecciona tu idioma</h2>
+<div class="flex justify-center space-x-4">
+<button id="selectSpanish" class="px-6 py-3 bg-primary text-white font-medium rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+Español
+</button>
+<button id="selectEnglish" class="px-6 py-3 bg-gray-700 text-white font-medium rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+English
+</button>
+</div>
+</div>
+</div>
+<!-- Header -->
+<header class="bg-darkSecondary dark:bg-darkSecondary light:bg-white py-4 px-6 sticky top-0 z-40 shadow-md">
+<div class="container mx-auto flex justify-between items-center">
+<div class="flex items-center">
+<h1 class="text-3xl font-['Pacifico'] text-primary mr-8">Googlecast</h1>
+<nav class="hidden md:flex space-x-6">
+<a href="#" class="text-white hover:text-primary transition">Inicio</a>
+<a href="#" class="text-white hover:text-primary transition">Episodios</a>
+<a href="#" class="text-white hover:text-primary transition">Temas</a>
+<a href="#" class="text-white hover:text-primary transition">Calendario</a>
+<a href="#" class="text-white hover:text-primary transition">Acerca de</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<!-- Buscador -->
+<div class="relative hidden md:block">
+<input type="text" placeholder="Buscar episodios..." class="bg-dark dark:bg-dark light:bg-gray-100 text-white light:text-gray-800 px-4 py-2 pl-10 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary w-64">
+<div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<!-- Selector de idioma -->
+<div class="language-selector">
+<button class="flex items-center space-x-1 text-white hover:text-primary transition">
+<span>ES</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="language-dropdown bg-darkSecondary dark:bg-darkSecondary light:bg-white shadow-lg rounded-lg overflow-hidden">
+<a href="#" class="block px-4 py-2 text-white hover:bg-primary transition">Español</a>
+<a href="#" class="block px-4 py-2 text-white hover:bg-primary transition">English</a>
+</div>
+</div>
+<!-- Toggle de modo claro/oscuro -->
+<label class="custom-switch">
+<input type="checkbox" id="themeToggle">
+<span class="switch-slider"></span>
+</label>
+<!-- Botón de menú móvil -->
+<button id="mobileMenuButton" class="md:hidden w-8 h-8 flex items-center justify-center text-white">
+<i class="ri-menu-line text-xl"></i>
+</button>
+<!-- Botón de usuario/login -->
+<button id="userButton" class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-user-line"></i>
+</button>
+</div>
+</div>
+</header>
+<!-- Menú móvil -->
+<div id="mobileMenu" class="fixed inset-0 bg-dark bg-opacity-95 z-50 hidden">
+<div class="flex justify-end p-6">
+<button id="closeMenuButton" class="w-8 h-8 flex items-center justify-center text-white">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<nav class="flex flex-col items-center space-y-6 mt-10 text-lg">
+<a href="#" class="text-white hover:text-primary transition">Inicio</a>
+<a href="#" class="text-white hover:text-primary transition">Episodios</a>
+<a href="#" class="text-white hover:text-primary transition">Temas</a>
+<a href="#" class="text-white hover:text-primary transition">Calendario</a>
+<a href="#" class="text-white hover:text-primary transition">Acerca de</a>
+<div class="relative mt-6 w-full max-w-xs">
+<input type="text" placeholder="Buscar episodios..." class="w-full bg-darkSecondary text-white px-4 py-2 pl-10 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</nav>
+</div>
+<!-- Modal de Login/Registro -->
+<div id="authModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 hidden">
+<div class="bg-darkSecondary dark:bg-darkSecondary light:bg-white p-8 rounded-lg max-w-md w-full">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-white" id="authModalTitle">Iniciar Sesión</h2>
+<button id="closeAuthModal" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="flex mb-6">
+<button id="loginTabButton" class="flex-1 py-2 text-center border-b-2 border-primary text-white font-medium">Iniciar Sesión</button>
+<button id="registerTabButton" class="flex-1 py-2 text-center border-b-2 border-gray-700 text-gray-400 font-medium">Registrarse</button>
+</div>
+<!-- Formulario de Login -->
+<form id="loginForm" class="space-y-4">
+<div>
+<label for="loginEmail" class="block text-sm font-medium text-gray-400 mb-1">Correo Electrónico</label>
+<input type="email" id="loginEmail" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="loginPassword" class="block text-sm font-medium text-gray-400 mb-1">Contraseña</label>
+<input type="password" id="loginPassword" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<label class="custom-checkbox">
+<input type="checkbox">
+<span class="checkmark"></span>
+</label>
+<span class="ml-2 text-sm text-gray-400">Recordarme</span>
+</div>
+<a href="#" class="text-sm text-primary hover:underline">¿Olvidaste tu contraseña?</a>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Iniciar Sesión</button>
+</form>
+<!-- Formulario de Registro -->
+<form id="registerForm" class="space-y-4 hidden">
+<div>
+<label for="registerName" class="block text-sm font-medium text-gray-400 mb-1">Nombre</label>
+<input type="text" id="registerName" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="registerEmail" class="block text-sm font-medium text-gray-400 mb-1">Correo Electrónico</label>
+<input type="email" id="registerEmail" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="registerPassword" class="block text-sm font-medium text-gray-400 mb-1">Contraseña</label>
+<input type="password" id="registerPassword" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="registerPasswordConfirm" class="block text-sm font-medium text-gray-400 mb-1">Confirmar Contraseña</label>
+<input type="password" id="registerPasswordConfirm" class="w-full bg-dark text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox">
+<input type="checkbox">
+<span class="checkmark"></span>
+</label>
+<span class="ml-2 text-sm text-gray-400">Acepto los <a href="#" class="text-primary hover:underline">términos y condiciones</a></span>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Registrarse</button>
+</form>
+<div class="mt-6 pt-6 border-t border-gray-700">
+<p class="text-center text-sm text-gray-400 mb-4">O continuar con</p>
+<div class="flex space-x-4">
+<button class="flex-1 flex items-center justify-center py-2 bg-dark hover:bg-opacity-80 rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-google-fill text-white"></i>
+</div>
+<span class="text-white text-sm">Google</span>
+</button>
+<button class="flex-1 flex items-center justify-center py-2 bg-dark hover:bg-opacity-80 rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-facebook-fill text-white"></i>
+</div>
+<span class="text-white text-sm">Facebook</span>
+</button>
+<button class="flex-1 flex items-center justify-center py-2 bg-dark hover:bg-opacity-80 rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-apple-fill text-white"></i>
+</div>
+<span class="text-white text-sm">Apple</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contenido principal -->
+<main class="container mx-auto px-4 py-8">
+<!-- Navegación por temas -->
+<div class="mb-8 overflow-x-auto">
+<div class="flex space-x-2 min-w-max">
+<button class="px-4 py-2 bg-primary text-white rounded-full whitespace-nowrap">Todos</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Nutrición Holística</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Inteligencia Artificial</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Tarot</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Educación Online</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Neurociencia</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Cultura LGBT+</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Marketing de Contenidos</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Negocios Digitales</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Seducción</button>
+</div>
+</div>
+<!-- Episodio destacado -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden mb-12">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=podcast%20studio%20with%20modern%20equipment%2C%20neon%20lights%2C%20professional%20microphones%2C%20sound%20mixer%2C%20headphones%2C%20vibrant%20colors%2C%20high-quality%20audio%20setup%2C%20digital%20recording%20equipment%2C%20sound-proof%20walls%2C%20audio%20visualization%20on%20screens&width=1200&height=500&seq=featured&orientation=landscape" alt="Episodio destacado" class="w-full h-64 object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-t from-darkSecondary to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<span class="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 inline-block">DESTACADO</span>
+<h2 class="text-2xl md:text-3xl font-bold text-white mb-2">El Futuro de la IA en la Educación Online</h2>
+<p class="text-gray-300 mb-4">Exploramos cómo la inteligencia artificial está transformando la forma en que aprendemos en línea</p>
+<div class="flex items-center text-sm text-gray-400">
+<span class="flex items-center mr-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+45 minutos
+</span>
+<span class="flex items-center mr-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+9 de junio, 2025
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-headphone-line"></i>
+</div>
+3.2K reproducciones
+</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex flex-wrap gap-4">
+<button class="flex items-center px-5 py-2 bg-primary hover:bg-opacity-90 text-white rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-play-fill"></i>
+</div>
+Reproducir episodio
+</button>
+<button class="flex items-center px-4 py-2 bg-dark hover:bg-opacity-80 text-white rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-heart-line"></i>
+</div>
+Me gusta
+</button>
+<button class="flex items-center px-4 py-2 bg-dark hover:bg-opacity-80 text-white rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-bookmark-line"></i>
+</div>
+Guardar
+</button>
+<button class="flex items-center px-4 py-2 bg-dark hover:bg-opacity-80 text-white rounded-button transition whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-share-line"></i>
+</div>
+Compartir
+</button>
+</div>
+</div>
+<!-- Episodios recientes -->
+<div class="mb-12">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-white">Episodios Recientes</h2>
+<a href="#" class="text-primary hover:underline flex items-center">
+Ver todos
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Episodio 1 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden hover:shadow-lg transition">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=nutritional%20science%2C%20healthy%20food%2C%20organic%20vegetables%20and%20fruits%2C%20balanced%20diet%2C%20holistic%20nutrition%20concept%2C%20vibrant%20colors%2C%20professional%20food%20photography%2C%20clean%20eating&width=400&height=225&seq=ep1&orientation=landscape" alt="Nutrición Holística" class="w-full h-48 object-cover object-top">
+<span class="absolute top-3 left-3 bg-neonGreen text-dark text-xs font-semibold px-3 py-1 rounded-full">Nutrición</span>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white mb-2">Nutrición Consciente: Alimentos que Potencian tu Energía</h3>
+<p class="text-gray-400 text-sm mb-3 line-clamp-2">Descubre cómo ciertos alimentos pueden aumentar tus niveles de energía y mejorar tu bienestar general.</p>
+<div class="flex items-center text-xs text-gray-500 mb-4">
+<span class="flex items-center mr-3">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+38 min
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+5 de junio, 2025
+</span>
+</div>
+<div class="flex justify-between">
+<button class="flex items-center px-3 py-1.5 bg-primary hover:bg-opacity-90 text-white rounded-button text-sm transition whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-play-fill"></i>
+</div>
+Reproducir
+</button>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Episodio 2 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden hover:shadow-lg transition">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=tarot%20cards%20spread%20on%20dark%20table%2C%20mystical%20atmosphere%2C%20candles%2C%20crystal%20ball%2C%20fortune%20telling%2C%20spiritual%20guidance%2C%20esoteric%20symbols%2C%20magical%20ambiance&width=400&height=225&seq=ep2&orientation=landscape" alt="Tarot" class="w-full h-48 object-cover object-top">
+<span class="absolute top-3 left-3 bg-neonPink text-white text-xs font-semibold px-3 py-1 rounded-full">Tarot</span>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white mb-2">Los Arcanos Mayores: Guía Completa de Interpretación</h3>
+<p class="text-gray-400 text-sm mb-3 line-clamp-2">Aprende a interpretar los 22 arcanos mayores del tarot y cómo aplicarlos en lecturas personales.</p>
+<div class="flex items-center text-xs text-gray-500 mb-4">
+<span class="flex items-center mr-3">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+52 min
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+2 de junio, 2025
+</span>
+</div>
+<div class="flex justify-between">
+<button class="flex items-center px-3 py-1.5 bg-primary hover:bg-opacity-90 text-white rounded-button text-sm transition whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-play-fill"></i>
+</div>
+Reproducir
+</button>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Episodio 3 -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden hover:shadow-lg transition">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=artificial%20intelligence%20concept%2C%20digital%20brain%2C%20neural%20networks%20visualization%2C%20futuristic%20technology%2C%20glowing%20connections%2C%20machine%20learning%2C%20AI%20algorithms%2C%20blue%20and%20purple%20tones&width=400&height=225&seq=ep3&orientation=landscape" alt="Inteligencia Artificial" class="w-full h-48 object-cover object-top">
+<span class="absolute top-3 left-3 bg-neonBlue text-white text-xs font-semibold px-3 py-1 rounded-full">IA</span>
+</div>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white mb-2">IA Generativa: Revolución Creativa o Amenaza</h3>
+<p class="text-gray-400 text-sm mb-3 line-clamp-2">Analizamos el impacto de la IA generativa en las industrias creativas y su futuro desarrollo.</p>
+<div class="flex items-center text-xs text-gray-500 mb-4">
+<span class="flex items-center mr-3">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+45 min
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-calendar-line"></i>
+</div>
+30 de mayo, 2025
+</span>
+</div>
+<div class="flex justify-between">
+<button class="flex items-center px-3 py-1.5 bg-primary hover:bg-opacity-90 text-white rounded-button text-sm transition whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-play-fill"></i>
+</div>
+Reproducir
+</button>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Episodio en detalle -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden mb-12">
+<div class="p-6">
+<h2 class="text-2xl font-bold text-white mb-6">Episodio Actual</h2>
+<div class="flex flex-col md:flex-row gap-6">
+<!-- Columna izquierda: Reproductor y detalles -->
+<div class="w-full md:w-2/3">
+<div class="bg-dark rounded-lg p-6 mb-6">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary rounded-full mr-4">
+<i class="ri-play-fill text-2xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white">El Futuro de la IA en la Educación Online</h3>
+<p class="text-gray-400 text-sm">Episodio 42 • Inteligencia Artificial</p>
+</div>
+</div>
+<!-- Visualizador de audio -->
+<div class="audio-visualizer mb-4">
+<div class="audio-bar h-5"></div>
+<div class="audio-bar h-10"></div>
+<div class="audio-bar h-7"></div>
+<div class="audio-bar h-12"></div>
+<div class="audio-bar h-8"></div>
+<div class="audio-bar h-16"></div>
+<div class="audio-bar h-10"></div>
+<div class="audio-bar h-20"></div>
+<div class="audio-bar h-14"></div>
+<div class="audio-bar h-6"></div>
+<div class="audio-bar h-18"></div>
+<div class="audio-bar h-12"></div>
+<div class="audio-bar h-8"></div>
+<div class="audio-bar h-15"></div>
+<div class="audio-bar h-10"></div>
+<div class="audio-bar h-5"></div>
+<div class="audio-bar h-12"></div>
+<div class="audio-bar h-8"></div>
+<div class="audio-bar h-16"></div>
+<div class="audio-bar h-10"></div>
+<div class="audio-bar h-7"></div>
+<div class="audio-bar h-14"></div>
+<div class="audio-bar h-9"></div>
+<div class="audio-bar h-12"></div>
+<div class="audio-bar h-6"></div>
+<div class="audio-bar h-18"></div>
+<div class="audio-bar h-11"></div>
+<div class="audio-bar h-7"></div>
+<div class="audio-bar h-15"></div>
+<div class="audio-bar h-9"></div>
+</div>
+<!-- Controles de audio -->
+<div class="mb-4">
+<input type="range" class="audio-progress w-full" min="0" max="100" value="35">
+<div class="flex justify-between text-xs text-gray-400 mt-1">
+<span>15:45</span>
+<span>45:00</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-4">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-rewind-15-line"></i>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-pause-fill text-xl"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-speed-line"></i>
+</button>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-volume-up-line"></i>
+</button>
+<div class="flex items-center space-x-2">
+<span class="text-sm text-gray-400">Subtítulos</span>
+<label class="custom-switch">
+<input type="checkbox" id="subtitlesToggle" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-sm text-gray-400">Wallpaper</span>
+<label class="custom-switch">
+<input type="checkbox" id="wallpaperToggle">
+<span class="switch-slider"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Transcripción -->
+<div class="bg-dark rounded-lg p-6 mb-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold text-white">Transcripción</h3>
+<button class="text-primary hover:underline text-sm">Mostrar completa</button>
+</div>
+<div class="space-y-4 text-gray-300">
+<p class="bg-primary bg-opacity-10 p-2 rounded"><span class="text-primary font-medium">15:45</span> - Entonces, cuando hablamos de inteligencia artificial en la educación, no solo nos referimos a chatbots que responden preguntas básicas...</p>
+<p><span class="text-primary font-medium">16:02</span> - Estamos hablando de sistemas que pueden analizar el progreso individual de cada estudiante y adaptar el contenido educativo a sus necesidades específicas.</p>
+<p><span class="text-primary font-medium">16:18</span> - Imagina un tutor virtual que conoce exactamente tus fortalezas, debilidades, y puede diseñar un plan de estudios personalizado que evoluciona contigo.</p>
+<p><span class="text-primary font-medium">16:35</span> - Algunas universidades ya están implementando estos sistemas con resultados sorprendentes. Por ejemplo, la Universidad de Barcelona ha reportado un aumento del 27% en la retención de información...</p>
+</div>
+</div>
+<!-- Comentarios -->
+<div class="bg-dark rounded-lg p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold text-white">Comentarios (24)</h3>
+<button class="text-primary hover:underline text-sm">Ver todos</button>
+</div>
+<!-- Formulario de comentario -->
+<div class="flex gap-3 mb-6">
+<div class="w-10 h-10 flex-shrink-0 bg-gray-700 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%2C%20neutral%20expression%2C%20business%20casual%2C%20indoor%20lighting%2C%20high%20quality%20portrait%2C%20realistic&width=100&height=100&seq=user1&orientation=squarish" alt="Usuario" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-grow">
+<input type="text" placeholder="Escribe un comentario..." class="w-full bg-darkSecondary text-white px-4 py-2 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+</div>
+<!-- Lista de comentarios -->
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="w-10 h-10 flex-shrink-0 bg-gray-700 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%2C%20woman%2C%20neutral%20expression%2C%20business%20casual%2C%20indoor%20lighting%2C%20high%20quality%20portrait%2C%20realistic&width=100&height=100&seq=user2&orientation=squarish" alt="Lucía Martínez" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<div class="bg-darkSecondary p-3 rounded-lg">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-medium text-white">Lucía Martínez</h4>
+<span class="text-xs text-gray-400">2 horas atrás</span>
+</div>
+<p class="text-gray-300 text-sm">Me encantó este episodio. Como profesora universitaria, estoy muy interesada en implementar IA en mis clases. ¿Podrían recomendar alguna plataforma específica para empezar?</p>
+</div>
+<div class="flex items-center mt-1 ml-2 text-xs text-gray-400">
+<button class="flex items-center hover:text-primary">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-heart-line"></i>
+</div>
+12
+</button>
+<span class="mx-2">•</span>
+<button class="hover:text-primary">Responder</button>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-10 h-10 flex-shrink-0 bg-gray-700 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%2C%20man%2C%20neutral%20expression%2C%20business%20casual%2C%20indoor%20lighting%2C%20high%20quality%20portrait%2C%20realistic&width=100&height=100&seq=user3&orientation=squarish" alt="Miguel Ángel Durán" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<div class="bg-darkSecondary p-3 rounded-lg">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-medium text-white">Miguel Ángel Durán</h4>
+<span class="text-xs text-gray-400">5 horas atrás</span>
+</div>
+<p class="text-gray-300 text-sm">Excelente contenido. Me gustaría saber más sobre los aspectos éticos de la IA en educación. ¿Harán un episodio sobre eso próximamente?</p>
+</div>
+<div class="flex items-center mt-1 ml-2 text-xs text-gray-400">
+<button class="flex items-center hover:text-primary">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-heart-line"></i>
+</div>
+8
+</button>
+<span class="mx-2">•</span>
+<button class="hover:text-primary">Responder</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Columna derecha: Recursos y episodios relacionados -->
+<div class="w-full md:w-1/3">
+<!-- Recursos del episodio -->
+<div class="bg-dark rounded-lg p-6 mb-6">
+<h3 class="text-lg font-semibold text-white mb-4">Recursos del Episodio</h3>
+<div class="space-y-3">
+<div class="flex items-center p-3 bg-darkSecondary rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded mr-3">
+<i class="ri-file-pdf-line text-primary"></i>
+</div>
+<div class="flex-grow">
+<h4 class="text-white text-sm font-medium">Ideas Clave - PDF</h4>
+<p class="text-gray-400 text-xs">Resumen de conceptos principales</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-download-line"></i>
+</button>
+</div>
+<div class="flex items-center p-3 bg-darkSecondary rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded mr-3">
+<i class="ri-image-line text-neonBlue"></i>
+</div>
+<div class="flex-grow">
+<h4 class="text-white text-sm font-medium">Infografía - IA en Educación</h4>
+<p class="text-gray-400 text-xs">Visualización de datos y conceptos</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-download-line"></i>
+</button>
+</div>
+<div class="flex items-center p-3 bg-darkSecondary rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded mr-3">
+<i class="ri-questionnaire-line text-neonGreen"></i>
+</div>
+<div class="flex-grow">
+<h4 class="text-white text-sm font-medium">Cuestionario Interactivo</h4>
+<p class="text-gray-400 text-xs">Evalúa tu comprensión del tema</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-external-link-line"></i>
+</button>
+</div>
+<div class="flex items-center p-3 bg-darkSecondary rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-neonPink bg-opacity-20 rounded mr-3">
+<i class="ri-book-open-line text-neonPink"></i>
+</div>
+<div class="flex-grow">
+<h4 class="text-white text-sm font-medium">Ebook Complementario</h4>
+<p class="text-gray-400 text-xs">Guía completa de IA en educación</p>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-download-line"></i>
+</button>
+</div>
+</div>
+<div class="mt-4 p-3 bg-primary bg-opacity-10 rounded-lg border border-primary border-opacity-30">
+<p class="text-sm text-center text-primary">
+<i class="ri-lock-line mr-1"></i>
+Inicia sesión para acceder a todos los recursos
+</p>
+</div>
+</div>
+<!-- Episodios relacionados -->
+<div class="bg-dark rounded-lg p-6">
+<h3 class="text-lg font-semibold text-white mb-4">Episodios Relacionados</h3>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=online%20education%2C%20digital%20classroom%2C%20e-learning%2C%20students%20using%20laptops%2C%20virtual%20learning%20environment&width=100&height=100&seq=rel1&orientation=squarish" alt="Episodio relacionado" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="text-white text-sm font-medium mb-1">El Auge de las Plataformas de Educación Online</h4>
+<p class="text-gray-400 text-xs mb-2">Educación Online • 35 min</p>
+<button class="text-xs text-primary hover:underline flex items-center">
+Escuchar
+<div class="w-3 h-3 flex items-center justify-center ml-1">
+<i class="ri-play-fill"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=brain%20scan%2C%20neuroscience%20visualization%2C%20cognitive%20processes%2C%20neural%20activity%2C%20brain%20research%20technology&width=100&height=100&seq=rel2&orientation=squarish" alt="Episodio relacionado" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="text-white text-sm font-medium mb-1">Neurociencia del Aprendizaje: Cómo Aprende Nuestro Cerebro</h4>
+<p class="text-gray-400 text-xs mb-2">Neurociencia • 42 min</p>
+<button class="text-xs text-primary hover:underline flex items-center">
+Escuchar
+<div class="w-3 h-3 flex items-center justify-center ml-1">
+<i class="ri-play-fill"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-20 h-20 flex-shrink-0 rounded overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=digital%20marketing%20strategy%2C%20content%20creation%2C%20social%20media%20management%2C%20online%20business%20growth%2C%20marketing%20analytics&width=100&height=100&seq=rel3&orientation=squarish" alt="Episodio relacionado" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="text-white text-sm font-medium mb-1">Marketing de Contenidos Educativos</h4>
+<p class="text-gray-400 text-xs mb-2">Marketing de Contenidos • 38 min</p>
+<button class="text-xs text-primary hover:underline flex items-center">
+Escuchar
+<div class="w-3 h-3 flex items-center justify-center ml-1">
+<i class="ri-play-fill"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Calendario -->
+<div id="calendar" class="container mx-auto px-4 py-12">
+<div class="max-w-6xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Calendario de Episodios</h1>
+<p class="text-gray-400">Mantente al día con nuestros próximos episodios y eventos especiales</p>
+</div>
+<!-- Navegación del calendario -->
+<div class="bg-darkSecondary rounded-lg p-6 mb-8">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<h2 class="text-xl font-semibold text-white">Junio 2025</h2>
+<button class="w-10 h-10 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+<div class="flex space-x-2">
+<button class="px-4 py-2 bg-primary text-white rounded-full text-sm whitespace-nowrap">Hoy</button>
+<button class="px-4 py-2 bg-dark text-white rounded-full text-sm whitespace-nowrap">Mes</button>
+<button class="px-4 py-2 bg-dark text-white rounded-full text-sm whitespace-nowrap">Semana</button>
+<button class="px-4 py-2 bg-dark text-white rounded-full text-sm whitespace-nowrap">Día</button>
+</div>
+</div>
+<!-- Calendario -->
+<div class="grid grid-cols-7 gap-2">
+<!-- Días de la semana -->
+<div class="text-center text-gray-400 py-2">Lun</div>
+<div class="text-center text-gray-400 py-2">Mar</div>
+<div class="text-center text-gray-400 py-2">Mié</div>
+<div class="text-center text-gray-400 py-2">Jue</div>
+<div class="text-center text-gray-400 py-2">Vie</div>
+<div class="text-center text-gray-400 py-2">Sáb</div>
+<div class="text-center text-gray-400 py-2">Dom</div>
+<!-- Días del mes -->
+<div class="bg-dark p-2 rounded-lg min-h-[120px] text-gray-500">29</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px] text-gray-500">30</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px] text-gray-500">31</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">1</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">2</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">3</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">4</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">5</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">6</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">7</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">8</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-primary font-medium">9</span>
+<div class="mt-2 p-2 bg-primary bg-opacity-10 rounded text-xs">
+<p class="text-primary font-medium">19:00</p>
+<p class="text-white">IA en Educación</p>
+</div>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">10</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">11</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">12</span>
+<div class="mt-2 p-2 bg-neonPink bg-opacity-10 rounded text-xs">
+<p class="text-neonPink font-medium">19:00</p>
+<p class="text-white">Seducción</p>
+</div>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">13</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">14</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">15</span>
+<div class="mt-2 p-2 bg-neonGreen bg-opacity-10 rounded text-xs">
+<p class="text-neonGreen font-medium">11:00</p>
+<p class="text-white">Nutrición</p>
+</div>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">16</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">17</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">18</span>
+<div class="mt-2 p-2 bg-neonBlue bg-opacity-10 rounded text-xs">
+<p class="text-neonBlue font-medium">17:00</p>
+<p class="text-white">Negocios</p>
+</div>
+</div>
+<!-- Completar el resto del mes -->
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">19</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">20</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">21</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">22</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">23</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">24</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">25</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">26</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">27</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">28</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">29</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px]">
+<span class="text-white">30</span>
+</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px] text-gray-500">1</div>
+<div class="bg-dark p-2 rounded-lg min-h-[120px] text-gray-500">2</div>
+</div>
+</div>
+<!-- Próximos eventos -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-darkSecondary rounded-lg p-6">
+<h3 class="text-xl font-semibold text-white mb-4">Próximos Eventos</h3>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-16 h-16 flex-shrink-0 bg-primary bg-opacity-20 rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">12</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonPink text-xs font-semibold">SEDUCCIÓN</span>
+<h4 class="text-white font-medium mb-1">El Arte de la Comunicación No Verbal</h4>
+<p class="text-gray-400 text-xs">Miércoles • 19:00 • 🔴 En vivo</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-16 h-16 flex-shrink-0 bg-primary bg-opacity-20 rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">15</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonGreen text-xs font-semibold">NUTRICIÓN</span>
+<h4 class="text-white font-medium mb-1">Ayuno Intermitente: Mitos y Realidades</h4>
+<p class="text-gray-400 text-xs">Sábado • 11:00 • Con Dr. Ramírez</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-16 h-16 flex-shrink-0 bg-primary bg-opacity-20 rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">18</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonBlue text-xs font-semibold">NEGOCIOS</span>
+<h4 class="text-white font-medium mb-1">Monetización de Podcasts en 2025</h4>
+<p class="text-gray-400 text-xs">Martes • 17:00 • Panel de expertos</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6">
+<h3 class="text-xl font-semibold text-white mb-4">Filtros</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-4 h-4 bg-primary rounded-full mr-3"></div>
+<span class="text-white">IA y Tecnología</span>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-4 h-4 bg-neonPink rounded-full mr-3"></div>
+<span class="text-white">Seducción</span>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-4 h-4 bg-neonGreen rounded-full mr-3"></div>
+<span class="text-white">Nutrición</span>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-4 h-4 bg-neonBlue rounded-full mr-3"></div>
+<span class="text-white">Negocios</span>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="mt-6">
+<button class="w-full px-4 py-2 bg-primary text-white rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">
+Aplicar Filtros
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recursos -->
+<div id="resources" class="container mx-auto px-4 py-12">
+<div class="max-w-6xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Recursos</h1>
+<p class="text-gray-400">Material complementario para profundizar en los temas</p>
+</div>
+<!-- Categorías de recursos -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-book-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">45+</h3>
+<p class="text-gray-400">Guías PDF</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-video-line text-neonBlue text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">120+</h3>
+<p class="text-gray-400">Videos Tutoriales</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-file-list-line text-neonGreen text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">80+</h3>
+<p class="text-gray-400">Plantillas</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-presentation-line text-neonPink text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">30+</h3>
+<p class="text-gray-400">Workshops</p>
+</div>
+</div>
+<!-- Recursos Destacados -->
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-white mb-6">Recursos Destacados</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=digital%20marketing%20strategy%20guide%2C%20professional%20business%20document%2C%20modern%20design%20layout%2C%20infographic%20elements&width=400&height=200&seq=resource1&orientation=landscape" alt="Guía Marketing Digital" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-primary text-sm font-semibold">GUÍA PDF</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Guía Completa de Marketing Digital 2025</h3>
+<p class="text-gray-400 text-sm mb-4">Estrategias actualizadas para dominar el marketing digital en la era post-IA.</p>
+<div class="flex justify-between items-center">
+<span class="text-gray-400 text-sm">32 páginas</span>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=productivity%20planner%20template%2C%20task%20management%2C%20time%20blocking%20system%2C%20minimalist%20design&width=400&height=200&seq=resource2&orientation=landscape" alt="Plantilla Productividad" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-neonBlue text-sm font-semibold">PLANTILLA</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Sistema de Productividad Personal</h3>
+<p class="text-gray-400 text-sm mb-4">Plantilla personalizable para maximizar tu productividad diaria.</p>
+<div class="flex justify-between items-center">
+<span class="text-gray-400 text-sm">5 hojas</span>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=online%20workshop%2C%20virtual%20learning%2C%20interactive%20webinar%2C%20professional%20presentation&width=400&height=200&seq=resource3&orientation=landscape" alt="Workshop IA" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<span class="text-neonGreen text-sm font-semibold">WORKSHOP</span>
+<h3 class="text-xl font-semibold text-white mt-2 mb-3">Masterclass: IA para Emprendedores</h3>
+<p class="text-gray-400 text-sm mb-4">Aprende a implementar IA en tu negocio de manera efectiva.</p>
+<div class="flex justify-between items-center">
+<span class="text-gray-400 text-sm">2.5 horas</span>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-play-line mr-2"></i>
+Ver ahora
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Biblioteca de Recursos -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-white">Biblioteca de Recursos</h2>
+<div class="flex gap-3">
+<input type="text" placeholder="Buscar recursos..." class="bg-dark text-white px-4 py-2 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<select class="bg-dark text-white px-4 py-2 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary pr-8">
+<option>Todos los tipos</option>
+<option>Guías PDF</option>
+<option>Videos</option>
+<option>Plantillas</option>
+<option>Workshops</option>
+</select>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4">
+<i class="ri-file-pdf-line text-primary text-xl"></i>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">Guía de Inversión en Criptomonedas</h3>
+<p class="text-sm text-gray-400">Actualizado: Junio 2025 • 28 páginas</p>
+</div>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-12 h-12 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-lg mr-4">
+<i class="ri-video-line text-neonBlue text-xl"></i>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">Tutorial: Mindfulness para Principiantes</h3>
+<p class="text-sm text-gray-400">45 minutos • Serie de 5 videos</p>
+</div>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-play-line mr-2"></i>
+Ver ahora
+</button>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-12 h-12 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-lg mr-4">
+<i class="ri-file-excel-line text-neonGreen text-xl"></i>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">Plantilla de Seguimiento Financiero</h3>
+<p class="text-sm text-gray-400">Excel • Actualizado mensualmente</p>
+</div>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<button class="px-6 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+Cargar más recursos
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Temas -->
+<div id="topics" class="container mx-auto px-4 py-12">
+<div class="max-w-6xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Temas</h1>
+<p class="text-gray-400">Explora nuestras categorías temáticas</p>
+</div>
+<!-- Categorías principales -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=artificial%20intelligence%20technology%2C%20futuristic%20interface%2C%20digital%20transformation%2C%20modern%20tech%20visualization&width=400&height=200&seq=topic1&orientation=landscape" alt="Tecnología e IA" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<h2 class="text-2xl font-semibold text-white mb-3">Tecnología e IA</h2>
+<p class="text-gray-400 mb-4">Últimas tendencias en inteligencia artificial y tecnología emergente.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary">45 episodios</span>
+<button class="flex items-center text-white hover:text-primary transition">
+Explorar
+<i class="ri-arrow-right-line ml-2"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=business%20growth%2C%20startup%20success%2C%20entrepreneurship%2C%20modern%20office%20environment&width=400&height=200&seq=topic2&orientation=landscape" alt="Negocios" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<h2 class="text-2xl font-semibold text-white mb-3">Negocios</h2>
+<p class="text-gray-400 mb-4">Estrategias para emprendedores y desarrollo empresarial.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary">38 episodios</span>
+<button class="flex items-center text-white hover:text-primary transition">
+Explorar
+<i class="ri-arrow-right-line ml-2"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=personal%20development%2C%20mindfulness%2C%20wellness%2C%20peaceful%20meditation%20environment&width=400&height=200&seq=topic3&orientation=landscape" alt="Desarrollo Personal" class="w-full h-48 object-cover object-top">
+<div class="p-6">
+<h2 class="text-2xl font-semibold text-white mb-3">Desarrollo Personal</h2>
+<p class="text-gray-400 mb-4">Crecimiento personal, productividad y bienestar.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary">52 episodios</span>
+<button class="flex items-center text-white hover:text-primary transition">
+Explorar
+<i class="ri-arrow-right-line ml-2"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtemas -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+<div class="bg-darkSecondary rounded-lg p-4 text-center">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mx-auto mb-3">
+<i class="ri-robot-line text-primary"></i>
+</div>
+<h3 class="text-white font-medium mb-1">Machine Learning</h3>
+<p class="text-sm text-gray-400">12 episodios</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-4 text-center">
+<div class="w-12 h-12 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mx-auto mb-3">
+<i class="ri-line-chart-line text-neonBlue"></i>
+</div>
+<h3 class="text-white font-medium mb-1">Trading</h3>
+<p class="text-sm text-gray-400">15 episodios</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-4 text-center">
+<div class="w-12 h-12 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mx-auto mb-3">
+<i class="ri-mental-health-line text-neonGreen"></i>
+</div>
+<h3 class="text-white font-medium mb-1">Mindfulness</h3>
+<p class="text-sm text-gray-400">18 episodios</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-4 text-center">
+<div class="w-12 h-12 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mx-auto mb-3">
+<i class="ri-heart-line text-neonPink"></i>
+</div>
+<h3 class="text-white font-medium mb-1">Relaciones</h3>
+<p class="text-sm text-gray-400">14 episodios</p>
+</div>
+</div>
+<!-- Temas Trending -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-2xl font-bold text-white mb-6">Temas Trending</h2>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4">
+<span class="text-2xl font-bold text-primary">1</span>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">IA Generativa</h3>
+<p class="text-sm text-gray-400">Últimas 24 horas • 2.5K escuchas</p>
+</div>
+<div class="flex items-center text-primary">
+<i class="ri-arrow-up-line mr-1"></i>
+<span>45%</span>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4">
+<span class="text-2xl font-bold text-primary">2</span>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">Web3 y Blockchain</h3>
+<p class="text-sm text-gray-400">Últimas 24 horas • 1.8K escuchas</p>
+</div>
+<div class="flex items-center text-primary">
+<i class="ri-arrow-up-line mr-1"></i>
+<span>32%</span>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4">
+<span class="text-2xl font-bold text-primary">3</span>
+</div>
+<div class="flex-grow">
+<h3 class="text-white font-medium">Productividad Digital</h3>
+<p class="text-sm text-gray-400">Últimas 24 horas • 1.5K escuchas</p>
+</div>
+<div class="flex items-center text-primary">
+<i class="ri-arrow-up-line mr-1"></i>
+<span>28%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Episodios -->
+<div id="episodes" class="container mx-auto px-4 py-12">
+<div class="max-w-6xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Episodios</h1>
+<p class="text-gray-400">Descubre nuestro contenido más reciente</p>
+</div>
+<!-- Filtros y Búsqueda -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-primary text-white rounded-full whitespace-nowrap">Todos</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Más recientes</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Más populares</button>
+<button class="px-4 py-2 bg-darkSecondary text-white rounded-full hover:bg-primary transition whitespace-nowrap">Favoritos</button>
+</div>
+<div class="relative">
+<input type="text" placeholder="Buscar episodios..." class="w-64 bg-dark text-white pl-10 pr-4 py-2 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<div class="absolute left-3 top-2.5 text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<!-- Lista de Episodios -->
+<div class="space-y-6 mb-12">
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/3">
+<img src="https://readdy.ai/api/search-image?query=artificial%20intelligence%20education%2C%20digital%20learning%2C%20modern%20classroom%20technology%2C%20futuristic%20education&width=400&height=300&seq=ep4&orientation=landscape" alt="IA en Educación" class="w-full h-full object-cover object-top">
+</div>
+<div class="w-full md:w-2/3 p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-primary text-sm font-semibold">TECNOLOGÍA</span>
+<h2 class="text-2xl font-semibold text-white mt-2">El Futuro de la IA en la Educación Online</h2>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+</div>
+<p class="text-gray-400 mb-4">Exploramos cómo la inteligencia artificial está transformando la educación online y qué podemos esperar en los próximos años.</p>
+<div class="flex items-center text-sm text-gray-400 mb-6">
+<span class="flex items-center mr-4">
+<i class="ri-time-line mr-1"></i>
+45 minutos
+</span>
+<span class="flex items-center mr-4">
+<i class="ri-calendar-line mr-1"></i>
+9 de junio, 2025
+</span>
+<span class="flex items-center">
+<i class="ri-user-line mr-1"></i>
+María González
+</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-play-fill mr-2"></i>
+Reproducir
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-share-line mr-2"></i>
+Compartir
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/3">
+<img src="https://readdy.ai/api/search-image?query=cryptocurrency%20trading%2C%20financial%20technology%2C%20digital%20finance%2C%20blockchain%20visualization&width=400&height=300&seq=ep5&orientation=landscape" alt="Crypto Trading" class="w-full h-full object-cover object-top">
+</div>
+<div class="w-full md:w-2/3 p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-neonBlue text-sm font-semibold">FINANZAS</span>
+<h2 class="text-2xl font-semibold text-white mt-2">Estrategias Avanzadas de Crypto Trading</h2>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+</div>
+<p class="text-gray-400 mb-4">Análisis profundo de las últimas estrategias de trading en el mercado de criptomonedas.</p>
+<div class="flex items-center text-sm text-gray-400 mb-6">
+<span class="flex items-center mr-4">
+<i class="ri-time-line mr-1"></i>
+55 minutos
+</span>
+<span class="flex items-center mr-4">
+<i class="ri-calendar-line mr-1"></i>
+8 de junio, 2025
+</span>
+<span class="flex items-center">
+<i class="ri-user-line mr-1"></i>
+David Chen
+</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-play-fill mr-2"></i>
+Reproducir
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-share-line mr-2"></i>
+Compartir
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/3">
+<img src="https://readdy.ai/api/search-image?query=mindfulness%20meditation%2C%20wellness%20practice%2C%20peaceful%20environment%2C%20mental%20health&width=400&height=300&seq=ep6&orientation=landscape" alt="Mindfulness" class="w-full h-full object-cover object-top">
+</div>
+<div class="w-full md:w-2/3 p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-neonGreen text-sm font-semibold">BIENESTAR</span>
+<h2 class="text-2xl font-semibold text-white mt-2">Mindfulness en la Era Digital</h2>
+</div>
+<button class="w-10 h-10 flex items-center justify-center bg-dark hover:bg-opacity-80 text-white rounded-full transition">
+<i class="ri-heart-line"></i>
+</button>
+</div>
+<p class="text-gray-400 mb-4">Técnicas prácticas para mantener la calma y el enfoque en un mundo hiperconectado.</p>
+<div class="flex items-center text-sm text-gray-400 mb-6">
+<span class="flex items-center mr-4">
+<i class="ri-time-line mr-1"></i>
+40 minutos
+</span>
+<span class="flex items-center mr-4">
+<i class="ri-calendar-line mr-1"></i>
+7 de junio, 2025
+</span>
+<span class="flex items-center">
+<i class="ri-user-line mr-1"></i>
+Sophie Williams
+</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button hover:bg-opacity-90 transition whitespace-nowrap">
+<i class="ri-play-fill mr-2"></i>
+Reproducir
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-download-line mr-2"></i>
+Descargar
+</button>
+<button class="flex items-center px-4 py-2 bg-dark text-white rounded-button hover:bg-opacity-80 transition whitespace-nowrap">
+<i class="ri-share-line mr-2"></i>
+Compartir
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Paginación -->
+<div class="flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-primary transition">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full">1</button>
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-primary transition">2</button>
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-primary transition">3</button>
+<span class="text-gray-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-primary transition">12</button>
+<button class="w-10 h-10 flex items-center justify-center bg-dark text-white rounded-full hover:bg-primary transition">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Próximos episodios -->
+<div class="mb-12">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-bold text-white">Próximos Episodios</h2>
+<a href="#calendar" class="text-primary hover:underline flex items-center">
+Ver calendario completo
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-calendar-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-darkSecondary rounded-lg p-5 flex items-center">
+<div class="w-16 h-16 flex-shrink-0 bg-dark rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">12</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonPink text-xs font-semibold">SEDUCCIÓN</span>
+<h3 class="text-white font-medium mb-1">El Arte de la Comunicación No Verbal</h3>
+<p class="text-gray-400 text-xs">Miércoles • 19:00 • 🔴 En vivo</p>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg p-5 flex items-center">
+<div class="w-16 h-16 flex-shrink-0 bg-dark rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">15</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonGreen text-xs font-semibold">NUTRICIÓN</span>
+<h3 class="text-white font-medium mb-1">Ayuno Intermitente: Mitos y Realidades</h3>
+<p class="text-gray-400 text-xs">Sábado • 11:00 • Con Dr. Ramírez</p>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg p-5 flex items-center">
+<div class="w-16 h-16 flex-shrink-0 bg-dark rounded-lg flex flex-col items-center justify-center mr-4">
+<span class="text-primary text-xl font-bold">18</span>
+<span class="text-gray-400 text-xs">JUN</span>
+</div>
+<div>
+<span class="text-neonBlue text-xs font-semibold">NEGOCIOS</span>
+<h3 class="text-white font-medium mb-1">Monetización de Podcasts en 2025</h3>
+<p class="text-gray-400 text-xs">Martes • 17:00 • Panel de expertos</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Acerca de -->
+<div id="about" class="container mx-auto px-4 py-12">
+<div class="max-w-6xl mx-auto">
+<!-- Hero section -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden mb-12">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=modern%20podcast%20studio%20with%20professional%20equipment%2C%20team%20working%2C%20creative%20environment%2C%20high-end%20microphones%20and%20audio%20gear%2C%20warm%20lighting%2C%20contemporary%20design&width=1200&height=400&seq=about-hero&orientation=landscape" alt="Nuestro estudio" class="w-full h-[400px] object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-t from-darkSecondary to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h1 class="text-4xl font-bold text-white mb-4">Nuestra Historia</h1>
+<p class="text-xl text-gray-300 max-w-2xl">Creando contenido bilingüe de calidad para impulsar tu crecimiento personal y profesional</p>
+</div>
+</div>
+</div>
+<!-- Misión y Visión -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<div class="bg-darkSecondary rounded-lg p-6">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-4">
+<i class="ri-focus-3-line text-primary text-2xl"></i>
+</div>
+<h2 class="text-2xl font-bold text-white">Nuestra Misión</h2>
+</div>
+<p class="text-gray-300">Democratizar el conocimiento a través de contenido bilingüe de alta calidad, conectando ideas y personas más allá de las barreras del idioma.</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-4">
+<i class="ri-eye-line text-primary text-2xl"></i>
+</div>
+<h2 class="text-2xl font-bold text-white">Nuestra Visión</h2>
+</div>
+<p class="text-gray-300">Ser la plataforma líder en contenido educativo bilingüe, inspirando a millones de personas a expandir sus horizontes y alcanzar su máximo potencial.</p>
+</div>
+</div>
+<!-- Equipo -->
+<div class="mb-12">
+<h2 class="text-2xl font-bold text-white mb-8">Nuestro Equipo</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20female%20podcast%20host%2C%20confident%20pose%2C%20warm%20smile%2C%20studio%20lighting%2C%20modern%20background&width=400&height=400&seq=team1&orientation=squarish" alt="María González" class="w-full h-64 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">María González</h3>
+<p class="text-primary font-medium mb-3">Directora y Host Principal</p>
+<p class="text-gray-400 text-sm mb-4">Con más de 10 años de experiencia en medios digitales y educación online.</p>
+<div class="flex space-x-3">
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20male%20audio%20engineer%2C%20technical%20environment%2C%20focused%20expression%2C%20studio%20setting&width=400&height=400&seq=team2&orientation=squarish" alt="David Chen" class="w-full h-64 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">David Chen</h3>
+<p class="text-primary font-medium mb-3">Director Técnico</p>
+<p class="text-gray-400 text-sm mb-4">Ingeniero de sonido con experiencia en producción musical y podcast.</p>
+<div class="flex space-x-3">
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20female%20content%20manager%2C%20creative%20environment%2C%20engaging%20smile%2C%20modern%20office%20setting&width=400&height=400&seq=team3&orientation=squarish" alt="Sophie Williams" class="w-full h-64 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-semibold text-white mb-2">Sophie Williams</h3>
+<p class="text-primary font-medium mb-3">Directora de Contenido</p>
+<p class="text-gray-400 text-sm mb-4">Especialista en estrategia de contenido y narrativa digital.</p>
+<div class="flex space-x-3">
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-twitter-x-fill"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Estadísticas -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-mic-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">250+</h3>
+<p class="text-gray-400">Episodios Publicados</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-group-line text-neonBlue text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">100K+</h3>
+<p class="text-gray-400">Oyentes Mensuales</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-global-line text-neonGreen text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">45+</h3>
+<p class="text-gray-400">Países Alcanzados</p>
+</div>
+<div class="bg-darkSecondary rounded-lg p-6 text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-star-line text-neonPink text-2xl"></i>
+</div>
+<h3 class="text-3xl font-bold text-white mb-2">4.9</h3>
+<p class="text-gray-400">Valoración Promedio</p>
+</div>
+</div>
+<!-- Valores -->
+<div class="bg-darkSecondary rounded-lg p-8 mb-12">
+<h2 class="text-2xl font-bold text-white mb-8 text-center">Nuestros Valores</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-heart-line text-primary text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Pasión</h3>
+<p class="text-gray-400">Amamos lo que hacemos y lo transmitimos en cada episodio.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-award-line text-neonBlue text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Excelencia</h3>
+<p class="text-gray-400">Buscamos la máxima calidad en cada contenido que producimos.</p>
+</div>
+<div class="text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mx-auto mb-4">
+<i class="ri-community-line text-neonGreen text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Comunidad</h3>
+<p class="text-gray-400">Creamos conexiones significativas más allá del contenido.</p>
+</div>
+</div>
+</div>
+<!-- Contacto -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="p-8">
+<h2 class="text-2xl font-bold text-white mb-6">¿Tienes alguna pregunta?</h2>
+<p class="text-gray-300 mb-6">Estamos aquí para ayudarte. Contáctanos y te responderemos lo antes posible.</p>
+<div class="space-y-4">
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-4">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Email</h3>
+<p class="text-gray-400">contacto@googlecast.com</p>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-4">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Ubicación</h3>
+<p class="text-gray-400">Madrid, España</p>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-4">
+<i class="ri-customer-service-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Soporte</h3>
+<p class="text-gray-400">Lun-Vie, 9:00-18:00</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-dark p-8">
+<form class="space-y-4">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-400 mb-1">Nombre</label>
+<input type="text" id="name" class="w-full bg-darkSecondary text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+<input type="email" id="email" class="w-full bg-darkSecondary text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+<div>
+<label for="message" class="block text-sm font-medium text-gray-400 mb-1">Mensaje</label>
+<textarea id="message" rows="4" class="w-full bg-darkSecondary text-white px-4 py-2 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Enviar Mensaje</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="bg-darkSecondary rounded-lg overflow-hidden mb-12">
+<div class="p-8 md:p-12 flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 mb-6 md:mb-0 md:pr-8">
+<span class="text-primary text-sm font-semibold uppercase tracking-wider">NEWSLETTER</span>
+<h2 class="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">Mantente al día con nuestro contenido exclusivo</h2>
+<p class="text-gray-300 mb-6">Suscríbete a nuestra newsletter y recibe notificaciones de nuevos episodios, recursos exclusivos y contenido que no compartimos en ningún otro lugar.</p>
+<div class="flex flex-col sm:flex-row gap-3">
+<input type="email" placeholder="Tu correo electrónico" class="flex-grow bg-dark text-white px-4 py-3 rounded-button border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<button class="bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-button font-medium transition whitespace-nowrap">Suscribirme</button>
+</div>
+<p class="text-gray-400 text-xs mt-3">Al suscribirte, aceptas nuestra <a href="#" class="text-primary hover:underline">política de privacidad</a>. No hacemos spam.</p>
+</div>
+<div class="w-full md:w-1/2 flex justify-center">
+<img src="https://readdy.ai/api/search-image?query=podcast%20newsletter%20concept%2C%20email%20marketing%2C%20digital%20communication%2C%20newsletter%20subscription%2C%20modern%20design%20with%20purple%20and%20blue%20neon%20accents&width=500&height=350&seq=newsletter&orientation=landscape" alt="Newsletter" class="rounded-lg max-w-full h-auto">
+</div>
+</div>
+</div>
+</main>
+<!-- Términos de Servicio -->
+<div id="terms" class="container mx-auto px-4 py-12">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Términos de Servicio</h1>
+<p class="text-gray-400">Última actualización: 9 de junio, 2025</p>
+</div>
+<div class="space-y-8">
+<!-- Sección 1: Introducción -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">1. Introducción</h2>
+<div class="prose prose-invert text-gray-300">
+<p class="mb-4">Bienvenido a Googlecast. Al acceder y utilizar nuestra plataforma, aceptas cumplir y estar sujeto a estos Términos de Servicio. Te recomendamos leer detenidamente este documento.</p>
+<p>Estos términos se aplican a todos los usuarios de la plataforma, incluyendo oyentes, creadores de contenido y colaboradores.</p>
+</div>
+</div>
+<!-- Sección 2: Definiciones -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">2. Definiciones</h2>
+<ul class="space-y-3 text-gray-300">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span><strong class="text-white">Plataforma:</strong> Se refiere a Googlecast, incluyendo el sitio web y todas sus funcionalidades.</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span><strong class="text-white">Contenido:</strong> Incluye podcasts, recursos descargables, transcripciones y material complementario.</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span><strong class="text-white">Usuario:</strong> Cualquier persona que acceda o utilice la plataforma.</span>
+</li>
+</ul>
+</div>
+<!-- Sección 3: Registro y Cuentas -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">3. Registro y Cuentas</h2>
+<div class="space-y-4 text-gray-300">
+<p>Para acceder a funciones premium y recursos descargables, deberás crear una cuenta. Al registrarte, aceptas:</p>
+<ul class="space-y-2 pl-6">
+<li class="flex items-start">
+<div class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></div>
+<span>Proporcionar información precisa y actualizada</span>
+</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></div>
+<span>Mantener la confidencialidad de tu contraseña</span>
+</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></div>
+<span>Notificar cualquier uso no autorizado de tu cuenta</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Sección 4: Uso Aceptable -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">4. Uso Aceptable</h2>
+<div class="space-y-4 text-gray-300">
+<div class="flex items-start p-4 bg-dark rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3 flex-shrink-0">
+<i class="ri-check-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium mb-2">Permitido</h3>
+<ul class="space-y-2">
+<li>✓ Acceder al contenido para uso personal</li>
+<li>✓ Compartir enlaces a episodios</li>
+<li>✓ Participar en comentarios constructivos</li>
+</ul>
+</div>
+</div>
+<div class="flex items-start p-4 bg-dark rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center bg-red-500 bg-opacity-20 rounded-full mr-3 flex-shrink-0">
+<i class="ri-close-line text-red-500"></i>
+</div>
+<div>
+<h3 class="text-white font-medium mb-2">Prohibido</h3>
+<ul class="space-y-2">
+<li>✗ Redistribuir contenido sin autorización</li>
+<li>✗ Usar bots o scripts automatizados</li>
+<li>✗ Publicar contenido ofensivo o ilegal</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Sección 5: Propiedad Intelectual -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">5. Propiedad Intelectual</h2>
+<div class="text-gray-300">
+<p class="mb-4">Todo el contenido disponible en Googlecast está protegido por derechos de autor y otras leyes de propiedad intelectual. Los usuarios se comprometen a:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-dark rounded-lg">
+<h3 class="text-white font-medium mb-3">Derechos de Autor</h3>
+<p>El contenido es propiedad exclusiva de Googlecast y sus colaboradores. No puede ser reproducido sin autorización.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<h3 class="text-white font-medium mb-3">Licencias</h3>
+<p>Los usuarios reciben una licencia limitada y no exclusiva para acceder al contenido según su tipo de suscripción.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sección 6: Modificaciones -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">6. Modificaciones</h2>
+<div class="text-gray-300">
+<p class="mb-4">Googlecast se reserva el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación.</p>
+<div class="flex items-center p-4 bg-primary bg-opacity-10 rounded-lg border border-primary border-opacity-30">
+<div class="w-8 h-8 flex items-center justify-center mr-3">
+<i class="ri-notification-line text-primary"></i>
+</div>
+<p class="text-primary">Los usuarios serán notificados de cambios significativos en los términos mediante correo electrónico.</p>
+</div>
+</div>
+</div>
+<!-- Sección 7: Contacto -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">7. Contacto</h2>
+<div class="text-gray-300">
+<p class="mb-4">Si tienes preguntas sobre estos términos, puedes contactarnos:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<a href="mailto:legal@googlecast.com" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Email</h3>
+<p class="text-sm">legal@googlecast.com</p>
+</div>
+</a>
+<a href="#" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-customer-service-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Soporte</h3>
+<p class="text-sm">Centro de Ayuda</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- GDPR -->
+<div id="gdpr" class="container mx-auto px-4 py-12">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Protección de Datos (GDPR)</h1>
+<p class="text-gray-400">Última actualización: 9 de junio, 2025</p>
+</div>
+<div class="space-y-8">
+<!-- Introducción -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Compromiso con la Protección de Datos</h2>
+<div class="prose prose-invert text-gray-300">
+<p class="mb-4">En Googlecast, nos tomamos muy en serio la protección de tus datos personales. Cumplimos con el Reglamento General de Protección de Datos (GDPR) de la UE y otras regulaciones de privacidad aplicables.</p>
+</div>
+</div>
+<!-- Derechos del Usuario -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Tus Derechos</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-eye-line text-primary"></i>
+</div>
+<h3 class="text-white font-medium">Derecho de Acceso</h3>
+</div>
+<p class="text-gray-300 text-sm">Puedes solicitar una copia de tus datos personales.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mr-3">
+<i class="ri-edit-line text-neonBlue"></i>
+</div>
+<h3 class="text-white font-medium">Derecho de Rectificación</h3>
+</div>
+<p class="text-gray-300 text-sm">Puedes corregir datos inexactos o incompletos.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-delete-bin-line text-neonGreen"></i>
+</div>
+<h3 class="text-white font-medium">Derecho al Olvido</h3>
+</div>
+<p class="text-gray-300 text-sm">Puedes solicitar la eliminación de tus datos.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mr-3">
+<i class="ri-download-line text-neonPink"></i>
+</div>
+<h3 class="text-white font-medium">Derecho a la Portabilidad</h3>
+</div>
+<p class="text-gray-300 text-sm">Puedes obtener y reutilizar tus datos.</p>
+</div>
+</div>
+</div>
+<!-- Datos que Recopilamos -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Datos que Recopilamos</h2>
+<div class="space-y-4">
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-user-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Datos de Perfil</h3>
+<p class="text-sm text-gray-400">Nombre, email, preferencias de idioma</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mr-3">
+<i class="ri-history-line text-neonBlue"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Datos de Uso</h3>
+<p class="text-sm text-gray-400">Historial de escucha, interacciones</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-dark rounded-lg">
+<div class="w-10 h-10 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-device-line text-neonGreen"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Datos Técnicos</h3>
+<p class="text-sm text-gray-400">Dispositivo, ubicación aproximada</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Ejercer tus Derechos -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Ejercer tus Derechos</h2>
+<div class="text-gray-300">
+<p class="mb-6">Para ejercer cualquiera de tus derechos GDPR, puedes contactarnos a través de:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<a href="mailto:gdpr@googlecast.com" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Email GDPR</h3>
+<p class="text-sm">gdpr@googlecast.com</p>
+</div>
+</a>
+<a href="#" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-form-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Formulario GDPR</h3>
+<p class="text-sm">Solicitud de derechos</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Atribuciones -->
+<div id="attributions" class="container mx-auto px-4 py-12 mb-12">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Atribuciones</h1>
+<p class="text-gray-400">Reconocimientos y licencias de recursos utilizados</p>
+</div>
+<div class="space-y-8">
+<!-- Software y Librerías -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Software y Librerías</h2>
+<div class="space-y-4">
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-code-line text-primary"></i>
+</div>
+<h3 class="text-white font-medium">Tecnologías Base</h3>
+</div>
+<ul class="space-y-2 text-gray-300 text-sm">
+<li>• TailwindCSS - MIT License</li>
+<li>• Remix Icons - Apache License 2.0</li>
+<li>• Google Fonts (Inter, Pacifico) - Open Font License</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Contenido Multimedia -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Contenido Multimedia</h2>
+<div class="space-y-4">
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mr-3">
+<i class="ri-image-line text-neonBlue"></i>
+</div>
+<h3 class="text-white font-medium">Imágenes</h3>
+</div>
+<ul class="space-y-2 text-gray-300 text-sm">
+<li>• Imágenes de portada - Licencia Creative Commons</li>
+<li>• Iconos de categorías - Uso comercial permitido</li>
+<li>• Fondos y texturas - Dominio público</li>
+</ul>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-music-line text-neonGreen"></i>
+</div>
+<h3 class="text-white font-medium">Audio</h3>
+</div>
+<ul class="space-y-2 text-gray-300 text-sm">
+<li>• Efectos de sonido - Licencia Creative Commons</li>
+<li>• Música de fondo - Licencia comercial adquirida</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Colaboradores -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Colaboradores</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-12 h-12 flex-shrink-0 bg-primary bg-opacity-20 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%2C%20woman%2C%20tech%20expert%2C%20confident%20pose%2C%20studio%20lighting&width=100&height=100&seq=collab1&orientation=squarish" alt="Isabel Rodríguez" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h3 class="text-white font-medium">Isabel Rodríguez</h3>
+<p class="text-sm text-gray-400">Diseño UX/UI</p>
+</div>
+</div>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-12 h-12 flex-shrink-0 bg-primary bg-opacity-20 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%2C%20man%2C%20audio%20engineer%2C%20studio%20environment&width=100&height=100&seq=collab2&orientation=squarish" alt="Carlos Méndez" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h3 class="text-white font-medium">Carlos Méndez</h3>
+<p class="text-sm text-gray-400">Ingeniería de Audio</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Agradecimientos Especiales -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Agradecimientos Especiales</h2>
+<div class="text-gray-300">
+<p class="mb-4">Queremos agradecer especialmente a nuestra comunidad de oyentes y colaboradores que han hecho posible este proyecto.</p>
+<div class="flex items-center justify-center p-4 bg-dark rounded-lg">
+<p class="text-center">
+<span class="block text-primary text-lg mb-2">¿Quieres colaborar?</span>
+<span class="text-sm">Contáctanos en <a href="mailto:colaboraciones@googlecast.com" class="text-primary hover:underline">colaboraciones@googlecast.com</a></span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Política de Cookies -->
+<div id="cookies" class="container mx-auto px-4 py-12 mb-12">
+<div class="max-w-4xl mx-auto">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-white mb-4">Política de Cookies</h1>
+<p class="text-gray-400">Última actualización: 9 de junio, 2025</p>
+</div>
+<div class="space-y-8">
+<!-- Introducción -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">¿Qué son las cookies?</h2>
+<div class="prose prose-invert text-gray-300">
+<p class="mb-4">Las cookies son pequeños archivos de texto que los sitios web colocan en tu dispositivo para almacenar información sobre tus preferencias, mejorar tu experiencia y ayudarnos a entender cómo utilizas nuestro servicio.</p>
+</div>
+</div>
+<!-- Tipos de Cookies -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Tipos de Cookies que Utilizamos</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-shield-check-line text-primary"></i>
+</div>
+<h3 class="text-white font-medium">Cookies Esenciales</h3>
+</div>
+<p class="text-gray-300 text-sm">Necesarias para el funcionamiento básico del sitio. No pueden ser desactivadas.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mr-3">
+<i class="ri-user-settings-line text-neonBlue"></i>
+</div>
+<h3 class="text-white font-medium">Cookies de Preferencias</h3>
+</div>
+<p class="text-gray-300 text-sm">Recuerdan tus preferencias y configuraciones personales.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-bar-chart-line text-neonGreen"></i>
+</div>
+<h3 class="text-white font-medium">Cookies Analíticas</h3>
+</div>
+<p class="text-gray-300 text-sm">Nos ayudan a entender cómo utilizas nuestro sitio.</p>
+</div>
+<div class="p-4 bg-dark rounded-lg">
+<div class="flex items-center mb-3">
+<div class="w-8 h-8 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mr-3">
+<i class="ri-advertisement-line text-neonPink"></i>
+</div>
+<h3 class="text-white font-medium">Cookies Publicitarias</h3>
+</div>
+<p class="text-gray-300 text-sm">Utilizadas para mostrarte publicidad relevante.</p>
+</div>
+</div>
+</div>
+<!-- Gestión de Cookies -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Gestiona tus Preferencias</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-shield-check-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Cookies Esenciales</h3>
+<p class="text-sm text-gray-400">Siempre activas</p>
+</div>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked disabled>
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-neonBlue bg-opacity-20 rounded-full mr-3">
+<i class="ri-user-settings-line text-neonBlue"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Cookies de Preferencias</h3>
+<p class="text-sm text-gray-400">Mejoran tu experiencia</p>
+</div>
+</div>
+<label class="custom-switch">
+<input type="checkbox" id="preferenceCookies">
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-neonGreen bg-opacity-20 rounded-full mr-3">
+<i class="ri-bar-chart-line text-neonGreen"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Cookies Analíticas</h3>
+<p class="text-sm text-gray-400">Análisis de uso del sitio</p>
+</div>
+</div>
+<label class="custom-switch">
+<input type="checkbox" id="analyticsCookies">
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 bg-dark rounded-lg">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-neonPink bg-opacity-20 rounded-full mr-3">
+<i class="ri-advertisement-line text-neonPink"></i>
+</div>
+<div>
+<h3 class="text-white font-medium">Cookies Publicitarias</h3>
+<p class="text-sm text-gray-400">Publicidad personalizada</p>
+</div>
+</div>
+<label class="custom-switch">
+<input type="checkbox" id="advertisingCookies">
+<span class="switch-slider"></span>
+</label>
+</div>
+<div class="flex justify-end mt-6">
+<button id="saveCookiePreferences" class="px-6 py-2 bg-primary text-white rounded-button font-medium hover:bg-opacity-90 transition whitespace-nowrap">Guardar Preferencias</button>
+</div>
+</div>
+</div>
+<!-- Más Información -->
+<div class="bg-darkSecondary rounded-lg p-6">
+<h2 class="text-xl font-semibold text-white mb-4">Más Información</h2>
+<div class="space-y-4 text-gray-300">
+<p>Para más información sobre cómo utilizamos las cookies y tus datos personales, consulta nuestra:</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition flex-1">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-file-text-line text-primary"></i>
+</div>
+<span class="text-white">Política de Privacidad</span>
+</a>
+<a href="#" class="flex items-center p-4 bg-dark rounded-lg hover:bg-opacity-80 transition flex-1">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-question-line text-primary"></i>
+</div>
+<span class="text-white">Centro de Ayuda</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Reproductor flotante -->
+<div class="fixed bottom-0 left-0 right-0 bg-darkSecondary border-t border-gray-800 p-3 z-30">
+<div class="container mx-auto flex items-center">
+<div class="w-12 h-12 flex-shrink-0 bg-dark rounded overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=artificial%20intelligence%20in%20education%2C%20digital%20learning%2C%20AI%20technology%20for%20students%2C%20educational%20technology&width=100&height=100&seq=player&orientation=squarish" alt="Episodio actual" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-grow mr-4">
+<h4 class="text-white text-sm font-medium truncate">El Futuro de la IA en la Educación Online</h4>
+<div class="flex items-center">
+<div class="flex-grow">
+<input type="range" class="audio-progress w-full" min="0" max="100" value="35">
+</div>
+<span class="text-xs text-gray-400 ml-2">15:45 / 45:00</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-skip-back-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary rounded-full text-white">
+<i class="ri-pause-fill"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-skip-forward-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-bookmark-line"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-darkSecondary py-12 border-t border-gray-800">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<h1 class="text-3xl font-['Pacifico'] text-primary mb-4">Googlecast</h1>
+<p class="text-gray-400 mb-6">Explorando temas clave en español e inglés para tu crecimiento personal y profesional.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-dark rounded-full text-white hover:bg-primary transition">
+<i class="ri-spotify-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-dark rounded-full text-white hover:bg-primary transition">
+<i class="ri-apple-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-dark rounded-full text-white hover:bg-primary transition">
+<i class="ri-google-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-dark rounded-full text-white hover:bg-primary transition">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-white font-semibold mb-4">Explorar</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Episodios</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Temas</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Recursos</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Calendario</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Acerca de</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-white font-semibold mb-4">Legal</h3>
+<ul class="space-y-2">
+<li><a href="#terms" class="text-gray-400 hover:text-primary transition">Términos de Servicio</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Política de Privacidad</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition">Cookies</a></li>
+<li><a href="#gdpr" class="text-gray-400 hover:text-primary transition">GDPR</a></li>
+<li><a href="#attributions" class="text-gray-400 hover:text-primary transition">Atribuciones</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-white font-semibold mb-4">Contacto</h3>
+<ul class="space-y-2">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-400">contacto@googlecast.com</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-instagram-line"></i>
+</div>
+<span class="text-gray-400">@googlecast</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-twitter-x-line"></i>
+</div>
+<span class="text-gray-400">@googlecast</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-facebook-line"></i>
+</div>
+<span class="text-gray-400">Googlecast Podcast</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Googlecast. Todos los derechos reservados.</p>
+<div class="flex items-center space-x-4">
+<a href="#" class="text-gray-400 hover:text-primary transition flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-headphone-line"></i>
+</div>
+<span class="text-sm">Reportar un problema</span>
+</a>
+<a href="#" class="text-gray-400 hover:text-primary transition flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-question-line"></i>
+</div>
+<span class="text-sm">Ayuda</span>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<script id="themeToggleScript">
+document.addEventListener('DOMContentLoaded', function() {
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+// Inicializar tema (por defecto oscuro)
+body.classList.add('dark');
+themeToggle.addEventListener('change', function() {
+if (this.checked) {
+body.classList.remove('dark');
+body.classList.add('light');
+} else {
+body.classList.remove('light');
+body.classList.add('dark');
+}
+});
+});
+</script>
+<script id="languageModalScript">
+document.addEventListener('DOMContentLoaded', function() {
+const languageModal = document.getElementById('languageModal');
+const selectSpanish = document.getElementById('selectSpanish');
+const selectEnglish = document.getElementById('selectEnglish');
+selectSpanish.addEventListener('click', function() {
+languageModal.classList.add('hidden');
+});
+selectEnglish.addEventListener('click', function() {
+languageModal.classList.add('hidden');
+// Aquí se cambiaría el idioma a inglés
+});
+});
+</script>
+<script id="mobileMenuScript">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobileMenuButton');
+const closeMenuButton = document.getElementById('closeMenuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('hidden');
+});
+closeMenuButton.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+</script>
+<script id="authModalScript">
+document.addEventListener('DOMContentLoaded', function() {
+const userButton = document.getElementById('userButton');
+const authModal = document.getElementById('authModal');
+const closeAuthModal = document.getElementById('closeAuthModal');
+const loginTabButton = document.getElementById('loginTabButton');
+const registerTabButton = document.getElementById('registerTabButton');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+userButton.addEventListener('click', function() {
+authModal.classList.remove('hidden');
+});
+closeAuthModal.addEventListener('click', function() {
+authModal.classList.add('hidden');
+});
+loginTabButton.addEventListener('click', function() {
+loginTabButton.classList.add('border-primary', 'text-white');
+loginTabButton.classList.remove('border-gray-700', 'text-gray-400');
+registerTabButton.classList.add('border-gray-700', 'text-gray-400');
+registerTabButton.classList.remove('border-primary', 'text-white');
+loginForm.classList.remove('hidden');
+registerForm.classList.add('hidden');
+});
+registerTabButton.addEventListener('click', function() {
+registerTabButton.classList.add('border-primary', 'text-white');
+registerTabButton.classList.remove('border-gray-700', 'text-gray-400');
+loginTabButton.classList.add('border-gray-700', 'text-gray-400');
+loginTabButton.classList.remove('border-primary', 'text-white');
+registerForm.classList.remove('hidden');
+loginForm.classList.add('hidden');
+});
+});
+</script>
+<script id="cookiePreferencesScript">
+document.addEventListener('DOMContentLoaded', function() {
+const saveCookiePreferences = document.getElementById('saveCookiePreferences');
+const preferenceCookies = document.getElementById('preferenceCookies');
+const analyticsCookies = document.getElementById('analyticsCookies');
+const advertisingCookies = document.getElementById('advertisingCookies');
+// Cargar preferencias guardadas
+const savedPreferences = localStorage.getItem('cookiePreferences');
+if (savedPreferences) {
+const preferences = JSON.parse(savedPreferences);
+preferenceCookies.checked = preferences.preference;
+analyticsCookies.checked = preferences.analytics;
+advertisingCookies.checked = preferences.advertising;
+}
+saveCookiePreferences.addEventListener('click', function() {
+const preferences = {
+preference: preferenceCookies.checked,
+analytics: analyticsCookies.checked,
+advertising: advertisingCookies.checked
+};
+localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+// Aquí puedes añadir la lógica para aplicar las preferencias
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-20 right-4 bg-primary text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 translate-y-0';
+notification.textContent = 'Preferencias guardadas correctamente';
+document.body.appendChild(notification);
+setTimeout(() => {
+notification.style.transform = 'translateY(150%)';
+setTimeout(() => notification.remove(), 300);
+}, 3000);
+});
+});
+</script>
+<script id="wallpaperModeScript">
+document.addEventListener('DOMContentLoaded', function() {
+const wallpaperToggle = document.getElementById('wallpaperToggle');
+const wallpaperMode = document.getElementById('wallpaperMode');
+wallpaperToggle.addEventListener('change', function() {
+if (this.checked) {
+wallpaperMode.classList.add('active');
+} else {
+wallpaperMode.classList.remove('active');
+}
+});
+});
+</script>
+<script id="nutritionProgramScript">
+document.addEventListener('DOMContentLoaded', function() {
+    // Progress tracking functionality
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+        const progress = bar.getAttribute('data-progress');
+        bar.style.width = `${progress}%`;
+    });
+    // Interactive content navigation
+    const contentButtons = document.querySelectorAll('[data-content]');
+    contentButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const contentType = this.getAttribute('data-content');
+            // Handle content display logic
+        });
+    });
+});
+</script>
+<script id="audioVisualizerScript">
+document.addEventListener('DOMContentLoaded', function() {
+const audioBars = document.querySelectorAll('.audio-bar');
+// Simular visualización de audio
+function animateAudioBars() {
+audioBars.forEach(bar => {
+const height = Math.floor(Math.random() * 30) + 5;
+bar.style.height = `${height}px`;
+});
+requestAnimationFrame(() => {
+setTimeout(animateAudioBars, 100);
+});
+}
+animateAudioBars();
+});
+</script>
+</body>
+</html>

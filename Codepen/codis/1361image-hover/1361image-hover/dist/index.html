@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>#1361 - Image Hover</title>
+    <link rel='stylesheet' href='https://www.littlesnippets.net/css/codepen-result.css'>
+<link rel='stylesheet' href='https://www.queness.com/assets/css/demo.css'>
+
+  </head>
+    
+  <body>
+  <style>@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Quattrocento);
+.snip1361 {
+  font-family: 'Quattrocento', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+.snip1361 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1361 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+.snip1361 figcaption {
+  position: absolute;
+  top: calc(77%);
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px 25px 65px;
+}
+.snip1361 figcaption:before {
+  position: absolute;
+  content: '';
+  z-index: 2;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+.snip1361 h3,
+.snip1361 p {
+  margin: 0 0 10px;
+}
+.snip1361 h3 {
+  font-weight: 300;
+  font-size: 1.4em;
+  line-height: 1.2em;
+  font-family: 'Oswald', Arial, sans-serif;
+  text-transform: uppercase;
+}
+.snip1361 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+.snip1361 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.snip1361:hover figcaption,
+.snip1361.hover figcaption {
+  top: 80px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Quattrocento);
+.snip1376 {
+  font-family: 'Quattrocento', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+.snip1376 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.snip1376 img {
+  max-width: 100%;
+  vertical-align: top;
+}
+.snip1376 figcaption {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px 25px 65px;
+  position: relative;
+}
+.snip1376 figcaption:before {
+  position: absolute;
+  content: '';
+  z-index: 2;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+.snip1376 h2,
+.snip1376 p {
+  margin: 0 0 10px;
+}
+.snip1376 h2 {
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  font-family: 'Oswald', Arial, sans-serif;
+  text-transform: uppercase;
+}
+.snip1376 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+.snip1376 .icons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #e6e6e6;
+  width: 100%;
+  text-align: center;
+}
+.snip1376 i {
+  padding: 10px 5px;
+  display: inline-block;
+  font-size: 24px;
+  color: #141414;
+  opacity: 0.65;
+}
+.snip1376 i:hover {
+  opacity: 1;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+figure.snip1132 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 310px;
+  max-height: 220px;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+figure.snip1132 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+
+figure.snip1132 img {
+  max-width: 100%;
+  position: relative;
+  opacity: 1;
+}
+
+figure.snip1132 figcaption {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid white;
+  border-width: 0 1px;
+}
+
+figure.snip1132 .heading {
+  overflow: hidden;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+figure.snip1132 .caption {
+  overflow: hidden;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+figure.snip1132 h3,
+figure.snip1132 p {
+  display: table;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+figure.snip1132 h3 span,
+figure.snip1132 p span {
+  font-weight: 800;
+}
+
+figure.snip1132 h3:before,
+figure.snip1132 p:before,
+figure.snip1132 h3:after,
+figure.snip1132 p:after {
+  position: absolute;
+  display: block;
+  width: 1000%;
+  height: 1px;
+  content: '';
+  background: white;
+}
+
+figure.snip1132 h3:before,
+figure.snip1132 p:before {
+  left: -1000%;
+}
+
+figure.snip1132 h3:after,
+figure.snip1132 p:after {
+  right: -1000%;
+}
+
+figure.snip1132 h3:before,
+figure.snip1132 h3:after {
+  top: 50%;
+}
+
+figure.snip1132 p {
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+figure.snip1132 p:before,
+figure.snip1132 p:after {
+  bottom: 50%;
+}
+
+figure.snip1132 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+figure.snip1132:hover img,
+figure.snip1132.hover img {
+  opacity: 0.35;
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+}
+
+
+/* Demo purposes only */
+html {
+  height: 100%;
+}
+body {
+  background-color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0;
+  height: 100%;
+}</style><figure class="snip1132">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample22.jpg" alt="sample22" />
+  <figcaption>
+    <div class="heading">
+      <h3>Hanson <span> Deck</span></h3>
+    </div>
+    <div class="caption">
+      <p>I'm killing time while I wait</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1132 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample21.jpg" alt="sample21" />
+  <figcaption>
+    <div class="heading">
+      <h3>Chauffina <span> Carr</span></h3>
+    </div>
+    <div class="caption">
+      <p>Reality ruins my life</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1132"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample18.jpg" alt="sample18" />
+  <figcaption>
+    <div class="heading">
+      <h3>Richard <span> Tea</span></h3>
+    </div>
+    <div class="caption">
+      <p>Selective about the reality</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+
+
+
+
+<figure class="snip1376">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample17.jpg" alt="sample17" />
+  <figcaption>
+    <h2>Linguina Nettlewater</h2>
+    <p>I'm looking for something that can deliver a 50-pound payload of snow on a small feminine target. Can you suggest something? Hello? </p>
+    <div class="icons"><a href="#"><i class="ion-social-reddit-outline"></i></a>
+      <a href="#"> <i class="ion-social-twitter-outline"></i></a>
+      <a href="#"> <i class="ion-social-vimeo-outline"></i></a>
+    </div>
+  </figcaption>
+</figure>
+<figure class="snip1376 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample47.jpg" alt="sample47" />
+  <figcaption>
+    <h2>Max Conversion</h2>
+    <p>Calvin: I'm a genius, but I'm a misunderstood genius. Hobbes: What's misunderstood about you? Calvin: Nobody thinks I'm a genius.</p>
+    <div class="icons"><a href="#"><i class="ion-social-reddit-outline"></i></a>
+      <a href="#"> <i class="ion-social-twitter-outline"></i></a>
+      <a href="#"> <i class="ion-social-vimeo-outline"></i></a>
+    </div>
+  </figcaption>
+</figure>
+<figure class="snip1376"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample38.jpg" alt="sample38" />
+  <figcaption>
+    <h2>Caspian Bellevedere</h2>
+    <p>If you want to stay dad you've got to polish your image. I think the image we need to create for you is "repentant but learning".</p>
+    <div class="icons"><a href="#"><i class="ion-social-reddit-outline"></i></a>
+      <a href="#"> <i class="ion-social-twitter-outline"></i></a>
+      <a href="#"> <i class="ion-social-vimeo-outline"></i></a>
+    </div>
+  </figcaption>
+</figure>
+
+
+<figure class="snip1361">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample45.jpg" alt="sample45" />
+  <figcaption>
+    <h3>Bartholemew Shoe</h3>
+    <p>Weekends don't count unless you spend them doing something completely pointless.</p>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1361 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample77.jpg" alt="sample77" />
+  <figcaption>
+    <h3>Spruce Springclean</h3>
+    <p>I'm killing time while I wait for life to shower me with meaning and happiness. -</p>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1361"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample99.jpg" alt="sample99" />
+  <figcaption>
+    <h3>Desmond Eagle</h3>
+    <p>The only skills I have the patience to learn are those that have no real application in life. </p>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://www.queness.com/resources/html/simple-portfolio-page/js/jquery.mixitup.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>

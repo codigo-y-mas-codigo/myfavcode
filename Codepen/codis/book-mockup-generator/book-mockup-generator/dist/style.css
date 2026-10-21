@@ -1,0 +1,113 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700';
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: 0px;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  background: #24252A;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+}
+.wrapper h2 {
+  color: #644cad;
+  font-weight: 400;
+}
+.wrapper input {
+  padding: 8px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.book {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  -webkit-transform: skew(30deg, 0deg) rotate(-15deg);
+  -moz-transform: skew(30deg, 0deg) rotate(-15deg);
+  -ms-transform: skew(30deg, 0deg) rotate(-15deg);
+  -o-transform: skew(30deg, 0deg) rotate(-15deg);
+  transform: skew(30deg, 0deg) rotate(-15deg);
+}
+.book .cover {
+  height: 600px;
+  width: 480px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-image: url("https://placeholdit.imgix.net/~text?txtsize=33&txt=Paste+Image+URL+480%C3%97600&w=480&h=600");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.book .cover:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  width: 6px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+.book .cover:after {
+  content: "";
+  display: inline-block;
+  width: 480px;
+  height: 40px;
+  position: absolute;
+  bottom: -40px;
+  -webkit-transform: skewX(-45deg) translate(-20px, 0px);
+  -moz-transform: skewX(-45deg) translate(-20px, 0px);
+  -ms-transform: skewX(-45deg) translate(-20px, 0px);
+  -o-transform: skewX(-45deg) translate(-20px, 0px);
+  transform: skewX(-45deg) translate(-20px, 0px);
+  background: #c4c4c4;
+  background: -webkit-linear-gradient(45deg, #c4c4c4, #EEE);
+  background: linear-gradient(45deg, #c4c4c4, #EEE);
+}
+.book .spine {
+  height: 600px;
+  width: 40px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  background: #c4c4c4;
+  background: -webkit-linear-gradient(90deg, #c4c4c4, #EEE);
+  background: linear-gradient(90deg, #c4c4c4, #EEE);
+  -webkit-transform: skewY(-45deg) translate(0px, 20px);
+  -moz-transform: skewY(-45deg) translate(0px, 20px);
+  -ms-transform: skewY(-45deg) translate(0px, 20px);
+  -o-transform: skewY(-45deg) translate(0px, 20px);
+  transform: skewY(-45deg) translate(0px, 20px);
+  content: attr(data-text);
+  font-size: 22px;
+  letter-spacing: 30px;
+  overflow-wrap: break-word;
+  color: #333;
+  padding: 13px;
+  text-align: center;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}

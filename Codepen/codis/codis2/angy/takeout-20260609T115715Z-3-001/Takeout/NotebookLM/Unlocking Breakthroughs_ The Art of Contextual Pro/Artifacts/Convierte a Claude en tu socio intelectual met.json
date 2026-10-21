@@ -1,0 +1,40 @@
+{
+  "title": "Convierte a Claude en tu socio intelectual",
+  "type": "ARTIFACT_TYPE_AUDIO_OVERVIEW",
+  "sources": [{
+    "sourceId": {
+      "id": "5d0086bb-7267-4154-b052-7d4dc7dbcaf8"
+    }
+  }, {
+    "sourceId": {
+      "id": "a0e8f515-d625-48c5-b3aa-c68bf2eb560f"
+    }
+  }, {
+    "sourceId": {
+      "id": "45423f00-3c8e-4a24-8c9e-4a22a2c6e530"
+    }
+  }, {
+    "sourceId": {
+      "id": "21582b45-8e94-4303-b1a4-df00812529cb"
+    }
+  }, {
+    "sourceId": {
+      "id": "f2d1981b-6a12-48dd-8add-421796c4c2af"
+    }
+  }, {
+    "sourceId": {
+      "id": "1d9d4fb0-1be3-4d2b-83ce-29ee56404013"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "audioOverview": {
+    "generationOptions": {
+      "episodeFocus": "",
+      "episodeLength": "EPISODE_LENGTH_MEDIUM",
+      "targetAudience": "TARGET_AUDIENCE_UNSPECIFIED",
+      "languageCode": "es-419",
+      "showFormat": "SHOW_FORMAT_DEEP_DIVE"
+    },
+    "isInteractive": false
+  }
+}

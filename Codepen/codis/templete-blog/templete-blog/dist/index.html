@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Templete blog</title>
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://preline.co/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Hero section example using Tailwind CSS for Preline UI, a product of Htmlstream.">
+
+  <meta name="twitter:site" content="@preline">
+  <meta name="twitter:creator" content="@preline">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Signup Hero Form using Tailwind CSS | Preline UI, crafted with Tailwind CSS">
+  <meta name="twitter:description" content="Hero section example using Tailwind CSS for Preline UI, a product of Htmlstream.">
+  <meta name="twitter:image" content="https://preline.co/assets/img/og-image.png">
+
+  <meta property="og:url" content="https://preline.co/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Preline">
+  <meta property="og:title" content="Signup Hero Form using Tailwind CSS | Preline UI, crafted with Tailwind CSS">
+  <meta property="og:description" content="Hero section example using Tailwind CSS for Preline UI, a product of Htmlstream.">
+  <meta property="og:image" content="https://preline.co/assets/img/og-image.png">
+
+  <!-- Title -->
+  <title>Signup Hero Form using Tailwind CSS | Preline UI, crafted with Tailwind CSS</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://preline.co//favicon.ico">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme Check and Update -->
+  <script>
+    const html = document.querySelector('html');
+    const isLightOrAuto = localStorage.getItem('hs_theme') === 'light' || (localStorage.getItem('hs_theme') === 'auto' && !window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDarkOrAuto = localStorage.getItem('hs_theme') === 'dark' || (localStorage.getItem('hs_theme') === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    if (isLightOrAuto && html.classList.contains('dark')) html.classList.remove('dark');
+    else if (isDarkOrAuto && html.classList.contains('light')) html.classList.remove('light');
+    else if (isDarkOrAuto && !html.classList.contains('dark')) html.classList.add('dark');
+    else if (isLightOrAuto && !html.classList.contains('light')) html.classList.add('light');
+  </script>
+
+  <!-- CSS HS -->
+  <link rel="stylesheet" href="https://preline.co//assets/css/main.min.css?v=1.0.0">
+</head>
+
+
+ <!-- JS Implementing Plugins -->
+
+ <!-- JS PLUGINS -->
+ <!-- Required plugins -->
+ <script src="https://preline.co/assets/vendor/preline/dist/index.js?v=1.0.0"></script>
+
+ <!-- JS THIRD PARTY PLUGINS -->
+ <!-- Google Analytics. Global site tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-12345"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+   dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-12345');
+ </script>
+
+  </head>
+    
+  <body>
+  <body class="dark:bg-neutral-900">
+
+ <!-- Blog Article -->
+ <div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+  <div class="max-w-2xl">
+   <!-- Avatar Media -->
+   <div class="flex justify-between items-center mb-6">
+    <div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+     <div class="shrink-0">
+      <img class="size-12 rounded-full" src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
+     </div>
+
+     <div class="grow">
+      <div class="flex justify-between items-center gap-x-2">
+       <div>
+        <!-- Tooltip -->
+        <div class="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
+         <div class="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+          <span class="font-semibold text-gray-800 dark:text-neutral-200">
+           Leyla Ludic
+          </span>
+
+          <!-- Dropdown Card -->
+          <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-neutral-950 dark:divide-neutral-700" role="tooltip">
+           <!-- Body -->
+           <div class="p-4 sm:p-5">
+            <div class="mb-2 flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+             <div class="shrink-0">
+              <img class="size-8 rounded-full" src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar">
+             </div>
+
+             <div class="grow">
+              <p class="text-lg font-semibold text-gray-200 dark:text-neutral-200">
+               Leyla Ludic
+              </p>
+             </div>
+            </div>
+            <p class="text-sm text-gray-400 dark:text-neutral-400">
+             Leyla is a Customer Success Specialist at Preline and spends her time speaking to in-house recruiters all over the world.
+            </p>
+           </div>
+           <!-- End Body -->
+
+           <!-- Footer -->
+           <div class="flex justify-between items-center px-4 py-3 sm:px-5">
+            <ul class="text-xs space-x-3">
+             <li class="inline-block">
+              <span class="font-semibold text-gray-200 dark:text-neutral-200">56</span>
+              <span class="text-gray-400 dark:text-neutral-400">articles</span>
+             </li>
+             <li class="inline-block">
+              <span class="font-semibold text-gray-200 dark:text-neutral-200">1k+</span>
+              <span class="text-gray-400 dark:text-neutral-400">followers</span>
+             </li>
+            </ul>
+
+            <div>
+             <button type="button" class="py-1.5 px-2.5 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+              <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+               <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+               <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+              </svg>
+              Follow
+             </button>
+            </div>
+           </div>
+           <!-- End Footer -->
+          </div>
+          <!-- End Dropdown Card -->
+         </div>
+        </div>
+        <!-- End Tooltip -->
+
+        <ul class="text-xs text-gray-500 dark:text-neutral-500">
+         <li class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600">
+          Dec 18
+         </li>
+         <li class="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600">
+          10 min read
+         </li>
+        </ul>
+       </div>
+
+       <!-- Button Group -->
+       <div>
+        <button type="button" class="py-1.5 px-2.5 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+         <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+         </svg>
+         Tweet
+        </button>
+       </div>
+       <!-- End Button Group -->
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- End Avatar Media -->
+
+   <!-- Content -->
+   <div class="space-y-5 md:space-y-8">
+    <div class="space-y-3">
+     <h2 class="text-2xl font-bold md:text-3xl dark:text-white">Plan para Ofrecer Consultas Gratuitas de Diseño Gráfico, Impresión Digital y Artículos Promocionales</h2>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">En este artículo, te presentamos un plan detallado para ofrecer consultas gratuitas de diseño gráfico, impresión digital y artículos promocionales. Este plan está diseñado para atraer nuevos clientes potenciales, generar leads, posicionarte como un experto en tu industria y demostrar tu valor a los clientes potenciales.</p>
+    </div>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">El público objetivo incluye pequeñas y medianas empresas, profesionales independientes, organizaciones sin fines de lucro y estudiantes.</p>
+
+    <figure>
+     <img class="w-full object-cover rounded-xl" src="https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80" alt="Blog Image">
+     <figcaption class="mt-3 text-sm text-center text-gray-500 dark:text-neutral-500">
+      Una imagen representativa del plan.
+     </figcaption>
+    </figure>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">La estrategia se divide en varias etapas clave:</p>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">1. Crear una Landing Page Efectiva</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">La landing page debe ser atractiva y efectiva para captar la atención de los visitantes. Aquí tienes una estructura sugerida:</p>
+
+     <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+      <li class="ps-2"><strong>Hero Section:</strong>
+       <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+        <li class="ps-2"><strong>Título:</strong> "Transforma tu Marca"</li>
+        <li class="ps-2"><strong>Subtítulo:</strong> "Haz crecer tu negocio con soluciones de diseño gráfico, impresión digital y artículos promocionales."</li>
+        <li class="ps-2"><strong>Llamada a la Acción:</strong> "Solicita tu consulta gratuita"</li>
+        <li class="ps-2"><strong>Imágenes:</strong> Imágenes atractivas que muestren tu trabajo de diseño gráfico, impresión digital o artículos promocionales.</li>
+       </ul>
+      </li>
+      <li class="ps-2"><strong>Features Section:</strong>
+       <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+        <li class="ps-2"><strong>Título:</strong> "Soluciones de diseño gráfico y marketing personalizadas"</li>
+        <li class="ps-2"><strong>Lista de Beneficios:</strong>
+         <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+          <li class="ps-2">Consultas personalizadas</li>
+          <li class="ps-2">Expertos en diseño</li>
+          <li class="ps-2">Soluciones creativas</li>
+          <li class="ps-2">Cotización gratuita</li>
+         </ul>
+        </li>
+       </ul>
+      </li>
+      <li class="ps-2"><strong>Form Section:</strong>
+       <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+        <li class="ps-2"><strong>Título:</strong> "¡Agenda tu consulta gratuita!"</li>
+        <li class="ps-2"><strong>Formulario de Registro:</strong>
+         <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+          <li class="ps-2">Nombre</li>
+          <li class="ps-2">Correo electrónico</li>
+          <li class="ps-2">Nombre de la empresa</li>
+          <li class="ps-2">Presupuesto</li>
+          <li class="ps-2">Fecha preferida para la consulta</li>
+         </ul>
+        </li>
+        <li class="ps-2"><strong>Llamada a la Acción:</strong> "Agendar consulta"</li>
+       </ul>
+      </li>
+      <li class="ps-2"><strong>Testimonials Section:</strong>
+       <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+        <li class="ps-2">Incluir testimonios de clientes satisfechos con sus fotos y nombres.</li>
+       </ul>
+      </li>
+      <li class="ps-2"><strong>FAQ Section:</strong>
+       <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+        <li class="ps-2">¿Cuánto dura la consulta gratuita?</li>
+        <li class="ps-2">¿Qué necesito para la consulta?</li>
+        <li class="ps-2">¿Puedo solicitar una consulta en cualquier momento?</li>
+        <li class="ps-2">¿Qué tipo de servicios ofrecen durante la consulta?</li>
+        <li class="ps-2">¿Ofrecen descuentos para nuevos clientes?</li>
+        <li class="ps-2">¿Cuál es su política de reembolso?</li>
+       </ul>
+      </li>
+     </ul>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">2. Promocionar la Landing Page</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Una vez que tengas tu landing page lista, es crucial promocionarla para atraer tráfico:</p>
+
+     <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+      <li class="ps-2">Compartir la landing page en tus redes sociales.</li>
+      <li class="ps-2">Incluir un banner en tu sitio web.</li>
+      <li class="ps-2">Enviar un correo electrónico a tu lista de contactos.</li>
+      <li class="ps-2">Participar en eventos de networking y mencionar la oferta de consultas gratuitas.</li>
+     </ul>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">3. Calificar a los Clientes Potenciales</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Utiliza el formulario de registro para calificar a los clientes potenciales en función de su presupuesto, necesidades y objetivos. Realiza un seguimiento con los clientes potenciales que no califiquen para la consulta gratuita y ofréceles otras opciones.</p>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">4. Ofrecer una Consulta Gratuita Valiosa</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Durante la consulta, escucha atentamente las necesidades y objetivos del cliente. Haz preguntas para comprender mejor sus objetivos y ofrece soluciones personalizadas basadas en sus necesidades. No seas vendedor, sé un asesor.</p>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">5. Hacer un Seguimiento de los Clientes Potenciales</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Después de la consulta, envía un correo electrónico de seguimiento. Ofrece una cotización o presupuesto y mantén el contacto para continuar construyendo la relación.</p>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">Recursos</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Para implementar este plan, puedes utilizar las siguientes herramientas:</p>
+
+     <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+      <li class="ps-2">Landing Page: Wix o Squarespace</li>
+      <li class="ps-2">Formulario de Registro: Google Forms o Typeform</li>
+      <li class="ps-2">Banner Web: Canva o Adobe Photoshop</li>
+      <li class="ps-2">Correo Electrónico: MailChimp o ActiveCampaign</li>
+      <li class="ps-2">CRM: HubSpot o Salesforce</li>
+     </ul>
+    </div>
+
+    <div class="space-y-3">
+     <h3 class="text-2xl font-semibold dark:text-white">Consejos</h3>
+
+     <p class="text-lg text-gray-800 dark:text-neutral-200">Finalmente, aquí tienes algunos consejos adicionales para asegurar el éxito de tu plan:</p>
+
+     <ul class="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-neutral-200">
+      <li class="ps-2">Sé profesional y puntual.</li>
+      <li class="ps-2">Vístete bien y preséntate de manera presentable.</li>
+      <li class="ps-2">Sé entusiasta y apasionado por tu trabajo.</li>
+      <li class="ps-2">Haz preguntas y escucha atentamente.</li>
+      <li class="ps-2">Ofrece soluciones valiosas y personalizadas.</li>
+      <li class="ps-2">Sigue los pasos.</li>
+     </ul>
+    </div>
+
+    <p class="text-lg text-gray-800 dark:text-neutral-200">Al seguir este plan, podrás generar leads, posicionarte como un experto en tu industria y cerrar más ventas. ¡Buena suerte!</p>
+
+    <div>
+     <a class="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">
+      Plan
+     </a>
+     <a class="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">
+      Web development
+     </a>
+     <a class="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">
+      Free
+     </a>
+     <a class="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="#">
+      Team
+     </a>
+    </div>
+   </div>
+   <!-- End Content -->
+  </div>
+ </div>
+ <!-- End Blog Article -->
+
+ <!-- Sticky Share Group -->
+ <div class="sticky bottom-6 inset-x-0 text-center">
+  <div class="inline-block bg-white shadow-md rounded-full py-3 px-4 dark:bg-neutral-800">
+   <div class="flex items-center gap-x-1.5">
+    <!-- Button -->
+    <div class="hs-tooltip inline-block">
+     <button type="button" class="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200">
+      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+      875
+      <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-black" role="tooltip">
+       Like
+      </span>
+     </button>
+    </div>
+    <!-- Button -->
+
+    <div class="block h-3 border-e border-gray-300 mx-3 dark:border-neutral-600"></div>
+
+    <!-- Button -->
+    <div class="hs-tooltip inline-block">
+     <button type="button" class="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-bottom" data-hs-overlay="#hs-offcanvas-bottom">
+      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
+      </svg>
+      16
+      <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-black" role="tooltip">
+       Comment
+      </span>
+     </button>
+
+    </div>
+    <!-- Button -->
+
+    <div class="block h-3 border-e border-gray-300 mx-3 dark:border-neutral-600"></div>
+
+    <!-- Button -->
+    <div class="hs-dropdown relative inline-flex">
+     <button id="hs-blog-article-share-dropdown" type="button" class="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:focus:text-neutral-200" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+       <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+       <polyline points="16 6 12 2 8 6" />
+       <line x1="12" x2="12" y1="2" y2="15" />
+      </svg>
+      Share
+     </button>
+     <div class="hs-dropdown-menu w-56 transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mb-1 z-10 bg-gray-900 shadow-md rounded-xl p-2 dark:bg-neutral-950" role="menu" aria-orientation="vertical" aria-labelledby="hs-blog-article-share-dropdown">
+      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-400 hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900" href="#">
+       <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+       </svg>
+       Copy link
+      </a>
+      <div class="border-t border-gray-600 my-2 dark:border-neutral-800"></div>
+      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-400 hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900" href="#">
+       <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+       </svg>
+       Share on Twitter
+      </a>
+      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-400 hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900" href="#">
+       <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+       </svg>
+       Share on Facebook
+      </a>
+      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-400 hover:bg-white/10 focus:outline-none focus:bg-white/10 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900" href="#">
+       <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+       </svg>
+       Share on LinkedIn
+      </a>
+     </div>
+    </div>
+    <!-- Button -->
+   </div>
+  </div>
+
+ </div>
+ <!-- End Sticky Share Group -->
+
+ <div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+  <div class="space-y-6">
+   <!-- Media -->
+   <a class="group flex items-center gap-x-6 focus:outline-none" href="#">
+    <div class="grow">
+     <span class="text-sm font-bold text-gray-800 group-hover:text-blue-600 group-focus:text-blue-600 dark:text-neutral-200 dark:group-hover:text-blue-500 dark:group-focus:text-blue-500">
+      5 Reasons to Not start a UX Designer Career in 2022/2023
+     </span>
+    </div>
+
+    <div class="shrink-0 relative rounded-lg overflow-hidden size-20">
+     <img class="size-full absolute top-0 start-0 object-cover rounded-lg" src="https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80" alt="Blog Image">
+    </div>
+   </a>
+   <!-- End Media -->
+
+   <!-- Media -->
+   <a class="group flex items-center gap-x-6 focus:outline-none" href="#">
+    <div class="grow">
+     <span class="text-sm font-bold text-gray-800 group-hover:text-blue-600 group-focus:text-blue-600 dark:text-neutral-200 dark:group-hover:text-blue-500 dark:group-focus:text-blue-500">
+      If your UX Portfolio has this 20% Well Done, it Will Give You an 80% Result
+     </span>
+    </div>
+
+    <div class="shrink-0 relative rounded-lg overflow-hidden size-20">
+     <img class="size-full absolute top-0 start-0 object-cover rounded-lg" src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80" alt="Blog Image">
+    </div>
+   </a>
+   <!-- End Media -->
+
+   <!-- Media -->
+   <a class="group flex items-center gap-x-6 focus:outline-none" href="#">
+    <div class="grow">
+     <span class="text-sm font-bold text-gray-800 group-hover:text-blue-600 group-focus:text-blue-600 dark:text-neutral-200 dark:group-hover:text-blue-500 dark:group-focus:text-blue-500">
+      7 Principles of Icon Design
+     </span>
+    </div>
+
+    <div class="shrink-0 relative rounded-lg overflow-hidden size-20">
+     <img class="size-full absolute top-0 start-0 object-cover rounded-lg" src="https://images.unsplash.com/photo-1586232702178-f044c5f4d4b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80" alt="Blog Image">
+    </div>
+   </a>
+   <!-- End Media -->
+  </div>
+ </div>
+
+ <!-- Subscribe -->
+ <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 mx-auto">
+  <div class="grid md:grid-cols-2 gap-8">
+   <div class="max-w-md">
+    <h2 class="text-2xl font-bold md:text-3xl md:leading-tight dark:text-white">Subscribe</h2>
+    <p class="mt-3 text-gray-600 dark:text-neutral-400">
+     Subscribe and start making the most of every engagement.
+    </p>
+   </div>
+   <style>
+    /* Estilos del formulario */
+    #gform,
+    #subscribe-form {
+     /*background-color: #ffffff;*/
+     padding: 30px;
+     border-radius: 8px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para las estrellas de valoración */
+    .rating {
+     display: flex;
+     flex-direction: row-reverse;
+     justify-content: flex-end;
+    }
+
+    .rating input {
+     display: none;
+    }
+
+    .rating label {
+     cursor: pointer;
+     width: 50px;
+     height: 40px;
+     margin-top: 0;
+     background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 76%;
+     transition: .3s;
+    }
+
+    .rating input:checked~label,
+    .rating label:hover,
+    .rating label:hover~label {
+     background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="%23ffd700"/></svg>');
+    }
+
+    /* Estilos para el campo de texto */
+    input[type="text"] {
+     width: 100%;
+     padding: 10px;
+     margin-top: 10px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 16px;
+    }
+
+    /* Estilos para el botón de envío */
+    #submit-button,
+    #subscribe-button {
+     background-color: #4CAF50;
+     color: white;
+     padding: 12px 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     font-size: 16px;
+     margin-top: 20px;
+     transition: background-color 0.3s ease;
+    }
+
+    #submit-button:hover,
+    #subscribe-button:hover {
+     background-color: #45a049;
+    }
+
+    .submit-button {
+     background-color: #4CAF50;
+     color: white;
+     padding: 12px 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     font-size: 16px;
+     margin-top: 20px;
+     transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+     background-color: #45a049;
+    }
+
+    /* Estilos para el mensaje de espera y agradecimiento */
+    #wait-message,
+    #thankyou-message,
+    #subscribe-wait-message,
+    #subscribe-thankyou-message {
+     margin-top: 20px;
+     font-style: italic;
+     color: white;
+    }
+
+    #thankyou-message,
+    #subscribe-thankyou-message {
+     font-size: 18px;
+     text-align: center;
+     color: black;
+    }
+
+    .wait-message,
+    .thankyou-message {
+     margin-top: 20px;
+     font-style: italic;
+     color: white;
+    }
+
+    .thankyou-message {
+     font-size: 18px;
+     text-align: center;
+     color: black;
+    }
+
+    /* Clase para ocultar elementos */
+    .hidden {
+     display: none;
+    }
+
+    a {
+     text-decoration: none;
+     color: grey
+    }
+
+    a:hover {
+     text-decoration: none;
+     color: white
+    }
+
+    .enotromomento {
+     /*background-color: #4CAF50;*/
+     color: grey;
+     padding: 12px 20px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     font-size: 16px;
+     margin-top: 20px;
+     transition: background-color 0.3s ease;
+    }
+
+    .enotromomento:hover {
+     background-color: #45a049;
+     color: white
+    }
+   </style>
+   <div id="form-container">
+    <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbxTGK4gTASuWPs8s9LXAssHPcgWl9vdA0p-f5XthELqmYwbx2ZCu-r5HkqoljPMG9LOnw/exec">
+     <h2>Valora tu experiencia</h2>
+     <div class="rating">
+      <input type="radio" id="star5" name="Valoración" value="5" /><label for="star5" title="5 estrellas"></label>
+      <input type="radio" id="star4" name="Valoración" value="4" /><label for="star4" title="4 estrellas"></label>
+      <input type="radio" id="star3" name="Valoración" value="3" /><label for="star3" title="3 estrellas"></label>
+      <input type="radio" id="star2" name="Valoración" value="2" /><label for="star2" title="2 estrellas"></label>
+      <input type="radio" id="star1" name="Valoración" value="1" /><label for="star1" title="1 estrella"></label>
+     </div>
+     <br>
+     <h2>Déjanos tu opinión de este articulo</h2>
+     <input type="text" id="Reseña" name="Reseña" placeholder="Comentarios" />
+     <input type="hidden" id="emailSubject" name="emailSubject" value="{{title}}">
+     <button id="submit-button" type="submit">
+      <span id="button-text">Suscribe</span>
+      <span id="wait-message" class="hidden">¡Enviando!</span>
+     </button>
+     <!--button class="enotromomento"> <a href="javascript:history.back()">En otro momento</a></button-->
+    </form>
+    <div id="thankyou-message" class="hidden">😊¡Muchas gracias por tu valoración ⭐<br>
+     <span id="redirect-message"></span>
+     <button class="submit-button"> <a href="javascript:history.back()" class="wait-message">Regresar</a></button>
+    </div>
+   </div>
+   <script data-cfasync="false" type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+     const forms = document.querySelectorAll("form");
+     forms.forEach(form => {
+      const submitButton = form.querySelector("button[type='submit']");
+      const buttonText = submitButton.querySelector("span:first-child");
+      const waitMessage = submitButton.querySelector("span:last-child");
+      const thankYouMessage = form.nextElementSibling;
+      const redirectMessage = thankYouMessage.querySelector("span");
+      form.addEventListener("submit", handleFormSubmit);
+
+      function handleFormSubmit(event) {
+       event.preventDefault();
+       const data = getFormData(form);
+       localStorage.setItem("formData", JSON.stringify(data));
+       setSubmitting(true);
+       const xhr = new XMLHttpRequest();
+       xhr.open("POST", form.action);
+       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+       xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+         console.log(xhr.status, xhr.statusText);
+         console.log(xhr.responseText);
+         setSubmitting(false);
+         showThankYouMessage();
+         hideFormContent();
+        }
+       };
+       const encodsubscr
+       ed = Object.keys(data).map(k =>
+        encodeURIComponent(k) + "=" + encodeURIComponent(data[k])
+       ).join("&");
+       xhr.send(encoded);
+      }
+
+      function setSubmitting(isSubmitting) {
+       submitButton.disabled = isSubmitting;
+       buttonText.classList.toggle("hidden", isSubmitting);
+       waitMessage.classList.toggle("hidden", !isSubmitting);
+      }
+
+      function showThankYouMessage() {
+       thankYouMessage.classList.remove("hidden");
+       setTimeout(function() {
+        countdown(5);
+       }, 1000);
+      }
+
+      function countdown(seconds) {
+       redirectMessage.textContent = `Redirigiendo en ${seconds}...`;
+       if (seconds > 1) {
+        setTimeout(function() {
+         countdown(seconds - 1);
+        }, 1000);
+       } else {
+        window.history.back();
+       }
+      }
+
+      function hideFormContent() {
+       form.classList.add("hidden");
+      }
+
+      function getFormData(form) {
+       const elements = form.elements;
+       const fields = Object.keys(elements).filter(k =>
+        elements[k].name !== "honeypot"
+       ).map(k =>
+        elements[k].name !== undefined ? elements[k].name :
+        elements[k].length > 0 ? elements[k].item(0).name : null
+       ).filter((item, pos, self) =>
+        item && self.indexOf(item) == pos
+       );
+       const formData = {};
+       fields.forEach(name => {
+        const element = elements[name];
+        formData[name] = element.value;
+        if (element.length) {
+         formData[name] = Array.from(element)
+          .filter(item => item.checked || item.selected)
+          .map(item => item.value)
+          .join(", ");
+        }
+       });
+       formData.formDataNameOrder = JSON.stringify(fields);
+       formData.formGoogleSheetName = form.dataset.sheet || "DATA";
+       formData.formGoogleSendEmail = form.dataset.email || "luis.el.de.las.tarjetas@gmail.com";
+       formData.emailSubject = form.querySelector("#emailSubject").value || "Rating Mueganitos";
+       return formData;
+      }
+     });
+    });
+   </script>
+
+   <div class="w-full sm:max-w-lg md:ms-auto">
+    <div class="flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
+     <div class="w-full">
+      <label for="subscribe-input" class="sr-only">Email</label>
+      <input type="text" id="subscribe-input" name="subscribe-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Enter your email">
+     </div>
+
+    </div>
+    <p class="mt-3 text-sm text-gray-500 dark:text-neutral-500">
+     No spam, unsubscribe at any time
+    </p>
+    <div id="subscribe-thankyou-message" class="hidden">😊¡Muchas gracias por tu suscripción!<br>
+     <span id="subscribe-redirect-message"></span>
+     <button class="submit-button"> <a href="javascript:history.back()" class="wait-message">Regresar</a></button>
+    </div>
+   </div>
+   </form>
+  </div>
+ </div>
+ <!-- End Subscribe -->
+
+</body>
+
+</html>
+<button type="button" class="m-1 ms-0 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-top" data-hs-overlay="#hs-offcanvas-top">
+ Toggle top offcanvas
+</button>
+
+<div id="hs-offcanvas-top" class="hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-40 size-full z-[80] bg-white border-b dark:bg-neutral-800 dark:border-neutral-700 hidden" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-top-label">
+ <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+  <h3 id="hs-offcanvas-top-label" class="font-bold text-gray-800 dark:text-white">
+   Offcanvas title
+  </h3>
+  <button type="button" class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600" aria-label="Close" data-hs-overlay="#hs-offcanvas-top">
+   <span class="sr-only">Close</span>
+   <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18"></path>
+    <path d="m6 6 12 12"></path>
+   </svg>
+  </button>
+ </div>
+ <div class="p-4">
+  <p class="text-gray-800 dark:text-neutral-400">
+   Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+  </p>
+ </div>
+</div>
+
+<button type="button" class="m-1 ms-0 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">
+ Toggle right offcanvas
+</button>
+
+<div id="hs-offcanvas-right" class="hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full max-w-xs w-full z-[80] bg-white border-s dark:bg-neutral-800 dark:border-neutral-700" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-right-label">
+ <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+  <h3 id="hs-offcanvas-right-label" class="font-bold text-gray-800 dark:text-white">
+   Offcanvas title
+  </h3>
+  <button type="button" class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600" aria-label="Close" data-hs-overlay="#hs-offcanvas-right">
+   <span class="sr-only">Close</span>
+   <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18"></path>
+    <path d="m6 6 12 12"></path>
+   </svg>
+  </button>
+ </div>
+ <div class="p-4">
+  <p class="text-gray-800 dark:text-neutral-400">
+   Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+  </p>
+ </div>
+</div>
+
+<div id="hs-offcanvas-bottom" class="hs-overlay hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-40 size-full z-[80] bg-white border-b dark:bg-neutral-800 dark:border-neutral-700 hidden" role="dialog" tabindex="-1" aria-labelledby="hs-offcanvas-bottom-label">
+ <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+  <h3 id="hs-offcanvas-bottom-label" class="font-bold text-gray-800 dark:text-white">
+   Offcanvas title
+  </h3>
+  <button type="button" class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600" aria-label="Close" data-hs-overlay="#hs-offcanvas-bottom">
+   <span class="sr-only">Close</span>
+   <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18"></path>
+    <path d="m6 6 12 12"></path>
+   </svg>
+  </button>
+ </div>
+ <div class="p-4">
+  <p class="text-gray-800 dark:text-neutral-400">
+   Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+  </p>
+ </div>
+</div>
+    
+  </body>
+  
+</html>

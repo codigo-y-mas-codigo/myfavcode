@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Saludo según la hora del día</title>
+ <script>
+  window.onload = function() {
+   var hora = new Date().getHours();
+   var saludo;
+   if (hora >= 6 && hora < 12) {
+    saludo = "Buenos días";
+   } else if (hora >= 12 && hora < 18) {
+    saludo = "Buenas tardes";
+   } else {
+    saludo = "Buenas noches";
+   }
+   document.getElementById("saludo").innerHTML = saludo;
+  }
+ </script>
+</head>
+
+<body>
+ <h1 id="saludo"></h1>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

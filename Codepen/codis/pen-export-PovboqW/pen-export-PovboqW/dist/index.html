@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <title>CodePen - Selector de Fecha y Hora - Experimento de CSS Scroll Snap</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+  @layer support,
+  demo;
+
+  @layer demo.scrollstart {
+   [data-scroll-start-target] {
+    scroll-start-target-y: auto;
+   }
+  }
+
+  @layer demo.picker {
+   datetime-picker {
+    display: grid;
+    grid-auto-flow: column;
+    gap: .5rlh;
+    block-size: 5rlh;
+
+    h3 {
+     font-size: .75rem;
+     margin-block-end: -1rlh;
+    }
+   }
+
+   .snap-y {
+    display: grid;
+    grid-auto-rows: 1rlh;
+    height: 0;
+    min-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    padding-inline-end: .5rlh;
+    /* prevent scrollbar from overlapping */
+    padding-block: 3rlh;
+    /* ensures all items can be snapped */
+    mask: linear-gradient(to bottom, #0000, 40%, #000, #000, 60%, #0000);
+
+    >* {
+     scroll-snap-align: center;
+    }
+   }
+  }
+
+  @layer support {
+   * {
+    box-sizing: border-box;
+    margin: 0;
+   }
+
+   html {
+    block-size: 100%;
+    color-scheme: dark light;
+    font-size: 200%;
+   }
+
+   body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+    display: grid;
+    place-content: center;
+    gap: 10vmin;
+   }
+
+   main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10vmin;
+    justify-content: center;
+   }
+
+   h1 {
+    text-align: center;
+   }
+
+   h3 {
+    inline-size: max-content;
+    transform-origin: center center;
+   }
+  }
+ </style>
+</head>
+
+<body>
+ <main>
+  <datetime-picker>
+   <section>
+    <h3>Año</h3>
+    <div class="snap-y" tabindex="0" data-for="year">
+     <span>1980</span>
+     <span>1981</span>
+     <span>1982</span>
+     <!-- ... otros años ... -->
+     <span data-scroll-start-target>2023</span>
+     <span>2024</span>
+     <!-- ... otros años ... -->
+    </div>
+   </section>
+   <section>
+    <h3>Mes</h3>
+    <div class="snap-y" tabindex="0" data-for="month">
+     <span>Sin mes</span>
+     <span data-scroll-start-target>Enero</span>
+     <span>Febrero</span>
+     <span>Marzo</span>
+     <span>Abril</span>
+     <span>Mayo</span>
+     <span>Junio</span>
+     <span>Julio</span>
+     <span>Agosto</span>
+     <span>Septiembre</span>
+     <span>Octubre</span>
+     <span>Noviembre</span>
+     <span>Diciembre</span>
+    </div>
+   </section>
+   <section>
+    <h3>Día</h3>
+    <div class="snap-y" tabindex="0" data-for="day">
+     <span>Sin día</span>
+     <span data-scroll-start-target>1</span>
+     <span>2</span>
+     <span>3</span>
+     <span>4</span>
+     <span>5</span>
+     <span>6</span>
+     <span>7</span>
+     <span>8</span>
+     <span>9</span>
+     <span>10</span>
+     <span>11</span>
+     <span>12</span>
+     <span>13</span>
+     <span>14</span>
+     <span>15</span>
+     <span>16</span>
+     <span>17</span>
+     <span>18</span>
+     <span>19</span>
+     <span>20</span>
+     <span>21</span>
+     <span>22</span>
+     <span>23</span>
+     <span>24</span>
+     <span>25</span>
+     <span>26</span>
+     <span>27</span>
+     <span>28</span>
+     <span>29</span>
+     <span>30</span>
+     <span>31</span>
+    </div>
+   </section>
+  </datetime-picker>
+ </main>
+
+ <script>
+  if (!CSS.supports('scroll-start: auto')) {
+   window.onload = () => {
+    document.querySelectorAll('[data-scroll-start-target]').forEach(item => {
+     item.scrollIntoView({
+      block: 'center',
+      inline: 'start'
+     });
+    });
+   };
+  }
+  document.querySelectorAll('.snap-y').forEach(scroller => {
+   scroller.addEventListener('snapchanged', e => {
+    console.warn(`Cambió a ${e?.snapTargetBlock.textContent}`);
+    e.target.parentElement.querySelector('h3').animate([{
+      scale: 1
+     },
+     {
+      scale: 1.25
+     },
+     {
+      scale: 1
+     }
+    ], {
+     duration: 400,
+     iterations: 1,
+     easing: 'ease-out'
+    });
+   });
+   scroller.addEventListener('snapchanging', e => {
+    console.info(`Cambiando ${e?.snapTargetBlock.textContent}`);
+    const outputTarget = e.snapTargetBlock.parentNode.getAttribute('data-for');
+    window[outputTarget].textContent = e?.snapTargetBlock.textContent;
+   });
+  });
+ </script>
+</body>
+
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

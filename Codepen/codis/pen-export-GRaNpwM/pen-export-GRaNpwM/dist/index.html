@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Elementos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Elementos</h1>
+    <form id="elementForm">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="href">Href:</label>
+        <input type="url" id="href" name="href" required><br>
+        <label for="css">CSS:</label>
+        <input type="text" id="css" name="css"><br>
+        <label for="js">JS:</label>
+        <input type="text" id="js" name="js"><br>
+        <label for="src">Src:</label>
+        <input type="text" id="src" name="src"><br>
+        <button type="submit">Añadir nuevo elemento</button>
+    </form>
+
+    <h2>Lista de Elementos</h2>
+    <input type="text" id="search" placeholder="Buscar...">
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Href</th>
+                <th>CSS</th>
+                <th>JS</th>
+                <th>Src</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="elementos"></tbody>
+    </table>
+
+    <button onclick="downloadJSON()">Descargar JSON</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

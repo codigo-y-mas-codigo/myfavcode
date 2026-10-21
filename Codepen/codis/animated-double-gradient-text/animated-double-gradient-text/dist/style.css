@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm0K0.ttf) format('truetype');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #000;
+  text-align: center;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 20vw;
+  line-height: 1;
+  font-family: "Anton", sans-serif;
+}
+.linear-wipe {
+  text-align: center;
+  background: radial-gradient(circle at center, #b21f1f, #1a2a6c, transparent), radial-gradient(circle at center, #ec38bc, #7303c0, transparent);
+  background-size: 200% 100%;
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: shine 4s linear infinite;
+          animation: shine 4s linear infinite;
+}
+@-webkit-keyframes shine {
+  to {
+    background-position: 200% center, -200% center;
+  }
+}
+@keyframes shine {
+  to {
+    background-position: 200% center, -200% center;
+  }
+}

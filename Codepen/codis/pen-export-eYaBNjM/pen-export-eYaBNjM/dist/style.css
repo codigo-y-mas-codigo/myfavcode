@@ -1,0 +1,107 @@
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ background-color: #f0f0f0;
+}
+
+.container {
+ max-width: 800px;
+ margin: 0 auto;
+ padding: 20px;
+}
+
+h1 {
+ text-align: center;
+ margin-bottom: 20px;
+}
+
+form {
+ background-color: #fff;
+ padding: 20px;
+ border-radius: 5px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+ display: block;
+ margin-bottom: 5px;
+}
+
+input,
+select,
+button {
+ width: 100%;
+ padding: 8px;
+ margin-bottom: 10px;
+ border-radius: 3px;
+ border: 1px solid #ccc;
+ box-sizing: border-box;
+}
+
+button {
+ background-color: #007bff;
+ color: #fff;
+ cursor: pointer;
+}
+
+button:hover {
+ background-color: #0056b3;
+}
+
+#registros {
+ margin-top: 20px;
+}
+
+#registros div {
+ background-color: #fff;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 3px;
+ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#registros div button {
+ margin-left: 10px;
+}
+
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+}
+
+h1 {
+ text-align: center;
+}
+
+form {
+ margin-bottom: 20px;
+ text-align: center;
+}
+
+#registros {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+}
+
+.registro {
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ padding: 10px;
+ margin: 5px;
+}
+
+.registro p {
+ margin: 5px 0;
+}
+
+button {
+ margin-left: 5px;
+ cursor: pointer;
+}
+
+button:hover {
+ background-color: #eee;
+}

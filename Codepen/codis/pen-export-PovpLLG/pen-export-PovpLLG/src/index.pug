@@ -1,0 +1,58 @@
+#app
+  .HERE_NavBar.flex.y_center.x_sb
+    .Logo.fs_10
+      | THE
+      div ART
+      | MUSEUM
+    .red.fs_12 Plan Your Visit
+    
+    svg(width='44', height='44')
+      g(stroke='midnightblue', stroke-width='2')
+        path(d='M5,14 L32,14')
+        path(d='M5,22 L26,22')
+        path(d='M5,30 L20,30')
+
+
+  .fs_24 Skip the Line.
+  .fs_24 Purchase Tickets.
+  .red.fs_12 All exhibitions, audio tours, and films 
+  .red.fs_12 included in the price of admission.
+
+  .HERE_tabs
+    .tabLabels
+      .tabLabels_Item(
+        v-for="tab,idx in Tabs",
+        :class="{curr:idx==TAB}",
+        @click="TAB = idx"
+      ) {{tab}}
+    
+
+    transition-group(
+      class="TAB_content" name="tab"
+      v-for="Name,Tab in Tabs"
+    )
+      .TAB(:key="Tab" v-show="TAB == Tab")
+        .PERIOD.fs_12 {{Name == 'Tomorrow' ? new Date().toLocaleDateString('ru-RU') : Name}}
+        .groupItem.flex.x_sb(
+          v-for="Item,idx in group"
+        )
+          div
+            | {{Item.title}}
+            .subTitle {{Item.subTitle}}
+          .flex.y_center
+            //- Number
+            .input_num.Minus(
+              :class="{disabled: !Item.value}"
+              @click="minus(idx)"
+            )
+            .input_numResult {{Item.value}}
+            .input_num.Plus(
+              @click="plus(idx)"
+            )
+  dl.Total.flex.x_sb
+    dt Total
+    dd ${{total}}
+  center
+    .btn(role="button") Continue to Payment
+  
+

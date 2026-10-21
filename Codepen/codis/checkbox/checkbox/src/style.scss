@@ -1,0 +1,110 @@
+$specialColor: #0074d9;
+
+html {
+  display: flex;
+  height: 100%;
+}
+
+body {
+  margin: auto;
+}
+
+.checkbox-control {
+  color: #555;
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  transition-property: box-shadow;
+  transition-duration: .2s;
+}
+
+.checkbox-label {
+  transition-property: color;
+  transition-duration: .2s;
+}
+
+.checkbox-control:focus-within {
+  box-shadow: inset 0 0 0 .2rem $specialColor;
+  
+  .checkbox-label {
+    color: $specialColor;
+  }
+}
+
+.checkbox-control input {
+  position: absolute;
+  opacity: 0;
+  // Put the input behind the label so it doesn't overlay text
+  z-index: -1;
+  
+  &:focus {
+    ~ .checkbox-shape {
+      .checkbox-outline {
+        stroke: $specialColor;
+      }
+
+      .checkbox-check {
+        stroke: lighten($specialColor,20%);
+      }
+    }
+  }
+
+  &:active {
+    ~ .checkbox-shape {
+      .checkbox-outline {
+        fill: rgba(lighten($specialColor,20%),.2);
+        stroke: lighten($specialColor,20%);
+      }
+
+      .checkbox-check {
+        stroke: lighten($specialColor,20%);
+      }
+    }
+  }
+
+  &:checked {
+    ~ .checkbox-shape {
+      .checkbox-outline {
+        stroke-dasharray: 280;
+        stroke-dashoffset: -25;
+      }
+
+      .checkbox-check {
+        stroke-dasharray: 100%;
+        stroke-dashoffset: 0%;
+      }
+    }
+  }
+}
+
+.checkbox-shape {
+  // !important to overwrite normalize.css
+  overflow: visible!important;
+  display: inline-block;
+  margin-right: .5em;
+  height: 1.5em;
+  width: auto;
+  overflow: visible;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.checkbox-outline {
+  stroke-dasharray: 340;
+  stroke-dashoffset: 0;
+  stroke: currentColor;
+  transition-property: stroke-dasharray, stroke-dashoffset, stroke, fill;
+  transition-duration: .2s;
+}
+
+.checkbox-check {
+  stroke-dasharray: 100%;
+  stroke-dashoffset: 100%;
+  stroke: currentColor;
+  transition-property: stroke-dashoffset, stroke;
+  transition-duration: .2s;
+}
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Vibrate API</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Funciona para todos los dispositivos móviles con vibrador. Son 7 tipos de vibraciones disponibles.">
+ <link rel="stylesheet" href="style.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+ <script>
+  function vibrate(type) {
+   navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+   if (navigator.vibrate) {
+    if (type == 'throb') {
+     navigator.vibrate([500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]);
+    } else if (type == 'shake') {
+     navigator.vibrate([125, 75, 125, 275, 200, 275, 125, 75, 125, 275, 200, 600, 200, 600]);
+    } else if (type == 'pulsate') {
+     navigator.vibrate([75, 75, 75, 75, 75, 75, 75, 75, 150, 150, 150, 450, 75, 75, 75, 75, 75, 525]);
+    } else if (type == 'vibrate') {
+     navigator.vibrate([150, 150, 150, 150, 75, 75, 150, 150, 150, 150, 450]);
+    } else if (type == 'phone-call') {
+     navigator.vibrate([1000, 500, 1000, 500, 1000, 500, 1000, 500, 1000, 500, 1000, 500, 1000, 500]);
+    } else if (type == '007') {
+     navigator.vibrate([200, 100, 200, 275, 425, 100, 200, 100, 200, 275, 425, 100, 75, 25, 75, 125, 75, 25, 75, 125, 100, 100]);
+    } else {
+     navigator.vibrate(50);
+    }
+   }
+  }
+  $(document).ready(function() {
+   $('.button--normal').click(function() {
+    vibrate();
+   });
+   $('.button--phone-call').click(function() {
+    vibrate('phone-call');
+   });
+   $('.button--vibrate').click(function() {
+    vibrate('vibrate');
+   });
+   $('.button--shake').click(function() {
+    vibrate('shake');
+   });
+   $('.button--throb').click(function() {
+    vibrate('throb');
+   });
+   $('.button--pulsate').click(function() {
+    vibrate('pulsate');
+   });
+   $('.button--pulse').click(function() {
+    vibrate('pulse');
+   });
+  });
+ </script>
+ <style>
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px");
+
+  body {
+   font-family: "Open Sans", sans-serif;
+  }
+
+  h1 {
+   margin-bottom: 0;
+   font-family: "Slabo 27px", serif;
+  }
+
+  p {
+   margin-bottom: 2rem;
+  }
+
+  .container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   text-align: center;
+  }
+
+  .button {
+   text-transform: uppercase;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.75rem 1rem;
+   border: 1px solid #333;
+   color: #333;
+   text-decoration: none;
+   transition: all 250ms;
+   margin: 0.5rem 0.5rem;
+  }
+
+  .button:active,
+  .button:focus,
+  .button:hover {
+   background-color: #333;
+   color: white;
+  }
+
+  button,
+  hr,
+  input {
+   overflow: visible
+  }
+
+  audio,
+  canvas,
+  progress,
+  video {
+   display: inline-block
+  }
+
+  progress,
+  sub,
+  sup {
+   vertical-align: baseline
+  }
+
+  html {
+   font-family: sans-serif;
+   line-height: 1.15;
+   -ms-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%
+  }
+
+  body {
+   margin: 0
+  }
+
+  menu,
+  article,
+  aside,
+  details,
+  footer,
+  header,
+  nav,
+  section {
+   display: block
+  }
+
+  h1 {
+   font-size: 2em;
+   margin: .67em 0
+  }
+
+  figcaption,
+  figure,
+  main {
+   display:::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+   }
+
+   summary {
+    display: list-item
+   }
+
+   [hidden],
+   template {
+    display: none
+   }
+ </style>
+</head>
+
+<body>
+ <div class="container">
+  <h1>HTML Vibrate API</h1>
+  <p>Funciona para todos los dispositivos móviles con vibrador. Son 7 tipos de vibraciones disponibles.</p>
+  <div class="button-container">
+   <a class="button button--normal" href="#">Normal</a>
+   <a class="button button--phone-call" href="#">Phone Call</a>
+   <a class="button button--vibrate" href="#">Vibrate</a>
+   <a class="button button--shake" href="#">Shake</a>
+   <a class="button button--throb" href="#">Throb</a>
+   <a class="button button--pulsate" href="#">Pulsate</a>
+   <a class="button button--pulse" href="#">Pulse</a>
+  </div>
+ </div>
+</body>
+
+</html>
+<h1>Simulación de vibración</h1>
+<button onclick="vibrate()">Vibrar</button>
+
+<audio id="vibrationSound" src="vibration.mp3"></audio>
+
+<script>
+ function vibrate() {
+  var vibrationSound = document.getElementById('vibrationSound');
+  vibrationSound.play(); // Reproducir sonido de vibración
+ }
+</script>
+
+La Vibration API no está soportada en dispositivos iOS, lo que significa que no funcionará en iPhones. Apple no proporciona una API oficial para controlar la vibración del dispositivo a través del navegador web en iOS.
+
+Sin embargo, puedes usar soluciones alternativas como reproducir un sonido para simular una vibración en dispositivos iOS. Aquí tienes un ejemplo de cómo podrías hacerlo:

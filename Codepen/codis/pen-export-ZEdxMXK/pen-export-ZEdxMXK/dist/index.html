@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  Para lograr lo que pides, necesitas modificar el código JavaScript para que genere dinámicamente el contenido del grid en lugar de tenerlo estático en el HTML. Además, debes crear un array de objetos JavaScript que contenga la información de cada imagen, como la URL y el tamaño.
+
+Aquí te muestro un ejemplo de cómo podrías hacerlo:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- ... -->
+</head>
+
+<body>
+ <section id="gallery" class="gallery"></section><script>
+    const images = [
+     {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023120_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023126_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023131_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023138_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023153_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023418_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023432_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023450_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023209_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023257_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023458_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },{
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023120_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023126_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023131_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023138_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023153_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023418_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023432_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023450_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023209_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023257_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023458_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },{
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023120_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023126_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023131_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023138_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023153_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023418_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023432_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023450_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023209_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023257_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   },
+   {
+    src: "https://xbrpw.github.io/2023/img/lizzi/Screenshot_20230311_023458_com.google.android.apps.photos~2.webp",
+    width: 1600,
+    height: 900
+   }
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    images.forEach((image, index) => {
+      const figure = document.createElement("figure");
+      figure.classList.add("gallery__item");
+      figure.innerHTML = `
+        <img src="${image.src}" alt="${image.alt}" class="gallery__img">
+      `;
+      gallery.appendChild(figure);
+    });
+  </script>
+    
+  </body>
+  
+</html>

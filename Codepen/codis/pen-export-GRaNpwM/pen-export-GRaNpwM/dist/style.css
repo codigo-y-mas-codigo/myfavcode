@@ -1,0 +1,37 @@
+body {
+ font-family: sans-serif;
+}
+
+.contenedor-tabla {
+ margin: 20px 0;
+}
+
+table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+th,
+td {
+ padding: 8px;
+ border: 1px solid #ddd;
+ text-align: left;
+}
+
+#buscar {
+ margin-bottom: 10px;
+ padding: 5px;
+ border: 1px solid #ccc;
+}
+
+button {
+ padding: 8px 15px;
+ background-color: #4caf50;
+ color: white;
+ border: none;
+ cursor: pointer;
+}
+
+button:hover {
+ background-color: #45a049;
+}

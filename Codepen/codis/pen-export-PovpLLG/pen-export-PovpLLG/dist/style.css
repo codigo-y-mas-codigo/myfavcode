@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}
+body {
+  background: #3c4858;
+  display: flex;
+  height: 100vh;
+}
+#app {
+  margin: auto;
+  padding: 0.7em 1em 1.4em;
+  width: 375px;
+  background: #fff;
+}
+.flex {
+  display: flex;
+}
+.x_sb {
+  justify-content: space-between;
+}
+.y_center {
+  align-items: center;
+}
+.red {
+  color: #ff473a;
+}
+.fs_24 {
+  font-size: 24px;
+}
+.fs_12 {
+  font-size: 12px;
+}
+.fs_10 {
+  font-size: 10px;
+}
+.groupItem {
+  height: 3em;
+  align-items: flex-start;
+}
+.subTitle {
+  font-size: 80%;
+  color: #ccc;
+}
+.input_num {
+  width: 1.2em;
+  height: 1.2em;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.input_num:hover:not('.disabled') {
+  border-color: #ff473a;
+}
+.input_numResult {
+  width: 2em;
+  text-align: center;
+}
+.Minus {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='11'><line x1='0' y1='5' x2='10' y2='5' stroke='grey'></line></svg>") center no-repeat;
+}
+.Plus {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='10'><g stroke='grey'><line x1='0' y1='5' x2='10' y2='5'></line><line x1='5' y1='0' x2='5' y2='10'></line></g></svg>") center no-repeat;
+}
+.disabled {
+  cursor: not-allowed;
+  background: #eee;
+}
+.tab-enter-active {
+  transition: all 0.4s ease;
+}
+.tab-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.tab-enter-to {
+  opacity: 1;
+}
+.tab-leave-active {
+  display: none;
+}
+.PERIOD {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.tabLabels {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin: 1em 0 0.5em;
+}
+.tabLabels_Item {
+  flex: 1;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  padding-bottom: 0.5em;
+  position: relative;
+}
+.tabLabels_Item.curr:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -3px;
+  border-bottom: 4px solid #ff473a;
+}
+.HERE_NavBar {
+  margin-bottom: 1em;
+}
+.Total {
+  border-top: 2px solid #ff473a;
+  margin: 1.4em 0;
+  padding: 0.5em;
+}
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  padding: 15px 2em;
+  color: #fff;
+  background: #ff473a;
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+}

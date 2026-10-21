@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ebook REceta del amor </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+
+ <title>Receta del Amor</title>
+
+ <link rel="canonical" href="https://codepen.io/luisangelmaciel/pen/jOoWbOg">
+
+ <style>
+  /* 1. Enable smooth scrolling */
+  html {
+   scroll-behavior: smooth;
+  }
+
+  /* 2. Make nav sticky */
+  main>nav {
+   position: sticky;
+   top: 2rem;
+   align-self: start;
+  }
+
+  /* 3. ScrollSpy active styles (see JS tab for activation) */
+  .section-nav li.active>a {
+   color: #333;
+   font-weight: 500;
+  }
+
+  /* Sidebar Navigation */
+  .section-nav {
+   padding-left: 0;
+   border-left: 1px solid #efefef;
+  }
+
+  .section-nav a {
+   text-decoration: none;
+   display: block;
+   padding: .125rem 0;
+   color: #ccc;
+   transition: all 50ms ease-in-out;
+   /* 💡 This small transition makes setting of the active state smooth */
+  }
+
+  .section-nav a:hover,
+  .section-nav a:focus {
+   color: #666;
+  }
+
+  /** Poor man's reset **/
+  * {
+   box-sizing: border-box;
+  }
+
+  html,
+  body {
+   background: #fff;
+  }
+
+  body {
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+
+  ul,
+  ol {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+  }
+
+  li {
+   margin-left: 1rem;
+  }
+
+  h1 {
+   font-weight: 300;
+  }
+
+  /** page layout **/
+  main {
+   display: grid;
+   grid-template-columns: 1fr 15em;
+   max-width: 100em;
+   width: 90%;
+   margin: 0 auto;
+  }
+
+  /** enlarge the sections for this demo, so that we have a long scrollable page **/
+  section {
+   padding-bottom: 20rem;
+  }
+
+  /* Cambiar a navegación vertical en dispositivos móviles */
+  @media screen and (max-width: 768px) {
+   main {
+    grid-template-columns: 1fr;
+   }
+
+   .section-nav {
+    position: static;
+    padding-top: 2rem;
+    /* Espacio superior para compensar la barra de navegación */
+    border-left: none;
+   }
+
+   .section-nav ul {
+    display: flex;
+    flex-direction: column;
+   }
+
+   .section-nav ul li {
+    margin-left: 0;
+   }
+  }
+
+  /* Estilo del botón de menú */
+  #menu-toggle {
+   display: block;
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   cursor: pointer;
+  }
+
+  /* Estilo del menú de navegación en dispositivos móviles */
+  @media screen and (max-width: 768px) {
+   main {
+    grid-template-columns: 1fr;
+   }
+
+   .section-nav {
+    position: fixed;
+    top: 0;
+    left: -15em;
+    /* Ocultar el menú al inicio */
+    width: 15em;
+    height: 100vh;
+    background: #fff;
+    transition: left 0.3s ease;
+    z-index: 1000;
+   }
+
+   .section-nav.open {
+    left: 0;
+   }
+
+   /* Opcional: estilos para el contenido principal cuando se abre el menú */
+   .content {
+    margin-left: 15em;
+   }
+  }
+
+  /* Estilo del botón de cerrar */
+  #close-menu {
+   display: none;
+   /* Ocultar el botón por defecto */
+  }
+
+  /* Estilo del botón de menú en dispositivos grandes */
+  @media screen and (min-width: 769px) {
+   #menu-toggle {
+    display: none;
+    /* Ocultar el botón en dispositivos grandes */
+   }
+
+   #close-menu {
+    display: none;
+    /* Asegurarse de que el botón de cerrar esté oculto en dispositivos grandes */
+   }
+  }
+
+  /* Estilo del botón de menú en dispositivos pequeños */
+  @media screen and (max-width: 768px) {
+   #menu-toggle {
+    position: fixed;
+    bottom: 1rem;
+    /* Posición desde abajo */
+    right: 1rem;
+    /* Posición desde la derecha */
+    z-index: 1000;
+    /* Asegurar que esté por encima de otros elementos */
+   }
+  }
+ </style>
+
+</head>
+
+<body>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <button id="menu-toggle">☰</button>
+ <main>
+
+  <div>
+   <h1>Receta del Amor</h1>
+   <p><em>Want an explanation of how this works?<br />&rarr; <a href="https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/" target="_top">https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/</a></em></p>
+   <section id="introduction">
+    <h2>Introducción</h2>
+    <h3>El Sabor de la Tradición</h3>
+    <p>Las manos de Valentina Reyes temblaban mientras sostenía la carta de su abuela. Las manchas de salsa y las marcas de años de cocina cubrían el papel, un mapa de memoria que amenazaba con desaparecer. "Este restaurante es más que un negocio", había dicho su abuela. "Es nuestra historia." Pero las historias también pueden morir, pensó Valentina, mirando las cuentas. Los números no mentían: tenían tres meses antes de que el último capítulo se cerrara para siempre.</p>
+    <p>El pequeño restaurante "El Rincón de María" —nombrado por su abuela— había sido el corazón de la familia Reyes durante tres generaciones. Ahora, ese corazón latía con dificultad, amenazando con detenerse para siempre. Valentina, con sus 28 años, se sentía abrumada por la responsabilidad de mantener vivo el legado familiar. Su blog de cocina había sido un intento desesperado de mantener viva la llama. Recetas familiares, historias de los ingredientes, fotografías que capturaban la esencia de Oaxaca. Pero los likes no se convertían en comensales, y la nostalgia no pagaba las facturas.</p>
+    <p>Valentina había crecido entre los aromas y sabores de la cocina tradicional oaxaqueña. Su abuela María le había enseñado todo lo que sabía sobre el mole negro, los chapulines y el quesillo. Cada plato tenía una historia, cada ingrediente un secreto transmitido de generación en generación. Pero ahora, esos secretos y tradiciones estaban en peligro de desaparecer.</p>
+    <p>El mercado de la Merced, uno de los más tradicionales de Oaxaca, era su segundo hogar. Allí, entre montones de chiles y el bullicio de los vendedores, Valentina encontraba inspiración y consuelo. Sin embargo, la realidad del restaurante vacío y las cuentas por pagar la perseguían constantemente. Necesitaba un milagro, y sabía que ese milagro tenía un nombre: Sofía Hernández.</p>
+   </section>
+   <section id="request-response">
+    <h2>El Arte de la Cocina Oaxaqueña</h2>
+    <p>Sofía Hernández era una figura legendaria en el mundo culinario de Oaxaca. Con tres estrellas Michelin y una reputación de ser más fría que un refrigerador industrial, su nombre era sinónimo de excelencia y perfección. Sin embargo, su éxito venía acompañado de una fachada impenetrable que pocos habían logrado traspasar. Su crítica era temida y respetada a partes iguales. Cada reseña que escribía podía elevar un restaurante a la fama o condenarlo al olvido. Su mirada aguda y su paladar exigente no dejaban pasar ningún detalle, y su opinión era buscada por los mejores chefs del país.</p>
+    <p>Pero detrás de esa fachada de perfección, Sofía guardaba un corazón lleno de vulnerabilidades y miedos. La presión de mantener su reputación y las expectativas de su familia pesaban sobre ella, creando una barrera que la mantenía aislada del mundo. Su vida se había reducido a la cocina y a la crítica, dejando poco espacio para el amor o la amistad.</p>
+    <p>Cuando recibió el correo electrónico de Valentina, sintió una mezcla de curiosidad y aprensión. Ayudar a un restaurante familiar en crisis no era algo que hiciera habitualmente, pero había algo en la pasión y la desesperación de Valentina que la intrigaba. Decidió aceptar el desafío, sabiendo que sería una prueba no solo para Valentina, sino también para ella misma.</p>
+   </section>
+   <section id="authentication">
+    <h2>Ingredientes del Corazón</h2>
+    <p>El restaurante estaba en silencio, salvo por el suave murmullo de la cocina. Valentina había pasado la mañana preparando todo para la llegada de Sofía. Cada detalle, desde la disposición de los ingredientes hasta la limpieza impecable de la cocina, debía ser perfecto. Cuando Sofía entró, su presencia llenó el espacio. Alta, con una mirada penetrante y una actitud que exudaba autoridad, inspeccionó el lugar con ojo crítico. Valentina sintió un nudo en el estómago, pero se mantuvo firme.</p>
+    <p>"Gracias por venir", dijo Valentina, tratando de mantener la voz firme.</p>
+    <p>Sofía asintió, su expresión inescrutable. "Veamos qué tienes."</p>
+    <p>Valentina comenzó a explicar la situación del restaurante, mostrando las recetas familiares y los intentos fallidos de atraer clientes. Sofía escuchaba, su rostro impasible, pero sus ojos atentos a cada detalle.</p>
+    <p>"Entiendo la situación", dijo finalmente Sofía. "Pero necesito ver más. Necesito probar tu cocina."</p>
+    <p>Valentina asintió, sintiendo una mezcla de nervios y determinación. "Por supuesto. Vamos a la cocina."</p>
+    <p>Mientras Valentina cocinaba, Sofía observaba cada movimiento, cada ingrediente, cada técnica. La tensión en la cocina era palpable, pero también había una chispa de algo más: una conexión innegable entre dos personas apasionadas por la cocina.</p>
+    <p>"Este mole necesita más profundidad", dijo Sofía, probando una cucharada. "Añade un poco más de chile pasilla."</p>
+    <p>Valentina asintió, ajustando la receta. "Gracias. Nunca había pensado en eso."</p>
+    <p>Sofía sonrió, una sonrisa genuina que rara vez mostraba. "Eres buena, Valentina. Solo necesitas confiar más en ti misma."</p>
+    <p>Valentina sintió una oleada de gratitud y algo más: una chispa de atracción que no podía ignorar. "Gracias, Sofía. Significa mucho viniendo de ti."</p>
+    <p>Mientras trabajaban, compartían historias sobre sus vidas, sus sueños y sus miedos. La cocina se convirtió en un refugio, un lugar donde podían ser ellas mismas sin miedo al juicio.</p>
+    <p>"Siempre quise ser chef", confesó Valentina una noche, mientras limpiaban la cocina. "Pero nunca pensé que sería tan difícil."</p>
+    <p>Sofía asintió, su expresión suavizándose. "La cocina es una pasión, pero también una lucha constante. Pero vale la pena, ¿verdad?"</p>
+    <p>Valentina sonrió, sintiendo una conexión profunda con Sofía. "Sí, vale la pena."</p>
+   </section>
+   <section id="endpoints">
+    <h2>Receta: Mole Negro Oaxaqueño</h2>
+    <p>Valentina se acercó a la mesa de trabajo, donde tenía todos los ingredientes cuidadosamente dispuestos. "El mole negro es uno de los platos más emblemáticos de Oaxaca", explicó a Sofía. "Es un proceso largo, pero cada paso vale la pena."</p>
+    <p><strong>Ingredientes:</strong></p>
+    <ul>
+     <li>6 chiles mulatos</li>
+     <li>4 chiles pasilla</li>
+     <li>2 chiles anchos</li>
+     <li>1 chile chipotle</li>
+     <li>1 cucharada de semillas de ajonjolí</li>
+     <li>1 cucharada de semillas de calabaza</li>
+     <li>1 cucharada de almendras</li>
+     <li>1 cucharada de nueces</li>
+     <li>1 cucharada de pasas</li>
+     <li>1 cucharada de alcaparras</li>
+     <li>1 cucharada de pimienta negra</li>
+     <li>1 cucharada de comino</li>
+     <li>1 cucharada de canela en polvo</li>
+     <li>1 cucharada de orégano</li>
+     <li>1 cucharada de tomillo</li>
+     <li>1 cucharada de clavo de olor</li>
+     <li>1 cucharada de ajo en polvo</li>
+     <li>1 cucharada de cebolla en polvo</li>
+     <li>1 tableta de chocolate amargo</li>
+     <li>1 litro de caldo de pollo</li>
+     <li>Sal al gusto</li>
+    </ul>
+    <p><strong>Preparación:</strong></p>
+    <ol>
+     <li>Tuesta los chiles en un comal hasta que estén ligeramente dorados.</li>
+     <li>Remoja los chiles en agua caliente durante 30 minutos.</li>
+     <li>Tuesta las semillas de ajonjolí, las semillas de calabaza, las almendras y las nueces en una sartén sin aceite hasta que estén doradas.</li>
+     <li>Muele los chiles remojados, las semillas, las almendras, las nueces, las pasas, las alcaparras, la pimienta, el comino, la canela, el orégano, el tomillo, el clavo de olor, el ajo y la cebolla en polvo hasta obtener una pasta homogénea.</li>
+     <li>Añade la pasta de chiles y especias al caldo de pollo y deja cocinar a fuego lento durante 2 horas.</li>
+     <li>Agrega la tableta de chocolate amargo y revuelve hasta que se disuelva completamente.</li>
+     <li>Sazona con sal al gusto y deja cocinar por 10 minutos más.</li>
+     <li>Sirve el mole negro sobre pollo, pavo o cerdo y acompáñalo con arroz blanco y frijoles negros.</li>
+    </ol>
+    <p>"Este mole es más que una receta", dijo Valentina, "es una tradición que ha pasado de generación en generación en mi familia."</p>
+   </section>
+   <section id="links">
+    <h2>Consejo: Cómo mantener la autenticidad en la cocina tradicional</h2>
+    <p>Mientras trabajaban en la cocina, Valentina compartió un consejo valioso con Sofía. "Es importante mantener la autenticidad en la cocina tradicional. No se trata solo de seguir una receta, sino de entender la historia y el significado detrás de cada ingrediente. La cocina oaxaqueña es rica en tradiciones y secretos que se han transmitido de generación en generación. Respetar esos secretos y honrar esas tradiciones es lo que hace que nuestra cocina sea única y especial."</p>
+    <p>Sofía escuchó atentamente, apreciando la profundidad del consejo. "Tienes razón, Valentina. La autenticidad es lo que hace que nuestra cocina sea tan especial. Es algo que debemos proteger y preservar."</p>
+   </section>
+   <section id="expanders">
+    <h2>El Calor del Horno</h2>
+    <p>A medida que pasaban los días, la atracción entre Valentina y Sofía se volvía más evidente. Cada roce accidental, cada mirada compartida, cada sonrisa cómplice aumentaba la tensión entre ellas. Una noche, después de un día particularmente agotador, se encontraron solas en la cocina, rodeadas por el aroma de las especias y el suave murmullo de la música de fondo.</p>
+    <p>"Gracias por todo, Sofía", dijo Valentina, su voz suave. "No sé qué habría hecho sin ti."</p>
+    <p>Sofía sonrió, sus ojos reflejando la luz tenue de la cocina. "Ha sido un placer, Valentina. Realmente lo ha sido."</p>
+    <p>Se miraron a los ojos, el momento cargado de emoción. Valentina sintió su corazón latir con fuerza, y sin pensarlo, se inclinó hacia Sofía, sus labios encontrándose en un beso suave y tierno. El beso fue breve, pero lleno de significado. Cuando se separaron, ambas sonrieron, sabiendo que algo había cambiado entre ellas.</p>
+    <p>"Esto es... complicado", dijo Sofía, su voz temblando ligeramente.</p>
+    <p>Valentina asintió. "Lo sé. Pero también se siente bien."</p>
+    <p>Sofía tomó la mano de Valentina, apretándola suavemente. "Sí, se siente bien."</p>
+   </section>
+   <section id="filters">
+    <h2>Historia: La leyenda del mole y su importancia en Oaxaca</h2>
+    <p>Mientras trabajaban en la cocina, Valentina compartió una leyenda local con Sofía. "Dicen que el mole fue creado por las monjas del Convento de Santa Rosa en Oaxaca. La leyenda cuenta que el virrey de Nueva España visitó Oaxaca y las monjas, desesperadas por no tener nada que ofrecerle, comenzaron a rezar. Un ángel les apareció y les dio la receta del mole, que prepararon con los ingredientes que tenían a mano. El virrey quedó tan impresionado que el mole se convirtió en un símbolo de la cocina oaxaqueña."</p>
+    <p>Sofía escuchó atentamente, fascinada por la historia. "Es increíble cómo la comida puede contar historias y preservar tradiciones", comentó.</p>
+    <p>Valentina asintió. "Exactamente. Cada plato tiene una historia, y cada ingrediente un secreto transmitido de generación en generación. Eso es lo que hace que nuestra cocina sea tan especial."</p>
+   </section>
+   <section id="climax">
+    <h2>Momento Crucial donde la Atracción Romántica se Vuelve Innegable</h2>
+    <p>El día de la gran reapertura finalmente llegó. El restaurante "El Rincón de María" estaba lleno de gente, el aroma de los platos recién preparados llenaba el aire, y la energía era palpable. Valentina y Sofía habían trabajado incansablemente durante semanas, asegurándose de que cada detalle estuviera perfecto. La noche prometía ser un éxito rotundo, y ambas sentían una mezcla de nerviosismo y emoción.</p>
+    <p>Valentina y Sofía trabajaban juntas en la cocina, sus movimientos sincronizados como una danza bien ensayada. Cada plato que salía era una obra maestra, una celebración de la cocina tradicional de Oaxaca y la innovación culinaria. Los clientes disfrutaban de cada bocado, y los elogios no tardaron en llegar.</p>
+    <p>"Esto es increíble", dijo Valentina, mirando a su alrededor con asombro. "No puedo creer que lo hayamos logrado."</p>
+    <p>Sofía sonrió, sus ojos brillando con orgullo. "Lo hicimos, Valentina. Lo hicimos juntas."</p>
+    <p>Mientras la noche avanzaba, la tensión entre ellas crecía. Cada mirada, cada roce, cada sonrisa compartida era una promesa de algo más. La conexión entre Valentina y Sofía se había vuelto innegable, y ambas sabían que había llegado el momento de enfrentar sus sentimientos.</p>
+    <p>Finalmente, cuando el último cliente se fue y la cocina quedó en silencio, se miraron a los ojos, sabiendo que había llegado el momento.</p>
+    <p>"Valentina", dijo Sofía, su voz suave. "Quiero estar contigo. No solo en la cocina, sino en la vida."</p>
+    <p>Valentina sintió su corazón latir con fuerza, y sus ojos se llenaron de emoción. "Yo también, Sofía. Yo también."</p>
+    <p>Se besaron, un beso lleno de promesas y esperanzas, un beso que sellaba su amor y su futuro juntas. El beso fue profundo y apasionado, una confirmación de todo lo que habían sentido durante las semanas anteriores. Cuando se separaron, ambas sonrieron, sabiendo que habían encontrado algo especial.</p>
+    <p>"Esto es... increíble", dijo Valentina, su voz temblando ligeramente. "Nunca pensé que podría sentirme así."</p>
+    <p>Sofía asintió, sus ojos reflejando el mismo sentimiento. "Yo tampoco, Valentina. Pero aquí estamos, y no quiero que esto termine."</p>
+    <p>Valentina tomó la mano de Sofía, apretándola suavemente. "No tiene que terminar, Sofía. Esto es solo el comienzo."</p>
+   </section>
+   <section id="resolution">
+    <h2>Reconciliación y Unión Romántica</h2>
+    <p>Los días siguientes a la gran reapertura fueron un torbellino de éxito y felicidad. El restaurante "El Rincón de María" prosperó, atrayendo a clientes de todo Oaxaca y más allá. Valentina y Sofía trabajaban juntas, su amor y su pasión por la cocina creciendo cada día. La conexión entre ellas se había vuelto inquebrantable, y cada momento que pasaban juntas estaba lleno de amor y alegría.</p>
+    <p>Una noche, después de un día particularmente agotador pero gratificante, se encontraron solas en la cocina, rodeadas por el aroma de las especias y el suave murmullo de la música de fondo. Valentina miró a Sofía, sus ojos llenos de amor y gratitud.</p>
+    <p>"No puedo creer lo lejos que hemos llegado", dijo Valentina, su voz suave. "Es más de lo que jamás soñé."</p>
+    <p>Sofía sonrió, tomando la mano de Valentina. "Lo hicimos juntas, Valentina. Juntas."</p>
+    <p>Valentina asintió, sintiendo una oleada de emoción. "Gracias por creer en mí, Sofía. No habría podido hacer esto sin ti."</p>
+    <p>Sofía apretó suavemente la mano de Valentina. "Y yo no habría podido abrir mi corazón sin ti, Valentina. Me has enseñado mucho."</p>
+    <p>Se miraron a los ojos, el momento cargado de emoción y promesas. Valentina sintió su corazón latir con fuerza, y sin pensarlo, se inclinó hacia Sofía, sus labios encontrándose en un beso suave y tierno. El beso fue una confirmación de su amor, una promesa de un futuro juntas.</p>
+    <p>"Te amo, Sofía", dijo Valentina, su voz llena de emoción.</p>
+    <p>Sofía sonrió, sus ojos reflejando el mismo amor. "Yo también te amo, Valentina. Más de lo que las palabras pueden expresar."</p>
+    <p>Se besaron de nuevo, un beso lleno de promesas y esperanzas, un beso que sellaba su amor y su futuro juntas. Sabían que, a pesar de los desafíos y obstáculos que habían enfrentado, habían encontrado algo especial que valía la pena luchar.</p>
+   </section>
+   <section id="epilogue">
+    <h2>Epílogo: Un Legado de Amor y Pasión</h2>
+    <p>Años después, el restaurante "El Rincón de María" seguía siendo un éxito rotundo. Valentina y Sofía habían logrado no solo salvar el legado familiar, sino también crear un nuevo capítulo en la historia de la gastronomía oaxaqueña. Su amor y dedicación habían transformado el restaurante en un símbolo de excelencia y pasión.</p>
+    <p>Valentina y Sofía se sentaron en la tranquilidad de la cocina, reflexionando sobre el viaje que habían emprendido juntas. Habían superado desafíos, descubierto puntos en común y encontrado un amor profundo que las unía. La cocina, que una vez había sido un campo de batalla, se había convertido en un refugio, un lugar donde podían ser ellas mismas sin miedo al juicio.</p>
+    <p>"Nunca pensé que llegaríamos tan lejos", dijo Valentina, su voz llena de gratitud. "Gracias por creer en mí, Sofía."</p>
+    <p>Sofía sonrió, sus ojos brillando con emoción. "Gracias a ti, Valentina. Me has enseñado a abrir mi corazón y a confiar en mí misma."</p>
+    <p>Juntas, miraron hacia el futuro, sabiendo que habían creado algo especial. No solo habían salvado un restaurante, sino que habían encontrado un amor que perduraría para siempre.</p>
+    <p>"Te amo, Sofía", dijo Valentina, su voz llena de emoción.</p>
+    <p>Sofía sonrió, sus ojos reflejando el mismo amor. "Yo también te amo, Valentina. Más de lo que las palabras pueden expresar."</p>
+    <p>Se besaron una vez más, un beso lleno de promesas y esperanzas, un beso que sellaba su amor y su futuro juntas.</p>
+   </section>
+  </div>
+
+  <nav class="section-nav">
+   <ol> <button id="close-menu">Cerrar</button>
+    <li><a href="#introduction">Introducción</a></li>
+    <li><a href="#request-response">El Arte de la Cocina Oaxaqueña</a></li>
+    <li><a href="#authentication">Ingredientes del Corazón</a></li>
+    <li><a href="#endpoints">Receta: Mole Negro Oaxaqueño</a></li>
+    <li><a href="#links">Consejo: Cómo mantener la autenticidad en la cocina tradicional</a></li>
+    <li><a href="#expanders">El Calor del Horno</a></li>
+    <li><a href="#filters">Historia: La leyenda del mole y su importancia en Oaxaca</a></li>
+    <li><a href="#climax">Momento Crucial donde la Atracción Romántica se Vuelve Innegable</a></li>
+    <li><a href="#resolution">Reconciliación y Unión Romántica</a></li>
+    <li><a href="#epilogue">Epílogo: Un Legado de Amor y Pasión</a></li>
+   </ol>
+  </nav>
+ </main>
+
+ <script id="rendered-js">
+  window.addEventListener('DOMContentLoaded', () => {
+   const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+     const id = entry.target.getAttribute('id');
+     if (entry.intersectionRatio > 0) {
+      document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+     } else {
+      document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
+     }
+    });
+   });
+   // Track all sections that have an `id` applied
+   document.querySelectorAll('section[id]').forEach((section) => {
+    observer.observe(section);
+   });
+  });
+  window.addEventListener('DOMContentLoaded', () => {
+   const menuToggle = document.getElementById('menu-toggle');
+   const closeMenu = document.getElementById('close-menu');
+   const sectionNav = document.querySelector('.section-nav');
+   menuToggle.addEventListener('click', () => {
+    sectionNav.classList.toggle('open');
+   });
+   closeMenu.addEventListener('click', () => {
+    sectionNav.classList.remove('open');
+   });
+   // Cerrar el menú al hacer clic en un elemento
+   const navLinks = document.querySelectorAll('.section-nav a');
+   navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+     sectionNav.classList.remove('open');
+    });
+   });
+  });
+ </script>
+
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

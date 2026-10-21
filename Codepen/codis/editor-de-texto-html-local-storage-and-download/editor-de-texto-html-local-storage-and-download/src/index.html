@@ -1,0 +1,122 @@
+<title>Editor De Texto Html Local Storage And Download</title>
+
+
+
+<div class="editorbody">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <style>
+    .red {
+      color: red
+    }
+
+    .editorbody {
+      display: flexbox;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #editor,
+    #output {
+      flex: 1;
+      height: 30vh;
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    #editControls {
+      text-align: center;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      text-decoration: none;
+      color: black;
+      padding: 5px;
+      border: 1px solid silver;
+      border-radius: 5px;
+      width: 1em;
+    }
+
+    textarea {
+      height: 30vh;
+      width: 100%
+    }
+  </style>
+
+  <div id='editControls'>   
+    <a data-role='save' href='javascript:void(0)'><i class='fa fa-save'></i></a>
+    <a data-role='export' href='javascript:void(0)'><i class='fa fa-download'></i></a>
+  </div>
+  <textarea id='output'></textarea>
+  <div id='editor' contenteditable>
+    <style>
+      .red {
+        color: red
+      }
+    </style>
+    <main class="relative h-full w-fullx flex-1 overflow-auto transition-width">
+      <div role="presentation" class="flex h-full flex-col">
+        <div class="flex-1 overflow-hidden">
+          <div class=""><!-- aquí va lo que se quiere editar --></div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              function updatePreview() {
+                var editorContent = document.getElementById('editor').innerHTML;
+                var preview = document.getElementById('output');
+                preview.value = editorContent;
+              }
+              document.getElementById('editor').addEventListener('input', function() {
+                updatePreview();
+                saveLocally();
+              });
+
+              function saveLocally() {
+                var editorContent = document.getElementById('editor').innerHTML;
+                localStorage.setItem('editorContent', editorContent);
+              }
+
+              function restoreFromLocal() {
+                var editorContent = localStorage.getItem('editorContent');
+                if (editorContent) {
+                  document.getElementById('editor').innerHTML = editorContent;
+                  updatePreview();
+                }
+              }
+
+              function exportHTML() {
+                var editorContent = document.getElementById('editor').innerHTML;
+                var blob = new Blob([editorContent], {
+                  type: 'text/html'
+                });
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'output.html';
+                a.click();
+              }
+              document.querySelector('[data-role=undo]').addEventListener('click', function() {
+                document.execCommand('undo', false, null);
+              });
+              document.querySelector('[data-role=redo]').addEventListener('click', function() {
+                document.execCommand('redo', false, null);
+              });
+              // Otros botones existentes...
+              document.querySelector('[data-role=save]').addEventListener('click', function() {
+                saveLocally();
+              });
+              document.querySelector('[data-role=export]').addEventListener('click', function() {
+                exportHTML();
+              });
+              restoreFromLocal();
+            });
+          </script>
+        </div>
+      </div>
+    </main>
+</div>
+
+</div>

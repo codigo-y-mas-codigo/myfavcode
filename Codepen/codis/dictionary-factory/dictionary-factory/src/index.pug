@@ -1,0 +1,67 @@
+header
+	p
+		| Inspired by the phrase 
+		em "If I were to search the word x in the dictionary, I'd see a picture of you!"
+	p ... here is a "dictionary page" generator. Sort of.
+main
+	form.inputs(autocomplete="off")
+		h2 Fill up this form!
+		.input__wrapper
+			input#word.js-mirror(type="text" maxlength="20" required data-destination="word")
+			label Word You're "Searching"
+		.input__wrapper.radio-label
+			span Word Type:
+			input(type="radio" id="noun" name="word-type" value="noun" checked)
+			label(for="noun") Noun
+			input(type="radio" id="adjective" name="word-type" value="adjective")
+			label(for="adjective") Adjective
+			input(type="radio" id="verb" name="word-type" value="verb")
+			label(for="verb") Verb
+		.input__wrapper
+			textarea.js-mirror#explanation(data-destination="explanation")
+			label Explanation (optional)
+		.input__wrapper
+			input.js-mirror#name(type="text" data-destination="name")
+			label Name
+		label.your-face(id="image-form" for="image-input")
+			input(type='file' id="image-input")
+			div.image-persuader 	
+				| Upload An Image (Square images work best)
+				br
+				span.js-file-name
+		
+	section.design
+		.alphabet.js-alphabet Hh
+		section
+			.word.js-word human perfection
+			.type.js-type (noun)
+			p.context.js-explanation Features include deep Australian voice, charisma and winning personality.
+			p.see-also 
+				| (see also: 
+				strong.js-name Chris Hemsworth
+				| )
+			div.image
+				img#imager(src="https://meowlivia.s3.us-east-2.amazonaws.com/codepen/avengers/thor.png")
+				p 
+					| an example of 
+					span.js-word human perfection
+	
+	input#save-image(type="button" value="Export As Image")
+
+
+aside.context
+	.explanation
+		| Note: The export feature doesn't export Thor's face for some reason, but should work if you upload your own image.
+		br
+		br
+		| Part of the
+		a(href="https://codepen.io/collection/ANgNEw/" target="_blank") Factories collection here
+			|  .
+		
+footer
+	a(href="https://twitter.com/meowlivia_" target="_blank")
+		i.icon-social-twitter.icons
+	a(href="https://github.com/oliviale" target="_blank")
+		i.icon-social-github.icons
+	a(href="https://dribbble.com/oliviale" target="_blank")
+		i.icon-social-dribbble.icons

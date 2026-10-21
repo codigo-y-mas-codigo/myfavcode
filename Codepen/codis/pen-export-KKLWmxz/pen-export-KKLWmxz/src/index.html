@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Formulario de Prompts</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+ <script src="https://preview.tabler.io//dist/libs/tinymce/tinymce.min.js?1695847769" defer></script>
+ <!-- Tabler Core -->
+ <script src="https://preview.tabler.io/dist/js/tabler.min.js?1695847769" defer></script>
+ <script src="https://preview.tabler.io/dist/js/demo.min.js?1695847769" defer></script>
+</head>
+
+<body>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <span class="navbar-brand mx-auto" href="#" data-toggle="modal" data-target="#addPromptModal">LAMP+</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+   <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+     <a class="nav-link " id="phiphi-tab" data-toggle="tab" href="#phiphi" role="tab" aria-controls="phiphi" aria-selected="true">Inicio</a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" id="eevee-tab" data-toggle="tab" href="#eevee" role="tab" aria-controls="eevee" aria-selected="false">Nuevos</a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" id="sharon-tab" data-toggle="tab" href="#sharon" role="tab" aria-controls="sharon" aria-selected="false">Favoritos</a>
+    </li>
+    <li class="nav-item">
+     <span id="downloadJson" class="nav-link">Descargar JSON</span>
+    </li>
+    <li class="nav-item" id="buttonToggle">
+     <span class="nav-link" onclick="toggleButtons()">Mostrar/Ocultar botones</span>
+    </li>
+    <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" href="#" id="darkModeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Modo Oscuro
+     </a>
+     <div class="dropdown-menu" aria-labelledby="darkModeDropdown">
+      <a class="dropdown-item" href="#" id="darkModeOn">Encender</a>
+      <a class="dropdown-item" href="#" id="darkModeOff">Apagar</a>
+     </div>
+    </li>
+   </ul>
+  </div>
+ </nav>
+ <br>
+ <div class="container mt-5 content">
+  <br>
+  <!-- Filtros y búsqueda -->
+  <input type="text" id="search" class="form-control mb-3" placeholder="Buscar por nombre o descripción">
+  <select id="filter" class="form-control mb-3">
+   <option value="">Todos</option>
+   <option value="perfil">Perfil</option>
+   <option value="contenido">Contenido</option>
+   <option value="seo">SEO</option>
+   <option value="extra">Extra</option>
+  </select>
+ </div>
+ <div class="container">
+  <!-- Contenedor de pestañas -->
+  <div class="tab-content" id="myTabContent">
+   <!-- Contenido de las pestañas -->
+   <div class="tab-pane fade show active" id="phiphi" role="tabpanel" aria-labelledby="phiphi-tab"><br>
+    <div id="records" class="row row-"></div><br>
+   </div>
+   <div class="tab-pane fade" id="sharon" role="tabpanel" aria-labelledby="sharon-tab">
+    <br>
+    <p>Favoritos</p>
+    <div id="favorites" class="row"></div>
+   </div>
+   <div class="tab-pane fade" id="eevee" role="tabpanel" aria-labelledby="eevee-tab">
+    <br>
+    <p>Nuevos</p>
+   </div>
+  </div>
+  <!-- Modal for Adding and Editing Prompt -->
+  <div class="modal fade" id="addPromptModal" tabindex="-1" role="dialog" aria-labelledby="addPromptModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg d" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+      <h5 class="modal-title" id="addPromptModalLabel">Agregar Prompt</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     <div class="modal-body ">
+      <form id="promptForm">
+       <div class="mb-3">
+        <label class="form-label" for="name">Prompt name</label>
+        <input type="text" id="name" required class="form-control" placeholder="Name">
+       </div>
+       <div class="mb-3">
+        <label class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="type" value="perfil" required>
+         <span class="form-check-label">Perfil</span>
+        </label>
+        <label class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="type" value="contenido">
+         <span class="form-check-label">Contenido</span>
+        </label>
+        <label class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="type" value="seo">
+         <span class="form-check-label">SEO</span>
+        </label>
+        <label class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="type" value="extra">
+         <span class="form-check-label">Extra</span>
+        </label>
+       </div>
+       <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea id="tinymce-mytextarea" class="form-control" placeholder="Description"></textarea>
+       </div>
+      </form>
+     </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      <button type="button" id="savePrompt" class="btn btn-primary">Guardar</button>
+      <button type="button" id="addToFavorites" class="btn btn-primary">Agregar a Favoritos</button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!-- Modal for Deleting Prompt -->
+ <div class="modal fade darkmode card" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content darkmode card">
+    <div class="modal-header ">
+     <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+     </button>
+    </div>
+    <div class="modal-body card">
+     ¿Seguro que deseas borrar este prompt?
+    </div>
+    <div class="modal-footer ">
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+     <button type="button" id="confirmDelete" class="btn btn-danger">Sí</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ </div>
+</body>
+
+</html>

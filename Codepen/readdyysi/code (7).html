@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mitos y Nutrición Holística: Actividad Interactiva</title>
+  
+  <!-- Importar fuentes de Google Fonts: Poppins (para texto general) y Lora (para títulos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Variables CSS para las posiciones de los puntos, escalas de zoom y la nueva paleta de colores */
+    :root {
+      /* Nueva Paleta de Colores */
+      --bg-color: #F9F7F3; /* Fondo suave blanco roto */
+      --primary-accent: #66BB6A; /* Verde fresco para puntos y títulos */
+      --secondary-accent: #A5D6A7; /* Verde más claro para el pulso */
+      --text-dark: #333333; /* Color de texto oscuro para legibilidad */
+      --description-bg: rgba(255, 255, 255, 0.3); /* Fondo de glassmorphism más claro */
+      --description-border: rgba(255, 255, 255, 0.5); /* Borde para glassmorphism */
+
+      /* Posiciones de los puntos (para pantallas grandes) */
+      --point-1-top: 170px; /* Lechuga Romana */
+      --point-1-left: 240px;
+      --point-2-top: 250px; /* Manzana Verde */
+      --point-2-left: 200px;
+      --point-3-top: 200px; /* Uvas */
+      --point-3-left: 80px;
+      --point-4-top: 180px; /* Zanahorias */
+      --point-4-left: 300px;
+      
+      --point-width: 15px;
+      --point-height: 15px;
+      --point-1-scale: 3; /* Escala de zoom para cada punto */
+      --point-2-scale: 4;
+      --point-3-scale: 3.5;
+      --point-4-scale: 3.8;
+    }
+
+    /* Estilos generales para el texto de la descripción */
+    .description p {
+      margin: 0;
+      font-size: 14px; /* Tamaño de fuente ligeramente más grande por defecto */
+      z-index: -1;
+      color: var(--text-dark); /* Color de texto oscuro para legibilidad */
+      font-family: 'Poppins', sans-serif; /* Fuente moderna y legible */
+      line-height: 1.5; /* Mayor interlineado para mejor lectura */
+    }
+
+    /* Contenedor principal de la imagen y los indicadores */
+    .image-indicators {
+      position: relative;
+      width: 400px; /* Ancho fijo para el contenedor principal */
+      border-radius: 12px; /* Bordes más redondeados */
+      overflow: hidden;
+      font-size: 0; /* Elimina espacio extra debajo de la imagen */
+      margin: auto; /* Centra el contenedor */
+      max-width: 90%; /* Hace el contenedor responsivo hasta un máximo de 400px */
+      height: auto; /* Asegura que la altura se ajuste automáticamente */
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada y suave */
+      background-color: var(--bg-color); /* Color de fondo que se mezcla con el body */
+      transition: box-shadow 0.3s ease; /* Transición para la sombra */
+    }
+
+    /* Estilos de la imagen dentro del contenedor */
+    .image-indicators img {
+      width: 100%; /* La imagen siempre ocupará el 100% del contenedor */
+      border-radius: 12px; /* Bordes más redondeados en la imagen */
+      transition: transform 0.4s ease; /* Transición suave para el zoom */
+    }
+
+    /* Estilos para las etiquetas de los puntos (los círculos pulsantes) */
+    .image-indicators label {
+      display: flex;
+      position: absolute;
+      cursor: pointer;
+      transition: opacity 0.3s ease-out 0.5s; /* Transición para ocultar/mostrar */
+      z-index: 1;
+    }
+
+    /* Estilo del círculo sólido del punto */
+    .image-indicators > label > span {
+      background-color: var(--primary-accent); /* Nuevo color principal para el punto */
+      width: 12px; /* Un poco más grande */
+      height: 12px; /* Un poco más grande */
+      border-radius: 60px; /* Hace el círculo */
+      transform: scale(1);
+      box-shadow: 0 0 10px var(--primary-accent); /* Un ligero resplandor */
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Estilo de la animación del círculo exterior que pulsa */
+    .image-indicators > label > span > span {
+      display: inline-block;
+      vertical-align: 20px;
+      background-color: var(--secondary-accent); /* Nuevo color para el pulso */
+      width: 12px; /* Coincide con el círculo interior */
+      height: 12px;
+      transform: scale(0);
+      border-radius: 60px;
+      animation: scaleGrow 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      animation-play-state: running;
+    }
+
+    /* Keyframes para la animación de crecimiento del círculo */
+    @keyframes scaleGrow {
+      from {
+        transform: scale(0);
+        opacity: 1; /* Empieza visible */
+      }
+      to {
+        transform: scale(3);
+        opacity: 0; /* Desaparece al expandirse */
+      }
+    }
+    
+    /* (Este keyframe scaleDecreases no se usa actualmente, pero se mantiene del original) */
+    @keyframes scaleDecreases {
+      from {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.9);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    /* Estilo de los checkboxes ocultos que actúan como "puntos" invisibles para la interacción */
+    .point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      cursor: pointer;
+      opacity: 0; /* Hace el checkbox invisible */
+      z-index: 2; /* Asegura que esté por encima de la imagen y las etiquetas */
+      transition-property: width, height, left, top; /* Para la animación de expansión */
+      transition-delay: 650ms; /* Retraso para que el zoom de la imagen ocurra primero */
+    }
+
+    /* Cuando un punto es "checked" (haga clic en él) */
+    .point:checked {
+      top: -50% !important; /* Mueve el punto a la esquina superior izquierda */
+      left: -50% !important;
+      width: 200%; /* Expande el punto para cubrir toda la imagen */
+      height: 200%;
+      z-index: 9; /* Coloca este punto por encima de todo lo demás para capturar clics de "deselección" */
+    }
+
+    /* Cuando un punto es checked, oculta los demás labels (círculos pulsantes) */
+    .point:checked ~ label {
+      opacity: 0;
+      pointer-events: none; /* Deshabilita la interacción con otros labels */
+      z-index: -1;
+      transition: opacity 0.3s ease-out 0s;
+    }
+
+    /* Estilo del contenedor de descripciones */
+    .description {
+      position: relative;
+      min-height: 45px; /* Altura mínima inicial del texto "introductorio" */
+      height: auto; /* Permite que la altura se ajuste automáticamente */
+      overflow: hidden; /* Oculta el contenido extra */
+      border-radius: 12px; /* Bordes más redondeados */
+      padding: 15px 25px; /* Más padding para mejor espaciado */
+      margin: 10px 10px 10px; /* Margen para separarlo de la imagen */
+      z-index: 1;
+      transition: background 0.5s ease, backdrop-filter 0.5s ease, border 0.5s ease, height 0.5s ease, padding 0.5s ease; /* Transición para todos los cambios */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para la descripción */
+    }
+
+    /* Oculta todas las descripciones de los puntos individualmente por defecto */
+    .description div {
+      display: none;
+    }
+
+    /* Muestra la primera descripción (introductoria) por defecto */
+    .description div:first-child {
+      display: block;
+      opacity: 1;
+      transition: opacity 0.3s ease-out 0.5s;
+    }
+
+    /* Cuando un punto es checked, aplica el efecto de fondo borroso a la descripción */
+    .point:checked ~ .description {
+      background: var(--description-bg); /* Fondo de glassmorphism más claro */
+      backdrop-filter: blur(18px); /* Blur ligeramente mayor */
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--description-border); /* Borde sutil */
+      height: auto; /* Ajusta la altura al contenido */
+      padding: 20px 30px; /* Aún más padding cuando está activa */
+    }
+
+    /* Oculta la descripción inicial y muestra la específica del punto X */
+    .point:checked ~ .description div:first-child {
+      height: 0;
+      opacity: 0;
+      transition: opacity 0s ease-out 0s;
+    }
+    
+    /* Mostrar la descripción específica del punto activo */
+    #point-1:checked ~ .description div:nth-child(2),
+    #point-2:checked ~ .description div:nth-child(3),
+    #point-3:checked ~ .description div:nth-child(4),
+    #point-4:checked ~ .description div:nth-child(5) {
+      display: block;
+    }
+
+    /* Estilos para el primer párrafo (título) de las descripciones activas */
+    #point-1:checked ~ .description div:nth-child(2) p:first-child,
+    #point-2:checked ~ .description div:nth-child(3) p:first-child,
+    #point-3:checked ~ .description div:nth-child(4) p:first-child,
+    #point-4:checked ~ .description div:nth-child(5) p:first-child {
+      width: 0;
+      opacity: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      -webkit-animation: type2 2s steps(40, end);
+      animation: type2 2s steps(40, end);
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+      -webkit-animation-delay: 0.5s;
+      animation-delay: 0.5s;
+      animation-play-state: running;
+      font-family: 'Lora', serif; /* Fuente para títulos */
+      font-size: 18px; /* Títulos más grandes */
+      font-weight: 600;
+      color: var(--primary-accent); /* Color de acento para títulos */
+      margin-bottom: 5px; /* Espacio debajo del título */
+    }
+
+    /* Estilos para el segundo párrafo (detalle) de las descripciones activas */
+    #point-1:checked ~ .description div:nth-child(2) p:nth-child(2),
+    #point-2:checked ~ .description div:nth-child(3) p:nth-child(2),
+    #point-3:checked ~ .description div:nth-child(4) p:nth-child(2),
+    #point-4:checked ~ .description div:nth-child(5) p:nth-child(2) {
+      width: 0;
+      opacity: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      -webkit-animation: type2 2s steps(40, end);
+      animation: type2 2s steps(40, end);
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+      -webkit-animation-delay: 2.5s; /* Retraso para que aparezca después del título */
+      animation-delay: 2.5s;
+      animation-play-state: running;
+      font-size: 15px; /* Texto de detalle ligeramente más grande */
+      color: var(--text-dark); /* Color de texto oscuro */
+    }
+
+    /* Keyframes para la animación "typewriter" del texto */
+    @-webkit-keyframes type2 {
+      0% {
+        width: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        width: 100%;
+        border: none;
+      }
+    }
+    @keyframes type2 {
+      0% {
+        width: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        width: 100%;
+        border: none;
+      }
+    }
+
+    /* Posicionamiento específico de cada label (círculo pulsante) */
+    #label-1 { top: var(--point-1-top); left: var(--point-1-left); }
+    #label-2 { top: var(--point-2-top); left: var(--point-2-left); }
+    #label-3 { top: var(--point-3-top); left: var(--point-3-left); }
+    #label-4 { top: var(--point-4-top); left: var(--point-4-left); }
+
+    /* Posicionamiento específico de cada checkbox (punto invisible) */
+    #point-1 { left: var(--point-1-left); top: var(--point-1-top); }
+    #point-2 { left: var(--point-2-left); top: var(--point-2-top); }
+    #point-3 { left: var(--point-3-left); top: var(--point-3-top); }
+    #point-4 { left: var(--point-4-left); top: var(--point-4-top); }
+
+    /* Reglas para el zoom de la imagen cuando un punto está checked */
+    #point-1:checked ~ img { transform-origin: calc(var(--point-1-left)) calc(var(--point-1-top)); transform: scale(var(--point-1-scale)); }
+    #point-2:checked ~ img { transform-origin: calc(var(--point-2-left)) calc(var(--point-2-top)); transform: scale(var(--point-2-scale)); }
+    #point-3:checked ~ img { transform-origin: calc(var(--point-3-left)) calc(var(--point-3-top)); transform: scale(var(--point-3-scale)); }
+    #point-4:checked ~ img { transform-origin: calc(var(--point-4-left)) calc(var(--point-4-top)); transform: scale(var(--point-4-scale)); }
+
+    /* Estilos del cuerpo de la página */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Centra verticalmente */
+      min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la vista */
+      overflow: hidden; /* Oculta el overflow principal del body */
+      background-color: var(--bg-color); /* Nuevo color de fondo */
+      font-family: 'Poppins', sans-serif; /* Fuente global para el cuerpo */
+      padding: 20px; /* Añade un poco de padding para evitar que toque los bordes en pantallas pequeñas */
+      box-sizing: border-box; /* Incluye padding en el cálculo del ancho/alto */
+    }
+
+    /* Media Queries para Responsividad */
+    @media (max-width: 600px) {
+      .image-indicators {
+        width: 100%; /* Ajusta el ancho al 100% en pantallas pequeñas */
+        max-width: 350px; /* Puedes ajustar el max-width si quieres un tamaño máximo diferente en móvil */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra más sutil en móvil */
+      }
+
+      /* Ajusta las posiciones de los puntos a porcentajes para mejor responsividad en móviles */
+      :root {
+        --point-1-top: 40%; /* Punto de la Lechuga */
+        --point-1-left: 60%;
+        --point-2-top: 65%; /* Punto de la Manzana */
+        --point-2-left: 50%;
+        --point-3-top: 50%; /* Punto de las Uvas */
+        --point-3-left: 20%;
+        --point-4-top: 45%; /* Punto de las Zanahorias */
+        --point-4-left: 75%;
+      }
+
+      /* Reducir el tamaño de la fuente en pantallas pequeñas */
+      .description p {
+        font-size: 12px;
+      }
+      .point:checked ~ .description div p:first-child {
+        font-size: 16px;
+      }
+      .point:checked ~ .description div p:nth-child(2) {
+        font-size: 13px;
+      }
+      .description {
+        padding: 12px 20px; /* Ajusta el padding en móvil */
+      }
+    }
+    
+    @media (max-width: 400px) {
+        .image-indicators {
+            max-width: 100%;
+            border-radius: 8px; /* Bordes menos redondeados en pantallas muy pequeñas */
+        }
+        /* Ajustes más finos de posición si es necesario para pantallas muy pequeñas */
+        :root {
+            --point-1-top: 42%;
+            --point-1-left: 62%;
+            --point-2-top: 67%;
+            --point-2-left: 52%;
+            --point-3-top: 52%;
+            --point-3-left: 22%;
+            --point-4-top: 47%;
+            --point-4-left: 77%;
+        }
+        .description p {
+            font-size: 11px;
+        }
+        .point:checked ~ .description div p:first-child {
+            font-size: 14px;
+        }
+        .point:checked ~ .description div p:nth-child(2) {
+            font-size: 12px;
+        }
+        .description {
+            padding: 10px 15px;
+        }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="image-indicators">
+        <!-- Checkboxes ocultos que controlan la interactividad -->
+        <input type="checkbox" class="point" id="point-1" name="point" value="1">
+        <input type="checkbox" class="point" id="point-2" name="point" value="2">
+        <input type="checkbox" class="point" id="point-3" name="point" value="3">
+        <input type="checkbox" class="point" id="point-4" name="point" value="4">
+
+        <!-- Etiquetas visibles con animación pulsante -->
+        <label for="point-1" id="label-1" >
+            <span>
+                <span></span>
+            </span>
+        </label>
+        <label for="point-2" id="label-2" >
+            <span>
+                <span></span>
+            </span>
+        </label>
+        <label for="point-3" id="label-3">
+            <span>
+                <span></span>
+            </span>
+        </label>
+        <label for="point-4" id="label-4">
+            <span>
+                <span></span>
+            </span>
+        </label>
+
+        <!-- Imagen principal (la misma URL que ya tenías) -->
+        <img src="https://buenprovecho.hn/wp-content/uploads/2020/06/Lechuga-iceberg.png" alt="Variedad de alimentos frescos y saludables para desmentir mitos nutricionales, incluyendo frutas y verduras como uvas, manzanas, lechuga y zanahorias.">
+        
+        <!-- Contenedor de descripciones -->
+        <div class="description">
+            <!-- Descripción inicial / por defecto -->
+            <div>
+                <p>Explora los **Mitos y Realidades en la Nutrición Holística**. Haz clic en los puntos para conocer la verdad basada en evidencia.</p>
+            </div>
+            <!-- Descripción para el Punto 1: Lechuga Romana (Mito 1: Dietas Extremas) -->
+            <div>
+                <p>Mito 1: Dietas Extremas y Restrictivas</p>
+                <p>La nutrición holística genuina promueve una alimentación variada y equilibrada con alimentos integrales, no la eliminación indiscriminada de grupos de alimentos.</p>
+            </div>
+            <!-- Descripción para el Punto 2: Manzana Verde (Mito 2: Curas Milagrosas) -->
+            <div>
+                <p>Mito 2: Curas Milagrosas y Superalimentos</p>
+                <p>Ningún alimento o 'superalimento' cura enfermedades crónicas ni sustituye tratamientos médicos. Son complementos para la salud general.</p>
+            </div>
+            <!-- Descripción para el Punto 3: Uvas (Mito 3: Complejidad y Costo Elevado) -->
+            <div>
+                <p>Mito 3: Nutrición Holística Cara y Compleja</p>
+                <p>Una nutrición holística efectiva se basa en alimentos integrales, frescos y de temporada, a menudo asequibles. La planificación y cocina casera son clave.</p>
+            </div>
+            <!-- Descripción para el Punto 4: Zanahorias (Enfoque en Evidencia / Bio-individualidad) -->
+            <div>
+                <p>Enfoque en Evidencia: La Bio-Individualidad</p>
+                <p>La verdadera nutrición holística se basa en evidencia científica (ECAs, meta-análisis) y reconoce que cada persona es única; las recomendaciones son personalizadas.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

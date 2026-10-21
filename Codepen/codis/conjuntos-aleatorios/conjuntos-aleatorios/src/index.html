@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Conjuntos Aleatorios</title>
+ <style>
+  /* Estilos opcionales para dar formato a los conjuntos */
+  .conjunto {
+   /*margin-bottom: 20px;*/
+   /*border: 1px solid #ccc;*/
+   padding: 10px;
+
+   /*width: 200px;*/
+   /*text-align: center;*/
+   img {
+    width: 150px;
+    height: 150px
+   }
+  }
+ </style>
+</head>
+
+<body>
+
+ <div id="contenedor"></div>
+
+ <script>
+  // Lista de conjuntos
+  var conjuntos = [{
+    img: "	https://www.yarticulospromocionales.com/img/2023/ai/la%20inteligencia%20artificial%20escribiendo%20imagen%20creada%20por%20cohesive.png	",
+    url: "	https://www.yarticulospromocionales.com/la-historia-de-amor-de-coral-y-perla-un-viaje-de-esperanza-y-tragedia.html	",
+    alt: "	Libro: historia de amor entre Coral y Perla	",
+    texto: "	Libro: historia de amor entre Coral y Perla	"
+   },
+   {
+    img: "	https://www.yarticulospromocionales.com/img/2023/ai/ai-write.png	",
+    url: "	https://www.yarticulospromocionales.com/blog/chistes-de-tortilla/	",
+    alt: "	Chistes de Tortilla El Toque Perfecto para Alegrar tu Reunión	",
+    texto: "	Chistes de Tortilla El Toque Perfecto para Alegrar tu Reunión	"
+   },
+   {
+    img: "	https://www.yarticulospromocionales.com/img/bombillas/goku-sayayin-1.jpg	",
+    url: "	https://www.yarticulospromocionales.com/blog/Juego-en-linea-de-Miraculous-Ladybug/	",
+    alt: "	Miraculos Ledybug	",
+    texto: "	Miraculos Ledybug	"
+   },
+   {
+    img: "	https://www.yarticulospromocionales.com/img/bombillas/ang-avatar.jpg	",
+    url: "	https://www.yarticulospromocionales.com/bombillas/	",
+    alt: "	Bombillas	",
+    texto: "	Bombillas	"
+   },
+   {
+    img: "	https://th.bing.com/th/id/OIG..QlWIEDNRWkC6p4dKDMW?pid=ImgGn	",
+    url: "	https://www.yarticulospromocionales.com/blog/el-poder-estrategico-de-las-tarjetas-de-presentacion/	",
+    alt: "	Desbloquea Éxito El Poder Estratégico de las Tarjetas de Presentación en el Mundo Digital	",
+    texto: "	Desbloquea Éxito El Poder Estratégico de las Tarjetas de Presentación en el Mundo Digital	"
+   }
+  ];
+  // Función para obtener una lista aleatoria de tres elementos de un arreglo
+  function obtenerConjuntosAleatorios(arreglo) {
+   var copia = arreglo.slice(); // Copia del arreglo original
+   var aleatorios = [];
+   for (var i = 0; i < 3; i++) {
+    var indice = Math.floor(Math.random() * copia.length); // Índice aleatorio
+    aleatorios.push(copia.splice(indice, 1)[0]); // Agregar elemento aleatorio a la lista y quitarlo de la copia
+   }
+   return aleatorios;
+  }
+  // Obtener tres conjuntos aleatorios
+  var conjuntosAleatorios = obtenerConjuntosAleatorios(conjuntos);
+  // Mostrar los conjuntos aleatorios en el documento HTML
+  var contenedor = document.getElementById("contenedor");
+  conjuntosAleatorios.forEach(function(conjunto) {
+   var div = document.createElement("div");
+   div.className = "conjunto";
+   var img = document.createElement("img");
+   img.src = conjunto.img;
+   var a = document.createElement("a");
+   a.href = conjunto.url;
+   a.alt = conjunto.alt;
+   a.textContent = conjunto.texto;
+   div.appendChild(img);
+   div.appendChild(document.createElement("br"));
+   div.appendChild(a);
+   contenedor.appendChild(div);
+  });
+ </script>
+
+</body>
+
+</html>

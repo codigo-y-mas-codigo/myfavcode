@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibration API Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .desktop-only {
+      display: none;
+    }
+    .mobile-only {
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .mobile-only {
+        display: none;
+      }
+      .desktop-only {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Prueba de la Vibration API</h1>
+  <div class="mobile-only">
+    <button onclick="vibrate('NORMAL')">Normal</button>
+    <button onclick="vibrate('PHONE_CALL')">Llamada telefónica</button>
+    <button onclick="vibrate('VIBRATE')">Vibración</button>
+    <button onclick="vibrate('SHAKE')">Sacudida</button>
+    <button onclick="vibrate('THROB')">Pulso</button>
+    <button onclick="vibrate('PULSATE')">Pulsante</button>
+    <button onclick="vibrate('SOS')">SOS</button>
+    <button onclick="vibrate('HEARTBEAT')">Latido</button>
+    <button onclick="vibrate('MORSE_CODE')">Código Morse</button>
+    <br>
+    <button onclick="toggleVibration()">
+      <span id="vibrationToggleText">Desactivar Vibración</span>
+    </button>
+    <p>Si la vibración no funciona, asegúrate de:</p>
+    <ul>
+      <li>Habilitar la vibración en la configuración del dispositivo (Configuración > Sonidos y vibraciones).</li>
+      <li>Usar un navegador compatible como Safari.</li>
+      <li>Asegurarte de que el sitio web esté siendo servido a través de HTTPS.</li>
+    </ul>
+  </div>
+  <div class="desktop-only">
+    <p>La funcionalidad de vibración solo está disponible en dispositivos móviles.</p>
+  </div>
+
+  <h1>Simulación de vibración</h1>
+  <div class="desktop-only">
+    <button onclick="vibrateSimulation()">Vibrar</button>
+    <audio id="vibrationSound" src="vibration.mp3"></audio>
+  </div>
+
+  <script>
+    let vibrationEnabled = true;
+
+    function vibrate(type) {
+      if (!vibrationEnabled || !navigator.vibrate) {
+        alert("La Vibration API no está disponible en este dispositivo o navegador.");
+        return;
+      }
+      switch(type) {
+        case 'NORMAL':
+          navigator.vibrate(1000); // Vibración normal por 1 segundo
+          break;
+        case 'PHONE_CALL':
+          navigator.vibrate([100, 30, 100, 30, 100]); // Vibración similar a una llamada telefónica
+          break;
+        case 'VIBRATE':
+          navigator.vibrate([200, 100, 200, 100, 200]); // Vibración repetida
+          break;
+        case 'SHAKE':
+          navigator.vibrate([300, 200, 300, 200, 300]); // Vibración de sacudida
+          break;
+        case 'THROB':
+          navigator.vibrate([100, 100, 100, 100, 100, 100, 100, 100, 100, 100]); // Vibración de pulso
+          break;
+        case 'PULSATE':
+          navigator.vibrate([100, 200, 300, 400, 500]); // Vibración pulsante
+          break;
+        case 'SOS':
+          navigator.vibrate([100, 100, 100, 300, 300, 300, 100, 100, 100]); // Vibración SOS
+          break;
+        case 'HEARTBEAT':
+          navigator.vibrate([200, 300, 200, 300, 200, 300, 200, 300]); // Vibración de latido
+          break;
+        case 'MORSE_CODE':
+          navigator.vibrate([100, 300, 100, 300, 100, 300, 100, 300, 100, 300]); // Vibración de código Morse
+          break;
+        default:
+          navigator.vibrate(1000); // Vibración normal por 1 segundo por defecto
+      }
+    }
+
+    function toggleVibration() {
+      vibrationEnabled = !vibrationEnabled;
+      document.getElementById('vibrationToggleText').innerText = vibrationEnabled ? 'Desactivar Vibración' : 'Activar Vibración';
+    }
+
+    function vibrateSimulation() {
+      var vibrationSound = document.getElementById('vibrationSound');
+      vibrationSound.play(); // Reproducir sonido de vibración
+    }
+  </script>
+</body>
+</html>

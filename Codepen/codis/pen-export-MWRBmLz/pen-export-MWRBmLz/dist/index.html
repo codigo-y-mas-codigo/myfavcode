@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by Luis Angel Maciel</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="{{htmlLang}}" Accept-Encoding="gzip" User-Agent="my program (gzip)">
+
+<head>
+ <meta charset="UTF-8">
+ <meta property="fb:app_id" content="{{fbAppID}}" />
+ {{fbAppIDmeta}}
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta property="og:image:alt" content="{{ogImageAlt}}" />
+ <meta property="og:image:width" content="{{ogImageWidth}}" />
+ <meta property="og:image:height" content="{{ogImageHeight}}" />
+ <meta property="og:site_name" content="{{siteName}}" />
+ <link rel="icon" sizes="196x196" href="{{icon196}}" type="image/png" />
+ <link rel="icon" sizes="128x128" href="{{icon128}}" type="image/png" />
+ <link rel="icon" sizes="32x32" href="{{icon32}}" type="image/png" />
+ <link rel="icon" sizes="16x16" href="{{icon16}}" type="image/png" />
+ <link rel="icon" sizes="96x96" href="{{icon96}}" type="image/png" />
+ <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{icon152}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{icon144}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{icon120}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{icon114}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{icon76}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{icon72}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{icon57}}" />
+ <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{icon60}}" />
+ <link rel="apple-touch-icon" sizes="180x180" href="{{icon180}}" />
+ <link rel="mask-icon" href="{{maskIcon}}" color="{{maskIconColor}}" />
+ <link rel="shortcut icon" href="{{favicon}}" type="image/x-icon" />
+ <link rel="manifest" href="{{manifest}}" />
+ <link rel="search" type="application/opensearchdescription+xml" title="{{search}}" href="{{searchURL}}" />
+ <title data-react-helmet="true">{{title}}</title>
+ {{metaRobots}}
+ <meta name="description" content="{{metaDescription}}" />
+ <meta name="twitter:card" content="{{summaryLargeImage}}" />
+ <meta name="twitter:site" content="{{twitterSite}}" />
+ <meta name="twitter:creator" content="{{Twittercreator}}" />
+ <meta property="og:title" content="{{title}}" />
+ <meta property="og:description" content="{{description}}" />
+ <meta property="og:url" content="{{url}}" />
+ <meta property="og:image" content="{{ogImage}}" />
+ <meta property="og:locale" content="{{locale}}" />
+ <link rel="canonical" href="{{canonical}}" />
+ <meta name="application-name" content="{{applicationName}}" />
+ <meta http-equiv="x-ua-compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="keywords" content="{{keywords}}" />
+ <meta name="theme-color" content="themeColor" />
+ <meta name="msapplication-config" content="{{msapplicationConfig}}" />
+ <meta name="og:site_name" content="{{siteName}}" />
+ <meta content="{{ogImage}}" property="og:image" />
+ <meta content="product" property="og:type" />
+ <meta content="{{priceID}}" property="og:product:price:id" />
+ <meta content="{{priceAmount}}" property="og:product:price:amount" />
+ <meta content="{{mx}}" property="og:product:price:currency" />
+ <meta content="{{priceID}}" property="product:price:id" />
+ <meta content="{{priceAmount}}" property="product:price:amount" />
+ <meta content="{{mx}}" property="product:price:currency" />
+ <meta name="next-head-count" content="{{nextHeadCount}}" />
+ <link rel="preload" href="https://luisangelmaciel.github.io/anon-ecommerce-website/assets/css/style-prefix.css" as="style" />
+ <link rel="stylesheet" href="https://luisangelmaciel.github.io/anon-ecommerce-website/assets/css/style-prefix.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+ <style type="text/css">
+  .containerimg itemprop="image" {
+   position: relative;
+   /*width: 50%;*/
+  }
+
+  .imageimg itemprop="image" {
+   display: block;
+   /*  width: 100%; height: auto;*/
+  }
+
+  .overlayimg itemprop="image" {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 100%;
+   width: 100%;
+   opacity: 0;
+   transition: .5s ease;
+  }
+
+  .containerimg:hover .overlayimg itemprop="image" {
+   opacity: 1;
+  }
+ </style>
+ <script type="application/ld+json">
+  {
+   "@context": "https://schema.org",
+   "@type": "Product",
+   "description": "{{title}}",
+   "url": "{{url}}",
+   "image": ["{{ogImage}}"],
+   "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingCount": {
+     {
+      ratingCount
+     }
+    },
+    "bestRating": {
+     {
+      bestRating
+     }
+    },
+    "ratingValue": {
+     {
+      ratingValue
+     }
+    },
+    "offers": {
+     "price": {
+      {
+       priceTotal
+      }
+     },
+     "priceCurrency": "{{mx}}",
+     "availability": "https://schema.org/InStock",
+     "@type": "Offer"
+    },
+    "name": "{{title}}"
+   }
+ </script>
+
+</head>
+
+<body>
+ <main>
+
+  <header class=" ">
+
+   <div class="header-top w3-hide-small">
+
+    <div class="container">
+
+     <a href="#" class="header-social-container header-logo">
+      <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/logo/logo.svg" alt="Anon's logo" width="120" height="36">
+     </a>
+
+     <div class="header-alert-news">
+      <nav class="desktop-navigation-menu">
+
+       <div class="container">
+
+        <ul class="desktop-menu-category-list">
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Inicio</a>
+         </li>
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Categorias</a>
+
+          <div class="dropdown-panel">
+
+           <ul class="dropdown-panel-list">
+
+            <li class="menu-title">
+             <a href="#gorras">Gorras</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Pokémon</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Harry Potter</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Solicita tu diseño</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">
+              <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/electronics-banner-1.jpg" alt="headphone collection" width="250" height="119">
+             </a>
+            </li>
+
+           </ul>
+
+           <ul class="dropdown-panel-list">
+
+            <li class="menu-title">
+             <a href="#">Termos y tazas</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Dragon Ball</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Snoopy</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Obras de arte</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">
+              <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/mens-banner.jpg" alt="men's fashion" width="250" height="119">
+             </a>
+            </li>
+
+           </ul>
+
+           <ul class="dropdown-panel-list">
+
+            <li class="menu-title">
+             <a href="#">Colchas y cobertores</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Stitch</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Power Ranger</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Piratas del Caribe</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">
+              <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/womens-banner.jpg" alt="women's fashion" width="250" height="119">
+             </a>
+            </li>
+
+           </ul>
+
+           <ul class="dropdown-panel-list">
+
+            <li class="menu-title">
+             <a href="#">Playeras</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Iron Man</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Goku</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">Spiderman</a>
+            </li>
+
+            <li class="panel-list-item">
+             <a href="#">
+              <img src="https://luisangelmaciel.github.io/anon-ecommerce-website//assets/images/electronics-banner-2.jpg" alt="mouse collection" width="250" height="119">
+             </a>
+            </li>
+
+           </ul>
+
+          </div>
+         </li>
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Termos y tazas</a>
+
+          <ul class="dropdown-list">
+
+           <li class="dropdown-item">
+            <a href="#">Blancas</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Mágicas</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Canonicas</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Color interior</a>
+           </li>
+
+          </ul>
+         </li>
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Playeras</a>
+
+          <ul class="dropdown-list">
+
+           <li class="dropdown-item">
+            <a href="#">Caballero</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Dama</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Niño</a>
+           </li>
+
+           <li class="dropdown-item">
+            <a href="#">Juvenil</a>
+           </li>
+
+          </ul>
+         </li>
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Blog</a>
+         </li>
+
+         <li class="menu-category">
+          <a href="#" class="menu-title">Ofertas especiales</a>
+         </li>
+
+         <li class="menu-category">
+          <div class="header-user-actions">
+
+           <button class="action-btn">
+            <ion-icon name="person-outline"></ion-icon>
+           </button>
+
+           <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+           </button>
+
+           <button class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+           </button>
+
+          </div>
+         </li>
+
+        </ul>
+
+       </div>
+
+      </nav>
+
+     </div>
+
+     <div class="header-top-actions" style="display:none">
+
+      <select name="currency">
+       <option value="mx">MX &dollar;</option>
+       <option value="usd">USD &dollar;</option>
+       <option value="eur">EUR &euro;</option>
+
+      </select>
+
+      <select name="language">
+       <option value="es-ES">Espa&ntilde;ol</option>
+       <option value="en-US">English</option>
+       <option value="fr">Fran&ccedil;ais</option>
+      </select>
+     </div>
+
+    </div>
+
+   </div>
+
+   <div class="header-main desktop-navigation-menu">
+
+    <div class="container">
+
+     <div class="header-search-container">
+      <input type="search" name="search" class="search-field" placeholder="Buscar...">
+
+      <button class="search-btn">
+       <ion-icon name="search-outline"></ion-icon>
+      </button>
+
+     </div>
+
+    </div>
+
+   </div>
+
+   <div class="mobile-bottom-navigation" style:"">
+
+    <button class="action-btn" data-mobile-menu-open-btn onclick="openNav()">
+     <ion-icon name="menu-outline"></ion-icon>
+
+    </button>
+
+    <button class="action-btn">
+     <ion-icon name="bag-handle-outline"></ion-icon>
+
+     <span class="count">0</span>
+    </button>
+
+    <button class="action-btn">
+     <ion-icon name="home-outline"></ion-icon>
+    </button>
+
+    <button class="action-btn">
+     <ion-icon name="heart-outline"></ion-icon>
+
+     <span class="count">0</span>
+    </button>
+
+    <button class="action-btn" data-mobile-menu-open-btn class="openBtn" onclick="openSearch()">
+     <ion-icon name="search-outline"></ion-icon>
+    </button>
+
+   </div>
+
+  </header>
+  <br>
+
+  <div>
+
+   <style>
+    body {
+     * {
+      box-sizing: border-box;
+     }
+
+     .openBtn {
+      background: #f1f1f1;
+      border: none;
+      padding: 10px 15px;
+      font-size: 20px;
+      cursor: pointer;
+     }
+
+     .openBtn:hover {
+      background: #bbb;
+     }
+
+     .overlays {
+      height: 100%;
+      width: 100%;
+      display: none;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.9);
+     }
+
+     .overlays-content {
+      position: relative;
+      top: 46%;
+      width: 80%;
+      text-align: center;
+      margin-top: 30px;
+      margin: auto;
+     }
+
+     .overlays .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+      cursor: pointer;
+      color: white;
+     }
+
+     .overlays .closebtn:hover {
+      color: #ccc;
+     }
+
+     .overlays input[type=text] {
+      padding: 15px;
+      font-size: 17px;
+      border: none;
+      float: left;
+      width: 75%;
+      background: white;
+      height: 50px;
+     }
+
+     .overlays input[type=text]:hover {
+      background: #f1f1f1;
+      height: 50px;
+     }
+
+     /* .overlays button {
+      float: left;
+      width: 25%;
+      padding: 15px;
+      background: #ddd;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;height: 40px;
+    }
+    
+    .overlay button:hover {
+      background: #bbb;height: 40px;
+    }*/
+   </style>
+
+   <style>
+    * {
+     box-sizing: border-box;
+    }
+
+    /*the container must be positioned relative:*/
+    .autocomplete {
+     position: relative;
+     display: inline-block;
+     width: 100%;
+    }
+
+    input {
+     border: 1px solid transparent;
+     background-color: #f1f1f1;
+     padding: 10px;
+     font-size: 16px;
+     width: 100%;
+    }
+
+    input[type=text] {
+     background-color: #f1f1f1;
+     width: 100%;
+    }
+
+    input[type=submit] {
+     background-color: DodgerBlue;
+     color: #fff;
+     cursor: pointer;
+     width: 100%;
+    }
+
+    .autocomplete-items {
+     position: absolute;
+     border: 1px solid #d4d4d4;
+     border-bottom: none;
+     border-top: none;
+     z-index: 99;
+     /*position the autocomplete items to be the same width as the container:*/
+     top: 100%;
+     left: 0;
+     right: 0;
+     width: 100%;
+    }
+
+    .autocomplete-items div {
+     padding: 10px;
+     cursor: pointer;
+     background-color: #fff;
+     border-bottom: 1px solid #d4d4d4;
+     width: 100%;
+    }
+
+    /*when hovering an item:*/
+    .autocomplete-items div:hover {
+     background-color: #e9e9e9;
+     width: 100%;
+    }
+
+    /*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+     background-color: DodgerBlue !important;
+     color: #ffffff;
+     width: 100%;
+    }
+   </style>
+   <div id="myOverlay" class="overlays">
+    <span class="closebtn" onclick="closeSearch()" title="Close Overlays">×</span>
+    <div class="overlays-content">
+     <form autocomplete="off">
+      <div class="autocomplete" style="width: 100%;">
+       <input id="myInput" type="text" name="myCountry" placeholder="Buscar" style="width: 100%;">
+      </div>
+      <input type="submit">
+     </form>
+     <!--input type="search" name="search" class="email-field" placeholder="Buscar" required>
+                <button type="submit" class="btn-search">       Buscar </button-->
+    </div>
+   </div>
+
+   <script>
+    function openSearch() {
+     document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function closeSearch() {
+     document.getElementById("myOverlay").style.display = "none";
+    }
+   </script>
+   <script>
+    function autocomplete(inp, arr) {
+     /*the autocomplete function takes two arguments,
+     the text field element and an array of possible autocompleted values:*/
+     var currentFocus;
+     /*execute a function when someone writes in the text field:*/
+     inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) {
+       return false;
+      }
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+       /*check if the item starts with the same letters as the text field value:*/
+       if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        /*insert a input field that will hold the current array item's value:*/
+        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+        b.addEventListener("click", function(e) {
+         /*insert the value for the autocomplete text field:*/
+         inp.value = this.getElementsByTagName("input")[0].value;
+         /*close the list of autocompleted values,
+         (or any other open lists of autocompleted values:*/
+         closeAllLists();
+        });
+        a.appendChild(b);
+       }
+      }
+     });
+     /*execute a function presses a key on the keyboard:*/
+     inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+       /*If the arrow DOWN key is pressed,
+       increase the currentFocus variable:*/
+       currentFocus++;
+       /*and and make the current item more visible:*/
+       addActive(x);
+      } else if (e.keyCode == 38) { //up
+       /*If the arrow UP key is pressed,
+       decrease the currentFocus variable:*/
+       currentFocus--;
+       /*and and make the current item more visible:*/
+       addActive(x);
+      } else if (e.keyCode == 13) {
+       /*If the ENTER key is pressed, prevent the form from being submitted,*/
+       e.preventDefault();
+       if (currentFocus > -1) {
+        /*and simulate a click on the "active" item:*/
+        if (x) x[currentFocus].click();
+       }
+      }
+     });
+
+     function addActive(x) {
+      /*a function to classify an item as "active":*/
+      if (!x) return false;
+      /*start by removing the "active" class on all items:*/
+      removeActive(x);
+      if (currentFocus >= x.length) currentFocus = 0;
+      if (currentFocus < 0) currentFocus = (x.length - 1);
+      /*add class "autocomplete-active":*/
+      x[currentFocus].classList.add("autocomplete-active");
+     }
+
+     function removeActive(x) {
+      /*a function to remove the "active" class from all autocomplete items:*/
+      for (var i = 0; i < x.length; i++) {
+       x[i].classList.remove("autocomplete-active");
+      }
+     }
+
+     function closeAllLists(elmnt) {
+      /*close all autocomplete lists in the document,
+      except the one passed as an argument:*/
+      var x = document.getElementsByClassName("autocomplete-items");
+      for (var i = 0; i < x.length; i++) {
+       if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+       }
+      }
+     }
+     /*execute a function when someone clicks in the document:*/
+     document.addEventListener("click", function(e) {
+      closeAllLists(e.target);
+     });
+    }
+    /*An array containing all the country names in the world:*/
+    var countries = ["Gorras", "Tazas", "Termos"];
+    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+    autocomplete(document.getElementById("myInput"), countries);
+   </script>
+
+  </div>
+
+  <!--
+      - PRODUCT
+    -->
+
+  <div class="product-container">
+   <nav class="container" aria-label="breadcrumb">
+    <!--
+          - SIDEBAR -->
+    <div class="sidebar has-scrollbar" data-mobile-menu>
+     <div class="product-showcase">
+      <h3 class="showcase-heading" aria-label="{{estoTePuedeGustar}}" title="{{estoTePuedeGustar}}">{{estoTePuedeGustar}}</h3>
+      <div class="showcase-wrapper">
+       <div class="showcase-container" class="breadcrumbLinks" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <div class="showcase" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+         <a href="{{link1}}" class="showcase-img-box" data-ga-key="{{dataGaKey}" data-ga-label="{{producto1de4}}" itemscope itemtype="https://schema.org/Thing" itemprop="item" itemid="{{url}}"><img itemprop="image" src="{{img1de4}}" alt="{{producto}}" width="75" height="75" class="showcase-img lazyload" data-src="" data-alt-src=""></a>
+         <div class="showcase-content">
+          <a href="{{link1}}">
+           <h4 class="showcase-title" aria-label="{{}}" title="{{}}" itemprop="name" itemprop="position" content="0">{{producto1de4}}</h4>
+          </a>
+          <div class="showcase-rating">{{rating1de4}}</div>
+          <div class="price-box"><del>{{precio1de4}}</del>
+           <p class="price">{{precioDescuento1de4}}</p>
+          </div>
+         </div>
+        </div>
+        <meta itemprop="position" content="0">
+        <div class="showcase">
+         <a href="{{link2}}" class="showcase-img-box" data-ga-key="{{dataGaKey}" tabindex=" {{tabindex}}" data-id="dataID" data-name="{{dataName}}" data-price="{{dataPrice}}" data-group="{{dataGroup}}" data-pos="{{dataPos}}" tabindex=" {{tabindex}}" data-id="dataID" data-name="{{dataName}}" data-price="{{dataPrice}}" data-group="{{dataGroup}}" data-pos="{{dataPos}}" data-ga-label="{{producto2de4}}"><img itemprop="image" src="{{img2de4}}" alt="men's hoodies t-shirt" class="showcase-img lazyload" width="75" height="75" data-src="" data-alt-src="" title=""></a>
+         <div class="showcase-content">
+          <a href="{{link2}}">
+           <h4 class="showcase-title" aria-label="{{}}" title="{{}}">{{producto2de4}}</h4>
+          </a>
+          <div class="showcase-rating">{{rating2de4}}</div>
+          <div class="price-box"><del>{{precio2de4}}</del>
+           <p class="price">{{precioDescuento2de4}}</p>
+          </div>
+         </div>
+        </div>
+        <div class="showcase">
+         <a href="{{link3}}" class="showcase-img-box" data-ga-key="{{dataGaKey}" data-ga-label="{{producto3de4}}" tabindex=" {{tabindex}}" data-id="dataID" data-name="{{dataName}}" data-price="{{dataPrice}}" data-group="{{dataGroup}}" data-pos="{{dataPos}}"><img itemprop="image" src="{{img3de4}}" alt="{{producto}}" class="showcase-img lazyload" width="75" height="75" data-src="" data-alt-src=""></a>
+         <div class="showcase-content">
+          <a href="{{link3}}">
+           <h4 class="showcase-title" aria-label="{{}}" title="{{}}">{{producto3de4}}</h4>
+          </a>
+          <div class="showcase-rating">{{rating3de4}}</div>
+          <div class="price-box"><del>{{precio3de4}}</del>
+           <p class="price">{{precioDescuento3de4}}</p>
+          </div>
+         </div>
+        </div>
+        <div class="showcase">
+         <a href="{{link4}}" class="showcase-img-box" data-ga-key="{{dataGaKey}" data-ga-label="{{producto4de4}}" tabindex=" {{tabindex}}" data-id="dataID" data-name="{{dataName}}" data-price="{{dataPrice}}" data-group="{{dataGroup}}" data-pos="{{dataPos}}"><img itemprop="image" src="{{img4de4}}" alt="{{producto}}" class="showcase-img lazyload" width="75" height="75" data-src="" data-alt-src=""></a>
+         <div class="showcase-content">
+          <a href="{{link4}}">
+           <h4 class="showcase-title" aria-label="{{}}" title="{{}}">{{producto4de4}}</h4>
+          </a>
+          <div class="showcase-rating">{{rating4de4}}</div>
+          <div class="price-box"><del>{{precio4de4}}</del>
+           <p class="price">{{precioDescuento4de4}}</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="product-box">
+     <div class="product-featured">
+      <div class="showcase-wrapper has-scrollbar">
+       <div class="showcase-container">
+        <div class="showcase">
+         <div class="showcase-banner">
+          <div class="slider-container has-scrollbar">
+           <div class="slider-item">
+            <img itemprop="image" src="{{img}}" alt="{{producto}}" class="banner-img">
+            <div class="overlayimg">
+             <img itemprop="image" src="{{fail}}" alt="{{producto}}" class="banner-img" style="opacity: 0;" data-src="" data-alt-src="">
+
+            </div>
+           </div>
+           <div class="slider-item">
+            <img itemprop="image" src="{{img1}}" alt="{{producto}}" class="banner-img">
+            <div class="overlayimg">
+             <img itemprop="image" src="{{fail}}" alt="{{producto}}" class="banner-img" style="opacity: 0;" data-src="" data-alt-src="">
+
+            </div>
+           </div>
+           <div class="slider-item">
+            <img itemprop="image" src="{{img2}}" alt="{{producto}}" class="banner-img">
+            <div class="overlayimg">
+             <img itemprop="image" src="{{fail}}" alt="{{producto}}" class="banner-img" style="opacity: 0;" data-src="" data-alt-src="">
+
+            </div>
+           </div>
+           <div class="slider-item">
+            <img itemprop="image" src="{{img3}}" alt="{{producto}}" class="banner-img">
+            <div class="overlayimg">
+             <img itemprop="image" src="{{fail}}" alt="{{producto}}" class="banner-img" style="opacity: 0;" data-src="" data-alt-src="">
+
+            </div>
+           </div>
+           <div class="slider-item">
+            <img itemprop="image" src="{{img4}}" alt="{{producto}}" class="banner-img">
+            <div class="overlayimg">
+             <img itemprop="image" src="{{fail}}" alt="{{producto}}" class="banner-img" style="opacity: 0;" data-src="" data-alt-src="">
+
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="showcase-content">
+          <div class="showcase-rating">{{rating}}</div>
+          <a href="#{{producto}}" aria-label="{{title}}" title="{{title}}">
+           <h3 class="showcase-title" aria-label="{{}}" title="{{}}">{{title}}<br></h3>
+          </a>
+          <a href="{{urlDesingBy}}" class="showcase-desc" aria-label="{{desingBy}}" title="{{desingBy}}">{{desingBy}}</a>
+          <p class="showcase-desc">{{descriptionProduct}}</p>
+          <div class="price-box">
+           <p class="price">{{priceTotal}}</p><del {{priceHidenShow}}>{{priceOriginal}}</del>
+          </div>
+          <button class="add-cart-btn">{{ctaProducto}}</button>
+          <div class="showcase-status" hidden>
+           <div class="wrapper">
+            <p>Piezas: <b>{{piezas}}</b></p>
+            <p>Disponibles: <b>{{disponibles}}</b></p>
+           </div>
+           <div class="showcase-status-bar"></div>
+          </div>
+          <div class="countdown-box">
+           <p class="countdown-desc">{{estilo}}</p>
+           <div class="countdown">
+            <div class="countdown-content" tazaConicaHideShow>
+             <p class="display-number">{{tazaConica}}</p>
+            </div>
+            <div class="countdown-content" tazaClasicaHideShow>
+             <p class="display-number">{{tazaClasica}}</p>
+            </div>
+           </div>
+          </div>
+          <br>
+          <div class="countdown-box">
+           <p class="countdown-desc">{{entrega}}</p>
+           <div class="showcase-desc">
+            <p>{{envioUrgente}} {{envioUrgenteFecha}}<br>{{envioOrdinario}} {{envioOrdinarioFecha}}</p>
+           </div>
+          </div>
+          <br>
+          <div class="countdown-box" {{coloresHideShow}}>
+           <p class="countdown-desc">{{colores}}</p>
+           <div class="countdown COLOR-JASPE">
+            <div class="countdown-content {{coloresNegroHideShow}}" style="background-color:#4D5456">
+             <p class="display-number"><span style="color:white">{{coloresNegro}}</span></p>
+            </div>
+            <div class="countdown-content {{coloresMarinoHideShow}}" style="background-color:#4F6884">
+             <p class="display-number"><span style="color:white">{{coloreMarino}}</span></p>
+            </div>
+           </div>
+          </div>
+          <br>
+          <a href="#CaracteristicasDelProducto">
+           <h3 class="showcase-title" aria-label="{{}}" title="{{}}">{{caracteristicasDelProducto}}</h3>
+          </a>
+          <p class="showcase-desc">{{caracteristicasDelProductoDescription}}</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+
+   </nav>
+  </div>
+ </main>
+ <br> <br>
+ {#- <!--    - custom js link  --> #} <script src="./assets/js/script.js"></script>
+ {#- <!--    - ionicon link   <script type="module" src="./assets/js/ionicons.esm.js"></script>  <script nomodule src="./assets/js/ionicons.js"></script>  --> #}
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

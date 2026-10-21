@@ -1,0 +1,23 @@
+{
+  "title": "Informe Jurídico sobre la Estructura y Responsabilidades en el Régimen de Propiedad en Condominio",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Informe jurídico",
+      "description": "Análisis sobre las responsabilidades, prohibiciones y estructura organizacional en un régimen de condominio.",
+      "sourceIds": [{
+        "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Redactar un informe que analice la base legal y estructural de la organización condominal. El documento debe detallar los derechos, obligaciones y prohibiciones de los condóminos, así como las facultades y responsabilidades de la Asamblea General, el Administrador y el Comité de Vigilancia, citando los artículos pertinentes de la ley.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_PROFESSIONAL",
+      "enableU18Classifier": true
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Modal full + iframe a </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>WhatsApp Modal</title>
+	<style>
+		:root {
+			--primary-color: #0c6455;
+			--background-color: #f0f0f0;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: Arial, sans-serif;
+			background-color: var(--background-color);
+			color: #333;
+			line-height: 1.6;
+		}
+
+		.whatsapp-button {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			z-index: 9999;
+			transition: transform 0.3s ease;
+		}
+
+		.whatsapp-button:hover {
+			transform: translateY(-5px);
+		}
+
+		.modal {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 1000;
+			display: none;
+			overflow: hidden;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+
+		.modal-content {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		.close-modal {
+			position: absolute;
+			top: 20px;
+			right: 30px;
+			font-size: 40px;
+			font-weight: bold;
+			color: #fff;
+			cursor: pointer;
+			transition: opacity 0.2s ease;
+		}
+
+		.close-modal:hover {
+			opacity: 0.7;
+		}
+
+		#modal-iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+
+		@media (max-width: 768px) {
+			.whatsapp-button {
+				bottom: 10px;
+				right: 10px;
+			}
+
+			.close-modal {
+				top: 10px;
+				right: 20px;
+				font-size: 30px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<button id="whatsapp-button" class="whatsapp-button" aria-label="Abrir chat de WhatsApp" style="border:none">
+		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+			<path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+		</svg>
+	</button>
+
+	<div id="whatsapp-modal" class="modal" aria-hidden="true">
+		<div class="modal-content">
+			<span class="close-modal" aria-label="Cerrar modal">&times;</span>
+			<iframe id="modal-iframe" src="" title="Chat de WhatsApp"></iframe>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const modal = document.getElementById('whatsapp-modal');
+			const btn = document.getElementById('whatsapp-button');
+			const closeBtn = document.querySelector('.close-modal');
+			const iframe = document.getElementById('modal-iframe');
+			const openModal = () => {
+				iframe.src = 'https://gelatinartepaty.vercel.app/whatsapp';
+				modal.style.display = 'block';
+				modal.setAttribute('aria-hidden', 'false');
+			};
+			const closeModal = () => {
+				modal.style.display = 'none';
+				modal.setAttribute('aria-hidden', 'true');
+				iframe.src = '';
+			};
+			btn.addEventListener('click', openModal);
+			closeBtn.addEventListener('click', closeModal);
+			window.addEventListener('click', (event) => {
+				if (event.target === modal) {
+					closeModal();
+				}
+			});
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape' && modal.style.display === 'block') {
+					closeModal();
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

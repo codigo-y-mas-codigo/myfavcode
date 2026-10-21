@@ -1,0 +1,369 @@
+{
+  "prompts": [
+    {
+      "id": "content-ideas-generator",
+      "title": "Generador de Ideas de Contenido",
+      "category": "Marketing",
+      "difficulty": "Principiante",
+      "tags": ["marketing", "contenido", "creatividad"],
+      "featured": true,
+      "story": "Contraté este prompt para ayudar a un equipo de marketing de una startup tecnológica. Superaban bloqueo creativo y necesitaban ideas frescas para su blog. Este prompt generaba ideas diversas y relevantes.",
+      "reduced": "Tiempo de ideación en un 30%",
+      "maximized": "Diversidad de temas y engagement",
+      "recommendations": [
+        "Especifica claramente el tema o nicho",
+        "Menciona tu audiencia objetivo si es específica",
+        "Puedes pedir ideas para diferentes formatos",
+        "Solicita variaciones estacionales si aplica"
+      ],
+      "prompt": "Actúa como un experto en marketing digital con 10 años de experiencia. Genera 10 ideas de contenido para un blog sobre [TEMA]. Las ideas deben ser:\\n\\n1. Originales y no repetitivas\\n2. Relevantes para la audiencia objetivo\\n3. Optimizadas para SEO\\n4. Variadas en formato (tutoriales, listas, casos de estudio)\\n\\nPara cada idea incluye:\\n- Título atractivo\\n- Breve descripción (2-3 líneas)\\n- Palabras clave principales\\n- Tipo de contenido recomendado",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "Blog de nutrición para ejecutivos",
+          "input": "[TEMA] = alimentación saludable para profesionales ocupados"
+        },
+        {
+          "title": "Ejemplo 2", 
+          "context": "Blog corporativo de herramientas de trabajo",
+          "input": "[TEMA] = productividad en el trabajo remoto"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Estudio de Engagement en Blogs B2B",
+          "description": "Análisis de 500 blogs corporativos y sus métricas de engagement",
+          "type": "PDF"
+        },
+        {
+          "title": "Plantilla de Calendario Editorial",
+          "description": "Plantilla en Excel para planificar contenido mensual",
+          "type": "Excel"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "Formato de Lista Estructurada",
+          "description": "Ideas organizadas en tabla con métricas de dificultad y tiempo estimado",
+          "preview": "1. [TÍTULO] - Dificultad: Media, Tiempo: 2h, SEO Score: Alto..."
+        },
+        {
+          "title": "Formato de Brief Creativo",
+          "description": "Cada idea expandida con objetivos, audiencia y call-to-action sugerido",
+          "preview": "Idea #1: [TÍTULO]\\nObjetivo: Educar sobre...\\nAudiencia: Profesionales de..."
+        }
+      ]
+    },
+    {
+      "id": "code-review-assistant",
+      "title": "Asistente de Revisión de Código",
+      "category": "Desarrollo",
+      "difficulty": "Intermedio",
+      "tags": ["desarrollo", "código", "calidad"],
+      "featured": true,
+      "story": "Implementé este prompt para un equipo de desarrollo de software. Este prompt estandariza y acelera el proceso de revisión.",
+      "reduced": "Tiempo de revisión en un 40%",
+      "maximized": "Calidad y consistencia del código",
+      "recommendations": [
+        "Incluye el lenguaje de programación específico",
+        "Menciona el contexto del proyecto si es relevante",
+        "Especifica si hay estándares de código particulares",
+        "Indica el nivel de experiencia del desarrollador"
+      ],
+      "prompt": "Actúa como un senior developer con experiencia en [LENGUAJE]. Revisa el siguiente código y proporciona feedback constructivo:\\n\\n```\\n[CÓDIGO]\\n```\\n\\nAnaliza:\\n1. **Legibilidad**: ¿Es fácil de entender?\\n2. **Eficiencia**: ¿Hay optimizaciones posibles?\\n3. **Mejores prácticas**: ¿Sigue convenciones del lenguaje?\\n4. **Seguridad**: ¿Hay vulnerabilidades potenciales?\\n5. **Mantenibilidad**: ¿Es fácil de modificar?\\n\\nProporciona:\\n- Problemas encontrados (si los hay)\\n- Sugerencias específicas de mejora\\n- Código mejorado cuando sea necesario\\n- Explicación del razonamiento",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "Función de autenticación en Python",
+          "input": "[LENGUAJE] = Python\\n[CÓDIGO] = función que valida credenciales de usuario"
+        },
+        {
+          "title": "Ejemplo 2",
+          "context": "Componente React para formulario",
+          "input": "[LENGUAJE] = JavaScript/React\\n[CÓDIGO] = componente de formulario con validación"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Checklist de Code Review",
+          "description": "Lista completa de elementos a revisar en cualquier lenguaje",
+          "type": "PDF"
+        },
+        {
+          "title": "Plantillas de Comentarios",
+          "description": "Frases y estructuras para dar feedback constructivo",
+          "type": "Documento"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "Reporte de Revisión Completo",
+          "description": "Análisis detallado con scoring y priorización de mejoras",
+          "preview": "## Análisis de Código\\n**Score General: 7/10**\\n\\n### Problemas Críticos:\\n- [Descripción]..."
+        },
+        {
+          "title": "Diff con Mejoras",
+          "description": "Código original vs mejorado con explicaciones línea por línea",
+          "preview": "```diff\\n- código_original()\\n+ codigo_mejorado()\\n```\\n**Razón del cambio:**..."
+        }
+      ]
+    },
+    {
+      "id": "data-analysis-expert",
+      "title": "Experto en Análisis de Datos",
+      "category": "Análisis",
+      "difficulty": "Avanzado",
+      "tags": ["datos", "análisis", "insights"],
+      "featured": true,
+      "story": "Desarrollé este prompt para un equipo de business intelligence. Este prompt estructura el análisis y genera recomendaciones claras.",
+      "reduced": "Tiempo de análisis en un 50%",
+      "maximized": "Precisión de insights y toma de decisiones",
+      "recommendations": [
+        "Proporciona contexto del negocio o industria",
+        "Especifica el tipo de datos que tienes",
+        "Menciona objetivos específicos del análisis",
+        "Indica el nivel técnico de la audiencia"
+      ],
+      "prompt": "Actúa como un analista de datos senior con experiencia en [INDUSTRIA]. Analiza los siguientes datos y proporciona insights accionables:\\n\\n**Contexto del negocio:** [CONTEXTO]\\n**Datos disponibles:** [DESCRIPCIÓN_DATOS]\\n**Objetivo del análisis:** [OBJETIVO]\\n\\nRealiza:\\n1. **Análisis exploratorio**: Patrones, tendencias, anomalías\\n2. **Insights clave**: 3-5 hallazgos principales\\n3. **Recomendaciones**: Acciones específicas basadas en datos\\n4. **Métricas de seguimiento**: KPIs para monitorear progreso\\n5. **Próximos pasos**: Plan de acción priorizado\\n\\nPresenta los resultados de forma clara para stakeholders no técnicos.",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "E-commerce analizando ventas",
+          "input": "[INDUSTRIA] = E-commerce\\n[CONTEXTO] = Caída en conversiones último trimestre\\n[DATOS] = Tráfico web, ventas, abandono de carrito"
+        },
+        {
+          "title": "Ejemplo 2",
+          "context": "SaaS analizando churn de usuarios",
+          "input": "[INDUSTRIA] = SaaS\\n[CONTEXTO] = Aumento en cancelaciones\\n[DATOS] = Uso de features, soporte, facturación"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Framework de Análisis de Datos",
+          "description": "Metodología paso a paso para análisis estructurado",
+          "type": "PDF"
+        },
+        {
+          "title": "Plantillas de Visualización",
+          "description": "Templates para dashboards y reportes ejecutivos",
+          "type": "PowerBI/Tableau"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "Reporte Ejecutivo",
+          "description": "Resumen de 2 páginas con insights clave y recomendaciones",
+          "preview": "## Executive Summary\\n**Hallazgo Principal:** [Insight]\\n**Impacto:** [Métrica]\\n**Recomendación:** [Acción]..."
+        },
+        {
+          "title": "Dashboard Interactivo",
+          "description": "Especificaciones para crear dashboard con métricas en tiempo real",
+          "preview": "### Dashboard Specs\\n**KPI Principal:** [Métrica]\\n**Filtros:** [Dimensiones]\\n**Alertas:** [Umbrales]..."
+        }
+      ]
+    },
+    {
+      "id": "email-marketing-optimizer",
+      "title": "Optimizador de Email Marketing",
+      "category": "Marketing",
+      "difficulty": "Intermedio",
+      "tags": ["email", "marketing", "conversión"],
+      "featured": false,
+      "story": "Creé este prompt para una agencia de marketing digital que necesitaba mejorar las tasas de apertura y conversión de sus campañas de email.",
+      "reduced": "Tiempo de creación de emails en un 60%",
+      "maximized": "Tasas de apertura y click-through",
+      "recommendations": [
+        "Define claramente tu audiencia objetivo",
+        "Especifica el objetivo de la campaña",
+        "Menciona restricciones de marca si las hay",
+        "Incluye métricas actuales si las tienes"
+      ],
+      "prompt": "Actúa como un especialista en email marketing con 8 años de experiencia. Optimiza la siguiente campaña de email:\\n\\n**Audiencia:** [AUDIENCIA]\\n**Objetivo:** [OBJETIVO]\\n**Email actual:** [CONTENIDO_ACTUAL]\\n\\nOptimiza:\\n1. **Subject line**: 3 variaciones A/B test\\n2. **Preheader**: Complemento al subject\\n3. **Estructura**: Organización del contenido\\n4. **Call-to-action**: Botones y enlaces\\n5. **Personalización**: Elementos dinámicos\\n\\nProporciona:\\n- Versión optimizada completa\\n- Justificación de cada cambio\\n- Métricas esperadas de mejora\\n- Recomendaciones de segmentación",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "Newsletter semanal de SaaS",
+          "input": "[AUDIENCIA] = Product managers\\n[OBJETIVO] = Aumentar engagement con features"
+        },
+        {
+          "title": "Ejemplo 2",
+          "context": "Email de recuperación de carrito",
+          "input": "[AUDIENCIA] = Compradores abandonaron carrito\\n[OBJETIVO] = Completar compra"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Benchmark de Email Marketing por Industria",
+          "description": "Tasas promedio de apertura, click y conversión por sector",
+          "type": "Spreadsheet"
+        },
+        {
+          "title": "Biblioteca de Subject Lines",
+          "description": "500+ subject lines probados con sus métricas de performance",
+          "type": "Database"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "Email Optimizado Completo",
+          "description": "HTML y texto plano con anotaciones de mejoras",
+          "preview": "**Subject:** [Optimizado]\\n**Preheader:** [Nuevo]\\n\\n[HTML del email con comentarios]"
+        },
+        {
+          "title": "Plan de Testing A/B",
+          "description": "Estrategia completa de testing con variaciones y métricas",
+          "preview": "## Test Plan\\n**Variación A:** [Descripción]\\n**Variación B:** [Descripción]\\n**Métrica principal:** [KPI]"
+        }
+      ]
+    },
+    {
+      "id": "social-media-strategist",
+      "title": "Estratega de Redes Sociales",
+      "category": "Marketing",
+      "difficulty": "Intermedio",
+      "tags": ["social media", "estrategia", "engagement"],
+      "featured": false,
+      "story": "Desarrollé este prompt para una consultora que manejaba múltiples cuentas de redes sociales y necesitaba crear estrategias consistentes y efectivas.",
+      "reduced": "Tiempo de planificación en un 45%",
+      "maximized": "Engagement y alcance orgánico",
+      "recommendations": [
+        "Especifica las plataformas principales",
+        "Define tu audiencia demográfica",
+        "Menciona recursos disponibles (tiempo, presupuesto)",
+        "Incluye objetivos específicos y medibles"
+      ],
+      "prompt": "Actúa como un estratega de redes sociales con experiencia en [INDUSTRIA]. Crea una estrategia integral para:\\n\\n**Marca:** [MARCA]\\n**Plataformas:** [PLATAFORMAS]\\n**Audiencia:** [AUDIENCIA_TARGET]\\n**Objetivos:** [OBJETIVOS]\\n**Presupuesto:** [PRESUPUESTO]\\n\\nDesarrolla:\\n1. **Análisis de audiencia**: Personas y comportamientos\\n2. **Estrategia de contenido**: Tipos, frecuencia, temas\\n3. **Calendario editorial**: Planificación mensual\\n4. **Estrategia de engagement**: Interacción y comunidad\\n5. **Métricas y KPIs**: Indicadores de éxito\\n6. **Plan de crecimiento**: Tácticas para aumentar followers\\n\\nIncluye ejemplos específicos de posts y campañas.",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "Startup de fintech",
+          "input": "[INDUSTRIA] = Fintech\\n[MARCA] = App de inversiones\\n[PLATAFORMAS] = LinkedIn, Twitter, Instagram"
+        },
+        {
+          "title": "Ejemplo 2",
+          "context": "Restaurante local",
+          "input": "[INDUSTRIA] = Restauración\\n[MARCA] = Restaurante familiar\\n[PLATAFORMAS] = Instagram, Facebook, TikTok"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Calendario de Tendencias Anuales",
+          "description": "Fechas importantes, hashtags estacionales y eventos relevantes",
+          "type": "Calendar"
+        },
+        {
+          "title": "Templates de Posts",
+          "description": "Plantillas visuales para diferentes tipos de contenido",
+          "type": "Design Files"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "Estrategia Completa",
+          "description": "Documento de 10-15 páginas con estrategia detallada",
+          "preview": "# Estrategia Social Media\\n## Análisis de Audiencia\\n[Personas]\\n## Content Strategy\\n[Plan detallado]"
+        },
+        {
+          "title": "Calendario Editorial",
+          "description": "Planificación mensual con posts específicos y horarios",
+          "preview": "## Enero 2024\\n**Semana 1:**\\n- Lunes: [Post tipo] - [Tema] - [Hora]\\n- Martes: [Post tipo]..."
+        }
+      ]
+    },
+    {
+      "id": "product-requirements-writer",
+      "title": "Redactor de Requerimientos de Producto",
+      "category": "Desarrollo",
+      "difficulty": "Avanzado",
+      "tags": ["producto", "requerimientos", "documentación"],
+      "featured": false,
+      "story": "Implementé este prompt en una empresa de software donde los product managers necesitaban documentar features de manera clara y completa para los equipos de desarrollo.",
+      "reduced": "Tiempo de documentación en un 55%",
+      "maximized": "Claridad y completitud de especificaciones",
+      "recommendations": [
+        "Define el contexto del producto claramente",
+        "Especifica el tipo de feature o funcionalidad",
+        "Menciona restricciones técnicas conocidas",
+        "Incluye criterios de aceptación preliminares"
+      ],
+      "prompt": "Actúa como un Product Manager senior con experiencia en [TIPO_PRODUCTO]. Redacta requerimientos detallados para:\\n\\n**Feature:** [FEATURE]\\n**Contexto:** [CONTEXTO_PRODUCTO]\\n**Usuarios objetivo:** [USUARIOS]\\n**Problema a resolver:** [PROBLEMA]\\n\\nDocumenta:\\n1. **User Stories**: Formato estándar con criterios de aceptación\\n2. **Functional Requirements**: Especificaciones técnicas detalladas\\n3. **Non-functional Requirements**: Performance, seguridad, usabilidad\\n4. **Edge Cases**: Escenarios límite y manejo de errores\\n5. **Dependencies**: Integraciones y dependencias técnicas\\n6. **Success Metrics**: KPIs y métricas de éxito\\n\\nUsa formato estándar de la industria y incluye mockups conceptuales cuando sea relevante.",
+      "examples": [
+        {
+          "title": "Ejemplo 1",
+          "context": "App móvil de delivery",
+          "input": "[TIPO_PRODUCTO] = App móvil\\n[FEATURE] = Sistema de tracking en tiempo real\\n[USUARIOS] = Clientes que ordenan comida"
+        },
+        {
+          "title": "Ejemplo 2",
+          "context": "Plataforma SaaS de CRM",
+          "input": "[TIPO_PRODUCTO] = SaaS B2B\\n[FEATURE] = Automatización de email marketing\\n[USUARIOS] = Sales managers"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Template de PRD (Product Requirements Document)",
+          "description": "Plantilla estándar de la industria con todas las secciones",
+          "type": "Document Template"
+        },
+        {
+          "title": "Checklist de QA para Requerimientos",
+          "description": "Lista de verificación para asegurar completitud",
+          "type": "Checklist"
+        }
+      ],
+      "outputFormats": [
+        {
+          "title": "PRD Completo",
+          "description": "Documento técnico completo listo para desarrollo",
+          "preview": "# Product Requirements Document\\n## Overview\\n[Descripción]\\n## User Stories\\n[Stories detalladas]"
+        },
+        {
+          "title": "Epic y Stories para Jira",
+          "description": "Formato específico para importar directamente a Jira",
+          "preview": "**Epic:** [Título]\\n**Story 1:** Como [usuario] quiero [acción] para [beneficio]\\n**AC:** [Criterios]"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "description": "Prompts para estrategias de marketing, contenido y campañas",
+      "color": "purple"
+    },
+    {
+      "id": "desarrollo",
+      "name": "Desarrollo",
+      "description": "Prompts para desarrollo de software, code review y documentación técnica",
+      "color": "orange"
+    },
+    {
+      "id": "analisis",
+      "name": "Análisis",
+      "description": "Prompts para análisis de datos, insights y business intelligence",
+      "color": "green"
+    }
+  ],
+  "difficulties": [
+    {
+      "id": "principiante",
+      "name": "Principiante",
+      "description": "Prompts fáciles de usar, ideales para comenzar",
+      "color": "green"
+    },
+    {
+      "id": "intermedio",
+      "name": "Intermedio",
+      "description": "Prompts que requieren conocimiento específico del área",
+      "color": "yellow"
+    },
+    {
+      "id": "avanzado",
+      "name": "Avanzado",
+      "description": "Prompts complejos para usuarios experimentados",
+      "color": "red"
+    }
+  ]
+}
+

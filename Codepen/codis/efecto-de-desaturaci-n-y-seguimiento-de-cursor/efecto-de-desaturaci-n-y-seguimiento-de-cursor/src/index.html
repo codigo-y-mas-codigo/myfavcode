@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>Efecto de Desaturación y Seguimiento de Cursor</title>
+ <style>
+  body {
+   margin: 0;
+   width: 100%;
+   overflow: hidden;
+  }
+
+  img {
+   width: 100%;
+   -webkit-filter: grayscale(1);
+   -moz-filter: grayscale(1);
+   -o-filter: grayscale(1);
+   filter: grayscale(1);
+  }
+
+  .skeleton {
+   border-radius: 50%;
+   width: 200px;
+   height: 200px;
+   overflow: hidden;
+   background: url(https://yarticulospromocionales.vercel.app/img/servicio-de-impresion-digital.webp) no-repeat fixed left top;
+   background-size: 100%;
+   position: absolute;
+   border: 8px solid #fff;
+  }
+ </style>
+</head>
+
+<body>
+ <img class="img1" src="https://yarticulospromocionales.vercel.app/img/servicio-de-impresion-digital.webp" alt="image 1">
+ <div class="skeleton"></div>
+ <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+ <script>
+  // Seleccionamos el elemento cuerpo una vez que el DOM está completamente cargado
+  document.addEventListener("DOMContentLoaded", function() {
+   const body = document.body;
+   // Usamos addEventListener para vincular el evento mousemove
+   body.addEventListener("mousemove", function(event) {
+    // Obtenemos las coordenadas del ratón
+    const mouseX = event.pageX;
+    const mouseY = event.pageY;
+    // Obtenemos el elemento skeleton
+    const skeleton = document.querySelector(".skeleton");
+    // Calculamos las nuevas posiciones del skeleton para que siga al ratón
+    const newLeft = mouseX - skeleton.offsetWidth / 2;
+    const newTop = mouseY - skeleton.offsetHeight / 2;
+    // Aplicamos las nuevas posiciones al skeleton
+    skeleton.style.left = newLeft + "px";
+    skeleton.style.top = newTop + "px";
+   });
+  });
+ </script>
+ <p>
+  Este código presenta un efecto de desaturación al pasar el mouse sobre una imagen, junto con un efecto de movimiento en una forma circular alrededor del cursor. Aquí hay algunas aplicaciones posibles en diferentes contextos:
+  <br>
+  1. **Marketing digital**: Este tipo de efectos pueden ser útiles en sitios web promocionales, especialmente para resaltar productos específicos. Por ejemplo, podrías usar este efecto para resaltar una imagen de producto al pasar el mouse sobre ella, lo que puede aumentar la atención del usuario y mejorar la experiencia de navegación.
+  <br>
+  2. **Diseño de portafolios**: Los diseñadores y artistas pueden utilizar este tipo de efectos para agregar interactividad a sus portafolios en línea. Al aplicar efectos visuales interesantes a las imágenes de su trabajo, pueden destacarse entre la competencia y mostrar su creatividad de una manera única.
+  <br>
+  3. **Publicidad interactiva**: En el contexto de la publicidad en línea, este tipo de efectos pueden utilizarse para crear anuncios interactivos que atraigan la atención del espectador y generen interés en el producto o servicio anunciado. Por ejemplo, podrías crear un banner publicitario con una imagen desaturada que se vuelva a color al pasar el mouse sobre ella, lo que invita al usuario a hacer clic para obtener más información.
+  <br>
+  4. **Experiencia de usuario mejorada**: En aplicaciones web y móviles, los efectos de interacción como este pueden mejorar la experiencia del usuario al proporcionar una retroalimentación visual inmediata sobre las acciones realizadas. Por ejemplo, podrías utilizar este tipo de efectos en una aplicación de comercio electrónico para resaltar productos destacados o categorías de productos al pasar el mouse sobre ellos.
+  <br>
+  En resumen, este tipo de efectos pueden ser utilizados de diversas formas en marketing, diseño web, publicidad y desarrollo de aplicaciones para mejorar la interactividad y la experiencia del usuario.
+ </p>
+</body>
+
+</html>

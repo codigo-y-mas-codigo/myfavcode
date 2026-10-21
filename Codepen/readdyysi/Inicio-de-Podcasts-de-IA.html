@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroWave Admin - Panel de Control</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E5BFF',
+secondary: '#121212'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+body {
+background-color: #0a0a0a;
+color: #ffffff;
+}
+.gradient-card {
+background: linear-gradient(135deg, rgba(46, 91, 255, 0.1) 0%, rgba(18, 18, 18, 0.8) 100%);
+}
+.glow-effect {
+box-shadow: 0 0 20px rgba(46, 91, 255, 0.3);
+}
+.scroll-container {
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.scroll-container::-webkit-scrollbar {
+display: none;
+}
+.custom-checkbox {
+appearance: none;
+width: 1.25rem;
+height: 1.25rem;
+border: 2px solid #374151;
+border-radius: 4px;
+background-color: transparent;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #2E5BFF;
+border-color: #2E5BFF;
+}
+.custom-checkbox:checked::after {
+content: '✓';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
+font-size: 0.75rem;
+}
+.custom-radio {
+appearance: none;
+width: 1.25rem;
+height: 1.25rem;
+border: 2px solid #374151;
+border-radius: 50%;
+background-color: transparent;
+cursor: pointer;
+position: relative;
+}
+.custom-radio:checked {
+border-color: #2E5BFF;
+}
+.custom-radio:checked::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 0.5rem;
+height: 0.5rem;
+border-radius: 50%;
+background-color: #2E5BFF;
+}
+.custom-switch {
+appearance: none;
+width: 3rem;
+height: 1.5rem;
+background-color: #374151;
+border-radius: 9999px;
+cursor: pointer;
+position: relative;
+transition: background-color 0.3s;
+}
+.custom-switch:checked {
+background-color: #2E5BFF;
+}
+.custom-switch::after {
+content: '';
+position: absolute;
+top: 0.125rem;
+left: 0.125rem;
+width: 1.25rem;
+height: 1.25rem;
+background-color: white;
+border-radius: 50%;
+transition: transform 0.3s;
+}
+.custom-switch:checked::after {
+transform: translateX(1.5rem);
+}
+</style>
+</head>
+<body class="bg-secondary min-h-screen flex">
+<!-- Navegación Lateral -->
+<aside class="w-64 bg-gray-900 border-r border-gray-800 h-screen fixed left-0 top-0">
+<div class="p-6">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<i class="ri-brain-line text-white text-xl"></i>
+</div>
+<span class="font-['Pacifico'] text-2xl text-white">NeuroWave</span>
+</div>
+</div>
+<nav class="mt-6">
+<a href="#" class="flex items-center px-6 py-3 text-white bg-primary/10">
+<i class="ri-dashboard-line mr-3"></i>
+Dashboard
+</a>
+<a href="#" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white">
+<i class="ri-mic-line mr-3"></i>
+Podcasts
+</a>
+<a href="#" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white">
+<i class="ri-user-line mr-3"></i>
+Usuarios
+</a>
+<a href="#" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white">
+<i class="ri-bar-chart-line mr-3"></i>
+Analytics
+</a>
+<a href="#" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white">
+<i class="ri-message-2-line mr-3"></i>
+Comentarios
+</a>
+<a href="#" class="flex items-center px-6 py-3 text-gray-400 hover:bg-gray-800 hover:text-white">
+<i class="ri-settings-line mr-3"></i>
+Configuración
+</a>
+</nav>
+</aside>
+<!-- Contenido Principal -->
+<main class="ml-64 flex-1">
+<!-- Navegación Superior -->
+<header class="bg-secondary border-b border-gray-800 px-6 py-4 sticky top-0 z-50">
+<div class="flex items-center justify-between">
+<h1 class="text-2xl font-bold text-white">Panel de Control</h1>
+<!-- Barra de búsqueda -->
+<div class="flex-1 max-w-md mx-8">
+<div class="relative">
+<input type="text" placeholder="Buscar podcasts, charlas de IA..."
+class="w-full bg-gray-800 border border-gray-700 rounded-full px-4 py-2 pl-12 pr-12 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<div class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+<div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-mic-line text-primary cursor-pointer hover:text-blue-400"></i>
+</div>
+</div>
+</div>
+<!-- Perfil -->
+<div class="flex items-center space-x-4">
+<div class="relative">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-notification-line text-gray-300 text-xl cursor-pointer hover:text-white"></i>
+</div>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+</div>
+<div class="relative">
+<div id="userAvatar" class="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center cursor-pointer">
+<i class="ri-user-line text-white"></i>
+</div>
+<div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl z-50">
+<div class="py-2">
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-user-line mr-3"></i>
+Ver perfil
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-settings-3-line mr-3"></i>
+Configuración
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-vip-crown-line mr-3"></i>
+Suscripciones
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-history-line mr-3"></i>
+Historial
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-download-line mr-3"></i>
+Descargas
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 hover:text-white">
+<i class="ri-question-line mr-3"></i>
+Ayuda
+</a>
+<div class="border-t border-gray-700 my-1"></div>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-red-400 hover:bg-gray-800">
+<i class="ri-logout-box-line mr-3"></i>
+Cerrar sesión
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-6">
+<!-- Tarjetas de Estadísticas -->
+<div class="grid grid-cols-4 gap-6 mb-8">
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+<i class="ri-headphone-line text-primary text-2xl"></i>
+</div>
+<span class="text-gray-400">Total Podcasts</span>
+</div>
+<h3 class="text-3xl font-bold text-white">248</h3>
+<p class="text-green-500 text-sm mt-2">+12% vs último mes</p>
+</div>
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+<i class="ri-user-line text-purple-500 text-2xl"></i>
+</div>
+<span class="text-gray-400">Usuarios Activos</span>
+</div>
+<h3 class="text-3xl font-bold text-white">15.2K</h3>
+<p class="text-green-500 text-sm mt-2">+8% vs último mes</p>
+</div>
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+<i class="ri-play-circle-line text-green-500 text-2xl"></i>
+</div>
+<span class="text-gray-400">Reproducciones</span>
+</div>
+<h3 class="text-3xl font-bold text-white">892K</h3>
+<p class="text-green-500 text-sm mt-2">+15% vs último mes</p>
+</div>
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
+<i class="ri-time-line text-orange-500 text-2xl"></i>
+</div>
+<span class="text-gray-400">Tiempo Promedio</span>
+</div>
+<h3 class="text-3xl font-bold text-white">32 min</h3>
+<p class="text-red-500 text-sm mt-2">-3% vs último mes</p>
+</div>
+</div>
+<!-- Gráficos -->
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="bg-gray-900 rounded-xl p-6">
+<h3 class="text-xl font-bold text-white mb-6">Reproducciones por Día</h3>
+<div id="listensChart" class="w-full h-80"></div>
+</div>
+<div class="bg-gray-900 rounded-xl p-6">
+<h3 class="text-xl font-bold text-white mb-6">Categorías Populares</h3>
+<div id="categoriesChart" class="w-full h-80"></div>
+</div>
+</div>
+<!-- Tabla de Últimos Podcasts -->
+<div class="bg-gray-900 rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-white">Últimos Podcasts</h3>
+<button class="text-primary hover:text-blue-400 font-medium">Ver todos</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="text-left text-gray-400 text-sm">
+<th class="pb-4">Título</th>
+<th class="pb-4">Autor</th>
+<th class="pb-4">Categoría</th>
+<th class="pb-4">Duración</th>
+<th class="pb-4">Reproducciones</th>
+<th class="pb-4">Estado</th>
+<th class="pb-4">Acciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-gray-800">
+<td class="py-4">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded bg-primary/20 flex items-center justify-center">
+<i class="ri-mic-line text-primary"></i>
+</div>
+<span class="text-white">El Futuro de la IA Generativa</span>
+</div>
+</td>
+<td class="text-gray-400">Dr. Elena Martínez</td>
+<td><span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">Machine Learning</span></td>
+<td class="text-gray-400">45 min</td>
+<td class="text-gray-400">2.3M</td>
+<td><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">Publicado</span></td>
+<td>
+<div class="flex items-center space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-edit-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-t border-gray-800">
+<td class="py-4">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded bg-purple-500/20 flex items-center justify-center">
+<i class="ri-mic-line text-purple-500"></i>
+</div>
+<span class="text-white">Robótica Avanzada y IA</span>
+</div>
+</td>
+<td class="text-gray-400">Prof. Carlos Ruiz</td>
+<td><span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs">Robotics</span></td>
+<td class="text-gray-400">32 min</td>
+<td class="text-gray-400">1.8M</td>
+<td><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs">En revisión</span></td>
+<td>
+<div class="flex items-center space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-edit-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script id="charts-initialization">
+document.addEventListener('DOMContentLoaded', function() {
+// Gráfico de Reproducciones
+const listensChart = echarts.init(document.getElementById('listensChart'));
+listensChart.setOption({
+animation: false,
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+data: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+axisLine: {
+lineStyle: {
+color: '#374151'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#374151'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+},
+splitLine: {
+lineStyle: {
+color: '#374151'
+}
+}
+},
+series: [{
+data: [150, 230, 224, 218, 135, 147, 260],
+type: 'line',
+smooth: true,
+symbolSize: 0,
+lineStyle: {
+color: '#57B5E7'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+}, {
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}])
+}
+}]
+});
+// Gráfico de Categorías
+const categoriesChart = echarts.init(document.getElementById('categoriesChart'));
+categoriesChart.setOption({
+animation: false,
+tooltip: {
+trigger: 'item'
+},
+series: [{
+type: 'pie',
+radius: ['40%', '70%'],
+itemStyle: {
+borderRadius: 8
+},
+label: {
+color: '#9CA3AF'
+},
+data: [
+{ value: 40, name: 'Machine Learning', itemStyle: { color: '#57B5E7' } },
+{ value: 25, name: 'Deep Learning', itemStyle: { color: '#8DD3C7' } },
+{ value: 20, name: 'NLP', itemStyle: { color: '#FBBF72' } },
+{ value: 15, name: 'Computer Vision', itemStyle: { color: '#FC8D62' } }
+]
+}]
+});
+// Responsive charts
+window.addEventListener('resize', function() {
+listensChart.resize();
+categoriesChart.resize();
+});
+});
+</script>
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-3xl font-bold text-white">Destacados</h2>
+<button class="text-primary hover:text-blue-400 font-medium">Ver todo</button>
+</div>
+<div class="relative">
+<div class="flex space-x-6 overflow-x-auto scroll-container pb-4">
+<div class="min-w-80 bg-gray-900 rounded-xl overflow-hidden shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer group">
+<div class="relative h-48" style="background-image: url('https://readdy.ai/api/search-image?query=futuristic%20artificial%20intelligence%20neural%20network%20visualization%20with%20glowing%20blue%20circuits%20and%20data%20streams%20in%20dark%20technological%20environment%2C%20cyberpunk%20aesthetic%2C%20digital%20brain%20concept%2C%20high-tech%20background&width=320&height=192&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+<a href="https://readdy.ai/home/5daee13a-1d15-4539-97f3-f680273aa406/5ea91418-fb6d-4f8b-bf83-4dede2e54c70" data-readdy="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></a>
+<div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-white">
+45 min
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-xl font-bold text-white mb-2">El Futuro de la IA Generativa</h3>
+<p class="text-gray-300 text-sm">Dr. Elena Martínez • 2.3M reproducciones</p>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center space-x-2 mb-3">
+<span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">#MachineLearning</span>
+<span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs">#GPT</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-play-fill text-white"></i>
+</div>
+<span class="text-gray-400 text-sm">Reproducir</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-80 bg-gray-900 rounded-xl overflow-hidden shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer group">
+<div class="relative h-48" style="background-image: url('https://readdy.ai/api/search-image?query=advanced%20robotics%20and%20artificial%20intelligence%20laboratory%20with%20holographic%20displays%20and%20quantum%20computing%20elements%2C%20futuristic%20tech%20environment%2C%20blue%20and%20purple%20lighting%2C%20scientific%20research%20facility&width=320&height=192&seq=hero2&orientation=landscape'); background-size: cover; background-position: center;">
+<a href="https://readdy.ai/home/5daee13a-1d15-4539-97f3-f680273aa406/5ea91418-fb6d-4f8b-bf83-4dede2e54c70" data-readdy="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></a>
+<div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-white">
+32 min
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-xl font-bold text-white mb-2">Robótica Avanzada y IA</h3>
+<p class="text-gray-300 text-sm">Prof. Carlos Ruiz • 1.8M reproducciones</p>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center space-x-2 mb-3">
+<span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">#Robotics</span>
+<span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs">#Automation</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-play-fill text-white"></i>
+</div>
+<span class="text-gray-400 text-sm">Reproducir</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-80 bg-gray-900 rounded-xl overflow-hidden shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer group">
+<div class="relative h-48" style="background-image: url('https://readdy.ai/api/search-image?query=quantum%20computing%20and%20artificial%20intelligence%20convergence%20with%20glowing%20quantum%20circuits%20and%20neural%20pathways%2C%20futuristic%20technology%20visualization%2C%20deep%20blue%20and%20cyan%20colors%2C%20scientific%20breakthrough%20concept&width=320&height=192&seq=hero3&orientation=landscape'); background-size: cover; background-position: center;">
+<a href="https://readdy.ai/home/5daee13a-1d15-4539-97f3-f680273aa406/5ea91418-fb6d-4f8b-bf83-4dede2e54c70" data-readdy="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></a>
+<div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-white">
+28 min
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-xl font-bold text-white mb-2">Computación Cuántica e IA</h3>
+<p class="text-gray-300 text-sm">Dra. Ana Vega • 1.5M reproducciones</p>
+</div>
+</div>
+<div class="p-4">
+<div class="flex items-center space-x-2 mb-3">
+<span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs">#QuantumAI</span>
+<span class="bg-pink-500/20 text-pink-400 px-2 py-1 rounded text-xs">#Computing</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+<i class="ri-play-fill text-white"></i>
+</div>
+<span class="text-gray-400 text-sm">Reproducir</span>
+</div>
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección de Tendencias -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-3xl font-bold text-white">Tendencias</h2>
+<button class="text-primary hover:text-blue-400 font-medium">Explorar más</button>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-cyan-500 rounded-lg flex items-center justify-center">
+<i class="ri-cpu-line text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">Deep Learning</h3>
+<p class="text-gray-400 text-sm">156 episodios nuevos</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-primary font-medium">4.2M reproducciones</span>
+<div class="flex items-center space-x-1">
+<i class="ri-fire-line text-orange-500"></i>
+<span class="text-orange-500 text-sm">Trending</span>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+<i class="ri-robot-line text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">IA Conversacional</h3>
+<p class="text-gray-400 text-sm">89 episodios nuevos</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-primary font-medium">3.8M reproducciones</span>
+<div class="flex items-center space-x-1">
+<i class="ri-arrow-up-line text-green-500"></i>
+<span class="text-green-500 text-sm">+24%</span>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
+<i class="ri-eye-line text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">Computer Vision</h3>
+<p class="text-gray-400 text-sm">72 episodios nuevos</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-primary font-medium">2.9M reproducciones</span>
+<div class="flex items-center space-x-1">
+<i class="ri-star-line text-yellow-500"></i>
+<span class="text-yellow-500 text-sm">Popular</span>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+<i class="ri-shield-line text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">IA Ética</h3>
+<p class="text-gray-400 text-sm">45 episodios nuevos</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-primary font-medium">1.7M reproducciones</span>
+<div class="flex items-center space-x-1">
+<i class="ri-heart-line text-red-500"></i>
+<span class="text-red-500 text-sm">Favorito</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recomendaciones Personalizadas -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-3xl font-bold text-white">Recomendado para ti</h2>
+<button class="text-primary hover:text-blue-400 font-medium">Actualizar</button>
+</div>
+<div class="space-y-4">
+<div class="bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=artificial%20intelligence%20neural%20network%20visualization%20with%20interconnected%20nodes%20and%20data%20flow%2C%20futuristic%20digital%20brain%20concept%2C%20blue%20and%20purple%20gradient%20colors%2C%20technology%20background&width=64&height=64&seq=rec1&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold text-white mb-1">Redes Neuronales Explicadas</h3>
+<p class="text-gray-400 text-sm mb-2">Dr. Miguel Torres • 42 min • Machine Learning</p>
+<div class="flex items-center space-x-2">
+<span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">#NeuralNetworks</span>
+<span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">#Beginner</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=natural%20language%20processing%20and%20text%20analysis%20visualization%20with%20floating%20words%20and%20linguistic%20patterns%2C%20AI%20language%20model%20concept%2C%20cyan%20and%20blue%20colors%2C%20digital%20communication%20theme&width=64&height=64&seq=rec2&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold text-white mb-1">Procesamiento de Lenguaje Natural</h3>
+<p class="text-gray-400 text-sm mb-2">Dra. Sofia Hernández • 35 min • NLP</p>
+<div class="flex items-center space-x-2">
+<span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded text-xs">#NLP</span>
+<span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs">#Advanced</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=autonomous%20vehicles%20and%20AI%20driving%20technology%20with%20smart%20car%20sensors%20and%20navigation%20systems%2C%20futuristic%20transportation%20concept%2C%20green%20and%20blue%20lighting%2C%20automotive%20AI%20visualization&width=64&height=64&seq=rec3&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold text-white mb-1">IA en Vehículos Autónomos</h3>
+<p class="text-gray-400 text-sm mb-2">Ing. Roberto Silva • 50 min • Autonomous Systems</p>
+<div class="flex items-center space-x-2">
+<span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">#AutonomousVehicles</span>
+<span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs">#Innovation</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=medical%20artificial%20intelligence%20and%20healthcare%20technology%20with%20diagnostic%20systems%20and%20patient%20data%20analysis%2C%20futuristic%20medical%20equipment%2C%20blue%20and%20white%20colors%2C%20healthcare%20AI%20concept&width=64&height=64&seq=rec4&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold text-white mb-1">IA en Medicina y Salud</h3>
+<p class="text-gray-400 text-sm mb-2">Dr. Patricia Morales • 38 min • Healthcare AI</p>
+<div class="flex items-center space-x-2">
+<span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs">#HealthcareAI</span>
+<span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded text-xs">#Medical</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors cursor-pointer">
+<div class="flex items-center space-x-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=artificial%20intelligence%20in%20finance%20and%20fintech%20with%20data%20analytics%20charts%20and%20algorithmic%20trading%20visualization%2C%20financial%20technology%20concept%2C%20gold%20and%20blue%20colors%2C%20banking%20AI%20systems&width=64&height=64&seq=rec5&orientation=squarish'); background-size: cover; background-position: center;"></div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold text-white mb-1">IA en Finanzas y Fintech</h3>
+<p class="text-gray-400 text-sm mb-2">Lic. Fernando López • 45 min • Financial AI</p>
+<div class="flex items-center space-x-2">
+<span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-xs">#FinTech</span>
+<span class="bg-indigo-500/20 text-indigo-400 px-2 py-1 rounded text-xs">#Trading</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+<i class="ri-play-fill text-white"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 hover:text-white cursor-pointer"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</main>
+<div class="flex items-center justify-around max-w-md mx-auto">
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line text-primary text-xl group-hover:text-blue-400"></i>
+</div>
+<span class="text-xs text-primary group-hover:text-blue-400">Inicio</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-compass-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Explorar</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Biblioteca</span>
+</div>
+<div class="flex flex-col items-center space-y-1 cursor-pointer group">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-line text-gray-400 text-xl group-hover:text-white"></i>
+</div>
+<span class="text-xs text-gray-400 group-hover:text-white">Perfil</span>
+</div>
+</div>
+</nav>
+<!-- Modal para Cargar Nuevo Podcast -->
+<div id="uploadPodcastModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50">
+<div class="min-h-screen flex items-center justify-center p-6">
+<div class="bg-gray-900 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+<div class="p-6 border-b border-gray-800">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-white">Cargar Nuevo Podcast</h2>
+<button id="closeUploadModal" class="text-gray-400 hover:text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+</div>
+<form id="podcastUploadForm" class="p-6 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Imagen de Portada</label>
+<div class="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center">
+<div id="previewContainer" class="hidden mb-4">
+<img id="imagePreview" class="mx-auto max-h-48 rounded-lg" alt="Preview">
+</div>
+<div id="uploadPrompt" class="space-y-2">
+<i class="ri-image-add-line text-4xl text-gray-400"></i>
+<p class="text-sm text-gray-400">Arrastra una imagen o <span class="text-primary">selecciona un archivo</span></p>
+<p class="text-xs text-gray-500">PNG, JPG (max. 2MB)</p>
+</div>
+<input type="file" id="coverImage" name="coverImage" accept="image/*" class="hidden">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Título del Podcast</label>
+<input type="text" name="title" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Ej: El Futuro de la IA">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Categoría</label>
+<div class="relative">
+<select name="category" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<option value="machine-learning">Machine Learning</option>
+<option value="deep-learning">Deep Learning</option>
+<option value="nlp">NLP</option>
+<option value="computer-vision">Computer Vision</option>
+<option value="robotics">Robotics</option>
+</select>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Descripción</label>
+<textarea name="description" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Describe tu podcast..."></textarea>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Etiquetas</label>
+<div class="flex flex-wrap gap-2 mb-2" id="tagContainer"></div>
+<div class="relative">
+<input type="text" id="tagInput" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Añade etiquetas y presiona Enter">
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Archivo de Audio</label>
+<div class="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center">
+<div id="audioUploadPrompt" class="space-y-2">
+<i class="ri-upload-cloud-line text-4xl text-gray-400"></i>
+<p class="text-sm text-gray-400">Arrastra tu archivo de audio o <span class="text-primary">selecciona un archivo</span></p>
+<p class="text-xs text-gray-500">MP3, WAV (max. 200MB)</p>
+</div>
+<input type="file" id="audioFile" name="audioFile" accept="audio/*" class="hidden">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Nivel</label>
+<div class="flex space-x-4">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="level" value="beginner" class="custom-radio">
+<span class="text-gray-400">Principiante</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="level" value="intermediate" class="custom-radio">
+<span class="text-gray-400">Intermedio</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="level" value="advanced" class="custom-radio">
+<span class="text-gray-400">Avanzado</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Visibilidad</label>
+<div class="flex items-center space-x-2">
+<input type="checkbox" id="isPublic" name="isPublic" class="custom-switch">
+<label for="isPublic" class="text-gray-400 cursor-pointer">Hacer público</label>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-800">
+<button type="button" id="cancelUpload" class="px-6 py-2.5 text-gray-400 hover:text-white">
+Cancelar
+</button>
+<button type="submit" class="px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+Publicar Podcast
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script id="navigation-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+const navItems = document.querySelectorAll('nav .group');
+navItems.forEach(item => {
+item.addEventListener('click', function() {
+navItems.forEach(nav => {
+const icon = nav.querySelector('i');
+const text = nav.querySelector('span');
+icon.className = icon.className.replace('text-primary', 'text-gray-400');
+text.className = text.className.replace('text-primary', 'text-gray-400');
+});
+const icon = this.querySelector('i');
+const text = this.querySelector('span');
+icon.className = icon.className.replace('text-gray-400', 'text-primary');
+text.className = text.className.replace('text-gray-400', 'text-primary');
+});
+});
+const userAvatar = document.getElementById('userAvatar');
+const userDropdown = document.getElementById('userDropdown');
+userAvatar.addEventListener('click', function(e) {
+e.stopPropagation();
+userDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(e) {
+if (!userAvatar.contains(e.target)) {
+userDropdown.classList.add('hidden');
+}
+});
+});
+</script>
+<script id="bookmark-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const bookmarkButtons = document.querySelectorAll('[class*="ri-bookmark"]');
+bookmarkButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.stopPropagation();
+if (this.classList.contains('ri-bookmark-line')) {
+this.className = this.className.replace('ri-bookmark-line', 'ri-bookmark-fill');
+this.className = this.className.replace('text-gray-400', 'text-primary');
+} else {
+this.className = this.className.replace('ri-bookmark-fill', 'ri-bookmark-line');
+this.className = this.className.replace('text-primary', 'text-gray-400');
+}
+});
+});
+});
+</script>
+<script id="upload-podcast-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const uploadModal = document.getElementById('uploadPodcastModal');
+const closeUploadBtn = document.getElementById('closeUploadModal');
+const cancelUploadBtn = document.getElementById('cancelUpload');
+const uploadForm = document.getElementById('podcastUploadForm');
+const coverImageInput = document.getElementById('coverImage');
+const imagePreview = document.getElementById('imagePreview');
+const previewContainer = document.getElementById('previewContainer');
+const uploadPrompt = document.getElementById('uploadPrompt');
+const tagInput = document.getElementById('tagInput');
+const tagContainer = document.getElementById('tagContainer');
+const audioFileInput = document.getElementById('audioFile');
+let tags = new Set();
+function showUploadModal() {
+uploadModal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+}
+function hideUploadModal() {
+uploadModal.classList.add('hidden');
+document.body.style.overflow = '';
+uploadForm.reset();
+previewContainer.classList.add('hidden');
+uploadPrompt.classList.remove('hidden');
+tags.clear();
+updateTagsDisplay();
+}
+closeUploadBtn.addEventListener('click', hideUploadModal);
+cancelUploadBtn.addEventListener('click', hideUploadModal);
+uploadModal.addEventListener('click', (e) => {
+if (e.target === uploadModal) hideUploadModal();
+});
+const uploadPromptDiv = document.querySelector('.border-dashed');
+uploadPromptDiv.addEventListener('click', () => coverImageInput.click());
+coverImageInput.addEventListener('change', (e) => {
+const file = e.target.files[0];
+if (file) {
+const reader = new FileReader();
+reader.onload = (e) => {
+imagePreview.src = e.target.result;
+previewContainer.classList.remove('hidden');
+uploadPrompt.classList.add('hidden');
+};
+reader.readAsDataURL(file);
+}
+});
+const audioUploadPromptDiv = document.querySelector('#audioUploadPrompt').parentElement;
+audioUploadPromptDiv.addEventListener('click', () => audioFileInput.click());
+function addTag(tagText) {
+if (tagText && !tags.has(tagText) && tags.size < 5) {
+tags.add(tagText);
+updateTagsDisplay();
+}
+}
+function removeTag(tagText) {
+tags.delete(tagText);
+updateTagsDisplay();
+}
+function updateTagsDisplay() {
+tagContainer.innerHTML = '';
+tags.forEach(tag => {
+const tagElement = document.createElement('div');
+tagElement.className = 'bg-gray-800 text-white px-3 py-1 rounded-full flex items-center space-x-2';
+tagElement.innerHTML = `
+<span>#${tag}</span>
+<button type="button" class="text-gray-400 hover:text-white">
+<i class="ri-close-line"></i>
+</button>
+`;
+tagElement.querySelector('button').addEventListener('click', () => removeTag(tag));
+tagContainer.appendChild(tagElement);
+});
+}
+tagInput.addEventListener('keydown', (e) => {
+if (e.key === 'Enter') {
+e.preventDefault();
+const tagText = tagInput.value.trim();
+if (tagText) {
+addTag(tagText);
+tagInput.value = '';
+}
+}
+});
+uploadForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const formData = new FormData(uploadForm);
+formData.append('tags', Array.from(tags).join(','));
+// Aquí iría la lógica para enviar el podcast al servidor
+console.log('Subiendo podcast...', Object.fromEntries(formData));
+// Simulamos una carga exitosa
+setTimeout(() => {
+hideUploadModal();
+// Aquí podrías mostrar una notificación de éxito
+}, 1500);
+});
+// Añadir botón de "Nuevo Podcast" en la barra superior
+const headerActions = document.querySelector('header .flex.items-center.justify-between');
+const uploadButton = document.createElement('button');
+uploadButton.className = 'flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors';
+uploadButton.innerHTML = `
+<i class="ri-add-line"></i>
+<span>Nuevo Podcast</span>
+`;
+uploadButton.addEventListener('click', showUploadModal);
+headerActions.insertBefore(uploadButton, headerActions.firstChild.nextSibling);
+});
+</script>
+<script id="play-button-effects">
+document.addEventListener('DOMContentLoaded', function() {
+const playButtons = document.querySelectorAll('.ri-play-fill');
+playButtons.forEach(button => {
+button.parentElement.addEventListener('click', function(e) {
+e.stopPropagation();
+this.classList.add('glow-effect');
+setTimeout(() => {
+this.classList.remove('glow-effect');
+}, 2000);
+});
+});
+});
+</script>
+<!-- Modales -->
+<div id="termsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50">
+<div class="min-h-screen flex items-center justify-center p-6">
+<div class="bg-gray-900 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+<div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-900">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-white">Términos y Condiciones</h2>
+<button class="modal-close text-gray-400 hover:text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-4">
+<h3 class="text-xl font-semibold text-white">1. Aceptación de los Términos</h3>
+<p class="text-gray-400">Al acceder y utilizar NeuroWave, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, no podrás acceder al servicio.</p>
+<h3 class="text-xl font-semibold text-white">2. Uso del Servicio</h3>
+<p class="text-gray-400">NeuroWave proporciona una plataforma para compartir y escuchar podcasts sobre IA y tecnología. Los usuarios deben utilizar el servicio de manera responsable y legal.</p>
+<h3 class="text-xl font-semibold text-white">3. Cuentas de Usuario</h3>
+<p class="text-gray-400">Debes mantener la confidencialidad de tu cuenta y eres responsable de todas las actividades que ocurran bajo tu cuenta.</p>
+<h3 class="text-xl font-semibold text-white">4. Contenido</h3>
+<p class="text-gray-400">Los usuarios son responsables del contenido que publican. NeuroWave se reserva el derecho de eliminar contenido que viole estos términos.</p>
+<h3 class="text-xl font-semibold text-white">5. Propiedad Intelectual</h3>
+<p class="text-gray-400">Todo el contenido original en NeuroWave está protegido por derechos de autor y otras leyes de propiedad intelectual.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="privacyModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50">
+<div class="min-h-screen flex items-center justify-center p-6">
+<div class="bg-gray-900 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+<div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-900">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-white">Política de Privacidad</h2>
+<button class="modal-close text-gray-400 hover:text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-4">
+<h3 class="text-xl font-semibold text-white">1. Recopilación de Datos</h3>
+<p class="text-gray-400">Recopilamos información necesaria para proporcionar y mejorar nuestros servicios, incluyendo datos de uso y preferencias.</p>
+<h3 class="text-xl font-semibold text-white">2. Uso de la Información</h3>
+<p class="text-gray-400">Utilizamos tu información para personalizar tu experiencia, mejorar nuestros servicios y comunicarnos contigo.</p>
+<h3 class="text-xl font-semibold text-white">3. Protección de Datos</h3>
+<p class="text-gray-400">Implementamos medidas de seguridad para proteger tu información personal contra acceso no autorizado.</p>
+<h3 class="text-xl font-semibold text-white">4. Cookies</h3>
+<p class="text-gray-400">Utilizamos cookies para mejorar tu experiencia de navegación y analizar el uso del sitio.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="aboutModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50">
+<div class="min-h-screen flex items-center justify-center p-6">
+<div class="bg-gray-900 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+<div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-900">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-white">Sobre NeuroWave</h2>
+<button class="modal-close text-gray-400 hover:text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-4">
+<p class="text-gray-400">NeuroWave es la plataforma líder en podcasts sobre Inteligencia Artificial y tecnología avanzada. Nuestra misión es democratizar el conocimiento sobre IA y hacer que el aprendizaje sea accesible para todos.</p>
+<h3 class="text-xl font-semibold text-white">Nuestra Misión</h3>
+<p class="text-gray-400">Conectar a expertos en IA con audiencias globales y facilitar el intercambio de conocimientos en el campo de la tecnología avanzada.</p>
+<h3 class="text-xl font-semibold text-white">Nuestro Equipo</h3>
+<p class="text-gray-400">Somos un equipo diverso de tecnólogos, educadores y creadores de contenido apasionados por la IA y su impacto en la sociedad.</p>
+<h3 class="text-xl font-semibold text-white">Innovación Continua</h3>
+<p class="text-gray-400">Constantemente innovamos y mejoramos nuestra plataforma para proporcionar la mejor experiencia de aprendizaje posible.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="registerModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden z-50">
+<div class="min-h-screen flex items-center justify-center p-6">
+<div class="bg-gray-900 rounded-xl w-full max-w-md">
+<div class="p-6 border-b border-gray-800">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-white">Registro</h2>
+<button class="modal-close text-gray-400 hover:text-white">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+</div>
+<form id="registerForm" class="p-6 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Nombre completo</label>
+<input type="text" name="fullName" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tu nombre completo">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+<input type="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="tu@email.com">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Contraseña</label>
+<input type="password" name="password" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Mínimo 8 caracteres">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-400 mb-2">Confirmar contraseña</label>
+<input type="password" name="confirmPassword" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Confirma tu contraseña">
+</div>
+<div class="flex items-center space-x-2">
+<input type="checkbox" id="terms" name="terms" class="custom-checkbox">
+<label for="terms" class="text-gray-400 text-sm">Acepto los <a href="#" class="text-primary hover:text-blue-400">Términos y Condiciones</a> y la <a href="#" class="text-primary hover:text-blue-400">Política de Privacidad</a></label>
+</div>
+</div>
+<button type="submit" class="w-full bg-primary text-white rounded-lg py-2.5 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+Crear cuenta
+</button>
+<p class="text-center text-gray-400 text-sm">¿Ya tienes una cuenta? <a href="#" class="text-primary hover:text-blue-400">Iniciar sesión</a></p>
+</form>
+</div>
+</div>
+</div>
+<script id="modal-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const modals = {
+terms: document.getElementById('termsModal'),
+privacy: document.getElementById('privacyModal'),
+about: document.getElementById('aboutModal'),
+register: document.getElementById('registerModal')
+};
+const links = {
+terms: document.querySelector('a[href="#"][class*="text-primary"]:contains("Términos y Condiciones")'),
+privacy: document.querySelector('a[href="#"][class*="text-primary"]:contains("Política de Privacidad")'),
+about: document.querySelector('a[href="#"][class*="text-primary"]:contains("Sobre")'),
+register: document.querySelector('a[href="#"][class*="text-primary"]:contains("Iniciar sesión")')
+};
+function showModal(modalId) {
+modals[modalId].classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+}
+function hideModal(modalId) {
+modals[modalId].classList.add('hidden');
+document.body.style.overflow = '';
+}
+Object.keys(links).forEach(key => {
+if (links[key]) {
+links[key].addEventListener('click', (e) => {
+e.preventDefault();
+showModal(key);
+});
+}
+});
+document.querySelectorAll('.modal-close').forEach(button => {
+button.addEventListener('click', function() {
+const modal = this.closest('[id$="Modal"]');
+const modalId = modal.id.replace('Modal', '');
+hideModal(modalId);
+});
+});
+Object.values(modals).forEach(modal => {
+modal.addEventListener('click', function(e) {
+if (e.target === this) {
+const modalId = this.id.replace('Modal', '');
+hideModal(modalId);
+}
+});
+});
+const registerForm = document.getElementById('registerForm');
+registerForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(registerForm);
+console.log('Registro:', Object.fromEntries(formData));
+hideModal('register');
+});
+});
+</script>
+<footer class="bg-gray-900 border-t border-gray-800 mt-12">
+<div class="max-w-7xl mx-auto px-6 py-12">
+<div class="grid grid-cols-4 gap-8">
+<div class="space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<i class="ri-brain-line text-white text-xl"></i>
+</div>
+<span class="font-['Pacifico'] text-2xl text-white">NeuroWave</span>
+</div>
+<p class="text-gray-400 text-sm">La plataforma líder en podcasts sobre Inteligencia Artificial y tecnología avanzada.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-twitter-line text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-linkedin-line text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-github-line text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-youtube-line text-xl"></i>
+</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold">Plataforma</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">Explorar</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Características</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Precios</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Integraciones</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold">Recursos</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Documentación</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Guías</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Tutoriales</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-white font-semibold">Legal</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white terms-link">Términos y Condiciones</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white privacy-link">Política de Privacidad</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white about-link">Sobre Nosotros</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white register-link">Registro</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8">
+<p class="text-center text-gray-400 text-sm">&copy; 2025 NeuroWave. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<script id="footer-links">
+document.addEventListener('DOMContentLoaded', function() {
+const termsLink = document.querySelector('.terms-link');
+const privacyLink = document.querySelector('.privacy-link');
+const aboutLink = document.querySelector('.about-link');
+const registerLink = document.querySelector('.register-link');
+termsLink.addEventListener('click', (e) => {
+e.preventDefault();
+document.getElementById('termsModal').classList.remove('hidden');
+});
+privacyLink.addEventListener('click', (e) => {
+e.preventDefault();
+document.getElementById('privacyModal').classList.remove('hidden');
+});
+aboutLink.addEventListener('click', (e) => {
+e.preventDefault();
+document.getElementById('aboutModal').classList.remove('hidden');
+});
+registerLink.addEventListener('click', (e) => {
+e.preventDefault();
+document.getElementById('registerModal').classList.remove('hidden');
+});
+});
+</script>
+</body>
+</html>

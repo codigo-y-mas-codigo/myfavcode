@@ -1,0 +1,23 @@
+{
+  "title": "Guía Esencial para Vivir en Condominio: Conceptos Clave para Nuevos Residentes",
+  "type": "ARTIFACT_TYPE_TAILORED_REPORT",
+  "sources": [{
+    "sourceId": {
+      "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+    }
+  }],
+  "status": "ARTIFACT_STATUS_READY",
+  "tailoredReport": {
+    "generationOptions": {
+      "type": "Resumen conceptual",
+      "description": "Descubre las figuras clave y los documentos esenciales en la vida de un condominio.",
+      "sourceIds": [{
+        "id": "5458f403-6065-42c4-80e2-467da2f413dc"
+      }],
+      "languageCode": "es_419",
+      "documentDirective": "Crear un documento claro y sencillo para que cualquier persona nueva en el tema pueda entender los conceptos fundamentales del régimen de propiedad en condominio. Explica de manera amigable qué es un condominio, quiénes lo conforman (administrador, comité) y cuáles son las reglas principales que lo rigen, basándote en la información proporcionada.",
+      "targetAudience": "TAILORED_REPORT_TARGET_AUDIENCE_BEGINNER",
+      "enableU18Classifier": true
+    }
+  }
+}
